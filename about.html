@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About Antara · The Interior Register</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+
+:root{
+  --paper:    #f5e8c8;
+  --paper-2:  #ece0b2;
+  --ink:      #1a1a3a;
+  --maroon:   #6b1a2c;
+  --saffron:  #c75a1a;
+  --turmeric: #a87825;
+  --rule:     #c8a85c;
+  --muted:    #7a5a30;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+body{
+  font-family:"Cormorant Garamond","Palatino Linotype",Georgia,serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.7;
+}
+
+/* ── NAV ── */
+nav{
+  background:var(--ink);
+  padding:18px 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.nav-wordmark{
+  font-size:22pt;color:var(--paper);font-style:italic;
+  letter-spacing:.06em;text-decoration:none;
+}
+.nav-wordmark sup{
+  font-style:normal;color:var(--rule);font-size:13pt;
+  margin-left:6px;vertical-align:middle;
+}
+.nav-link{
+  color:var(--muted);font-size:10pt;letter-spacing:.12em;
+  text-transform:uppercase;text-decoration:none;
+}
+.nav-link:hover{color:var(--rule);}
+
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(160deg,#1a1a3a 0%,#28203a 60%,#3a1a2a 100%);
+  padding:80px 40px 70px;
+  text-align:center;
+}
+.hero-eyebrow{
+  font-size:9pt;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--rule);margin-bottom:20px;
+}
+.hero h1{
+  font-size:44pt;font-weight:400;font-style:italic;
+  color:var(--paper);letter-spacing:.04em;line-height:1.1;
+  margin-bottom:16px;
+}
+.hero h1 span{
+  font-style:normal;font-weight:700;color:var(--rule);
+  font-size:28pt;
+}
+.hero-rule{
+  width:80px;height:1px;background:var(--rule);
+  margin:24px auto;opacity:.5;
+}
+.hero-tagline{
+  font-size:16pt;color:rgba(245,232,200,0.75);
+  font-style:italic;max-width:560px;margin:0 auto;
+  letter-spacing:.02em;
+}
+
+/* ── SECTION WRAPPER ── */
+.section{
+  max-width:760px;
+  margin:0 auto;
+  padding:64px 24px;
+}
+.section + .section{
+  border-top:1px solid var(--paper-2);
+}
+.eyebrow{
+  font-size:8pt;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--saffron);font-weight:700;margin-bottom:14px;
+}
+.section h2{
+  font-size:28pt;font-weight:400;color:var(--maroon);
+  margin-bottom:20px;line-height:1.2;
+}
+.section p{
+  font-size:13pt;color:var(--ink);margin-bottom:16px;
+  max-width:680px;
+}
+.section p strong{
+  color:var(--maroon);font-weight:700;
+}
+
+/* ── POSITION STATEMENT ── */
+.position-card{
+  background:var(--ink);
+  border-radius:4px;
+  padding:36px 40px;
+  margin:32px 0;
+  border-left:4px solid var(--rule);
+}
+.position-card p{
+  color:var(--paper);font-size:15pt;font-style:italic;
+  margin-bottom:0;line-height:1.6;
+}
+.position-card cite{
+  display:block;margin-top:14px;
+  font-size:9pt;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--rule);font-style:normal;
+}
+
+/* ── BULLET POINTS ── */
+.point-list{list-style:none;margin:24px 0;}
+.point-list li{
+  display:flex;gap:16px;
+  padding:16px 0;border-bottom:1px solid var(--paper-2);
+  font-size:12.5pt;color:var(--ink);line-height:1.6;
+}
+.point-list li:last-child{border-bottom:none;}
+.point-list .bullet{
+  color:var(--rule);font-size:18pt;line-height:1;
+  flex-shrink:0;padding-top:2px;
+}
+.point-list strong{color:var(--maroon);}
+
+/* ── SYSTEMS GRID ── */
+.systems-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;margin:32px 0;
+}
+@media(max-width:600px){
+  .systems-grid{grid-template-columns:1fr;}
+}
+.system-card{
+  background:white;border-radius:4px;padding:20px;
+  border-top:3px solid var(--rule);
+}
+.system-card.c1{border-top-color:var(--maroon);}
+.system-card.c2{border-top-color:var(--turmeric);}
+.system-card.c3{border-top-color:var(--saffron);}
+.system-label{
+  font-size:8pt;letter-spacing:.20em;text-transform:uppercase;
+  font-weight:700;margin-bottom:10px;
+}
+.system-card.c1 .system-label{color:var(--maroon);}
+.system-card.c2 .system-label{color:var(--turmeric);}
+.system-card.c3 .system-label{color:var(--saffron);}
+.system-card ul{
+  list-style:none;
+  font-size:11pt;color:var(--ink);
+}
+.system-card ul li{
+  padding:4px 0;
+  border-bottom:1px solid var(--paper-2);
+  font-style:italic;
+}
+.system-card ul li:last-child{border-bottom:none;}
+
+/* ── FAQ ── */
+.faq{margin:32px 0;}
+.faq-item{
+  border-bottom:1px solid var(--paper-2);
+}
+.faq-q{
+  width:100%;background:none;border:none;
+  text-align:left;padding:20px 0;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:13pt;font-weight:700;color:var(--maroon);
+  line-height:1.3;
+}
+.faq-q .faq-icon{
+  font-size:20pt;color:var(--rule);flex-shrink:0;margin-left:16px;
+  transition:transform .2s;font-weight:400;
+}
+.faq-q.open .faq-icon{transform:rotate(45deg);}
+.faq-a{
+  display:none;padding:0 0 20px;
+  font-size:12pt;color:var(--ink);line-height:1.7;max-width:640px;
+}
+.faq-a.open{display:block;}
+.faq-a p{margin-bottom:12px;}
+.faq-a p:last-child{margin-bottom:0;}
+
+/* ── CLOSING QUOTE ── */
+.closing{
+  background:linear-gradient(135deg,#1a1a3a 0%,#2a1a2a 100%);
+  padding:64px 40px;text-align:center;
+}
+.closing blockquote{
+  font-size:20pt;font-style:italic;color:var(--paper);
+  max-width:600px;margin:0 auto;line-height:1.5;
+  letter-spacing:.02em;
+}
+.closing cite{
+  display:block;margin-top:20px;
+  font-size:9pt;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--rule);font-style:normal;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--ink);padding:28px 40px;
+  text-align:center;
+  font-size:9pt;letter-spacing:.10em;text-transform:uppercase;
+  color:var(--muted);
+}
+footer a{color:var(--rule);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-wordmark" href="index.html">Antara <sup>अन्तर</sup></a>
+  <a class="nav-link" href="index.html">Open the App →</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">The Interior Register</div>
+  <h1>Antara <span>अन्तर</span></h1>
+  <div class="hero-rule"></div>
+  <div class="hero-tagline">Nine traditions. One person. Precise calculations. No predictions.</div>
+</div>
+
+<!-- SECTION 1: THE POSITION -->
+<div class="section">
+  <div class="eyebrow">Why this exists</div>
+  <h2>Built by a rationalist.<br>For anyone who is curious.</h2>
+
+  <p>The creator of Antara is known among his friends as a rationalist. The first question they asked was the obvious one.</p>
+
+  <div class="position-card">
+    <p>"I didn't enter the belief system. I built the instrument. There is a difference."</p>
+    <cite>— The guiding principle behind Antara</cite>
+  </div>
+
+  <p>Four billion people worldwide navigate their lives using some form of astrological, numerological, or cyclical framework. That is not a fringe phenomenon — it is a civilisational fact that spans every culture, every century, and every level of education.</p>
+
+  <p>A rationalist's best contribution to this space is not mockery, and not conversion. It is <strong>precision</strong> — making sure the numbers, at least, are exactly right.</p>
+</div>
+
+<!-- SECTION 2: WHAT ANTARA DOES -->
+<div class="section">
+  <div class="eyebrow">What Antara is</div>
+  <h2>The instrument,<br>not the interpretation.</h2>
+
+  <p>Every tradition has its own mathematics. Antara calculates those numbers with full technical rigour — the lagna degree, the nakshatra, the Life Path, the Kua, the Day Master, the critical days — all computed correctly, for any person, on any date.</p>
+
+  <p>What you do with those numbers — believe them, consult a pandit, discuss them with a friend, or simply file them away — is entirely your decision. Antara ends where interpretation begins.</p>
+
+  <ul class="point-list">
+    <li>
+      <span class="bullet">◇</span>
+      <span><strong>Tradition-based, not invented.</strong> Every calculation follows the canonical method of its school — Lahiri ayanamsha for Vedic, Placidus houses for Western, classical Vimshottari for dashas, sequential assignment for Pythagorean numerology.</span>
+    </li>
+    <li>
+      <span class="bullet">◇</span>
+      <span><strong>Mathematically rigorous.</strong> The same birth data run through five numerological schools and four horoscopic traditions. If the traditions are telling the truth, they should converge — now you can actually check.</span>
+    </li>
+    <li>
+      <span class="bullet">◇</span>
+      <span><strong>Interpretive, not predictive.</strong> This is not a disclaimer. It is the design. Prediction requires belief. Calculation requires only mathematics. Antara only does the second.</span>
+    </li>
+    <li>
+      <span class="bullet">◇</span>
+      <span><strong>Your pandit deserves accurate data.</strong> Most practitioners receive incomplete or approximate birth data. Antara gives you — and them — the precise technical foundation that any school of thought should be working from.</span>
+    </li>
+  </ul>
+</div>
+
+<!-- SECTION 3: THE NINE SYSTEMS -->
+<div class="section">
+  <div class="eyebrow">The nine traditions</div>
+  <h2>One person.<br>Nine lenses.</h2>
+
+  <p>No single practitioner typically masters all nine systems. A Vedic astrologer rarely knows Lo Shu. A Pythagorean numerologist rarely knows BaZi. Antara is the first place where all nine sit side by side, calculated for the same person, on the same day.</p>
+
+  <div class="systems-grid">
+    <div class="system-card c1">
+      <div class="system-label">Horoscope · 4 schools</div>
+      <ul>
+        <li>Vedic · North Indian</li>
+        <li>Vedic · South Indian</li>
+        <li>Western · Natal</li>
+        <li>Chinese · BaZi</li>
+      </ul>
+    </div>
+    <div class="system-card c2">
+      <div class="system-label">Numerology · 5 schools</div>
+      <ul>
+        <li>Pythagorean</li>
+        <li>Chaldean</li>
+        <li>Tamil · Vedic</li>
+        <li>Kabbalah</li>
+        <li>Lo Shu · Chinese</li>
+      </ul>
+    </div>
+    <div class="system-card c3">
+      <div class="system-label">Biorhythm · 3 reports</div>
+      <ul>
+        <li>Monthly cycles</li>
+        <li>Critical days · Annual</li>
+        <li>Compatibility</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>Each system is delivered as a beautifully formatted A4 report — print-ready, typeset in the classical Indian reading tradition, with every parameter shown and every calculation transparent.</p>
+</div>
+
+<!-- SECTION 4: FAQ -->
+<div class="section">
+  <div class="eyebrow">Frequently asked</div>
+  <h2>The questions<br>we expected.</h2>
+
+  <div class="faq">
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Are you predicting my future?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>No. Antara does not predict anything. A thermometer tells you the temperature — it does not tell you whether to carry an umbrella. Antara gives you the reading; what you do with it is entirely up to you.</p>
+        <p>The phrase <em>Interpretive, not Predictive</em> appears on every report. It is not a legal disclaimer. It is the philosophy.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Do you believe in astrology or numerology?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>That question is deliberately outside the scope of Antara. Whether the creator believes is irrelevant to whether the calculations are correct.</p>
+        <p>Antara was built on a simpler conviction: if four billion people use these systems, those people deserve accurate numbers — regardless of what anyone thinks of the systems themselves.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Is any of this scientific?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>The calculations are mathematically precise. Whether the underlying traditions have predictive scientific validity is a separate question — one that Antara does not take a position on.</p>
+        <p>What is demonstrably true: these traditions are sophisticated, internally consistent systems refined over centuries by some of the sharpest mathematical minds of their eras. The Vedic nakshatra system alone is a remarkable feat of astronomical observation. Respecting that is not the same as accepting every claim made in its name.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Why nine systems? Why not just one?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Because traditions disagree — and that disagreement is itself informative. Where Vedic, Western, BaZi, and numerology all point to the same characteristic in a person, the convergence is striking. Where they diverge, the divergence tells you something about the limits of each system.</p>
+        <p>Antara's synthesis report, <em>Chatur-Drishti</em>, is built specifically to find those convergence points across all four horoscopic traditions.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Who is Antara for?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>For the curious. For the person who wants to know what their astrologer or numerologist is actually working from. For the rationalist who wants the data without the sermon. For the believer who wants better data than they have been getting. For the person who wants to give a deeply considered, beautifully produced gift.</p>
+        <p>Antara does not require belief. It only requires a birth date.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        What do I do with the reports?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Whatever you like. Take them to your pandit — who now has the exact technical parameters they need to work from. Read them yourself and reflect. File them away. Frame the cover page. Share them with someone whose birth chart has always intrigued you.</p>
+        <p>The reports are produced to a standard that makes them worth keeping. They are not generated text — they are typeset documents, formatted to A4, in the classical reading tradition of the Indian subcontinent.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        What does Antara mean?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p><em>Antara</em> (अन्तर) is Sanskrit for <em>interior</em> — the space within, the inner register. In classical music, the antara is the second movement of a composition, the one that explores the higher reaches.</p>
+        <p>The name was chosen because these traditions are ultimately tools for self-knowledge — not windows into the future, but mirrors held up to the interior life. Whether you believe in them or not, the reflection is worth a look.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CLOSING QUOTE -->
+<div class="closing">
+  <blockquote>
+    "I have not decided what these numbers mean.<br>
+    I have decided they should at least be correct."
+  </blockquote>
+  <cite>The founding principle of Antara</cite>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Antara · अन्तर · The Interior Register &nbsp;·&nbsp; <a href="index.html">Open the App</a></p>
+</footer>
+
+<script>
+function toggleFaq(btn){
+  const answer = btn.nextElementSibling;
+  const isOpen = answer.classList.contains('open');
+  // close all
+  document.querySelectorAll('.faq-a.open').forEach(a=>a.classList.remove('open'));
+  document.querySelectorAll('.faq-q.open').forEach(b=>b.classList.remove('open'));
+  // open this one if it was closed
+  if(!isOpen){
+    answer.classList.add('open');
+    btn.classList.add('open');
+  }
+}
+</script>
+
+</body>
+</html>
