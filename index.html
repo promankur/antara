@@ -639,6 +639,39 @@ body{
   background:white;outline:none;
 }
 .compat-dob:focus{border-color:var(--maroon);}
+/* Three-box DOB input */
+.dob-trio{display:flex;align-items:center;gap:4px;}
+.dob-trio input{
+  text-align:center;padding:11px 0;border-radius:3px;
+  border:1.2px solid rgba(200,168,92,0.28);
+  background:rgba(255,255,255,0.06);
+  font-family:Arial,sans-serif;font-size:11pt;font-weight:700;
+  color:var(--paper);outline:none;
+  transition:border-color .15s;
+  -moz-appearance:textfield;
+}
+.dob-trio input::-webkit-inner-spin-button,.dob-trio input::-webkit-outer-spin-button{display:none;}
+.dob-trio input::placeholder{color:rgba(245,232,200,0.28);font-weight:400;font-size:9pt;}
+.dob-trio input:focus{border-color:rgba(200,168,92,0.65);}
+.dob-trio .dob-dd,.dob-trio .dob-mm{width:52px;}
+.dob-trio .dob-yy{width:72px;}
+.dob-trio .dob-sep{color:rgba(200,168,92,0.5);font-size:12pt;font-weight:700;flex-shrink:0;}
+/* Home screen trio (paper background) */
+.dob-trio.home-trio input{
+  background:white;border-color:#cfc0a0;color:var(--ink);
+  font-size:10pt;padding:9px 0;
+}
+.dob-trio.home-trio input::placeholder{color:#b8a08080;}
+.dob-trio.home-trio input:focus{border-color:var(--maroon);}
+.dob-trio.home-trio .dob-sep{color:#c8a85c;}
+/* Compat trio */
+.dob-trio.compat-trio input{
+  background:white;border-color:#cfc0a0;color:var(--ink);
+  font-size:9pt;font-weight:400;padding:6px 0;
+}
+.dob-trio.compat-trio .dob-dd,.dob-trio.compat-trio .dob-mm{width:34px;}
+.dob-trio.compat-trio .dob-yy{width:46px;}
+.dob-trio.compat-trio .dob-sep{color:#c8a85c;font-size:10pt;}
 .compat-rm{
   background:none;border:none;color:var(--muted);
   font-size:14pt;cursor:pointer;line-height:1;padding:0 2px;
@@ -1092,7 +1125,13 @@ body{
         </div>
         <div class="wlc-field">
           <div class="wlc-section-label">Date of birth</div>
-          <input class="wlc-input" id="wlc-dob" type="text" placeholder="DD / MM / YYYY" maxlength="14" inputmode="numeric" oninput="fmtWlcDob(this)"/>
+          <div class="dob-trio">
+            <input class="dob-dd" id="wlc-dd" type="text" inputmode="numeric" maxlength="2" placeholder="DD" oninput="dobTrio(this,'wlc-mm',2)"/>
+            <span class="dob-sep">·</span>
+            <input class="dob-mm" id="wlc-mm" type="text" inputmode="numeric" maxlength="2" placeholder="MM" oninput="dobTrio(this,'wlc-yy',2)"/>
+            <span class="dob-sep">·</span>
+            <input class="dob-yy" id="wlc-yy" type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" oninput="dobTrio(this,null,4)"/>
+          </div>
           <div class="wlc-hint">Day · Month · Year — used only for your biorhythm calculation</div>
         </div>
         <div class="wlc-field">
@@ -1167,7 +1206,13 @@ body{
 
         <div class="field">
           <label>Date of Birth</label>
-          <input type="text" placeholder="dd / mm / yyyy" id="f-dob" oninput="check()"/>
+          <div class="dob-trio home-trio">
+            <input class="dob-dd" id="f-dd" type="text" inputmode="numeric" maxlength="2" placeholder="DD" oninput="dobTrio(this,'f-mm',2);check()"/>
+            <span class="dob-sep">·</span>
+            <input class="dob-mm" id="f-mm" type="text" inputmode="numeric" maxlength="2" placeholder="MM" oninput="dobTrio(this,'f-yy',2);check()"/>
+            <span class="dob-sep">·</span>
+            <input class="dob-yy" id="f-yy" type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" oninput="dobTrio(this,null,4);check()"/>
+          </div>
         </div>
 
         <div class="field">
@@ -1876,21 +1921,41 @@ body{
 </div>
 
 <script>
-/* ─── Welcome screen ─── */
-function fmtWlcDob(el){
-  let v=el.value.replace(/\D/g,'');
-  if(v.length>2) v=v.slice(0,2)+' / '+v.slice(2);
-  if(v.length>7) v=v.slice(0,7)+' / '+v.slice(7);
-  el.value=v.slice(0,14);
+/* ─── Three-box DOB — digits only, auto-advance ─── */
+function dobTrio(el, nextId, max){
+  el.value=el.value.replace(/\D/g,'').slice(0,max);
+  if(el.value.length===max && nextId){
+    const nx=document.getElementById(nextId);
+    if(nx) nx.focus();
+  }
+}
+function getWlcDob(){
+  const dd=(document.getElementById('wlc-dd').value||'').padStart(2,'0');
+  const mm=(document.getElementById('wlc-mm').value||'').padStart(2,'0');
+  const yy=document.getElementById('wlc-yy').value||'';
+  return dd+'·'+mm+'·'+yy;
+}
+function getHomeDob(){
+  const dd=(document.getElementById('f-dd').value||'').padStart(2,'0');
+  const mm=(document.getElementById('f-mm').value||'').padStart(2,'0');
+  const yy=document.getElementById('f-yy').value||'';
+  return dd+' · '+mm+' · '+yy;
+}
+function getCompatDob(i){
+  const row=document.querySelectorAll('.compat-trio')[i];
+  if(!row) return '';
+  const inputs=row.querySelectorAll('input');
+  return (inputs[0].value||'').padStart(2,'0')+'·'+(inputs[1].value||'').padStart(2,'0')+'·'+(inputs[2].value||'');
 }
 function sendFreeReport(){
   const name=document.getElementById('wlc-name').value.trim();
-  const dob=document.getElementById('wlc-dob').value.trim();
+  const dd=document.getElementById('wlc-dd').value.trim();
+  const mm=document.getElementById('wlc-mm').value.trim();
+  const yy=document.getElementById('wlc-yy').value.trim();
   const email=document.getElementById('wlc-email').value.trim();
   if(!name){alert('Please enter your name.');return;}
-  if(dob.replace(/\D/g,'').length<8){alert('Please enter a complete date of birth.');return;}
+  if(dd.length<1||mm.length<1||yy.length<4){alert('Please enter a complete date of birth — Day, Month, and Year.');return;}
   if(!email||!email.includes('@')){alert('Please enter a valid email address.');return;}
-  // Show spinner, hide form
   document.getElementById('wlc-form-area').style.display='none';
   const sp=document.getElementById('wlc-spinner');
   sp.style.display='flex';
@@ -1898,12 +1963,15 @@ function sendFreeReport(){
     sp.style.display='none';
     document.getElementById('wlc-sent-email').textContent=email;
     document.getElementById('wlc-success').style.display='flex';
-    // Pre-fill Home screen fields so user never enters these again
-    const hName=document.getElementById('f-name');
-    const hDob=document.getElementById('f-dob');
-    if(hName) hName.value=name;
-    if(hDob) hDob.value=dob;
-    // Trigger the Home screen's own check() so the biorhythm ticker activates
+    // Pre-fill Home screen trio fields
+    const fdd=document.getElementById('f-dd');
+    const fmm=document.getElementById('f-mm');
+    const fyy=document.getElementById('f-yy');
+    const fn=document.getElementById('f-name');
+    if(fn) fn.value=name;
+    if(fdd) fdd.value=dd.padStart(2,'0');
+    if(fmm) fmm.value=mm.padStart(2,'0');
+    if(fyy) fyy.value=yy;
     if(typeof check==='function') check();
   },1500);
 }
@@ -2031,9 +2099,11 @@ function activateTicker() {
 /* ─── Form check ─── */
 function check() {
   const n=document.getElementById('f-name').value.trim();
-  const dob=document.getElementById('f-dob').value.trim();
+  const dd=(document.getElementById('f-dd')||{value:''}).value.trim();
+  const mm=(document.getElementById('f-mm')||{value:''}).value.trim();
+  const yy=(document.getElementById('f-yy')||{value:''}).value.trim();
   const btn=document.getElementById('cont-btn');
-  if(n.length>1 && dob.length>7) {
+  if(n.length>1 && dd.length>=1 && mm.length>=1 && yy.length===4) {
     btn.disabled=false; activateTicker();
   } else {
     btn.disabled=true;
@@ -2159,8 +2229,19 @@ function renderCompatPersons(){
       <span class="compat-lbl">${lbl}</span>
       <input class="compat-name" placeholder="Full name" value="${p.name}"
              oninput="compatPersons[${i}].name=this.value"/>
-      <input class="compat-dob"  placeholder="DD/MM/YYYY" value="${p.dob}"
-             oninput="compatPersons[${i}].dob=this.value"/>
+      <div class="dob-trio compat-trio" style="flex-shrink:0;">
+        <input class="dob-dd" type="text" inputmode="numeric" maxlength="2" placeholder="DD"
+               value="${p.dob.slice(0,2)}"
+               oninput="dobTrio(this,'compat-mm-${i}',2);compatPersons[${i}].dob=getCompatDob(${i})"/>
+        <span class="dob-sep" style="font-size:9pt;">·</span>
+        <input class="dob-mm" id="compat-mm-${i}" type="text" inputmode="numeric" maxlength="2" placeholder="MM"
+               value="${p.dob.slice(3,5)}"
+               oninput="dobTrio(this,'compat-yy-${i}',2);compatPersons[${i}].dob=getCompatDob(${i})"/>
+        <span class="dob-sep" style="font-size:9pt;">·</span>
+        <input class="dob-yy" id="compat-yy-${i}" type="text" inputmode="numeric" maxlength="4" placeholder="YYYY"
+               value="${p.dob.slice(6)}"
+               oninput="dobTrio(this,null,4);compatPersons[${i}].dob=getCompatDob(${i})"/>
+      </div>
       ${canRemove
         ? `<button class="compat-rm" onclick="compatRemovePerson(${i})">×</button>`
         : '<span style="width:20px;flex-shrink:0"></span>'}
