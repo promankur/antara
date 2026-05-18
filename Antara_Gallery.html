@@ -68,8 +68,19 @@
     border: 1.5px solid #4a4230;
     box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     border-radius: 2px;
-    background: #e8e0cc;
+    background: #e8e0cc; /* overridden per genre below */
   }
+
+  /* ── Genre identity: section accent + iframe loading background ── */
+  .g-bio  .group-label { border-top-color:#c75a1a; color:#c48050; }
+  .g-hor  .group-label { border-top-color:#4a4a7a; color:#7a7a9a; }
+  .g-num  .group-label { border-top-color:#a87825; color:#a88840; }
+  .g-char .group-label { border-top-color:#6b1a2c; color:#9a5060; }
+
+  .g-bio  .cover-clip  { background:#f2dfc0; border-color:#b89a70; }
+  .g-hor  .cover-clip  { background:#dddbe8; border-color:#8888aa; }
+  .g-num  .cover-clip  { background:#f0e4b8; border-color:#b8a060; }
+  .g-char .cover-clip  { background:#ecdbd8; border-color:#aa8880; }
 
   .cover-clip iframe {
     width: 794px;
@@ -119,7 +130,7 @@
 </header>
 
 <!-- ── NUMEROLOGY ── -->
-<section class="group">
+<section class="group g-num">
   <div class="group-label">Numerology — Six lineages</div>
   <div class="covers-row">
 
@@ -169,7 +180,7 @@
 </section>
 
 <!-- ── HOROSCOPES ── -->
-<section class="group">
+<section class="group g-hor">
   <div class="group-label">Horoscopes — Three traditions</div>
   <div class="covers-row">
 
@@ -212,7 +223,7 @@
 </section>
 
 <!-- ── CHARACTER / BODY ── -->
-<section class="group">
+<section class="group g-char">
   <div class="group-label">Character &amp; Body reading</div>
   <div class="covers-row">
 
@@ -234,7 +245,7 @@
 </section>
 
 <!-- ── BIORHYTHM ── -->
-<section class="group">
+<section class="group g-bio">
   <div class="group-label">Biorhythm — Three reports</div>
   <div class="covers-row">
 

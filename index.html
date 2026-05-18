@@ -307,9 +307,38 @@ body{
 .rcard.c2{border-left-color:var(--turmeric);}
 .rcard.c3{border-left-color:var(--saffron);}
 
+/* ── Genre identity: tinted headers + sub-row wash ── */
+/* c1 = Horoscope · Ink tint (#dddbe8) */
+.rcard.c1 .rcard-head{background:#dddbe8;}
+.rcard.c1 .rcard-icon{background:#cccad8;}
+.rcard.c1 .rcard-subs{background:rgba(221,219,232,0.25);}
+/* c2 = Numerology · Turmeric tint (#f0e4b8) */
+.rcard.c2 .rcard-head{background:#f0e4b8;}
+.rcard.c2 .rcard-icon{background:#e4d8a8;}
+.rcard.c2 .rcard-subs{background:rgba(240,228,184,0.25);}
+/* c3 = Biorhythm · Saffron tint (#f2dfc0) */
+.rcard.c3 .rcard-head{background:#f2dfc0;}
+.rcard.c3 .rcard-icon{background:#e6d0ac;}
+.rcard.c3 .rcard-subs{background:rgba(242,223,192,0.25);}
+
+/* Genre section divider — appears above each card */
+.genre-divider{
+  margin:14px 10px 3px;
+  padding:5px 0 4px;
+  font-family:"Iowan Old Style",Arial,sans-serif;
+  font-size:7pt;letter-spacing:.22em;text-transform:uppercase;font-weight:700;
+  border-top:1px solid;
+  display:flex;align-items:center;gap:6px;
+  flex-shrink:0;
+}
+.genre-divider.g-hor{color:#5a5a8a;border-top-color:#8888aa;}
+.genre-divider.g-num{color:var(--turmeric);border-top-color:var(--turmeric);}
+.genre-divider.g-bio{color:var(--saffron);border-top-color:var(--saffron);}
+
 /* Card header row */
 .rcard-head{
   display:flex;align-items:center;padding:9px 12px 7px;gap:10px;
+  border-radius:4px 4px 0 0;
 }
 .rcard-icon{
   width:34px;height:34px;flex-shrink:0;border-radius:50%;
@@ -1456,6 +1485,7 @@ body{
       <div class="select-hint">Tap any <span>report name</span> for a 50-word description</div>
 
       <!-- ── Card 1: Horoscope ── -->
+      <div class="genre-divider g-hor">◈ Horoscope · 5 reports</div>
       <div class="rcard c1">
         <div class="rcard-head">
           <div class="rcard-icon">
@@ -1520,6 +1550,7 @@ body{
       </div>
 
       <!-- ── Card 2: Numerology ── -->
+      <div class="genre-divider g-num">∑ Numerology · 6 reports</div>
       <div class="rcard c2">
         <div class="rcard-head">
           <div class="rcard-icon">
@@ -1589,6 +1620,7 @@ body{
       </div>
 
       <!-- ── Card 3: Biorhythm ── -->
+      <div class="genre-divider g-bio">〜 Biorhythm · 3 reports</div>
       <div class="rcard c3">
         <div class="rcard-head">
           <div class="rcard-icon">
