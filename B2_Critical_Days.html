@@ -759,7 +759,19 @@ h3.section-sub {
    Person: Priya Sharma, born 15 March 1990
    ───────────────────────────────────────────── */
 
-const BIRTH = new Date(1990, 2, 15); // March 15, 1990
+const BIRTH = (function(){
+  try {
+    var raw = localStorage.getItem('antara_user');
+    if (raw) {
+      var u = JSON.parse(raw);
+      if (u && u.dob) {
+        var p = u.dob.split('-');
+        return new Date(+p[0], +p[1]-1, +p[2]);
+      }
+    }
+  } catch(e) {}
+  return new Date(1990, 2, 15); // fallback: Priya Sharma
+})();
 
 const PERIODS = { physical: 23, emotional: 28, intellectual: 33, spiritual: 53 };
 const COLORS  = { physical: '#c44a4a', emotional: '#1f5e8a', intellectual: '#3a7a3a', spiritual: '#7048a0' };
