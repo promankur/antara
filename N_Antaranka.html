@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Antarāṅka Numerology — A Personal Reading for Ankur Gupta</title>
+<style>
+  /* ──────────────────────────────────────────────
+     Antara Personal Reading — V3 template
+     Wider text column · tighter header · variants for
+     wide charts and text-heavy pages (icon-right).
+     A4 portrait · footer-safe · no silent clipping.
+     ────────────────────────────────────────────── */
+
+  @page { size: A4 portrait; margin: 0; }
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #d6cba0; }
+  body {
+    font-family: "Cormorant Garamond","Iowan Old Style","Palatino Linotype",Georgia,serif;
+    font-size: 12pt; line-height: 1.5;
+    color: #1a1a1a; -webkit-font-smoothing: antialiased;
+  }
+
+  /* ──────────── Cultural palette: Convergence ──────────── */
+  :root {
+    --paper:#f5edd9;
+    --paper-2:#ece2c2;
+    --ink:#1a1a1a;
+    --ink-2:#33261d;
+    --gold:#b8893a;
+    --gold-soft:#e0c98b;
+    --indigo:#1a2854;
+    --indigo-soft:#7e89aa;
+
+    /* lineage accent colours */
+    --lin-pyth:#9c7c2c;
+    --lin-chal:#a0522d;
+    --lin-kabb:#5e2851;
+    --lin-tamil:#9b1f2a;
+    --lin-loshu:#a3171c;
+
+    --rule:#c8a85b;
+    --muted:#7a6649;
+
+    /* ── V3 page geometry ── */
+    --page-w:210mm;
+    --page-h:297mm;
+    --pad-top:17mm;          /* tightened by 8mm vs v2 */
+    --pad-bot:32mm;          /* 14mm footer band + 18mm safety */
+    --pad-left:25mm;
+    --pad-right:22mm;
+    --col-text:125mm;        /* widened from 105mm */
+    --col-gap:6mm;           /* tightened from 8mm */
+    --col-margin:32mm;       /* tightened from ~50mm */
+    --content-w:163mm;       /* 210 − 25 − 22 */
+    --content-h:248mm;       /* 297 − 17 − 32 */
+    --content-top-pad:6mm;
+  }
+
+  /* ──────────── The Page ──────────── */
+  .page{
+    width:var(--page-w); height:var(--page-h);
+    background:var(--paper);
+    margin:8mm auto;
+    padding:var(--pad-top) var(--pad-right) var(--pad-bot) var(--pad-left);
+    position:relative; box-shadow:0 4px 18px rgba(0,0,0,0.18);
+    overflow:hidden;
+    page-break-after:always; break-after:page;
+    display:grid;
+    grid-template-columns: var(--col-text) var(--col-margin);
+    column-gap: var(--col-gap);
+  }
+  .page:last-child{ page-break-after:auto; break-after:auto; }
+
+  /* Wide variant — full-width single column for charts and mandalas */
+  .page.wide{ grid-template-columns: 1fr; column-gap:0; }
+  .page.wide .margin-area{ display:none; }
+
+  /* Icon-right variant — icon migrates to upper margin, freeing ~36mm of text room */
+  .page.icon-right .content > .icon-block{ display:none; }
+
+  /* Paper texture */
+  .page::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(184,137,58,0.05), transparent 40%),
+      radial-gradient(circle at 88% 90%, rgba(26,40,84,0.04), transparent 40%);
+    mix-blend-mode:multiply;
+  }
+
+  /* Convergence top border — five dots on a hairline */
+  .page::after{
+    content:"";position:absolute;
+    left:var(--pad-left); right:var(--pad-right);
+    top:9mm; height:5mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><line x1='0' y1='7' x2='80' y2='7' stroke='%23b8893a' stroke-width='0.6'/><circle cx='8' cy='7' r='1.4' fill='%239c7c2c'/><circle cx='24' cy='7' r='1.4' fill='%23a0522d'/><circle cx='40' cy='7' r='1.4' fill='%235e2851'/><circle cx='56' cy='7' r='1.4' fill='%239b1f2a'/><circle cx='72' cy='7' r='1.4' fill='%23a3171c'/></svg>");
+    background-repeat:repeat-x; background-size:auto 5mm; opacity:.85;
+  }
+
+  /* ──────────── Columns ──────────── */
+  .content{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+    max-height: calc(var(--content-h) - var(--content-top-pad));
+  }
+  .margin-area{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+    max-height: calc(var(--content-h) - var(--content-top-pad));
+  }
+
+  /* ──────────── Running header / footer ──────────── */
+  .running{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); top:5mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; letter-spacing:.18em; text-transform:uppercase; color:var(--gold);
+    font-family:"Iowan Old Style",Georgia,serif; font-weight:600;
+  }
+  .running .who{ color:var(--ink-2); letter-spacing:.12em; }
+
+  .pgfoot{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); bottom:14mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; color:var(--muted); letter-spacing:.06em;
+  }
+  .pgfoot::before{
+    content:""; position:absolute; left:0; right:0; top:-6mm; height:0.4mm;
+    background:var(--rule); opacity:.55;
+  }
+
+  /* ──────────── Typography ──────────── */
+  h1.cover-title{
+    font-size:30pt; font-weight:600; color:var(--indigo);
+    letter-spacing:.06em; line-height:1.15; margin-bottom:8mm;
+    font-variant:small-caps;
+  }
+  h2.section-title{
+    font-size:18pt; font-weight:600; color:var(--indigo);
+    letter-spacing:.02em; line-height:1.2; margin-bottom:3mm;
+  }
+  h3.section-sub{
+    font-size:11pt; font-style:italic; color:var(--gold); font-weight:400;
+    margin-bottom:7mm; letter-spacing:.02em; line-height:1.4;
+  }
+  .eyebrow{
+    font-size:10pt; letter-spacing:.32em; text-transform:uppercase; color:var(--gold);
+    font-weight:600; font-family:"Iowan Old Style",Georgia,serif; margin-bottom:3mm;
+  }
+
+  .text > p{ font-size:12pt; line-height:1.5; color:var(--ink); margin:0 0 10pt; }
+  .text > p:last-child{ margin-bottom:0; }
+  .lead{ margin-bottom:6mm; }
+  .lead > p{ font-size:12.5pt; line-height:1.5; color:var(--ink-2); font-style:italic; margin:0 0 6pt; }
+  .lead > p:last-child{ margin-bottom:0; }
+
+  .calc{
+    font-family:"Iowan Old Style",Georgia,serif;
+    font-size:10pt; line-height:1.5; color:var(--gold);
+    border-top:0.4mm solid var(--rule); border-bottom:0.4mm solid var(--rule);
+    padding:3mm 0; margin:6mm 0 0; letter-spacing:.02em;
+  }
+  .calc strong{ color:var(--indigo); font-weight:600; }
+  .fine{ font-size:10pt; line-height:1.5; color:var(--muted); font-style:italic; }
+
+  /* ──────────── Cover ──────────── */
+  .cover{ grid-template-columns: 1fr; text-align:center; align-content:center; padding-top:30mm; }
+  .cover .markline{
+    margin:0 auto 10mm; width:60mm; height:5mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><line x1='0' y1='7' x2='80' y2='7' stroke='%23b8893a' stroke-width='1.2'/><circle cx='8' cy='7' r='1.8' fill='%239c7c2c'/><circle cx='24' cy='7' r='1.8' fill='%23a0522d'/><circle cx='40' cy='7' r='1.8' fill='%235e2851'/><circle cx='56' cy='7' r='1.8' fill='%239b1f2a'/><circle cx='72' cy='7' r='1.8' fill='%23a3171c'/></svg>");
+    background-repeat:repeat-x; background-size:auto 5mm;
+  }
+  .cover-lead{
+    max-width: 150mm; margin: 0 auto 6mm;
+  }
+  .cover-lead .l1{
+    font-size:13pt; color:var(--indigo); font-style:italic;
+    letter-spacing:.02em; line-height:1.4; margin-bottom:3mm;
+  }
+  .cover-lead .l2{
+    font-size:11pt; color:var(--ink); font-weight:600;
+    letter-spacing:.06em; line-height:1.4; margin-bottom:2mm;
+  }
+  .cover-lead .l3{
+    font-size:10pt; color:var(--muted); letter-spacing:.14em;
+    text-transform:uppercase; font-family:"Iowan Old Style",Georgia,serif; font-weight:600;
+  }
+  .cover .person{ font-size:13pt; color:var(--ink); margin-top:14mm; line-height:1.7; }
+  .cover .person .lbl{
+    font-size:10pt; letter-spacing:.22em; text-transform:uppercase; color:var(--muted);
+    font-weight:600; margin-right:6mm;
+  }
+  .cover .mandala-cover{ margin:8mm auto 0; width:78mm; height:78mm; }
+  .cover .mandala-cover svg{ width:100%; height:100%; }
+
+  /* ──────────── Contents ──────────── */
+  .toc-list{ list-style:none; padding:0; margin:0; }
+  .toc-list li{
+    display:grid; grid-template-columns:8mm 1fr auto; gap:4mm;
+    align-items:baseline; padding:4mm 0;
+    border-bottom:0.3mm dashed var(--rule); font-size:12pt;
+  }
+  .toc-list li:last-child{ border-bottom:none; }
+  .toc-list .num{ color:var(--gold); font-variant-numeric:tabular-nums; font-weight:600; }
+  .toc-list .name{ color:var(--ink); }
+  .toc-list .pg{ color:var(--muted); font-size:10pt; letter-spacing:.06em; }
+  .toc-list a{ text-decoration:none; color:inherit; display:contents; }
+  .toc-list a:hover .name{ color:var(--indigo); }
+
+  /* ──────────── Focus icons ──────────── */
+  .icon-block{ width:26mm; height:26mm; margin-bottom:5mm; display:flex; align-items:center; justify-content:center; }
+  .icon-block svg{ width:100%; height:100%; }
+
+  /* ──────────── Marginalia ──────────── */
+  .marginalia{
+    padding-top:8mm; color:var(--muted);
+    font-size:10pt; line-height:1.45; font-style:italic;
+  }
+  .marginalia .margin-icon{
+    width:28mm; height:28mm; margin:0 0 6mm -2mm; opacity:.85;
+  }
+  .marginalia .margin-icon svg{ width:100%; height:100%; }
+  .marginalia .ornament{ width:26mm; height:26mm; margin-bottom:6mm; opacity:.6; }
+  .marginalia .note-label{
+    font-size:9pt; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--gold); font-weight:600; font-style:normal; margin-bottom:1.5mm;
+  }
+  .marginalia .note{ margin-bottom:6mm; }
+  .marginalia .note:last-child{ margin-bottom:0; }
+
+  /* ──────────── Wide-page mandala ──────────── */
+  .mandala-full{ width:150mm; height:150mm; margin:0 auto; }
+  .mandala-full svg{ width:100%; height:100%; }
+
+  /* ──────────── Lineage chips ──────────── */
+  .chip-row{ display:flex; flex-wrap:wrap; gap:2.5mm; margin: 4mm 0 0; }
+  .chip{
+    display:inline-flex; align-items:center; gap:2mm;
+    font-size:9.5pt; padding:1.2mm 3.5mm; border-radius:18mm;
+    background:var(--paper-2); color:var(--ink);
+    border:0.3mm solid var(--gold);
+  }
+  .chip .dot{ width:2.5mm; height:2.5mm; border-radius:50%; display:inline-block; }
+  .chip .dot.pyth{background:var(--lin-pyth)}
+  .chip .dot.chal{background:var(--lin-chal)}
+  .chip .dot.kabb{background:var(--lin-kabb)}
+  .chip .dot.tamil{background:var(--lin-tamil)}
+  .chip .dot.loshu{background:var(--lin-loshu)}
+
+  /* ──────────── Glossary grid (wide page, school-organized) ──────────── */
+  .gloss-cols{
+    column-count:3; column-gap:8mm; margin-top:3mm;
+    column-fill:balance;
+  }
+  .gloss-school{ break-inside:avoid; margin-bottom:2.5mm; }
+  .gloss-head{
+    font-size:8pt; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    font-family:"Iowan Old Style",Georgia,serif;
+    padding-bottom:0.8mm; border-bottom:0.4mm solid currentColor; margin-bottom:1mm;
+  }
+  .gloss-general{ color:var(--indigo); }
+  .gloss-pyth   { color:var(--lin-pyth); }
+  .gloss-chal   { color:var(--lin-chal); }
+  .gloss-kabb   { color:var(--lin-kabb); }
+  .gloss-tamil  { color:var(--lin-tamil); }
+  .gloss-loshu  { color:var(--lin-loshu); }
+  .gloss-list{ margin:0; padding:0; list-style:none; }
+  .gloss-list dt{
+    font-size:7.8pt; font-weight:700; color:var(--ink-2);
+    margin-top:1.2mm; line-height:1.3;
+  }
+  .gloss-list dd{
+    font-size:7.8pt; color:var(--muted); line-height:1.4;
+    margin:0; padding-left:2mm;
+  }
+
+  /* ──────────── Print ──────────── */
+  @media print{
+    html, body{ background:#fff; } body{ padding:0; }
+    .page{ margin:0; box-shadow:none; page-break-after:always; break-after:page; }
+    .page:last-child{ page-break-after:auto; break-after:auto; }
+  }
+  @media screen{ body{ padding:14mm 0; } }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ COVER ═══════════════════ -->
+<section class="page cover" id="cover">
+  <div class="markline"></div>
+
+  <h1 class="cover-title">Antar&#x0101;&#x1E45;ka Numerology</h1>
+  <div class="cover-title-2" style="font-size:17pt;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-top:2mm;margin-bottom:6mm;text-align:center;">Five Schools Combined</div>
+
+  <div class="cover-lead">
+    <div class="l2">Pythagorean, Chaldean, Kabbalah, Tamil &amp; Lo Shu</div>
+    <div class="l3">Greek · Babylonian · Hebrew · Vedic · Chinese</div>
+  </div>
+
+  <div class="mandala-cover">
+    <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="90" cy="90" r="88" fill="none" stroke="#b8893a" stroke-width="0.6" stroke-dasharray="0.8 1.4"/>
+      <circle cx="90" cy="90" r="80" fill="none" stroke="#b8893a" stroke-width="0.4"/>
+      <g stroke="#b8893a" stroke-width="0.4" fill-opacity="0.18">
+        <path d="M 90 90 L 90 10 A 80 80 0 0 1 166.1 53.7 Z" fill="#9c7c2c"/>
+        <path d="M 90 90 L 166.1 53.7 A 80 80 0 0 1 137 156.1 Z" fill="#a0522d"/>
+        <path d="M 90 90 L 137 156.1 A 80 80 0 0 1 43 156.1 Z" fill="#9b1f2a"/>
+        <path d="M 90 90 L 43 156.1 A 80 80 0 0 1 13.9 53.7 Z" fill="#a3171c"/>
+        <path d="M 90 90 L 13.9 53.7 A 80 80 0 0 1 90 10 Z" fill="#5e2851"/>
+      </g>
+      <g font-family="serif" font-weight="700" text-anchor="middle">
+        <text x="125" y="44" font-size="5.5" fill="#9c7c2c">PYTH · Π</text>
+        <text x="150" y="101" font-size="5.5" fill="#a0522d">CHAL · ❖</text>
+        <text x="90" y="145" font-size="5.5" fill="#9b1f2a">TAMIL · ॐ</text>
+        <text x="40" y="101" font-size="5.5" fill="#a3171c">LOSHU · 洛</text>
+        <text x="62" y="44" font-size="5.5" fill="#5e2851">KABB · ר</text>
+      </g>
+      <circle cx="90" cy="90" r="28" fill="#f5edd9" stroke="#1a2854" stroke-width="0.9"/>
+      <circle cx="90" cy="90" r="24" fill="none" stroke="#b8893a" stroke-width="0.3" stroke-dasharray="0.5 0.8"/>
+      <text x="90" y="91" text-anchor="middle" font-family="serif" font-size="14"
+            font-weight="700" fill="#1a2854" letter-spacing="0.6">3·7·2</text>
+      <text x="90" y="101" text-anchor="middle" font-family="serif" font-size="4.8"
+            font-weight="600" fill="#1a2854" letter-spacing="0.3">Path·Day·Name</text>
+    </svg>
+  </div>
+
+  <div class="person">
+    <div>Ankur Gupta</div>
+    <div>16 May 1953 · Saturday</div>
+    <div>Chakrata, Uttarakhand</div>
+  </div>
+
+  <div class="pgfoot" style="display:block;text-align:center;">
+  <div style="font-size:10.5pt;font-weight:700;letter-spacing:.18em;color:var(--gold,#a88842);">ANTARA PERSONAL READING</div>
+  <div style="font-size:9.5pt;font-style:italic;letter-spacing:.08em;color:var(--gold,#a88842);margin-top:1.5mm;">interpretative, not Predictive</div>
+</div>
+</section>
+
+
+<!-- ═══════════════════ INTRO 1 ═══════════════════ -->
+<section class="page" id="intro-1">
+  <div class="running"><span>Personal Profile</span><span class="who">Introduction · 1 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Introduction</div>
+    <h2 class="section-title">What this report is about</h2>
+    <h3 class="section-sub">The same person, read through five different traditions of number</h3>
+
+    <div class="text">
+      <p>This report is not a sixth numerology system. It is a combined reading that takes the same name and date of birth, runs them through the five lineage traditions covered in the rest of this set — Pythagorean, Chaldean, Kabbalah, Tamil and Lo Shu — and brings the results into a single comparative view.</p>
+
+      <p>Each tradition computes a different set of numbers from the same data. The numbers do not always agree. Where they do, the convergence is unusually telling. Where they differ, each tradition is adding something the others did not see — and the differences are mostly differences of vocabulary rather than disagreements about the person.</p>
+
+      <p>The defining and somewhat surprising finding for this chart is that three numbers converge cleanly across three or more independent traditions — the path number three, the day number seven, and the name number two. Where five readings made independently still arrive at the same trinity, the trinity is the part of the chart to listen to most closely.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="32" fill="none" stroke="#b8893a" stroke-width="0.6"/>
+          <g fill="#1a2854">
+            <circle cx="50" cy="22" r="3"/>
+            <circle cx="76" cy="40" r="3"/>
+            <circle cx="66" cy="74" r="3"/>
+            <circle cx="34" cy="74" r="3"/>
+            <circle cx="24" cy="40" r="3"/>
+          </g>
+          <g stroke="#b8893a" stroke-width="0.6" fill="none">
+            <line x1="50" y1="22" x2="76" y2="40"/>
+            <line x1="76" y1="40" x2="66" y2="74"/>
+            <line x1="66" y1="74" x2="34" y2="74"/>
+            <line x1="34" y1="74" x2="24" y2="40"/>
+            <line x1="24" y1="40" x2="50" y2="22"/>
+          </g>
+        </svg>
+      </div>
+      <div class="note-label">Five traditions</div>
+      <div class="note">Greek · Babylonian · Hebrew · Vedic · Chinese.</div>
+      <div class="note-label">Convergent core</div>
+      <div class="note">3 · 7 · 2 — path, day, name.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Profile</span><span>Page 2</span></div>
+</section>
+
+
+<!-- ═══════════════════ INTRO 2 ═══════════════════ -->
+<section class="page" id="intro-2">
+  <div class="running"><span>Personal Profile</span><span class="who">Introduction · 2 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">How to read this report</div>
+    <h2 class="section-title">Structure &amp; method</h2>
+    <h3 class="section-sub">Convergence first; each tradition's distinctive contribution after</h3>
+
+    <div class="text">
+      <p>This report is structured so that each focus aspect lives on its own page. The first focus shows the convergence mandala — the centrepiece of the report. The second names the convergent core. The next five pages take each tradition in turn and describe what it adds beyond that core. The final page is a unified portrait.</p>
+
+      <p>The contents page that follows lists every focus with a hyperlink. In a browser or PDF you may tap any title to jump directly to the relevant page. Each individual lineage report — Pythagorean, Chaldean, Kabbalah, Tamil, Lo Shu — is also available separately for deeper reading.</p>
+
+      <p>A standard note applies to the whole. Numerology, in all five traditions, is interpretive rather than scientifically validated. This profile is offered as character reflection, not as predictive, medical, financial or legal counsel. The reader is the final authority on the reading.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="32" fill="none" stroke="#b8893a" stroke-width="1"/>
+          <g stroke="#1a2854" stroke-width="1">
+            <line x1="50" y1="22" x2="50" y2="48"/>
+            <line x1="50" y1="52" x2="50" y2="78"/>
+            <line x1="22" y1="50" x2="48" y2="50"/>
+            <line x1="52" y1="50" x2="78" y2="50"/>
+          </g>
+          <circle cx="50" cy="50" r="3" fill="#b8893a"/>
+        </svg>
+      </div>
+      <div class="note-label">Reading time</div>
+      <div class="note">Around twenty-five minutes at an unhurried pace.</div>
+      <div class="note-label">Source reports</div>
+      <div class="note">Each lineage is available as a standalone reading for deeper study.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Profile</span><span>Page 3</span></div>
+</section>
+
+
+<!-- ═══════════════════ CONTENTS ═══════════════════ -->
+<section class="page" id="contents">
+  <div class="running"><span>Personal Profile</span><span class="who">Contents</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Contents</div>
+    <h2 class="section-title">The eight focus pages</h2>
+    <h3 class="section-sub">Tap any title to jump to that page</h3>
+
+    <ol class="toc-list">
+      <li><a href="#mandala"><span class="num">I</span><span class="name">The Convergence Mandala — the centrepiece</span><span class="pg">p. 5</span></a></li>
+      <li><a href="#core"><span class="num">II</span><span class="name">The Convergent Core — 3 · 7 · 2</span><span class="pg">p. 6</span></a></li>
+      <li><a href="#lens-pyth"><span class="num">III</span><span class="name">Pythagorean lens — what Greek adds</span><span class="pg">p. 7</span></a></li>
+      <li><a href="#lens-chal"><span class="num">IV</span><span class="name">Chaldean lens — what Babylon adds</span><span class="pg">p. 8</span></a></li>
+      <li><a href="#lens-kabb"><span class="num">V</span><span class="name">Kabbalistic lens — what Hebrew adds</span><span class="pg">p. 9</span></a></li>
+      <li><a href="#lens-tamil"><span class="num">VI</span><span class="name">Tamil lens — what Vedic adds</span><span class="pg">p. 10</span></a></li>
+      <li><a href="#lens-loshu"><span class="num">VII</span><span class="name">Lo Shu lens — what Chinese adds</span><span class="pg">p. 11</span></a></li>
+      <li><a href="#unified"><span class="num">VIII</span><span class="name">Synthesis — the Unified Portrait</span><span class="pg">p. 12</span></a></li>
+    </ol>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Convergent core</div>
+      <div class="note">Path 3 · Day 7 · Name 2 — present in three or more of the five lineages.</div>
+      <div class="note-label">Distinctive additions</div>
+      <div class="note">Each tradition adds something the others did not compute.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Profile</span><span>Page 4</span></div>
+</section>
+
+
+<!-- ═══════════════════ I · MANDALA (wide) ═══════════════════ -->
+<section class="page wide" id="mandala">
+  <div class="running"><span>I · The Convergence Mandala</span><span class="who">Focus 1 of 8</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Focus I · the centrepiece</div>
+    <h2 class="section-title">The Convergence Mandala</h2>
+    <h3 class="section-sub">Five lineages around one centre — all roads to a single core</h3>
+
+    <div class="lead">
+      <p>The mandala below holds the entire profile in one image. Five wedges, one per lineage; one core, where the convergent numbers live.</p>
+    </div>
+
+    <div class="mandala-full">
+      <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer rings -->
+        <circle cx="90" cy="90" r="88" fill="none" stroke="#b8893a" stroke-width="0.5" stroke-dasharray="0.8 1.4"/>
+        <circle cx="90" cy="90" r="80" fill="none" stroke="#b8893a" stroke-width="0.4"/>
+
+        <!-- Five wedges -->
+        <g stroke="#b8893a" stroke-width="0.4" fill-opacity="0.18">
+          <path d="M 90 90 L 90 10 A 80 80 0 0 1 166.1 53.7 Z" fill="#9c7c2c"/>
+          <path d="M 90 90 L 166.1 53.7 A 80 80 0 0 1 137 156.1 Z" fill="#a0522d"/>
+          <path d="M 90 90 L 137 156.1 A 80 80 0 0 1 43 156.1 Z" fill="#9b1f2a"/>
+          <path d="M 90 90 L 43 156.1 A 80 80 0 0 1 13.9 53.7 Z" fill="#a3171c"/>
+          <path d="M 90 90 L 13.9 53.7 A 80 80 0 0 1 90 10 Z" fill="#5e2851"/>
+        </g>
+
+        <!-- Inner core drawn FIRST so labels render on top -->
+        <circle cx="90" cy="90" r="28" fill="#f5edd9" stroke="#1a2854" stroke-width="1"/>
+        <circle cx="90" cy="90" r="24" fill="none" stroke="#b8893a" stroke-width="0.3" stroke-dasharray="0.5 0.8"/>
+        <text x="90" y="91" text-anchor="middle" font-family="serif" font-size="14"
+              font-weight="700" fill="#1a2854" letter-spacing="0.5">3·7·2</text>
+        <text x="90" y="101" text-anchor="middle" font-family="serif" font-size="5"
+              font-weight="600" fill="#1a2854" letter-spacing="0.3">Path·Day·Name</text>
+
+        <!-- Labels: each text x = geometric midpoint of available wedge width at that y.
+             PYTH/KABB are above the inner circle top (y<62) — no core interference.
+             CHAL/LOSHU x = midpoint of [inner-circle boundary ↔ outer-ring] at each y.
+             All subtitles font-size=4.0 so CHAL/LOSHU text width clears the inner circle. -->
+        <g font-family="serif" text-anchor="middle">
+
+          <!-- Each subtitle shares the heading x (same centreline) and sits 7 SVG units below -->
+          <text x="121" y="40" font-size="5.5" font-weight="700" fill="#9c7c2c">PYTHAGOREAN · Π</text>
+          <text x="121" y="47" font-size="4.0" fill="#7a6649">Path 3 · Exp 4 · Soul 8</text>
+
+          <text x="142" y="102" font-size="5.5" font-weight="700" fill="#a0522d">CHALDEAN · ❖</text>
+          <text x="142" y="109" font-size="4.0" fill="#7a6649">Psy 7 · Dest 3 · Name 2</text>
+
+          <text x="90" y="140" font-size="5.5" font-weight="700" fill="#9b1f2a">TAMIL · ॐ</text>
+          <text x="90" y="147" font-size="4.0" fill="#7a6649">Mul 7 · Bha 3 · Nam 2</text>
+
+          <text x="38" y="102" font-size="5.5" font-weight="700" fill="#a3171c">LOSHU · 洛</text>
+          <text x="38" y="109" font-size="4.0" fill="#7a6649">Drv 7 · Cnd 3 · Kua 2</text>
+
+          <text x="59" y="40" font-size="5.5" font-weight="700" fill="#5e2851">KABBALAH · ר</text>
+          <text x="59" y="47" font-size="4.0" fill="#7a6649">Resh 20 · Beth 2</text>
+
+        </g>
+      </svg>
+    </div>
+
+    <div class="calc">
+      Five lineages · One name · One date · One convergent core · 3 (path) · 7 (day) · 2 (name)
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Profile</span><span>Page 5</span></div>
+</section>
+
+
+<!-- ═══════════════════ II · CONVERGENT CORE ═══════════════════ -->
+<section class="page" id="core">
+  <div class="running"><span>II · Convergent Core</span><span class="who">Focus 2 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="32" fill="none" stroke="#b8893a" stroke-width="1"/>
+        <text x="50" y="56" text-anchor="middle" font-family="serif" font-size="22"
+              font-weight="700" fill="#1a2854" letter-spacing="2">3·7·2</text>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus II · what three traditions agree on</div>
+    <h2 class="section-title">The Convergent Core · 3 · 7 · 2</h2>
+    <h3 class="section-sub">The three numbers reached by three or more independent lineages</h3>
+
+    <div class="lead">
+      <p>Where five readings made independently still arrive at the same trinity, the trinity is the part of the chart to listen to most closely.</p>
+    </div>
+
+    <div class="text">
+      <p>The seven of the day. Pythagoras (Birthday 7), Chaldean (Psychic 7), Tamil (Mulank 7), and Lo Shu (Driver 7) all read the sixteenth as a contemplative seven — the inner scholar, the seeker. Kabbalah does not compute a day-number, but places the moment of birth in the post-Shavuot window of received study, which is the same note in another key.</p>
+
+      <p>The three of the path. Pythagoras (Life Path 3), Chaldean (Destiny 3), Tamil (Bhagyank 3), and Lo Shu (Conductor 3) all reduce the full date to the same Jupiter / expressive / teaching number. The path is to communicate, to expand, to guide.</p>
+
+      <p>The two of the name. Chaldean (Name 38 → 2 / Moon), Tamil (Namank 2 / Chandra), Kabbalah's reduced inner letter (Beth, 2), and Lo Shu's Kua 2 (Kun, Earth) all land on two. The way other people experience this name and direction is gentle, perceptive, soft of presence.</p>
+    </div>
+
+    <div class="calc">
+      Three convergences · Day · 7 (in 4 traditions) · Path · 3 (in 4 traditions) · Name · 2 (in 4 traditions)
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">3</div>
+      <div class="note">Expansion. Communication. The teacher's path.</div>
+      <div class="note-label">7</div>
+      <div class="note">Contemplation. The inner scholar.</div>
+      <div class="note-label">2</div>
+      <div class="note">Sensitivity. Moon. Soft public presence.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Profile</span><span>Page 6</span></div>
+</section>
+
+
+<!-- ═══════════════════ III · PYTHAGOREAN LENS ═══════════════════ -->
+<section class="page" id="lens-pyth">
+  <div class="running"><span>III · Pythagorean Lens</span><span class="who">Focus 3 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="22" r="3" fill="#9c7c2c"/>
+        <circle cx="40" cy="42" r="3" fill="#9c7c2c"/>
+        <circle cx="60" cy="42" r="3" fill="#9c7c2c"/>
+        <circle cx="30" cy="62" r="3" fill="#9c7c2c"/>
+        <circle cx="50" cy="62" r="3" fill="#9c7c2c"/>
+        <circle cx="70" cy="62" r="3" fill="#9c7c2c"/>
+        <circle cx="20" cy="82" r="3" fill="#9c7c2c"/>
+        <circle cx="40" cy="82" r="3" fill="#9c7c2c"/>
+        <circle cx="60" cy="82" r="3" fill="#9c7c2c"/>
+        <circle cx="80" cy="82" r="3" fill="#9c7c2c"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus III · the Greek addition</div>
+    <h2 class="section-title">Pythagorean Lens</h2>
+    <h3 class="section-sub">What the Greek school adds beyond the convergent core</h3>
+
+    <div class="lead">
+      <p>Pythagoras adds the architecture — Expression, Soul Urge, Personality, and Maturity — none of which the other four traditions compute in the same form.</p>
+    </div>
+
+    <div class="text">
+      <p>The Greek lens contributes Expression 4 (the Builder), Soul Urge 8 (the inner ambition), Personality 5 (the mobile public face), and Maturity 7 (the doubled inwardness emerging late in life). Together these explain the productive seriousness that the day-born seven alone would not predict — the chart is not only contemplative; it is also constructive, ambitious in private, sociable in public, and sage by evening.</p>
+
+      <p>The doubled seven — once at the Birthday, once at the Maturity — is the Greek lens's most striking observation. The contemplative undercurrent that the four other traditions also note is, in the Pythagorean reading, the explicit destination of the later years.</p>
+    </div>
+
+    <div class="chip-row">
+      <span class="chip"><span class="dot pyth"></span>Path 3</span>
+      <span class="chip"><span class="dot pyth"></span>Expression 4</span>
+      <span class="chip"><span class="dot pyth"></span>Soul Urge 8</span>
+      <span class="chip"><span class="dot pyth"></span>Personality 5</span>
+      <span class="chip"><span class="dot pyth"></span>Birthday 7</span>
+      <span class="chip"><span class="dot pyth"></span>Maturity 7</span>
+    </div>
+
+    <div class="calc">
+      Greek-only contributions · Expression 4 · Soul Urge 8 · Personality 5 · Maturity 7
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">The Builder</div>
+      <div class="note">Expression 4 — the architectural number unique to the Greek system here.</div>
+      <div class="note-label">Doubled Seven</div>
+      <div class="note">The contemplative tone made explicit at maturity.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Profile</span><span>Page 7</span></div>
+</section>
+
+
+<!-- ═══════════════════ IV · CHALDEAN LENS (icon-right) ═══════════════════ -->
+<section class="page icon-right" id="lens-chal">
+  <div class="running"><span>IV · Chaldean Lens</span><span class="who">Focus 4 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect x="22" y="22" width="56" height="56" rx="3" fill="none" stroke="#a0522d" stroke-width="1.2"/>
+        <g stroke="#a0522d" stroke-width="0.7" fill="none">
+          <path d="M 30 38 L 36 38 L 36 32"/>
+          <path d="M 42 38 L 48 38 L 48 32"/>
+          <path d="M 30 50 L 38 50"/>
+          <path d="M 30 60 L 36 60 L 36 54"/>
+          <path d="M 44 60 L 50 60 L 50 54"/>
+          <path d="M 30 70 L 40 70"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus IV · the Babylonian addition</div>
+    <h2 class="section-title">Chaldean Lens</h2>
+    <h3 class="section-sub">What the Babylonian school adds beyond the convergent core</h3>
+
+    <div class="lead">
+      <p>Chaldean adds the karmic compounds — numbers like 16, 38 and 30 read in their own right before reduction — and names the planet behind every number.</p>
+    </div>
+
+    <div class="text">
+      <p>The compound 16 beneath the Psychic seven (sometimes called the Shattered Citadel) is read as karmic awakening through reversal — a warning against pride balanced by an unusual capacity for spiritual depth. It is preserved as a compound and not visible in Pythagorean or Lo Shu reductions.</p>
+
+      <p>The compound 38 beneath the Name two reduces through eleven, itself a master vibration. The Chaldean lens reads this as a gentle outer presence carrying unusually strong inner perception — a name that listens before it answers, and sees more than it lets on.</p>
+
+      <p>And Chaldean names the planet behind each number — Ketu within, Jupiter ahead, Moon at the surface, Saturn beneath as the Saturday day-lord. The reading becomes locatable in the planetary scheme rather than only in character.</p>
+    </div>
+
+    <div class="chip-row">
+      <span class="chip"><span class="dot chal"></span>Psychic 7 · Ketu</span>
+      <span class="chip"><span class="dot chal"></span>Destiny 3 · Jupiter</span>
+      <span class="chip"><span class="dot chal"></span>Name 38 → 2 · Moon</span>
+      <span class="chip"><span class="dot chal"></span>Compound 16</span>
+      <span class="chip"><span class="dot chal"></span>Saturn day-lord</span>
+    </div>
+
+    <div class="calc">
+      Compounds 16, 38, 30 preserved · Planetary lords named · Saturn day-lord
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="margin-icon">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="22" y="22" width="56" height="56" rx="3" fill="none" stroke="#a0522d" stroke-width="1.2"/>
+          <g stroke="#a0522d" stroke-width="0.7" fill="none">
+            <path d="M 30 38 L 36 38 L 36 32"/>
+            <path d="M 42 38 L 48 38 L 48 32"/>
+            <path d="M 30 50 L 38 50"/>
+            <path d="M 30 60 L 36 60 L 36 54"/>
+            <path d="M 44 60 L 50 60 L 50 54"/>
+            <path d="M 30 70 L 40 70"/>
+          </g>
+        </svg>
+      </div>
+      <div class="note-label">Compound 16</div>
+      <div class="note">Karmic awakening; preserved unreduced in Cheiro's reading.</div>
+      <div class="note-label">The planets</div>
+      <div class="note">Each number gets a planetary lord — the chart becomes locatable.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Profile</span><span>Page 8</span></div>
+</section>
+
+
+<!-- ═══════════════════ V · KABBALISTIC LENS (icon-right) ═══════════════════ -->
+<section class="page icon-right" id="lens-kabb">
+  <div class="running"><span>V · Kabbalistic Lens</span><span class="who">Focus 5 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#5e2851" stroke-width="0.5" fill="none">
+          <line x1="50" y1="14" x2="35" y2="30"/>
+          <line x1="50" y1="14" x2="65" y2="30"/>
+          <line x1="35" y1="30" x2="65" y2="30"/>
+          <line x1="35" y1="30" x2="50" y2="48"/>
+          <line x1="65" y1="30" x2="50" y2="48"/>
+          <line x1="35" y1="60" x2="65" y2="60"/>
+          <line x1="35" y1="60" x2="50" y2="48"/>
+          <line x1="65" y1="60" x2="50" y2="48"/>
+          <line x1="50" y1="48" x2="50" y2="78"/>
+          <line x1="35" y1="60" x2="50" y2="78"/>
+          <line x1="65" y1="60" x2="50" y2="78"/>
+        </g>
+        <g fill="#5e2851">
+          <circle cx="50" cy="14" r="2.5"/>
+          <circle cx="35" cy="30" r="2.5"/>
+          <circle cx="65" cy="30" r="2.5"/>
+          <circle cx="35" cy="60" r="2.5"/>
+          <circle cx="50" cy="48" r="3" fill="#b8893a"/>
+          <circle cx="65" cy="60" r="2.5"/>
+          <circle cx="50" cy="78" r="2.5"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus V · the Hebrew addition</div>
+    <h2 class="section-title">Kabbalistic Lens</h2>
+    <h3 class="section-sub">What the Tree of Life adds beyond the convergent core</h3>
+
+    <div class="lead">
+      <p>Kabbalah lifts the same arithmetic onto the Tree of Life and turns the answer from a label into a path with neighbours.</p>
+    </div>
+
+    <div class="text">
+      <p>What Pythagoras calls a Builder Four, Kabbalah translates onto the Tree as the soul-letter Resh — twenty in gematria — corresponding to The Sun in the Tarot path system. The path runs from Hod (intellect, language) through Yesod (foundation, the unconscious). The native does not just have a destiny number; they walk a specific path on a specific diagram.</p>
+
+      <p>The reduced inner letter is Beth — two, The Magician — the focused will that turns idea into form. Beth's path runs from Kether (pure intent) to Binah (structured understanding). The chart becomes architectural rather than only descriptive: ideas held in pure form, methodically built down into reality.</p>
+
+      <p>And the Hebrew calendar moment of birth is the second of Sivan, 5713 — the window immediately after Shavuot, the festival of the giving of the Torah. Births in this window are read as carrying a particular relationship to study and transmission. None of the other four traditions compute this.</p>
+    </div>
+
+    <div class="chip-row">
+      <span class="chip"><span class="dot kabb"></span>Resh · 20 · The Sun</span>
+      <span class="chip"><span class="dot kabb"></span>Beth · 2 · The Magician</span>
+      <span class="chip"><span class="dot kabb"></span>2 Sivan 5713</span>
+      <span class="chip"><span class="dot kabb"></span>Tiferet · Hod · Yesod · Binah</span>
+    </div>
+
+    <div class="calc">
+      Tree of Life as diagram · Soul-letter Resh · Inner letter Beth · Hebrew calendar moment
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="margin-icon">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#5e2851" stroke-width="0.5" fill="none">
+            <line x1="50" y1="14" x2="35" y2="30"/>
+            <line x1="50" y1="14" x2="65" y2="30"/>
+            <line x1="35" y1="30" x2="65" y2="30"/>
+            <line x1="35" y1="30" x2="50" y2="48"/>
+            <line x1="65" y1="30" x2="50" y2="48"/>
+            <line x1="35" y1="60" x2="65" y2="60"/>
+            <line x1="35" y1="60" x2="50" y2="48"/>
+            <line x1="65" y1="60" x2="50" y2="48"/>
+            <line x1="50" y1="48" x2="50" y2="78"/>
+            <line x1="35" y1="60" x2="50" y2="78"/>
+            <line x1="65" y1="60" x2="50" y2="78"/>
+          </g>
+          <g fill="#5e2851">
+            <circle cx="50" cy="14" r="2.5"/>
+            <circle cx="35" cy="30" r="2.5"/>
+            <circle cx="65" cy="30" r="2.5"/>
+            <circle cx="35" cy="60" r="2.5"/>
+            <circle cx="50" cy="48" r="3" fill="#b8893a"/>
+            <circle cx="65" cy="60" r="2.5"/>
+            <circle cx="50" cy="78" r="2.5"/>
+          </g>
+        </svg>
+      </div>
+      <div class="note-label">The Tree</div>
+      <div class="note">Numbers become paths; paths have neighbours; the chart becomes a diagram.</div>
+      <div class="note-label">2 Sivan</div>
+      <div class="note">Post-Shavuot — received teaching enters the vessel.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Profile</span><span>Page 9</span></div>
+</section>
+
+
+<!-- ═══════════════════ VI · TAMIL LENS ═══════════════════ -->
+<section class="page" id="lens-tamil">
+  <div class="running"><span>VI · Tamil Lens</span><span class="who">Focus 6 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="32" fill="none" stroke="#9b1f2a" stroke-width="0.8"/>
+        <path d="M 50 26 L 68 60 L 32 60 Z" fill="none" stroke="#9b1f2a" stroke-width="1"/>
+        <path d="M 50 74 L 32 40 L 68 40 Z" fill="none" stroke="#9b1f2a" stroke-width="1"/>
+        <circle cx="50" cy="50" r="2" fill="#9b1f2a"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VI · the Vedic addition</div>
+    <h2 class="section-title">Tamil Lens</h2>
+    <h3 class="section-sub">What the Tamil &amp; Vedic tradition adds beyond the convergent core</h3>
+
+    <div class="lead">
+      <p>Tamil grounds the chart in planetary lords and in sacred geography. Where the other traditions describe character, Tamil specifies day-lord, ruling planet, and the colour the place of birth gives.</p>
+    </div>
+
+    <div class="text">
+      <p>The Tamil lens shares the Mulank-7, Bhagyank-3, Namank-2 trinity with the convergent core, but ties each number to its planetary lord — Ketu (the inward seeker), Guru (the teacher), Chandra (the Moon, sensitive presence). The day of birth, Saturday, brings Shani the patient planet beneath everything. The chart is therefore a four-planet portrait, not a three-number one.</p>
+
+      <p>And Tamil reads place. Chakrata sits in Uttarakhand, the Himalayan state Indian tradition calls Devbhoomi — the land of the gods. Birth in such a region is read as aligning the early energy field with stillness, height, and shastric depth. None of the other four traditions count place at all. For a Mulank seven, this is unusually well-aligned: the place reinforces the inwardness of the chart rather than fighting it.</p>
+    </div>
+
+    <div class="chip-row">
+      <span class="chip"><span class="dot tamil"></span>Mulank 7 · Ketu</span>
+      <span class="chip"><span class="dot tamil"></span>Bhagyank 3 · Guru</span>
+      <span class="chip"><span class="dot tamil"></span>Namank 2 · Chandra</span>
+      <span class="chip"><span class="dot tamil"></span>Day-lord Shani</span>
+      <span class="chip"><span class="dot tamil"></span>Devbhoomi</span>
+    </div>
+
+    <div class="calc">
+      Planetary lord per number · Day-lord Shani · Place flavouring · Devbhoomi reading
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Four planets</div>
+      <div class="note">Ketu within · Guru ahead · Chandra at the surface · Shani beneath.</div>
+      <div class="note-label">Devbhoomi</div>
+      <div class="note">Uttarakhand — the land of the gods.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Profile</span><span>Page 10</span></div>
+</section>
+
+
+<!-- ═══════════════════ VII · LO SHU LENS (icon-right) ═══════════════════ -->
+<section class="page icon-right" id="lens-loshu">
+  <div class="running"><span>VII · Lo Shu Lens</span><span class="who">Focus 7 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#a3171c" stroke-width="1.2" fill="none">
+          <rect x="22" y="22" width="56" height="56" rx="2"/>
+          <line x1="40" y1="22" x2="40" y2="78"/>
+          <line x1="60" y1="22" x2="60" y2="78"/>
+          <line x1="22" y1="40" x2="78" y2="40"/>
+          <line x1="22" y1="60" x2="78" y2="60"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VII · the Chinese addition</div>
+    <h2 class="section-title">Lo Shu Lens</h2>
+    <h3 class="section-sub">What the Chinese magic-square tradition adds beyond the convergent core</h3>
+
+    <div class="lead">
+      <p>Lo Shu draws the same data into a 3×3 magic square and reads what is present, what is absent, and what is doubled.</p>
+    </div>
+
+    <div class="text">
+      <p>The chart's nine palaces show 1 and 5 doubled, with 3, 6, and 9 each singly present, while 2, 4, 7, and 8 are absent. The full vertical column 1·5·9 is present, forming the Arrow of Determination — a powerful line of perseverance. No row, column, or diagonal is entirely empty, meaning there is no full arrow of weakness; the chart is read as a balanced constitution with cultivable rather than fundamental gaps.</p>
+
+      <p>Lo Shu also reads through Wu Xing — the five-element balance. All five elements (Water, Wood, Fire, Earth, Metal) are represented, with Water and Earth dominating. The chart is therefore elementally complete — no element is silent.</p>
+
+      <p>And Lo Shu adds the Kua direction (2, Kun-Earth, West Group) and the Year Pillar (Yin Water Snake), placing the chart on the Chinese geomantic and zodiacal maps. The directions favourable for orientation of one's daily life are NE, W, NW, SW.</p>
+    </div>
+
+    <div class="chip-row">
+      <span class="chip"><span class="dot loshu"></span>Driver 7 · Conductor 3 · Kua 2</span>
+      <span class="chip"><span class="dot loshu"></span>Arrow of Determination 1·5·9</span>
+      <span class="chip"><span class="dot loshu"></span>癸巳 Yin Water Snake</span>
+      <span class="chip"><span class="dot loshu"></span>All five Wu Xing present</span>
+    </div>
+
+    <div class="calc">
+      3×3 grid · Arrows present · Wu Xing balance · Kua direction · Year Pillar
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="margin-icon">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#a3171c" stroke-width="1.2" fill="none">
+            <rect x="22" y="22" width="56" height="56" rx="2"/>
+            <line x1="40" y1="22" x2="40" y2="78"/>
+            <line x1="60" y1="22" x2="60" y2="78"/>
+            <line x1="22" y1="40" x2="78" y2="40"/>
+            <line x1="22" y1="60" x2="78" y2="60"/>
+          </g>
+        </svg>
+      </div>
+      <div class="note-label">The grid</div>
+      <div class="note">1 and 5 doubled · 1·5·9 column complete · no full arrow of weakness.</div>
+      <div class="note-label">Wu Xing</div>
+      <div class="note">All five elements present — elementally complete.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Profile</span><span>Page 11</span></div>
+</section>
+
+
+<!-- ═══════════════════ VIII · UNIFIED PORTRAIT ═══════════════════ -->
+<section class="page" id="unified">
+  <div class="running"><span>VIII · The Unified Portrait</span><span class="who">Focus 8 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="36" fill="none" stroke="#b8893a" stroke-width="1.2"/>
+        <circle cx="50" cy="50" r="6" fill="#b8893a"/>
+        <g fill="#1a2854">
+          <circle cx="50" cy="20" r="2.5"/>
+          <circle cx="78" cy="38" r="2.5"/>
+          <circle cx="68" cy="74" r="2.5"/>
+          <circle cx="32" cy="74" r="2.5"/>
+          <circle cx="22" cy="38" r="2.5"/>
+        </g>
+        <g stroke="#b8893a" stroke-width="0.5" fill="none">
+          <line x1="50" y1="20" x2="50" y2="50"/>
+          <line x1="78" y1="38" x2="50" y2="50"/>
+          <line x1="68" y1="74" x2="50" y2="50"/>
+          <line x1="32" y1="74" x2="50" y2="50"/>
+          <line x1="22" y1="38" x2="50" y2="50"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VIII · the portrait</div>
+    <h2 class="section-title">The Unified Portrait</h2>
+    <h3 class="section-sub">Five lineages, five vocabularies, one chord — earned wisdom that listens before it speaks</h3>
+
+    <div class="lead">
+      <p>Across all five lineages, the same person is described — and the differences are mostly in vocabulary, not in subject.</p>
+    </div>
+
+    <div class="text">
+      <p>A contemplative inner Seven, walking a Jupiter / Three path of teaching and expansion, wearing a Moon / Two name that other people find gentle and perceptive. Saturn beneath, giving the dignity of long time. <strong>Pythagorean</strong> adds that this person is also a Builder Four with a private ambition for mastery. <strong>Chaldean</strong> names the planets behind the numbers — Ketu within, Jupiter ahead, Moon at the surface, Saturn as day-lord beneath. <strong>Kabbalah</strong> lifts the same numbers onto the Tree as Resh and Beth — the Sun and the Magician. <strong>Tamil</strong> grounds them in planetary lords and in Devbhoomi. <strong>LoShu</strong> draws them into the magic square and finds the full Arrow of Determination running through the centre column.</p>
+
+      <p>The defining quality, common to all five readings, is earned wisdom that listens before it speaks. Productive on the surface; contemplative underneath; slow to peak and long to remain. The Personal Year 2026, by both Pythagorean and Tamil reckoning a Four / Rahu year, asks for consolidation and the careful shaping of what has already been built.</p>
+
+      <p>Five traditions, five vocabularies, one chord — Three of expression, Seven of contemplation, Two of presence, held together by Saturn's long time and lit by the Sun of Resh.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">The chord</div>
+      <div class="note">3 · 7 · 2 — with Saturn beneath and the Sun above.</div>
+      <div class="note-label">The keynote</div>
+      <div class="note">Earned wisdom that listens before it speaks.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Profile · End</span><span>Page 12</span></div>
+</section>
+
+
+<!-- ═══════════════════ GLOSSARY — PAGE 13 ═══════════════════ -->
+<section class="page wide" id="glossary">
+  <div class="running"><span>Glossary</span><span class="who">Reference — Page 13 of 14</span></div>
+
+  <div class="content" style="padding-top:5mm;">
+    <h2 class="section-title" style="margin-bottom:3mm;">Glossary of Terms</h2>
+
+    <div class="gloss-cols">
+
+      <div class="gloss-school">
+        <div class="gloss-head gloss-general">General &amp; Conceptual</div>
+        <dl class="gloss-list">
+          <dt>Convergence Mandala</dt><dd>The five-wedge diagram mapping all five lineages into one unified form; centrepiece of this report.</dd>
+          <dt>Master Number</dt><dd>Double-digit numbers — 11, 22, 33 — considered to carry a higher vibration; often not reduced to a single digit.</dd>
+          <dt>Personal Year</dt><dd>Numerological theme governing a calendar year. Ankur's 2026 is a Four / Rahu year across both Pythagorean and Tamil reckoning.</dd>
+        </dl>
+      </div>
+
+      <div class="gloss-school">
+        <div class="gloss-head gloss-pyth">Pyth — Pythagorean</div>
+        <dl class="gloss-list">
+          <dt>Expression number</dt><dd>From the full birth name; reveals natural talents and outward character. This chart: 4 — the Builder.</dd>
+          <dt>Life Path</dt><dd>Full birth date reduced to one digit; the main incarnation theme. This chart: 3.</dd>
+          <dt>Maturity number</dt><dd>Life Path + Expression; dominant theme after 35–40. This chart: 7 — the doubled inwardness.</dd>
+          <dt>Personality number</dt><dd>From consonants of the name; the first impression others receive. This chart: 5.</dd>
+          <dt>Soul Urge number</dt><dd>From vowels of the name; the private inner motivation, often invisible to others. This chart: 8.</dd>
+          <dt>Tetraktys (Τετρακτύς)</dt><dd>Pythagorean sacred triangle of ten points in four rows (1–2–3–4); emblem of cosmic harmony and musical proportion.</dd>
+        </dl>
+      </div>
+
+      <div class="gloss-school">
+        <div class="gloss-head gloss-chal">Chal — Chaldean</div>
+        <dl class="gloss-list">
+          <dt>Cheiro</dt><dd>Irish-born numerologist (1866–1936) who codified the Babylonian / Chaldean system used in this reading.</dd>
+          <dt>Compound number</dt><dd>Two-digit number (e.g. 16, 38) read before reduction; carries a karmic character invisible in the single digit alone.</dd>
+          <dt>Destiny number</dt><dd>From the full birth date; outer life direction. This chart: 3 (Jupiter) — compound 30 beneath.</dd>
+          <dt>Psychic number</dt><dd>From the day of birth; how the native experiences themselves inwardly. This chart: 7 (Ketu) — compound 16 beneath.</dd>
+        </dl>
+      </div>
+
+      <div class="gloss-school">
+        <div class="gloss-head gloss-kabb">Kabb — Kabbalah</div>
+        <dl class="gloss-list">
+          <dt>Beth (ב)</dt><dd>Second Hebrew letter; gematria 2; The Magician in Tarot. Inner-letter of this chart — focused will turning idea into form.</dd>
+          <dt>Binah</dt><dd>Third sephira; structured understanding. Terminal point of the Beth path from Kether.</dd>
+          <dt>Gematria</dt><dd>Assigning numerical values to Hebrew letters; the arithmetical basis of Kabbalistic numerology.</dd>
+          <dt>Hod</dt><dd>Eighth sephira; intellect and language. Station on the Resh path from Yesod toward Tiferet.</dd>
+          <dt>Kether</dt><dd>First sephira; the crown; pure undivided intent. Starting point of the Beth path.</dd>
+          <dt>Resh (ר)</dt><dd>Twentieth Hebrew letter; gematria 20 → 2; The Sun in Tarot. Soul-letter of this chart, path from Hod to Yesod.</dd>
+          <dt>Sephira / Sephiroth</dt><dd>The ten divine emanations on the Tree of Life; each maps to a quality of consciousness and a planetary archetype.</dd>
+          <dt>Shavuot</dt><dd>Festival of the giving of the Torah. Births in the following month (Sivan) carry a particular relation to study and transmission.</dd>
+          <dt>Sivan</dt><dd>Third month of the Hebrew calendar; late May to mid-June. Ankur's birth: 2 Sivan 5713.</dd>
+          <dt>Tarot Path System</dt><dd>Maps the 22 Major Arcana to the 22 paths on the Tree; provides visual archetypes for each soul-letter.</dd>
+          <dt>Tiferet</dt><dd>Sixth sephira; heart of the Tree; beauty and integration. Central station on the Resh path.</dd>
+          <dt>Tree of Life</dt><dd>Central Kabbalistic diagram — ten Sephiroth, 22 paths; simultaneously the map of the soul and of creation.</dd>
+          <dt>Yesod</dt><dd>Ninth sephira; foundation; sphere of the unconscious and dreams. Intermediate station on the Resh path from Hod.</dd>
+        </dl>
+      </div>
+
+    </div><!-- /gloss-cols pg 13 -->
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Profile · Glossary</span><span>Page 13</span></div>
+</section>
+
+
+<!-- ═══════════════════ GLOSSARY — PAGE 14 ═══════════════════ -->
+<section class="page wide" id="glossary-2">
+  <div class="running"><span>Glossary</span><span class="who">Reference — Page 14 of 14</span></div>
+
+  <div class="content" style="padding-top:5mm;">
+    <h2 class="section-title" style="margin-bottom:3mm;">Glossary of Terms <span style="font-size:14pt; font-weight:400; color:var(--muted);">— continued</span></h2>
+
+    <div class="gloss-cols">
+
+      <div class="gloss-school">
+        <div class="gloss-head gloss-tamil">Tamil — Tamil / Vedic</div>
+        <dl class="gloss-list">
+          <dt>Bhagyank</dt><dd>Destiny number from the full birth date; equivalent to the Pythagorean Life Path. This chart: 3 — Guru / Jupiter.</dd>
+          <dt>Chandra</dt><dd>The Moon; planetary lord of 2. The public presence of this chart — gentle, perceptive, soft.</dd>
+          <dt>Devbhoomi</dt><dd>"Land of the gods" — epithet for Uttarakhand. Place of birth flavours the chart; for a Mulank-7, Devbhoomi reinforces the inward orientation rather than challenging it.</dd>
+          <dt>Guru</dt><dd>Jupiter; planetary lord of 3. The teaching and expansive arc of the path.</dd>
+          <dt>Janmank</dt><dd>Alternative name for Mulank; literally "birth number" — derived from the day of the month.</dd>
+          <dt>Ketu</dt><dd>South Node of the Moon; planetary lord of 7. Inward withdrawal, spiritual depth, dissolution of ego.</dd>
+          <dt>Mulank</dt><dd>Psychic number from the day of birth alone. This chart: 7 (Ketu).</dd>
+          <dt>Namank</dt><dd>Name number from the Tamil / Vedic letter table. This chart: 2 (Chandra).</dd>
+          <dt>Rahu</dt><dd>North Node of the Moon; associated with 4 in Vedic numerology. Energy of the 2026 Personal Year for this chart.</dd>
+          <dt>Shani</dt><dd>Saturn; day-lord of Saturday; lord of structure and long time. Present beneath all five readings of this chart.</dd>
+          <dt>Shastric</dt><dd>Relating to the Shastras — sacred Hindu scriptures — implying depth grounded in received tradition.</dd>
+        </dl>
+      </div>
+
+      <div class="gloss-school">
+        <div class="gloss-head gloss-loshu">LoShu — Lo Shu Chinese</div>
+        <dl class="gloss-list">
+          <dt>Arrow of Determination</dt><dd>Column 1·5·9 fully occupied; a line of persistent will. Present in this chart.</dd>
+          <dt>Arrow of Weakness</dt><dd>A full row, column, or diagonal entirely empty; an area for conscious cultivation. This chart has none.</dd>
+          <dt>BaZi (八字)</dt><dd>"Eight Characters" or Four Pillars; the Chinese astrological system from which the Year Pillar is drawn — year, month, day, hour encoded as stem-branch pairs.</dd>
+          <dt>Conductor</dt><dd>LoShu destiny number from the full birth date; equivalent to Pythagorean Life Path. This chart: 3.</dd>
+          <dt>Driver</dt><dd>LoShu psychic / day number. This chart: 7.</dd>
+          <dt>Kua number</dt><dd>Directional number (1–9) from birth year; used in feng shui to identify auspicious orientations. This chart: 2 — Kun-Earth, West Group (NE, W, NW, SW).</dd>
+          <dt>Lo Shu (洛書)</dt><dd>Ancient Chinese 3×3 magic square; every row, column, and diagonal sums to 15. Birth digits plot into the nine palaces to reveal what is present, absent, or doubled.</dd>
+          <dt>Nine Palaces</dt><dd>The nine cells of the Lo Shu grid, each corresponding to a number, a Wu Xing element, and a life-domain archetype.</dd>
+          <dt>Wu Xing (五行)</dt><dd>The five elements — Water, Wood, Fire, Earth, Metal. Each birth-date digit maps to an element. This chart is elementally complete.</dd>
+          <dt>Year Pillar</dt><dd>Stem-branch pair for the year of birth. Ankur's 1953: 癸巳 — Yin Water Snake.</dd>
+        </dl>
+      </div>
+
+    </div><!-- /gloss-cols pg 14 -->
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Profile · Glossary</span><span>Page 14</span></div>
+</section>
+
+</body>
+</html>

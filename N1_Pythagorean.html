@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Pythagorean Numerology — A Personal Reading for Ankur Gupta</title>
+<style>
+  /* ──────────────────────────────────────────────
+     Antara Personal Reading — V3 template
+     Profile-agnostic, overflow-safe, A4 portrait.
+     ────────────────────────────────────────────── */
+
+  @page { size: A4 portrait; margin: 0; }
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #dcd3bd; }
+  body {
+    font-family: "Cormorant Garamond","Iowan Old Style","Palatino Linotype",Georgia,serif;
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #1d1a2a;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ──────────── Cultural palette: Greek classical ──────────── */
+  :root {
+    --paper:#f3ebd9;
+    --paper-2:#ece2cb;
+    --ink:#1d1a2a;
+    --ink-2:#3a364a;
+    --bronze:#9c7c2c;
+    --bronze-soft:#cbb670;
+    --aegean:#1f3a6e;
+    --aegean-soft:#7b95c2;
+    --terracotta:#a52a2a;
+    --olive:#5b6b2c;
+    --rule:#cbb670;
+    --muted:#6e6650;
+
+    /* ── V3 Page geometry ── */
+    --page-w:210mm;
+    --page-h:297mm;
+    --pad-top:17mm;
+    --pad-bot:32mm;
+    --pad-left:25mm;
+    --pad-right:22mm;
+    --col-text:125mm;
+    --col-gap:6mm;
+    --col-margin:32mm;
+    --content-h:248mm;
+    --content-top-pad:6mm;
+  }
+
+  /* ──────────── The Page (A4 sheet) ──────────── */
+  .page{
+    width:var(--page-w);
+    height:var(--page-h);
+    background:var(--paper);
+    margin:8mm auto;
+    padding:var(--pad-top) var(--pad-right) var(--pad-bot) var(--pad-left);
+    position:relative;
+    box-shadow:0 4px 18px rgba(0,0,0,0.18);
+    page-break-after:always;
+    break-after:page;
+    display:grid;
+    grid-template-columns: var(--col-text) var(--col-margin);
+    column-gap: var(--col-gap);
+  }
+  .page:last-child{ page-break-after:auto; break-after:auto; }
+
+  /* V3 wide variant */
+  .page.wide{
+    grid-template-columns:1fr; column-gap:0;
+  }
+  .page.wide .margin-area{ display:none; }
+
+  /* V3 icon-right variant */
+  .page.icon-right .content > .icon-block{ display:none; }
+
+  /* Subtle paper texture */
+  .page::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(156,124,44,0.05), transparent 40%),
+      radial-gradient(circle at 88% 90%, rgba(31,58,110,0.04), transparent 40%);
+    mix-blend-mode:multiply;
+  }
+
+  /* Greek meander hairline at the top of every page */
+  .page::after{
+    content:"";position:absolute;
+    left:var(--pad-left); right:var(--pad-right);
+    top:9mm; height:6mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><path d='M0 12 L0 2 L8 2 L8 8 L4 8 L4 4 L12 4 L12 10 L20 10 L20 2 L28 2 L28 8 L24 8 L24 4 L32 4 L32 10 L40 10 L40 2 L48 2 L48 8 L44 8 L44 4 L52 4 L52 10 L60 10 L60 2 L68 2 L68 8 L64 8 L64 4 L72 4 L72 10 L80 10' stroke='%239c7c2c' stroke-width='1' fill='none'/></svg>");
+    background-repeat:repeat-x; background-size:auto 6mm; opacity:.85;
+  }
+
+  /* ──────────── Two columns within the page ──────────── */
+  .content{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+  }
+  .margin-area{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+  }
+
+  /* ──────────── Running header ──────────── */
+  .running{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); top:5mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; letter-spacing:.18em; text-transform:uppercase; color:var(--bronze);
+    font-family:"Iowan Old Style",Georgia,serif; font-weight:600;
+  }
+  .running .who{ color:var(--ink-2); letter-spacing:.12em; }
+
+  /* ──────────── Running footer ──────────── */
+  .pgfoot{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); bottom:14mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; color:var(--muted); letter-spacing:.06em;
+  }
+  .pgfoot::before{
+    content:""; position:absolute; left:0; right:0; top:-6mm; height:0.4mm;
+    background:var(--rule); opacity:.55;
+  }
+
+  /* ──────────── Typography ──────────── */
+  h1.cover-title{
+    font-size:32pt; font-weight:600; color:var(--ink);
+    letter-spacing:.06em; line-height:1.15; margin-bottom:6mm;
+    font-variant:small-caps;
+  }
+  h2.section-title{
+    font-size:18pt; font-weight:600; color:var(--ink);
+    letter-spacing:.02em; line-height:1.2; margin-bottom:4mm;
+  }
+  h3.section-sub{
+    font-size:11pt; font-style:italic; color:var(--bronze); font-weight:400;
+    margin-bottom:8mm; letter-spacing:.02em; line-height:1.4;
+  }
+  .eyebrow{
+    font-size:10pt; letter-spacing:.32em; text-transform:uppercase; color:var(--bronze);
+    font-weight:600; font-family:"Iowan Old Style",Georgia,serif; margin-bottom:3mm;
+  }
+  .greek{
+    font-family:"Cormorant Garamond",Georgia,serif;
+    color:var(--aegean); font-style:italic; letter-spacing:.04em;
+  }
+
+  .text > p{
+    font-size:12pt; line-height:1.5; color:var(--ink);
+    margin:0 0 12pt;
+  }
+  .text > p:last-child{ margin-bottom:0; }
+
+  .lead{ margin-bottom:8mm; }
+  .lead > p{
+    font-size:13pt; line-height:1.5; color:var(--ink-2); font-style:italic;
+    margin:0 0 6pt;
+  }
+  .lead > p:last-child{ margin-bottom:0; }
+
+  .calc{
+    font-family:"Iowan Old Style",Georgia,serif;
+    font-size:10pt; line-height:1.5; color:var(--bronze);
+    border-top:0.4mm solid var(--rule);
+    border-bottom:0.4mm solid var(--rule);
+    padding:4mm 0; margin:8mm 0 0;
+    letter-spacing:.02em;
+  }
+  .calc strong{ color:var(--ink); font-weight:600; }
+
+  .fine{ font-size:10pt; line-height:1.5; color:var(--muted); font-style:italic; }
+
+  /* ──────────── Cover ──────────── */
+  .cover{
+    grid-template-columns: 1fr;
+    text-align:center;
+    align-content:center; justify-content:center;
+    padding-top:42mm;
+  }
+  .cover .markline{
+    margin:0 auto 14mm; width:60mm; height:4mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><path d='M0 12 L0 2 L8 2 L8 8 L4 8 L4 4 L12 4 L12 10 L20 10 L20 2 L28 2 L28 8 L24 8 L24 4 L32 4 L32 10 L40 10 L40 2 L48 2 L48 8 L44 8 L44 4 L52 4 L52 10 L60 10 L60 2 L68 2 L68 8 L64 8 L64 4 L72 4 L72 10 L80 10' stroke='%239c7c2c' stroke-width='1.4' fill='none'/></svg>");
+    background-repeat:repeat-x; background-size:auto 4mm;
+  }
+  .cover .greek-eyebrow{
+    font-size:11pt; letter-spacing:.4em; text-transform:uppercase; color:var(--bronze);
+    margin-bottom:8mm; font-weight:600;
+  }
+  .cover .arithmos{
+    font-size:14pt; color:var(--aegean); font-style:italic; letter-spacing:.06em;
+    margin-bottom:12mm;
+  }
+  .cover .person{
+    font-size:13pt; color:var(--ink); margin-top:14mm; line-height:1.7;
+  }
+  .cover .person .lbl{
+    font-size:10pt; letter-spacing:.22em; text-transform:uppercase; color:var(--muted);
+    font-weight:600; margin-right:6mm;
+  }
+  .cover .tetraktys{
+    margin:18mm auto 0; width:50mm; height:50mm;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  /* ──────────── Contents ──────────── */
+  .toc-list{ list-style:none; padding:0; margin:0; }
+  .toc-list li{
+    display:grid; grid-template-columns:8mm 1fr auto; gap:4mm;
+    align-items:baseline; padding:4mm 0;
+    border-bottom:0.3mm dashed var(--rule);
+    font-size:12pt;
+  }
+  .toc-list li:last-child{ border-bottom:none; }
+  .toc-list .num{ color:var(--bronze); font-variant-numeric:tabular-nums; font-weight:600; }
+  .toc-list .name{ color:var(--ink); }
+  .toc-list .pg{ color:var(--muted); font-size:10pt; letter-spacing:.06em; }
+  .toc-list a{ text-decoration:none; color:inherit; display:contents; }
+  .toc-list a:hover .name{ color:var(--terracotta); }
+
+  /* ──────────── Focus icons ──────────── */
+  .icon-block{
+    width:28mm; height:28mm; margin-bottom:6mm;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .icon-block svg{ width:100%; height:100%; }
+
+  /* ──────────── Marginalia ──────────── */
+  .marginalia{
+    padding-top:12mm;
+    color:var(--muted); font-size:10pt; line-height:1.5; font-style:italic;
+  }
+  .marginalia .ornament{
+    width:28mm; height:28mm; margin-bottom:8mm; opacity:.55;
+  }
+  .marginalia .icon-echo{ width:24mm; height:24mm; margin-bottom:8mm; opacity:.7; }
+  .marginalia .icon-echo svg{ width:100%; height:100%; }
+  .marginalia .note-label{
+    font-size:9pt; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--bronze); font-weight:600; font-style:normal;
+    margin-bottom:2mm;
+  }
+  .marginalia .note{ margin-bottom:8mm; }
+  .marginalia .note:last-child{ margin-bottom:0; }
+
+  /* ──────────── Print ──────────── */
+  @media print{
+    html, body{ background:#fff; }
+    body{ padding:0; }
+    .page{
+      margin:0;
+      box-shadow:none;
+      page-break-after:always;
+      break-after:page;
+    }
+    .page:last-child{ page-break-after:auto; break-after:auto; }
+  }
+
+  /* ──────────── Screen ergonomics ──────────── */
+  @media screen{
+    body{ padding:14mm 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════ COVER ════ -->
+<section class="page cover" id="cover">
+  <div class="markline"></div>
+  <div class="arithmos">Ἀριθμός — the reading by number</div>
+  <h1 class="cover-title" style="white-space:nowrap;">Pythagorean Numerology</h1>
+  <div class="arithmos" style="margin-top:6mm">A reading from the school of Pythagoras of Samos</div>
+
+  <div class="tetraktys">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="18" r="3.5" fill="#9c7c2c"/>
+      <circle cx="40" cy="38" r="3.5" fill="#9c7c2c"/>
+      <circle cx="60" cy="38" r="3.5" fill="#9c7c2c"/>
+      <circle cx="30" cy="58" r="3.5" fill="#9c7c2c"/>
+      <circle cx="50" cy="58" r="3.5" fill="#9c7c2c"/>
+      <circle cx="70" cy="58" r="3.5" fill="#9c7c2c"/>
+      <circle cx="20" cy="78" r="3.5" fill="#9c7c2c"/>
+      <circle cx="40" cy="78" r="3.5" fill="#9c7c2c"/>
+      <circle cx="60" cy="78" r="3.5" fill="#9c7c2c"/>
+      <circle cx="80" cy="78" r="3.5" fill="#9c7c2c"/>
+      <path d="M 50 13 L 85 83 L 15 83 Z" stroke="#9c7c2c" stroke-width="0.6" fill="none" opacity="0.45"/>
+    </svg>
+  </div>
+
+  <div class="person">
+    <div>Ankur Gupta</div>
+    <div>16 May 1953 · Saturday</div>
+    <div>Chakrata, Uttarakhand</div>
+  </div>
+
+  <div class="pgfoot" style="display:block;text-align:center;">
+  <div style="font-size:10.5pt;font-weight:700;letter-spacing:.18em;color:var(--gold,#a88842);">ANTARA PERSONAL READING</div>
+  <div style="font-size:9.5pt;font-style:italic;letter-spacing:.08em;color:var(--gold,#a88842);margin-top:1.5mm;">interpretative, not Predictive</div>
+</div>
+</section>
+
+
+<!-- ════ INTRODUCTION (1 of 2) ════ -->
+<section class="page" id="intro-1">
+  <div class="running"><span>Pythagorean Numerology</span><span class="who">Introduction · 1 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Introduction</div>
+    <h2 class="section-title">What this report is about</h2>
+    <h3 class="section-sub">Pythagoras of Samos and the doctrine that all is number</h3>
+
+    <div class="text">
+      <p>Pythagoras of Samos lived in the sixth century before the common era. He is remembered as a mathematician, but in his own time he was something larger — the founder of a school of philosophy at Croton in southern Italy.</p>
+
+      <p>The school taught that the universe is intelligible because it is ordered, and that the order of the universe is, at its root, mathematical. The doctrine they used to express this was simple to state — Πάντα ἀριθμός, <em>panta arithmos</em>, all is number.</p>
+
+      <p>Number was understood not as quantity alone but as form, ratio and proportion. Music, the heavens, the body and the soul all expressed the same ratios. To read a person by number was therefore to read their share of that order.</p>
+
+      <p>Modern Pythagorean numerology is the descendant of this tradition. It maps the letters of a name and the digits of a date of birth onto the numbers one to nine, preserving three — eleven, twenty-two and thirty-three — as <em>master numbers</em> kept unreduced when they appear.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 30 80 L 30 30 Q 30 10 50 10 Q 70 10 70 30 L 70 80 Z" fill="none" stroke="#9c7c2c" stroke-width="1.2"/>
+          <line x1="38" y1="32" x2="38" y2="74" stroke="#9c7c2c" stroke-width="0.6"/>
+          <line x1="46" y1="32" x2="46" y2="74" stroke="#9c7c2c" stroke-width="0.6"/>
+          <line x1="54" y1="32" x2="54" y2="74" stroke="#9c7c2c" stroke-width="0.6"/>
+          <line x1="62" y1="32" x2="62" y2="74" stroke="#9c7c2c" stroke-width="0.6"/>
+          <ellipse cx="50" cy="84" rx="22" ry="6" fill="none" stroke="#9c7c2c" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="note-label">A note</div>
+      <div class="note">Pythagoras taught that music, soul and number share one grammar.</div>
+      <div class="note-label">Master numbers</div>
+      <div class="note">11 · 22 · 33 are kept unreduced where they appear, as a higher register.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 2</span></div>
+</section>
+
+
+<!-- ════ INTRODUCTION (2 of 2) ════ -->
+<section class="page" id="intro-2">
+  <div class="running"><span>Pythagorean Numerology</span><span class="who">Introduction · 2 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">How to read this report</div>
+    <h2 class="section-title">Structure &amp; method</h2>
+    <h3 class="section-sub">One focus per page, calculation kept transparent</h3>
+
+    <div class="text">
+      <p>This report is structured so that each focus aspect lives on its own page. That arrangement gives every theme room to breathe, and lets you read in any order, returning to whichever page you wish.</p>
+
+      <p>The contents page that follows lists every focus with a hyperlink. In a browser or PDF you may tap any title to jump directly to the relevant page.</p>
+
+      <p>Each focus carries a small icon at the top correlated to its theme. The body is set in measured paragraphs at twelve point, and the calculation that produced each number is shown beneath, so nothing is hidden.</p>
+
+      <p>A standard note applies to the whole. Pythagorean numerology is an interpretive tradition. It describes character; it does not predict events. Read it as one mirror among several, and trust your own judgement above any single number.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 20 80 Q 50 50 80 30" stroke="#5b6b2c" stroke-width="1.4" fill="none"/>
+          <ellipse cx="35" cy="68" rx="6" ry="3" fill="#5b6b2c" transform="rotate(-30 35 68)"/>
+          <ellipse cx="48" cy="56" rx="6" ry="3" fill="#5b6b2c" transform="rotate(-30 48 56)"/>
+          <ellipse cx="62" cy="44" rx="6" ry="3" fill="#5b6b2c" transform="rotate(-30 62 44)"/>
+          <ellipse cx="76" cy="30" rx="6" ry="3" fill="#5b6b2c" transform="rotate(-30 76 30)"/>
+          <ellipse cx="40" cy="60" rx="6" ry="3" fill="#7d8a45" transform="rotate(60 40 60)"/>
+          <ellipse cx="55" cy="48" rx="6" ry="3" fill="#7d8a45" transform="rotate(60 55 48)"/>
+        </svg>
+      </div>
+      <div class="note-label">Reading time</div>
+      <div class="note">Approximately twenty-five minutes at an unhurried pace.</div>
+      <div class="note-label">Authority</div>
+      <div class="note">Numerology is reflective, not prescriptive. The reader is the final authority on the reading.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 3</span></div>
+</section>
+
+
+<!-- ════ CONTENTS ════ -->
+<section class="page" id="contents">
+  <div class="running"><span>Pythagorean Numerology</span><span class="who">Contents</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Contents</div>
+    <h2 class="section-title">The eight focus pages</h2>
+    <h3 class="section-sub">Tap any title to jump to that page</h3>
+
+    <ol class="toc-list">
+      <li><a href="#life-path"><span class="num">I</span><span class="name">The Life Path · the path of expression</span><span class="pg">p. 5</span></a></li>
+      <li><a href="#expression"><span class="num">II</span><span class="name">Expression · the destiny number</span><span class="pg">p. 6</span></a></li>
+      <li><a href="#soul-urge"><span class="num">III</span><span class="name">Soul Urge · the inner engine</span><span class="pg">p. 7</span></a></li>
+      <li><a href="#personality"><span class="num">IV</span><span class="name">Personality · the outer garment</span><span class="pg">p. 8</span></a></li>
+      <li><a href="#birthday"><span class="num">V</span><span class="name">Birthday Number · the inner scholar</span><span class="pg">p. 9</span></a></li>
+      <li><a href="#maturity"><span class="num">VI</span><span class="name">Maturity Number · the later self</span><span class="pg">p. 10</span></a></li>
+      <li><a href="#personal-year"><span class="num">VII</span><span class="name">Personal Year · the year ahead</span><span class="pg">p. 11</span></a></li>
+      <li><a href="#synthesis"><span class="num">VIII</span><span class="name">Synthesis · the Pythagorean portrait</span><span class="pg">p. 12</span></a></li>
+    </ol>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="50" cy="60" rx="22" ry="26" fill="none" stroke="#9c7c2c" stroke-width="1.2"/>
+          <circle cx="42" cy="50" r="5" fill="none" stroke="#9c7c2c" stroke-width="1"/>
+          <circle cx="58" cy="50" r="5" fill="none" stroke="#9c7c2c" stroke-width="1"/>
+          <circle cx="42" cy="50" r="1.6" fill="#9c7c2c"/>
+          <circle cx="58" cy="50" r="1.6" fill="#9c7c2c"/>
+          <path d="M 47 58 L 50 62 L 53 58" stroke="#9c7c2c" stroke-width="1" fill="none"/>
+          <path d="M 32 38 L 42 46 M 68 38 L 58 46" stroke="#9c7c2c" stroke-width="1" fill="none"/>
+        </svg>
+      </div>
+      <div class="note-label">Key numbers</div>
+      <div class="note">Life Path · 3<br>Expression · 4<br>Soul Urge · 8<br>Personality · 5<br>Birthday · 7<br>Maturity · 7</div>
+      <div class="note-label">Personal Year 2026</div>
+      <div class="note">4 · the year of foundations</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 4</span></div>
+</section>
+
+
+<!-- ════ I · LIFE PATH ════ -->
+<section class="page" id="life-path">
+  <div class="running"><span>I · Life Path</span><span class="who">Focus 1 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 18 86 Q 30 60 50 60 Q 72 60 72 36 Q 72 18 88 14" fill="none" stroke="#9c7c2c" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="18" cy="86" r="3" fill="#9c7c2c"/>
+        <circle cx="88" cy="14" r="3" fill="#a52a2a"/>
+        <path d="M 88 14 L 84 8 M 88 14 L 94 12" stroke="#a52a2a" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus I · the path of expression</div>
+    <h2 class="section-title">The Life Path</h2>
+    <h3 class="section-sub">Number 3 — the expressive, optimistic communicator</h3>
+
+    <div class="lead">
+      <p>The Life Path is the arithmetic of the date itself. It describes the ground the life is walked on.</p>
+    </div>
+
+    <div class="text">
+      <p>For 16 May 1953 the calculation reduces to three. Three is the first true number in Pythagorean reckoning — the union of unity and duality, and the number of expression, communication and optimism.</p>
+
+      <p>Threes are the speakers, the storytellers, the lifters of moods. They host where others retreat. They explain where others fall silent. They bring colour to whatever room they enter.</p>
+
+      <p>The shadow side of three is the same gift inverted. Words become a way of avoiding the harder unspoken thing, and light spread thin can leave little weight underneath. The work of a Life Path three is to keep voice and depth aligned.</p>
+    </div>
+
+    <div class="calc">
+      Calculation · Day 16 → 1+6 = <strong>7</strong> · Month 5 → <strong>5</strong> · Year 1953 → 1+9+5+3 = 18 → 1+8 = <strong>9</strong> · Sum 7 + 5 + 9 = 21 → 2+1 = <strong>3</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">In Pythagoras</div>
+      <div class="note">Three was called the first number proper, the marriage of the One and the Two.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Expression ↔ scattering. The voice that lifts also risks dispersing weight.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 5</span></div>
+</section>
+
+
+<!-- ════ II · EXPRESSION ════ -->
+<section class="page" id="expression">
+  <div class="running"><span>II · Expression</span><span class="who">Focus 2 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 30 84 L 30 32 Q 30 12 50 12 Q 70 12 70 32 L 70 84 Z" fill="none" stroke="#9c7c2c" stroke-width="2"/>
+        <line x1="38" y1="34" x2="38" y2="78" stroke="#9c7c2c" stroke-width="0.8"/>
+        <line x1="46" y1="34" x2="46" y2="78" stroke="#9c7c2c" stroke-width="0.8"/>
+        <line x1="54" y1="34" x2="54" y2="78" stroke="#9c7c2c" stroke-width="0.8"/>
+        <line x1="62" y1="34" x2="62" y2="78" stroke="#9c7c2c" stroke-width="0.8"/>
+        <ellipse cx="50" cy="86" rx="22" ry="6" fill="none" stroke="#9c7c2c" stroke-width="1.4"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus II · the destiny</div>
+    <h2 class="section-title">The Expression</h2>
+    <h3 class="section-sub">Number 4 — the builder, the architect of lasting things</h3>
+
+    <div class="lead">
+      <p>The Expression is the full name reduced to a single number. It describes what the life is being shaped to deliver.</p>
+    </div>
+
+    <div class="text">
+      <p>For Ankur Gupta the letter sum is forty, which reduces to four. Four is the number of structure and foundation — the square, the cornerstone, the four elements.</p>
+
+      <p>The destiny of a four is to build things that last. Institutions, frameworks, families, systems. Where the Three of the Life Path speaks, the Four of the Expression constructs. The combination is rare and unusually productive — ideas given solid form rather than kept as conversation.</p>
+
+      <p>The discipline of four is patience with detail. The fault of four is rigidity, when patience hardens into resistance. The good four learns when to keep the rule and when to bend it.</p>
+    </div>
+
+    <div class="calc">
+      Calculation · A·N·K·U·R = 1+5+2+3+9 = <strong>20</strong> · G·U·P·T·A = 7+3+7+2+1 = <strong>20</strong> · Total 20 + 20 = 40 → 4+0 = <strong>4</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Geometry</div>
+      <div class="note">Four is the square — the first stable, four-cornered figure.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Foundation ↔ rigidity. The cornerstone that supports also resists movement.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 6</span></div>
+</section>
+
+
+<!-- ════ III · SOUL URGE ════ -->
+<section class="page" id="soul-urge">
+  <div class="running"><span>III · Soul Urge</span><span class="who">Focus 3 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50 88 Q 30 78 30 60 Q 30 46 42 38 Q 38 50 46 54 Q 44 38 56 28 Q 52 44 60 48 Q 56 32 70 22 Q 70 46 70 60 Q 70 78 50 88 Z" fill="none" stroke="#a52a2a" stroke-width="2"/>
+        <path d="M 50 84 Q 38 76 38 64 Q 38 56 46 50 Q 46 60 52 62 Q 50 52 58 46 Q 58 58 62 62 Q 62 74 50 84 Z" fill="#a52a2a" opacity="0.18"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus III · the inner engine</div>
+    <h2 class="section-title">The Soul Urge</h2>
+    <h3 class="section-sub">Number 8 — power, mastery, the patient ambition</h3>
+
+    <div class="lead">
+      <p>The Soul Urge is the sum of the vowels of the name. It speaks for what the heart privately wants.</p>
+    </div>
+
+    <div class="text">
+      <p>The vowels of Ankur Gupta are A, U, U, A — they sum to eight. Eight is the number of executive power and material mastery, the lemniscate, the figure that does not end.</p>
+
+      <p>Eight is the urge that runs underneath the surface charm of three. It is the long ambition that does not announce itself. It measures life partly by what was built and partly by what was earned, and such urges are rarely spoken aloud, even to oneself.</p>
+
+      <p>The discipline of eight is to keep ambition in service of something. The fault of eight is ambition that has forgotten what it is for. A mature eight builds for the work itself; an unripe eight builds to be seen building.</p>
+    </div>
+
+    <div class="calc">
+      Calculation · vowels A·U·U·A = 1 + 3 + 3 + 1 = <strong>8</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Symbol</div>
+      <div class="note">The lemniscate ∞ — eight on its side. Endless return.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Mastery ↔ display. The strength that builds, and the same strength that wants applause.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 7</span></div>
+</section>
+
+
+<!-- ════ IV · PERSONALITY ════ -->
+<section class="page" id="personality">
+  <div class="running"><span>IV · Personality</span><span class="who">Focus 4 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 26 28 Q 50 16 74 28 Q 78 50 70 76 Q 60 88 50 88 Q 40 88 30 76 Q 22 50 26 28 Z" fill="none" stroke="#9c7c2c" stroke-width="2"/>
+        <ellipse cx="40" cy="46" rx="5" ry="3" fill="#9c7c2c"/>
+        <ellipse cx="60" cy="46" rx="5" ry="3" fill="#9c7c2c"/>
+        <path d="M 40 64 Q 50 70 60 64" fill="none" stroke="#9c7c2c" stroke-width="1.5"/>
+        <path d="M 30 30 Q 50 22 70 30" fill="none" stroke="#9c7c2c" stroke-width="1" opacity="0.6"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus IV · the outer garment</div>
+    <h2 class="section-title">The Personality</h2>
+    <h3 class="section-sub">Number 5 — versatile, mobile, freedom-loving</h3>
+
+    <div class="lead">
+      <p>The Personality is the sum of the consonants. It is the version of the self the world meets first.</p>
+    </div>
+
+    <div class="text">
+      <p>The consonants of Ankur Gupta sum to thirty-two, which reduces to five. Five is the number of versatility and curiosity — the personality the world encounters before it is invited inside.</p>
+
+      <p>This explains an apparent paradox in the chart. The Eight underneath is heavy with ambition; the Five on the surface is light, mobile, conversational. The lightness on the outside lets the heaviness on the inside be carried without burdening anyone. Travel, variety and conversation are oxygen for this Five.</p>
+
+      <p>The watch-out for a Personality five is restlessness mistaken for movement. Mobility is a gift only when it returns to a centre. Without the Three's voice and the Four's ground, a Five disperses.</p>
+    </div>
+
+    <div class="calc">
+      Calculation · consonants 5+2+9+7+7+2 = 32 → 3+2 = <strong>5</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Element</div>
+      <div class="note">Five was associated with the fifth element — quintessence — that bound the four below.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Mobility ↔ restlessness. Movement that arrives, and movement that only departs.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 8</span></div>
+</section>
+
+
+<!-- ════ V · BIRTHDAY ════ -->
+<section class="page" id="birthday">
+  <div class="running"><span>V · Birthday</span><span class="who">Focus 5 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="14" fill="none" stroke="#9c7c2c" stroke-width="2"/>
+        <g stroke="#9c7c2c" stroke-width="1.6" stroke-linecap="round">
+          <line x1="50" y1="20" x2="50" y2="28"/>
+          <line x1="50" y1="72" x2="50" y2="80"/>
+          <line x1="20" y1="50" x2="28" y2="50"/>
+          <line x1="72" y1="50" x2="80" y2="50"/>
+          <line x1="29" y1="29" x2="35" y2="35"/>
+          <line x1="65" y1="65" x2="71" y2="71"/>
+          <line x1="71" y1="29" x2="65" y2="35"/>
+          <line x1="29" y1="71" x2="35" y2="65"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus V · the inner scholar</div>
+    <h2 class="section-title">The Birthday Number</h2>
+    <h3 class="section-sub">Number 7 — the analytical, contemplative undercurrent</h3>
+
+    <div class="lead">
+      <p>The Birthday is simply the day reduced. It is a private tone the native carries quietly through the years.</p>
+    </div>
+
+    <div class="text">
+      <p>For the sixteenth, the reduction is one plus six, which gives seven. Seven is the most contemplative of the Pythagorean numbers — the philosopher, the scholar, the one who reads behind the surface of things.</p>
+
+      <p>This Seven gives a private intellectual life to the chart. It runs underneath the social Three and the ambitious Eight. It is the part of the self that steps back, that reads, that asks why. It is also the part that values solitude as nourishment, not avoidance.</p>
+
+      <p>A Birthday seven softens the edges of the louder numbers in a chart. It listens before it speaks. It distrusts surface answers and waits for the deeper one.</p>
+    </div>
+
+    <div class="calc">
+      Calculation · Day <strong>16</strong> → 1 + 6 = <strong>7</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Sacred</div>
+      <div class="note">Seven was the most sacred of numbers in Pythagorean teaching — virgin among the first ten.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Depth ↔ withdrawal. The reflection that nourishes, and the reflection that hides.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 9</span></div>
+</section>
+
+
+<!-- ════ VI · MATURITY ════ -->
+<section class="page" id="maturity">
+  <div class="running"><span>VI · Maturity</span><span class="who">Focus 6 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 18 80 Q 50 50 84 24" stroke="#5b6b2c" stroke-width="2" fill="none"/>
+        <ellipse cx="32" cy="68" rx="7" ry="3.5" fill="#5b6b2c" transform="rotate(-30 32 68)"/>
+        <ellipse cx="46" cy="56" rx="7" ry="3.5" fill="#5b6b2c" transform="rotate(-30 46 56)"/>
+        <ellipse cx="62" cy="42" rx="7" ry="3.5" fill="#5b6b2c" transform="rotate(-30 62 42)"/>
+        <ellipse cx="76" cy="30" rx="7" ry="3.5" fill="#5b6b2c" transform="rotate(-30 76 30)"/>
+        <ellipse cx="40" cy="60" rx="7" ry="3.5" fill="#7d8a45" transform="rotate(60 40 60)"/>
+        <ellipse cx="55" cy="48" rx="7" ry="3.5" fill="#7d8a45" transform="rotate(60 55 48)"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VI · the later self</div>
+    <h2 class="section-title">The Maturity Number</h2>
+    <h3 class="section-sub">Number 7 — the elder of the same Seven that lives in the day</h3>
+
+    <div class="lead">
+      <p>The Maturity is the Life Path added to the Expression. It describes the person the native quietly becomes after the middle of life.</p>
+    </div>
+
+    <div class="text">
+      <p>Three plus four is seven. The Maturity number is the same Seven that already sits in the day of birth — and the signal is unmistakable. The later years turn explicitly toward wisdom, reflection and meaning.</p>
+
+      <p>The builder builds. The speaker speaks. And the elder of the same person reads, reflects and teaches. The arc bends toward depth in old age, not display.</p>
+
+      <p>A Maturity Seven asks for one specific discipline — to keep speaking, but to speak less; to keep building, but to build smaller. The later seven prefers a few finished things to many begun.</p>
+    </div>
+
+    <div class="calc">
+      Calculation · Life Path <strong>3</strong> + Expression <strong>4</strong> = <strong>7</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Doubled signal</div>
+      <div class="note">When the Birthday number and the Maturity number coincide, the chart's later trajectory is unusually clear.</div>
+      <div class="note-label">Discipline</div>
+      <div class="note">Fewer, deeper, finished.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 10</span></div>
+</section>
+
+
+<!-- ════ VII · PERSONAL YEAR ════ -->
+<section class="page" id="personal-year">
+  <div class="running"><span>VII · Personal Year</span><span class="who">Focus 7 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="32" fill="none" stroke="#9c7c2c" stroke-width="2"/>
+        <circle cx="50" cy="50" r="6" fill="#9c7c2c"/>
+        <g stroke="#9c7c2c" stroke-width="1.4">
+          <line x1="50" y1="18" x2="50" y2="44"/>
+          <line x1="50" y1="56" x2="50" y2="82"/>
+          <line x1="18" y1="50" x2="44" y2="50"/>
+          <line x1="56" y1="50" x2="82" y2="50"/>
+          <line x1="27" y1="27" x2="42" y2="42"/>
+          <line x1="58" y1="58" x2="73" y2="73"/>
+          <line x1="73" y1="27" x2="58" y2="42"/>
+          <line x1="27" y1="73" x2="42" y2="58"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VII · the year ahead</div>
+    <h2 class="section-title">Personal Year 2026</h2>
+    <h3 class="section-sub">Number 4 — a year of foundations</h3>
+
+    <div class="lead">
+      <p>The Personal Year takes the day, the month and the calendar year together. It describes the tone of the twelve months immediately ahead.</p>
+    </div>
+
+    <div class="text">
+      <p>For 2026 the calculation lands on four — the Four returns. Twenty-twenty-six is read as a year of structure and methodical work, not a year of dramatic new beginnings.</p>
+
+      <p>It rewards patience and consolidation. Paperwork put in order. Foundations laid that will carry the next cycle. This is the year to decide which projects will outlive the decade.</p>
+
+      <p>The risk of a Four year is dullness mistaken for diligence. Quiet work is not the same as drudgery. A four year is built well when the day's small disciplines are taken seriously.</p>
+    </div>
+
+    <div class="calc">
+      Calculation · Day <strong>16</strong> → 7 · Month <strong>5</strong> · Year 2026 → 2+0+2+6 = <strong>10</strong> → <strong>1</strong> · Sum 7 + 5 + 1 = 13 → 1+3 = <strong>4</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Year tone</div>
+      <div class="note">Foundation, consolidation, careful records, slow ground.</div>
+      <div class="note-label">Counsel</div>
+      <div class="note">Less expansion, more refinement. Decide what stays.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 11</span></div>
+</section>
+
+
+<!-- ════ VIII · SYNTHESIS ════ -->
+<section class="page icon-right" id="synthesis">
+  <div class="running"><span>VIII · Synthesis</span><span class="who">Focus 8 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="22" r="3" fill="#9c7c2c"/>
+        <circle cx="40" cy="42" r="3" fill="#9c7c2c"/>
+        <circle cx="60" cy="42" r="3" fill="#9c7c2c"/>
+        <circle cx="30" cy="62" r="3" fill="#9c7c2c"/>
+        <circle cx="50" cy="62" r="3" fill="#9c7c2c"/>
+        <circle cx="70" cy="62" r="3" fill="#9c7c2c"/>
+        <circle cx="20" cy="82" r="3" fill="#9c7c2c"/>
+        <circle cx="40" cy="82" r="3" fill="#9c7c2c"/>
+        <circle cx="60" cy="82" r="3" fill="#9c7c2c"/>
+        <circle cx="80" cy="82" r="3" fill="#9c7c2c"/>
+        <path d="M 50 19 L 83 85 L 17 85 Z" stroke="#9c7c2c" stroke-width="0.8" fill="none" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VIII · the portrait</div>
+    <h2 class="section-title">Synthesis</h2>
+    <h3 class="section-sub">Productive inwardness — six numbers, one chord</h3>
+
+    <div class="lead">
+      <p>The Pythagorean reading describes a single person from six angles. The numbers do not contradict each other; they hold a chord together.</p>
+    </div>
+
+    <div class="text">
+      <p>A creative communicator on a Three of Life Path. Building with structured discipline on a Four of Expression. Driven privately by a will to mastery on an Eight of Soul Urge. Wearing a versatile and sociable face on a Five of Personality. Born on a contemplative Seven, and maturing into a quiet sage of the same Seven.</p>
+
+      <p>It is, in the language of Pythagoras, a harmonious chord. The lyrical Three, the squared Four, the powerful Eight, the mobile Five, the introspective Seven sounded twice — none of these dissonates with the others.</p>
+
+      <p>The defining quality of this chord is productive inwardness. A person who speaks lightly, builds heavily, wants seriously, and reflects deeply.</p>
+
+      <p class="greek">Number is the ruler of forms and ideas, and the cause of gods and daemons.<br><span class="fine">— attributed to Pythagoras of Samos</span></p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="icon-echo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="22" r="3" fill="#9c7c2c"/>
+          <circle cx="40" cy="42" r="3" fill="#9c7c2c"/>
+          <circle cx="60" cy="42" r="3" fill="#9c7c2c"/>
+          <circle cx="30" cy="62" r="3" fill="#9c7c2c"/>
+          <circle cx="50" cy="62" r="3" fill="#9c7c2c"/>
+          <circle cx="70" cy="62" r="3" fill="#9c7c2c"/>
+          <circle cx="20" cy="82" r="3" fill="#9c7c2c"/>
+          <circle cx="40" cy="82" r="3" fill="#9c7c2c"/>
+          <circle cx="60" cy="82" r="3" fill="#9c7c2c"/>
+          <circle cx="80" cy="82" r="3" fill="#9c7c2c"/>
+          <path d="M 50 19 L 83 85 L 17 85 Z" stroke="#9c7c2c" stroke-width="0.8" fill="none" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="note-label">The chord</div>
+      <div class="note">3 · 4 · 8 · 5 · 7 · 7 — six tones, one harmonic.</div>
+      <div class="note-label">The keynote</div>
+      <div class="note">The doubled Seven — the contemplative undercurrent that surfaces, eventually, as wisdom.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading · End</span><span>Page 12</span></div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Biorhythm Compatibility · Special Report — Rohit Kapoor &amp; Meera Kapoor</title>
+<style>
+/* ─────────── Antara Personal Reading — V4 template ─────────── */
+@page { size: A4 portrait; margin: 0; }
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #c4c0b0; }
+body {
+  font-family: "Cormorant Garamond","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  font-size: 12pt; line-height: 1.5;
+  color: #2a3340; -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  --paper:      #f0ece0;
+  --paper-2:    #e6e1d2;
+  --ink:        #2a3340;
+  --ink-2:      #3d4554;
+  --gold:       #a88842;
+  --gold-soft:  #d0bc88;
+  --rule:       #b8a464;
+  --muted:      #6d6553;
+
+  /* Person A — Rohit */
+  --person-a:   #6b2020;  /* deep maroon */
+  /* Person B — Meera */
+  --person-b:   #1a3a6e;  /* deep navy */
+  /* PEIS cycle colours */
+  --physical:   #c44a4a;
+  --emotional:  #1f5e8a;
+  --intellectual:#3a7a3a;
+  --spiritual:  #7048a0;
+  /* Overlap / resonance */
+  --overlap:    #3a6a3a;  /* forest green */
+
+  --page-w: 210mm; --page-h: 297mm;
+  --pad-top: 17mm; --pad-bot: 32mm;
+  --pad-left: 25mm; --pad-right: 22mm;
+  --col-text: 125mm; --col-gap: 6mm; --col-margin: 32mm;
+  --content-w: 163mm;
+}
+
+.page {
+  width: var(--page-w); height: var(--page-h);
+  background: var(--paper);
+  margin: 8mm auto;
+  padding: var(--pad-top) var(--pad-right) var(--pad-bot) var(--pad-left);
+  position: relative; box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+  page-break-after: always; break-after: page;
+  display: grid;
+  grid-template-columns: var(--col-text) var(--col-margin);
+  column-gap: var(--col-gap);
+}
+.page:last-child { page-break-after: auto; break-after: auto; }
+
+.page.wide {
+  grid-template-columns: 1fr;
+  column-gap: 0;
+}
+.page.wide .margin-area { display: none; }
+
+.cover {
+  grid-template-columns: 1fr;
+  text-align: center;
+  align-content: center;
+  padding-top: 26mm;
+}
+
+.page::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(107,32,32,0.04), transparent 45%),
+    radial-gradient(circle at 85% 88%, rgba(26,58,110,0.04), transparent 45%);
+  mix-blend-mode: multiply;
+}
+
+.page::after {
+  content: ""; position: absolute;
+  left: var(--pad-left); right: var(--pad-right);
+  top: 9mm; height: 5mm;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 12'><line x1='0' y1='9' x2='80' y2='9' stroke='%23a88842' stroke-width='0.3'/><path d='M0 6Q5 2 10 6Q15 10 20 6Q25 2 30 6Q35 10 40 6Q45 2 50 6Q55 10 60 6Q65 2 70 6Q75 10 80 6' fill='none' stroke='%23a88842' stroke-width='0.7'/></svg>");
+  background-repeat: repeat-x; background-size: auto 5mm; opacity: .85;
+}
+
+.content { position: relative; z-index: 1; padding-top: 5mm; }
+.margin-area { position: relative; z-index: 1; padding-top: 5mm; }
+
+.running {
+  position: absolute; left: var(--pad-left); right: var(--pad-right); top: 5mm;
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 9pt; letter-spacing: .18em; text-transform: uppercase; color: var(--gold);
+  font-family: "Iowan Old Style", Georgia, serif; font-weight: 600;
+}
+.running .who { color: var(--ink-2); letter-spacing: .12em; font-size: 8.5pt; }
+
+.pgfoot {
+  position: absolute; left: var(--pad-left); right: var(--pad-right); bottom: 14mm;
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 9pt; color: var(--muted); letter-spacing: .06em;
+}
+.pgfoot::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -5mm; height: 0.4mm;
+  background: var(--rule); opacity: .55;
+}
+
+/* ─── Cover ─── */
+.eyebrow {
+  font-size: 10pt; letter-spacing: .36em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; margin-bottom: 4mm;
+}
+.cover-title {
+  font-size: 26pt; font-weight: 600; color: var(--ink);
+  letter-spacing: .06em; line-height: 1.15; margin-bottom: 2mm;
+  font-variant: small-caps;
+}
+.cover-sub {
+  font-size: 12pt; font-style: italic; color: var(--ink-2);
+  letter-spacing: .04em; margin-bottom: 10mm; line-height: 1.4;
+}
+.cover .markline {
+  margin: 0 auto 10mm; width: 60mm; height: 5mm;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 12'><path d='M0 6Q5 2 10 6Q15 10 20 6Q25 2 30 6Q35 10 40 6Q45 2 50 6Q55 10 60 6Q65 2 70 6Q75 10 80 6' fill='none' stroke='%23a88842' stroke-width='1.2'/></svg>");
+  background-repeat: repeat-x; background-size: auto 5mm;
+}
+
+/* ─── Person pair block ─── */
+.pair-block {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin: 6mm 0;
+}
+.person-card {
+  padding: 4mm; border-radius: 1mm;
+}
+.person-card.a { background: rgba(107,32,32,0.07); border-left: 0.8mm solid var(--person-a); }
+.person-card.b { background: rgba(26,58,110,0.07); border-left: 0.8mm solid var(--person-b); }
+.pc-name { font-size: 12pt; font-weight: 600; margin-bottom: 1mm; }
+.pc-name.a { color: var(--person-a); }
+.pc-name.b { color: var(--person-b); }
+.pc-detail { font-size: 9.5pt; color: var(--muted); line-height: 1.6; font-style: italic; }
+
+/* ─── Typography ─── */
+h2.section-title {
+  font-size: 16pt; font-weight: 600; color: var(--ink);
+  letter-spacing: .02em; line-height: 1.2; margin-bottom: 2mm;
+}
+h3.section-sub {
+  font-size: 11pt; font-style: italic; color: var(--gold);
+  font-weight: 400; margin-bottom: 3mm;
+}
+.text > p { font-size: 11.5pt; line-height: 1.5; color: var(--ink); margin: 0 0 5pt; }
+.text > p:last-child { margin-bottom: 0; }
+.lead > p { font-size: 12.5pt; line-height: 1.5; color: var(--ink-2); font-style: italic; margin: 0 0 4pt; }
+.calc {
+  font-family: "Iowan Old Style", Georgia, serif;
+  font-size: 10pt; line-height: 1.7; color: var(--gold);
+  border-top: 0.4mm solid var(--rule); border-bottom: 0.4mm solid var(--rule);
+  padding: 3mm 0; margin: 4mm 0; letter-spacing: .02em;
+}
+.calc strong { color: var(--ink); font-weight: 600; }
+
+/* ─── Chart area ─── */
+.month-head {
+  font-size: 12pt; font-weight: 600; color: var(--ink); letter-spacing: .08em;
+  text-transform: uppercase; margin-bottom: 2mm;
+  padding-bottom: 1.5mm; border-bottom: 0.4mm solid var(--rule);
+  display: flex; align-items: baseline; gap: 5mm;
+}
+.month-head .mdays { font-size: 9pt; font-weight: 400; color: var(--muted); font-style: italic; }
+
+.month-chart { width: 100%; margin-bottom: 2mm; }
+.month-pair { margin-bottom: 5mm; }
+
+/* ─── Sync events ─── */
+.sync-list {
+  display: flex; flex-wrap: wrap; gap: 1.5mm 3mm; margin-top: 1.5mm;
+}
+.sync-item {
+  display: inline-flex; align-items: center; gap: 1.5mm;
+  background: rgba(184,164,100,0.10); border-radius: 2px;
+  padding: 1px 4px; font-size: 8.5pt; color: var(--ink-2);
+}
+
+/* ─── Compatibility score bars ─── */
+.compat-bars { margin: 4mm 0; }
+.cbar-row {
+  display: flex; align-items: center; gap: 3mm; margin-bottom: 3mm;
+}
+.cbar-label { width: 28mm; font-size: 10pt; color: var(--ink-2); flex-shrink: 0; }
+.cbar-track {
+  flex: 1; height: 5mm; background: var(--paper-2, #e6e1d2);
+  border-radius: 1mm; overflow: hidden;
+}
+.cbar-fill { height: 100%; border-radius: 1mm; transition: width 0.3s; }
+.cbar-val { width: 12mm; font-size: 10pt; text-align: right; color: var(--ink); font-weight: 600; flex-shrink: 0; }
+
+/* ─── Resonance calendar grid ─── */
+.resonance-month { margin-bottom: 0; width: fit-content; }
+.res-head {
+  font-size: 9.5pt; font-weight: 600; color: var(--ink); letter-spacing: .06em;
+  text-transform: uppercase; margin-bottom: 0.8mm;
+  padding-bottom: 1mm; border-bottom: 0.4mm solid var(--rule);
+}
+.res-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.8mm;
+}
+.res-cell {
+  aspect-ratio: 1; border-radius: 1.5mm;
+  background: var(--paper-2, #e6e1d2);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-size: 6.5pt; position: relative; min-height: 6.5mm;
+}
+.res-cell .day-num { color: var(--ink-2); line-height: 1; }
+.res-cell .res-dots {
+  display: flex; gap: 0.5mm; margin-top: 0.5mm;
+}
+.res-dot { width: 2mm; height: 2mm; border-radius: 50%; }
+.res-cell.high-sync { background: rgba(58,106,58,0.15); }
+.res-cell.sync2 { background: rgba(58,106,58,0.25); }
+.res-cell.sync3 { background: rgba(58,106,58,0.38); }
+
+/* ─── TOC ─── */
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-list li {
+  display: grid; grid-template-columns: 8mm 1fr auto; gap: 3mm;
+  align-items: baseline; padding: 2mm 0;
+  border-bottom: 0.3mm dashed var(--rule); font-size: 11pt;
+}
+.toc-list li:last-child { border-bottom: none; }
+.toc-list .num { color: var(--gold); font-weight: 600; }
+.toc-list .pg { color: var(--muted); font-size: 9.5pt; }
+
+/* ─── Marginalia ─── */
+.marginalia {
+  padding-top: 10mm; color: var(--muted);
+  font-size: 9.5pt; line-height: 1.55; font-style: italic;
+}
+.marginalia .note-label {
+  font-size: 9pt; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; font-style: normal; margin-bottom: 2mm;
+}
+.marginalia .note { margin-bottom: 8mm; }
+
+.icon-block { width: 20mm; height: 20mm; margin-bottom: 4mm; display: flex; align-items: center; justify-content: center; }
+.icon-block svg { width: 100%; height: 100%; }
+
+.insight-block {
+  border-left: 0.8mm solid var(--gold-soft, #d0bc88);
+  padding: 3mm 4mm; margin: 4mm 0;
+  background: rgba(168,136,66,0.07);
+}
+.insight-block .ins-label {
+  font-size: 8.5pt; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; margin-bottom: 1.5mm;
+}
+.insight-block p { font-size: 10.5pt; color: var(--ink-2); line-height: 1.5; margin: 0; }
+
+@media print {
+  body { background: white; }
+  .page { margin: 0; box-shadow: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ PAGE 1 — COVER ═══ -->
+<div class="page cover" id="p1">
+  <div class="markline"></div>
+
+  <div style="font-size:11pt;font-style:italic;color:var(--muted);letter-spacing:.06em;text-align:center;margin-bottom:2mm;">The rhythms beneath the days —</div>
+  <div style="font-size:11pt;text-align:center;letter-spacing:.04em;margin-bottom:6mm;">
+    <span style="color:#c44a4a;font-weight:700;">Physical</span> &nbsp;·&nbsp;
+    <span style="color:#1f5e8a;font-weight:700;">Emotional</span> &nbsp;·&nbsp;
+    <span style="color:#3a7a3a;font-weight:700;">Intellectual</span> &nbsp;·&nbsp;
+    <span style="color:#7048a0;font-weight:700;">Spiritual</span>
+  </div>
+
+  <!-- Venn-style cover graphic — names removed from circles -->
+  <div style="width:90mm;margin:0 auto 6mm;">
+    <svg viewBox="0 0 280 110" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+      <!-- Person A circle -->
+      <circle cx="105" cy="55" r="48" fill="rgba(107,32,32,0.10)" stroke="#6b2020" stroke-width="1.2"/>
+      <!-- Person B circle -->
+      <circle cx="175" cy="55" r="48" fill="rgba(26,58,110,0.10)" stroke="#1a3a6e" stroke-width="1.2"/>
+      <!-- A and B labels outside circles -->
+      <text x="68" y="30" text-anchor="middle" font-size="11" fill="#6b2020" font-family="Georgia,serif" font-weight="700">A</text>
+      <text x="212" y="30" text-anchor="middle" font-size="11" fill="#1a3a6e" font-family="Georgia,serif" font-weight="700">B</text>
+      <!-- Sync label in overlap -->
+      <text x="140" y="51" text-anchor="middle" font-size="8" fill="#3a6a3a" font-family="Georgia,serif" font-style="italic">Sync</text>
+      <text x="140" y="64" text-anchor="middle" font-size="11" fill="#3a6a3a" font-family="Georgia,serif" font-weight="700" id="cover-score">…%</text>
+    </svg>
+  </div>
+
+  <div class="cover-title">Biorhythm Compatibility · Special Report</div>
+  <div class="cover-sub">Biorhythmic resonance between two individuals</div>
+
+  <!-- Period badge -->
+  <div class="period-badge" style="margin-top:6mm;">1 June 2026 – 31 August 2026</div>
+
+  <!-- Horizontal person bars — future-proof for teams -->
+  <div style="width:140mm;margin:6mm auto 0;display:flex;flex-direction:column;gap:2mm;">
+    <div style="display:flex;align-items:center;gap:3mm;padding:3mm 4mm;background:rgba(107,32,32,0.08);border-left:1.2mm solid #6b2020;border-radius:0 1mm 1mm 0;">
+      <div style="font-size:10pt;font-weight:700;color:#6b2020;min-width:5mm;text-align:center;">A</div>
+      <div style="font-size:11pt;font-weight:600;color:#6b2020;">Rohit Kapoor</div>
+      <div style="font-size:9pt;color:var(--muted);margin-left:auto;">22 July 1988 &nbsp;·&nbsp; Delhi</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:3mm;padding:3mm 4mm;background:rgba(26,58,110,0.08);border-left:1.2mm solid #1a3a6e;border-radius:0 1mm 1mm 0;">
+      <div style="font-size:10pt;font-weight:700;color:#1a3a6e;min-width:5mm;text-align:center;">B</div>
+      <div style="font-size:11pt;font-weight:600;color:#1a3a6e;">Meera Kapoor</div>
+      <div style="font-size:9pt;color:var(--muted);margin-left:auto;">5 November 1991 &nbsp;·&nbsp; Pune</div>
+    </div>
+  </div>
+
+  <div class="pgfoot" style="display:block;text-align:center;">
+  <div style="font-size:10.5pt;font-weight:700;letter-spacing:.18em;color:var(--gold,#a88842);">ANTARA PERSONAL READING</div>
+  <div style="font-size:9.5pt;font-style:italic;letter-spacing:.08em;color:var(--gold,#a88842);margin-top:1.5mm;">interpretative, not Predictive</div>
+</div>
+</div>
+
+
+<!-- ═══ PAGE 2 — Contents + What Compatibility Means ═══ -->
+<div class="page" id="p2">
+  <div class="running"><span>Antara · Compatibility</span><span class="who">Rohit &amp; Meera Kapoor</span></div>
+
+  <div class="content">
+    <div class="eyebrow" style="margin-bottom:3mm;">Contents</div>
+
+    <ul class="toc-list">
+      <li><span class="num">1</span><span>Biorhythmic compatibility — the method</span><span class="pg">2</span></li>
+      <li><span class="num">2</span><span>Cycle profiles at the start of the period</span><span class="pg">3</span></li>
+      <li><span class="num">3</span><span>June 2026 — overlaid charts</span><span class="pg">4</span></li>
+      <li><span class="num">4</span><span>July 2026 — overlaid charts</span><span class="pg">5</span></li>
+      <li><span class="num">5</span><span>August 2026 — overlaid charts</span><span class="pg">6</span></li>
+      <li><span class="num">6</span><span>Resonance calendar — day-by-day</span><span class="pg">7</span></li>
+      <li><span class="num">7</span><span>Compatibility summary &amp; guidance</span><span class="pg">8</span></li>
+    </ul>
+
+    <div style="margin-top:6mm;">
+      <h2 class="section-title">Biorhythmic Compatibility</h2>
+      <h3 class="section-sub">What the cycles tell us about two people together</h3>
+    </div>
+
+    <div class="lead" style="margin-bottom:4mm;">
+      <p>Biorhythmic compatibility is not about permanent sameness of character. It is about the rhythm of alignment — how often, over any given period, two people's energy cycles move in the same direction at the same time.</p>
+    </div>
+
+    <div class="text">
+      <p>When two people's physical cycles are both in their high half, they tend to find each other's company energising — activities, outings, and exertion feel naturally matched. When one is high and the other low, the difference in drive can produce friction that neither party intends. This is not a flaw in either person; it is simply asynchrony, and knowing it allows for adjustment rather than attribution.</p>
+      <p>The emotional cycle governs the quality of connection most directly. Shared high emotional phases produce warmth, openness, and ease of communication. Shared lows produce withdrawal that can be misread as coldness. A crossing in one person coinciding with a peak in the other is particularly sensitive — the peaking person may feel unusually misunderstood by the partner who is least equipped to receive them.</p>
+      <p>This report covers three months in detail, with a day-by-day resonance calendar. Shaded green days are days of high cycle alignment across two or more cycles — the easiest days to be together. Days unmarked or lightly toned are not difficult by nature; they simply require slightly more conscious attunement.</p>
+    </div>
+
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Person A</div>
+      <div class="note" style="font-style:normal;">
+        <span style="color:var(--person-a);font-weight:600;">Rohit Kapoor</span><br>
+        <span style="font-style:italic;">22 July 1988 · Delhi</span>
+      </div>
+
+      <div class="note-label">Person B</div>
+      <div class="note" style="font-style:normal;">
+        <span style="color:var(--person-b);font-weight:600;">Meera Kapoor</span><br>
+        <span style="font-style:italic;">5 November 1991 · Pune</span>
+      </div>
+
+      <div class="note-label">Cycles used</div>
+      <div class="note">
+        Physical · 23 days<br>
+        Emotional · 28 days<br>
+        Intellectual · 33 days<br>
+        Spiritual · 53 days
+      </div>
+
+      <div class="note-label">Colour key</div>
+      <div class="note">
+        <div style="display:flex;align-items:center;gap:2mm;margin-bottom:2.5mm;font-style:normal;">
+          <div style="width:8mm;height:2px;background:#6b2020;"></div> Rohit
+        </div>
+        <div style="display:flex;align-items:center;gap:2mm;margin-bottom:2.5mm;font-style:normal;">
+          <div style="width:8mm;height:2px;background:#1a3a6e;stroke-dasharray:4 2;border-top:2px dashed #1a3a6e;border-bottom:none;"></div> Meera
+        </div>
+        <div style="display:flex;align-items:center;gap:2mm;font-style:normal;">
+          <div style="width:8mm;height:3px;background:rgba(58,106,58,0.4);"></div> Resonance
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pgfoot">
+    <span>Compatibility Report</span>
+    <span>Rohit &amp; Meera Kapoor</span>
+    <span>2</span>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE 3 — Cycle Profiles ═══ -->
+<div class="page" id="p3">
+  <div class="running"><span>Antara · Compatibility</span><span class="who">Rohit &amp; Meera Kapoor</span></div>
+
+  <div class="content">
+    <h2 class="section-title">Cycle Profiles</h2>
+    <h3 class="section-sub">At the start of the review period · 1 June 2026</h3>
+
+    <div class="calc" id="intro-calc" style="margin-bottom:4mm;">
+      Computing cycle phases and compatibility scores…
+    </div>
+
+    <div class="pair-block" style="margin-top:0;">
+      <div class="person-card a">
+        <div class="pc-name a">Rohit Kapoor</div>
+        <div class="pc-detail" id="rohit-profile">Computing…</div>
+      </div>
+      <div class="person-card b">
+        <div class="pc-name b">Meera Kapoor</div>
+        <div class="pc-detail" id="meera-profile">Computing…</div>
+      </div>
+    </div>
+
+    <h3 class="section-sub" style="margin-top:5mm;">Compatibility scores · June 2026</h3>
+    <div class="compat-bars" id="compat-bars-jun">
+      <!-- populated by JS -->
+    </div>
+
+    <div class="insight-block" id="insight-jun">
+      <div class="ins-label">June 2026 — Cycle Insight</div>
+      <p id="insight-jun-text">Computing…</p>
+    </div>
+
+    <h3 class="section-sub" style="margin-top:4mm;">Compatibility scores · July 2026</h3>
+    <div class="compat-bars" id="compat-bars-jul"><!-- populated by JS --></div>
+
+    <h3 class="section-sub" style="margin-top:4mm;">Compatibility scores · August 2026</h3>
+    <div class="compat-bars" id="compat-bars-aug"><!-- populated by JS --></div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Reading the scores</div>
+      <div class="note">
+        A score of 100% means both people's cycles are identical in value and direction for that cycle throughout the month. Scores above 70% indicate strong natural alignment. Scores below 40% suggest complementarity rather than resonance — one person may energise the other precisely because they are in opposite phases.
+      </div>
+
+      <div class="note-label">Days lived</div>
+      <div class="note" id="days-lived-note" style="font-style:normal;font-size:9pt;">Computing…</div>
+    </div>
+  </div>
+
+  <div class="pgfoot">
+    <span>Compatibility Report</span>
+    <span>Rohit &amp; Meera Kapoor</span>
+    <span>3</span>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE 4 — June 2026 Overlaid Charts ═══ -->
+<div class="page wide" id="p4">
+  <div class="running"><span>Antara · Compatibility</span><span class="who">Rohit &amp; Meera Kapoor</span></div>
+  <div class="content" style="padding-top:6mm;">
+
+    <div class="month-head">June 2026 <span class="mdays">30 days</span></div>
+
+    <div style="font-size:9pt;color:var(--muted);margin-bottom:2mm;display:flex;gap:8mm;">
+      <span style="display:flex;align-items:center;gap:2mm;"><span style="display:inline-block;width:8mm;height:2px;background:#6b2020;"></span>Rohit</span>
+      <span style="display:flex;align-items:center;gap:2mm;"><span style="display:inline-block;width:8mm;height:0;border-top:2px dashed #1a3a6e;"></span>Meera</span>
+      <span style="display:flex;align-items:center;gap:2mm;"><span style="display:inline-block;width:8mm;height:5mm;background:rgba(58,106,58,0.25);border-radius:1px;"></span>Resonance zone</span>
+    </div>
+
+    <div style="font-size:10pt;color:var(--physical);font-weight:600;margin:2mm 0 1mm;letter-spacing:.04em;">Physical (23-day cycle)</div>
+    <svg id="chart-jun-phy" viewBox="0 0 630 140" style="display:block;width:100%;margin-bottom:2mm;"></svg>
+
+    <div style="font-size:10pt;color:var(--emotional);font-weight:600;margin:2mm 0 1mm;letter-spacing:.04em;">Emotional (28-day cycle)</div>
+    <svg id="chart-jun-emo" viewBox="0 0 630 140" style="display:block;width:100%;margin-bottom:2mm;"></svg>
+
+    <div style="font-size:10pt;color:var(--intellectual);font-weight:600;margin:2mm 0 1mm;letter-spacing:.04em;">Intellectual (33-day cycle)</div>
+    <svg id="chart-jun-int" viewBox="0 0 630 140" style="display:block;width:100%;margin-bottom:2mm;"></svg>
+
+    <div style="font-size:10pt;color:var(--spiritual);font-weight:600;margin:2mm 0 1mm;letter-spacing:.04em;">Spiritual (53-day cycle)</div>
+    <svg id="chart-jun-spi" viewBox="0 0 630 140" style="display:block;width:100%;margin-bottom:3mm;"></svg>
+
+    <div class="sync-list" id="sync-jun" style="margin-top:1mm;"></div>
+
+  </div>
+  <div class="pgfoot">
+    <span>Compatibility Report</span>
+    <span>Rohit &amp; Meera Kapoor</span>
+    <span>4</span>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE 5 — July 2026 ═══ -->
+<div class="page wide" id="p5">
+  <div class="running"><span>Antara · Compatibility</span><span class="who">Rohit &amp; Meera Kapoor</span></div>
+  <div class="content" style="padding-top:6mm;">
+
+    <div class="month-head">July 2026 <span class="mdays">31 days</span></div>
+
+    <div style="font-size:10pt;color:var(--gold);font-weight:600;margin:3mm 0 1mm;letter-spacing:.04em;">Physical (23-day cycle)</div>
+    <svg id="chart-jul-phy" viewBox="0 0 630 140" style="display:block;width:100%;margin-bottom:2mm;"></svg>
+
+    <div style="font-size:10pt;color:var(--emotional);font-weight:600;margin:2mm 0 1mm;letter-spacing:.04em;">Emotional (28-day cycle)</div>
+    <svg id="chart-jul-emo" viewBox="0 0 630 140" style="display:block;width:100%;margin-bottom:2mm;"></svg>
+
+    <div style="font-size:10pt;color:var(--intellectual);font-weight:600;margin:2mm 0 1mm;letter-spacing:.04em;">Intellectual (33-day cycle)</div>
+    <svg id="chart-jul-int" viewBox="0 0 630 140" style="display:block;width:100%;margin-bottom:2mm;"></svg>
+
+    <div style="font-size:10pt;color:var(--spiritual);font-weight:600;margin:2mm 0 1mm;letter-spacing:.04em;">Spiritual (53-day cycle)</div>
+    <svg id="chart-jul-spi" viewBox="0 0 630 140" style="display:block;width:100%;margin-bottom:3mm;"></svg>
+
+    <div class="sync-list" id="sync-jul" style="margin-top:1mm;"></div>
+
+  </div>
+  <div class="pgfoot">
+    <span>Compatibility Report</span>
+    <span>Rohit &amp; Meera Kapoor</span>
+    <span>5</span>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE 6 — August 2026 ═══ -->
+<div class="page wide" id="p6">
+  <div class="running"><span>Antara · Compatibility</span><span class="who">Rohit &amp; Meera Kapoor</span></div>
+  <div class="content" style="padding-top:6mm;">
+
+    <div class="month-head">August 2026 <span class="mdays">31 days</span></div>
+
+    <div style="font-size:10pt;color:var(--gold);font-weight:600;margin:3mm 0 1mm;letter-spacing:.04em;">Physical (23-day cycle)</div>
+    <svg id="chart-aug-phy" viewBox="0 0 630 140" style="display:block;width:100%;margin-bottom:2mm;"></svg>
+
+    <div style="font-size:10pt;color:var(--emotional);font-weight:600;margin:2mm 0 1mm;letter-spacing:.04em;">Emotional (28-day cycle)</div>
+    <svg id="chart-aug-emo" viewBox="0 0 630 140" style="display:block;width:100%;margin-bottom:2mm;"></svg>
+
+    <div style="font-size:10pt;color:var(--intellectual);font-weight:600;margin:2mm 0 1mm;letter-spacing:.04em;">Intellectual (33-day cycle)</div>
+    <svg id="chart-aug-int" viewBox="0 0 630 140" style="display:block;width:100%;margin-bottom:2mm;"></svg>
+
+    <div style="font-size:10pt;color:var(--spiritual);font-weight:600;margin:2mm 0 1mm;letter-spacing:.04em;">Spiritual (53-day cycle)</div>
+    <svg id="chart-aug-spi" viewBox="0 0 630 140" style="display:block;width:100%;margin-bottom:3mm;"></svg>
+
+    <div class="sync-list" id="sync-aug" style="margin-top:1mm;"></div>
+
+  </div>
+  <div class="pgfoot">
+    <span>Compatibility Report</span>
+    <span>Rohit &amp; Meera Kapoor</span>
+    <span>6</span>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE 7 — Resonance Calendar ═══ -->
+<div class="page wide" id="p7">
+  <div class="running"><span>Antara · Compatibility</span><span class="who">Rohit &amp; Meera Kapoor</span></div>
+  <div class="content" style="padding-top:6mm;">
+
+    <h2 class="section-title">Resonance Calendar</h2>
+    <h3 class="section-sub">Day-by-day cycle alignment · June – August 2026</h3>
+
+    <div style="font-size:9.5pt;color:var(--ink-2);line-height:1.45;margin-bottom:2.5mm;border-left:0.8mm solid var(--rule);padding-left:4mm;">
+      <strong style="color:var(--ink);">What resonance means:</strong> Days when both your cycles and your partner's sit in the same half of their rhythm — both high or both low — carry a natural energetic ease. Coloured dots show <em>which</em> cycles are aligned; green shading shows <em>how many</em>, deepening as more cycles move together.
+    </div>
+
+    <!-- Dot colour key -->
+    <div style="display:flex;flex-wrap:wrap;gap:2mm 5mm;margin-bottom:2.5mm;font-size:8.5pt;">
+      <span style="display:flex;align-items:center;gap:1.5mm;"><span style="width:2.5mm;height:2.5mm;border-radius:50%;background:#c44a4a;display:inline-block;"></span><span style="color:#c44a4a;font-weight:600;">Physical</span></span>
+      <span style="display:flex;align-items:center;gap:1.5mm;"><span style="width:2.5mm;height:2.5mm;border-radius:50%;background:#1f5e8a;display:inline-block;"></span><span style="color:#1f5e8a;font-weight:600;">Emotional</span></span>
+      <span style="display:flex;align-items:center;gap:1.5mm;"><span style="width:2.5mm;height:2.5mm;border-radius:50%;background:#3a7a3a;display:inline-block;"></span><span style="color:#3a7a3a;font-weight:600;">Intellectual</span></span>
+      <span style="display:flex;align-items:center;gap:1.5mm;"><span style="width:2.5mm;height:2.5mm;border-radius:50%;background:#7048a0;display:inline-block;"></span><span style="color:#7048a0;font-weight:600;">Spiritual</span></span>
+      <span style="color:var(--muted);margin-left:3mm;">Shading: </span>
+      <span style="display:flex;align-items:center;gap:1.5mm;"><span style="width:5mm;height:4mm;background:rgba(58,106,58,0.15);border-radius:0.8mm;display:inline-block;"></span>1 in sync</span>
+      <span style="display:flex;align-items:center;gap:1.5mm;"><span style="width:5mm;height:4mm;background:rgba(58,106,58,0.28);border-radius:0.8mm;display:inline-block;"></span>2 in sync</span>
+      <span style="display:flex;align-items:center;gap:1.5mm;"><span style="width:5mm;height:4mm;background:rgba(58,106,58,0.45);border-radius:0.8mm;display:inline-block;"></span>3–4 in sync</span>
+    </div>
+
+    <div id="resonance-calendar" style="display:flex;flex-direction:column;gap:3mm;">
+      <!-- populated by JS -->
+    </div>
+
+  </div>
+  <div class="pgfoot">
+    <span>Compatibility Report</span>
+    <span>Rohit &amp; Meera Kapoor</span>
+    <span>7</span>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE 8 — Summary & Guidance ═══ -->
+<div class="page" id="p8">
+  <div class="running"><span>Antara · Compatibility</span><span class="who">Rohit &amp; Meera Kapoor</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="13" cy="18" r="10" stroke="#6b2020" stroke-width="1.3" fill="rgba(107,32,32,0.08)"/>
+        <circle cx="23" cy="18" r="10" stroke="#1a3a6e" stroke-width="1.3" fill="rgba(26,58,110,0.08)"/>
+        <path d="M18 10 Q22 18 18 26" fill="rgba(58,106,58,0.25)" stroke="none"/>
+      </svg>
+    </div>
+
+    <h2 class="section-title">Compatibility Summary</h2>
+    <h3 class="section-sub">Rohit Kapoor &amp; Meera Kapoor · June – August 2026</h3>
+
+    <div class="lead" style="margin-bottom:4mm;">
+      <p id="summary-lead">Computing overall compatibility…</p>
+    </div>
+
+    <div class="text">
+      <p id="summary-physical">Physical cycle analysis loading…</p>
+      <p id="summary-emotional">Emotional cycle analysis loading…</p>
+      <p id="summary-intellectual">Intellectual cycle analysis loading…</p>
+    </div>
+
+    <div class="insight-block" style="margin-top:4mm;">
+      <div class="ins-label">Best days together — June to August 2026</div>
+      <p id="best-days">Computing…</p>
+    </div>
+
+    <div class="calc" id="overall-score">
+      Computing overall compatibility score…
+    </div>
+
+    <div class="text" style="margin-top:3mm;">
+      <p>Biorhythmic compatibility is one register of a relationship's rhythm. It does not predict what will happen between two people — it illuminates the energetic weather in which events occur. The most useful habit is to check your cycles and your partner's once a week: not to dictate plans, but to arrive at shared time with a little more understanding of what each person brings to it that day.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Three-month scores</div>
+      <div class="note" id="margin-scores">Computing…</div>
+
+      <div class="note-label">Cycle differences</div>
+      <div class="note">
+        Physical: Rohit on a 23-day rhythm, Meera on the same. Both begin their shared physical cycle in a different phase offset — this determines how often they are simultaneously high.
+      </div>
+
+      <div class="note-label">Spiritual resonance</div>
+      <div class="note">
+        The 53-day spiritual cycle moves slowly. When both people are in their spiritual high simultaneously, shared contemplative activity — travel, ritual, or long conversations — carries particular depth.
+      </div>
+    </div>
+  </div>
+
+  <div class="pgfoot">
+    <span>Compatibility Report</span>
+    <span>Rohit Kapoor · 22 July 1988 &amp; Meera Kapoor · 5 November 1991</span>
+    <span>8</span>
+  </div>
+</div>
+
+
+<script>
+/* ─────────────────────────────────────────────────────────
+   Biorhythm Compatibility Engine
+   Person A: Rohit Kapoor, born 22 July 1988
+   Person B: Meera Kapoor, born 5 November 1991
+   Review period: June – August 2026
+   ───────────────────────────────────────────────────────── */
+
+const BIRTH_A = new Date(1988, 6, 22); // Rohit — July 22, 1988
+const BIRTH_B = new Date(1991, 10, 5); // Meera — November 5, 1991
+
+const PERIODS = { physical: 23, emotional: 28, intellectual: 33, spiritual: 53 };
+const CYCLES  = ['physical', 'emotional', 'intellectual', 'spiritual'];
+const LABELS  = { physical: 'Physical', emotional: 'Emotional', intellectual: 'Intellectual', spiritual: 'Spiritual' };
+
+const COL_A = '#6b2020';
+const COL_B = '#1a3a6e';
+const COL_SYNC = 'rgba(58,106,58,0.30)';
+
+function daysFromBirth(birth, date) {
+  return Math.floor((date - birth) / 86400000);
+}
+
+function cycleVal(birth, date, period) {
+  return Math.sin(2 * Math.PI * daysFromBirth(birth, date) / period);
+}
+
+function daysInMonth(year, month) {
+  return new Date(year, month + 1, 0).getDate();
+}
+
+/* Compatibility score for one cycle over a month:
+   percentage of days where both values have the same sign */
+function compatScore(year, month, period) {
+  const N = daysInMonth(year, month);
+  let same = 0;
+  for (let d = 1; d <= N; d++) {
+    const date = new Date(year, month, d);
+    const va = cycleVal(BIRTH_A, date, period);
+    const vb = cycleVal(BIRTH_B, date, period);
+    if (va * vb > 0) same++;
+  }
+  return Math.round(same / N * 100);
+}
+
+/* Render a single cycle comparison chart for one month */
+function renderCompatChart(svgId, year, month, period) {
+  const svg = document.getElementById(svgId);
+  if (!svg) return;
+  const N = daysInMonth(year, month);
+  const ns = 'http://www.w3.org/2000/svg';
+
+  const W = 630, H = 140;
+  const LEFT = 4, RIGHT = 4, TOP = 8, BOT = 22;
+  const CW = W - LEFT - RIGHT;
+  const CH = H - TOP - BOT;
+  const MID = TOP + CH / 2;
+  const AMP = CH * 0.42;
+  const step = CW / N;
+
+  // Background
+  const bg = document.createElementNS(ns, 'rect');
+  bg.setAttribute('x', LEFT); bg.setAttribute('y', TOP);
+  bg.setAttribute('width', CW); bg.setAttribute('height', CH);
+  bg.setAttribute('fill', '#f8f5ed'); bg.setAttribute('rx', '2');
+  svg.appendChild(bg);
+
+  // Resonance zones — fill where both same sign
+  for (let d = 1; d <= N; d++) {
+    const date = new Date(year, month, d);
+    const va = cycleVal(BIRTH_A, date, period);
+    const vb = cycleVal(BIRTH_B, date, period);
+    if (va * vb > 0) {
+      const x = LEFT + (d - 1) * step;
+      const rect = document.createElementNS(ns, 'rect');
+      rect.setAttribute('x', x); rect.setAttribute('y', TOP);
+      rect.setAttribute('width', step + 0.5); rect.setAttribute('height', CH);
+      rect.setAttribute('fill', 'rgba(58,106,58,0.15)');
+      svg.appendChild(rect);
+    }
+  }
+
+  // Zero line
+  const zl = document.createElementNS(ns, 'line');
+  zl.setAttribute('x1', LEFT); zl.setAttribute('y1', MID);
+  zl.setAttribute('x2', LEFT + CW); zl.setAttribute('y2', MID);
+  zl.setAttribute('stroke', '#b8a464'); zl.setAttribute('stroke-width', '0.5');
+  svg.appendChild(zl);
+
+  // Day ticks every 5 days
+  for (let d = 5; d <= N; d += 5) {
+    const x = LEFT + (d - 0.5) * step;
+    const tick = document.createElementNS(ns, 'line');
+    tick.setAttribute('x1', x); tick.setAttribute('y1', TOP + CH);
+    tick.setAttribute('x2', x); tick.setAttribute('y2', TOP + CH + 7);
+    tick.setAttribute('stroke', '#c8b890'); tick.setAttribute('stroke-width', '0.8');
+    svg.appendChild(tick);
+    const lbl = document.createElementNS(ns, 'text');
+    lbl.setAttribute('x', x); lbl.setAttribute('y', H - 3);
+    lbl.setAttribute('text-anchor', 'middle');
+    lbl.setAttribute('font-size', '13'); lbl.setAttribute('fill', '#7a6a50');
+    lbl.setAttribute('font-family', 'Georgia,serif');
+    lbl.textContent = d;
+    svg.appendChild(lbl);
+  }
+
+  // Draw curves
+  [{ birth: BIRTH_A, col: COL_A, dash: '' }, { birth: BIRTH_B, col: COL_B, dash: '5 3' }].forEach(({ birth, col, dash }) => {
+    const pts = [];
+    for (let d = 0.5; d <= N; d += 0.5) {
+      const date = new Date(year, month, 1);
+      date.setTime(date.getTime() + (d - 0.5) * 86400000);
+      const val = cycleVal(birth, date, period);
+      const x = LEFT + d * step;
+      const y = MID - val * AMP;
+      pts.push(`${x.toFixed(1)},${y.toFixed(1)}`);
+    }
+    const path = document.createElementNS(ns, 'polyline');
+    path.setAttribute('points', pts.join(' '));
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', col);
+    path.setAttribute('stroke-width', '1.4');
+    if (dash) path.setAttribute('stroke-dasharray', dash);
+    path.setAttribute('stroke-linecap', 'round');
+    svg.appendChild(path);
+  });
+}
+
+/* ─── Compute scores for all three months ─── */
+const MONTHS = [
+  { year: 2026, month: 5, name: 'June 2026' },
+  { year: 2026, month: 6, name: 'July 2026' },
+  { year: 2026, month: 7, name: 'August 2026' },
+];
+const MONTH_ABBR = ['Jun','Jul','Aug'];
+
+const scores = MONTHS.map(m => {
+  const sc = {};
+  CYCLES.forEach(c => { sc[c] = compatScore(m.year, m.month, PERIODS[c]); });
+  sc.overall = Math.round(CYCLES.reduce((s, c) => s + sc[c], 0) / CYCLES.length);
+  return { ...m, scores: sc };
+});
+
+/* ─── Render compatibility bar charts ─── */
+function renderCompatBars(containerId, monthIndex) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const sc = scores[monthIndex].scores;
+  const colors = {
+    physical: '#c44a4a',
+    emotional: '#1f5e8a',
+    intellectual: '#3a7a3a',
+    spiritual: '#7048a0'
+  };
+  let html = '';
+  CYCLES.forEach(c => {
+    const pct = sc[c];
+    const col = colors[c];
+    html += `<div class="cbar-row">
+      <div class="cbar-label" style="color:${col};font-weight:600;">${LABELS[c]}</div>
+      <div class="cbar-track">
+        <div class="cbar-fill" style="width:${pct}%;background:${col};opacity:0.8;"></div>
+      </div>
+      <div class="cbar-val">${pct}%</div>
+    </div>`;
+  });
+  el.innerHTML = html;
+}
+
+renderCompatBars('compat-bars-jun', 0);
+renderCompatBars('compat-bars-jul', 1);
+renderCompatBars('compat-bars-aug', 2);
+
+/* ─── Profile text ─── */
+const refDate = new Date(2026, 5, 1);
+const dA = daysFromBirth(BIRTH_A, refDate);
+const dB = daysFromBirth(BIRTH_B, refDate);
+
+const rohitProfile = document.getElementById('rohit-profile');
+const meeraProfile = document.getElementById('meera-profile');
+
+if (rohitProfile) {
+  const vals = CYCLES.map(c => {
+    const v = cycleVal(BIRTH_A, refDate, PERIODS[c]);
+    return `${LABELS[c].slice(0,3)}: ${v >= 0 ? '+' : ''}${v.toFixed(2)}`;
+  }).join(' · ');
+  rohitProfile.innerHTML = `Days lived: <strong>${dA.toLocaleString('en-IN')}</strong><br>Phases on 1 Jun 2026:<br><span style="font-size:9pt;">${vals}</span>`;
+}
+if (meeraProfile) {
+  const vals = CYCLES.map(c => {
+    const v = cycleVal(BIRTH_B, refDate, PERIODS[c]);
+    return `${LABELS[c].slice(0,3)}: ${v >= 0 ? '+' : ''}${v.toFixed(2)}`;
+  }).join(' · ');
+  meeraProfile.innerHTML = `Days lived: <strong>${dB.toLocaleString('en-IN')}</strong><br>Phases on 1 Jun 2026:<br><span style="font-size:9pt;">${vals}</span>`;
+}
+
+const daysNote = document.getElementById('days-lived-note');
+if (daysNote) {
+  daysNote.innerHTML = `Rohit: <strong>${dA.toLocaleString('en-IN')}</strong> days lived<br>Meera: <strong>${dB.toLocaleString('en-IN')}</strong> days lived`;
+}
+
+/* ─── Intro calc ─── */
+const introCalc = document.getElementById('intro-calc');
+if (introCalc) {
+  introCalc.innerHTML = `<strong>Physical phase offset at start of period:</strong> ${Math.abs(dA % 23 - dB % 23)} days<br>
+  <strong>Emotional phase offset:</strong> ${Math.abs(dA % 28 - dB % 28)} days<br>
+  <strong>Overall June compatibility:</strong> ${scores[0].scores.overall}%`;
+}
+
+/* ─── Render all cycle charts ─── */
+const chartMonths = [
+  { suffix: 'jun', year: 2026, month: 5 },
+  { suffix: 'jul', year: 2026, month: 6 },
+  { suffix: 'aug', year: 2026, month: 7 },
+];
+CYCLES.forEach(c => {
+  chartMonths.forEach(m => {
+    renderCompatChart(`chart-${m.suffix}-${c.slice(0,3)}`, m.year, m.month, PERIODS[c]);
+  });
+});
+
+/* ─── Sync annotations ─── */
+function buildSyncAnnotations(syncListId, year, month) {
+  const el = document.getElementById(syncListId);
+  if (!el) return;
+  const N = daysInMonth(year, month);
+  const highSyncDays = [];
+
+  for (let d = 1; d <= N; d++) {
+    const date = new Date(year, month, d);
+    let syncCount = 0;
+    const synced = [];
+    CYCLES.forEach(c => {
+      const va = cycleVal(BIRTH_A, date, PERIODS[c]);
+      const vb = cycleVal(BIRTH_B, date, PERIODS[c]);
+      if (va * vb > 0 && Math.abs(va) > 0.6 && Math.abs(vb) > 0.6) {
+        syncCount++;
+        synced.push(c);
+      }
+    });
+    if (syncCount >= 2) highSyncDays.push({ d, synced, syncCount });
+  }
+
+  const PEIS = { physical:'#c44a4a', emotional:'#1f5e8a', intellectual:'#3a7a3a', spiritual:'#7048a0' };
+
+  if (highSyncDays.length === 0) {
+    el.innerHTML = '<span style="font-size:9pt;color:#9a8070;font-style:italic;">No days of deep multi-cycle resonance this month.</span>';
+    return;
+  }
+
+  let html = '<span style="font-size:9pt;color:#6d6553;font-weight:600;margin-right:3mm;">High resonance days:</span>';
+  highSyncDays.forEach(it => {
+    const intensity = it.syncCount >= 3 ? 'rgba(58,106,58,0.25)' : 'rgba(58,106,58,0.12)';
+    const lblHtml = it.synced.map((c,i) =>
+      `<span style="color:${PEIS[c]};font-weight:700;">${LABELS[c].slice(0,3)}</span>${i<it.synced.length-1?'<span style="color:#888;">+</span>':''}`
+    ).join('');
+    html += `<span class="sync-item" style="background:${intensity};">Day ${it.d} · ${lblHtml}</span> `;
+  });
+  el.innerHTML = html;
+}
+
+buildSyncAnnotations('sync-jun', 2026, 5);
+buildSyncAnnotations('sync-jul', 2026, 6);
+buildSyncAnnotations('sync-aug', 2026, 7);
+
+/* ─── Resonance Calendar ─── */
+function buildResonanceCalendar() {
+  const cal = document.getElementById('resonance-calendar');
+  if (!cal) return;
+
+  const months = [
+    { year: 2026, month: 5, name: 'June 2026' },
+    { year: 2026, month: 6, name: 'July 2026' },
+    { year: 2026, month: 7, name: 'August 2026' },
+  ];
+
+  let html = '';
+  months.forEach(m => {
+    const N = daysInMonth(m.year, m.month);
+    const firstDay = new Date(m.year, m.month, 1).getDay(); // 0=Sun
+
+    html += `<div class="resonance-month" style="width:100%;">
+      <div class="res-head">${m.name}</div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:1.5mm;margin-bottom:1mm;">`;
+
+    ['S','M','T','W','T','F','S'].forEach(d => {
+      html += `<div style="text-align:center;font-size:7.5pt;color:var(--muted);font-weight:600;padding:0.5mm 0;">${d}</div>`;
+    });
+    html += '</div><div style="display:grid;grid-template-columns:repeat(7,1fr);gap:1.5mm;">';
+
+    // Empty cells for offset
+    for (let i = 0; i < firstDay; i++) {
+      html += '<div style="height:8mm;"></div>';
+    }
+
+    for (let d = 1; d <= N; d++) {
+      const date = new Date(m.year, m.month, d);
+      let syncCount = 0;
+      const dots = [];
+      CYCLES.forEach((c, ci) => {
+        const va = cycleVal(BIRTH_A, date, PERIODS[c]);
+        const vb = cycleVal(BIRTH_B, date, PERIODS[c]);
+        if (va * vb > 0) {
+          syncCount++;
+          const cols = ['#c44a4a','#1f5e8a','#3a7a3a','#7048a0'];
+          dots.push(`<div style="width:2.5mm;height:2.5mm;border-radius:50%;background:${cols[ci]};flex-shrink:0;"></div>`);
+        }
+      });
+
+      const bgOpacity = syncCount === 1 ? 0.14 : syncCount === 2 ? 0.27 : syncCount >= 3 ? 0.42 : 0;
+      const bgCol = syncCount > 0 ? `rgba(58,106,58,${bgOpacity})` : '#ece8da';
+
+      html += `<div style="background:${bgCol};border-radius:1.5mm;height:8mm;padding:1mm 1.5mm;display:flex;flex-direction:column;justify-content:space-between;">
+        <div style="font-size:7.5pt;color:#3d4554;font-weight:600;line-height:1;">${d}</div>
+        <div style="display:flex;gap:0.8mm;flex-wrap:wrap;">${dots.join('')}</div>
+      </div>`;
+    }
+
+    html += '</div></div>';
+  });
+
+  cal.innerHTML = html;
+}
+
+buildResonanceCalendar();
+
+/* ─── Summary page ─── */
+(function buildSummary() {
+  const avgScores = {};
+  CYCLES.forEach(c => {
+    avgScores[c] = Math.round(scores.reduce((s, m) => s + m.scores[c], 0) / 3);
+  });
+  const overallAvg = Math.round(CYCLES.reduce((s, c) => s + avgScores[c], 0) / CYCLES.length);
+
+  // Cover score
+  const coverScore = document.getElementById('cover-score');
+  if (coverScore) coverScore.textContent = overallAvg + '%';
+
+  const summaryLead = document.getElementById('summary-lead');
+  if (summaryLead) {
+    let descriptor = overallAvg >= 75 ? 'strong natural alignment' : overallAvg >= 55 ? 'moderate rhythmic compatibility' : 'complementary rather than resonant cycles';
+    summaryLead.textContent = `Rohit and Meera show ${descriptor} across the three-month period, with an overall biorhythmic compatibility of ${overallAvg}%.`;
+  }
+
+  const physEl = document.getElementById('summary-physical');
+  if (physEl) {
+    const sc = avgScores.physical;
+    physEl.textContent = `Physical compatibility averages ${sc}% — ${sc >= 70 ? 'both tend to be in the same phase of energy and drive simultaneously, making shared physical activity and lifestyle rhythm feel natural.' : 'their physical cycles are often in complementary phases. This can provide balance — one person\'s high supporting the other\'s recovery — but may also manifest as mismatched energy levels.'}`;
+  }
+
+  const emoEl = document.getElementById('summary-emotional');
+  if (emoEl) {
+    const sc = avgScores.emotional;
+    emoEl.textContent = `Emotional compatibility averages ${sc}% — ${sc >= 70 ? 'a notably high figure. Both people tend to be emotionally available and receptive at the same times, which supports easy communication and shared warmth.' : 'the emotional cycles are more often in opposite phases than aligned. This creates a natural complementarity — when one is expressive, the other is more contained — but requires awareness during crossing days.'}`;
+  }
+
+  const intEl = document.getElementById('summary-intellectual');
+  if (intEl) {
+    const sc = avgScores.intellectual;
+    intEl.textContent = `Intellectual compatibility averages ${sc}%. ${sc >= 65 ? 'Shared analytical energy is present for a majority of the period — collaborative thinking, planning, and problem-solving will feel productive when both cycles are high.' : 'The intellectual cycles spend considerable time in opposite phases. This can enrich decision-making through contrasting perspectives, though reaching agreement may require more patience.'}`;
+  }
+
+  // Best days
+  const bestDays = [];
+  MONTHS.forEach((m, mi) => {
+    const N = daysInMonth(m.year, m.month);
+    for (let d = 1; d <= N; d++) {
+      const date = new Date(m.year, m.month, d);
+      let syncCount = 0;
+      CYCLES.slice(0, 3).forEach(c => {
+        const va = cycleVal(BIRTH_A, date, PERIODS[c]);
+        const vb = cycleVal(BIRTH_B, date, PERIODS[c]);
+        if (va * vb > 0 && Math.abs(va) > 0.7 && Math.abs(vb) > 0.7) syncCount++;
+      });
+      if (syncCount >= 3) bestDays.push(`${d} ${MONTH_ABBR[mi]} 2026`);
+    }
+  });
+
+  const bestEl = document.getElementById('best-days');
+  if (bestEl) {
+    if (bestDays.length > 0) {
+      bestEl.textContent = bestDays.slice(0, 8).join(' · ') + (bestDays.length > 8 ? ` · and ${bestDays.length - 8} more` : '');
+    } else {
+      bestEl.textContent = 'See the resonance calendar on page 7 for days of moderate alignment — this period has more complementary than matching cycles.';
+    }
+  }
+
+  const overallEl = document.getElementById('overall-score');
+  if (overallEl) {
+    overallEl.innerHTML = `<strong>Three-month compatibility:</strong> Physical ${avgScores.physical}% · Emotional ${avgScores.emotional}% · Intellectual ${avgScores.intellectual}% · Spiritual ${avgScores.spiritual}%<br>
+    <strong>Overall average:</strong> ${overallAvg}% · <strong>Highest alignment:</strong> ${LABELS[CYCLES.reduce((best, c) => avgScores[c] > avgScores[best] ? c : best, CYCLES[0])]} cycle`;
+  }
+
+  const marginScores = document.getElementById('margin-scores');
+  if (marginScores) {
+    marginScores.innerHTML = scores.map((m, i) => `${MONTH_ABBR[i]}: <strong>${m.scores.overall}%</strong>`).join(' · ');
+    marginScores.style.fontStyle = 'normal';
+  }
+
+  const insightText = document.getElementById('insight-jun-text');
+  if (insightText) {
+    const sc = scores[0].scores;
+    insightText.textContent = `June opens with physical cycles at ${sc.physical}% alignment and emotional at ${sc.emotional}%. ${sc.emotional >= sc.physical ? 'Emotional resonance leads — conversation and shared feeling will be the primary currency of this month.' : 'Physical energy is the stronger shared thread — plan active, outdoor time together.'}`;
+  }
+})();
+</script>
+</body>
+</html>

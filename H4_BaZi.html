@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Chinese · BaZi · Four Pillars — A Personal Reading for Ankur Gupta</title>
+<style>
+  /* ──────────────────────────────────────────────
+     Antara Personal Reading — V3 template
+     Chinese BaZi · Four Pillars of Destiny
+     A4 portrait · 125mm text col · 32mm margin ·
+     wide pillars chart · icon-right on heavy pages ·
+     no silent clipping.
+     ────────────────────────────────────────────── */
+
+  @page { size: A4 portrait; margin: 0; }
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #d5c79e; }
+  body {
+    font-family: "Cormorant Garamond","Iowan Old Style","Palatino Linotype",Georgia,serif;
+    font-size: 12pt; line-height: 1.5;
+    color: #1a1a1a; -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── Cultural palette: Chinese BaZi / Four Pillars ─── */
+  :root {
+    --paper:#f1e7cb;
+    --paper-2:#e7ddb8;
+    --ink:#1a1a1a;
+    --ink-2:#2e2820;
+    --cinnabar:#a01c1e;
+    --teal:#1d4a4a;
+    --imperial:#c89020;
+    --rule:#c89020;
+    --muted:#7a6a3c;
+
+    /* ── V3 page geometry ── */
+    --page-w:210mm;
+    --page-h:297mm;
+    --pad-top:17mm;
+    --pad-bot:32mm;
+    --pad-left:25mm;
+    --pad-right:22mm;
+    --col-text:125mm;
+    --col-gap:6mm;
+    --col-margin:32mm;
+    --content-w:163mm;
+    --content-h:248mm;
+    --content-top-pad:6mm;
+  }
+
+  /* ──────────── The Page ──────────── */
+  .page{
+    width:var(--page-w); height:var(--page-h);
+    background:var(--paper);
+    margin:8mm auto;
+    padding:var(--pad-top) var(--pad-right) var(--pad-bot) var(--pad-left);
+    position:relative; box-shadow:0 4px 18px rgba(0,0,0,0.18);
+    overflow:hidden;
+    page-break-after:always; break-after:page;
+    display:grid;
+    grid-template-columns: var(--col-text) var(--col-margin);
+    column-gap: var(--col-gap);
+  }
+  .page:last-child{ page-break-after:auto; break-after:auto; }
+
+  /* Wide variant — full-width for the Four Pillars chart */
+  .page.wide{ grid-template-columns: 1fr; column-gap:0; }
+  .page.wide .margin-area{ display:none; }
+
+  /* Icon-right variant — icon migrates to upper margin */
+  .page.icon-right .content > .icon-block{ display:none; }
+
+  /* Paper texture */
+  .page::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(160,28,30,0.04), transparent 40%),
+      radial-gradient(circle at 88% 90%, rgba(29,74,74,0.04), transparent 40%);
+    mix-blend-mode:multiply;
+  }
+
+  /* Scroll-edge top border: double rule + cloud pattern */
+  .page::after{
+    content:"";position:absolute;
+    left:var(--pad-left); right:var(--pad-right);
+    top:9mm; height:6mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><line x1='0' y1='4' x2='80' y2='4' stroke='%23a01c1e' stroke-width='0.6'/><line x1='0' y1='10' x2='80' y2='10' stroke='%23a01c1e' stroke-width='0.4'/><g stroke='%23c89020' stroke-width='0.6' fill='none'><path d='M 4 7 Q 8 5 12 7 Q 14 8 16 7 M 20 7 Q 24 5 28 7 Q 30 8 32 7 M 36 7 Q 40 5 44 7 Q 46 8 48 7 M 52 7 Q 56 5 60 7 Q 62 8 64 7 M 68 7 Q 72 5 76 7'/></g></svg>");
+    background-repeat:repeat-x; background-size:auto 6mm; opacity:.85;
+  }
+
+  /* ──────────── Columns ──────────── */
+  .content{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+    max-height: calc(var(--content-h) - var(--content-top-pad));
+  }
+  .margin-area{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+    max-height: calc(var(--content-h) - var(--content-top-pad));
+  }
+
+  /* ──────────── Running header / footer ──────────── */
+  .running{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); top:5mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; letter-spacing:.18em; text-transform:uppercase; color:var(--cinnabar);
+    font-family:"Iowan Old Style",Georgia,serif; font-weight:600;
+  }
+  .running .who{ color:var(--ink-2); letter-spacing:.12em; }
+
+  .pgfoot{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); bottom:14mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; color:var(--muted); letter-spacing:.06em;
+  }
+  .pgfoot::before{
+    content:""; position:absolute; left:0; right:0; top:-6mm; height:0.4mm;
+    background:var(--rule); opacity:.55;
+  }
+
+  /* ──────────── Typography ──────────── */
+  h1.cover-title{
+    font-size:30pt; font-weight:600; color:var(--cinnabar);
+    letter-spacing:.06em; line-height:1.15; margin-bottom:6mm;
+    font-variant:small-caps;
+  }
+  h2.section-title{
+    font-size:18pt; font-weight:600; color:var(--cinnabar);
+    letter-spacing:.02em; line-height:1.2; margin-bottom:3mm;
+  }
+  h3.section-sub{
+    font-size:11pt; font-style:italic; color:var(--teal); font-weight:400;
+    margin-bottom:7mm; letter-spacing:.02em; line-height:1.4;
+  }
+  .eyebrow{
+    font-size:10pt; letter-spacing:.32em; text-transform:uppercase; color:var(--cinnabar);
+    font-weight:600; font-family:"Iowan Old Style",Georgia,serif; margin-bottom:3mm;
+  }
+  .chinese-quote{ color:var(--cinnabar); letter-spacing:.06em; font-style:italic; }
+
+  .text > p{ font-size:12pt; line-height:1.5; color:var(--ink); margin:0 0 10pt; }
+  .text > p:last-child{ margin-bottom:0; }
+  .lead{ margin-bottom:6mm; }
+  .lead > p{ font-size:12.5pt; line-height:1.5; color:var(--ink-2); font-style:italic; margin:0; }
+
+  .calc{
+    font-family:"Iowan Old Style",Georgia,serif;
+    font-size:10pt; line-height:1.5; color:var(--cinnabar);
+    border-top:0.4mm solid var(--rule); border-bottom:0.4mm solid var(--rule);
+    padding:3mm 0; margin:6mm 0 0; letter-spacing:.02em;
+  }
+  .calc strong{ color:var(--ink); font-weight:600; }
+  .fine{ font-size:10pt; line-height:1.5; color:var(--muted); font-style:italic; }
+
+  /* ──────────── Cover ──────────── */
+  .cover{
+    grid-template-columns: 1fr; text-align:center; align-content:center; padding-top:32mm;
+  }
+  .cover .markline{
+    margin:0 auto 10mm; width:60mm; height:5mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><line x1='0' y1='4' x2='80' y2='4' stroke='%23a01c1e' stroke-width='1'/><line x1='0' y1='10' x2='80' y2='10' stroke='%23a01c1e' stroke-width='0.8'/><g stroke='%23c89020' stroke-width='1' fill='none'><path d='M 4 7 Q 8 5 12 7 Q 14 8 16 7 M 20 7 Q 24 5 28 7 Q 30 8 32 7 M 36 7 Q 40 5 44 7 Q 46 8 48 7 M 52 7 Q 56 5 60 7 Q 62 8 64 7 M 68 7 Q 72 5 76 7'/></g></svg>");
+    background-repeat:repeat-x; background-size:auto 5mm;
+  }
+  .cover .greek-eyebrow{
+    font-size:11pt; letter-spacing:.4em; text-transform:uppercase; color:var(--cinnabar);
+    margin-bottom:5mm; font-weight:600;
+  }
+  .cover .arithmos{
+    font-size:13pt; color:var(--teal); font-style:italic; letter-spacing:.04em;
+    margin-bottom:6mm;
+  }
+  .cover .person{ font-size:13pt; color:var(--ink); margin-top:14mm; line-height:1.7; }
+  .cover .person .lbl{
+    font-size:10pt; letter-spacing:.22em; text-transform:uppercase; color:var(--muted);
+    font-weight:600; margin-right:6mm;
+  }
+  .cover .pillars{ margin:10mm auto 0; width:80mm; height:76mm; }
+  .cover .pillars svg{ width:100%; height:100%; }
+
+  /* ──────────── Contents ──────────── */
+  .toc-list{ list-style:none; padding:0; margin:0; }
+  .toc-list li{
+    display:grid; grid-template-columns:10mm 1fr auto; gap:4mm;
+    align-items:baseline; padding:3.5mm 0;
+    border-bottom:0.3mm dashed var(--rule); font-size:12pt;
+  }
+  .toc-list li:last-child{ border-bottom:none; }
+  .toc-list .num{ color:var(--cinnabar); font-variant-numeric:tabular-nums; font-weight:600; }
+  .toc-list .name{ color:var(--ink); }
+  .toc-list .pg{ color:var(--muted); font-size:10pt; letter-spacing:.06em; }
+  .toc-list a{ text-decoration:none; color:inherit; display:contents; }
+  .toc-list a:hover .name{ color:var(--teal); }
+
+  /* ──────────── Icon block ──────────── */
+  .icon-block{ width:26mm; height:26mm; margin-bottom:5mm; display:flex; align-items:center; justify-content:center; }
+  .icon-block svg{ width:100%; height:100%; }
+
+  /* ──────────── Marginalia ──────────── */
+  .marginalia{
+    padding-top:12mm; color:var(--muted);
+    font-size:10pt; line-height:1.5; font-style:italic;
+  }
+  .marginalia .ornament{ width:26mm; height:26mm; margin-bottom:6mm; opacity:.65; }
+  .marginalia .ornament svg{ width:100%; height:100%; }
+  .marginalia .note-label{
+    font-size:9pt; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--cinnabar); font-weight:600; font-style:normal; margin-bottom:2mm;
+  }
+  .marginalia .note{ margin-bottom:7mm; }
+  .marginalia .note:last-child{ margin-bottom:0; }
+
+  /* ──────────── Four Pillars chart (wide page) ──────────── */
+  .bazi-wrap{
+    width:148mm; margin:4mm auto 0;
+  }
+  /* Classical direction note */
+  .bazi-direction{
+    font-size:9pt; color:var(--muted); font-style:italic; text-align:center;
+    margin-bottom:3mm; letter-spacing:.04em;
+  }
+  .bazi-chart{
+    width:100%;
+    display:grid; grid-template-columns: repeat(4, 1fr); gap:1.2mm;
+    background:var(--cinnabar); padding:1.2mm; border-radius:1.5mm;
+  }
+  .bazi-chart .pillar{
+    background:var(--paper);
+    text-align:center;
+    display:flex; flex-direction:column; align-items:center;
+    font-family:"Iowan Old Style",Georgia,serif;
+    padding:4mm 2mm 3mm;
+  }
+  .bazi-chart .pillar-lbl{
+    font-size:8pt; color:var(--cinnabar); letter-spacing:.16em;
+    text-transform:uppercase; font-weight:700; margin-bottom:3mm;
+  }
+  .bazi-chart .stem-char{
+    font-size:40pt; color:var(--ink); font-weight:700; line-height:1;
+    margin-bottom:1mm;
+  }
+  .bazi-chart .stem-en{
+    font-size:8.5pt; color:var(--teal); font-style:italic; margin-bottom:5mm;
+  }
+  .bazi-chart .divider{
+    width:70%; height:0.4mm; background:var(--rule); margin-bottom:5mm;
+  }
+  .bazi-chart .branch-char{
+    font-size:40pt; color:var(--ink); font-weight:700; line-height:1;
+    margin-bottom:1mm;
+  }
+  .bazi-chart .branch-en{
+    font-size:8.5pt; color:var(--teal); font-style:italic; margin-bottom:3mm;
+  }
+  .bazi-chart .pillar-meta{
+    font-size:7.5pt; color:var(--muted); font-style:italic;
+    border-top:0.3mm solid var(--rule); padding-top:2.5mm; margin-top:1mm;
+    width:90%; text-align:center; line-height:1.4;
+  }
+  .bazi-chart .dm{ background:#fdf5e6; }  /* Day Master column highlighted */
+
+  @media print{
+    html, body{ background:#fff; } body{ padding:0; }
+    .page{ margin:0; box-shadow:none; page-break-after:always; break-after:page; }
+    .page:last-child{ page-break-after:auto; break-after:auto; }
+  }
+  @media screen{ body{ padding:14mm 0; } }
+</style>
+</head>
+<body>
+
+<!-- ════ COVER ════ -->
+<section class="page cover" id="cover">
+  <div class="markline"></div>
+  <div class="arithmos">八字 — the Eight Characters</div>
+  <h1 class="cover-title">Chinese · BaZi · Four Pillars</h1>
+  <div class="arithmos" style="margin-top:4mm">The Four Pillars of Destiny &amp; the energetics of the birth moment</div>
+
+  <div class="pillars">
+    <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+      <!-- Four vertical pillars in classical right-to-left order (Year on right) -->
+      <!-- Hour pillar (left) -->
+      <rect x="4" y="8" width="18" height="70" rx="1" fill="none" stroke="#a01c1e" stroke-width="1.2"/>
+      <text x="13" y="35" text-anchor="middle" font-family="serif" font-size="11" font-weight="700" fill="#1d4a4a">甲</text>
+      <line x1="6" y1="48" x2="20" y2="48" stroke="#c89020" stroke-width="0.5"/>
+      <text x="13" y="65" text-anchor="middle" font-family="serif" font-size="11" font-weight="700" fill="#a01c1e">戌</text>
+      <text x="13" y="82" text-anchor="middle" font-family="serif" font-size="4" fill="#7a6a3c">Hour</text>
+      <!-- Day pillar (the self) -->
+      <rect x="27" y="8" width="18" height="70" rx="1" fill="#fdf5e6" stroke="#a01c1e" stroke-width="1.8"/>
+      <text x="36" y="35" text-anchor="middle" font-family="serif" font-size="11" font-weight="700" fill="#a01c1e">己</text>
+      <line x1="29" y1="48" x2="43" y2="48" stroke="#c89020" stroke-width="0.5"/>
+      <text x="36" y="65" text-anchor="middle" font-family="serif" font-size="11" font-weight="700" fill="#c89020">酉</text>
+      <text x="36" y="82" text-anchor="middle" font-family="serif" font-size="4" fill="#a01c1e" font-weight="700">Day ◆</text>
+      <!-- Month pillar -->
+      <rect x="50" y="8" width="18" height="70" rx="1" fill="none" stroke="#a01c1e" stroke-width="1.2"/>
+      <text x="59" y="35" text-anchor="middle" font-family="serif" font-size="11" font-weight="700" fill="#a01c1e">丁</text>
+      <line x1="52" y1="48" x2="66" y2="48" stroke="#c89020" stroke-width="0.5"/>
+      <text x="59" y="65" text-anchor="middle" font-family="serif" font-size="11" font-weight="700" fill="#a01c1e">巳</text>
+      <text x="59" y="82" text-anchor="middle" font-family="serif" font-size="4" fill="#7a6a3c">Month</text>
+      <!-- Year pillar (right, classical reading direction) -->
+      <rect x="73" y="8" width="18" height="70" rx="1" fill="none" stroke="#a01c1e" stroke-width="1.2"/>
+      <text x="82" y="35" text-anchor="middle" font-family="serif" font-size="11" font-weight="700" fill="#1d4a4a">癸</text>
+      <line x1="75" y1="48" x2="89" y2="48" stroke="#c89020" stroke-width="0.5"/>
+      <text x="82" y="65" text-anchor="middle" font-family="serif" font-size="11" font-weight="700" fill="#a01c1e">巳</text>
+      <text x="82" y="82" text-anchor="middle" font-family="serif" font-size="4" fill="#7a6a3c">Year</text>
+      <!-- Direction arrow -->
+      <text x="50" y="5" text-anchor="middle" font-family="serif" font-size="3.5" fill="#7a6a3c" font-style="italic">← reads right to left in classical convention</text>
+    </svg>
+  </div>
+
+  <div class="person">
+    <div>Ankur Gupta</div>
+    <div>16 May 1953 · 20:15 IST</div>
+    <div>Chakrata · 30.7°N · 77.87°E</div>
+  </div>
+
+  <div class="pgfoot" style="display:block;text-align:center;">
+  <div style="font-size:10.5pt;font-weight:700;letter-spacing:.18em;color:var(--gold,#a88842);">ANTARA PERSONAL READING</div>
+  <div style="font-size:9.5pt;font-style:italic;letter-spacing:.08em;color:var(--gold,#a88842);margin-top:1.5mm;">interpretative, not Predictive</div>
+</div>
+</section>
+
+
+<!-- ════ INTRO 1 ════ -->
+<section class="page" id="intro-1">
+  <div class="running"><span>Chinese BaZi</span><span class="who">Introduction · 1 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Introduction</div>
+    <h2 class="section-title">What this report is about</h2>
+    <h3 class="section-sub">BaZi — the Four Pillars of Destiny, &amp; the elemental signature of the birth moment</h3>
+
+    <div class="lead">
+      <p>BaZi — literally "eight characters" — is the principal system of personal astrology in Chinese tradition, built entirely from the calendar rather than from planetary positions.</p>
+    </div>
+
+    <div class="text">
+      <p>The moment of birth is distilled into eight Chinese characters arranged in four pillars (年柱 year, 月柱 month, 日柱 day, 時柱 hour). Each pillar carries one of the ten Heavenly Stems and one of the twelve Earthly Branches; the eight characters together describe the energetic signature of the moment one entered the world. The system arose during the Tang dynasty, was systematised by the master Xu Ziping in the Song dynasty — hence also called <em>Ziping</em> astrology — and has been practised continuously across East Asia ever since.</p>
+
+      <p>At the heart of every BaZi chart is the <em>Day Master</em> — the Heavenly Stem of the Day Pillar — which represents the self. The other seven characters describe the energies surrounding the self. The five Chinese elements (Wu Xing) — Water, Wood, Fire, Earth, Metal — circulate through the chart in cycles of production and control, and reading the balance of elements relative to the Day Master is the heart of BaZi interpretation. The chart is read in classical Chinese convention from right to left: Year pillar first, then Month, Day, and Hour.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="34" fill="#f1e7cb" stroke="#1a1a1a" stroke-width="1.2"/>
+          <path d="M 50 16 A 34 34 0 0 1 50 84 A 17 17 0 0 1 50 50 A 17 17 0 0 0 50 16 Z" fill="#1a1a1a"/>
+          <circle cx="50" cy="33" r="3.5" fill="#f1e7cb"/>
+          <circle cx="50" cy="67" r="3.5" fill="#1a1a1a"/>
+        </svg>
+      </div>
+      <div class="note-label">Origin</div>
+      <div class="note">Tang dynasty (7th c.) · systematised by Xu Ziping in the Song.</div>
+      <div class="note-label">No planets</div>
+      <div class="note">BaZi reads only the calendar — stems, branches, and the five elements.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 2</span></div>
+</section>
+
+
+<!-- ════ INTRO 2 ════ -->
+<section class="page" id="intro-2">
+  <div class="running"><span>Chinese BaZi</span><span class="who">Introduction · 2 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">How to read this report</div>
+    <h2 class="section-title">Structure &amp; method</h2>
+    <h3 class="section-sub">The chart, the Day Master, the four pillars, the Wu Xing balance, and the Da Yun cycles</h3>
+
+    <div class="lead">
+      <p>This report is structured so that each focus aspect lives on its own page. The first focus presents the chart of eight characters in classical vertical convention.</p>
+    </div>
+
+    <div class="text">
+      <p>The second focus names the Day Master — the heart of the chart. The next four pages describe the Year, Month, Day, and Hour pillars in turn, read in BaZi tradition as the pillars of the ancestor, the parent, the self, and the child. The seventh page describes the Wu Xing balance; the eighth, the Major Luck Cycles (Da Yun) and the current ten-year period with a synthesis.</p>
+
+      <p>Positions are calculated for 16 May 1953 at 20:15 Indian Standard Time. The Year Pillar (癸巳, Yin Water Snake) and Month Pillar (丁巳, Yin Fire Snake) are determined directly from the calendar and are robust. The Hour Pillar follows from the Day Pillar's stem and the Xu (戌, Dog) two-hour period that contains 20:15. The Day Pillar itself involves a sexagenary calculation from the calendar; the value shown is calculated to the best of current methods and benefits from BaZi software verification at the level of the day stem.</p>
+
+      <p>A standard note applies to the whole. BaZi describes the energetic signature of a moment and the tendencies that follow from it, but it does not predict events. The reader is the final authority on the reading.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="44" y="14" width="12" height="76" fill="none" stroke="#1d4a4a" stroke-width="1.2"/>
+          <line x1="44" y1="32" x2="56" y2="32" stroke="#1d4a4a" stroke-width="1"/>
+          <line x1="44" y1="52" x2="56" y2="52" stroke="#1d4a4a" stroke-width="1"/>
+          <line x1="44" y1="72" x2="56" y2="72" stroke="#1d4a4a" stroke-width="1"/>
+          <path d="M 56 36 Q 70 30 76 40 Q 70 38 64 42" stroke="#1d4a4a" stroke-width="1" fill="none"/>
+        </svg>
+      </div>
+      <div class="note-label">Reading time</div>
+      <div class="note">Approximately twenty-five minutes at an unhurried pace.</div>
+      <div class="note-label">Verification</div>
+      <div class="note">BaZi software (e.g. JosephYu's calculator) will verify the day stem precisely.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 3</span></div>
+</section>
+
+
+<!-- ════ CONTENTS ════ -->
+<section class="page" id="contents">
+  <div class="running"><span>Chinese BaZi</span><span class="who">Contents</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Contents</div>
+    <h2 class="section-title">The eight focus pages</h2>
+    <h3 class="section-sub">Tap any title to jump to that page</h3>
+
+    <ol class="toc-list">
+      <li><a href="#chart"><span class="num">I</span><span class="name">The Four Pillars · the eight characters</span><span class="pg">p. 5</span></a></li>
+      <li><a href="#daymaster"><span class="num">II</span><span class="name">The Day Master · Yin Earth (己)</span><span class="pg">p. 6</span></a></li>
+      <li><a href="#year"><span class="num">III</span><span class="name">Year Pillar · 癸巳 Yin Water Snake — the ancestor</span><span class="pg">p. 7</span></a></li>
+      <li><a href="#month"><span class="num">IV</span><span class="name">Month Pillar · 丁巳 Yin Fire Snake — the parent</span><span class="pg">p. 8</span></a></li>
+      <li><a href="#day"><span class="num">V</span><span class="name">Day Pillar · 己酉 Yin Earth Rooster — the self</span><span class="pg">p. 9</span></a></li>
+      <li><a href="#hour"><span class="num">VI</span><span class="name">Hour Pillar · 甲戌 Yang Wood Dog — the child</span><span class="pg">p. 10</span></a></li>
+      <li><a href="#wuxing"><span class="num">VII</span><span class="name">The Wu Xing Balance · five elements in the chart</span><span class="pg">p. 11</span></a></li>
+      <li><a href="#dayun"><span class="num">VIII</span><span class="name">Da Yun · the major luck cycles &amp; current period</span><span class="pg">p. 12</span></a></li>
+    </ol>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 22 78 Q 30 70 32 60 Q 34 50 42 50 Q 50 50 52 40 Q 54 30 64 30 Q 74 30 76 22"
+                fill="none" stroke="#1d4a4a" stroke-width="2.6" stroke-linecap="round"/>
+          <circle cx="76" cy="22" r="2.5" fill="#a01c1e"/>
+        </svg>
+      </div>
+      <div class="note-label">Year Pillar</div>
+      <div class="note">癸巳 · Yin Water Snake · 1953</div>
+      <div class="note-label">Day Master</div>
+      <div class="note">己 Ji · Yin Earth · the receptive soil</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 4</span></div>
+</section>
+
+
+<!-- ════ I · FOUR PILLARS CHART (WIDE) ════ -->
+<section class="page wide" id="chart">
+  <div class="running"><span>I · The Four Pillars</span><span class="who">Focus 1 of 8</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Focus I · the eight characters</div>
+    <h2 class="section-title">Your Four Pillars Chart</h2>
+    <h3 class="section-sub">The energetic signature of 20:15 IST · 16 May 1953 · Stems above branches in each pillar</h3>
+
+    <div class="bazi-wrap">
+      <div class="bazi-direction">Classical Chinese reads right to left — Year · Month · Day · Hour — displayed left to right below for English readers</div>
+      <div class="bazi-chart">
+
+        <!-- Year Pillar -->
+        <div class="pillar">
+          <div class="pillar-lbl">Year 年</div>
+          <div class="stem-char">癸</div>
+          <div class="stem-en">Gui · Yin Water</div>
+          <div class="divider"></div>
+          <div class="branch-char">巳</div>
+          <div class="branch-en">Si · Snake</div>
+          <div class="pillar-meta">Ancestor pillar<br>1–16 years</div>
+        </div>
+
+        <!-- Month Pillar -->
+        <div class="pillar">
+          <div class="pillar-lbl">Month 月</div>
+          <div class="stem-char">丁</div>
+          <div class="stem-en">Ding · Yin Fire</div>
+          <div class="divider"></div>
+          <div class="branch-char">巳</div>
+          <div class="branch-en">Si · Snake</div>
+          <div class="pillar-meta">Parent pillar<br>17–32 years</div>
+        </div>
+
+        <!-- Day Pillar (Day Master — highlighted) -->
+        <div class="pillar dm">
+          <div class="pillar-lbl" style="color:#a01c1e">Day 日 ◆</div>
+          <div class="stem-char" style="color:#a01c1e">己</div>
+          <div class="stem-en" style="font-weight:600">Ji · Yin Earth · Day Master</div>
+          <div class="divider"></div>
+          <div class="branch-char" style="color:#c89020">酉</div>
+          <div class="branch-en">You · Rooster</div>
+          <div class="pillar-meta">Self pillar<br>33–48 years</div>
+        </div>
+
+        <!-- Hour Pillar -->
+        <div class="pillar">
+          <div class="pillar-lbl">Hour 時</div>
+          <div class="stem-char">甲</div>
+          <div class="stem-en">Jia · Yang Wood</div>
+          <div class="divider"></div>
+          <div class="branch-char">戌</div>
+          <div class="branch-en">Xu · Dog</div>
+          <div class="pillar-meta">Child pillar<br>49+ years</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="calc" style="max-width:148mm; margin:4mm auto 0;">
+      Year · <strong>癸巳</strong> · Month · <strong>丁巳</strong> · Day · <strong>己酉</strong> · Hour · <strong>甲戌</strong> · Day Master · <strong>己 Ji (Yin Earth)</strong> · Birth · 20:15 IST = 14:45 UT
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 5</span></div>
+</section>
+
+
+<!-- ════ II · DAY MASTER ════ -->
+<section class="page" id="daymaster">
+  <div class="running"><span>II · Day Master</span><span class="who">Focus 2 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <text x="50" y="68" text-anchor="middle" font-family="serif" font-size="52" font-weight="700" fill="#a01c1e">己</text>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus II · the heart of the chart</div>
+    <h2 class="section-title">The Day Master · 己 Ji</h2>
+    <h3 class="section-sub">Yin Earth — receptive soil, the garden in which growth happens</h3>
+
+    <div class="lead">
+      <p>The Day Master is the Heavenly Stem of the Day Pillar — the character that represents the self. Yours is 己, <em>Ji</em>, Yin Earth.</p>
+    </div>
+
+    <div class="text">
+      <p>In the Wu Xing system, Earth is the centring element — neither expansive like Wood nor consuming like Fire, neither yielding like Water nor cutting like Metal. Earth holds, receives, supports, and gives form to growth. Yin Earth (Ji) is the softer, more cultivated face of Earth: garden soil rather than mountain, the tilled field rather than the cliff. It is read as nurturing, accommodating, modest, and unusually good at supporting the growth of others.</p>
+
+      <p>Ji Earth natives are often described as the people in whose presence things settle. They are quiet centres around which more dramatic energies organise themselves — approachable, soft-spoken, carrying their authority lightly. Others find it easier to confide in a Yin Earth person than in almost any other Day Master. The Ji native rarely competes for visible centre stage, but is frequently the actual centre of whatever room they are in.</p>
+
+      <p>The shadow side of Yin Earth is over-accommodation — softness that loses its own shape, support that becomes self-erasure. The discipline of Ji Earth is to remain receptive without dissolving. The classical commentary says: <em>even the most fertile field needs to be ploughed</em>. Yin Earth must be turned over occasionally, or it grows complacent.</p>
+    </div>
+
+    <div class="calc">
+      Day Master · <strong>己 Ji</strong> · Yin polarity · Earth element · classical image · <em>garden soil, the cultivated field</em>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <text x="50" y="62" text-anchor="middle" font-family="serif" font-size="44" font-weight="700" fill="#a01c1e" opacity="0.4">己</text>
+        </svg>
+      </div>
+      <div class="note-label">Ji 己</div>
+      <div class="note">Yin Earth — the receptive, the garden, the nourishing soil.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Receptive ↔ self-erasing. The softness that holds, and the softness that disappears.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 6</span></div>
+</section>
+
+
+<!-- ════ III · YEAR PILLAR (icon-right) ════ -->
+<section class="page icon-right" id="year">
+  <div class="running"><span>III · Year Pillar</span><span class="who">Focus 3 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <text x="50" y="46" text-anchor="middle" font-family="serif" font-size="24" font-weight="700" fill="#1d4a4a">癸</text>
+        <text x="50" y="78" text-anchor="middle" font-family="serif" font-size="24" font-weight="700" fill="#a01c1e">巳</text>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus III · the ancestor pillar</div>
+    <h2 class="section-title">Year Pillar · 癸巳 Gui Si</h2>
+    <h3 class="section-sub">Yin Water Snake — the hidden current, the wisdom inherited</h3>
+
+    <div class="lead">
+      <p>The Year Pillar describes the ancestral context — the family of origin, the early environment, and the karmic backdrop the chart is born into. The first 16 years of life take their colour from this pillar.</p>
+    </div>
+
+    <div class="text">
+      <p>癸 (Gui) is Yin Water — the most contained and refined of the water expressions. Classical commentary likens Gui to dew, to a hidden spring, to still pools collecting in deep places. Where Yang Water (Ren) is the ocean and the rushing river, Yin Water is the unseen water — the kind that nourishes from below the surface. Gui Water in the Year Stem describes an ancestral pattern of <em>quiet wisdom carried in private</em>.</p>
+
+      <p>巳 (Si) is the Snake — the sixth Earthly Branch, ruled by Fire in the upper season and containing the hidden stems Bing (Yang Fire), Geng (Yang Metal), and Wu (Yang Earth). The Snake is the most philosophical, observant, and inwardly powerful of the twelve animals. Snake-year people are read as quietly wise, intuitive, drawn to study, and unusually firm in decisions once they are made.</p>
+
+      <p>Yin Water sitting over the Fire-charged Snake creates a small structural tension — Water above, Fire below, a teapot effect. The hidden Geng Metal inside Si helps mediate between them. The ancestral pillar therefore reads as one of <em>contained intensity</em>: a family field that valued depth, watchfulness, and the careful management of strong inner currents.</p>
+    </div>
+
+    <div class="calc">
+      Year Pillar · <strong>癸巳 (Gui Si)</strong> · Heavenly Stem · Yin Water · Earthly Branch · Snake (Si) · Hidden stems · 丙 庚 戊
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia" style="padding-top:6mm;">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <text x="50" y="46" text-anchor="middle" font-family="serif" font-size="24" font-weight="700" fill="#1d4a4a" opacity="0.5">癸</text>
+          <text x="50" y="78" text-anchor="middle" font-family="serif" font-size="24" font-weight="700" fill="#a01c1e" opacity="0.5">巳</text>
+        </svg>
+      </div>
+      <div class="note-label">Gui Water</div>
+      <div class="note">癸 — dew, hidden spring, the still pool below the surface.</div>
+      <div class="note-label">Si Snake</div>
+      <div class="note">巳 — the philosopher of the zodiac. Inward power.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 7</span></div>
+</section>
+
+
+<!-- ════ IV · MONTH PILLAR (icon-right) ════ -->
+<section class="page icon-right" id="month">
+  <div class="running"><span>IV · Month Pillar</span><span class="who">Focus 4 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <text x="50" y="46" text-anchor="middle" font-family="serif" font-size="24" font-weight="700" fill="#a01c1e">丁</text>
+        <text x="50" y="78" text-anchor="middle" font-family="serif" font-size="24" font-weight="700" fill="#a01c1e">巳</text>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus IV · the parent pillar</div>
+    <h2 class="section-title">Month Pillar · 丁巳 Ding Si</h2>
+    <h3 class="section-sub">Yin Fire Snake — the candle within the season of fire</h3>
+
+    <div class="lead">
+      <p>The Month Pillar describes the immediate environment of formation — the parents, the early shaping, and the seasonal qualities the chart was built into. Years 17 to 32 take their colour from this pillar.</p>
+    </div>
+
+    <div class="text">
+      <p>丁 (Ding) is Yin Fire — the contained, refined face of Fire. Classical commentary likens Ding to the candle flame, the hearth fire, the lamp that warms a single room. Where Yang Fire (Bing) is the sun blazing across the sky, Yin Fire is the patient, persistent, intimate fire that lights and warms what is close. Ding people are read as warm, supportive, instructive, and steady — fire that gives heat without burning.</p>
+
+      <p>The Snake (巳) recurs from the Year Branch — the same Si that anchors the Year Pillar. This doubling of the Snake is significant in BaZi: it strengthens the Snake's qualities throughout the chart (deep observation, inward fire, philosophical bent) and intensifies the elemental influence of Fire at the chart's foundation. The Month is the strongest pillar for the elemental balance, and Ding Fire over Si Fire makes Fire the dominant influence at birth.</p>
+
+      <p>For a Yin Earth Day Master, Fire in the Month Pillar is the <em>mother element</em> — Fire produces Earth in the Wu Xing cycle. The chart is therefore being strongly nurtured at the formative level. Such Day Masters often have a particularly close relationship with their parental environment, inheriting a great deal of warmth early in life. The challenge is that over-supported Earth can become passive — the chart benefits from Wood (which the Hour Pillar provides) to keep Earth turned and active.</p>
+    </div>
+
+    <div class="calc">
+      Month Pillar · <strong>丁巳 (Ding Si)</strong> · Heavenly Stem · Yin Fire · Earthly Branch · Snake (Si) · Season · early summer · Fire dominant in chart structure
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia" style="padding-top:6mm;">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <text x="50" y="46" text-anchor="middle" font-family="serif" font-size="24" font-weight="700" fill="#a01c1e" opacity="0.5">丁</text>
+          <text x="50" y="78" text-anchor="middle" font-family="serif" font-size="24" font-weight="700" fill="#a01c1e" opacity="0.5">巳</text>
+        </svg>
+      </div>
+      <div class="note-label">Ding Fire</div>
+      <div class="note">丁 — the candle, the hearth, the patient warmth of intimate fire.</div>
+      <div class="note-label">Doubled Snake</div>
+      <div class="note">Si in both Year and Month — fire and philosophy emphasised.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 8</span></div>
+</section>
+
+
+<!-- ════ V · DAY PILLAR ════ -->
+<section class="page icon-right" id="day">
+  <div class="running"><span>V · Day Pillar</span><span class="who">Focus 5 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <text x="50" y="46" text-anchor="middle" font-family="serif" font-size="24" font-weight="700" fill="#a01c1e">己</text>
+        <text x="50" y="78" text-anchor="middle" font-family="serif" font-size="24" font-weight="700" fill="#c89020">酉</text>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus V · the self pillar</div>
+    <h2 class="section-title">Day Pillar · 己酉 Ji You</h2>
+    <h3 class="section-sub">Yin Earth Rooster — the cultivated field with refined metal in the soil</h3>
+
+    <div class="lead">
+      <p>The Day Pillar is the most personal of the four. Its stem is the Day Master — the self — and its branch describes the partner, the inner spouse, and the immediate adult life. Years 33 to 48 take their colour from this pillar.</p>
+    </div>
+
+    <div class="text">
+      <p>己 (Ji) as Day Master we have read on the previous page. The Day Branch 酉 (You) is the Rooster — the tenth Earthly Branch, Yin Metal, and the sign of Autumn precision. You is the most refined of the metal branches: clean, exact, discerning, with a strong sense of correctness and a sharp eye for what is well or poorly made. Rooster natives are read as articulate, well-presented, and unusually exacting about quality.</p>
+
+      <p>The pairing of Ji Earth over You Metal is one of the smoother Day Pillar combinations. In the Wu Xing cycle, Earth produces Metal — the Day Master is supporting its Day Branch rather than fighting it. The result is a chart whose <em>output</em> (what the self produces in the world) is naturally well-formed. The image is of cultivated soil that yields refined metal — earth that, when turned over, reveals something valuable underneath.</p>
+
+      <p>The Si–You pairing across the Year/Month branches and the Day branch forms a <em>partial Metal Trinity</em> (Snake + Rooster, with the Ox missing). This strengthens the Metal element in the chart and gives productive output an emphasis on precision, articulation, and well-made things. This is a chart that produces by quietly working soil into refinement — building slowly, finishing well, and recognised for the quality of what was made rather than the noise of its making.</p>
+    </div>
+
+    <div class="calc">
+      Day Pillar · <strong>己酉 (Ji You)</strong> · Heavenly Stem · Yin Earth (Day Master) · Earthly Branch · Rooster (You · Yin Metal) · Si-You · partial Metal Trinity
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <text x="50" y="46" text-anchor="middle" font-family="serif" font-size="24" font-weight="700" fill="#a01c1e" opacity="0.5">己</text>
+          <text x="50" y="78" text-anchor="middle" font-family="serif" font-size="24" font-weight="700" fill="#c89020" opacity="0.5">酉</text>
+        </svg>
+      </div>
+      <div class="note-label">You Rooster</div>
+      <div class="note">酉 — Yin Metal. Refinement, precision, articulate output.</div>
+      <div class="note-label">Earth → Metal</div>
+      <div class="note">The Day Master produces its Day Branch. Output flows naturally.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 9</span></div>
+</section>
+
+
+<!-- ════ VI · HOUR PILLAR ════ -->
+<section class="page icon-right" id="hour">
+  <div class="running"><span>VI · Hour Pillar</span><span class="who">Focus 6 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <text x="50" y="46" text-anchor="middle" font-family="serif" font-size="24" font-weight="700" fill="#1d4a4a">甲</text>
+        <text x="50" y="78" text-anchor="middle" font-family="serif" font-size="24" font-weight="700" fill="#c89020">戌</text>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VI · the child pillar</div>
+    <h2 class="section-title">Hour Pillar · 甲戌 Jia Xu</h2>
+    <h3 class="section-sub">Yang Wood Dog — the tree that turns the soil; the loyal guardian</h3>
+
+    <div class="lead">
+      <p>The Hour Pillar describes the later years, the children, the legacy, and how the self is expressed outward to the next generation. Years 49 onwards take their colour from this pillar.</p>
+    </div>
+
+    <div class="text">
+      <p>甲 (Jia) is Yang Wood — the most expansive expression of Wood. Classical commentary likens Jia to the great tree, the upright timber that reaches firmly toward the sky. Jia people are read as principled, strong-willed, and concerned with growth toward something larger. They are the builders, the planters, the originators of long projects.</p>
+
+      <p>For a Yin Earth Day Master, Jia Wood is the <em>controlling element</em> — Wood controls Earth in the Wu Xing cycle. In BaZi, the controlling element of one's Day Master often appears as an organising influence in the life. Jia Wood in the Hour Pillar tells us that the chart is later organised by upright principle, by long-form structure, and by something the chart has decided to plant and to tend. The Wood also balances the heavy Fire-Earth concentration of the earlier pillars — it turns the soil rather than letting it settle.</p>
+
+      <p>戌 (Xu) is the Dog — the eleventh Earthly Branch, Yang Earth, Autumn into Winter. The Dog is the most loyal and dharmic of the twelve animals, associated with guardianship, faithfulness, and the preservation of what has been built. As the Hour Branch, Xu reinforces a theme of <em>guarding and stewarding</em> in the later phase of life. Together, Jia Xu reads as the great tree planted in the loyal field — late-life expression through principled stewardship of what one has grown.</p>
+    </div>
+
+    <div class="calc">
+      Hour Pillar · <strong>甲戌 (Jia Xu)</strong> · Heavenly Stem · Yang Wood · Earthly Branch · Dog (Xu · Yang Earth) · Hour · 19:00–21:00 · Xu watch
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <text x="50" y="46" text-anchor="middle" font-family="serif" font-size="24" font-weight="700" fill="#1d4a4a" opacity="0.5">甲</text>
+          <text x="50" y="78" text-anchor="middle" font-family="serif" font-size="24" font-weight="700" fill="#c89020" opacity="0.5">戌</text>
+        </svg>
+      </div>
+      <div class="note-label">Jia Wood</div>
+      <div class="note">甲 — the great tree, the principled builder, the upright trunk.</div>
+      <div class="note-label">Xu Dog</div>
+      <div class="note">戌 — loyal, dharmic, the guardian who keeps faith with what was built.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 10</span></div>
+</section>
+
+
+<!-- ════ VII · WU XING BALANCE (icon-right) ════ -->
+<section class="page icon-right" id="wuxing">
+  <div class="running"><span>VII · Wu Xing Balance</span><span class="who">Focus 7 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#c89020" stroke-width="0.8" fill="none">
+          <path d="M 50 14 L 84 38 L 70 78 L 30 78 L 16 38 Z"/>
+        </g>
+        <g font-family="serif" font-size="8" font-weight="700" text-anchor="middle">
+          <text x="50" y="10" fill="#1d4a4a">木</text>
+          <text x="92" y="38" fill="#a01c1e">火</text>
+          <text x="74" y="84" fill="#c89020">土</text>
+          <text x="26" y="84" fill="#1a1a1a">水</text>
+          <text x="8" y="38" fill="#c89020">金</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VII · five elements in the chart</div>
+    <h2 class="section-title">The Wu Xing Balance</h2>
+    <h3 class="section-sub">Fire dominant, Earth supported, Wood arriving late — and the Useful Gods</h3>
+
+    <div class="lead">
+      <p>Reading BaZi means tracing how the five elements circulate among the eight characters — what is strong, weak, in excess, and what is the chart's <em>Useful God</em>.</p>
+    </div>
+
+    <div class="text">
+      <p>Counting elements across stems and branches (including the principal hidden stems): Fire is dominant — Ding stem in Month, plus Si branches in both Year and Month, plus hidden Bing in Si. Earth is well supported — the Day Master (Ji) sits with hidden Wu in the Si branches, and Xu in the Hour Branch is also Earth. Metal is present — hidden Geng in Si, the You Day Branch, and hidden Xin in Xu. Water is a single Yin Water (Gui) in the Year Stem, and Wood is a single Yang Wood (Jia) in the Hour Stem. All five elements appear; the chart is elementally complete.</p>
+
+      <p>For a Yin Earth Day Master in summer (Si month), Fire is already abundant. The mother element (Fire produces Earth) is providing strong nurture, perhaps too strong — over-supported Earth can grow heavy and passive. The chart's <em>Useful Gods</em> are typically Water (which cools the Fire and adds moisture to the soil) and Wood (which channels Fire's energy productively and turns the Earth).</p>
+
+      <p>Yin Water (Gui) in the Year Stem and Yang Wood (Jia) in the Hour Stem are precisely the two Useful Gods the chart needs — and they sit at the chart's two ends. The reading is favourable: the chart's natural correctives are built into its structure. The early life carries the water of inherited wisdom; the later life carries the wood of long-form planting. Both balance the abundant Fire-Earth of the middle pillars.</p>
+    </div>
+
+    <div class="calc">
+      Fire · <strong>3+</strong> (dominant) · Earth · <strong>3</strong> · Metal · <strong>3</strong> · Water · <strong>1</strong> · Wood · <strong>1</strong> · Useful Gods · <strong>Water (Gui) and Wood (Jia)</strong> · both present in the chart
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia" style="padding-top:6mm;">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#c89020" stroke-width="0.8" fill="none">
+            <path d="M 50 22 L 78 42 L 66 72 L 34 72 L 22 42 Z"/>
+          </g>
+          <g font-family="serif" font-size="7" font-weight="700" text-anchor="middle">
+            <text x="50" y="18" fill="#1d4a4a">木</text>
+            <text x="86" y="42" fill="#a01c1e">火</text>
+            <text x="72" y="80" fill="#c89020">土</text>
+            <text x="28" y="80" fill="#1a1a1a">水</text>
+            <text x="14" y="42" fill="#c89020">金</text>
+          </g>
+        </svg>
+      </div>
+      <div class="note-label">Useful Gods</div>
+      <div class="note">用神 yòng shén — the elements the chart needs for balance.</div>
+      <div class="note-label">Both present</div>
+      <div class="note">Gui Water and Jia Wood book-end the chart — a fortunate built-in structure.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 11</span></div>
+</section>
+
+
+<!-- ════ VIII · DA YUN & SYNTHESIS (icon-right) ════ -->
+<section class="page icon-right" id="dayun">
+  <div class="running"><span>VIII · Da Yun &amp; Synthesis</span><span class="who">Focus 8 of 8</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="34" fill="none" stroke="#c89020" stroke-width="1.2"/>
+        <g stroke="#a01c1e" stroke-width="0.6" fill="none">
+          <line x1="50" y1="16" x2="50" y2="84"/>
+          <line x1="16" y1="50" x2="84" y2="50"/>
+          <line x1="26" y1="26" x2="74" y2="74"/>
+          <line x1="74" y1="26" x2="26" y2="74"/>
+        </g>
+        <circle cx="50" cy="50" r="4" fill="#a01c1e"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VIII · major luck cycles &amp; portrait</div>
+    <h2 class="section-title">Da Yun &amp; Synthesis</h2>
+    <h3 class="section-sub">The ten-year luck cycles — and the current period of self meeting self</h3>
+
+    <div class="lead">
+      <p>Da Yun — major luck cycles — are ten-year periods that overlay the natal chart and modify its elemental balance through life. For a male born in a Yin year, the cycles count backward from the Month Pillar.</p>
+    </div>
+
+    <div class="text">
+      <p>From birth, the Da Yun sequence reads: Bing Chen (~age 4–14) → Yi Mao (~14–24) → Jia Yin (~24–34) → Gui Chou (~34–44) → Ren Zi (~44–54) → Xin Hai (~54–64) → Geng Xu (~64–74) → Ji You (~74–84). Each ten-year period brings the chart into contact with a new pair of stem and branch, modifying which elements run strongly during that decade.</p>
+
+      <p>The striking observation for the near term: from approximately age 74 (around late 2026 or 2027), you enter the <strong>Ji You</strong> Da Yun — and Ji You is your Day Pillar. When the Da Yun matches the Day Pillar exactly, the tradition reads it as a <em>self meeting self</em> period: a decade in which the chart's core themes come fully to the fore, the native most fully inhabits their own nature, and the work most natural to the chart finds its clearest expression. For a Yin Earth Day Master, this is a decade of returning to one's essence — refining rather than expanding, being recognised for what one has long been.</p>
+
+      <p>The unified portrait: a Yin Earth Day Master, born into a Fire-dominant chart with Snake-Snake doubling at the foundation, supported by Wood at the end and Water at the beginning. A garden patiently warmed by the Fires of inheritance, shaped to produce refined Metal output through the You Day Branch. A chart that builds slowly, finishes well, and produces work bearing the qualities of its quiet centre.</p>
+
+      <p class="chinese-quote">大器晚成 — great vessels are completed late.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia" style="padding-top:6mm;">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="30" fill="none" stroke="#c89020" stroke-width="1"/>
+          <circle cx="50" cy="50" r="4" fill="#a01c1e" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="note-label">Da Yun</div>
+      <div class="note">大運 — ten-year major luck cycles. Each modifies the chart's element balance.</div>
+      <div class="note-label">Ji You period</div>
+      <div class="note">~Age 74–84 · self meeting self · a decade of essence.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading · End</span><span>Page 12</span></div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Kabbalah Numerology — A Personal Reading for Ankur Gupta</title>
+<style>
+  /* ─────────── Antara Personal Reading — V3 template ─────────── */
+  @page { size: A4 portrait; margin: 0; }
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #d9c8a4; }
+  body {
+    font-family: "Cormorant Garamond","Iowan Old Style","Palatino Linotype",Georgia,serif;
+    font-size: 12pt; line-height: 1.5;
+    color: #1a1a1a; -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─────────── Cultural palette: Hebrew / Kabbalistic ─────────── */
+  :root {
+    --paper:#f5ebd6;          /* parchment cream */
+    --paper-2:#ecdfc1;
+    --ink:#1a1a1a;            /* deep ink */
+    --ink-2:#33261d;
+    --tyrian:#5e2851;         /* Tyrian purple — biblical dye */
+    --tyrian-soft:#a47b9b;
+    --gold:#c8a55b;           /* temple gold */
+    --gold-soft:#e9d8a4;
+    --midnight:#0d1a3a;       /* midnight blue */
+    --midnight-soft:#7d8aaa;
+    --rule:#c8a55b;
+    --muted:#7a6649;
+
+    --page-w:210mm; --page-h:297mm;
+    /* V3 geometry */
+    --pad-top:17mm; --pad-bot:32mm;
+    --pad-left:25mm; --pad-right:22mm;
+    --col-text:125mm; --col-gap:6mm; --col-margin:32mm;
+    --content-h:248mm; --content-top-pad:6mm;
+  }
+
+  .page{
+    width:var(--page-w); height:var(--page-h);
+    background:var(--paper);
+    margin:8mm auto;
+    padding:var(--pad-top) var(--pad-right) var(--pad-bot) var(--pad-left);
+    position:relative; box-shadow:0 4px 18px rgba(0,0,0,0.18);
+    page-break-after:always; break-after:page;
+    display:grid; grid-template-columns: var(--col-text) var(--col-margin); column-gap: var(--col-gap);
+  }
+  .page:last-child{ page-break-after:auto; break-after:auto; }
+
+  /* V3 wide variant — full-width single column, no marginalia */
+  .page.wide{
+    grid-template-columns:1fr; column-gap:0;
+  }
+  .page.wide .margin-area{ display:none; }
+
+  /* V3 icon-right variant — icon moved out of text column */
+  .page.icon-right .content > .icon-block{ display:none; }
+
+  .page::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(94,40,81,0.05), transparent 40%),
+      radial-gradient(circle at 88% 90%, rgba(13,26,58,0.04), transparent 40%);
+    mix-blend-mode:multiply;
+  }
+
+  /* Hebrew letter / dotted top border */
+  .page::after{
+    content:"";position:absolute;
+    left:var(--pad-left); right:var(--pad-right);
+    top:9mm; height:6mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><g fill='%23c8a55b'><circle cx='2' cy='7' r='0.6'/><circle cx='10' cy='7' r='0.6'/><circle cx='18' cy='7' r='0.6'/><circle cx='26' cy='7' r='0.6'/><circle cx='34' cy='7' r='0.6'/><circle cx='42' cy='7' r='0.6'/><circle cx='50' cy='7' r='0.6'/><circle cx='58' cy='7' r='0.6'/><circle cx='66' cy='7' r='0.6'/><circle cx='74' cy='7' r='0.6'/></g><g stroke='%235e2851' stroke-width='0.6' fill='none'><path d='M 6 4 L 6 10 M 14 4 L 14 10 M 22 4 L 22 10 M 30 4 L 30 10 M 38 4 L 38 10 M 46 4 L 46 10 M 54 4 L 54 10 M 62 4 L 62 10 M 70 4 L 70 10 M 78 4 L 78 10'/></g></svg>");
+    background-repeat:repeat-x; background-size:auto 6mm; opacity:.7;
+  }
+
+  .content{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+  }
+  .margin-area{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+  }
+
+  .running{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); top:5mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; letter-spacing:.18em; text-transform:uppercase; color:var(--tyrian);
+    font-family:"Iowan Old Style",Georgia,serif; font-weight:600;
+  }
+  .running .who{ color:var(--ink-2); letter-spacing:.12em; }
+
+  .pgfoot{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); bottom:14mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; color:var(--muted); letter-spacing:.06em;
+  }
+  .pgfoot::before{
+    content:""; position:absolute; left:0; right:0; top:-6mm; height:0.4mm;
+    background:var(--rule); opacity:.55;
+  }
+
+  h1.cover-title{
+    font-size:32pt; font-weight:600; color:var(--midnight);
+    letter-spacing:.06em; line-height:1.15; margin-bottom:6mm;
+    font-variant:small-caps;
+  }
+  h2.section-title{
+    font-size:18pt; font-weight:600; color:var(--midnight);
+    letter-spacing:.02em; line-height:1.2; margin-bottom:4mm;
+  }
+  h3.section-sub{
+    font-size:11pt; font-style:italic; color:var(--tyrian); font-weight:400;
+    margin-bottom:8mm; letter-spacing:.02em; line-height:1.4;
+  }
+  .eyebrow{
+    font-size:10pt; letter-spacing:.32em; text-transform:uppercase; color:var(--tyrian);
+    font-weight:600; font-family:"Iowan Old Style",Georgia,serif; margin-bottom:3mm;
+  }
+  .hebrew{ font-family:"Times New Roman",serif; color:var(--gold); font-style:normal; letter-spacing:.04em; direction:rtl; }
+  .lurianic{ font-family:"Cormorant Garamond",Georgia,serif; color:var(--tyrian); font-style:italic; letter-spacing:.04em; }
+
+  .text > p{ font-size:12pt; line-height:1.5; color:var(--ink); margin:0 0 12pt; }
+  .text > p:last-child{ margin-bottom:0; }
+  .lead{ margin-bottom:8mm; }
+  .lead > p{ font-size:13pt; line-height:1.5; color:var(--ink-2); font-style:italic; margin:0 0 6pt; }
+  .lead > p:last-child{ margin-bottom:0; }
+
+  .calc{
+    font-family:"Iowan Old Style",Georgia,serif;
+    font-size:10pt; line-height:1.5; color:var(--tyrian);
+    border-top:0.4mm solid var(--rule); border-bottom:0.4mm solid var(--rule);
+    padding:4mm 0; margin:8mm 0 0; letter-spacing:.02em;
+  }
+  .calc strong{ color:var(--midnight); font-weight:600; }
+  .fine{ font-size:10pt; line-height:1.5; color:var(--muted); font-style:italic; }
+
+  .cover{ grid-template-columns: 1fr; text-align:center; align-content:center; padding-top:42mm; }
+  .cover .markline{
+    margin:0 auto 14mm; width:60mm; height:5mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><g fill='%23c8a55b'><circle cx='2' cy='7' r='1'/><circle cx='10' cy='7' r='1'/><circle cx='18' cy='7' r='1'/><circle cx='26' cy='7' r='1'/><circle cx='34' cy='7' r='1'/><circle cx='42' cy='7' r='1'/><circle cx='50' cy='7' r='1'/><circle cx='58' cy='7' r='1'/><circle cx='66' cy='7' r='1'/><circle cx='74' cy='7' r='1'/></g><g stroke='%235e2851' stroke-width='1' fill='none'><path d='M 6 4 L 6 10 M 14 4 L 14 10 M 22 4 L 22 10 M 30 4 L 30 10 M 38 4 L 38 10 M 46 4 L 46 10 M 54 4 L 54 10 M 62 4 L 62 10 M 70 4 L 70 10 M 78 4 L 78 10'/></g></svg>");
+    background-repeat:repeat-x; background-size:auto 5mm;
+  }
+  .cover .greek-eyebrow{
+    font-size:11pt; letter-spacing:.4em; text-transform:uppercase; color:var(--tyrian);
+    margin-bottom:8mm; font-weight:600;
+  }
+  .cover .arithmos{
+    font-size:14pt; color:var(--tyrian); font-style:italic; letter-spacing:.06em;
+    margin-bottom:12mm;
+  }
+  .cover .person{ font-size:13pt; color:var(--ink); margin-top:14mm; line-height:1.7; }
+  .cover .person .lbl{
+    font-size:10pt; letter-spacing:.22em; text-transform:uppercase; color:var(--muted);
+    font-weight:600; margin-right:6mm;
+  }
+  .cover .tree{ margin:18mm auto 0; width:55mm; height:60mm; display:flex; align-items:center; justify-content:center; }
+
+  .toc-list{ list-style:none; padding:0; margin:0; }
+  .toc-list li{
+    display:grid; grid-template-columns:8mm 1fr auto; gap:4mm;
+    align-items:baseline; padding:4mm 0;
+    border-bottom:0.3mm dashed var(--rule); font-size:12pt;
+  }
+  .toc-list li:last-child{ border-bottom:none; }
+  .toc-list .num{ color:var(--tyrian); font-variant-numeric:tabular-nums; font-weight:600; }
+  .toc-list .name{ color:var(--ink); }
+  .toc-list .pg{ color:var(--muted); font-size:10pt; letter-spacing:.06em; }
+  .toc-list a{ text-decoration:none; color:inherit; display:contents; }
+  .toc-list a:hover .name{ color:var(--tyrian); }
+
+  .icon-block{ width:28mm; height:28mm; margin-bottom:6mm; display:flex; align-items:center; justify-content:center; }
+  .icon-block svg{ width:100%; height:100%; }
+
+  .marginalia{
+    padding-top:12mm; color:var(--muted);
+    font-size:10pt; line-height:1.5; font-style:italic;
+  }
+  .marginalia .ornament{ width:28mm; height:28mm; margin-bottom:8mm; opacity:.6; }
+  .marginalia .icon-echo{ width:24mm; height:24mm; margin-bottom:8mm; opacity:.7; }
+  .marginalia .icon-echo svg{ width:100%; height:100%; }
+  .marginalia .note-label{
+    font-size:9pt; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--tyrian); font-weight:600; font-style:normal; margin-bottom:2mm;
+  }
+  .marginalia .note{ margin-bottom:8mm; }
+  .marginalia .note:last-child{ margin-bottom:0; }
+
+  @media print{
+    html, body{ background:#fff; } body{ padding:0; }
+    .page{ margin:0; box-shadow:none; page-break-after:always; break-after:page; }
+    .page:last-child{ page-break-after:auto; break-after:auto; }
+  }
+  @media screen{ body{ padding:14mm 0; } }
+</style>
+</head>
+<body>
+
+<!-- ════ COVER ════ -->
+<section class="page cover" id="cover">
+  <div class="markline"></div>
+  <div class="arithmos"><span class="hebrew">קַבָּלָה</span> — the reading by the Tree of Life</div>
+  <h1 class="cover-title">Kabbalah Numerology</h1>
+  <div class="arithmos" style="margin-top:6mm">A reading from the Hebrew mystical tradition</div>
+
+  <div class="tree">
+    <svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg">
+      <!-- Tree of Life — 10 sephirot connected -->
+      <g stroke="#c8a55b" stroke-width="0.5" fill="none">
+        <line x1="50" y1="14" x2="35" y2="30"/>
+        <line x1="50" y1="14" x2="65" y2="30"/>
+        <line x1="35" y1="30" x2="65" y2="30"/>
+        <line x1="35" y1="30" x2="50" y2="48"/>
+        <line x1="65" y1="30" x2="50" y2="48"/>
+        <line x1="35" y1="30" x2="35" y2="60"/>
+        <line x1="65" y1="30" x2="65" y2="60"/>
+        <line x1="35" y1="60" x2="65" y2="60"/>
+        <line x1="35" y1="60" x2="50" y2="48"/>
+        <line x1="65" y1="60" x2="50" y2="48"/>
+        <line x1="50" y1="48" x2="50" y2="78"/>
+        <line x1="35" y1="60" x2="50" y2="78"/>
+        <line x1="65" y1="60" x2="50" y2="78"/>
+        <line x1="50" y1="78" x2="50" y2="98"/>
+        <line x1="35" y1="60" x2="50" y2="98"/>
+        <line x1="65" y1="60" x2="50" y2="98"/>
+      </g>
+      <g fill="#5e2851" stroke="#0d1a3a" stroke-width="0.5">
+        <circle cx="50" cy="14" r="3"/>
+        <circle cx="35" cy="30" r="3"/>
+        <circle cx="65" cy="30" r="3"/>
+        <circle cx="35" cy="60" r="3"/>
+        <circle cx="50" cy="48" r="3.5" fill="#c8a55b"/>
+        <circle cx="65" cy="60" r="3"/>
+        <circle cx="35" cy="78" r="3"/>
+        <circle cx="65" cy="78" r="3"/>
+        <circle cx="50" cy="78" r="3"/>
+        <circle cx="50" cy="98" r="3"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="person">
+    <div>Ankur Gupta</div>
+    <div>16 May 1953 · 2 Sivan 5713</div>
+    <div>Chakrata, Uttarakhand</div>
+  </div>
+
+  <div class="pgfoot" style="display:block;text-align:center;">
+  <div style="font-size:10.5pt;font-weight:700;letter-spacing:.18em;color:var(--gold,#a88842);">ANTARA PERSONAL READING</div>
+  <div style="font-size:9.5pt;font-style:italic;letter-spacing:.08em;color:var(--gold,#a88842);margin-top:1.5mm;">interpretative, not Predictive</div>
+</div>
+</section>
+
+
+<!-- ════ INTRO 1 ════ -->
+<section class="page" id="intro-1">
+  <div class="running"><span>Kabbalah Numerology</span><span class="who">Introduction · 1 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Introduction</div>
+    <h2 class="section-title">What this report is about</h2>
+    <h3 class="section-sub">The 22 paths of the Hebrew alphabet and the Tree of Life</h3>
+
+    <div class="text">
+      <p>Kabbalah is the mystical tradition that arose within Judaism and was articulated through medieval texts such as the Sefer Yetzirah, the Zohar, and later the writings of the Lurianic school in sixteenth-century Safed. Its core claim is that creation unfolds through the twenty-two letters of the Hebrew alphabet and the ten emanations called <em>sephirot</em>, arranged in the diagram known as the Tree of Life.</p>
+
+      <p>Where Pythagoras reduces a name to one of the digits one to nine, Kabbalah reads the name through the twenty-two paths of the Hebrew alphabet — each a letter, a number, and a step on the Tree. The letter that the name reduces to is the soul-letter of the bearer; the path that letter walks on the Tree is the path of the life.</p>
+
+      <p>This report uses the Hebrew gematria values combined with the Tarot correspondences traditionally attached to each path. It draws the soul-letter from your full name and the inner letter from its further reduction, names the sephirot most lit by the resulting paths, and identifies the Hebrew calendar moment of your birth.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Hebrew letter Aleph -->
+          <text x="50" y="62" text-anchor="middle" font-family="Times" font-size="44" fill="#5e2851">א</text>
+        </svg>
+      </div>
+      <div class="note-label">22 letters</div>
+      <div class="note">Each letter of the Hebrew alphabet is a number, a path, and a Tarot Major Arcana correspondence.</div>
+      <div class="note-label">10 sephirot</div>
+      <div class="note">Kether, Chokmah, Binah, Chesed, Geburah, Tiferet, Netzach, Hod, Yesod, Malkuth.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 2</span></div>
+</section>
+
+
+<!-- ════ INTRO 2 ════ -->
+<section class="page" id="intro-2">
+  <div class="running"><span>Kabbalah Numerology</span><span class="who">Introduction · 2 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">How to read this report</div>
+    <h2 class="section-title">Structure &amp; method</h2>
+    <h3 class="section-sub">Soul-letter, inner letter, the Sephirot lit, and the Tree as diagram</h3>
+
+    <div class="text">
+      <p>This report is structured so that each focus aspect lives on its own page, allowing every theme room to breathe. You may read in any order, returning to whichever page you wish.</p>
+
+      <p>The contents page that follows lists every focus with a hyperlink. In a browser or PDF you may tap any title to jump directly to the relevant page.</p>
+
+      <p>Each focus carries a small icon at the top correlated to its theme. The body is set in measured paragraphs at twelve point. Hebrew letters appear in their original script and are accompanied by their roman transliteration and Tarot path correspondence. Calculations are shown beneath each focus, set apart by hairlines.</p>
+
+      <p>A standard note applies to the whole. Kabbalah numerology is a contemplative interpretive tradition. It is offered here as a frame for character reflection — neither religious instruction nor predictive counsel — and is meant to be read alongside the reader's own discernment, not in place of it.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Scroll -->
+          <rect x="22" y="30" width="56" height="40" rx="2" fill="none" stroke="#c8a55b" stroke-width="1.2"/>
+          <line x1="22" y1="40" x2="78" y2="40" stroke="#5e2851" stroke-width="0.4"/>
+          <line x1="22" y1="50" x2="78" y2="50" stroke="#5e2851" stroke-width="0.4"/>
+          <line x1="22" y1="60" x2="78" y2="60" stroke="#5e2851" stroke-width="0.4"/>
+          <circle cx="22" cy="50" r="6" fill="none" stroke="#c8a55b" stroke-width="1.2"/>
+          <circle cx="78" cy="50" r="6" fill="none" stroke="#c8a55b" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="note-label">Reading time</div>
+      <div class="note">Approximately twenty-five minutes at an unhurried pace.</div>
+      <div class="note-label">Authority</div>
+      <div class="note">A frame for reflection. The reader is the final authority on the reading.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 3</span></div>
+</section>
+
+
+<!-- ════ CONTENTS ════ -->
+<section class="page" id="contents">
+  <div class="running"><span>Kabbalah Numerology</span><span class="who">Contents</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Contents</div>
+    <h2 class="section-title">The seven focus pages</h2>
+    <h3 class="section-sub">Tap any title to jump to that page</h3>
+
+    <ol class="toc-list">
+      <li><a href="#resh"><span class="num">I</span><span class="name">Resh · the soul-letter · The Sun · 20</span><span class="pg">p. 5</span></a></li>
+      <li><a href="#beth"><span class="num">II</span><span class="name">Beth · the inner letter · The Magician · 2</span><span class="pg">p. 6</span></a></li>
+      <li><a href="#calendar"><span class="num">III</span><span class="name">The Hebrew Calendar · 2 Sivan 5713</span><span class="pg">p. 7</span></a></li>
+      <li><a href="#tiferet"><span class="num">IV</span><span class="name">Tiferet · the heart of the Tree</span><span class="pg">p. 8</span></a></li>
+      <li><a href="#hod-yesod"><span class="num">V</span><span class="name">Hod &amp; Yesod · the path of Resh</span><span class="pg">p. 9</span></a></li>
+      <li><a href="#binah"><span class="num">VI</span><span class="name">Binah · the path of Beth</span><span class="pg">p. 10</span></a></li>
+      <li><a href="#synthesis"><span class="num">VII</span><span class="name">Synthesis · the Kabbalistic portrait</span><span class="pg">p. 11</span></a></li>
+    </ol>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Star of David -->
+          <path d="M 50 20 L 70 56 L 30 56 Z" fill="none" stroke="#c8a55b" stroke-width="1"/>
+          <path d="M 50 80 L 30 44 L 70 44 Z" fill="none" stroke="#c8a55b" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="note-label">Soul-letter</div>
+      <div class="note hebrew" style="font-size:18pt;color:#c8a55b;margin-bottom:2mm;">ר</div>
+      <div class="note">Resh · The Sun · path 30</div>
+      <div class="note-label">Inner letter</div>
+      <div class="note hebrew" style="font-size:18pt;color:#c8a55b;margin-bottom:2mm;">ב</div>
+      <div class="note">Beth · The Magician · path 12</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 4</span></div>
+</section>
+
+
+<!-- ════ I · RESH ════ -->
+<section class="page" id="resh">
+  <div class="running"><span>I · Resh</span><span class="who">Focus 1 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Sun (Resh) -->
+        <circle cx="50" cy="50" r="14" fill="#c8a55b" stroke="#5e2851" stroke-width="1"/>
+        <g stroke="#c8a55b" stroke-width="1.6" stroke-linecap="round">
+          <line x1="50" y1="20" x2="50" y2="28"/>
+          <line x1="50" y1="72" x2="50" y2="80"/>
+          <line x1="20" y1="50" x2="28" y2="50"/>
+          <line x1="72" y1="50" x2="80" y2="50"/>
+          <line x1="29" y1="29" x2="35" y2="35"/>
+          <line x1="65" y1="65" x2="71" y2="71"/>
+          <line x1="71" y1="29" x2="65" y2="35"/>
+          <line x1="29" y1="71" x2="35" y2="65"/>
+        </g>
+        <text x="50" y="56" text-anchor="middle" font-family="Times" font-size="14" fill="#0d1a3a">ר</text>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus I · the soul-letter</div>
+    <h2 class="section-title">Resh · The Sun · 20</h2>
+    <h3 class="section-sub">The bringer of clarity, recognition, and renewed light after long night</h3>
+
+    <div class="lead">
+      <p>The Kabbalistic letter values of <em>Ankur Gupta</em> sum to seven hundred and sixty-seven, reducing through gematria to twenty — the Hebrew letter Resh, the path of the Sun on the Tree of Life.</p>
+    </div>
+
+    <div class="text">
+      <p>Resh, in Hebrew, means <em>head</em>. The letter is associated with intellect, illumination, recognition, and renewed clarity. The Tarot path corresponding to twenty is The Sun, the card of warmth, vitality, and the moment when long obscurity gives way to bright understanding. Souls under Resh are read as those who become a kind of light for others — not blazing, but warm and steady, the way the sun is steady.</p>
+
+      <p>The Sun-path on the Tree of Life links <em>Hod</em>, the sephira of intellect and communication, to <em>Yesod</em>, the sephira of foundation and the unconscious. It is the path of <em>making the inner light articulate</em> — of bringing what one understands into language others can use. Teachers, writers, counsellors, and the rare elder whose presence is itself a teaching, walk this path.</p>
+
+      <p>The shadow of Resh is the head separated from the heart — clarity that has lost warmth, brightness that has lost compassion. The discipline of Resh is to keep the sun honest, the recognition without vanity, the explanation without lecture.</p>
+    </div>
+
+    <div class="calc">
+      Calculation · Hebrew gematria letter values of A·N·K·U·R·G·U·P·T·A sum to <strong>767</strong> · 7+6+7 = <strong>20</strong> · ↔ <strong>Resh (ר) · The Sun</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Resh in Hebrew</div>
+      <div class="note">The letter means <em>head</em> — and by extension, beginning, leader, and capacity for clear sight.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Light ↔ glare. The clarity that warms, and the clarity that blinds.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 5</span></div>
+</section>
+
+
+<!-- ════ II · BETH ════ -->
+<section class="page" id="beth">
+  <div class="running"><span>II · Beth</span><span class="who">Focus 2 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- House (Beth means house) -->
+        <path d="M 22 80 L 22 50 L 50 26 L 78 50 L 78 80 Z" fill="none" stroke="#5e2851" stroke-width="1.4"/>
+        <line x1="22" y1="80" x2="78" y2="80" stroke="#5e2851" stroke-width="1.2"/>
+        <rect x="42" y="58" width="16" height="22" fill="none" stroke="#c8a55b" stroke-width="1"/>
+        <text x="50" y="50" text-anchor="middle" font-family="Times" font-size="14" fill="#0d1a3a">ב</text>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus II · the inner letter</div>
+    <h2 class="section-title">Beth · The Magician · 2</h2>
+    <h3 class="section-sub">Focused will turning idea into form — the workshop behind the Sun</h3>
+
+    <div class="lead">
+      <p>Reducing the soul-letter further (twenty to two) gives the inner letter — Beth, the second letter of the Hebrew alphabet and the first letter of the Torah.</p>
+    </div>
+
+    <div class="text">
+      <p>Beth, in Hebrew, means <em>house</em>. The letter is associated with beginning, manifestation, and focused will — the making of a vessel that something larger can inhabit. The Tarot correspondence is The Magician, the figure with the four implements arranged on the table: the Magician has tools, has intention, and turns one into the other.</p>
+
+      <p>Where Resh is the public sun the world sees, Beth is the private workshop in which everything is actually made. The two are complementary, not in conflict; one cannot have the Sun without the workshop, or the workshop without something worth bringing into the light.</p>
+
+      <p>Beth's path on the Tree links Kether, the crown of pure intent, to Binah, the womb of structured understanding. The native is read as one who <em>holds an idea in pure form and methodically builds it down into reality</em>. The discipline of Beth is to keep the workshop quiet, to let the work speak, and to refuse to mistake the announcement of an idea for the labour of bringing it into the world.</p>
+    </div>
+
+    <div class="calc">
+      Calculation · 20 → 2 + 0 = <strong>2</strong> · ↔ <strong>Beth (ב) · The Magician</strong> · path 12 · Kether ↔ Binah
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Beth in Hebrew</div>
+      <div class="note">The letter means <em>house</em> — beginning, dwelling, and the made world that follows from intent.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Manifestation ↔ announcement. The workshop that builds, and the one that only describes.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 6</span></div>
+</section>
+
+
+<!-- ════ III · CALENDAR ════ -->
+<section class="page" id="calendar">
+  <div class="running"><span>III · Hebrew Calendar</span><span class="who">Focus 3 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Open Torah scroll -->
+        <rect x="20" y="36" width="60" height="40" rx="2" fill="none" stroke="#c8a55b" stroke-width="1.2"/>
+        <line x1="20" y1="46" x2="80" y2="46" stroke="#5e2851" stroke-width="0.4"/>
+        <line x1="20" y1="56" x2="80" y2="56" stroke="#5e2851" stroke-width="0.4"/>
+        <line x1="20" y1="66" x2="80" y2="66" stroke="#5e2851" stroke-width="0.4"/>
+        <circle cx="20" cy="56" r="8" fill="none" stroke="#c8a55b" stroke-width="1.2"/>
+        <circle cx="80" cy="56" r="8" fill="none" stroke="#c8a55b" stroke-width="1.2"/>
+        <text x="50" y="92" text-anchor="middle" font-family="Times" font-size="10" fill="#5e2851">תורה</text>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus III · the moment of birth</div>
+    <h2 class="section-title">2 Sivan 5713</h2>
+    <h3 class="section-sub">The window immediately after Shavuot — the festival of the giving of the Torah</h3>
+
+    <div class="lead">
+      <p>16 May 1953 corresponds in the Hebrew calendar to the second of Sivan in the year 5713, just after Shavuot.</p>
+    </div>
+
+    <div class="text">
+      <p>Shavuot, falling on the sixth and seventh of Sivan, commemorates the giving of the Torah at Sinai. It is the festival of revealed wisdom, the moment when teaching descends from the mountain and is made available to a people. The days immediately after Shavuot carry the lingering charge of that descent.</p>
+
+      <p>Births in this window are read in Kabbalistic tradition as carrying a particular relationship to <em>study, transmission, and being a vessel for received knowledge</em>. The Sivan native is often the family's quiet scholar — the one to whom others bring questions, the one who reads while others gather, the one in whom inherited learning finds a comfortable home.</p>
+
+      <p>Combined with the Resh soul-letter of the Sun, this moment of birth amplifies the function of the chart — to receive light, hold it, and make it usable for others. The teacher's role is reinforced by the calendar.</p>
+    </div>
+
+    <div class="calc">
+      Hebrew calendar · 16 May 1953 ↔ <strong>2 Sivan 5713</strong> · the window immediately following <strong>Shavuot</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Shavuot</div>
+      <div class="note">The festival of weeks — commemorating the giving of the Torah at Sinai.</div>
+      <div class="note-label">Sivan</div>
+      <div class="note">The third Hebrew month. Its native is read as inheriting and transmitting received knowledge.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 7</span></div>
+</section>
+
+
+<!-- ════ IV · TIFERET ════ -->
+<section class="page" id="tiferet">
+  <div class="running"><span>IV · Tiferet</span><span class="who">Focus 4 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Tiferet — central sephira (sun in heart) -->
+        <circle cx="50" cy="50" r="22" fill="none" stroke="#c8a55b" stroke-width="1.2"/>
+        <circle cx="50" cy="50" r="8" fill="#c8a55b" stroke="#5e2851" stroke-width="0.5"/>
+        <g stroke="#c8a55b" stroke-width="0.8">
+          <line x1="50" y1="22" x2="50" y2="36"/>
+          <line x1="50" y1="64" x2="50" y2="78"/>
+          <line x1="22" y1="50" x2="36" y2="50"/>
+          <line x1="64" y1="50" x2="78" y2="50"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus IV · the heart of the Tree</div>
+    <h2 class="section-title">Tiferet · Beauty</h2>
+    <h3 class="section-sub">The integrating centre that harmonises severity and mercy</h3>
+
+    <div class="lead">
+      <p>Tiferet is the sixth sephira — the heart of the Tree of Life, governed by the Sun. With Resh as the soul-letter, Tiferet is unusually emphasised in this chart.</p>
+    </div>
+
+    <div class="text">
+      <p>In the Tree of Life diagram, Tiferet sits at the centre. It is the meeting point of the Pillar of Mercy on the right and the Pillar of Severity on the left, the place where opposites are reconciled into beauty. Its name in Hebrew, <em>tiferet</em>, means precisely that — beauty, glory, harmony.</p>
+
+      <p>A chart with strong Tiferet is read as having the gift of <em>balance, dignity, and the ability to hold opposites without breaking</em>. Such people are sought as mediators because they do not lose themselves to either side. They keep mercy and rigour in dialogue. They are quiet centres around which more agitated lives find their bearings.</p>
+
+      <p>The work of Tiferet is the work of the heart in its widest sense. Not sentiment, but the integrating organ that holds the chart together. Tiferet asks for honesty — beauty that survives examination — and for compassion that knows when to be firm.</p>
+    </div>
+
+    <div class="calc">
+      Sephira · <strong>Tiferet (תפארת)</strong> · position 6 on the Tree · ruler · <strong>The Sun</strong> · linked to soul-letter <strong>Resh</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Tiferet</div>
+      <div class="note">The heart-sephira. The integrating centre of the Tree of Life.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Beauty ↔ vanity. Wholeness that humbles, and beauty that performs.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 8</span></div>
+</section>
+
+
+<!-- ════ V · HOD & YESOD ════ -->
+<section class="page" id="hod-yesod">
+  <div class="running"><span>V · Hod &amp; Yesod</span><span class="who">Focus 5 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Two pillars -->
+        <rect x="26" y="26" width="14" height="56" fill="none" stroke="#c8a55b" stroke-width="1.4"/>
+        <rect x="60" y="26" width="14" height="56" fill="none" stroke="#c8a55b" stroke-width="1.4"/>
+        <rect x="22" y="22" width="22" height="6" fill="none" stroke="#5e2851" stroke-width="1"/>
+        <rect x="56" y="22" width="22" height="6" fill="none" stroke="#5e2851" stroke-width="1"/>
+        <rect x="22" y="80" width="22" height="6" fill="none" stroke="#5e2851" stroke-width="1"/>
+        <rect x="56" y="80" width="22" height="6" fill="none" stroke="#5e2851" stroke-width="1"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus V · the path of Resh</div>
+    <h2 class="section-title">Hod &amp; Yesod</h2>
+    <h3 class="section-sub">Splendour and Foundation — the two sephirot the Sun-path connects</h3>
+
+    <div class="lead">
+      <p>The Sun-path of Resh on the Tree of Life runs from <em>Hod</em>, the sephira of intellect and communication, to <em>Yesod</em>, the sephira of foundation and the unconscious.</p>
+    </div>
+
+    <div class="text">
+      <p><em>Hod</em>, eighth in the order of sephirot, is the seat of the rational mind, of language, of rhetoric. It is the sephira of the writer, the speaker, the one who gives form to ideas in words. With Resh running from it, the chart is unusually strong on the side of <em>turning thought into transmittable language</em>. Communication is not just possible but native — the work passes naturally into briefings, books, lectures, letters.</p>
+
+      <p><em>Yesod</em>, ninth in the order, is the foundation. It is the lower reservoir — dreams, the unconscious, the channel through which higher light reaches the visible world. With Resh terminating in Yesod, the chart shows a strong intuitive undercurrent beneath the visible rationality. Decisions feel right or wrong in the body before they are reasoned through. Dreams carry weight.</p>
+
+      <p>The Resh native works at this junction. Ideas arrive as intuitions in Yesod; they are clarified and made articulate as they travel up to Hod; the Sun-path itself is the work of carrying that articulation outward, where others can use it.</p>
+    </div>
+
+    <div class="calc">
+      Path · <strong>Hod ↔ Yesod</strong> · 8th and 9th sephirot · ruled by <strong>Resh / The Sun</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Hod</div>
+      <div class="note">Splendour. The sephira of intellect and language.</div>
+      <div class="note-label">Yesod</div>
+      <div class="note">Foundation. The sephira of the unconscious and the dream.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 9</span></div>
+</section>
+
+
+<!-- ════ VI · BINAH ════ -->
+<section class="page" id="binah">
+  <div class="running"><span>VI · Binah</span><span class="who">Focus 6 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Chalice / vessel of Binah -->
+        <path d="M 30 26 L 70 26 L 64 60 Q 50 70 36 60 Z" fill="none" stroke="#c8a55b" stroke-width="1.4"/>
+        <line x1="50" y1="64" x2="50" y2="80" stroke="#c8a55b" stroke-width="1.4"/>
+        <ellipse cx="50" cy="82" rx="14" ry="3" fill="none" stroke="#c8a55b" stroke-width="1.2"/>
+        <path d="M 36 36 Q 50 42 64 36" stroke="#5e2851" stroke-width="0.6" fill="none"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VI · the path of Beth</div>
+    <h2 class="section-title">Binah · Understanding</h2>
+    <h3 class="section-sub">The womb of form — pure idea taking on structure</h3>
+
+    <div class="lead">
+      <p>Beth's path on the Tree leads from <em>Kether</em>, the crown of pure intent, to <em>Binah</em>, the sephira of structured understanding.</p>
+    </div>
+
+    <div class="text">
+      <p><em>Binah</em> is the third sephira, sitting on the Pillar of Severity at the top of the Tree. It is sometimes called the <em>upper Mother</em>, the womb in which pure idea is given form. Where Chokmah opposite is the lightning-flash of inspiration, Binah is the patient organisation that follows — the labour of making an insight communicable, repeatable, transmissible.</p>
+
+      <p>With Beth running into Binah, the chart shows the gift of <em>making ideas usable</em>. The native is one who takes a felt insight or a glimpsed truth and patiently builds it into something that can be inherited — a method, a vocabulary, a structure others can step into.</p>
+
+      <p>This is the work of teachers in the deepest sense, of editors, of system-builders, of the kind of mind that turns one good thought into a way of thinking that can outlast its author. The discipline of Binah is patience with the unglamorous middle stage between the flash and the finished form.</p>
+    </div>
+
+    <div class="calc">
+      Path · <strong>Kether ↔ Binah</strong> · 1st and 3rd sephirot · ruled by <strong>Beth / The Magician</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Binah</div>
+      <div class="note">Understanding. The sephira where pure idea becomes structured form.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Structure ↔ rigidity. The form that carries, and the form that imprisons.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 10</span></div>
+</section>
+
+
+<!-- ════ VII · SYNTHESIS ════ -->
+<section class="page icon-right" id="synthesis">
+  <div class="running"><span>VII · Synthesis</span><span class="who">Focus 7 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Mini Tree of Life -->
+        <g stroke="#c8a55b" stroke-width="0.4" fill="none">
+          <line x1="50" y1="14" x2="35" y2="30"/>
+          <line x1="50" y1="14" x2="65" y2="30"/>
+          <line x1="35" y1="30" x2="65" y2="30"/>
+          <line x1="35" y1="30" x2="50" y2="48"/>
+          <line x1="65" y1="30" x2="50" y2="48"/>
+          <line x1="35" y1="60" x2="65" y2="60"/>
+          <line x1="35" y1="60" x2="50" y2="48"/>
+          <line x1="65" y1="60" x2="50" y2="48"/>
+          <line x1="50" y1="48" x2="50" y2="76"/>
+          <line x1="35" y1="60" x2="50" y2="76"/>
+          <line x1="65" y1="60" x2="50" y2="76"/>
+          <line x1="50" y1="76" x2="50" y2="92"/>
+        </g>
+        <g fill="#5e2851">
+          <circle cx="50" cy="14" r="2.5"/>
+          <circle cx="35" cy="30" r="2.5"/>
+          <circle cx="65" cy="30" r="2.5"/>
+          <circle cx="35" cy="60" r="2.5"/>
+          <circle cx="50" cy="48" r="3" fill="#c8a55b"/>
+          <circle cx="65" cy="60" r="2.5"/>
+          <circle cx="50" cy="76" r="2.5"/>
+          <circle cx="50" cy="92" r="2.5"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VII · the portrait</div>
+    <h2 class="section-title">Synthesis</h2>
+    <h3 class="section-sub">A clarifier and a builder — the Sun outside, the workshop within</h3>
+
+    <div class="lead">
+      <p>Read through the Tree of Life, the soul-letter is Resh — the Sun, the head, the bringer of clarity — with an inner letter of Beth, the focused will that builds.</p>
+    </div>
+
+    <div class="text">
+      <p>The Sephirot most lit are Tiferet, Hod, Yesod, and Binah — heart, intellect, foundation, and structured understanding. The Hebrew calendar moment is the window after Shavuot, when received teaching enters a vessel. Together these elements describe a single function — to take light from above and make it usable below.</p>
+
+      <p>It is the chart of <em>a clarifier and a builder</em>. One who receives light, holds it steadily through the long path, and shapes it into something his house and the wider world can carry forward. The Kabbalistic word for this work is <em>tikkun</em> — the quiet repair, by one careful person, of a small but real corner of the world.</p>
+
+      <p>The discipline of this chart is the discipline of all Sun-and-Magician charts together: to keep the workshop quiet, the recognition without vanity, the explanation without lecture, and the structured form porous enough to keep teaching the next person who steps into it.</p>
+
+      <p class="lurianic">There is no light without a vessel; no vessel without a light.</p>
+      <p class="fine">— after the Lurianic teaching</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="icon-echo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#c8a55b" stroke-width="0.4" fill="none">
+            <line x1="50" y1="14" x2="35" y2="30"/>
+            <line x1="50" y1="14" x2="65" y2="30"/>
+            <line x1="35" y1="30" x2="65" y2="30"/>
+            <line x1="35" y1="30" x2="50" y2="48"/>
+            <line x1="65" y1="30" x2="50" y2="48"/>
+            <line x1="35" y1="60" x2="65" y2="60"/>
+            <line x1="35" y1="60" x2="50" y2="48"/>
+            <line x1="65" y1="60" x2="50" y2="48"/>
+            <line x1="50" y1="48" x2="50" y2="76"/>
+            <line x1="35" y1="60" x2="50" y2="76"/>
+            <line x1="65" y1="60" x2="50" y2="76"/>
+            <line x1="50" y1="76" x2="50" y2="92"/>
+          </g>
+          <g fill="#5e2851">
+            <circle cx="50" cy="14" r="2.5"/>
+            <circle cx="35" cy="30" r="2.5"/>
+            <circle cx="65" cy="30" r="2.5"/>
+            <circle cx="35" cy="60" r="2.5"/>
+            <circle cx="50" cy="48" r="3" fill="#c8a55b"/>
+            <circle cx="65" cy="60" r="2.5"/>
+            <circle cx="50" cy="76" r="2.5"/>
+            <circle cx="50" cy="92" r="2.5"/>
+          </g>
+        </svg>
+      </div>
+      <div class="note-label">The chord</div>
+      <div class="note">Resh outside · Beth within · Tiferet, Hod, Yesod, Binah lit.</div>
+      <div class="note-label">The keynote</div>
+      <div class="note"><em>Tikkun</em> — the quiet repair of one small corner of the world.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading · End</span><span>Page 11</span></div>
+</section>
+
+</body>
+</html>

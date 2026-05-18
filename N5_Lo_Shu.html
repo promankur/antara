@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Lo Shu Numerology — A Personal Reading for Ankur Gupta</title>
+<style>
+  /* ─────────── Antara Personal Reading — V3 template ─────────── */
+  @page { size: A4 portrait; margin: 0; }
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #d8c79f; }
+  body {
+    font-family: "Cormorant Garamond","Iowan Old Style","Palatino Linotype",Georgia,serif;
+    font-size: 12pt; line-height: 1.5;
+    color: #1a1a1a; -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─────────── Cultural palette: Chinese / Lo Shu ─────────── */
+  :root {
+    --paper:#f4eedb;          /* rice paper */
+    --paper-2:#ebe1c5;
+    --ink:#1a1a1a;            /* sumi ink */
+    --ink-2:#2e2820;
+    --vermilion:#a3171c;      /* imperial vermilion / cinnabar */
+    --vermilion-soft:#d68a8e;
+    --jade:#2d6e3e;           /* deep jade green */
+    --jade-soft:#9cc1a4;
+    --bronze:#8a6d2c;         /* ancient bronze */
+    --bronze-soft:#c8a85b;
+    --rule:#c8a85b;
+    --muted:#7a6233;
+
+    --page-w:210mm; --page-h:297mm;
+    /* V3 geometry */
+    --pad-top:17mm; --pad-bot:32mm;
+    --pad-left:25mm; --pad-right:22mm;
+    --col-text:125mm; --col-gap:6mm; --col-margin:32mm;
+    --content-h:248mm; --content-top-pad:6mm;
+  }
+
+  .page{
+    width:var(--page-w); height:var(--page-h);
+    background:var(--paper);
+    margin:8mm auto;
+    padding:var(--pad-top) var(--pad-right) var(--pad-bot) var(--pad-left);
+    position:relative; box-shadow:0 4px 18px rgba(0,0,0,0.18);
+    page-break-after:always; break-after:page;
+    display:grid; grid-template-columns: var(--col-text) var(--col-margin); column-gap: var(--col-gap);
+  }
+  .page:last-child{ page-break-after:auto; break-after:auto; }
+
+  /* V3 wide variant — full-width single column, no marginalia */
+  .page.wide{
+    grid-template-columns:1fr; column-gap:0;
+  }
+  .page.wide .margin-area{ display:none; }
+  .page.wide .icon-block{ display:none; }
+
+  /* V3 icon-right variant — icon moved out of text column */
+  .page.icon-right .content > .icon-block{ display:none; }
+
+  .page::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(163,23,28,0.04), transparent 40%),
+      radial-gradient(circle at 88% 90%, rgba(45,110,62,0.04), transparent 40%);
+    mix-blend-mode:multiply;
+  }
+
+  /* Chinese cloud / wave top border */
+  .page::after{
+    content:"";position:absolute;
+    left:var(--pad-left); right:var(--pad-right);
+    top:9mm; height:6mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><g stroke='%23a3171c' stroke-width='0.8' fill='none'><path d='M 0 8 Q 5 4 10 8 Q 15 12 20 8 Q 25 4 30 8 Q 35 12 40 8 Q 45 4 50 8 Q 55 12 60 8 Q 65 4 70 8 Q 75 12 80 8'/></g><g stroke='%238a6d2c' stroke-width='0.5' fill='none'><path d='M 0 11 L 80 11'/></g></svg>");
+    background-repeat:repeat-x; background-size:auto 6mm; opacity:.85;
+  }
+
+  .content{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+  }
+  .margin-area{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+  }
+
+  .running{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); top:5mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; letter-spacing:.18em; text-transform:uppercase; color:var(--vermilion);
+    font-family:"Iowan Old Style",Georgia,serif; font-weight:600;
+  }
+  .running .who{ color:var(--ink-2); letter-spacing:.12em; }
+
+  .pgfoot{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); bottom:14mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; color:var(--muted); letter-spacing:.06em;
+  }
+  .pgfoot::before{
+    content:""; position:absolute; left:0; right:0; top:-6mm; height:0.4mm;
+    background:var(--rule); opacity:.55;
+  }
+
+  h1.cover-title{
+    font-size:32pt; font-weight:600; color:var(--ink,#1a1a1a);
+    letter-spacing:.06em; line-height:1.15; margin-bottom:6mm;
+    font-variant:small-caps;
+  }
+  h2.section-title{
+    font-size:18pt; font-weight:600; color:var(--vermilion);
+    letter-spacing:.02em; line-height:1.2; margin-bottom:4mm;
+  }
+  h3.section-sub{
+    font-size:11pt; font-style:italic; color:var(--jade); font-weight:400;
+    margin-bottom:8mm; letter-spacing:.02em; line-height:1.4;
+  }
+  .eyebrow{
+    font-size:10pt; letter-spacing:.32em; text-transform:uppercase; color:var(--vermilion);
+    font-weight:600; font-family:"Iowan Old Style",Georgia,serif; margin-bottom:3mm;
+  }
+  .chinese{ color:var(--vermilion); letter-spacing:.04em; }
+
+  .text > p{ font-size:12pt; line-height:1.5; color:var(--ink); margin:0 0 12pt; }
+  .text > p:last-child{ margin-bottom:0; }
+  .lead{ margin-bottom:8mm; }
+  .lead > p{ font-size:13pt; line-height:1.5; color:var(--ink-2); font-style:italic; margin:0 0 6pt; }
+  .lead > p:last-child{ margin-bottom:0; }
+
+  .calc{
+    font-family:"Iowan Old Style",Georgia,serif;
+    font-size:10pt; line-height:1.6; color:var(--vermilion);
+    border-top:0.4mm solid var(--rule); border-bottom:0.4mm solid var(--rule);
+    padding:4mm 0; margin:8mm 0 0; letter-spacing:.02em;
+  }
+  .calc strong{ color:var(--ink); font-weight:600; }
+  .fine{ font-size:10pt; line-height:1.5; color:var(--muted); font-style:italic; }
+
+  .cover{ grid-template-columns: 1fr; text-align:center; align-content:center; padding-top:42mm; }
+  .cover .markline{
+    margin:0 auto 14mm; width:60mm; height:5mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><g stroke='%23a3171c' stroke-width='1.2' fill='none'><path d='M 0 8 Q 5 4 10 8 Q 15 12 20 8 Q 25 4 30 8 Q 35 12 40 8 Q 45 4 50 8 Q 55 12 60 8 Q 65 4 70 8 Q 75 12 80 8'/></g></svg>");
+    background-repeat:repeat-x; background-size:auto 5mm;
+  }
+  .cover .greek-eyebrow{
+    font-size:11pt; letter-spacing:.4em; text-transform:uppercase; color:var(--vermilion);
+    margin-bottom:8mm; font-weight:600;
+  }
+  .cover .arithmos{
+    font-size:14pt; color:var(--jade); font-style:italic; letter-spacing:.06em;
+    margin-bottom:12mm;
+  }
+  .cover .person{ font-size:13pt; color:var(--ink); margin-top:14mm; line-height:1.7; }
+  .cover .person .lbl{
+    font-size:10pt; letter-spacing:.22em; text-transform:uppercase; color:var(--muted);
+    font-weight:600; margin-right:6mm;
+  }
+  .cover .tortoise{ margin:18mm auto 0; width:55mm; height:55mm; display:flex; align-items:center; justify-content:center; }
+
+  .toc-list{ list-style:none; padding:0; margin:0; }
+  .toc-list li{
+    display:grid; grid-template-columns:8mm 1fr auto; gap:4mm;
+    align-items:baseline; padding:4mm 0;
+    border-bottom:0.3mm dashed var(--rule); font-size:12pt;
+  }
+  .toc-list li:last-child{ border-bottom:none; }
+  .toc-list .num{ color:var(--vermilion); font-variant-numeric:tabular-nums; font-weight:600; }
+  .toc-list .name{ color:var(--ink); }
+  .toc-list .pg{ color:var(--muted); font-size:10pt; letter-spacing:.06em; }
+  .toc-list a{ text-decoration:none; color:inherit; display:contents; }
+  .toc-list a:hover .name{ color:var(--jade); }
+
+  .icon-block{ width:28mm; height:28mm; margin-bottom:6mm; display:flex; align-items:center; justify-content:center; }
+  .icon-block svg{ width:100%; height:100%; }
+
+  .marginalia{
+    padding-top:12mm; color:var(--muted);
+    font-size:10pt; line-height:1.5; font-style:italic;
+  }
+  .marginalia .ornament{ width:28mm; height:28mm; margin-bottom:8mm; opacity:.6; }
+  .marginalia .icon-echo{ width:24mm; height:24mm; margin-bottom:8mm; opacity:.7; }
+  .marginalia .icon-echo svg{ width:100%; height:100%; }
+  .marginalia .note-label{
+    font-size:9pt; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--vermilion); font-weight:600; font-style:normal; margin-bottom:2mm;
+  }
+  .marginalia .note{ margin-bottom:8mm; }
+  .marginalia .note:last-child{ margin-bottom:0; }
+
+  /* Lo Shu Grid — standard (within text column) */
+  .ls-grid{
+    width:100mm; height:100mm; margin:0 auto;
+    display:grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr);
+    gap:1.5mm; padding:1.5mm;
+    background:var(--vermilion); border-radius:1mm;
+  }
+  /* Lo Shu Grid — wide page variant */
+  .page.wide .ls-grid{
+    width:130mm; height:130mm;
+  }
+  .ls-cell{
+    background:var(--paper-2); display:flex; flex-direction:column;
+    align-items:center; justify-content:center; border-radius:0.5mm;
+    color:#aaa; font-family:Georgia,serif; font-size:26pt; font-weight:700;
+  }
+  .ls-cell.has{ background:var(--vermilion); color:var(--bronze-soft); }
+  .ls-cell.dbl{ background:var(--bronze); color:var(--paper); }
+  .ls-cell .dir{ font-size:8pt; font-weight:600; opacity:0.85; letter-spacing:0.04em; margin-top:1mm; }
+  .ls-cell .ct{ font-size:8pt; font-weight:600; margin-top:0.5mm; }
+
+  @media print{
+    html, body{ background:#fff; } body{ padding:0; }
+    .page{ margin:0; box-shadow:none; page-break-after:always; break-after:page; }
+    .page:last-child{ page-break-after:auto; break-after:auto; }
+  }
+  @media screen{ body{ padding:14mm 0; } }
+</style>
+</head>
+<body>
+
+<!-- ════ COVER ════ -->
+<section class="page cover" id="cover">
+  <div class="markline"></div>
+  <div class="arithmos">洛書 · the reading by the magic square</div>
+  <h1 class="cover-title">Lo Shu Numerology</h1>
+  <div class="arithmos" style="margin-top:6mm">A reading from the Chinese tradition of the nine palaces</div>
+
+  <div class="tortoise">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <!-- Tortoise with Lo Shu grid on shell -->
+      <ellipse cx="50" cy="55" rx="32" ry="26" fill="none" stroke="#8a6d2c" stroke-width="1.2"/>
+      <ellipse cx="50" cy="55" rx="22" ry="18" fill="#f4eedb" stroke="#a3171c" stroke-width="0.6"/>
+      <!-- Grid lines on shell -->
+      <g stroke="#a3171c" stroke-width="0.4">
+        <line x1="35" y1="42" x2="65" y2="42"/>
+        <line x1="35" y1="55" x2="65" y2="55"/>
+        <line x1="35" y1="68" x2="65" y2="68"/>
+        <line x1="40" y1="40" x2="40" y2="70"/>
+        <line x1="50" y1="40" x2="50" y2="70"/>
+        <line x1="60" y1="40" x2="60" y2="70"/>
+      </g>
+      <!-- Head -->
+      <ellipse cx="50" cy="22" rx="6" ry="5" fill="none" stroke="#8a6d2c" stroke-width="1"/>
+      <circle cx="48" cy="20" r="0.8" fill="#a3171c"/>
+      <circle cx="52" cy="20" r="0.8" fill="#a3171c"/>
+      <!-- Legs -->
+      <ellipse cx="22" cy="50" rx="5" ry="3" fill="none" stroke="#8a6d2c" stroke-width="1" transform="rotate(-30 22 50)"/>
+      <ellipse cx="78" cy="50" rx="5" ry="3" fill="none" stroke="#8a6d2c" stroke-width="1" transform="rotate(30 78 50)"/>
+      <ellipse cx="26" cy="76" rx="5" ry="3" fill="none" stroke="#8a6d2c" stroke-width="1" transform="rotate(30 26 76)"/>
+      <ellipse cx="74" cy="76" rx="5" ry="3" fill="none" stroke="#8a6d2c" stroke-width="1" transform="rotate(-30 74 76)"/>
+      <!-- Tail -->
+      <path d="M 50 82 Q 50 88 48 92" fill="none" stroke="#8a6d2c" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <div class="person">
+    <div>Ankur Gupta</div>
+    <div>16 May 1953 · Saturday</div>
+    <div>Chakrata, Uttarakhand</div>
+  </div>
+
+  <div class="pgfoot" style="display:block;text-align:center;">
+  <div style="font-size:10.5pt;font-weight:700;letter-spacing:.18em;color:var(--gold,#a88842);">ANTARA PERSONAL READING</div>
+  <div style="font-size:9.5pt;font-style:italic;letter-spacing:.08em;color:var(--gold,#a88842);margin-top:1.5mm;">interpretative, not Predictive</div>
+</div>
+</section>
+
+
+<!-- ════ INTRO 1 ════ -->
+<section class="page" id="intro-1">
+  <div class="running"><span>Lo Shu Numerology</span><span class="who">Introduction · 1 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Introduction</div>
+    <h2 class="section-title">What this report is about</h2>
+    <h3 class="section-sub">The magic square brought from the river by the great tortoise</h3>
+
+    <div class="text">
+      <p>Chinese numerology rests on a single elegant figure — the Lo Shu, a three-by-three magic square in which every row, every column, and both diagonals sum to fifteen. The legend has it that the diagram first appeared on the shell of a giant tortoise emerging from the River Lo, and that the sage-emperor Yu the Great read it there and gave it to his people.</p>
+
+      <p>The Lo Shu is the foundational diagram of Chinese cosmology. It underlies Feng Shui, the I Ching's eight trigrams, and the entire system of <em>nine palaces</em> through which Chinese tradition reads space, time, and the human person. Each cell in the grid is a palace, each palace is a direction, an element, and a domain of life.</p>
+
+      <p>This report places the digits of your date of birth into the nine palaces of the Lo Shu. Numbers that appear, repeat, or are absent describe your temperament; rows, columns, and diagonals fully present form <em>arrows of strength</em>, while those entirely empty form <em>arrows of weakness</em>. The reading is supplemented by your Driver and Conductor numbers, your Feng Shui Kua direction, and the Year Pillar of your birth.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Bagua / eight trigrams in circle -->
+          <circle cx="50" cy="50" r="36" fill="none" stroke="#8a6d2c" stroke-width="1"/>
+          <circle cx="50" cy="50" r="28" fill="none" stroke="#8a6d2c" stroke-width="0.4"/>
+          <g stroke="#a3171c" stroke-width="1" fill="none">
+            <line x1="50" y1="14" x2="50" y2="22"/>
+            <line x1="50" y1="78" x2="50" y2="86"/>
+            <line x1="14" y1="50" x2="22" y2="50"/>
+            <line x1="78" y1="50" x2="86" y2="50"/>
+            <line x1="22" y1="22" x2="28" y2="28"/>
+            <line x1="72" y1="72" x2="78" y2="78"/>
+            <line x1="78" y1="22" x2="72" y2="28"/>
+            <line x1="22" y1="78" x2="28" y2="72"/>
+          </g>
+          <circle cx="50" cy="50" r="6" fill="#a3171c"/>
+        </svg>
+      </div>
+      <div class="note-label">The legend</div>
+      <div class="note">A great tortoise rose from the River Lo with the magic square upon its shell.</div>
+      <div class="note-label">The sum</div>
+      <div class="note">Every row, column, and diagonal sums to fifteen.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 2</span></div>
+</section>
+
+
+<!-- ════ INTRO 2 ════ -->
+<section class="page" id="intro-2">
+  <div class="running"><span>Lo Shu Numerology</span><span class="who">Introduction · 2 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">How to read this report</div>
+    <h2 class="section-title">Structure &amp; method</h2>
+    <h3 class="section-sub">The grid first; then the personal numbers; then the year and the elements</h3>
+
+    <div class="text">
+      <p>This report is structured so that each focus aspect lives on its own page. That arrangement gives every theme room to breathe, and lets you read in any order, returning to whichever page you wish.</p>
+
+      <p>The first focus page presents the Lo Shu grid filled with the digits of your date of birth. The pages that follow read the personal numbers — Driver, Conductor, Kua — that the tradition derives from the same date, then describe your Year Pillar, the arrows of the grid, and the balance of the five elements.</p>
+
+      <p>Each focus carries a small icon at the top, and the calculation is shown beneath, set apart by hairlines. A standard note applies to the whole. Lo Shu numerology and Feng Shui Kua are interpretive practices from Chinese tradition. They describe character and tendencies; they do not predict events. The reader is the final authority on the reading.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Brush / calligraphy stroke -->
+          <path d="M 26 24 Q 50 50 74 76" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <ellipse cx="76" cy="76" rx="3" ry="2" fill="#1a1a1a" transform="rotate(45 76 76)"/>
+          <line x1="22" y1="20" x2="32" y2="30" stroke="#a3171c" stroke-width="1.4"/>
+        </svg>
+      </div>
+      <div class="note-label">Reading time</div>
+      <div class="note">Approximately twenty-five minutes at an unhurried pace.</div>
+      <div class="note-label">Authority</div>
+      <div class="note">Indications, never prescriptions.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 3</span></div>
+</section>
+
+
+<!-- ════ CONTENTS ════ -->
+<section class="page" id="contents">
+  <div class="running"><span>Lo Shu Numerology</span><span class="who">Contents</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Contents</div>
+    <h2 class="section-title">The seven focus pages</h2>
+    <h3 class="section-sub">Tap any title to jump to that page</h3>
+
+    <ol class="toc-list">
+      <li><a href="#grid"><span class="num">I</span><span class="name">The Lo Shu Square · your nine palaces</span><span class="pg">p. 5</span></a></li>
+      <li><a href="#driver"><span class="num">II</span><span class="name">Driver Number 7 · the day of birth</span><span class="pg">p. 6</span></a></li>
+      <li><a href="#conductor"><span class="num">III</span><span class="name">Conductor Number 3 · the life path</span><span class="pg">p. 7</span></a></li>
+      <li><a href="#kua"><span class="num">IV</span><span class="name">Kua Number 2 · West Group, Earth, Kun</span><span class="pg">p. 8</span></a></li>
+      <li><a href="#year"><span class="num">V</span><span class="name">Year Pillar · 癸巳 Yin Water Snake</span><span class="pg">p. 9</span></a></li>
+      <li><a href="#arrows"><span class="num">VI</span><span class="name">Arrows · the Determination column 1·5·9</span><span class="pg">p. 10</span></a></li>
+      <li><a href="#wuxing"><span class="num">VII</span><span class="name">Synthesis · the Wu Xing portrait</span><span class="pg">p. 11</span></a></li>
+    </ol>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Yin yang -->
+          <circle cx="50" cy="50" r="30" fill="#f4eedb" stroke="#1a1a1a" stroke-width="1.4"/>
+          <path d="M 50 20 A 30 30 0 0 1 50 80 A 15 15 0 0 1 50 50 A 15 15 0 0 0 50 20 Z" fill="#1a1a1a"/>
+          <circle cx="50" cy="35" r="3" fill="#f4eedb"/>
+          <circle cx="50" cy="65" r="3" fill="#1a1a1a"/>
+        </svg>
+      </div>
+      <div class="note-label">Key numbers</div>
+      <div class="note">Driver · 7<br>Conductor · 3<br>Kua (male) · 2 · Kun · Earth</div>
+      <div class="note-label">Year Pillar</div>
+      <div class="note">癸巳 · Yin Water Snake</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 4</span></div>
+</section>
+
+
+<!-- ════ I · GRID · .page.wide ════ -->
+<section class="page wide" id="grid">
+  <div class="running"><span>I · The Lo Shu Square</span><span class="who">Focus 1 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block"><!-- hidden on wide pages --></div>
+
+    <div class="eyebrow">Focus I · the nine palaces</div>
+    <h2 class="section-title">Your Lo Shu Square</h2>
+    <h3 class="section-sub">The digits of 16·05·1953 placed into the nine palaces · filled palaces glow vermilion · doubled palaces glow gold · empty palaces are quiet</h3>
+
+    <div class="ls-grid">
+      <div class="ls-cell">4<div class="dir">SE · Wood</div></div>
+      <div class="ls-cell has">9<div class="dir">S · Fire</div><div class="ct">×1</div></div>
+      <div class="ls-cell">2<div class="dir">SW · Earth</div></div>
+      <div class="ls-cell has">3<div class="dir">E · Wood</div><div class="ct">×1</div></div>
+      <div class="ls-cell dbl">5<div class="dir">CENTRE · Earth</div><div class="ct">×2</div></div>
+      <div class="ls-cell">7<div class="dir">W · Metal</div></div>
+      <div class="ls-cell">8<div class="dir">NE · Earth</div></div>
+      <div class="ls-cell dbl">1<div class="dir">N · Water</div><div class="ct">×2</div></div>
+      <div class="ls-cell has">6<div class="dir">NW · Metal</div><div class="ct">×1</div></div>
+    </div>
+
+    <div class="calc">
+      Digits drawn from 1·6·5·1·9·5·3<br>
+      · Filled · <strong>1, 3, 5, 6, 9</strong> · Doubled · <strong>1, 5</strong> · Absent · <strong>2, 4, 7, 8</strong>
+    </div>
+  </div>
+
+  <div class="margin-area"><!-- hidden on wide pages --></div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 5</span></div>
+</section>
+
+
+<!-- ════ II · DRIVER ════ -->
+<section class="page" id="driver">
+  <div class="running"><span>II · Driver Number</span><span class="who">Focus 2 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Hub / engine -->
+        <circle cx="50" cy="50" r="22" fill="none" stroke="#a3171c" stroke-width="1.4"/>
+        <circle cx="50" cy="50" r="6" fill="#a3171c"/>
+        <g stroke="#a3171c" stroke-width="1.2">
+          <line x1="50" y1="20" x2="50" y2="36"/>
+          <line x1="50" y1="64" x2="50" y2="80"/>
+          <line x1="20" y1="50" x2="36" y2="50"/>
+          <line x1="64" y1="50" x2="80" y2="50"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus II · the engine of the personality</div>
+    <h2 class="section-title">Driver Number 7</h2>
+    <h3 class="section-sub">命主數 — the Day Number, the inward seeker</h3>
+
+    <div class="lead">
+      <p>The day of birth, reduced, is the Driver Number — the engine of the personality, the part that pulls the chart forward.</p>
+    </div>
+
+    <div class="text">
+      <p>For the sixteenth, one plus six gives seven. Seven in the Chinese reading is the number of <em>contemplation, refinement, the inward seeker, and the connoisseur of quality</em>. Sevens prefer depth to breadth and tend to keep counsel until they have something measured to say.</p>
+
+      <p>A Driver seven is the engine of someone who studies before speaking and observes before deciding. Such people are the family's quiet expert, the firm's patient advisor, the friend whose opinion is sought sparingly but trusted absolutely. The reach of seven is not noisy, but it is unusually firm.</p>
+
+      <p>The shadow of seven is detachment. The wisdom that becomes withdrawal, the privacy that becomes isolation. The discipline of a Driver seven is to honour the inwardness without losing the cord to ordinary life — to keep depth in dialogue with company.</p>
+    </div>
+
+    <div class="calc">
+      Calculation · Day = <strong>16</strong> · 1 + 6 = <strong>7</strong> · 命主數 · the engine of the personality
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Driver</div>
+      <div class="note">命主數 — the master-of-life number, drawn from the day of birth.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Depth ↔ withdrawal. The reflection that nourishes, and the one that hides.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 6</span></div>
+</section>
+
+
+<!-- ════ III · CONDUCTOR ════ -->
+<section class="page" id="conductor">
+  <div class="running"><span>III · Conductor Number</span><span class="who">Focus 3 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Path / route -->
+        <path d="M 18 80 Q 30 60 50 60 Q 70 60 70 36 Q 70 18 86 14" fill="none" stroke="#2d6e3e" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="18" cy="80" r="3" fill="#2d6e3e"/>
+        <circle cx="86" cy="14" r="3" fill="#a3171c"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus III · the life path</div>
+    <h2 class="section-title">Conductor Number 3</h2>
+    <h3 class="section-sub">引導數 — the Life Number, the path the life is conducted along</h3>
+
+    <div class="lead">
+      <p>The full date sums and reduces to the Conductor Number — the path the life is being guided along, the larger arc the years bend toward.</p>
+    </div>
+
+    <div class="text">
+      <p>The digits of 16 May 1953 sum to thirty, which reduces to three. Three in the Lo Shu reading is <em>expansion, communication, and the unfolding of vision</em>. It is the number of those who articulate, who teach, who give visible form to inner understanding.</p>
+
+      <p>The Driver–Conductor pair of seven and three describes a private depth that comes out as articulate teaching. What looks from outside as advisory work is, on the inside, the natural overflow of long inward study. The chart is shaped to translate, not to merely accumulate.</p>
+
+      <p>The risk of a Conductor three is breadth without depth — talk that becomes its own end. The discipline is to keep the speaking grounded in the patient seven beneath, so that what is said carries weight rather than only volume.</p>
+    </div>
+
+    <div class="calc">
+      Calculation · 1+6 + 5 + 1+9+5+3 = <strong>30</strong> · 3+0 = <strong>3</strong> · 引導數 · the path of the life
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Conductor</div>
+      <div class="note">引導數 — the guide-number, drawn from the full date of birth.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Expansion ↔ thinness. The voice that travels, and the voice that disperses.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 7</span></div>
+</section>
+
+
+<!-- ════ IV · KUA ════ -->
+<section class="page" id="kua">
+  <div class="running"><span>IV · Kua Number</span><span class="who">Focus 4 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Kun trigram (☷) -->
+        <g stroke="#a3171c" stroke-width="3" stroke-linecap="round">
+          <line x1="28" y1="32" x2="44" y2="32"/>
+          <line x1="56" y1="32" x2="72" y2="32"/>
+          <line x1="28" y1="50" x2="44" y2="50"/>
+          <line x1="56" y1="50" x2="72" y2="50"/>
+          <line x1="28" y1="68" x2="44" y2="68"/>
+          <line x1="56" y1="68" x2="72" y2="68"/>
+        </g>
+        <text x="50" y="92" text-anchor="middle" font-family="serif" font-size="9" fill="#8a6d2c">☷ Kun</text>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus IV · the Feng Shui directional number</div>
+    <h2 class="section-title">Kua Number 2 · Kun</h2>
+    <h3 class="section-sub">West Group, Earth element — the receptive, the patient, the supportive</h3>
+
+    <div class="lead">
+      <p>The Kua is the Feng Shui directional number — the trigram of the chart, calculated separately for males and females from the year of birth.</p>
+    </div>
+
+    <div class="text">
+      <p>For a male born in 1953, the year-digit-sum (5+3=8) subtracted from ten gives two. Kua two belongs to the <em>West Group</em> of the eight directions, governed by the trigram <strong>Kun (☷)</strong> — three broken lines, the most receptive of the eight gua. Kun is the Earth itself: nurturing, patient, supportive, grounded in human relationship.</p>
+
+      <p>Favourable directions for a Kua two (male, West Group) are <em>north-east</em> for prosperity (Sheng Chi), <em>west</em> for health (Tien Yi), <em>north-west</em> for love and family (Yan Nian), and <em>south-west</em> for personal growth (Fu Wei). Less favourable are north, south, east, and south-east.</p>
+
+      <p>These directions traditionally guide the orientation of one's desk, bed, and front door. Read here as indications, not prescriptions — they describe the directions the chart is most at ease with, not commandments about how a house must be arranged.</p>
+    </div>
+
+    <div class="calc">
+      Calculation · Year 1953 → 5+3 = <strong>8</strong> · Male Kua = 10 − 8 = <strong>2</strong> · Trigram <strong>Kun (☷)</strong> · West Group · Earth
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Kun</div>
+      <div class="note">坤 — three broken lines. The receptive, the responsive, the earth.</div>
+      <div class="note-label">West Group</div>
+      <div class="note">Favourable directions: NE, W, NW, SW.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 8</span></div>
+</section>
+
+
+<!-- ════ V · YEAR PILLAR ════ -->
+<section class="page" id="year">
+  <div class="running"><span>V · Year Pillar</span><span class="who">Focus 5 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Snake -->
+        <path d="M 20 78 Q 30 70 30 60 Q 30 50 40 50 Q 50 50 50 40 Q 50 30 60 30 Q 70 30 70 20"
+              fill="none" stroke="#2d6e3e" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="70" cy="20" r="3" fill="#a3171c"/>
+        <path d="M 70 20 L 76 18 M 70 20 L 76 22" stroke="#a3171c" stroke-width="1" fill="none"/>
+        <!-- Water drops -->
+        <circle cx="22" cy="30" r="1.5" fill="#a3171c" opacity="0.5"/>
+        <circle cx="80" cy="60" r="1.5" fill="#a3171c" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus V · the year of birth</div>
+    <h2 class="section-title">癸巳 · Yin Water Snake</h2>
+    <h3 class="section-sub">The most contemplative of the Snake variants</h3>
+
+    <div class="lead">
+      <p>1953 is the year of the Yin Water Snake — Gui Si — the most philosophical and inwardly powerful of the six Snake variants in the sixty-year cycle.</p>
+    </div>
+
+    <div class="text">
+      <p>Water Snakes are read as quietly wise, intuitive, and inwardly powerful. They are drawn to study, to meaning, to the long observation of human nature. Their will is hidden under a calm exterior; their decisions, when finally made, are unusually firm.</p>
+
+      <p>Compatibility within the Chinese zodiac places the Snake's strongest natural alliances with the Ox and the Rooster, forming the San He triangle of the three harmonies of the Snake. Most testing dynamics are with the Tiger and the Pig — opposite or perpendicular signs in the cycle.</p>
+
+      <p>The lucky elements for a Water Snake are Metal and Water; the lucky colours are black, deep blue, gold, and white. The sign reinforces the Driver-seven and Conductor-three pattern of the chart — Snake's quietness and Water's depth amplify the same inwardness the Lo Shu grid already shows.</p>
+    </div>
+
+    <div class="calc">
+      Year Pillar · <strong>癸巳 · Gui Si</strong> · Heavenly Stem · Yin Water · Earthly Branch · Snake (Si)
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Gui</div>
+      <div class="note">癸 — the tenth heavenly stem. Yin Water — still pools, deep wells, hidden currents.</div>
+      <div class="note-label">Si</div>
+      <div class="note">巳 — the Snake. Wisdom held in stillness.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 9</span></div>
+</section>
+
+
+<!-- ════ VI · ARROWS ════ -->
+<section class="page" id="arrows">
+  <div class="running"><span>VI · Arrows</span><span class="who">Focus 6 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Arrow up -->
+        <line x1="50" y1="86" x2="50" y2="20" stroke="#a3171c" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 50 14 L 40 28 L 60 28 Z" fill="#a3171c"/>
+        <circle cx="50" cy="76" r="3" fill="#8a6d2c"/>
+        <circle cx="50" cy="56" r="3" fill="#8a6d2c"/>
+        <circle cx="50" cy="36" r="3" fill="#8a6d2c"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VI · the arrow present</div>
+    <h2 class="section-title">The Arrow of Determination</h2>
+    <h3 class="section-sub">1 · 5 · 9 — the centre column fully present, doubled at the source</h3>
+
+    <div class="lead">
+      <p>When all three numbers of a row, column, or diagonal of the Lo Shu grid appear in the chart, an <em>arrow</em> forms — a fully present line of strength, traditionally read as a gift the chart carries from birth.</p>
+    </div>
+
+    <div class="text">
+      <p>The vertical centre column of the grid — North 1, Centre 5, South 9 — is fully present in your chart, and both 1 and 5 appear twice. This is the <em>Arrow of Determination</em>, sometimes called the Plane of Will. It is one of the most powerful arrows the Lo Shu can show.</p>
+
+      <p>It signals extraordinary perseverance, the ability to keep going long after others stop, and the rare gift of seeing a project through to completion. Doubled at the source (the centre 5) and doubled at the foundation (the north 1), the arrow here is unusually strong — the will is reinforced both at the seat and at its grounding.</p>
+
+      <p>No row, column, or diagonal in your chart is entirely empty, which means there is <em>no full arrow of weakness</em>. The grid has gaps — the absent palaces are 2, 4, 7, and 8 — but no plane of complete absence. The reading is taken as a balanced constitution with cultivable, rather than fundamental, growth areas.</p>
+    </div>
+
+    <div class="calc">
+      Arrow present · <strong>1 (×2) — 5 (×2) — 9 (×1)</strong> · the centre column · fully present, doubled at the source · No arrow of weakness in this chart
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">The Arrow of Will</div>
+      <div class="note">Vertical 1·5·9 — perseverance and the gift of completion.</div>
+      <div class="note-label">Absences</div>
+      <div class="note">2 · 4 · 7 · 8 — partial gaps, no full arrow of weakness.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 10</span></div>
+</section>
+
+
+<!-- ════ VII · WU XING SYNTHESIS ════ -->
+<section class="page icon-right" id="wuxing">
+  <div class="running"><span>VII · Synthesis · Wu Xing</span><span class="who">Focus 7 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Five element pentagon -->
+        <g stroke="#8a6d2c" stroke-width="0.6" fill="none">
+          <path d="M 50 18 L 80 40 L 68 76 L 32 76 L 20 40 Z"/>
+          <line x1="50" y1="18" x2="68" y2="76"/>
+          <line x1="50" y1="18" x2="32" y2="76"/>
+          <line x1="80" y1="40" x2="32" y2="76"/>
+          <line x1="80" y1="40" x2="20" y2="40"/>
+          <line x1="20" y1="40" x2="68" y2="76"/>
+        </g>
+        <g font-family="serif" font-size="8" font-weight="700">
+          <text x="50" y="14" text-anchor="middle" fill="#2d6e3e">木</text>
+          <text x="86" y="42" text-anchor="middle" fill="#a3171c">火</text>
+          <text x="72" y="84" text-anchor="middle" fill="#8a6d2c">土</text>
+          <text x="28" y="84" text-anchor="middle" fill="#1a1a1a">水</text>
+          <text x="14" y="42" text-anchor="middle" fill="#8a6d2c">金</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VII · the portrait</div>
+    <h2 class="section-title">Synthesis · the Wu Xing Portrait</h2>
+    <h3 class="section-sub">Unforced authority — five elements, no silence</h3>
+
+    <div class="lead">
+      <p>The Lo Shu reading describes a person whose grid is centred on a doubled five — the Emperor's seat — and a doubled one — clear self-expression — held together by the full Arrow of Determination running North-Centre-South.</p>
+    </div>
+
+    <div class="text">
+      <p>All five Wu Xing elements are represented in the chart. Water is strong (1, doubled). Earth is strong (5, doubled, reinforced by Kua 2). Wood is present (3). Fire is present (9). Metal is present (6). The chart is therefore <em>elementally complete</em> — none of the five is silent, even though some are quieter than others.</p>
+
+      <p>The Driver is the contemplative seven; the Conductor is the expansive three; the Kua is the receptive Kun-Earth two of the West Group; the Year Pillar is Yin Water Snake — quiet, philosophical, deeply observant, and unusually firm once decided. The lessons of the chart — partnerships, structure, empathy, formal organisation — sit in the absent palaces 2, 4, 7, and 8, and are areas to cultivate rather than fundamental gaps.</p>
+
+      <p>It is the chart of <em>unforced authority</em>. A centred individual with strong will and a complete elemental field, whose preferred mode is depth rather than display, and whose presence is the kind that other people quietly orient around.</p>
+
+      <p class="chinese">千里之行，始於足下 — a journey of a thousand <em>li</em> begins beneath one's feet.</p>
+      <p class="fine">— Lao Tzu</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="icon-echo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#8a6d2c" stroke-width="0.6" fill="none">
+            <path d="M 50 18 L 80 40 L 68 76 L 32 76 L 20 40 Z"/>
+            <line x1="50" y1="18" x2="68" y2="76"/>
+            <line x1="50" y1="18" x2="32" y2="76"/>
+            <line x1="80" y1="40" x2="32" y2="76"/>
+            <line x1="80" y1="40" x2="20" y2="40"/>
+            <line x1="20" y1="40" x2="68" y2="76"/>
+          </g>
+          <g font-family="serif" font-size="8" font-weight="700">
+            <text x="50" y="14" text-anchor="middle" fill="#2d6e3e">木</text>
+            <text x="86" y="42" text-anchor="middle" fill="#a3171c">火</text>
+            <text x="72" y="84" text-anchor="middle" fill="#8a6d2c">土</text>
+            <text x="28" y="84" text-anchor="middle" fill="#1a1a1a">水</text>
+            <text x="14" y="42" text-anchor="middle" fill="#8a6d2c">金</text>
+          </g>
+        </svg>
+      </div>
+      <div class="note-label">The chord</div>
+      <div class="note">Driver 7 · Conductor 3 · Kua 2 · Year-Pillar Yin Water Snake.</div>
+      <div class="note-label">The keynote</div>
+      <div class="note">The doubled centre five and the full Arrow of Determination.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading · End</span><span>Page 11</span></div>
+</section>
+
+</body>
+</html>

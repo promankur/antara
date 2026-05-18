@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Chaldean Numerology — A Personal Reading for Ankur Gupta</title>
+<style>
+  /* ─────────── Antara Personal Reading — V3 template ─────────── */
+  @page { size: A4 portrait; margin: 0; }
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #d6c69a; }
+  body {
+    font-family: "Cormorant Garamond","Iowan Old Style","Palatino Linotype",Georgia,serif;
+    font-size: 12pt; line-height: 1.5;
+    color: #3a2818; -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─────────── Cultural palette: Babylonian ─────────── */
+  :root {
+    --paper:#e8d4a8;
+    --paper-2:#dcc593;
+    --ink:#3a2818;
+    --ink-2:#5a3f25;
+    --lapis:#1f4e8a;
+    --lapis-soft:#7d9bc1;
+    --terracotta:#a0522d;
+    --turquoise:#2d8a8e;
+    --gold:#a87825;
+    --rule:#b59554;
+    --muted:#7a5d34;
+
+    --page-w:210mm; --page-h:297mm;
+    --pad-top:17mm; --pad-bot:32mm;
+    --pad-left:25mm; --pad-right:22mm;
+    --col-text:125mm; --col-gap:6mm; --col-margin:32mm;
+    --content-w:163mm; --content-h:248mm; --content-top-pad:6mm;
+  }
+
+  .page{
+    width:var(--page-w); height:var(--page-h);
+    background:var(--paper);
+    margin:8mm auto;
+    padding:var(--pad-top) var(--pad-right) var(--pad-bot) var(--pad-left);
+    position:relative; box-shadow:0 4px 18px rgba(0,0,0,0.18);
+    page-break-after:always; break-after:page;
+    display:grid; grid-template-columns: var(--col-text) var(--col-margin); column-gap: var(--col-gap);
+  }
+  .page:last-child{ page-break-after:auto; break-after:auto; }
+
+  /* .page.wide — full-width single column */
+  .page.wide{ grid-template-columns: 1fr; column-gap: 0; }
+  .page.wide .margin-area{ display:none; }
+
+  /* .page.icon-right — icon moves to upper margin, recovering vertical space */
+  .page.icon-right .content > .icon-block{ display:none; }
+
+  .page::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(31,78,138,0.04), transparent 40%),
+      radial-gradient(circle at 88% 90%, rgba(160,82,45,0.05), transparent 40%);
+    mix-blend-mode:multiply;
+  }
+
+  /* Babylonian ziggurat / cuneiform top border at 9mm */
+  .page::after{
+    content:"";position:absolute;
+    left:var(--pad-left); right:var(--pad-right);
+    top:9mm; height:6mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><g stroke='%23a87825' stroke-width='1' fill='none'><path d='M0 12 L4 12 L4 8 L8 8 L8 4 L12 4 L12 8 L16 8 L16 12 L20 12'/><path d='M20 12 L24 12 L24 8 L28 8 L28 4 L32 4 L32 8 L36 8 L36 12 L40 12'/><path d='M40 12 L44 12 L44 8 L48 8 L48 4 L52 4 L52 8 L56 8 L56 12 L60 12'/><path d='M60 12 L64 12 L64 8 L68 8 L68 4 L72 4 L72 8 L76 8 L76 12 L80 12'/></g><g fill='%23a87825'><circle cx='10' cy='2' r='0.6'/><circle cx='30' cy='2' r='0.6'/><circle cx='50' cy='2' r='0.6'/><circle cx='70' cy='2' r='0.6'/></g></svg>");
+    background-repeat:repeat-x; background-size:auto 6mm; opacity:.85;
+  }
+
+  .content{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+  }
+  .margin-area{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+  }
+
+  .running{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); top:5mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; letter-spacing:.18em; text-transform:uppercase; color:var(--terracotta);
+    font-family:"Iowan Old Style",Georgia,serif; font-weight:600;
+  }
+  .running .who{ color:var(--ink-2); letter-spacing:.12em; }
+
+  .pgfoot{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); bottom:14mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; color:var(--muted); letter-spacing:.06em;
+  }
+  .pgfoot::before{
+    content:""; position:absolute; left:0; right:0; top:-6mm; height:0.4mm;
+    background:var(--rule); opacity:.55;
+  }
+
+  h1.cover-title{
+    font-size:32pt; font-weight:600; color:var(--ink);
+    letter-spacing:.06em; line-height:1.15; margin-bottom:6mm;
+    font-variant:small-caps;
+  }
+  h2.section-title{
+    font-size:18pt; font-weight:600; color:var(--ink);
+    letter-spacing:.02em; line-height:1.2; margin-bottom:4mm;
+  }
+  h3.section-sub{
+    font-size:11pt; font-style:italic; color:var(--terracotta); font-weight:400;
+    margin-bottom:8mm; letter-spacing:.02em; line-height:1.4;
+  }
+  .eyebrow{
+    font-size:10pt; letter-spacing:.32em; text-transform:uppercase; color:var(--terracotta);
+    font-weight:600; font-family:"Iowan Old Style",Georgia,serif; margin-bottom:3mm;
+  }
+  .lapis{ font-family:"Cormorant Garamond",Georgia,serif; color:var(--lapis); font-style:italic; letter-spacing:.04em; }
+
+  .text > p{ font-size:12pt; line-height:1.5; color:var(--ink); margin:0 0 12pt; }
+  .text > p:last-child{ margin-bottom:0; }
+  .lead{ margin-bottom:8mm; }
+  .lead > p{ font-size:13pt; line-height:1.5; color:var(--ink-2); font-style:italic; margin:0 0 6pt; }
+  .lead > p:last-child{ margin-bottom:0; }
+
+  .calc{
+    font-family:"Iowan Old Style",Georgia,serif;
+    font-size:10pt; line-height:1.5; color:var(--terracotta);
+    border-top:0.4mm solid var(--rule); border-bottom:0.4mm solid var(--rule);
+    padding:4mm 0; margin:8mm 0 0; letter-spacing:.02em;
+  }
+  .calc strong{ color:var(--ink); font-weight:600; }
+  .fine{ font-size:10pt; line-height:1.5; color:var(--muted); font-style:italic; }
+
+  /* Cover — centred single column */
+  .cover{
+    grid-template-columns: 1fr;
+    text-align:center; align-content:center; padding-top:42mm;
+  }
+  .cover .markline{
+    margin:0 auto 14mm; width:60mm; height:5mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><g stroke='%23a87825' stroke-width='1.4' fill='none'><path d='M0 12 L4 12 L4 8 L8 8 L8 4 L12 4 L12 8 L16 8 L16 12 L20 12'/><path d='M20 12 L24 12 L24 8 L28 8 L28 4 L32 4 L32 8 L36 8 L36 12 L40 12'/><path d='M40 12 L44 12 L44 8 L48 8 L48 4 L52 4 L52 8 L56 8 L56 12 L60 12'/><path d='M60 12 L64 12 L64 8 L68 8 L68 4 L72 4 L72 8 L76 8 L76 12 L80 12'/></g></svg>");
+    background-repeat:repeat-x; background-size:auto 5mm;
+  }
+  .cover .greek-eyebrow{
+    font-size:11pt; letter-spacing:.4em; text-transform:uppercase; color:var(--terracotta);
+    margin-bottom:8mm; font-weight:600;
+  }
+  .cover .arithmos{
+    font-size:14pt; color:var(--lapis); font-style:italic; letter-spacing:.06em;
+    margin-bottom:12mm;
+  }
+  .cover .person{ font-size:13pt; color:var(--ink); margin-top:14mm; line-height:1.7; }
+  .cover .person .lbl{
+    font-size:10pt; letter-spacing:.22em; text-transform:uppercase; color:var(--muted);
+    font-weight:600; margin-right:6mm;
+  }
+  .cover .ziggurat{ margin:18mm auto 0; width:55mm; height:50mm; display:flex; align-items:center; justify-content:center; }
+
+  .toc-list{ list-style:none; padding:0; margin:0; }
+  .toc-list li{
+    display:grid; grid-template-columns:8mm 1fr auto; gap:4mm;
+    align-items:baseline; padding:4mm 0;
+    border-bottom:0.3mm dashed var(--rule); font-size:12pt;
+  }
+  .toc-list li:last-child{ border-bottom:none; }
+  .toc-list .num{ color:var(--terracotta); font-variant-numeric:tabular-nums; font-weight:600; }
+  .toc-list .name{ color:var(--ink); }
+  .toc-list .pg{ color:var(--muted); font-size:10pt; letter-spacing:.06em; }
+  .toc-list a{ text-decoration:none; color:inherit; display:contents; }
+  .toc-list a:hover .name{ color:var(--lapis); }
+
+  /* V3 Chaldean: icons bumped up from 28mm to 32mm */
+  .icon-block{ width:32mm; height:32mm; margin-bottom:5mm; display:flex; align-items:center; justify-content:center; }
+  .icon-block svg{ width:100%; height:100%; }
+
+  .marginalia{
+    padding-top:12mm; color:var(--muted);
+    font-size:10pt; line-height:1.5; font-style:italic;
+  }
+  .marginalia .ornament{ width:28mm; height:28mm; margin-bottom:8mm; opacity:.6; }
+  .marginalia .note-label{
+    font-size:9pt; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--terracotta); font-weight:600; font-style:normal; margin-bottom:2mm;
+  }
+  .marginalia .note{ margin-bottom:8mm; }
+  .marginalia .note:last-child{ margin-bottom:0; }
+
+  @media print{
+    html, body{ background:#fff; } body{ padding:0; }
+    .page{ margin:0; box-shadow:none; page-break-after:always; break-after:page; }
+    .page:last-child{ page-break-after:auto; break-after:auto; }
+  }
+  @media screen{ body{ padding:14mm 0; } }
+</style>
+</head>
+<body>
+
+<!-- ════ COVER ════ -->
+<section class="page cover" id="cover">
+  <div class="markline"></div>
+  <div class="arithmos">𒁹𒁹𒁹 — the reading of the Magi</div>
+  <h1 class="cover-title">Chaldean Numerology</h1>
+  <div class="arithmos" style="margin-top:6mm">A reading from the oldest school — the priests of Babylon</div>
+
+  <div class="ziggurat">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 20 86 L 80 86 L 80 76 L 28 76 L 28 66 L 72 66 L 72 56 L 36 56 L 36 46 L 64 46 L 64 38 L 50 38 L 50 30 Z"
+            fill="none" stroke="#a87825" stroke-width="1.4"/>
+      <line x1="20" y1="86" x2="80" y2="86" stroke="#a87825" stroke-width="1.6"/>
+      <g fill="#1f4e8a" stroke="#1f4e8a" stroke-width="0.5">
+        <circle cx="50" cy="20" r="2"/>
+        <line x1="50" y1="13" x2="50" y2="27" stroke="#1f4e8a" stroke-width="0.8"/>
+        <line x1="43" y1="20" x2="57" y2="20" stroke="#1f4e8a" stroke-width="0.8"/>
+        <line x1="45" y1="15" x2="55" y2="25" stroke="#1f4e8a" stroke-width="0.6"/>
+        <line x1="55" y1="15" x2="45" y2="25" stroke="#1f4e8a" stroke-width="0.6"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="person">
+    <div>Ankur Gupta</div>
+    <div>16 May 1953 · Saturday</div>
+    <div>Chakrata, Uttarakhand</div>
+  </div>
+
+  <div class="pgfoot" style="display:block;text-align:center;">
+  <div style="font-size:10.5pt;font-weight:700;letter-spacing:.18em;color:var(--gold,#a88842);">ANTARA PERSONAL READING</div>
+  <div style="font-size:9.5pt;font-style:italic;letter-spacing:.08em;color:var(--gold,#a88842);margin-top:1.5mm;">interpretative, not Predictive</div>
+</div>
+</section>
+
+
+<!-- ════ INTRO 1 ════ -->
+<section class="page" id="intro-1">
+  <div class="running"><span>Chaldean Numerology</span><span class="who">Introduction · 1 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Introduction</div>
+    <h2 class="section-title">What this report is about</h2>
+    <h3 class="section-sub">The oldest of the numerologies — Babylon, the Magi, and the planets in the letters</h3>
+
+    <div class="text">
+      <p>Chaldean numerology is older than Pythagoras. Its roots lie in the temple-schools of Mesopotamia, in the cities of Babylon and Ur, where priests called <em>Magi</em> developed an art of reading meaning in numbers, names and the movements of the heavens, more than two thousand years before the common era.</p>
+
+      <p>The defining feature of the Chaldean system is that every letter carries the vibration of a planet. The numbers run from one to eight; the number nine, considered sacred, is reserved and never assigned to a letter. Each digit corresponds to one of the visible planets in the ancient sky.</p>
+
+      <p>The compound number is read first. Where Pythagorean tradition reduces sums to a single digit, Chaldean preserves the compound — the number 38, for example, is read as a number in its own right before being reduced. The compound carries the karmic flavour; the reduction carries the everyday tone.</p>
+
+      <p>This report draws three numbers from your name and date of birth — the Psychic, the Destiny and the Name — and reads them with their compounds, with the day of the week as a fourth note, and with the auspicious indications the tradition associates with each.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="22" y="22" width="56" height="56" rx="4" fill="none" stroke="#a87825" stroke-width="1.2"/>
+          <g stroke="#a87825" stroke-width="0.8" fill="none">
+            <path d="M 30 36 L 36 36 L 36 32"/>
+            <path d="M 42 36 L 48 36 L 48 32"/>
+            <path d="M 30 46 L 38 46"/>
+            <path d="M 30 56 L 36 56 L 36 52"/>
+            <path d="M 44 56 L 50 56 L 50 52"/>
+            <path d="M 56 56 L 62 56 L 62 52"/>
+            <path d="M 30 66 L 40 66"/>
+            <path d="M 46 66 L 56 66"/>
+          </g>
+        </svg>
+      </div>
+      <div class="note-label">Antiquity</div>
+      <div class="note">The Chaldean system predates Pythagoras by perhaps two millennia.</div>
+      <div class="note-label">The number nine</div>
+      <div class="note">Sacred and unassigned. It appears as a result of reduction but never as a letter value.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 2</span></div>
+</section>
+
+
+<!-- ════ INTRO 2 ════ -->
+<section class="page" id="intro-2">
+  <div class="running"><span>Chaldean Numerology</span><span class="who">Introduction · 2 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">How to read this report</div>
+    <h2 class="section-title">Structure &amp; method</h2>
+    <h3 class="section-sub">Three numbers, the compounds beneath them, and the planet behind each</h3>
+
+    <div class="text">
+      <p>This report is structured so that each focus aspect lives on its own page, allowing every theme room to breathe. You may read in any order, returning to whichever page you wish.</p>
+
+      <p>The contents page that follows lists every focus with a hyperlink. In a browser or PDF you may tap any title to jump directly to the relevant page.</p>
+
+      <p>Each focus carries a small icon and the planet that rules its number. The body of each page is set in measured paragraphs, and the calculation that produced each number is shown beneath, set apart by hairlines.</p>
+
+      <p>A standard note applies to the whole. Chaldean numerology is an interpretive tradition, not a system of prediction. It describes character and likely tendencies; it does not foretell events. Read it as one reflective frame among many.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="50" cy="50" rx="8" ry="8" fill="none" stroke="#1f4e8a" stroke-width="1.2"/>
+          <path d="M 22 50 Q 35 42 42 50" fill="none" stroke="#a87825" stroke-width="1"/>
+          <path d="M 22 50 Q 35 58 42 50" fill="none" stroke="#a87825" stroke-width="1"/>
+          <path d="M 78 50 Q 65 42 58 50" fill="none" stroke="#a87825" stroke-width="1"/>
+          <path d="M 78 50 Q 65 58 58 50" fill="none" stroke="#a87825" stroke-width="1"/>
+          <path d="M 50 30 L 50 25 M 50 70 L 50 75" stroke="#1f4e8a" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="note-label">Reading time</div>
+      <div class="note">Approximately twenty-five minutes at an unhurried pace.</div>
+      <div class="note-label">Authority</div>
+      <div class="note">The reader is the final authority on the reading.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 3</span></div>
+</section>
+
+
+<!-- ════ CONTENTS ════ -->
+<section class="page" id="contents">
+  <div class="running"><span>Chaldean Numerology</span><span class="who">Contents</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Contents</div>
+    <h2 class="section-title">The seven focus pages</h2>
+    <h3 class="section-sub">Tap any title to jump to that page</h3>
+
+    <ol class="toc-list">
+      <li><a href="#psychic"><span class="num">I</span><span class="name">Psychic Number 7 · Ketu — the inner self</span><span class="pg">p. 5</span></a></li>
+      <li><a href="#destiny"><span class="num">II</span><span class="name">Destiny Number 3 · Jupiter — the path</span><span class="pg">p. 6</span></a></li>
+      <li><a href="#name"><span class="num">III</span><span class="name">Name Number 2 · Moon — how others meet you</span><span class="pg">p. 7</span></a></li>
+      <li><a href="#compounds"><span class="num">IV</span><span class="name">The Compound Numbers · Cheiro's reading</span><span class="pg">p. 8</span></a></li>
+      <li><a href="#day"><span class="num">V</span><span class="name">The Day of Birth · Saturn beneath</span><span class="pg">p. 9</span></a></li>
+      <li><a href="#auspicious"><span class="num">VI</span><span class="name">Auspicious Indications · day, colour, stone</span><span class="pg">p. 10</span></a></li>
+      <li><a href="#synthesis"><span class="num">VII</span><span class="name">Synthesis · the Chaldean portrait</span><span class="pg">p. 11</span></a></li>
+    </ol>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 20 78 L 80 78 L 80 60 Q 80 40 65 40 L 65 30 Q 70 28 70 22 Q 70 18 64 18 Q 58 18 58 22 L 58 38 L 50 38 L 50 60 L 30 60 L 30 70 L 20 70 Z" fill="none" stroke="#a87825" stroke-width="1.2"/>
+          <circle cx="64" cy="22" r="0.8" fill="#a87825"/>
+          <line x1="50" y1="50" x2="40" y2="60" stroke="#a87825" stroke-width="0.6"/>
+        </svg>
+      </div>
+      <div class="note-label">Key numbers</div>
+      <div class="note">Psychic · 7 · Ketu<br>Destiny · 3 · Jupiter<br>Name · 38 → 11 → 2 · Moon</div>
+      <div class="note-label">Day of birth</div>
+      <div class="note">Saturday — Saturn (Shani)</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 4</span></div>
+</section>
+
+
+<!-- ════ I · PSYCHIC ════ -->
+<section class="page" id="psychic">
+  <div class="running"><span>I · Psychic Number</span><span class="who">Focus 1 of 7</span></div>
+
+  <div class="content">
+    <!-- Icon bumped to 32mm (V3 Chaldean spec) -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 60 18 A 32 32 0 1 0 60 82 A 26 26 0 1 1 60 18 Z" fill="#1f4e8a" stroke="#1f4e8a" stroke-width="1"/>
+        <circle cx="35" cy="50" r="2" fill="#a87825"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus I · the inner self</div>
+    <h2 class="section-title">Psychic Number 7</h2>
+    <h3 class="section-sub">Ketu — the mystic, the seeker, the one half-visible</h3>
+
+    <div class="lead">
+      <p>The day of birth is the Psychic Number — what the soul knows of itself before it speaks. Sixteen reduces to seven.</p>
+    </div>
+
+    <div class="text">
+      <p>Seven in the Chaldean–Indian planetary scheme is the number of <em>Ketu</em>, the south node of the Moon — the half-visible point in the sky associated with the mystic and the seeker. Sevens are introspective, intuitive, drawn to philosophy and to anything that sits behind the surface of things.</p>
+
+      <p>A Psychic seven prefers depth to breadth. It tests the world by quiet observation rather than declaration. It values privacy as oxygen, study as nourishment, and the kind of solitude that returns you to yourself rather than the kind that hides you from the world.</p>
+
+      <p>The compound 16, before reduction, is preserved in Chaldean tradition. Cheiro called it a number of <em>karmic awakening through reversal</em> — a warning against overconfident authority, balanced by an unusual capacity for spiritual depth. The lesson lives in the awareness, not in fate.</p>
+    </div>
+
+    <div class="calc">
+      Calculation · Day = <strong>16</strong> · 1 + 6 = <strong>7</strong> · Compound 16 preserved before reduction · Planetary lord: <strong>Ketu</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">In Chaldean</div>
+      <div class="note">Ketu (the south node) is the planet of withdrawal, mysticism, and quiet inheritance.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Depth ↔ retreat. The reflection that nourishes, and the one that hides.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 5</span></div>
+</section>
+
+
+<!-- ════ II · DESTINY ════ -->
+<section class="page" id="destiny">
+  <div class="running"><span>II · Destiny Number</span><span class="who">Focus 2 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Lightning of Marduk (Jupiter) -->
+        <path d="M 56 14 L 36 50 L 50 50 L 38 86 L 70 42 L 56 42 Z" fill="#a87825" stroke="#3a2818" stroke-width="0.8"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus II · the path</div>
+    <h2 class="section-title">Destiny Number 3</h2>
+    <h3 class="section-sub">Jupiter — wisdom, expansion, the teacher's path</h3>
+
+    <div class="lead">
+      <p>The Destiny is the sum of the entire date of birth, reduced. It describes the path the life is being shaped to take.</p>
+    </div>
+
+    <div class="text">
+      <p>For 16 May 1953 the digits sum to thirty, which reduces to three. Three is the number of <em>Jupiter</em> — the planet the Babylonians associated with their chief god Marduk: expansion, wisdom, philosophy, prosperity through learning, and the office of the teacher.</p>
+
+      <p>Jupiter destinies tend toward roles where one explains, advises, or guides. Such people are sought out for counsel — they become, over time, a quiet authority others orient around. The reach of three is not loud, but it travels.</p>
+
+      <p>The combination of a Ketu Psychic and a Jupiter Destiny is the classical signature of the <em>scholar–elder</em>: introspective by nature, expansive by fate. Inner stillness produces outer wisdom; private depth becomes public counsel.</p>
+    </div>
+
+    <div class="calc">
+      Calculation · 5 + 1 + 6 + 1 + 9 + 5 + 3 = <strong>30</strong> · 3 + 0 = <strong>3</strong> · Planetary lord: <strong>Jupiter</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Marduk</div>
+      <div class="note">The chief god of Babylon, lord of wisdom — Jupiter in the planetary tradition.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Wisdom ↔ pronouncement. The teacher who listens, and the teacher who only declaims.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 6</span></div>
+</section>
+
+
+<!-- ════ III · NAME ════ -->
+<section class="page" id="name">
+  <div class="running"><span>III · Name Number</span><span class="who">Focus 3 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 70 20 A 30 30 0 1 0 70 80 A 24 24 0 1 1 70 20 Z" fill="#1f4e8a"/>
+        <circle cx="50" cy="20" r="1.5" fill="#a87825"/>
+        <circle cx="55" cy="80" r="1.5" fill="#a87825"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus III · how others meet you</div>
+    <h2 class="section-title">Name Number 2</h2>
+    <h3 class="section-sub">The Moon — sensitive, perceptive, gentle in encounter</h3>
+
+    <div class="lead">
+      <p>The Name Number is the sum of the Chaldean letter values of the name, reduced. It speaks for how the world experiences the bearer.</p>
+    </div>
+
+    <div class="text">
+      <p>The Chaldean letters of <em>Ankur Gupta</em> sum to thirty-eight, which reduces through eleven to two. Two is the number of the <em>Moon</em> — sensitivity, receptivity, attunement to people, and a quiet persuasiveness.</p>
+
+      <p>A Moon-toned name softens the harder edges of a Jupiter destiny. The way one is <em>known</em> by others is gentler than the underlying ambition. Two listens before it answers; it reads a room rather than entering one.</p>
+
+      <p>The undertone of eleven within the thirty-eight is significant. Eleven is treated in Chaldean tradition as a master vibration — a number of intuitive insight available to those who live consciously with it. The name therefore carries a soft outer presence and an unusually strong inner perception.</p>
+    </div>
+
+    <div class="calc">
+      Calculation · A·N·K·U·R = 1+5+2+6+2 = <strong>16</strong> · G·U·P·T·A = 3+6+8+4+1 = <strong>22</strong> · Total <strong>38</strong> → 11 → <strong>2</strong> · Planetary lord: <strong>Moon</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Sin</div>
+      <div class="note">The Babylonian name for the Moon — the most adored god of Ur, source of all calendar-keeping.</div>
+      <div class="note-label">Master eleven</div>
+      <div class="note">Read consciously, eleven is intuitive insight. Read unconsciously, it is restlessness.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 7</span></div>
+</section>
+
+
+<!-- ════ IV · COMPOUNDS ════ -->
+<section class="page" id="compounds">
+  <div class="running"><span>IV · Compounds</span><span class="who">Focus 4 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="60" width="60" height="22" rx="2" fill="none" stroke="#a87825" stroke-width="1.2"/>
+        <rect x="24" y="42" width="56" height="22" rx="2" fill="none" stroke="#a87825" stroke-width="1.2"/>
+        <rect x="28" y="24" width="52" height="22" rx="2" fill="none" stroke="#a87825" stroke-width="1.2"/>
+        <g stroke="#a87825" stroke-width="0.7" fill="none">
+          <path d="M 32 32 L 36 32 M 40 32 L 44 32 M 48 32 L 52 32 M 56 32 L 60 32 M 64 32 L 68 32"/>
+          <path d="M 28 50 L 32 50 M 36 50 L 40 50 M 44 50 L 48 50 M 52 50 L 56 50 M 60 50 L 64 50 M 68 50 L 72 50"/>
+          <path d="M 24 68 L 28 68 M 32 68 L 36 68 M 40 68 L 44 68 M 48 68 L 52 68 M 56 68 L 60 68 M 64 68 L 68 68 M 72 68 L 76 68"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus IV · the karmic numbers beneath</div>
+    <h2 class="section-title">The Compound Numbers</h2>
+    <h3 class="section-sub">Cheiro's reading of 16, 38, and 30</h3>
+
+    <div class="lead">
+      <p>Where Pythagorean tradition reduces, Chaldean preserves. The compound is read first, and read in its own right.</p>
+    </div>
+
+    <div class="text">
+      <p>The compound <strong>16</strong> beneath the Psychic seven is sometimes called <em>the Shattered Citadel</em>. The classical reading describes a number of karmic awakening through reversal — a warning against pride and overconfident authority, balanced by an unusual capacity for spiritual depth. Forewarned, the compound becomes useful; ignored, it operates on the chart from below.</p>
+
+      <p>The compound <strong>38</strong> beneath the Name two reduces through eleven, which is itself a master vibration. The reading is gentle outer presence carrying unusually strong inner perception — a name that listens before it answers and sees more than it lets on.</p>
+
+      <p>The compound <strong>30</strong> beneath the Destiny three is pure Jupiter expressed in its destiny form. Read as <em>thoughtful retreat that becomes wise counsel</em> — one who withdraws to think, and returns with answers others did not see.</p>
+    </div>
+
+    <div class="calc">
+      Three compounds · <strong>16</strong> beneath the Psychic · <strong>38</strong> beneath the Name · <strong>30</strong> beneath the Destiny
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Cheiro</div>
+      <div class="note">Count Louis Hamon — the Edwardian numerologist who codified the Chaldean compound readings still used today.</div>
+      <div class="note-label">Reading order</div>
+      <div class="note">Compound first; reduction second.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 8</span></div>
+</section>
+
+
+<!-- ════ V · DAY ════ -->
+<section class="page" id="day">
+  <div class="running"><span>V · Day of Birth</span><span class="who">Focus 5 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="50" cy="50" rx="22" ry="22" fill="none" stroke="#1f4e8a" stroke-width="1.6"/>
+        <ellipse cx="50" cy="50" rx="36" ry="9" fill="none" stroke="#a87825" stroke-width="1.4" transform="rotate(-20 50 50)"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus V · the day-lord beneath the chart</div>
+    <h2 class="section-title">The Day of Birth</h2>
+    <h3 class="section-sub">Saturday — ruled by Saturn (Shani), the patient planet</h3>
+
+    <div class="lead">
+      <p>The day of the week of one's birth is the day-lord, a fourth note that overlays the three numbers above.</p>
+    </div>
+
+    <div class="text">
+      <p>16 May 1953 was a Saturday. The day-lord is therefore <em>Saturn</em> — Shani in the Indian tradition, Ninurta in the older Mesopotamian one. Saturn lays the discipline of long timelines onto the chart: patience, gravitas, the willingness to wait for things to ripen on their own time.</p>
+
+      <p>Layered onto a Ketu–Jupiter–Moon foundation, Saturn gives the whole the gravity of someone who has done the work. Decisions take longer. Opinions are formed slowly. Once formed, they are unusually firm.</p>
+
+      <p>Saturn-born natives are often understood late and well, rather than early and partially. They mature steadily across decades. The cost of Saturn is melancholy when patience hardens into gloom; the gift of Saturn is a depth that the lighter planets cannot manufacture.</p>
+    </div>
+
+    <div class="calc">
+      16 May 1953 · day of week: <strong>Saturday</strong> · day-lord: <strong>Saturn (Shani)</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Ninurta</div>
+      <div class="note">Babylonian god of patient labour — the Mesopotamian face of Saturn.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Patience ↔ delay. The wait that ripens, and the wait that frustrates.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 9</span></div>
+</section>
+
+
+<!-- ════ VI · AUSPICIOUS ════ -->
+<section class="page" id="auspicious">
+  <div class="running"><span>VI · Auspicious Indications</span><span class="who">Focus 6 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="32" fill="none" stroke="#a87825" stroke-width="1.4"/>
+        <path d="M 50 22 L 56 50 L 50 78 L 44 50 Z" fill="#1f4e8a" stroke="#1f4e8a" stroke-width="0.5"/>
+        <line x1="22" y1="50" x2="78" y2="50" stroke="#a87825" stroke-width="0.6"/>
+        <text x="50" y="20" text-anchor="middle" font-family="serif" font-size="9" fill="#a87825">N</text>
+        <text x="50" y="90" text-anchor="middle" font-family="serif" font-size="9" fill="#a87825">S</text>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VI · day, colour, stone</div>
+    <h2 class="section-title">Auspicious Indications</h2>
+    <h3 class="section-sub">The traditional supports the school associates with this chart</h3>
+
+    <div class="lead">
+      <p>The Chaldean tradition associates each planetary number with favourable days, colours, stones and directions. These are read as supports, not prescriptions.</p>
+    </div>
+
+    <div class="text">
+      <p>For a Psychic seven and a Destiny three, the supportive days are Sundays and Mondays for the Sun-and-Moon resonance with the Psychic, and Thursdays for the Jupiter resonance with the Destiny. Saturdays carry the day-lord and need no special support.</p>
+
+      <p>Favourable colours are those of the planets at play — sea-green and pale yellow for Ketu; off-white and cream for the Moon; deeper yellow and gold for Jupiter. These appear in dress, in rooms one spends long hours in, in objects one chooses to keep close.</p>
+
+      <p>The traditional stones are <em>cat's-eye</em> for the Psychic seven (Ketu) and <em>yellow sapphire</em> for the Destiny three (Jupiter), worn only after qualified consultation. Direction of strength is north-east. Letters of strength in the names of close partners are those reducing in Chaldean to one, three or five.</p>
+    </div>
+
+    <div class="calc">
+      Days · <strong>Sunday, Monday, Thursday</strong> · Colours · <strong>sea-green, pale yellow, gold</strong> · Stones · <strong>cat's-eye, yellow sapphire</strong> · Direction · <strong>north-east</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Caveat</div>
+      <div class="note">Stones and remedial measures are best undertaken after qualified astrological or jyotisha consultation.</div>
+      <div class="note-label">Reading</div>
+      <div class="note">These are indications, never prescriptions.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 10</span></div>
+</section>
+
+
+<!-- ════ VII · SYNTHESIS — icon-right for extra vertical room ════ -->
+<section class="page icon-right" id="synthesis">
+  <div class="running"><span>VII · Synthesis</span><span class="who">Focus 7 of 7</span></div>
+
+  <div class="content">
+    <!-- Icon suppressed by .page.icon-right -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 24 80 L 76 80 L 76 70 L 30 70 L 30 60 L 70 60 L 70 50 L 36 50 L 36 40 L 64 40 Z"
+              fill="none" stroke="#a87825" stroke-width="1.2"/>
+        <line x1="24" y1="80" x2="76" y2="80" stroke="#a87825" stroke-width="1.4"/>
+        <g stroke="#1f4e8a" stroke-width="0.8" fill="none">
+          <line x1="50" y1="14" x2="50" y2="34"/>
+          <line x1="40" y1="24" x2="60" y2="24"/>
+          <line x1="44" y1="18" x2="56" y2="30"/>
+          <line x1="56" y1="18" x2="44" y2="30"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VII · the portrait</div>
+    <h2 class="section-title">Synthesis</h2>
+    <h3 class="section-sub">Quiet authority — three planets, one chord</h3>
+
+    <div class="lead">
+      <p>The Chaldean reading describes a person whose life moves on four planetary notes — Ketu within, Jupiter ahead, the Moon at the surface, and Saturn beneath.</p>
+    </div>
+
+    <div class="text">
+      <p>The inner life is governed by Ketu, the mystic and the seeker. The outer life is shaped by Jupiter, the teacher and the expander. The name carries the Moon — gentle, perceptive, attuned to people. Saturn, ruling the day of birth, gives the whole the dignity of long time.</p>
+
+      <p>It is a chart of <em>quiet authority</em>. One that does not need to raise its voice to be heard, because the planets behind it have already arranged for the right people to listen. Counsel, when given, is unusually weighty. Silence, when chosen, is unusually full.</p>
+
+      <p>The compound 16 underneath asks for one specific discipline — humility before the work and before the people one teaches. Read consciously, it is a powerful number. Ignored, it operates from below.</p>
+
+      <p class="lapis">In the names of men and the days of their birth, the seven planets have written their counsel.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <!-- Icon shown in margin on icon-right pages -->
+      <div style="width:28mm;height:28mm;margin-bottom:8mm;opacity:0.75">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 24 80 L 76 80 L 76 70 L 30 70 L 30 60 L 70 60 L 70 50 L 36 50 L 36 40 L 64 40 Z"
+                fill="none" stroke="#a87825" stroke-width="1.2"/>
+          <line x1="24" y1="80" x2="76" y2="80" stroke="#a87825" stroke-width="1.4"/>
+          <g stroke="#1f4e8a" stroke-width="0.8" fill="none">
+            <line x1="50" y1="14" x2="50" y2="34"/>
+            <line x1="40" y1="24" x2="60" y2="24"/>
+            <line x1="44" y1="18" x2="56" y2="30"/>
+            <line x1="56" y1="18" x2="44" y2="30"/>
+          </g>
+        </svg>
+      </div>
+      <div class="note-label">The chord</div>
+      <div class="note">7 · 3 · 2 · with Saturn beneath. Three planets in dialogue, one chart.</div>
+      <div class="note-label">The keynote</div>
+      <div class="note">Ketu within, Jupiter ahead — the scholar-elder signature.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading · End</span><span>Page 11</span></div>
+</section>
+
+</body>
+</html>

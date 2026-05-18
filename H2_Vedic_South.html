@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Vedic Horoscope (Jyotish) · South Indian Style — A Personal Reading for Ankur Gupta</title>
+<style>
+  /* ──────────────────────────────────────────────
+     Antara Personal Reading — V3 template
+     Vedic Horoscope · Jyotish · Sidereal zodiac
+     A4 portrait · 125mm text col · 32mm margin ·
+     wide rasi chakra page · no silent clipping.
+     ────────────────────────────────────────────── */
+
+  @page { size: A4 portrait; margin: 0; }
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #cdb88c; }
+  body {
+    font-family: "Cormorant Garamond","Iowan Old Style","Palatino Linotype",Georgia,serif;
+    font-size: 12pt; line-height: 1.5;
+    color: #1a1a3a; -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── Cultural palette: Vedic / Jyotish ─── */
+  :root {
+    --paper:#f5e8c8;
+    --paper-2:#ecdfae;
+    --ink:#1a1a3a;
+    --ink-2:#33334a;
+    --saffron:#c75a1a;
+    --maroon:#6b1a2c;
+    --turmeric:#a87825;
+    --turmeric-soft:#d4ad55;
+    --rule:#c8a85c;
+    --muted:#7a5a30;
+
+    /* ── V3 page geometry ── */
+    --page-w:210mm;
+    --page-h:297mm;
+    --pad-top:17mm;
+    --pad-bot:32mm;
+    --pad-left:25mm;
+    --pad-right:22mm;
+    --col-text:125mm;
+    --col-gap:6mm;
+    --col-margin:32mm;
+    --content-w:163mm;
+    --content-h:248mm;
+    --content-top-pad:6mm;
+  }
+
+  /* ──────────── The Page ──────────── */
+  .page{
+    width:var(--page-w); height:var(--page-h);
+    background:var(--paper);
+    margin:8mm auto;
+    padding:var(--pad-top) var(--pad-right) var(--pad-bot) var(--pad-left);
+    position:relative; box-shadow:0 4px 18px rgba(0,0,0,0.18);
+    overflow:hidden;
+    page-break-after:always; break-after:page;
+    display:grid;
+    grid-template-columns: var(--col-text) var(--col-margin);
+    column-gap: var(--col-gap);
+  }
+  .page:last-child{ page-break-after:auto; break-after:auto; }
+
+  /* Wide variant — full-width single column for the rasi chakra */
+  .page.wide{ grid-template-columns: 1fr; column-gap:0; }
+  .page.wide .margin-area{ display:none; }
+
+  /* Icon-right variant — icon migrates to upper margin */
+  .page.icon-right .content > .icon-block{ display:none; }
+
+  /* Paper texture */
+  .page::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(199,90,26,0.05), transparent 40%),
+      radial-gradient(circle at 88% 90%, rgba(26,26,58,0.04), transparent 40%);
+    mix-blend-mode:multiply;
+  }
+
+  /* Vedic top border — lotus motif on a gold hairline */
+  .page::after{
+    content:"";position:absolute;
+    left:var(--pad-left); right:var(--pad-right);
+    top:9mm; height:6mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><line x1='0' y1='9' x2='80' y2='9' stroke='%23a87825' stroke-width='0.5'/><g fill='%23c75a1a'><path d='M 8 7 Q 6 5 8 3 Q 10 5 8 7 Q 5 9 8 11 Q 11 9 8 7'/><path d='M 28 7 Q 26 5 28 3 Q 30 5 28 7 Q 25 9 28 11 Q 31 9 28 7'/><path d='M 48 7 Q 46 5 48 3 Q 50 5 48 7 Q 45 9 48 11 Q 51 9 48 7'/><path d='M 68 7 Q 66 5 68 3 Q 70 5 68 7 Q 65 9 68 11 Q 71 9 68 7'/></g><g stroke='%236b1a2c' stroke-width='0.4'><line x1='15' y1='7' x2='21' y2='7'/><line x1='35' y1='7' x2='41' y2='7'/><line x1='55' y1='7' x2='61' y2='7'/></g></svg>");
+    background-repeat:repeat-x; background-size:auto 6mm; opacity:.85;
+  }
+
+  /* ──────────── Columns ──────────── */
+  .content{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+    max-height: calc(var(--content-h) - var(--content-top-pad));
+  }
+  .margin-area{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+    max-height: calc(var(--content-h) - var(--content-top-pad));
+  }
+
+  /* ──────────── Running header / footer ──────────── */
+  .running{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); top:5mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; letter-spacing:.18em; text-transform:uppercase; color:var(--saffron);
+    font-family:"Iowan Old Style",Georgia,serif; font-weight:600;
+  }
+  .running .who{ color:var(--ink-2); letter-spacing:.12em; }
+
+  .pgfoot{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); bottom:14mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; color:var(--muted); letter-spacing:.06em;
+  }
+  .pgfoot::before{
+    content:""; position:absolute; left:0; right:0; top:-6mm; height:0.4mm;
+    background:var(--rule); opacity:.55;
+  }
+
+  /* ──────────── Typography ──────────── */
+  h1.cover-title{
+    font-size:21pt; font-weight:600; color:var(--maroon);
+    letter-spacing:.04em; line-height:1.15; margin-bottom:6mm;
+    font-variant:small-caps; white-space:nowrap;
+  }
+  h2.section-title{
+    font-size:18pt; font-weight:600; color:var(--maroon);
+    letter-spacing:.02em; line-height:1.2; margin-bottom:3mm;
+  }
+  h3.section-sub{
+    font-size:11pt; font-style:italic; color:var(--saffron); font-weight:400;
+    margin-bottom:7mm; letter-spacing:.02em; line-height:1.4;
+  }
+  .eyebrow{
+    font-size:10pt; letter-spacing:.32em; text-transform:uppercase; color:var(--saffron);
+    font-weight:600; font-family:"Iowan Old Style",Georgia,serif; margin-bottom:3mm;
+  }
+  .sanskrit{ color:var(--turmeric); letter-spacing:.04em; font-style:italic; }
+
+  .text > p{ font-size:12pt; line-height:1.5; color:var(--ink); margin:0 0 10pt; }
+  .text > p:last-child{ margin-bottom:0; }
+  .lead{ margin-bottom:6mm; }
+  .lead > p{ font-size:12.5pt; line-height:1.5; color:var(--ink-2); font-style:italic; margin:0; }
+
+  .calc{
+    font-family:"Iowan Old Style",Georgia,serif;
+    font-size:10pt; line-height:1.5; color:var(--saffron);
+    border-top:0.4mm solid var(--rule); border-bottom:0.4mm solid var(--rule);
+    padding:3mm 0; margin:6mm 0 0; letter-spacing:.02em;
+  }
+  .calc strong{ color:var(--maroon); font-weight:600; }
+  .fine{ font-size:10pt; line-height:1.5; color:var(--muted); font-style:italic; }
+
+  /* ──────────── Cover ──────────── */
+  .cover{
+    grid-template-columns: 1fr; text-align:center; align-content:center; padding-top:32mm;
+  }
+  .cover .markline{
+    margin:0 auto 10mm; width:60mm; height:5mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><line x1='0' y1='9' x2='80' y2='9' stroke='%23a87825' stroke-width='1'/><g fill='%23c75a1a'><path d='M 10 7 Q 8 5 10 3 Q 12 5 10 7 Q 7 9 10 11 Q 13 9 10 7'/><path d='M 30 7 Q 28 5 30 3 Q 32 5 30 7 Q 27 9 30 11 Q 33 9 30 7'/><path d='M 50 7 Q 48 5 50 3 Q 52 5 50 7 Q 47 9 50 11 Q 53 9 50 7'/><path d='M 70 7 Q 68 5 70 3 Q 72 5 70 7 Q 67 9 70 11 Q 73 9 70 7'/></g></svg>");
+    background-repeat:repeat-x; background-size:auto 5mm;
+  }
+  .cover .greek-eyebrow{
+    font-size:11pt; letter-spacing:.4em; text-transform:uppercase; color:var(--saffron);
+    margin-bottom:5mm; font-weight:600;
+  }
+  .cover .arithmos{
+    font-size:13pt; color:var(--maroon); font-style:italic; letter-spacing:.04em;
+    margin-bottom:6mm;
+  }
+  .cover .person{ font-size:13pt; color:var(--ink); margin-top:14mm; line-height:1.7; }
+  .cover .person .lbl{
+    font-size:10pt; letter-spacing:.22em; text-transform:uppercase; color:var(--muted);
+    font-weight:600; margin-right:6mm;
+  }
+  .cover .yantra{ margin:10mm auto 0; width:76mm; height:76mm; }
+  .cover .yantra svg{ width:100%; height:100%; }
+
+  /* ──────────── Contents ──────────── */
+  .toc-list{ list-style:none; padding:0; margin:0; }
+  .toc-list li{
+    display:grid; grid-template-columns:10mm 1fr auto; gap:4mm;
+    align-items:baseline; padding:3.5mm 0;
+    border-bottom:0.3mm dashed var(--rule); font-size:12pt;
+  }
+  .toc-list li:last-child{ border-bottom:none; }
+  .toc-list .num{ color:var(--saffron); font-variant-numeric:tabular-nums; font-weight:600; }
+  .toc-list .name{ color:var(--ink); }
+  .toc-list .pg{ color:var(--muted); font-size:10pt; letter-spacing:.06em; }
+  .toc-list a{ text-decoration:none; color:inherit; display:contents; }
+  .toc-list a:hover .name{ color:var(--saffron); }
+
+  /* ──────────── Icon block ──────────── */
+  .icon-block{ width:26mm; height:26mm; margin-bottom:5mm; display:flex; align-items:center; justify-content:center; }
+  .icon-block svg{ width:100%; height:100%; }
+
+  /* ──────────── Marginalia ──────────── */
+  .marginalia{
+    padding-top:12mm; color:var(--muted);
+    font-size:10pt; line-height:1.5; font-style:italic;
+  }
+  .marginalia .ornament{ width:26mm; height:26mm; margin-bottom:6mm; opacity:.65; }
+  .marginalia .ornament svg{ width:100%; height:100%; }
+  .marginalia .note-label{
+    font-size:9pt; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--saffron); font-weight:600; font-style:normal; margin-bottom:2mm;
+  }
+  .marginalia .note{ margin-bottom:7mm; }
+  .marginalia .note:last-child{ margin-bottom:0; }
+
+  /* ──────────── Rasi Chakra (wide page) ──────────── */
+  .rasi-wrap{
+    width:145mm; margin:4mm auto 0;
+  }
+  .rasi{
+    width:100%; aspect-ratio:1;
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap:0.7mm; padding:0.7mm;
+    background:var(--maroon);
+  }
+  .rasi .cell{
+    background:var(--paper);
+    padding:2mm 2.5mm;
+    position:relative;
+    font-family:"Iowan Old Style",Georgia,serif;
+  }
+  .rasi .cell .sign{
+    font-size:7.5pt; letter-spacing:.02em; color:var(--saffron); font-weight:700;
+    line-height:1.2;
+  }
+  .rasi .cell .glyphs{
+    font-size:9.5pt; color:var(--ink); margin-top:1.5mm; line-height:1.35;
+    font-weight:600;
+  }
+  .rasi .cell .glyphs .lg{
+    color:var(--maroon); font-size:8.5pt; letter-spacing:.04em;
+  }
+  .rasi .cell .glyphs .ra{ color:#4a2080; }
+  .rasi .cell .glyphs .ke{ color:#4a2080; }
+  .rasi .center{
+    grid-column: 2 / 4; grid-row: 2 / 4;
+    background:var(--paper-2);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:4mm;
+    border:0.5mm solid var(--maroon);
+  }
+  .rasi .center .nm{ font-size:9.5pt; color:var(--maroon); font-weight:700; letter-spacing:.04em; }
+  .rasi .center .dt{ font-size:8.5pt; color:var(--ink); margin-top:1mm; line-height:1.35; }
+  .rasi .center .pl{ font-size:8pt; color:var(--muted); font-style:italic; margin-top:1.5mm; line-height:1.35; }
+
+  @media print{
+    html, body{ background:#fff; } body{ padding:0; }
+    .page{ margin:0; box-shadow:none; page-break-after:always; break-after:page; }
+    .page:last-child{ page-break-after:auto; break-after:auto; }
+  }
+  @media screen{ body{ padding:14mm 0; } }
+</style>
+</head>
+<body>
+
+<!-- ════ COVER ════ -->
+<section class="page cover" id="cover">
+  <div class="markline"></div>
+  <div class="arithmos">ज्योतिष — the science of light</div>
+  <h1 class="cover-title">Vedic Horoscope · Jyotish</h1>
+  <div style="margin-top:3mm; font-size:16pt; font-weight:700; color:#6b1a2c; letter-spacing:.16em; font-family:'Iowan Old Style',Georgia,serif; font-variant:small-caps;">South Indian</div>
+  <div style="margin-top:1mm; font-size:11pt; color:#a87825; letter-spacing:.08em; font-style:italic; font-family:'Cormorant Garamond','Palatino Linotype',Georgia,serif;">दक्षिण शैली</div>
+  <div class="arithmos" style="margin-top:4mm; font-size:11pt;">A reading from the sidereal zodiac &amp; the twenty-seven nakshatras</div>
+
+  <div class="yantra">
+    <!-- South Indian Kolam — eight-pointed star within nested squares, no OM symbol -->
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer ring -->
+      <circle cx="50" cy="50" r="46" fill="none" stroke="#a87825" stroke-width="0.5"/>
+      <!-- Outer square rotated 0° -->
+      <rect x="14" y="14" width="72" height="72" fill="none" stroke="#a87825" stroke-width="0.7"/>
+      <!-- Outer square rotated 45° -->
+      <polygon points="50,8 92,50 50,92 8,50" fill="none" stroke="#c75a1a" stroke-width="0.8"/>
+      <!-- Inner square rotated 0° -->
+      <rect x="26" y="26" width="48" height="48" fill="none" stroke="#a87825" stroke-width="0.6"/>
+      <!-- Inner square rotated 45° -->
+      <polygon points="50,22 78,50 50,78 22,50" fill="none" stroke="#c75a1a" stroke-width="0.7"/>
+      <!-- Innermost square rotated 0° -->
+      <rect x="35" y="35" width="30" height="30" fill="#f9edd4" stroke="#a87825" stroke-width="0.5"/>
+      <!-- Diagonal cross in innermost -->
+      <line x1="35" y1="35" x2="65" y2="65" stroke="#a87825" stroke-width="0.5"/>
+      <line x1="65" y1="35" x2="35" y2="65" stroke="#a87825" stroke-width="0.5"/>
+      <!-- Corner dots (kolam style) -->
+      <g fill="#c75a1a">
+        <circle cx="50" cy="14" r="1.8"/>
+        <circle cx="86" cy="50" r="1.8"/>
+        <circle cx="50" cy="86" r="1.8"/>
+        <circle cx="14" cy="50" r="1.8"/>
+        <circle cx="22" cy="22" r="1.5"/>
+        <circle cx="78" cy="22" r="1.5"/>
+        <circle cx="78" cy="78" r="1.5"/>
+        <circle cx="22" cy="78" r="1.5"/>
+      </g>
+      <!-- Center dot -->
+      <circle cx="50" cy="50" r="2.5" fill="#c75a1a"/>
+    </svg>
+  </div>
+
+  <div class="person">
+    <div>Ankur Gupta</div>
+    <div>16 May 1953 · 20:15 IST · Saturday</div>
+    <div>Chakrata · Devbhoomi · 30.7°N · 77.87°E</div>
+  </div>
+
+  <div class="pgfoot" style="display:block;text-align:center;">
+  <div style="font-size:10.5pt;font-weight:700;letter-spacing:.18em;color:var(--gold,#a88842);">ANTARA PERSONAL READING</div>
+  <div style="font-size:9.5pt;font-style:italic;letter-spacing:.08em;color:var(--gold,#a88842);margin-top:1.5mm;">interpretative, not Predictive</div>
+</div>
+</section>
+
+
+<!-- ════ INTRO 1 ════ -->
+<section class="page" id="intro-1">
+  <div class="running"><span>Vedic Horoscope</span><span class="who">Introduction · 1 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Introduction</div>
+    <h2 class="section-title">What this report is about</h2>
+    <h3 class="section-sub">Jyotish — the sidereal zodiac, the nakshatras, and the dasha cycles of life</h3>
+
+    <div class="lead">
+      <p>Vedic astrology — <em>jyotish</em>, "the science of light" — is one of the six <em>vedangas</em> of classical Indian learning, continuously practised for more than two thousand years.</p>
+    </div>
+
+    <div class="text">
+      <p>Its earliest texts are the <em>Vedanga Jyotisha</em> attributed to Lagadha; its later canonical works are the <em>Brihat Parashara Hora Shastra</em> and Varahamihira's <em>Brihat Jataka</em>. Jyotish differs from Western astrology in three essential ways. It uses the <em>sidereal zodiac</em>, fixed against the actual stars rather than the seasons, separated from the tropical zodiac by the <em>ayanamsha</em> — about 23°13' for 1953 by the Lahiri reckoning. It divides the ecliptic into <em>twenty-seven nakshatras</em>, lunar mansions of 13°20' each. And it uses <em>dasha cycles</em>, planetary periods drawn from the Moon's nakshatra, to time the unfolding of the chart over the lifetime.</p>
+
+      <p>This report draws your sidereal natal chart for 16 May 1953 at 20:15 Indian Standard Time. It reads the lagna (ascendant) and its nakshatra, the Moon and its nakshatra, the Sun and its nakshatra, the placement of the major grahas in the twelve bhavas, and the current Vimshottari dasha period. The rasi chakra is presented in the South Indian style, with the twelve rasis fixed in their cells and the planets placed within them.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#c75a1a" stroke-width="0.6"/>
+          <path d="M 50 18 L 76 60 L 24 60 Z" fill="none" stroke="#6b1a2c" stroke-width="0.6"/>
+          <path d="M 50 82 L 24 40 L 76 40 Z" fill="none" stroke="#6b1a2c" stroke-width="0.6"/>
+          <path d="M 50 26 L 70 56 L 30 56 Z" fill="none" stroke="#a87825" stroke-width="0.5"/>
+          <path d="M 50 74 L 30 44 L 70 44 Z" fill="none" stroke="#a87825" stroke-width="0.5"/>
+          <circle cx="50" cy="50" r="2" fill="#c75a1a"/>
+        </svg>
+      </div>
+      <div class="note-label">Ayanamsha</div>
+      <div class="note">Lahiri · ~23°13' for 1953 — the offset between tropical and sidereal zodiacs.</div>
+      <div class="note-label">27 nakshatras</div>
+      <div class="note">Lunar mansions of 13°20' each — the spine of every Vedic reading.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 2</span></div>
+</section>
+
+
+<!-- ════ INTRO 2 ════ -->
+<section class="page" id="intro-2">
+  <div class="running"><span>Vedic Horoscope</span><span class="who">Introduction · 2 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">How to read this report</div>
+    <h2 class="section-title">Structure &amp; method</h2>
+    <h3 class="section-sub">The rasi chakra first; then lagna, Sun and Moon; then planets and dasha</h3>
+
+    <div class="lead">
+      <p>This report is structured so that each focus aspect lives on its own page. The first focus presents the rasi chakra; the next three describe the lagna, Sun, and Moon in their nakshatras.</p>
+    </div>
+
+    <div class="text">
+      <p>Pages after the angles describe the placement of the major grahas in the bhavas, the Vimshottari dasha system as a whole, and the current dasha period with a synthesis. Positions are calculated for 16 May 1953 at 20:15 Indian Standard Time, which is 14:45 Universal Time, with the Lahiri ayanamsha. The lagna is sensitive to the exact minute of birth.</p>
+
+      <p>Software such as Jagannatha Hora or Parashara's Light will give minute-level verification of every position shown. The traditional planet abbreviations used in the chart cells — Su (Surya), Mo (Chandra), Ma (Mangal), Me (Budha), Ju (Guru), Ve (Shukra), Sa (Shani), Ra (Rahu), Ke (Ketu) — follow South Indian almanac convention.</p>
+
+      <p>A standard note applies throughout. Jyotish is interpretive and offered alongside one's own discernment. Remedial measures are best undertaken with qualified consultation rather than from a written report alone. The chart is a frame for reflection and timing; the life is lived by the one whose chart it is.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 30 78 Q 26 60 36 50 Q 46 40 56 38 Q 70 36 76 28 Q 76 36 68 44 Q 60 50 56 56 Q 50 64 50 70 Q 50 78 44 80 Z"
+                fill="none" stroke="#c75a1a" stroke-width="1.2"/>
+          <line x1="36" y1="62" x2="62" y2="50" stroke="#a87825" stroke-width="0.6"/>
+          <line x1="38" y1="68" x2="58" y2="58" stroke="#a87825" stroke-width="0.6"/>
+        </svg>
+      </div>
+      <div class="note-label">Reading time</div>
+      <div class="note">Approximately twenty-five minutes at an unhurried pace.</div>
+      <div class="note-label">Authority</div>
+      <div class="note">A frame for reflection. The reader is the final authority.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 3</span></div>
+</section>
+
+
+<!-- ════ CONTENTS ════ -->
+<section class="page" id="contents">
+  <div class="running"><span>Vedic Horoscope</span><span class="who">Contents</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Contents</div>
+    <h2 class="section-title">The seven focus pages</h2>
+    <h3 class="section-sub">Tap any title to jump to that page</h3>
+
+    <ol class="toc-list">
+      <li><a href="#chart"><span class="num">I</span><span class="name">The Rasi Chakra · the natal chart</span><span class="pg">p. 5</span></a></li>
+      <li><a href="#technical"><span class="num">—</span><span class="name">Technical Data · planetary positions for professional reference</span><span class="pg">p. 6</span></a></li>
+      <li><a href="#lagna"><span class="num">II</span><span class="name">Lagna in Tula · Swati nakshatra</span><span class="pg">p. 7</span></a></li>
+      <li><a href="#sun"><span class="num">III</span><span class="name">Surya in Vrishabha · Krittika nakshatra</span><span class="pg">p. 8</span></a></li>
+      <li><a href="#moon"><span class="num">IV</span><span class="name">Chandra in Mithuna · Mrigashira nakshatra</span><span class="pg">p. 9</span></a></li>
+      <li><a href="#houses"><span class="num">V</span><span class="name">The Grahas in the Bhavas · house placements</span><span class="pg">p. 10</span></a></li>
+      <li><a href="#dasha"><span class="num">VI</span><span class="name">The Vimshottari Dasha · the timing wheel</span><span class="pg">p. 11</span></a></li>
+      <li><a href="#current"><span class="num">VII</span><span class="name">Synthesis &amp; the Current Period · Ketu Mahadasha</span><span class="pg">p. 12</span></a></li>
+    </ol>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#c75a1a" stroke-width="1" fill="none">
+            <path d="M 50 76 Q 30 60 30 40 Q 40 50 50 50 Q 60 50 70 40 Q 70 60 50 76"/>
+            <path d="M 50 76 Q 16 70 14 50 Q 30 56 50 76"/>
+            <path d="M 50 76 Q 84 70 86 50 Q 70 56 50 76"/>
+          </g>
+          <ellipse cx="50" cy="78" rx="22" ry="3" fill="none" stroke="#a87825" stroke-width="0.8"/>
+        </svg>
+      </div>
+      <div class="note-label">Three readings</div>
+      <div class="note">Lagna · Surya · Chandra — the spine of every Vedic chart.</div>
+      <div class="note-label">Current period</div>
+      <div class="note">Ketu Mahadasha · 2023 to 2030.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 4</span></div>
+</section>
+
+
+<!-- ════ I · RASI CHAKRA (WIDE) ════ -->
+<section class="page wide" id="chart">
+  <div class="running"><span>I · Rasi Chakra · Dakshin Shaili</span><span class="who">Focus 1 of 7</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Focus I · the natal chart · Dakshin Shaili</div>
+    <h2 class="section-title">Your Rasi Chakra · South Indian Style</h2>
+    <h3 class="section-sub">Signs fixed · Lagna rotates · Tula (Libra) rising · sidereal positions · Lahiri ayanamsha</h3>
+
+    <!-- South Indian rasi chakra — orthodox classical format
+         Signs FIXED · no house numbers · no outer planets · Lagna marker only
+         Mesha always second from left on top row · clockwise sign order
+         Grid stroke: turmeric gold (#a87825) — lighter than maroon -->
+    <div class="rasi-wrap" style="width:163mm;margin:2mm auto 0;">
+      <svg viewBox="0 0 506 506" xmlns="http://www.w3.org/2000/svg" font-family="'Cormorant Garamond','Palatino Linotype',Georgia,serif">
+<rect width="506" height="506" fill="#f5e8c8"/>
+
+<!-- ── Row 0 ── -->
+<!-- Meena (sign 12) — top-left · Ma here -->
+<rect x="10" y="10" width="120" height="120" fill="#f9edd4" stroke="#a87825" stroke-width="1.2"/>
+<text x="15" y="28" font-size="9.5" fill="#a87825" font-weight="700">Meena</text>
+<text x="70" y="78" text-anchor="middle" font-size="10.5" font-weight="600" fill="#c02828">Ma 11°01'</text>
+
+<!-- Mesha (sign 1) — top-row 2nd · Ve here -->
+<rect x="132" y="10" width="120" height="120" fill="#f9edd4" stroke="#a87825" stroke-width="1.2"/>
+<text x="137" y="28" font-size="9.5" fill="#a87825" font-weight="700">Mesha</text>
+<text x="192" y="78" text-anchor="middle" font-size="10.5" font-weight="600" fill="#7a2060">Ve 28°21'</text>
+
+<!-- Vrishabha (sign 2) — top-row 3rd · Su + Bu + Gu -->
+<rect x="254" y="10" width="120" height="120" fill="#f9edd4" stroke="#a87825" stroke-width="1.2"/>
+<text x="259" y="28" font-size="9.5" fill="#a87825" font-weight="700">Vrishabha</text>
+<text x="314" y="62" text-anchor="middle" font-size="10" font-weight="600" fill="#c75a1a">Su 1°47'</text>
+<text x="314" y="78" text-anchor="middle" font-size="10" font-weight="600" fill="#1a3a6e">Bu 11°00'℞</text>
+<text x="314" y="94" text-anchor="middle" font-size="10" font-weight="600" fill="#1a5e3a">Gu 5°18'</text>
+
+<!-- Mithuna (sign 3) — top-right · Mo here -->
+<rect x="376" y="10" width="120" height="120" fill="#f9edd4" stroke="#a87825" stroke-width="1.2"/>
+<text x="381" y="28" font-size="9.5" fill="#a87825" font-weight="700">Mithuna</text>
+<text x="436" y="78" text-anchor="middle" font-size="10.5" font-weight="600" fill="#722a3f">Mo 5°47'</text>
+
+<!-- ── Row 1 (outer left / outer right only) ── -->
+<!-- Kumbha (sign 11) — left col mid-top · empty -->
+<rect x="10" y="132" width="120" height="120" fill="#f9edd4" stroke="#a87825" stroke-width="1.2"/>
+<text x="15" y="150" font-size="9.5" fill="#a87825" font-weight="700">Kumbha</text>
+
+<!-- Kataka (sign 4) — right col mid-top · Ra here -->
+<rect x="376" y="132" width="120" height="120" fill="#f9edd4" stroke="#a87825" stroke-width="1.2"/>
+<text x="381" y="150" font-size="9.5" fill="#a87825" font-weight="700">Kataka</text>
+<text x="436" y="200" text-anchor="middle" font-size="10.5" font-weight="600" fill="#4a2080">Ra 18°36'</text>
+
+<!-- ── Row 2 (outer left / outer right only) ── -->
+<!-- Makara (sign 10) — left col mid-bot · Ke here -->
+<rect x="10" y="254" width="120" height="120" fill="#f9edd4" stroke="#a87825" stroke-width="1.2"/>
+<text x="15" y="272" font-size="9.5" fill="#a87825" font-weight="700">Makara</text>
+<text x="70" y="316" text-anchor="middle" font-size="10.5" font-weight="600" fill="#4a2080">Ke 18°36'</text>
+
+<!-- Simha (sign 5) — right col mid-bot · empty -->
+<rect x="376" y="254" width="120" height="120" fill="#f9edd4" stroke="#a87825" stroke-width="1.2"/>
+<text x="381" y="272" font-size="9.5" fill="#a87825" font-weight="700">Simha</text>
+
+<!-- ── Row 3 ── -->
+<!-- Dhanu (sign 9) — bottom-left · empty -->
+<rect x="10" y="376" width="120" height="120" fill="#f9edd4" stroke="#a87825" stroke-width="1.2"/>
+<text x="15" y="394" font-size="9.5" fill="#a87825" font-weight="700">Dhanu</text>
+
+<!-- Vrischika (sign 8) — bottom-row 2nd · empty -->
+<rect x="132" y="376" width="120" height="120" fill="#f9edd4" stroke="#a87825" stroke-width="1.2"/>
+<text x="137" y="394" font-size="9.5" fill="#a87825" font-weight="700">Vrischika</text>
+
+<!-- Tula (sign 7) — bottom-row 3rd · LAGNA — highlighted -->
+<rect x="254" y="376" width="120" height="120" fill="#ede0c0" stroke="#a87825" stroke-width="2"/>
+<text x="259" y="394" font-size="9.5" fill="#a87825" font-weight="700">Tula</text>
+<text x="314" y="452" text-anchor="middle" font-size="12" font-weight="700" fill="#c75a1a">Lg 16°47'</text>
+
+<!-- Kanya (sign 6) — bottom-right · Sa here -->
+<rect x="376" y="376" width="120" height="120" fill="#f9edd4" stroke="#a87825" stroke-width="1.2"/>
+<text x="381" y="394" font-size="9.5" fill="#a87825" font-weight="700">Kanya</text>
+<text x="436" y="444" text-anchor="middle" font-size="10.5" font-weight="600" fill="#2a2a6e">Sa 23°50'</text>
+
+<!-- ── Centre 2×2 block — quiet energy space, no text ── -->
+<rect x="132" y="132" width="242" height="242" fill="#f5e8c8" stroke="#a87825" stroke-width="1.2"/>
+<line x1="132" y1="132" x2="374" y2="374" stroke="#a87825" stroke-width="0.6" opacity="0.4"/>
+<line x1="374" y1="132" x2="132" y2="374" stroke="#a87825" stroke-width="0.6" opacity="0.4"/>
+<!-- center mark only -->
+<circle cx="253" cy="253" r="2" fill="#a87825" opacity="0.4"/>
+</svg>
+    </div>
+    <div class="fine" style="text-align:center;margin-top:5mm;font-size:9pt;">दक्षिण शैली · Dakshin Shaili · Lagna Tula · Swati Pd 3 · Lahiri 23°13' · 16 May 1953 · 20:15 IST</div>
+
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 5</span></div>
+</section>
+
+<!-- ════ TECHNICAL DATA PAGE ════ -->
+<section class="page wide" id="technical">
+  <div class="running"><span>Vedic Natal Horoscope</span><span class="who">Technical Reference</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Technical Reference · for professional consultation</div>
+    <h2 class="section-title">Full Planetary Data</h2>
+    <h3 class="section-sub">All grahas · sidereal degrees · nakshatras · padas · bhavas</h3>
+
+    <div style="margin-top:4mm; width:163mm;">
+      <svg viewBox="0 0 580 360" xmlns="http://www.w3.org/2000/svg"
+           font-family="'Cormorant Garamond','Palatino Linotype',Georgia,serif">
+        <rect width="580" height="360" fill="#f5e8c8"/>
+
+        <!-- Column headers — 7 cols, rationalized widths -->
+        <text x="10"  y="20" font-size="10.5" font-weight="700" fill="#6b1a2c">Planet</text>
+        <text x="95"  y="20" font-size="10.5" font-weight="700" fill="#6b1a2c">Sanskrit</text>
+        <text x="192" y="20" font-size="10.5" font-weight="700" fill="#6b1a2c">Rasi (Sign)</text>
+        <text x="328" y="20" font-size="10.5" font-weight="700" fill="#6b1a2c">Deg°</text>
+        <text x="383" y="20" font-size="10.5" font-weight="700" fill="#6b1a2c">Nakshatra</text>
+        <text x="492" y="20" font-size="10.5" font-weight="700" fill="#6b1a2c">Pd</text>
+        <text x="522" y="20" font-size="10.5" font-weight="700" fill="#6b1a2c">Bhava</text>
+        <line x1="6" y1="26" x2="574" y2="26" stroke="#a87825" stroke-width="0.8"/>
+
+        <!-- Row spacing: 21px · font: 10.5 data, 10.5 headers -->
+        <!-- Sun y=47 -->
+        <text x="10"  y="47" font-size="10.5" fill="#c75a1a">☉ Sun</text>
+        <text x="95"  y="47" font-size="10.5" fill="#1a1a3a">Surya</text>
+        <text x="192" y="47" font-size="10.5" fill="#1a1a3a">Vrishabha (Taurus)</text>
+        <text x="328" y="47" font-size="10.5" fill="#1a1a3a">1° 47′</text>
+        <text x="383" y="47" font-size="10.5" fill="#1a1a3a">Krittika</text>
+        <text x="492" y="47" font-size="10.5" fill="#1a1a3a">2</text>
+        <text x="522" y="47" font-size="10.5" fill="#1a1a3a">8th</text>
+
+        <!-- Moon y=68 -->
+        <text x="10"  y="68" font-size="10.5" fill="#722a3f">☽ Moon</text>
+        <text x="95"  y="68" font-size="10.5" fill="#1a1a3a">Chandra</text>
+        <text x="192" y="68" font-size="10.5" fill="#1a1a3a">Mithuna (Gemini)</text>
+        <text x="328" y="68" font-size="10.5" fill="#1a1a3a">5° 47′</text>
+        <text x="383" y="68" font-size="10.5" fill="#1a1a3a">Mrigashira</text>
+        <text x="492" y="68" font-size="10.5" fill="#1a1a3a">4</text>
+        <text x="522" y="68" font-size="10.5" fill="#1a1a3a">9th</text>
+
+        <!-- Mars y=89 -->
+        <text x="10"  y="89" font-size="10.5" fill="#c02828">♂ Mars</text>
+        <text x="95"  y="89" font-size="10.5" fill="#1a1a3a">Mangala</text>
+        <text x="192" y="89" font-size="10.5" fill="#1a1a3a">Meena (Pisces)</text>
+        <text x="328" y="89" font-size="10.5" fill="#1a1a3a">11° 01′</text>
+        <text x="383" y="89" font-size="10.5" fill="#1a1a3a">Uttarabhadra</text>
+        <text x="492" y="89" font-size="10.5" fill="#1a1a3a">3</text>
+        <text x="522" y="89" font-size="10.5" fill="#1a1a3a">6th</text>
+
+        <!-- Mercury y=110 -->
+        <text x="10"  y="110" font-size="10.5" fill="#1a3a6e">☿ Mercury ℞</text>
+        <text x="95"  y="110" font-size="10.5" fill="#1a1a3a">Budha</text>
+        <text x="192" y="110" font-size="10.5" fill="#1a1a3a">Vrishabha (Taurus)</text>
+        <text x="328" y="110" font-size="10.5" fill="#1a1a3a">11° 00′ ℞</text>
+        <text x="383" y="110" font-size="10.5" fill="#1a1a3a">Rohini</text>
+        <text x="492" y="110" font-size="10.5" fill="#1a1a3a">1</text>
+        <text x="522" y="110" font-size="10.5" fill="#1a1a3a">8th</text>
+
+        <!-- Jupiter y=131 -->
+        <text x="10"  y="131" font-size="10.5" fill="#1a5e3a">♃ Jupiter</text>
+        <text x="95"  y="131" font-size="10.5" fill="#1a1a3a">Guru</text>
+        <text x="192" y="131" font-size="10.5" fill="#1a1a3a">Vrishabha (Taurus)</text>
+        <text x="328" y="131" font-size="10.5" fill="#1a1a3a">5° 18′</text>
+        <text x="383" y="131" font-size="10.5" fill="#1a1a3a">Krittika</text>
+        <text x="492" y="131" font-size="10.5" fill="#1a1a3a">3</text>
+        <text x="522" y="131" font-size="10.5" fill="#1a1a3a">8th</text>
+
+        <!-- Venus y=152 -->
+        <text x="10"  y="152" font-size="10.5" fill="#7a2060">♀ Venus</text>
+        <text x="95"  y="152" font-size="10.5" fill="#1a1a3a">Shukra</text>
+        <text x="192" y="152" font-size="10.5" fill="#1a1a3a">Mesha (Aries)</text>
+        <text x="328" y="152" font-size="10.5" fill="#1a1a3a">28° 21′</text>
+        <text x="383" y="152" font-size="10.5" fill="#1a1a3a">Krittika</text>
+        <text x="492" y="152" font-size="10.5" fill="#1a1a3a">1</text>
+        <text x="522" y="152" font-size="10.5" fill="#1a1a3a">7th</text>
+
+        <!-- Saturn y=173 -->
+        <text x="10"  y="173" font-size="10.5" fill="#2a2a6e">♄ Saturn</text>
+        <text x="95"  y="173" font-size="10.5" fill="#1a1a3a">Shani</text>
+        <text x="192" y="173" font-size="10.5" fill="#1a1a3a">Kanya (Virgo)</text>
+        <text x="328" y="173" font-size="10.5" fill="#1a1a3a">23° 50′</text>
+        <text x="383" y="173" font-size="10.5" fill="#1a1a3a">Chitra</text>
+        <text x="492" y="173" font-size="10.5" fill="#1a1a3a">1</text>
+        <text x="522" y="173" font-size="10.5" fill="#1a1a3a">12th</text>
+
+        <!-- Rahu y=194 -->
+        <text x="10"  y="194" font-size="10.5" fill="#4a2080">☊ Rahu</text>
+        <text x="95"  y="194" font-size="10.5" fill="#1a1a3a">Rahu (N. Node)</text>
+        <text x="192" y="194" font-size="10.5" fill="#1a1a3a">Karka (Cancer)</text>
+        <text x="328" y="194" font-size="10.5" fill="#1a1a3a">18° 36′</text>
+        <text x="383" y="194" font-size="10.5" fill="#1a1a3a">Ashlesha</text>
+        <text x="492" y="194" font-size="10.5" fill="#1a1a3a">4</text>
+        <text x="522" y="194" font-size="10.5" fill="#1a1a3a">10th</text>
+
+        <!-- Ketu y=215 -->
+        <text x="10"  y="215" font-size="10.5" fill="#4a2080">☋ Ketu</text>
+        <text x="95"  y="215" font-size="10.5" fill="#1a1a3a">Ketu (S. Node)</text>
+        <text x="192" y="215" font-size="10.5" fill="#1a1a3a">Makara (Capricorn)</text>
+        <text x="328" y="215" font-size="10.5" fill="#1a1a3a">18° 36′</text>
+        <text x="383" y="215" font-size="10.5" fill="#1a1a3a">Shravana</text>
+        <text x="492" y="215" font-size="10.5" fill="#1a1a3a">2</text>
+        <text x="522" y="215" font-size="10.5" fill="#1a1a3a">4th</text>
+
+        <line x1="6" y1="226" x2="574" y2="226" stroke="#a87825" stroke-width="0.4"/>
+
+        <!-- Lagna y=247 -->
+        <text x="10"  y="247" font-size="10.5" font-weight="700" fill="#c75a1a">Lg Lagna (Asc)</text>
+        <text x="95"  y="247" font-size="10.5" fill="#1a1a3a">Lagna</text>
+        <text x="192" y="247" font-size="10.5" fill="#1a1a3a">Tula (Libra)</text>
+        <text x="328" y="247" font-size="10.5" fill="#1a1a3a">16° 47′</text>
+        <text x="383" y="247" font-size="10.5" fill="#1a1a3a">Swati</text>
+        <text x="492" y="247" font-size="10.5" fill="#1a1a3a">4</text>
+        <text x="522" y="247" font-size="10.5" fill="#1a1a3a">—</text>
+
+        <line x1="6" y1="257" x2="574" y2="257" stroke="#a87825" stroke-width="0.8"/>
+
+        <!-- Key Points -->
+        <text x="10" y="276" font-size="10" font-weight="700" fill="#6b1a2c">Key Points</text>
+        <text x="10" y="294" font-size="9" fill="#1a1a3a">· Lagna: Tula 16°47′ — Swati Nakshatra (Rahu-ruled). Vayu tattva, Libra rising.</text>
+        <text x="10" y="312" font-size="9" fill="#1a1a3a">· Surya in Krittika (Agni / Pleiades). Rashi lord: Shukra. Nakshatra lord: Surya.</text>
+        <text x="10" y="330" font-size="9" fill="#1a1a3a">· Chandra in Mrigashira (Gemini). Rashi lord: Budha. Nakshatra lord: Mangala.</text>
+
+        <!-- Ayanamsha box — right side -->
+        <rect x="378" y="268" width="190" height="82" fill="none" stroke="#a87825" stroke-width="0.8" rx="2"/>
+        <text x="473" y="286" text-anchor="middle" font-size="10" font-weight="700" fill="#6b1a2c">Ayanamsha</text>
+        <text x="473" y="302" text-anchor="middle" font-size="9.5" fill="#1a1a3a">Lahiri: 23°13′</text>
+        <text x="473" y="318" text-anchor="middle" font-size="8.5" fill="#7a5a30" font-style="italic">Sidereal = Tropical − 23°13′</text>
+        <text x="473" y="333" text-anchor="middle" font-size="8.5" fill="#7a5a30" font-style="italic">Tropical Sun: 25°00′ Taurus</text>
+        <text x="473" y="347" text-anchor="middle" font-size="8.5" fill="#7a5a30" font-style="italic">Sidereal Sun: 1°47′ Vrishabha</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 6</span></div>
+</section>
+
+
+
+
+<!-- ════ II · LAGNA ════ -->
+<section class="page" id="lagna">
+  <div class="running"><span>II · Lagna</span><span class="who">Focus 2 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <line x1="50" y1="20" x2="50" y2="76" stroke="#c75a1a" stroke-width="2"/>
+        <line x1="20" y1="40" x2="80" y2="40" stroke="#c75a1a" stroke-width="2"/>
+        <path d="M 14 40 L 26 40 L 22 56 L 18 56 Z" fill="none" stroke="#a87825" stroke-width="1"/>
+        <path d="M 74 40 L 86 40 L 82 56 L 78 56 Z" fill="none" stroke="#a87825" stroke-width="1"/>
+        <ellipse cx="50" cy="78" rx="14" ry="3" fill="#c75a1a"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus II · the rising sign</div>
+    <h2 class="section-title">Lagna · Rising Sign in Tula (Libra) · 16°47'</h2>
+    <h3 class="section-sub">Swati nakshatra · ruled by Rahu, the wind that bends without breaking</h3>
+
+    <div class="lead">
+      <p>The lagna is the rasi rising on the eastern horizon at the moment of birth — the body of the chart, the form within which all other placements are held.</p>
+    </div>
+
+    <div class="text">
+      <p>Tula (Libra) is a movable air sign ruled by Shukra (Venus). A Tula lagna gives a refined, balanced, and aesthetically attentive form to the chart. Such natives are read as natural mediators — sensitive to fairness, drawn to art and to right relationship, with a quiet diplomatic instinct that finds the workable middle in most situations.</p>
+
+      <p>Your lagna sits in <em>Swati</em>, the fifteenth nakshatra, ruled by <em>Rahu</em>. The symbol of Swati is a young blade of grass moved by wind — the image is independence, flexibility, and the capacity to bend without breaking. Swati natives are read as self-made, intelligent, and unusually skilled at navigating circumstance. They tend to find their own path rather than inherit one, and their authority arrives quietly across time rather than suddenly through position.</p>
+
+      <p>The combination of Tula rasi and Swati nakshatra reinforces a single quality — <em>balance found through movement</em>. The chart's body is settled, but settled by responsiveness rather than by stubbornness. It listens, adjusts, and finds the right form for each situation as it arises.</p>
+    </div>
+
+    <div class="calc">
+      Lagna · <strong>Tula 16°47'</strong> · Nakshatra · <strong>Swati</strong> · Pada · <strong>3</strong> · Lord of nakshatra · <strong>Rahu</strong> · Lord of rasi · <strong>Shukra (Venus)</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <line x1="50" y1="22" x2="50" y2="72" stroke="#c75a1a" stroke-width="1.6"/>
+          <line x1="22" y1="42" x2="78" y2="42" stroke="#c75a1a" stroke-width="1.6"/>
+          <ellipse cx="22" cy="54" rx="8" ry="12" fill="none" stroke="#a87825" stroke-width="0.8"/>
+          <ellipse cx="78" cy="54" rx="8" ry="12" fill="none" stroke="#a87825" stroke-width="0.8"/>
+          <ellipse cx="50" cy="74" rx="12" ry="3" fill="#c75a1a" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="note-label">Tula</div>
+      <div class="note">तुला — the scales. Movable air, ruled by Venus.</div>
+      <div class="note-label">Swati</div>
+      <div class="note">स्वाति — the young blade in the wind. Self-made, flexible, independent.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 7</span></div>
+</section>
+
+
+<!-- ════ III · SUN ════ -->
+<section class="page" id="sun">
+  <div class="running"><span>III · Surya</span><span class="who">Focus 3 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="14" fill="#c75a1a"/>
+        <g stroke="#c75a1a" stroke-width="1.6" stroke-linecap="round">
+          <line x1="50" y1="22" x2="50" y2="30"/>
+          <line x1="50" y1="70" x2="50" y2="78"/>
+          <line x1="22" y1="50" x2="30" y2="50"/>
+          <line x1="70" y1="50" x2="78" y2="50"/>
+          <line x1="29" y1="29" x2="35" y2="35"/>
+          <line x1="65" y1="65" x2="71" y2="71"/>
+          <line x1="71" y1="29" x2="65" y2="35"/>
+          <line x1="29" y1="71" x2="35" y2="65"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus III · the king of the chart</div>
+    <h2 class="section-title">Surya · Sun in Vrishabha (Taurus) · 1°47'</h2>
+    <h3 class="section-sub">Krittika nakshatra · the cutting flame, the sharp purifier</h3>
+
+    <div class="lead">
+      <p>The Sun in jyotish represents the core self, the soul, and the relationship to authority and to the father.</p>
+    </div>
+
+    <div class="text">
+      <p>Vrishabha (Taurus) is a fixed earth sign ruled by Shukra. The Sun here is grounded, patient, and unusually steady — it builds the kind of authority that works through endurance rather than through declaration. Vrishabha Sun natives are read as reliable, sensual, generous to those they have decided to support, and slow to abandon either commitments or grudges.</p>
+
+      <p>Your Sun sits in <em>Krittika</em>, the third nakshatra, ruled by Surya itself. Krittika's symbol is a flame, and its presiding deity is Agni — the fire that purifies and clarifies. The Sun in its own nakshatra is unusually empowered. Krittika natives are read as having a discerning, sometimes cutting clarity — the ability to see and to name what is real beneath what is presented. The pada (2) places the Sun in Vrishabha bhaga of Krittika, softening the edge with Taurean steadiness.</p>
+
+      <p>The Sun is conjunct Jupiter (also in Vrishabha), forming the classical <em>Surya-Guru</em> conjunction — read as the chart of the natural advisor, wisdom and authority working as one. From the Tula lagna, both planets fall in the eighth house, the bhava of depth, transformation, hidden things, and inheritance. The chart neither fears nor sensationalises what lies beneath the surface.</p>
+    </div>
+
+    <div class="calc">
+      Surya · <strong>Vrishabha 1°47'</strong> · Nakshatra · <strong>Krittika pada 2</strong> · Lord · <strong>Surya itself</strong> · Bhava · <strong>8th house</strong> · Conjunction · <strong>Guru (Jupiter)</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="14" fill="#c75a1a" opacity="0.6"/>
+          <circle cx="50" cy="50" r="14" fill="none" stroke="#c75a1a" stroke-width="1.2"/>
+          <g stroke="#c75a1a" stroke-width="1.2" stroke-linecap="round">
+            <line x1="50" y1="26" x2="50" y2="34"/><line x1="50" y1="66" x2="50" y2="74"/>
+            <line x1="26" y1="50" x2="34" y2="50"/><line x1="66" y1="50" x2="74" y2="50"/>
+          </g>
+        </svg>
+      </div>
+      <div class="note-label">Krittika</div>
+      <div class="note">कृत्तिका — the cutting flame. Discernment, clarity, the cleansing fire.</div>
+      <div class="note-label">Surya-Guru</div>
+      <div class="note">The conjunction of Sun and Jupiter — the natural-advisor signature.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 8</span></div>
+</section>
+
+
+<!-- ════ IV · MOON ════ -->
+<section class="page" id="moon">
+  <div class="running"><span>IV · Chandra</span><span class="who">Focus 4 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 70 18 A 32 32 0 1 0 70 82 A 26 26 0 1 1 70 18 Z" fill="#a87825"/>
+        <circle cx="42" cy="50" r="2" fill="#6b1a2c"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus IV · the inner self</div>
+    <h2 class="section-title">Chandra · Moon in Mithuna (Gemini) · 5°47'</h2>
+    <h3 class="section-sub">Mrigashira nakshatra pada 4 · the seeker, the gentle questioning mind</h3>
+
+    <div class="lead">
+      <p>The Moon in jyotish is the deepest reading-point of the chart. It represents the mind (manas), the emotional life, and the running tone of consciousness from day to day.</p>
+    </div>
+
+    <div class="text">
+      <p>Mithuna (Gemini) is a mutable air sign ruled by Budha (Mercury). The Moon here is curious, communicative, and intellectually awake. Mithuna Chandra natives think their feelings — they process the inner life through language, story, and ideas, and they are most themselves in conversation with people who can keep pace with a moving mind.</p>
+
+      <p>Your Moon sits in <em>Mrigashira</em>, the fifth nakshatra, ruled by <em>Mangal</em> (Mars). Mrigashira's symbol is the head of a deer, and its presiding deity is Soma. The image is searching — Mrigashira natives are read as <em>perpetual seekers</em>, gentle and curious by temperament, drawn to investigation, study, and the next horizon. The pada (4), in the Pisces bhaga, deepens this with a contemplative and slightly mystical quality.</p>
+
+      <p>The Moon falls in the ninth house from your lagna — the house of dharma, higher learning, the guru, and long journeys both literal and figurative. A Mithuna Moon in the ninth is one of the most fortunate placements in jyotish for a chart oriented toward learning, teaching, and the sustained pursuit of meaning.</p>
+    </div>
+
+    <div class="calc">
+      Chandra · <strong>Mithuna 5°47'</strong> · Nakshatra · <strong>Mrigashira pada 4</strong> · Lord · <strong>Mangal (Mars)</strong> · Bhava · <strong>9th house · dharma bhava</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 68 22 A 28 28 0 1 0 68 78 A 22 22 0 1 1 68 22 Z" fill="none" stroke="#a87825" stroke-width="1.4"/>
+        </svg>
+      </div>
+      <div class="note-label">Mrigashira</div>
+      <div class="note">मृगशिरा — the deer's head. The seeker, the curious investigator.</div>
+      <div class="note-label">Ninth house</div>
+      <div class="note">Dharma bhava — the house of meaning, teacher, and pilgrimage.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 9</span></div>
+</section>
+
+
+<!-- ════ V · GRAHAS IN BHAVAS ════ -->
+<section class="page icon-right" id="houses">
+  <div class="running"><span>V · Grahas in Bhavas</span><span class="who">Focus 5 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#c75a1a" stroke-width="1.2" fill="none">
+          <rect x="20" y="20" width="60" height="60"/>
+          <line x1="20" y1="20" x2="80" y2="80"/>
+          <line x1="80" y1="20" x2="20" y2="80"/>
+          <line x1="50" y1="20" x2="80" y2="50"/>
+          <line x1="80" y1="50" x2="50" y2="80"/>
+          <line x1="50" y1="80" x2="20" y2="50"/>
+          <line x1="20" y1="50" x2="50" y2="20"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus V · planets in houses</div>
+    <h2 class="section-title">The Grahas in the Bhavas</h2>
+    <h3 class="section-sub">Where each planet sits in your twelve-house map of life</h3>
+
+    <div class="lead">
+      <p>Each graha in your chart falls in a particular bhava, describing the area of life through which that planet's energy is most active.</p>
+    </div>
+
+    <div class="text">
+      <p>Mangala in the <em>sixth house</em> (Meena) — service, disciplined work, and what one overcomes. Sixth-house Mars is the practitioner archetype: capable, persistent, effective in environments that reward sustained effort. Shukra, your lagna lord, in the <em>seventh house</em> (Mesha) — the bhava of partnership and the other. The lagna lord in the seventh is a strong indicator of collaboration as a central life-theme.</p>
+
+      <p>Surya, Guru, and Budha retrograde conjoin in the <em>eighth house</em> (Vrishabha) — depth, transformation, and hidden knowledge. The Surya-Guru conjunction gives quiet authority accumulated in depth, not displayed at the surface. Budha retrograde adds a reflective, interior quality. This triple conjunction marks the natural counsellor who has already thought through what others are only beginning to ask.</p>
+
+      <p>Rahu in the <em>tenth house</em> (Kataka) — unconventional public career, building a role outside standard categories. Ketu in the <em>fourth house</em> (Makara) marks lifelong detachment from settled domestic life. Shani in the <em>twelfth house</em> (Kanya) — long-arc inner discipline built in retreat, in writing, and advisory work behind the visible scene.</p>
+    </div>
+
+    <div class="calc">
+      Ma · <strong>6th</strong> · Ve · <strong>7th</strong> · Su + Bu ℞ + Gu · <strong>8th</strong> · Mo · <strong>9th</strong> · Ra · <strong>10th</strong> · Sa · <strong>12th</strong> · Ke · <strong>4th</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#c75a1a" stroke-width="1" fill="none">
+            <rect x="22" y="22" width="56" height="56"/>
+            <line x1="22" y1="22" x2="78" y2="78"/>
+            <line x1="78" y1="22" x2="22" y2="78"/>
+          </g>
+        </svg>
+      </div>
+      <div class="note-label">8th house</div>
+      <div class="note">Su + Bu ℞ + Gu · depth, transformation — the thoughtful eighth, not the dramatic one.</div>
+      <div class="note-label">10th–4th axis</div>
+      <div class="note">Rahu-Ketu · career ambition meets domestic detachment.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 10</span></div>
+</section>
+
+
+<!-- ════ VI · DASHA SYSTEM ════ -->
+<section class="page" id="dasha">
+  <div class="running"><span>VI · Vimshottari Dasha</span><span class="who">Focus 6 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="34" fill="none" stroke="#c75a1a" stroke-width="1.2"/>
+        <g stroke="#a87825" stroke-width="0.6" fill="none">
+          <line x1="50" y1="16" x2="50" y2="84"/>
+          <line x1="16" y1="50" x2="84" y2="50"/>
+          <line x1="26" y1="26" x2="74" y2="74"/>
+          <line x1="74" y1="26" x2="26" y2="74"/>
+        </g>
+        <circle cx="50" cy="50" r="3" fill="#6b1a2c"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VI · the timing wheel</div>
+    <h2 class="section-title">The Vimshottari Dasha</h2>
+    <h3 class="section-sub">A 120-year cycle of planetary periods, drawn from the Moon's nakshatra</h3>
+
+    <div class="lead">
+      <p>The Vimshottari dasha system divides life into nine planetary periods totalling 120 years. Each period — a <em>mahadasha</em> — colours the chart with the energy of one graha for many years at a time.</p>
+    </div>
+
+    <div class="text">
+      <p>Because your Moon falls in Mrigashira, the first mahadasha at birth was that of Mangal (Mars), the lord of Mrigashira. Mrigashira spans 23°20' Vrishabha to 6°40' Mithuna; your Moon at 5°47' Mithuna is roughly 93% of the way through it. Of the seven-year Mars dasha, therefore, only about five and a half months ran from birth — to roughly November 1953.</p>
+
+      <p>The full sequence of mahadashas from birth follows the Vimshottari order: Mars (5.6 months remaining at birth) → Rahu (18 years, to ~November 1971) → Jupiter (16 years, to ~November 1987) → Saturn (19 years, to ~November 2006) → Mercury (17 years, to ~November 2023) → Ketu (7 years, to ~November 2030) → Venus (20 years, to ~November 2050) → Sun (6 years) → Moon (10 years).</p>
+
+      <p>Each mahadasha contains internal subperiods (<em>antardashas</em>) of the nine planets, and each antardasha contains further internal periods (<em>pratyantar dashas</em>). The mahadasha sets the long colour; the antardasha sets the colour of a particular two-to-three-year theme within it. Precise sub-period calculations are verified by software using your specific Mars-balance at birth.</p>
+    </div>
+
+    <div class="calc">
+      Birth dasha · <strong>Mars (5.6 months remaining)</strong> · Order · Mars → Rahu → Jupiter → Saturn → Mercury → Ketu → Venus → Sun → Moon · Cycle · 120 years
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="32" fill="none" stroke="#c75a1a" stroke-width="1"/>
+          <circle cx="50" cy="50" r="3" fill="#6b1a2c"/>
+          <line x1="50" y1="18" x2="50" y2="82" stroke="#a87825" stroke-width="0.5"/>
+          <line x1="18" y1="50" x2="82" y2="50" stroke="#a87825" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="note-label">Vimshottari</div>
+      <div class="note">विंशोत्तरी — "one-hundred-and-twenty"; the principal Vedic timing system.</div>
+      <div class="note-label">Source</div>
+      <div class="note">The Moon's nakshatra at birth determines the order of mahadashas.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 11</span></div>
+</section>
+
+
+<!-- ════ VII · CURRENT PERIOD & SYNTHESIS (icon-right for breathing room) ════ -->
+<section class="page icon-right" id="current">
+  <div class="running"><span>VII · Current Period &amp; Synthesis</span><span class="who">Focus 7 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 30 80 Q 40 70 40 60 Q 40 50 50 50 Q 60 50 60 40 Q 60 30 70 30"
+              fill="none" stroke="#6b1a2c" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="30" cy="80" r="3" fill="#c75a1a"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VII · the current period &amp; portrait</div>
+    <h2 class="section-title">Ketu Mahadasha · 2023–2030</h2>
+    <h3 class="section-sub">The seven years of the inward turn — and the unified portrait</h3>
+
+    <div class="lead">
+      <p>You are presently in the Ketu Mahadasha, which began around November 2023 and runs through November 2030.</p>
+    </div>
+
+    <div class="text">
+      <p>Ketu, the south node of the Moon, is the planet of <em>moksha</em> — release, detachment, and the inward turn. Ketu mahadashas are read as periods of refinement and renunciation: not necessarily withdrawal from the world, but deciding what is essential and quietly setting aside what is not. The seven Ketu years tend to favour writing, study, contemplative practice, and the consolidation of inheritance. They reward patience and precision; they are unkind to scatter and to reaching outward for new things the chart no longer needs.</p>
+
+      <p>The unified Vedic portrait reads as follows. A Tula lagna in Swati nakshatra gives a refined, balanced, self-made form to the chart — one that bends without breaking. The Sun in Krittika (Vrishabha) gives a discerning Taurean authority that builds patiently and sees clearly. The Moon in Mrigashira (Mithuna) in the ninth dharma bhava is the chart's life-long signature — the seeker's mind, oriented to learning, teaching, and meaning. Saturn alone in the twelfth (Kanya) provides the long-arc inner discipline; Ketu in the fourth (Makara) marks a lifetime's detachment from domestic comfort in favour of the wider field. The Surya-Guru-Budha conjunction in the eighth marks the natural advisor and counsellor.</p>
+
+      <p>Read together, this is the chart of an <em>elder-counsellor in the dharma line</em> — authority earned by long inward labour, exercised through teaching and counsel, rooted in family and tradition, and presently entering a seven-year period particularly suited to the writing-down and refinement of what has already been learned.</p>
+
+      <p class="sanskrit">यथा हि एकेन चक्रेण न रथस्य गतिर्भवेत् — as a chariot does not move on one wheel alone, neither does the chart on one position alone.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia" style="padding-top:6mm;">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 30 80 Q 40 70 40 60 Q 40 50 50 50 Q 60 50 60 40 Q 60 30 70 30"
+                fill="none" stroke="#6b1a2c" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="30" cy="80" r="4" fill="#c75a1a" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="note-label">Ketu</div>
+      <div class="note">केतु — moksha karaka. Release, detachment, the inward turn.</div>
+      <div class="note-label">2023–2030</div>
+      <div class="note">Seven years of refinement, study, and consolidation.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading · End</span><span>Page 12</span></div>
+</section>
+
+</body>
+</html>

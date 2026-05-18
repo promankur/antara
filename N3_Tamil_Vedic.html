@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Tamil · Vedic Numerology — A Personal Reading for Ankur Gupta</title>
+<style>
+  /* ─────────── Antara Personal Reading — V3 template ─────────── */
+  @page { size: A4 portrait; margin: 0; }
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #e8d8b0; }
+  body {
+    font-family: "Cormorant Garamond","Iowan Old Style","Palatino Linotype",Georgia,serif;
+    font-size: 12pt; line-height: 1.5;
+    color: #3a1818; -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─────────── Cultural palette: South Indian / Tamil ─────────── */
+  :root {
+    --paper:#fbf3e1;          /* silk cream */
+    --paper-2:#f3e8c8;
+    --ink:#3a1818;            /* deep maroon ink */
+    --ink-2:#5a2828;
+    --maroon:#5b1a1a;         /* temple maroon */
+    --sindoor:#a01818;        /* sindoor red */
+    --turmeric:#c08a1a;       /* turmeric gold */
+    --turmeric-soft:#e6c87c;
+    --peacock:#0e6e7a;        /* peacock teal */
+    --peacock-soft:#7eb4bc;
+    --rule:#c8a85c;
+    --muted:#7a5a30;
+
+    --page-w:210mm; --page-h:297mm;
+    /* V3 geometry */
+    --pad-top:17mm; --pad-bot:32mm;
+    --pad-left:25mm; --pad-right:22mm;
+    --col-text:125mm; --col-gap:6mm; --col-margin:32mm;
+    --content-h:248mm; --content-top-pad:6mm;
+  }
+
+  .page{
+    width:var(--page-w); height:var(--page-h);
+    background:var(--paper);
+    margin:8mm auto;
+    padding:var(--pad-top) var(--pad-right) var(--pad-bot) var(--pad-left);
+    position:relative; box-shadow:0 4px 18px rgba(0,0,0,0.18);
+    page-break-after:always; break-after:page;
+    display:grid; grid-template-columns: var(--col-text) var(--col-margin); column-gap: var(--col-gap);
+  }
+  .page:last-child{ page-break-after:auto; break-after:auto; }
+
+  /* V3 wide variant — full-width single column, no marginalia */
+  .page.wide{
+    grid-template-columns:1fr; column-gap:0;
+  }
+  .page.wide .margin-area{ display:none; }
+
+  /* V3 icon-right variant — icon moved out of text column */
+  .page.icon-right .content > .icon-block{ display:none; }
+
+  .page::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(192,138,26,0.05), transparent 40%),
+      radial-gradient(circle at 88% 90%, rgba(14,110,122,0.04), transparent 40%);
+    mix-blend-mode:multiply;
+  }
+
+  /* Kolam-style top border (dots and curves) */
+  .page::after{
+    content:"";position:absolute;
+    left:var(--pad-left); right:var(--pad-right);
+    top:9mm; height:6mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><g fill='%23a01818'><circle cx='4' cy='7' r='1'/><circle cx='14' cy='7' r='1'/><circle cx='24' cy='7' r='1'/><circle cx='34' cy='7' r='1'/><circle cx='44' cy='7' r='1'/><circle cx='54' cy='7' r='1'/><circle cx='64' cy='7' r='1'/><circle cx='74' cy='7' r='1'/></g><g stroke='%23c08a1a' stroke-width='0.8' fill='none'><path d='M 4 7 Q 9 2 14 7 Q 19 12 24 7 Q 29 2 34 7 Q 39 12 44 7 Q 49 2 54 7 Q 59 12 64 7 Q 69 2 74 7'/></g></svg>");
+    background-repeat:repeat-x; background-size:auto 6mm; opacity:.85;
+  }
+
+  .content{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+  }
+  .margin-area{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+  }
+
+  .running{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); top:5mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; letter-spacing:.18em; text-transform:uppercase; color:var(--sindoor);
+    font-family:"Iowan Old Style",Georgia,serif; font-weight:600;
+  }
+  .running .who{ color:var(--ink-2); letter-spacing:.12em; }
+
+  .pgfoot{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); bottom:14mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; color:var(--muted); letter-spacing:.06em;
+  }
+  .pgfoot::before{
+    content:""; position:absolute; left:0; right:0; top:-6mm; height:0.4mm;
+    background:var(--rule); opacity:.55;
+  }
+
+  h1.cover-title{
+    font-size:28pt; font-weight:600; color:var(--maroon);
+    letter-spacing:.06em; line-height:1.15; margin-bottom:6mm;
+    font-variant:small-caps; white-space:nowrap;
+  }
+  h2.section-title{
+    font-size:18pt; font-weight:600; color:var(--maroon);
+    letter-spacing:.02em; line-height:1.2; margin-bottom:4mm;
+  }
+  h3.section-sub{
+    font-size:11pt; font-style:italic; color:var(--peacock); font-weight:400;
+    margin-bottom:8mm; letter-spacing:.02em; line-height:1.4;
+  }
+  .eyebrow{
+    font-size:10pt; letter-spacing:.32em; text-transform:uppercase; color:var(--sindoor);
+    font-weight:600; font-family:"Iowan Old Style",Georgia,serif; margin-bottom:3mm;
+  }
+  .sanskrit{ font-family:"Cormorant Garamond",Georgia,serif; color:var(--peacock); font-style:italic; letter-spacing:.04em; }
+
+  .text > p{ font-size:12pt; line-height:1.5; color:var(--ink); margin:0 0 12pt; }
+  .text > p:last-child{ margin-bottom:0; }
+  .lead{ margin-bottom:8mm; }
+  .lead > p{ font-size:13pt; line-height:1.5; color:var(--ink-2); font-style:italic; margin:0 0 6pt; }
+  .lead > p:last-child{ margin-bottom:0; }
+
+  .calc{
+    font-family:"Iowan Old Style",Georgia,serif;
+    font-size:10pt; line-height:1.5; color:var(--sindoor);
+    border-top:0.4mm solid var(--rule); border-bottom:0.4mm solid var(--rule);
+    padding:4mm 0; margin:8mm 0 0; letter-spacing:.02em;
+  }
+  .calc strong{ color:var(--maroon); font-weight:600; }
+  .fine{ font-size:10pt; line-height:1.5; color:var(--muted); font-style:italic; }
+
+  .cover{ grid-template-columns: 1fr; text-align:center; align-content:center; padding-top:42mm; }
+  .cover .markline{
+    margin:0 auto 14mm; width:60mm; height:5mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><g fill='%23a01818'><circle cx='4' cy='7' r='1.4'/><circle cx='14' cy='7' r='1.4'/><circle cx='24' cy='7' r='1.4'/><circle cx='34' cy='7' r='1.4'/><circle cx='44' cy='7' r='1.4'/><circle cx='54' cy='7' r='1.4'/><circle cx='64' cy='7' r='1.4'/><circle cx='74' cy='7' r='1.4'/></g><g stroke='%23c08a1a' stroke-width='1.2' fill='none'><path d='M 4 7 Q 9 2 14 7 Q 19 12 24 7 Q 29 2 34 7 Q 39 12 44 7 Q 49 2 54 7 Q 59 12 64 7 Q 69 2 74 7'/></g></svg>");
+    background-repeat:repeat-x; background-size:auto 5mm;
+  }
+  .cover .greek-eyebrow{
+    font-size:11pt; letter-spacing:.4em; text-transform:uppercase; color:var(--sindoor);
+    margin-bottom:8mm; font-weight:600;
+  }
+  .cover .arithmos{
+    font-size:14pt; color:var(--peacock); font-style:italic; letter-spacing:.06em;
+    margin-bottom:12mm;
+  }
+  .cover .person{ font-size:13pt; color:var(--ink); margin-top:14mm; line-height:1.7; }
+  .cover .person .lbl{
+    font-size:10pt; letter-spacing:.22em; text-transform:uppercase; color:var(--muted);
+    font-weight:600; margin-right:6mm;
+  }
+  .cover .yantra{ margin:18mm auto 0; width:55mm; height:55mm; display:flex; align-items:center; justify-content:center; }
+
+  .toc-list{ list-style:none; padding:0; margin:0; }
+  .toc-list li{
+    display:grid; grid-template-columns:8mm 1fr auto; gap:4mm;
+    align-items:baseline; padding:4mm 0;
+    border-bottom:0.3mm dashed var(--rule); font-size:12pt;
+  }
+  .toc-list li:last-child{ border-bottom:none; }
+  .toc-list .num{ color:var(--sindoor); font-variant-numeric:tabular-nums; font-weight:600; }
+  .toc-list .name{ color:var(--ink); }
+  .toc-list .pg{ color:var(--muted); font-size:10pt; letter-spacing:.06em; }
+  .toc-list a{ text-decoration:none; color:inherit; display:contents; }
+  .toc-list a:hover .name{ color:var(--peacock); }
+
+  .icon-block{ width:28mm; height:28mm; margin-bottom:6mm; display:flex; align-items:center; justify-content:center; }
+  .icon-block svg{ width:100%; height:100%; }
+
+  .marginalia{
+    padding-top:12mm; color:var(--muted);
+    font-size:10pt; line-height:1.5; font-style:italic;
+  }
+  .marginalia .ornament{ width:28mm; height:28mm; margin-bottom:8mm; opacity:.6; }
+  .marginalia .icon-echo{ width:24mm; height:24mm; margin-bottom:8mm; opacity:.7; }
+  .marginalia .icon-echo svg{ width:100%; height:100%; }
+  .marginalia .note-label{
+    font-size:9pt; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--sindoor); font-weight:600; font-style:normal; margin-bottom:2mm;
+  }
+  .marginalia .note{ margin-bottom:8mm; }
+  .marginalia .note:last-child{ margin-bottom:0; }
+
+  @media print{
+    html, body{ background:#fff; } body{ padding:0; }
+    .page{ margin:0; box-shadow:none; page-break-after:always; break-after:page; }
+    .page:last-child{ page-break-after:auto; break-after:auto; }
+  }
+  @media screen{ body{ padding:14mm 0; } }
+</style>
+</head>
+<body>
+
+<!-- ════ COVER ════ -->
+<section class="page cover" id="cover">
+  <div class="markline"></div>
+  <div class="arithmos">எண் கணிதம் — the reading of the three numbers</div>
+  <h1 class="cover-title">Tamil · Vedic Numerology</h1>
+  <div class="arithmos" style="margin-top:6mm">A reading from the Tamil &amp; Vedic tradition</div>
+
+  <div class="yantra">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <!-- Simplified Sri Yantra -->
+      <circle cx="50" cy="50" r="40" fill="none" stroke="#c08a1a" stroke-width="0.8"/>
+      <circle cx="50" cy="50" r="34" fill="none" stroke="#c08a1a" stroke-width="0.6"/>
+      <!-- 8 lotus petals (simplified) -->
+      <g stroke="#a01818" stroke-width="0.8" fill="none">
+        <path d="M 50 16 Q 56 24 50 32 Q 44 24 50 16 Z"/>
+        <path d="M 50 84 Q 56 76 50 68 Q 44 76 50 84 Z"/>
+        <path d="M 16 50 Q 24 56 32 50 Q 24 44 16 50 Z"/>
+        <path d="M 84 50 Q 76 56 68 50 Q 76 44 84 50 Z"/>
+        <path d="M 26 26 Q 34 28 32 36 Q 28 34 26 26 Z"/>
+        <path d="M 74 74 Q 66 72 68 64 Q 72 66 74 74 Z"/>
+        <path d="M 74 26 Q 72 34 64 32 Q 66 28 74 26 Z"/>
+        <path d="M 26 74 Q 28 66 36 68 Q 34 72 26 74 Z"/>
+      </g>
+      <!-- Central interlocking triangles -->
+      <path d="M 50 32 L 66 60 L 34 60 Z" fill="none" stroke="#5b1a1a" stroke-width="1"/>
+      <path d="M 50 68 L 34 40 L 66 40 Z" fill="none" stroke="#5b1a1a" stroke-width="1"/>
+      <circle cx="50" cy="50" r="2" fill="#a01818"/>
+    </svg>
+  </div>
+
+  <div class="person">
+    <div>Ankur Gupta</div>
+    <div>16 May 1953 · Saturday</div>
+    <div>Chakrata, Uttarakhand · Devbhoomi</div>
+  </div>
+
+  <div class="pgfoot" style="display:block;text-align:center;">
+  <div style="font-size:10.5pt;font-weight:700;letter-spacing:.18em;color:var(--gold,#a88842);">ANTARA PERSONAL READING</div>
+  <div style="font-size:9.5pt;font-style:italic;letter-spacing:.08em;color:var(--gold,#a88842);margin-top:1.5mm;">interpretative, not Predictive</div>
+</div>
+</section>
+
+
+<!-- ════ INTRO 1 ════ -->
+<section class="page" id="intro-1">
+  <div class="running"><span>Tamil Numerology</span><span class="who">Introduction · 1 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Introduction</div>
+    <h2 class="section-title">What this report is about</h2>
+    <h3 class="section-sub">The Tamil &amp; Vedic tradition of three numbers and the planets behind them</h3>
+
+    <div class="text">
+      <p>Tamil numerology — closely allied to the wider Vedic tradition of India — reads a person's life through three numbers and the planet behind each. The system is far older than its modern presentations; its roots lie in the jyotisha (astrology) literature of the Indian subcontinent, where number, planet and sound have always been understood as one fabric.</p>
+
+      <p>The three numbers are the <em>Mulank</em>, the seed-number drawn from the day of birth; the <em>Bhagyank</em>, the destiny number drawn from the entire date; and the <em>Namank</em>, the name number drawn from the letters using Chaldean–Vedic letter values. Each is held by one of the nine planets — Sun, Moon, Jupiter, Rahu, Mercury, Venus, Ketu, Saturn or Mars.</p>
+
+      <p>The day of the week of birth adds a fourth note — the <em>day-lord</em> — which overlays the three numbers. The place of birth, while not a calculation in numerology, is read as a flavouring note; certain regions of India are considered <em>devbhoomi</em> (land of the gods), and the early energy field of one born there is taken as differently coloured.</p>
+
+      <p>This report draws all four notes from your name, date and place, and presents them with their planetary lords, their compounds, and the auspicious indications the tradition associates with each.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Lotus -->
+          <g stroke="#a01818" stroke-width="1" fill="none">
+            <path d="M 50 76 Q 30 60 30 40 Q 40 50 50 50"/>
+            <path d="M 50 76 Q 70 60 70 40 Q 60 50 50 50"/>
+            <path d="M 50 76 Q 16 70 14 50 Q 30 56 40 60"/>
+            <path d="M 50 76 Q 84 70 86 50 Q 70 56 60 60"/>
+            <path d="M 50 76 Q 24 30 36 24"/>
+            <path d="M 50 76 Q 76 30 64 24"/>
+          </g>
+          <ellipse cx="50" cy="78" rx="22" ry="3" fill="none" stroke="#0e6e7a" stroke-width="0.8"/>
+        </svg>
+      </div>
+      <div class="note-label">The nine planets</div>
+      <div class="note">Sun · Moon · Jupiter · Rahu · Mercury · Venus · Ketu · Saturn · Mars.</div>
+      <div class="note-label">Devbhoomi</div>
+      <div class="note">"Land of the gods" — the Himalayan regions of Uttarakhand traditionally so called.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 2</span></div>
+</section>
+
+
+<!-- ════ INTRO 2 ════ -->
+<section class="page" id="intro-2">
+  <div class="running"><span>Tamil Numerology</span><span class="who">Introduction · 2 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">How to read this report</div>
+    <h2 class="section-title">Structure &amp; method</h2>
+    <h3 class="section-sub">Each focus on its own page; the planet behind every number named</h3>
+
+    <div class="text">
+      <p>This report is structured so that each focus aspect lives on its own page. That arrangement gives every theme room to breathe, and lets you read in any order, returning to whichever page you wish.</p>
+
+      <p>The contents page that follows lists every focus with a hyperlink. In a browser or PDF you may tap any title to jump directly to the relevant page.</p>
+
+      <p>Each focus carries a small icon at the top correlated to its theme, and names the planet that rules its number. The body is set in measured paragraphs at twelve point. The calculation is shown beneath, set apart by hairlines.</p>
+
+      <p>A standard note applies to the whole. Tamil and Vedic numerology are interpretive traditions, read alongside jyotisha rather than in place of it. The reading describes character and likely tendencies; remedial measures are best undertaken with qualified consultation. The reader is the final authority on the reading.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Diya / oil lamp -->
+          <path d="M 22 60 Q 50 76 78 60 L 70 64 Q 50 70 30 64 Z" fill="none" stroke="#c08a1a" stroke-width="1.2"/>
+          <path d="M 50 38 Q 46 50 50 58 Q 54 50 50 38 Z" fill="#a01818" stroke="#a01818" stroke-width="0.5"/>
+          <path d="M 50 24 Q 46 32 50 36 Q 54 32 50 24 Z" fill="#c08a1a" stroke="#c08a1a" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="note-label">Reading time</div>
+      <div class="note">Approximately twenty-five minutes at an unhurried pace.</div>
+      <div class="note-label">Authority</div>
+      <div class="note">The reader is the final authority on the reading.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 3</span></div>
+</section>
+
+
+<!-- ════ CONTENTS ════ -->
+<section class="page" id="contents">
+  <div class="running"><span>Tamil Numerology</span><span class="who">Contents</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Contents</div>
+    <h2 class="section-title">The seven focus pages</h2>
+    <h3 class="section-sub">Tap any title to jump to that page</h3>
+
+    <ol class="toc-list">
+      <li><a href="#mulank"><span class="num">I</span><span class="name">Mulank · Birth Number 7 · Ketu</span><span class="pg">p. 5</span></a></li>
+      <li><a href="#bhagyank"><span class="num">II</span><span class="name">Bhagyank · Destiny Number 3 · Guru</span><span class="pg">p. 6</span></a></li>
+      <li><a href="#namank"><span class="num">III</span><span class="name">Namank · Name Number 2 · Chandra</span><span class="pg">p. 7</span></a></li>
+      <li><a href="#daylord"><span class="num">IV</span><span class="name">Day-Lord · Saturday · Shani</span><span class="pg">p. 8</span></a></li>
+      <li><a href="#place"><span class="num">V</span><span class="name">Place · Devbhoomi — the high ground</span><span class="pg">p. 9</span></a></li>
+      <li><a href="#auspicious"><span class="num">VI</span><span class="name">Auspicious Indications · day, colour, stone</span><span class="pg">p. 10</span></a></li>
+      <li><a href="#synthesis"><span class="num">VII</span><span class="name">Synthesis · the Tamil portrait</span><span class="pg">p. 11</span></a></li>
+    </ol>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Temple gopuram -->
+          <path d="M 24 84 L 24 70 L 28 64 L 28 56 L 32 50 L 32 42 L 36 36 L 36 28 L 40 24 L 40 18 L 60 18 L 60 24 L 64 28 L 64 36 L 68 42 L 68 50 L 72 56 L 72 64 L 76 70 L 76 84 Z"
+                fill="none" stroke="#5b1a1a" stroke-width="1.2"/>
+          <line x1="24" y1="84" x2="76" y2="84" stroke="#5b1a1a" stroke-width="1.2"/>
+          <rect x="44" y="60" width="12" height="24" fill="none" stroke="#c08a1a" stroke-width="0.8"/>
+        </svg>
+      </div>
+      <div class="note-label">Key numbers</div>
+      <div class="note">Mulank · 7 · Ketu<br>Bhagyank · 3 · Guru<br>Namank · 2 · Chandra<br>Day-lord · Shani</div>
+      <div class="note-label">Place</div>
+      <div class="note">Chakrata · Devbhoomi</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 4</span></div>
+</section>
+
+
+<!-- ════ I · MULANK ════ -->
+<section class="page" id="mulank">
+  <div class="running"><span>I · Mulank</span><span class="who">Focus 1 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ketu — stylised serpent in coil -->
+        <path d="M 50 18 Q 30 22 30 38 Q 30 50 50 50 Q 70 50 70 62 Q 70 76 50 80" fill="none" stroke="#0e6e7a" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="50" cy="80" r="3" fill="#a01818"/>
+        <path d="M 48 16 L 50 22 L 52 16" stroke="#5b1a1a" stroke-width="1" fill="none"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus I · the seed number</div>
+    <h2 class="section-title">Mulank · Birth Number 7</h2>
+    <h3 class="section-sub">Ketu — the inward seeker, the mystic apart</h3>
+
+    <div class="lead">
+      <p>The Mulank is the day of birth, reduced. It is the seed-number — what the soul brings into the life before circumstance has shaped it.</p>
+    </div>
+
+    <div class="text">
+      <p>For the sixteenth, one plus six gives seven. Seven is governed by <em>Ketu</em>, the south node of the moon — half-visible, intuitive, philosophically minded, quietly individual. The Ketu-born often appear slightly apart from the noise of the world.</p>
+
+      <p>A Mulank seven reads, reflects, and is most itself in solitude. Decisions are guided more by inner sensing than by argument. The native is rarely the loudest in the room, but is often the one others quietly seek when they want a thoughtful answer.</p>
+
+      <p>The shadow of seven is detachment carried too far — the wisdom that becomes withdrawal, the privacy that becomes isolation. The discipline of a Mulank seven is to honour the inwardness without cutting the cord to ordinary life.</p>
+    </div>
+
+    <div class="calc">
+      Calculation · Day = <strong>16</strong> · 1 + 6 = <strong>7</strong> · Planetary lord: <strong>Ketu (கேது)</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Ketu</div>
+      <div class="note">The south node of the moon — the planet of withdrawal, mysticism, and quiet inheritance.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Inwardness ↔ isolation. The depth that nourishes, and the depth that cuts off.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 5</span></div>
+</section>
+
+
+<!-- ════ II · BHAGYANK ════ -->
+<section class="page" id="bhagyank">
+  <div class="running"><span>II · Bhagyank</span><span class="who">Focus 2 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Guru — open palm / wisdom mudra -->
+        <path d="M 30 80 L 30 50 Q 30 40 36 40 L 36 32 Q 36 26 42 26 L 42 32 L 42 40 L 50 40 L 50 26 Q 50 20 56 20 L 56 26 L 56 40 L 64 40 L 64 32 Q 64 26 70 26 L 70 50 Q 70 64 60 76 L 40 80 Z"
+              fill="none" stroke="#c08a1a" stroke-width="1.4"/>
+          <circle cx="50" cy="58" r="3" fill="#a01818"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus II · the destiny path</div>
+    <h2 class="section-title">Bhagyank · Destiny Number 3</h2>
+    <h3 class="section-sub">Guru / Jupiter — wisdom, expansion, the elder who guides</h3>
+
+    <div class="lead">
+      <p>The Bhagyank is the sum of the entire date of birth, reduced. It is the path the universe lays out — the destiny the chart is being shaped to walk.</p>
+    </div>
+
+    <div class="text">
+      <p>The digits of 16 May 1953 sum to thirty, which reduces to three. Three is the number of <em>Guru</em> — Brihaspati — the planet of wisdom, scholarship, dharma, and expansion. Jupiter destinies are strongly associated with teaching, advising, mentoring, and roles where knowledge becomes a kind of leadership.</p>
+
+      <p>The Mulank–Bhagyank pair of seven and three is the classical signature of the <em>scholar–elder</em>. The contemplative seven within walks a public path of wisdom-giving. What looks from the outside like advisory work is, on the inside, the natural overflow of long inward study.</p>
+
+      <p>Such destinies tend to deepen rather than expand outward. The reach of a Bhagyank three is not loud, but it travels — and it tends to be sought after rather than sought.</p>
+    </div>
+
+    <div class="calc">
+      Calculation · 5 + 1 + 6 + 1 + 9 + 5 + 3 = <strong>30</strong> · 3 + 0 = <strong>3</strong> · Planetary lord: <strong>Guru (குரு)</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Brihaspati</div>
+      <div class="note">The Vedic teacher of the gods — the original Guru, lord of the planet Jupiter.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Wisdom ↔ pronouncement. The teacher who listens, and the one who only declaims.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 6</span></div>
+</section>
+
+
+<!-- ════ III · NAMANK ════ -->
+<section class="page" id="namank">
+  <div class="running"><span>III · Namank</span><span class="who">Focus 3 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Crescent moon — Chandra -->
+        <path d="M 70 18 A 32 32 0 1 0 70 82 A 26 26 0 1 1 70 18 Z" fill="#0e6e7a" stroke="#0e6e7a" stroke-width="1"/>
+        <circle cx="44" cy="50" r="2" fill="#c08a1a"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus III · how others meet you</div>
+    <h2 class="section-title">Namank · Name Number 2</h2>
+    <h3 class="section-sub">Chandra — sensitive, perceptive, soft of presence</h3>
+
+    <div class="lead">
+      <p>The Namank is the sum of the Chaldean–Vedic letter values of the name, reduced. It speaks for the part of the chart others first encounter.</p>
+    </div>
+
+    <div class="text">
+      <p>The letters of <em>Ankur Gupta</em> sum to thirty-eight, which reduces through eleven to two. Two is the number of <em>Chandra</em>, the Moon — sensitivity, emotional intelligence, the ability to read a room, and a kindness that puts others at ease.</p>
+
+      <p>A Moon-toned name softens the harder edges of a Jupiter destiny and the inward edges of a Ketu Mulank. The way one is <em>known</em> by others is gentler than the underlying ambition or the underlying solitude. Two listens before it answers; it accepts before it judges.</p>
+
+      <p>The undertone of eleven within thirty-eight is significant. Eleven is treated in this tradition as a master vibration — a number of intuitive insight available to those who live consciously with it. The name therefore carries a soft outer presence and an unusually strong inner perception.</p>
+    </div>
+
+    <div class="calc">
+      Calculation · A·N·K·U·R = 1+5+2+6+2 = <strong>16</strong> · G·U·P·T·A = 3+6+8+4+1 = <strong>22</strong> · Total <strong>38</strong> → 11 → <strong>2</strong> · Planetary lord: <strong>Chandra (சந்திரா)</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Chandra</div>
+      <div class="note">The Moon — the planet of mind, mood, and gentle reception in the Vedic system.</div>
+      <div class="note-label">Master eleven</div>
+      <div class="note">Read consciously, intuitive insight. Read unconsciously, restlessness.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 7</span></div>
+</section>
+
+
+<!-- ════ IV · DAY-LORD ════ -->
+<section class="page" id="daylord">
+  <div class="running"><span>IV · Day-Lord</span><span class="who">Focus 4 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Saturn ringed -->
+        <ellipse cx="50" cy="50" rx="22" ry="22" fill="none" stroke="#5b1a1a" stroke-width="1.6"/>
+        <ellipse cx="50" cy="50" rx="36" ry="9" fill="none" stroke="#c08a1a" stroke-width="1.4" transform="rotate(-20 50 50)"/>
+        <circle cx="50" cy="50" r="4" fill="#5b1a1a"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus IV · the day-lord beneath the chart</div>
+    <h2 class="section-title">Day-Lord · Shani</h2>
+    <h3 class="section-sub">Saturday — Saturn, the planet of long time</h3>
+
+    <div class="lead">
+      <p>The day of the week of birth is the day-lord, a fourth note that overlays the three numbers above.</p>
+    </div>
+
+    <div class="text">
+      <p>16 May 1953 was a Saturday — சனிக்கிழமை — ruled by <em>Shani</em>, Saturn. Saturn lays the discipline of long timelines onto the chart: patience, gravitas, the willingness to wait for things to ripen on their own schedule.</p>
+
+      <p>Layered onto a Ketu–Guru–Chandra foundation, Saturn gives the whole the gravity of someone who has done the work. Decisions take longer, opinions form slowly, and once formed they are unusually firm. Shani-born natives are typically understood late and well, rather than early and partially.</p>
+
+      <p>The cost of Saturn is melancholy when patience hardens into gloom. The gift of Saturn is a depth and steadiness the lighter planets cannot manufacture. Shani rewards faithfulness over time more reliably than any other graha.</p>
+    </div>
+
+    <div class="calc">
+      Day of the week of birth · <strong>Saturday · சனிக்கிழமை</strong> · Day-lord · <strong>Shani (Saturn)</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Shani</div>
+      <div class="note">The graha of justice, time, and ripeness — the great teacher by patience.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Patience ↔ delay. The wait that ripens, and the wait that frustrates.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 8</span></div>
+</section>
+
+
+<!-- ════ V · PLACE ════ -->
+<section class="page" id="place">
+  <div class="running"><span>V · Place</span><span class="who">Focus 5 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Mountain -->
+        <path d="M 14 80 L 36 40 L 48 56 L 62 30 L 86 80 Z" fill="none" stroke="#0e6e7a" stroke-width="1.4"/>
+        <path d="M 32 50 L 40 50 M 56 38 L 62 38" stroke="#fbf3e1" stroke-width="2"/>
+        <line x1="14" y1="80" x2="86" y2="80" stroke="#0e6e7a" stroke-width="1.4"/>
+        <circle cx="62" cy="22" r="3" fill="#c08a1a"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus V · the place of birth</div>
+    <h2 class="section-title">Devbhoomi · The High Ground</h2>
+    <h3 class="section-sub">Chakrata, Uttarakhand — the land Indian tradition calls the abode of the gods</h3>
+
+    <div class="lead">
+      <p>The place of birth is not a numerical calculation in this tradition, but it is read as a flavouring note — an environmental amplifier of the chart's tone.</p>
+    </div>
+
+    <div class="text">
+      <p>Chakrata is a high-altitude cantonment in the foothills of the Himalayas, in the state of Uttarakhand. The state has long been called <em>Devbhoomi</em> in Indian tradition — the land of the gods — because of the extraordinary number of pilgrimage sites in its geography, from Kedarnath and Badrinath to Yamunotri and Gangotri.</p>
+
+      <p>Birth in such a region is read in the Tamil and Vedic traditions as <em>aligning the early energy field with stillness, height, and shastric depth</em>. The mountains carry an old quietness; the air at altitude is thinner; the early imprint of such an environment is taken to amplify the inward parts of a chart.</p>
+
+      <p>For a Mulank seven and a Bhagyank three, this place is unusually well-aligned. Devbhoomi reinforces the inwardness of the Ketu Mulank rather than fighting it, and gives the Jupiter Bhagyank the right kind of quiet altitude from which to teach. The chart and the place sit comfortably with each other.</p>
+    </div>
+
+    <div class="calc">
+      Place of birth · <strong>Chakrata, Uttarakhand</strong> · Traditional name for the region · <strong>Devbhoomi</strong> · Read as · <strong>environmental amplifier of inwardness</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Devbhoomi</div>
+      <div class="note">"Land of the gods" — the Himalayan reaches of Uttarakhand.</div>
+      <div class="note-label">Reading</div>
+      <div class="note">Place is a flavour, not a calculation. It colours; it does not determine.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 9</span></div>
+</section>
+
+
+<!-- ════ VI · AUSPICIOUS ════ -->
+<section class="page" id="auspicious">
+  <div class="running"><span>VI · Auspicious Indications</span><span class="who">Focus 6 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Lamp / diya in plate -->
+        <path d="M 14 60 Q 50 76 86 60 L 76 66 Q 50 72 24 66 Z" fill="none" stroke="#c08a1a" stroke-width="1.4"/>
+        <path d="M 38 36 Q 36 52 38 58 Q 50 60 62 58 Q 64 52 62 36 Z" fill="none" stroke="#5b1a1a" stroke-width="1.2"/>
+        <path d="M 50 22 Q 46 30 50 36 Q 54 30 50 22 Z" fill="#a01818"/>
+        <path d="M 50 14 Q 48 18 50 22 Q 52 18 50 14 Z" fill="#c08a1a"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VI · day, colour, stone</div>
+    <h2 class="section-title">Auspicious Indications</h2>
+    <h3 class="section-sub">The traditional supports the school associates with this chart</h3>
+
+    <div class="lead">
+      <p>Tamil and Vedic numerology carry detailed indications of supportive day, colour, stone and direction for each chart. These are read as supports, not prescriptions.</p>
+    </div>
+
+    <div class="text">
+      <p>For a Mulank seven (Ketu) and a Bhagyank three (Guru), the supportive days are Sundays and Mondays for the soft Sun-Moon resonance with the Mulank, and Thursdays for the Jupiter resonance with the Bhagyank. Saturday carries the day-lord and needs no special support.</p>
+
+      <p>Favourable colours follow the planets. Sea-green and pale yellow for Ketu; off-white and cream for the Moon-toned name; deeper yellow, gold and saffron for Jupiter. These appear naturally in dress, in rooms one spends long hours in, and in the objects one chooses to keep close.</p>
+
+      <p>The traditional stones are <em>cat's-eye</em> (Vaidurya) for the Mulank seven (Ketu), and <em>yellow sapphire</em> (Pukhraj) for the Bhagyank three (Guru) — both worn only after qualified jyotisha consultation. Direction of strength is north-east. The mantras associated with this chart are those of Ketu and Brihaspati.</p>
+    </div>
+
+    <div class="calc">
+      Days · <strong>Sun, Mon, Thu</strong> · Colours · <strong>sea-green, cream, gold, saffron</strong> · Stones · <strong>cat's-eye · yellow sapphire</strong> · Direction · <strong>north-east</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Caveat</div>
+      <div class="note">Stones, mantras and remedial measures should be undertaken only after qualified jyotisha consultation.</div>
+      <div class="note-label">Reading</div>
+      <div class="note">Indications, never prescriptions.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading</span><span>Page 10</span></div>
+</section>
+
+
+<!-- ════ VII · SYNTHESIS ════ -->
+<section class="page icon-right" id="synthesis">
+  <div class="running"><span>VII · Synthesis</span><span class="who">Focus 7 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Sri yantra mini -->
+        <circle cx="50" cy="50" r="34" fill="none" stroke="#c08a1a" stroke-width="0.8"/>
+        <path d="M 50 24 L 70 60 L 30 60 Z" fill="none" stroke="#5b1a1a" stroke-width="1"/>
+        <path d="M 50 76 L 30 40 L 70 40 Z" fill="none" stroke="#5b1a1a" stroke-width="1"/>
+        <circle cx="50" cy="50" r="2" fill="#a01818"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VII · the portrait</div>
+    <h2 class="section-title">Synthesis</h2>
+    <h3 class="section-sub">The quiet teacher — three numbers, one chord</h3>
+
+    <div class="lead">
+      <p>The Tamil reading describes a person whose Mulank is Ketu within, whose Bhagyank is Guru ahead, whose Namank is Chandra at the surface, and whose day-lord is Shani beneath.</p>
+    </div>
+
+    <div class="text">
+      <p>The inner life is governed by Ketu — the seeker, the philosopher, the mystic apart. The outer life is shaped by Guru — the teacher, the elder, the giver of dharma. The name carries Chandra — gentle, perceptive, attuned to people. Saturn, ruling the day of birth, gives the whole the dignity of long time. The place — Devbhoomi — colours the early field with stillness and altitude.</p>
+
+      <p>It is the chart of a <em>quiet teacher who arrives by patience</em>. Such charts are slow to peak and long to remain. The teaching, when it comes, comes from inwardness rather than performance. The work travels because it is patient, not because it is loud.</p>
+
+      <p>The defining quality is <em>earned wisdom that listens before it speaks</em>. A person whose authority does not need to assert itself, because the planets behind the chart have already arranged for the right people to listen.</p>
+
+      <p class="sanskrit">எண் என்ப ஏனை எழுத்து என்ப இவ்விரண்டும் — number and letter, the two eyes of a living soul.</p>
+      <p class="fine">— after Thirukkural</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="icon-echo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="34" fill="none" stroke="#c08a1a" stroke-width="0.8"/>
+          <path d="M 50 24 L 70 60 L 30 60 Z" fill="none" stroke="#5b1a1a" stroke-width="1"/>
+          <path d="M 50 76 L 30 40 L 70 40 Z" fill="none" stroke="#5b1a1a" stroke-width="1"/>
+          <circle cx="50" cy="50" r="2" fill="#a01818"/>
+        </svg>
+      </div>
+      <div class="note-label">The chord</div>
+      <div class="note">7 · 3 · 2 · with Saturn beneath and Devbhoomi around. Three planets, four notes.</div>
+      <div class="note-label">The keynote</div>
+      <div class="note">Ketu within, Guru ahead — the scholar-elder signature.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — A Personal Reading · End</span><span>Page 11</span></div>
+</section>
+
+</body>
+</html>
