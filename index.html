@@ -604,6 +604,82 @@ body{
   cursor:pointer;border-radius:2px;
 }
 
+/* ── Profile — referral + journey real estate ── */
+.p-section-label{
+  font-family:"Iowan Old Style",Georgia,serif;font-size:8pt;
+  font-weight:700;color:var(--turmeric);letter-spacing:.22em;
+  text-transform:uppercase;margin:18px 0 10px;text-align:left;width:100%;
+}
+.p-ref-link-box{
+  width:100%;background:rgba(168,120,37,0.07);
+  border:1px solid rgba(200,168,92,0.4);border-radius:3px;
+  padding:10px 12px 8px;text-align:left;margin-bottom:10px;
+}
+.p-ref-link-val{
+  font-family:Arial,sans-serif;font-size:8pt;color:var(--ink-2);
+  word-break:break-all;margin:3px 0 6px;font-weight:700;
+}
+.p-ref-copy{
+  width:100%;padding:8px;background:transparent;
+  border:1px solid var(--rule);border-radius:2px;
+  font-family:Arial,sans-serif;font-size:8pt;font-weight:700;
+  color:var(--turmeric);cursor:pointer;letter-spacing:.06em;
+}
+.p-milestones{
+  width:100%;display:flex;flex-direction:column;gap:6px;margin-bottom:6px;
+}
+.p-ms-row{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 10px;border-radius:3px;
+  background:rgba(168,120,37,0.05);border:1px solid rgba(200,168,92,0.2);
+}
+.p-ms-num{
+  width:20px;height:20px;border-radius:50%;flex-shrink:0;
+  background:rgba(107,26,44,0.12);
+  font-family:Arial,sans-serif;font-size:7.5pt;font-weight:700;
+  color:var(--maroon);display:flex;align-items:center;justify-content:center;
+}
+.p-ms-txt{font-family:Arial,sans-serif;font-size:8pt;color:var(--muted);line-height:1.3;flex:1;}
+.p-ms-txt strong{color:var(--ink);font-weight:700;}
+/* Journey progress */
+.p-journey{width:100%;margin-bottom:4px;}
+.p-journey-bar-wrap{
+  width:100%;height:6px;background:rgba(168,120,37,0.15);
+  border-radius:3px;overflow:hidden;margin:6px 0 4px;
+}
+.p-journey-bar{
+  height:100%;background:linear-gradient(90deg,var(--maroon),var(--turmeric));
+  border-radius:3px;transition:width .4s ease;
+}
+.p-journey-note{
+  font-family:Arial,sans-serif;font-size:7.5pt;color:var(--muted);
+  letter-spacing:.04em;
+}
+/* Confirm referral nudge */
+.confirm-ref-nudge{
+  margin:14px 16px 0;
+  background:rgba(107,26,44,0.05);border:1px solid rgba(200,168,92,0.35);
+  border-radius:4px;padding:12px 14px;
+}
+.crn-head{
+  font-family:"Iowan Old Style",Georgia,serif;font-size:9.5pt;
+  font-weight:700;color:var(--maroon);letter-spacing:.04em;margin-bottom:4px;
+}
+.crn-sub{
+  font-family:Arial,sans-serif;font-size:8pt;color:var(--muted);
+  line-height:1.5;margin-bottom:8px;
+}
+.crn-link{
+  font-family:Arial,sans-serif;font-size:8pt;color:var(--turmeric);
+  font-weight:700;margin-bottom:6px;word-break:break-all;
+}
+.crn-copy{
+  width:100%;padding:9px;background:var(--maroon);border:none;
+  border-radius:2px;font-family:"Iowan Old Style",Georgia,serif;
+  font-size:9.5pt;font-weight:700;letter-spacing:.10em;
+  text-transform:uppercase;color:var(--paper);cursor:pointer;
+}
+
 /* ── Report description (inline 50-word about) ── */
 /* ═══════════════════════════════════════════
    COMPATIBILITY INLINE FORM
@@ -731,21 +807,19 @@ body{
   font-family:Arial,sans-serif;font-size:7.5pt;
   color:rgba(245,232,200,0.6);margin-top:4px;
 }
-.pay-tabs{
-  display:flex;background:var(--paper-2);flex-shrink:0;
-  border-bottom:1px solid var(--paper-3);
-}
-.pay-tab{
-  flex:1;padding:10px;text-align:center;cursor:pointer;
-  font-family:"Iowan Old Style",Georgia,serif;font-size:9.5pt;
-  font-weight:700;letter-spacing:.06em;color:var(--muted);
-  border:none;background:none;border-bottom:2.5px solid transparent;
-}
-.pay-tab.active{color:var(--maroon);border-bottom-color:var(--maroon);background:var(--paper);}
 .pay-form-area{
-  flex:1;overflow-y:auto;padding:14px 16px;background:var(--paper);
+  flex:1;overflow-y:auto;padding:14px 16px 20px;background:var(--paper);
 }
-.pay-field-grp{margin-bottom:12px;}
+.pay-section-head{
+  display:flex;align-items:center;gap:8px;margin-bottom:12px;
+}
+.pay-section-head span{
+  font-family:"Iowan Old Style",Georgia,serif;font-size:9.5pt;
+  font-weight:700;color:var(--maroon);letter-spacing:.06em;
+  white-space:nowrap;
+}
+.pay-section-rule{flex:1;height:1px;background:var(--rule);opacity:.4;}
+.pay-field-grp{margin-bottom:11px;}
 .pay-label{
   display:block;font-family:Arial,sans-serif;font-size:7.5pt;font-weight:700;
   color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;
@@ -767,15 +841,24 @@ body{
   font-size:6pt;font-family:Arial,sans-serif;font-weight:700;
   color:var(--muted-2);letter-spacing:.04em;
 }
-.pay-panel{display:none;}
-.pay-panel.active{display:block;}
+/* UPI logo tiles */
 .pay-upi-apps{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
 .upi-chip{
-  border:1.2px solid #cfc0a0;background:white;border-radius:20px;
-  padding:6px 12px;font-family:Arial,sans-serif;font-size:8.5pt;
-  color:var(--ink);cursor:pointer;font-weight:700;
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  cursor:pointer;background:none;border:none;padding:2px;
 }
-.upi-chip.sel{border-color:var(--maroon);color:var(--maroon);background:rgba(107,26,44,0.06);}
+.upi-logo{
+  width:44px;height:44px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:Arial,sans-serif;font-size:11pt;font-weight:700;
+  color:white;border:2px solid transparent;transition:border-color .15s,transform .1s;
+}
+.upi-chip.sel .upi-logo{border-color:var(--maroon);transform:scale(1.08);}
+.upi-chip-label{
+  font-family:Arial,sans-serif;font-size:7pt;color:var(--muted);
+  letter-spacing:.02em;text-align:center;
+}
+.upi-chip.sel .upi-chip-label{color:var(--maroon);font-weight:700;}
 .pay-btn{
   width:100%;padding:15px;background:var(--maroon);color:var(--paper);
   border:none;font-family:"Iowan Old Style",Georgia,serif;
@@ -1576,7 +1659,7 @@ body{
           <div class="cbp">₹2,499</div>
           <div class="cbs">SAVE ₹887</div>
         </div>
-        <button class="cart-switch" onclick="addBundle()">Switch</button>
+        <button class="cart-switch" id="bundle-switch-btn" onclick="addBundle()">Add Bundle</button>
       </div>
       <div id="cart-view"><!-- populated by JS --></div>
       <div class="pad-bot"></div>
@@ -1598,68 +1681,91 @@ body{
         <div class="pay-amount-items" id="pay-items-summary">—</div>
       </div>
 
-      <div class="pay-tabs">
-        <button class="pay-tab active" id="tab-card" onclick="switchPayTab('card')">💳 Card</button>
-        <button class="pay-tab" id="tab-upi"  onclick="switchPayTab('upi')">⚡ UPI</button>
-      </div>
-
       <div class="pay-form-area">
 
-        <!-- ── CARD panel ── -->
-        <div class="pay-panel active" id="panel-card">
-          <div class="pay-field-grp">
-            <label class="pay-label">Email</label>
-            <input class="pay-input" id="pay-email" type="email" placeholder="you@example.com" autocomplete="email"/>
-          </div>
-          <div class="pay-field-grp">
-            <label class="pay-label">Card number</label>
-            <div class="pay-card-wrap">
-              <input class="pay-input" id="pay-cardnum" type="tel" placeholder="1234  5678  9012  3456"
-                     maxlength="19" oninput="fmtCard(this)"/>
-              <span class="pay-card-logo" id="card-brand">VISA</span>
-            </div>
-          </div>
-          <div class="pay-half">
-            <div class="pay-field-grp">
-              <label class="pay-label">Expiry</label>
-              <input class="pay-input" id="pay-exp" type="tel" placeholder="MM / YY"
-                     maxlength="7" oninput="fmtExp(this)"/>
-            </div>
-            <div class="pay-field-grp">
-              <label class="pay-label">CVC</label>
-              <input class="pay-input" id="pay-cvc" type="tel" placeholder="•••" maxlength="4"/>
-            </div>
-          </div>
-          <div class="pay-field-grp">
-            <label class="pay-label">Name on card</label>
-            <input class="pay-input" id="pay-name" type="text" placeholder="As it appears on card" autocomplete="cc-name"/>
-          </div>
-          <button class="pay-btn" id="pay-card-btn" onclick="simulatePay()">
-            <span>Pay</span><span id="pay-btn-amt">₹0</span>
-          </button>
-          <div class="pay-secure">🔒 &nbsp;Powered by Stripe · 256-bit SSL encryption · PCI-DSS compliant</div>
+        <!-- ── CARD section ── -->
+        <div class="pay-section-head">
+          <span>💳 Pay by Card</span><div class="pay-section-rule"></div>
+          <span style="font-size:7.5pt;color:var(--muted);font-family:Arial,sans-serif;white-space:nowrap;">Worldwide</span>
         </div>
+        <div class="pay-field-grp">
+          <label class="pay-label">Email</label>
+          <input class="pay-input" id="pay-email" type="email" placeholder="you@example.com" autocomplete="email"/>
+        </div>
+        <div class="pay-field-grp">
+          <label class="pay-label">Card number</label>
+          <div class="pay-card-wrap">
+            <input class="pay-input" id="pay-cardnum" type="tel" placeholder="1234  5678  9012  3456"
+                   maxlength="19" oninput="fmtCard(this)"/>
+            <span class="pay-card-logo" id="card-brand">VISA</span>
+          </div>
+        </div>
+        <div class="pay-half">
+          <div class="pay-field-grp">
+            <label class="pay-label">Expiry</label>
+            <input class="pay-input" id="pay-exp" type="tel" placeholder="MM / YY"
+                   maxlength="7" oninput="fmtExp(this)"/>
+          </div>
+          <div class="pay-field-grp">
+            <label class="pay-label">CVC</label>
+            <input class="pay-input" id="pay-cvc" type="tel" placeholder="•••" maxlength="4"/>
+          </div>
+        </div>
+        <div class="pay-field-grp">
+          <label class="pay-label">Name on card</label>
+          <input class="pay-input" id="pay-name" type="text" placeholder="As it appears on card" autocomplete="cc-name"/>
+        </div>
+        <button class="pay-btn" id="pay-card-btn" onclick="simulatePay()">
+          <span>Pay by Card</span><span id="pay-btn-amt">₹0</span>
+        </button>
+        <div class="pay-secure" style="margin-bottom:16px;">🔒 &nbsp;Razorpay · 256-bit SSL · PCI-DSS · Cards accepted worldwide</div>
 
-        <!-- ── UPI panel ── -->
-        <div class="pay-panel" id="panel-upi">
-          <div class="pay-field-grp">
-            <label class="pay-label">Pay with</label>
-            <div class="pay-upi-apps">
-              <button class="upi-chip sel" onclick="selUpi(this)">GPay</button>
-              <button class="upi-chip" onclick="selUpi(this)">PhonePe</button>
-              <button class="upi-chip" onclick="selUpi(this)">Paytm</button>
-              <button class="upi-chip" onclick="selUpi(this)">BHIM</button>
-            </div>
-          </div>
-          <div class="pay-field-grp">
-            <label class="pay-label">Or enter UPI ID</label>
-            <input class="pay-input" id="pay-upi-id" type="text" placeholder="yourname@upi"/>
-          </div>
-          <button class="pay-btn" onclick="simulatePay()">
-            <span>Request</span><span id="pay-upi-amt">₹0</span>
-          </button>
-          <div class="pay-secure">⚡ &nbsp;Instant transfer · Powered by NPCI · Verified by Stripe</div>
+        <!-- ── UPI section ── -->
+        <div class="pay-section-head">
+          <span>⚡ Pay via UPI</span><div class="pay-section-rule"></div>
+          <span style="font-size:7.5pt;color:var(--muted);font-family:Arial,sans-serif;white-space:nowrap;">India</span>
         </div>
+        <div class="pay-field-grp">
+          <label class="pay-label">Choose your app</label>
+          <div class="pay-upi-apps">
+            <button class="upi-chip sel" onclick="selUpi(this)">
+              <div class="upi-logo" style="background:#4285F4;">G</div>
+              <span class="upi-chip-label">GPay</span>
+            </button>
+            <button class="upi-chip" onclick="selUpi(this)">
+              <div class="upi-logo" style="background:#5F259F;">Pe</div>
+              <span class="upi-chip-label">PhonePe</span>
+            </button>
+            <button class="upi-chip" onclick="selUpi(this)">
+              <div class="upi-logo" style="background:#FF9900;font-size:14pt;">a</div>
+              <span class="upi-chip-label">Amazon</span>
+            </button>
+            <button class="upi-chip" onclick="selUpi(this)">
+              <div class="upi-logo" style="background:#002970;">P</div>
+              <span class="upi-chip-label">Paytm</span>
+            </button>
+            <button class="upi-chip" onclick="selUpi(this)">
+              <div class="upi-logo" style="background:#138808;">B</div>
+              <span class="upi-chip-label">BHIM</span>
+            </button>
+            <button class="upi-chip" onclick="selUpi(this)">
+              <div class="upi-logo" style="background:#25D366;font-size:13pt;">W</div>
+              <span class="upi-chip-label">WhatsApp</span>
+            </button>
+            <button class="upi-chip" onclick="selUpi(this)">
+              <div class="upi-logo" style="background:#1a1a2e;font-size:9pt;">CRED</div>
+              <span class="upi-chip-label">Cred</span>
+            </button>
+          </div>
+        </div>
+        <div class="pay-field-grp">
+          <label class="pay-label">Or enter UPI ID directly</label>
+          <input class="pay-input" id="pay-upi-id" type="text" placeholder="yourname@okicici  ·  @ybl  ·  @paytm"/>
+        </div>
+        <button class="pay-btn" onclick="simulatePay()">
+          <span>Pay via UPI</span><span id="pay-upi-amt">₹0</span>
+        </button>
+        <div class="pay-secure">⚡ &nbsp;Instant · NPCI · India residents &amp; NRI accounts</div>
 
       </div><!-- /pay-form-area -->
 
@@ -1702,6 +1808,14 @@ body{
 
       <div class="confirm-cta">
         <button onclick="go('myreports',null);nav('nav-myreports')">View My Reports</button>
+      </div>
+
+      <!-- Referral nudge — peak goodwill moment right after purchase -->
+      <div class="confirm-ref-nudge">
+        <div class="crn-head">Loved your reading? Gift one to a friend →</div>
+        <div class="crn-sub">Anyone who downloads Antara through your link gets <strong>two free reports</strong> and 15% off their first purchase. You earn a free report for every friend who joins.</div>
+        <div class="crn-link" id="confirm-ref-link">antara-alpha.vercel.app?from=You</div>
+        <button class="crn-copy" onclick="copyConfirmRefLink()">Copy My Referral Link</button>
       </div>
 
     </div><!-- /confirm -->
@@ -1951,6 +2065,34 @@ body{
         </div>
 
         <button class="p-btn-outline">Edit birth details</button>
+
+        <!-- Reading journey progress -->
+        <div class="p-section-label">Your reading journey</div>
+        <div class="p-journey">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;">
+            <span style="font-family:Arial,sans-serif;font-size:8.5pt;color:var(--ink);font-weight:700;">3 of 14 reports</span>
+            <span style="font-family:Arial,sans-serif;font-size:7.5pt;color:var(--muted);">11 more to discover</span>
+          </div>
+          <div class="p-journey-bar-wrap">
+            <div class="p-journey-bar" style="width:21%;"></div>
+          </div>
+          <div class="p-journey-note">Complete your collection for the full picture of who you are across nine traditions</div>
+        </div>
+
+        <!-- Referral section -->
+        <div class="p-section-label">Share Antara · Earn rewards</div>
+        <div class="p-ref-link-box">
+          <div style="font-family:Arial,sans-serif;font-size:7.5pt;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px;">Your personal link</div>
+          <div class="p-ref-link-val" id="profile-ref-link">antara-alpha.vercel.app?from=Ankur</div>
+          <button class="p-ref-copy" onclick="copyProfileRefLink()">Copy My Referral Link</button>
+        </div>
+        <div class="p-milestones">
+          <div class="p-ms-row"><span class="p-ms-num">1</span><span class="p-ms-txt">1 friend joins → <strong>one free report of your choice</strong></span></div>
+          <div class="p-ms-row"><span class="p-ms-num">3</span><span class="p-ms-txt">3 friends join → <strong>Critical Days Annual free</strong> <span style="color:var(--muted)">(₹699)</span></span></div>
+          <div class="p-ms-row"><span class="p-ms-num">5</span><span class="p-ms-txt">5 friends join → <strong>Full bundle at half price</strong> <span style="color:var(--muted)">(₹1,250)</span></span></div>
+        </div>
+        <div style="font-family:Arial,sans-serif;font-size:7.5pt;color:var(--muted-2);text-align:center;padding-bottom:4px;">Your friend gets 2 free reports + 15% off their first purchase</div>
+
       </div>
       <div class="pad-bot"></div>
     </div><!-- /profile -->
@@ -2039,16 +2181,29 @@ body{
 })();
 
 function buildRefLink(name){
-  const slug=name.trim().split(' ')[0];
-  const base='antara-alpha.vercel.app?from=';
-  const link=base+encodeURIComponent(slug);
-  const el=document.getElementById('wlc-ref-link');
-  if(el) el.textContent=link;
+  const slug=encodeURIComponent(name.trim().split(' ')[0]);
+  const link='antara-alpha.vercel.app?from='+slug;
+  // Update all three referral link locations
+  ['wlc-ref-link','confirm-ref-link','profile-ref-link'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.textContent=link;
+  });
 }
 function copyRefLink(){
   const txt=(document.getElementById('wlc-ref-link')||{}).textContent||'';
   if(navigator.clipboard) navigator.clipboard.writeText('https://'+txt);
   const btn=document.querySelector('.wlc-ref-copy-btn');
+  if(btn){ btn.textContent='✓ Copied!'; setTimeout(()=>btn.textContent='Copy My Referral Link',2000); }
+}
+function copyConfirmRefLink(){
+  const txt=(document.getElementById('confirm-ref-link')||{}).textContent||'';
+  if(navigator.clipboard) navigator.clipboard.writeText('https://'+txt);
+  const btn=document.querySelector('.crn-copy');
+  if(btn){ btn.textContent='✓ Copied!'; setTimeout(()=>btn.textContent='Copy My Referral Link',2000); }
+}
+function copyProfileRefLink(){
+  const txt=(document.getElementById('profile-ref-link')||{}).textContent||'';
+  if(navigator.clipboard) navigator.clipboard.writeText('https://'+txt);
+  const btn=document.querySelector('.p-ref-copy');
   if(btn){ btn.textContent='✓ Copied!'; setTimeout(()=>btn.textContent='Copy My Referral Link',2000); }
 }
 
@@ -2095,6 +2250,9 @@ function sendFreeReport(){
     document.getElementById('wlc-sent-email').textContent=email;
     document.getElementById('wlc-success').style.display='flex';
     buildRefLink(name);
+    // Pre-fill payment email so user never types it twice
+    const payEmail=document.getElementById('pay-email');
+    if(payEmail) payEmail.value=email;
     // Pre-fill Home screen trio fields
     const fdd=document.getElementById('f-dd');
     const fmm=document.getElementById('f-mm');
@@ -2284,6 +2442,10 @@ function renderCart(){
   const badge=document.getElementById('badge');
   badge.style.display=count>0?'flex':'none';
   badge.textContent=count;
+
+  // Update bundle button text based on cart state
+  const switchBtn=document.getElementById('bundle-switch-btn');
+  if(switchBtn) switchBtn.textContent=count===0?'Add Bundle':'Switch to Bundle';
 
   const el=document.getElementById('cart-view');
   if(count===0){

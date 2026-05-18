@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Palmistry — A Personal Reading for Ankur Gupta</title>
+<style>
+  /* ─────────── Antara Personal Reading — V3 template ─────────── */
+  @page { size: A4 portrait; margin: 0; }
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #d2bd9c; }
+  body {
+    font-family: "Cormorant Garamond","Iowan Old Style","Palatino Linotype",Georgia,serif;
+    font-size: 12pt; line-height: 1.5;
+    color: #3a2818; -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─────────── Palette: palmistry / warm hand tones ─────────── */
+  :root {
+    --paper:#f5e8d6;
+    --paper-2:#ecdcc4;
+    --ink:#3a2818;
+    --ink-2:#5a3f25;
+    --henna:#a0522d;
+    --henna-soft:#cda07e;
+    --kumkum:#9b1f2a;
+    --gold:#b8893a;
+    --gold-soft:#dcc28b;
+    --rule:#c8a466;
+    --muted:#7a5b30;
+
+    --page-w:210mm; --page-h:297mm;
+    --pad-top:17mm; --pad-bot:32mm;
+    --pad-left:25mm; --pad-right:22mm;
+    --col-text:125mm; --col-gap:6mm; --col-margin:32mm;
+    --content-w:163mm; --content-h:248mm; --content-top-pad:6mm;
+    --page-id: "Palmistry · Ankur Gupta";
+}
+
+  .page{
+    width:var(--page-w); height:var(--page-h);
+    background:var(--paper);
+    margin:8mm auto;
+    padding:var(--pad-top) var(--pad-right) var(--pad-bot) var(--pad-left);
+    position:relative; box-shadow:0 4px 18px rgba(0,0,0,0.18);
+    page-break-after:always; break-after:page;
+    display:grid; grid-template-columns: var(--col-text) var(--col-margin); column-gap: var(--col-gap);
+  }
+  .page:last-child{ page-break-after:auto; break-after:auto; }
+
+  /* .page.wide — full-width single column */
+  .page.wide{ grid-template-columns: 1fr; column-gap: 0; }
+  .page.wide .margin-area{ display:none; }
+
+  /* .page.icon-right — icon moves to upper margin */
+  .page.icon-right .content > .icon-block{ display:none; }
+
+  .page::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(160,82,45,0.04), transparent 40%),
+      radial-gradient(circle at 88% 90%, rgba(184,137,58,0.04), transparent 40%);
+    mix-blend-mode:multiply;
+  }
+
+  /* Top border: henna-style arabesque at 9mm */
+  .page::after{
+    content:"";position:absolute;
+    left:var(--pad-left); right:var(--pad-right);
+    top:9mm; height:6mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><line x1='0' y1='10' x2='80' y2='10' stroke='%23b8893a' stroke-width='0.3'/><g stroke='%23a0522d' stroke-width='0.6' fill='none'><path d='M 5 7 Q 8 3 12 7 Q 16 11 20 7 Q 24 3 28 7 Q 32 11 36 7 Q 40 3 44 7 Q 48 11 52 7 Q 56 3 60 7 Q 64 11 68 7 Q 72 3 76 7'/></g><g fill='%239b1f2a'><circle cx='12' cy='7' r='0.8'/><circle cx='28' cy='7' r='0.8'/><circle cx='44' cy='7' r='0.8'/><circle cx='60' cy='7' r='0.8'/><circle cx='76' cy='7' r='0.8'/></g></svg>");
+    background-repeat:repeat-x; background-size:auto 6mm; opacity:.85;
+  }
+
+  .content{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+  }
+  .margin-area{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+  }
+
+  .running{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); top:5mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; letter-spacing:.18em; text-transform:uppercase; color:var(--henna);
+    font-family:"Iowan Old Style",Georgia,serif; font-weight:600;
+  }
+  .running .who{ color:var(--ink-2); letter-spacing:.12em; }
+
+  .pgfoot{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); bottom:14mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; color:var(--muted); letter-spacing:.06em;
+  }
+  .pgfoot::before{
+    content:""; position:absolute; left:0; right:0; top:-6mm; height:0.4mm;
+    background:var(--rule); opacity:.55;
+  }
+
+  h1.cover-title{
+    font-size:30pt; font-weight:600; color:var(--ink);
+    letter-spacing:.06em; line-height:1.15; margin-bottom:6mm;
+    font-variant:small-caps;
+  }
+  h2.section-title{
+    font-size:18pt; font-weight:600; color:var(--ink);
+    letter-spacing:.02em; line-height:1.2; margin-bottom:2mm;
+  }
+  h3.section-sub{
+    font-size:11pt; font-style:italic; color:var(--kumkum); font-weight:400;
+    margin-bottom:5mm; letter-spacing:.02em; line-height:1.4;
+  }
+  .eyebrow{
+    font-size:10pt; letter-spacing:.32em; text-transform:uppercase; color:var(--kumkum);
+    font-weight:600; font-family:"Iowan Old Style",Georgia,serif; margin-bottom:3mm;
+  }
+
+  .text > p{ font-size:12pt; line-height:1.5; color:var(--ink); margin:0 0 8pt; }
+  .text > p:last-child{ margin-bottom:0; }
+  .lead{ margin-bottom:5mm; }
+  .lead > p{ font-size:13pt; line-height:1.5; color:var(--ink-2); font-style:italic; margin:0 0 6pt; }
+  .lead > p:last-child{ margin-bottom:0; }
+
+  .calc{
+    font-family:"Iowan Old Style",Georgia,serif;
+    font-size:10pt; line-height:1.5; color:var(--henna);
+    border-top:0.4mm solid var(--rule); border-bottom:0.4mm solid var(--rule);
+    padding:3mm 0; margin:5mm 0 0; letter-spacing:.02em;
+  }
+  .calc strong{ color:var(--ink); font-weight:600; }
+  .fine{ font-size:10pt; line-height:1.5; color:var(--muted); font-style:italic; }
+
+  /* Cover — centred single column */
+  .cover{
+    grid-template-columns: 1fr;
+    text-align:center; align-content:center; padding-top:32mm;
+  }
+  .cover .markline{
+    margin:0 auto 12mm; width:60mm; height:5mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><g stroke='%23a0522d' stroke-width='1.2' fill='none'><path d='M 5 7 Q 8 3 12 7 Q 16 11 20 7 Q 24 3 28 7 Q 32 11 36 7 Q 40 3 44 7 Q 48 11 52 7 Q 56 3 60 7 Q 64 11 68 7 Q 72 3 76 7'/></g><g fill='%239b1f2a'><circle cx='12' cy='7' r='1.4'/><circle cx='28' cy='7' r='1.4'/><circle cx='44' cy='7' r='1.4'/><circle cx='60' cy='7' r='1.4'/><circle cx='76' cy='7' r='1.4'/></g></svg>");
+    background-repeat:repeat-x; background-size:auto 5mm;
+  }
+  .cover .greek-eyebrow{
+    font-size:11pt; letter-spacing:.4em; text-transform:uppercase; color:var(--kumkum);
+    margin-bottom:6mm; font-weight:600;
+  }
+  .cover .arithmos{
+    font-size:14pt; color:var(--henna); font-style:italic; letter-spacing:.06em;
+    margin-bottom:8mm;
+  }
+  .cover .person{ font-size:13pt; color:var(--ink); margin-top:14mm; line-height:1.7; }
+  .cover .person .lbl{
+    font-size:10pt; letter-spacing:.22em; text-transform:uppercase; color:var(--muted);
+    font-weight:600; margin-right:6mm;
+  }
+  .cover .palms{ margin:8mm auto 0; width:120mm; height:70mm; display:flex; align-items:center; justify-content:center; }
+
+  .toc-list{ list-style:none; padding:0; margin:0; }
+  .toc-list li{
+    display:grid; grid-template-columns:8mm 1fr auto; gap:4mm;
+    align-items:baseline; padding:4mm 0;
+    border-bottom:0.3mm dashed var(--rule); font-size:12pt;
+  }
+  .toc-list li:last-child{ border-bottom:none; }
+  .toc-list .num{ color:var(--kumkum); font-variant-numeric:tabular-nums; font-weight:600; }
+  .toc-list .name{ color:var(--ink); }
+  .toc-list .pg{ color:var(--muted); font-size:10pt; letter-spacing:.06em; }
+  .toc-list a{ text-decoration:none; color:inherit; display:contents; }
+  .toc-list a:hover .name{ color:var(--henna); }
+
+  .icon-block{ width:26mm; height:26mm; margin-bottom:4mm; display:flex; align-items:center; justify-content:center; }
+  .icon-block svg{ width:100%; height:100%; }
+
+  .marginalia{
+    padding-top:12mm; color:var(--muted);
+    font-size:10pt; line-height:1.5; font-style:italic;
+  }
+  .marginalia .ornament{ width:28mm; height:28mm; margin-bottom:8mm; opacity:.6; }
+  .marginalia .note-label{
+    font-size:9pt; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--kumkum); font-weight:600; font-style:normal; margin-bottom:2mm;
+  }
+  .marginalia .note{ margin-bottom:8mm; }
+  .marginalia .note:last-child{ margin-bottom:0; }
+
+  /*
+   * ─── Standardised palmistry icon set (V3) ─────────────────────────
+   * All icons share the same design language:
+   *  · Consistent simplified palm outline (60×80 unit inner shape)
+   *  · Same stroke weight (1.6–2.0), same palette (henna / kumkum)
+   *  · The featured element rendered inside or alongside the base form
+   * Set members:
+   *   palm-base    — palm overview (Focus I)
+   *   palm-heart   — heart line highlighted (Focus II)
+   *   palm-head    — head line highlighted (Focus III)
+   *   palm-life    — life line highlighted (Focus IV)
+   *   palm-fate    — fate line highlighted (Focus V)
+   *   palm-mounts  — mount dots highlighted (Focus VI)
+   *   palm-fingers — finger forms highlighted (Focus VII)
+   *   palm-both    — two palm silhouettes (Focus VIII)
+   *   palm-all     — all lines together (Focus IX synthesis)
+   * ─────────────────────────────────────────────────────────────────
+   */
+
+  @media print{
+    html, body{ background:#fff; } body{ padding:0; }
+    .page{ margin:0; box-shadow:none; page-break-after:always; break-after:page; }
+    .page:last-child{ page-break-after:auto; break-after:auto; }
+  }
+  @media screen{ body{ padding:14mm 0; } }
+
+  /* ─── Print FAB ─── */
+  .print-fab{
+    position:fixed; bottom:24px; right:24px; z-index:9999;
+    background:#6b1a2c; color:#f5e8c8;
+    border:none; border-radius:28px;
+    padding:12px 22px; font-size:12pt; cursor:pointer;
+    box-shadow:0 4px 18px rgba(0,0,0,0.28);
+    font-family:inherit; letter-spacing:.04em;
+    transition:background .18s;
+  }
+  .print-fab:hover{background:#8a2238;}
+  @media print{.print-fab{display:none;}}
+
+  /* ─── Footer name override ─── */
+  .pgfoot > span:first-child{font-size:0;}
+  .pgfoot > span:first-child::after{
+    font-size:9pt; color:inherit;
+    content:var(--page-id,"Antara — Personal Reading");
+  }
+</style>
+</head>
+<body>
+
+<!-- ════ COVER ════ -->
+<section class="page cover" id="cover">
+  <div class="markline"></div>
+  <div class="arithmos">The hand as map — what the lines describe</div>
+  <h1 class="cover-title">Palmistry</h1>
+  <div class="arithmos" style="margin-top:6mm">A reading from the classical chirological tradition</div>
+
+  <div class="palms">
+    <svg viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
+      <!-- Left hand silhouette -->
+      <g transform="translate(20,10)">
+        <path d="M 10 130 Q 0 100 4 70 Q 6 50 10 30 L 14 12 Q 16 6 22 6 Q 28 6 28 14 L 28 38 L 36 38 L 36 12 Q 36 4 42 4 Q 48 4 48 12 L 48 40 L 56 40 L 56 14 Q 56 6 62 6 Q 68 6 68 14 L 68 42 L 76 42 L 76 20 Q 76 12 82 12 Q 88 12 88 22 L 88 50 Q 90 80 86 100 Q 80 120 70 130 Z"
+              fill="#f3dcbc" stroke="#a0522d" stroke-width="0.6"/>
+        <path d="M 18 78 Q 38 70 60 72 Q 78 76 86 70" stroke="#9b1f2a" stroke-width="0.6" fill="none"/>
+        <path d="M 18 88 Q 40 82 64 84 Q 78 88 88 82" stroke="#9b1f2a" stroke-width="0.6" fill="none"/>
+        <path d="M 22 60 Q 24 90 30 110 Q 38 124 50 124" stroke="#9b1f2a" stroke-width="0.6" fill="none"/>
+      </g>
+      <!-- Right hand silhouette (mirrored) -->
+      <g transform="translate(132,10)">
+        <path d="M 78 130 Q 88 100 84 70 Q 82 50 78 30 L 74 12 Q 72 6 66 6 Q 60 6 60 14 L 60 38 L 52 38 L 52 12 Q 52 4 46 4 Q 40 4 40 12 L 40 40 L 32 40 L 32 14 Q 32 6 26 6 Q 20 6 20 14 L 20 42 L 12 42 L 12 20 Q 12 12 6 12 Q 0 12 0 22 L 0 50 Q -2 80 2 100 Q 8 120 18 130 Z"
+              fill="#f3dcbc" stroke="#a0522d" stroke-width="0.6"/>
+        <path d="M 4 78 Q 24 70 46 72 Q 64 76 70 70" stroke="#9b1f2a" stroke-width="0.6" fill="none"/>
+        <path d="M 4 88 Q 26 82 50 84 Q 64 88 72 82" stroke="#9b1f2a" stroke-width="0.6" fill="none"/>
+        <path d="M 66 60 Q 64 90 58 110 Q 50 124 38 124" stroke="#9b1f2a" stroke-width="0.6" fill="none"/>
+      </g>
+      <text x="48" y="140" text-anchor="middle" font-family="serif" font-size="5" fill="#5a3f25" font-style="italic">left · passive · inherited</text>
+      <text x="184" y="140" text-anchor="middle" font-family="serif" font-size="5" fill="#5a3f25" font-style="italic">right · active · expressed</text>
+    </svg>
+  </div>
+
+  <div class="person">
+    <div>Ankur Gupta</div>
+    <div><span class="lbl">From</span>both palms · photographed in May 2026</div>
+  </div>
+
+  <div class="pgfoot" style="display:block;text-align:center;">
+  <div style="font-size:10.5pt;font-weight:700;letter-spacing:.18em;color:var(--gold,#a88842);">ANTARA PERSONAL READING</div>
+  <div style="font-size:9.5pt;font-style:italic;letter-spacing:.08em;color:var(--gold,#a88842);margin-top:1.5mm;">Interpretive Not Predictive</div>
+</div>
+</section>
+
+
+<!-- ════ INTRO 1 ════ -->
+<section class="page" id="intro-1">
+  <div class="running"><span>Palmistry</span><span class="who">Introduction · 1 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Introduction</div>
+    <h2 class="section-title">What this report is about</h2>
+    <h3 class="section-sub">Chiromancy — the reading of the hand in classical and modern tradition</h3>
+
+    <div class="text">
+      <p>Palmistry — also called chiromancy or chirology — is the practice of reading character and tendency from the form of the hand, the lines of the palm, the cushions called mounts, and the shape of the fingers. It has roots in several civilisations independently — Indian (Hasta Samudrika Shastra), Chinese, classical Greek and Roman, and Romani — and was systematised in its modern European form during the nineteenth century, particularly by the writer who used the pen-name <em>Cheiro</em> and by William Benham, whose book <em>The Laws of Scientific Hand Reading</em> shaped most modern Western chirology.</p>
+
+      <p>This report reads both palms — the left as the passive or inherited hand, describing the disposition the bearer was given, and the right as the active or expressed hand, describing what has been built with that disposition. Where the two hands closely agree, the reading is strong on integrity of self; where they differ, the differences mark the journey the bearer has taken from inheritance to expression.</p>
+
+      <p>The reading proceeds in the classical order: the major lines first (Heart, Head, Life, Fate), then the mounts (the cushions of the palm corresponding to the planetary qualities), then the fingers and thumb, and finally the comparison of the two hands together. A synthesis closes the reading.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <!-- Standardised palmistry ornament: simplified palm outline -->
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 28 80 Q 18 60 22 40 L 26 16 Q 28 10 34 10 Q 40 10 40 18 L 40 38 L 48 38 L 48 10 Q 48 4 54 4 Q 60 4 60 12 L 60 42 L 70 42 L 70 14 Q 70 8 76 10 L 76 50 Q 78 70 70 80 Z"
+                fill="none" stroke="#a0522d" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="note-label">Lineage</div>
+      <div class="note">Hasta Samudrika · Cheiro · Benham — three streams forming modern chirology.</div>
+      <div class="note-label">Two hands</div>
+      <div class="note">Left · the inherited self · Right · the expressed self.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 2</span></div>
+</section>
+
+
+<!-- ════ INTRO 2 ════ -->
+<section class="page" id="intro-2">
+  <div class="running"><span>Palmistry</span><span class="who">Introduction · 2 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">How to read this report</div>
+    <h2 class="section-title">Structure &amp; method</h2>
+    <h3 class="section-sub">Lines first, then mounts, then fingers, then the comparison of the two hands</h3>
+
+    <div class="text">
+      <p>This report is structured so that each focus aspect lives on its own page. The first focus presents the palms together. The next four cover the four major lines — Heart, Head, Life, and Fate — each in turn. The sixth describes the developed mounts of the palm. The seventh treats the fingers, thumb, and skin texture. The eighth compares left and right. The ninth is the synthesis.</p>
+
+      <p>Each focus carries a small icon from the standardised palmistry icon set at the top of the page. All icons share the same design language — a simplified palm form with the featured element rendered inside it — so the visual register remains consistent across the report. The body is set in measured paragraphs at twelve point.</p>
+
+      <p>A standard note applies to the whole. Palmistry is an interpretive tradition; it describes character and tendency, not future events. Lines on the palm change subtly over the years in response to life; they do not predict events but reflect the texture of the person's response to them. The reader is the final authority on the reading.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <!-- Palm with lines ornament -->
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="32" fill="none" stroke="#a0522d" stroke-width="0.8"/>
+          <path d="M 30 50 Q 50 36 70 50 Q 50 64 30 50 Z" fill="none" stroke="#9b1f2a" stroke-width="0.8"/>
+          <circle cx="50" cy="50" r="6" fill="#9b1f2a"/>
+        </svg>
+      </div>
+      <div class="note-label">Reading time</div>
+      <div class="note">Approximately twenty-five minutes at an unhurried pace.</div>
+      <div class="note-label">Authority</div>
+      <div class="note">Reflective, not prescriptive. The reader is the final authority.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 3</span></div>
+</section>
+
+
+<!-- ════ CONTENTS ════ -->
+<section class="page" id="contents">
+  <div class="running"><span>Palmistry</span><span class="who">Contents</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Contents</div>
+    <h2 class="section-title">The nine focus pages</h2>
+    <h3 class="section-sub">Tap any title to jump to that page</h3>
+
+    <ol class="toc-list">
+      <li><a href="#anatomy"><span class="num">Ref</span><span class="name">Palm Anatomy · visual reference guide</span><span class="pg">p. 5</span></a></li>
+      <li><a href="#palms"><span class="num">I</span><span class="name">The Palms · what was observed</span><span class="pg">p. 6</span></a></li>
+      <li><a href="#heart"><span class="num">II</span><span class="name">The Heart Line · emotional architecture</span><span class="pg">p. 7</span></a></li>
+      <li><a href="#head"><span class="num">III</span><span class="name">The Head Line · mind &amp; method</span><span class="pg">p. 8</span></a></li>
+      <li><a href="#life"><span class="num">IV</span><span class="name">The Life Line · vitality &amp; rhythm</span><span class="pg">p. 9</span></a></li>
+      <li><a href="#fate"><span class="num">V</span><span class="name">The Fate Line · path &amp; vocation</span><span class="pg">p. 10</span></a></li>
+      <li><a href="#mounts"><span class="num">VI</span><span class="name">The Mounts · Venus, Moon, Jupiter, Mercury</span><span class="pg">p. 11</span></a></li>
+      <li><a href="#fingers"><span class="num">VII</span><span class="name">Fingers, Thumb &amp; Texture · the architecture of the hand</span><span class="pg">p. 12</span></a></li>
+      <li><a href="#twohands"><span class="num">VIII</span><span class="name">Left &amp; Right · the inherited and the expressed</span><span class="pg">p. 13</span></a></li>
+      <li><a href="#synthesis"><span class="num">IX</span><span class="name">Synthesis · the palmistry portrait</span><span class="pg">p. 14</span></a></li>
+    </ol>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 14 50 Q 50 30 86 50" fill="none" stroke="#9b1f2a" stroke-width="1"/>
+          <path d="M 14 60 Q 50 70 86 60" fill="none" stroke="#9b1f2a" stroke-width="1"/>
+          <path d="M 22 30 Q 24 50 30 70 Q 40 80 56 80" fill="none" stroke="#9b1f2a" stroke-width="1"/>
+          <path d="M 50 22 L 52 78" fill="none" stroke="#9b1f2a" stroke-width="0.8" stroke-dasharray="2 2"/>
+        </svg>
+      </div>
+      <div class="note-label">Headline</div>
+      <div class="note">Practical–intellectual hand · steady vitality · independent judgement.</div>
+      <div class="note-label">Signature finding</div>
+      <div class="note">Strong agreement between the two hands — integrity of self.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 4</span></div>
+</section>
+
+
+<!-- ════ PALM ANATOMY REFERENCE ════ -->
+<section class="page wide" id="anatomy">
+  <div class="running"><span>Palmistry</span><span class="who">Palm Anatomy · Reference</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Reference · for this reading</div>
+    <h2 class="section-title">The Lines &amp; Mounts</h2>
+    <h3 class="section-sub">Principal features of the palm — four major lines and four developed mounts</h3>
+
+    <div style="width:163mm;margin:3mm auto 0;">
+      <svg viewBox="0 0 620 470" xmlns="http://www.w3.org/2000/svg"
+           font-family="'Cormorant Garamond','Palatino Linotype',Georgia,serif">
+        <rect width="620" height="470" fill="#f5e8c8"/>
+        <g transform="translate(50, 30)">
+
+        <!-- Palm outline — enlarged, centred at x≈255 -->
+        <path d="M 255 348 Q 195 346 155 318 Q 128 290 128 228
+                 Q 128 168 131 120 Q 134 82 149 67
+                 Q 158 58 173 62 Q 182 72 179 91
+                 Q 191 66 197 50 Q 221 38 239 41 Q 236 62 236 91
+                 Q 248 62 251 46 Q 275 34 293 36 Q 290 62 290 91
+                 Q 305 62 311 50 Q 338 41 356 46 Q 350 67 344 96
+                 Q 362 106 374 139 Q 386 178 383 228
+                 Q 380 286 353 319 Q 311 350 255 348 Z"
+              fill="#f9edd4" stroke="#6b1a2c" stroke-width="1.5"/>
+
+        <!-- Heart Line — maroon -->
+        <path d="M 347 118 Q 293 101 245 106 Q 215 108 191 115"
+              stroke="#9b1f2a" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+
+        <!-- Head Line — deep blue -->
+        <path d="M 152 146 Q 210 137 272 142 Q 314 144 344 156"
+              stroke="#1a1a6e" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+
+        <!-- Life Line — saffron -->
+        <path d="M 173 91 Q 150 127 144 170 Q 138 216 149 257 Q 161 293 197 310"
+              stroke="#c75a1a" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+
+        <!-- Fate Line — gold -->
+        <path d="M 255 324 Q 254 278 254 233 Q 254 187 255 146 Q 255 120 255 96"
+              stroke="#a87825" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+
+        <!-- Sun Line — minor, muted -->
+        <path d="M 326 298 Q 329 262 332 226 Q 335 197 341 170"
+              stroke="#7a5a30" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.6"/>
+
+        <!-- Mount whispers inside palm -->
+        <text x="176" y="258" text-anchor="middle" font-size="8.5" fill="#7a5a30" font-style="italic" opacity="0.65">Venus</text>
+        <text x="316" y="285" text-anchor="middle" font-size="8.5" fill="#7a5a30" font-style="italic" opacity="0.65">Moon</text>
+
+        <!-- ── RIGHT-SIDE LABELS (x=395+) ── -->
+        <!-- Mt Mercury -->
+        <circle cx="344" cy="90" r="5" fill="#a87825" opacity="0.3"/>
+        <line x1="349" y1="87" x2="393" y2="72" stroke="#7a5a30" stroke-width="0.7"/>
+        <text x="397" y="76" font-size="9.5" fill="#6b1a2c">Mt. Mercury</text>
+        <text x="397" y="88" font-size="8" fill="#7a5a30" font-style="italic">expression · negotiation</text>
+
+        <!-- Heart Line -->
+        <line x1="347" y1="118" x2="393" y2="112" stroke="#9b1f2a" stroke-width="0.7"/>
+        <text x="397" y="116" font-size="11" font-weight="700" fill="#9b1f2a">Heart Line</text>
+        <text x="397" y="129" font-size="8.5" fill="#7a5a30" font-style="italic">emotional architecture</text>
+
+        <!-- Head Line -->
+        <line x1="344" y1="156" x2="393" y2="162" stroke="#1a1a6e" stroke-width="0.7"/>
+        <text x="397" y="166" font-size="11" font-weight="700" fill="#1a1a6e">Head Line</text>
+        <text x="397" y="179" font-size="8.5" fill="#7a5a30" font-style="italic">mind &amp; method</text>
+
+        <!-- Fate Line -->
+        <line x1="268" y1="210" x2="393" y2="208" stroke="#a87825" stroke-width="0.7"/>
+        <text x="397" y="212" font-size="11" font-weight="700" fill="#a87825">Fate Line</text>
+        <text x="397" y="225" font-size="8.5" fill="#7a5a30" font-style="italic">path &amp; vocation</text>
+
+        <!-- Sun Line -->
+        <line x1="340" y1="218" x2="393" y2="255" stroke="#7a5a30" stroke-width="0.6"/>
+        <text x="397" y="259" font-size="9.5" fill="#6b1a2c">Sun Line</text>
+        <text x="397" y="271" font-size="8" fill="#7a5a30" font-style="italic">recognition · clarity</text>
+
+        <!-- Mt Moon -->
+        <line x1="375" y1="298" x2="393" y2="308" stroke="#7a5a30" stroke-width="0.6"/>
+        <text x="397" y="312" font-size="9.5" fill="#6b1a2c">Mt. Moon</text>
+        <text x="397" y="324" font-size="8" fill="#7a5a30" font-style="italic">imagination · intuition</text>
+
+        <!-- ── LEFT-SIDE LABELS (x=6, left-anchored) ── -->
+        <!-- Mt Jupiter -->
+        <circle cx="173" cy="84" r="5" fill="#a87825" opacity="0.3"/>
+        <line x1="168" y1="81" x2="134" y2="68" stroke="#7a5a30" stroke-width="0.7"/>
+        <text x="6" y="66" font-size="9.5" fill="#6b1a2c">Mt. Jupiter</text>
+        <text x="6" y="78" font-size="8" fill="#7a5a30" font-style="italic">ambition · leadership</text>
+
+        <!-- Life Line -->
+        <line x1="140" y1="188" x2="110" y2="200" stroke="#c75a1a" stroke-width="0.7"/>
+        <text x="6" y="198" font-size="11" font-weight="700" fill="#c75a1a">Life Line</text>
+        <text x="6" y="212" font-size="8.5" fill="#7a5a30" font-style="italic">vitality &amp; rhythm</text>
+
+        <!-- Mt Venus -->
+        <line x1="148" y1="272" x2="110" y2="284" stroke="#7a5a30" stroke-width="0.6"/>
+        <text x="6" y="282" font-size="9.5" fill="#6b1a2c">Mt. Venus</text>
+        <text x="6" y="294" font-size="8" fill="#7a5a30" font-style="italic">warmth · loyalty</text>
+
+        <!-- Legend strip -->
+        <line x1="10" y1="360" x2="570" y2="360" stroke="#a87825" stroke-width="0.5"/>
+        <line x1="14" y1="368" x2="38" y2="368" stroke="#9b1f2a" stroke-width="2.8"/>
+        <text x="42" y="371" font-size="8.5" fill="#1a1a3a">Heart</text>
+        <line x1="94" y1="368" x2="118" y2="368" stroke="#1a1a6e" stroke-width="2.8"/>
+        <text x="122" y="371" font-size="8.5" fill="#1a1a3a">Head</text>
+        <line x1="170" y1="368" x2="194" y2="368" stroke="#c75a1a" stroke-width="2.8"/>
+        <text x="198" y="371" font-size="8.5" fill="#1a1a3a">Life</text>
+        <line x1="232" y1="368" x2="256" y2="368" stroke="#a87825" stroke-width="2.2"/>
+        <text x="260" y="371" font-size="8.5" fill="#1a1a3a">Fate</text>
+        <line x1="296" y1="368" x2="320" y2="368" stroke="#7a5a30" stroke-width="1.2" opacity="0.6"/>
+        <text x="324" y="371" font-size="8.5" fill="#1a1a3a" opacity="0.8">Sun (minor)</text>
+        <text x="14" y="382" font-size="7.5" fill="#7a5a30" font-style="italic">Right hand · positions are representative · Mounts shown as labelled areas within the palm</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 5</span></div>
+</section>
+
+
+<!-- ════ I · PALMS OVERVIEW ════ -->
+<section class="page" id="palms">
+  <div class="running"><span>I · The Palms</span><span class="who">Focus 1 of 9</span></div>
+
+  <div class="content">
+    <!-- Standardised icon: palm-base — all three primary lines faintly visible -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 32 88 Q 20 68 22 46 L 26 18 Q 28 12 34 12 Q 40 12 40 20 L 40 36 L 48 36 L 48 12 Q 48 6 54 6 Q 60 6 60 14 L 60 38 L 68 38 L 68 18 Q 68 10 74 10 Q 80 10 80 20 L 80 46 Q 82 68 70 88 Z"
+              fill="none" stroke="#a0522d" stroke-width="1.6"/>
+        <path d="M 26 54 Q 46 46 70 52 Q 76 55 80 50" stroke="#9b1f2a" stroke-width="1.0" fill="none"/>
+        <path d="M 26 64 Q 48 58 70 62 Q 76 65 80 60" stroke="#a0522d" stroke-width="0.8" fill="none"/>
+        <path d="M 32 40 Q 34 62 40 78 Q 48 88 60 86" stroke="#9b1f2a" stroke-width="0.8" fill="none"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus I · what was observed</div>
+    <h2 class="section-title">Your Palms</h2>
+    <h3 class="section-sub">Balanced, well-developed hands — proportionate, with clearly etched primary lines</h3>
+
+    <div class="lead">
+      <p>Both palms present a balanced, well-developed hand with clearly etched primary lines and a fine mesh of secondary lines through the centre.</p>
+    </div>
+
+    <div class="text">
+      <p>The proportion of palm to fingers is roughly even, which classical chirology calls a <em>practical–intellectual hand</em>: grounded action paired with active mental life. The palms are neither square (purely practical) nor long (purely intellectual), but balanced — the hand of someone who can both build a thing and see what it should become.</p>
+
+      <p>The skin texture reads as medium-fine, which the tradition associates with a refined sensibility — sensitive to environment, mood, and craft, while not being fragile. The colour and warmth are healthy. The hand is firm without being hard, soft without being slack.</p>
+
+      <p>The strong correspondence between the two hands is one of the most telling features of this reading. The left (passive, inherited) and the right (active, expressed) show only small variations — the lines, mounts and finger proportions are almost identical across both. The signal is unmistakable: there is little divergence between the inner identity the bearer was given and the outward expression they have built. What was inherited has been honoured rather than overwritten.</p>
+    </div>
+
+    <div class="calc">
+      Hand type · <strong>practical–intellectual</strong> · Skin · <strong>medium-fine, refined</strong> · Tone · <strong>firm but not hard</strong> · Left–Right correspondence · <strong>strong</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Hand types</div>
+      <div class="note">Square (practical) · Conic (artistic) · Spatulate (active) · Philosophical (long) · Mixed.</div>
+      <div class="note-label">This hand</div>
+      <div class="note">Practical–intellectual — balanced; builder and seer in one.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 6</span></div>
+</section>
+
+
+<!-- ════ II · HEART LINE ════ -->
+<section class="page" id="heart">
+  <div class="running"><span>II · Heart Line</span><span class="who">Focus 2 of 9</span></div>
+
+  <div class="content">
+    <!-- Standardised icon: palm-heart — heart line featured in kumkum, other lines faint -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 32 88 Q 20 68 22 46 L 26 18 Q 28 12 34 12 Q 40 12 40 20 L 40 36 L 48 36 L 48 12 Q 48 6 54 6 Q 60 6 60 14 L 60 38 L 68 38 L 68 18 Q 68 10 74 10 Q 80 10 80 20 L 80 46 Q 82 68 70 88 Z"
+              fill="none" stroke="#a0522d" stroke-width="1.4" opacity="0.35"/>
+        <!-- Heart line — featured -->
+        <path d="M 26 48 Q 46 40 64 46 Q 74 50 80 42" stroke="#9b1f2a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <circle cx="80" cy="42" r="1.8" fill="#9b1f2a"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus II · emotional architecture</div>
+    <h2 class="section-title">The Heart Line</h2>
+    <h3 class="section-sub">Curves cleanly across the upper palm, ending between index and middle finger — balanced romantic temperament</h3>
+
+    <div class="lead">
+      <p>The heart line runs cleanly across the upper palm and curves upward to end between the index and middle fingers. This is the most favourable termination point for the heart line in chirological tradition.</p>
+    </div>
+
+    <div class="text">
+      <p>An ending between Jupiter (index) and Saturn (middle) finger is read as a <em>balanced romantic temperament</em> — affectionate and loyal, but not sentimental to the point of losing judgement. Such an ending suggests the ability to love deeply while still respecting the autonomy of the other person. The native gives steadily without enmeshing, and is selective rather than indiscriminate.</p>
+
+      <p>The line shows minor branching toward its end, which traditionally indicates a few formative emotional chapters that have shaped a more thoughtful approach to closeness. Each branch represents a relationship or attachment that taught the bearer something important; the integration of those lessons appears in the steadiness of the line's main course.</p>
+
+      <p>The curve is moderate — not deeply concave (which would suggest excessive emotional intensity) nor flat (which would suggest emotional reserve). The line is well-formed and continuous, indicating an emotional life that is felt fully but managed maturely. Loyalty, once given, is long-running; affection is warm but not effusive; jealousy and possessiveness are not native to this heart.</p>
+    </div>
+
+    <div class="calc">
+      Heart Line · <strong>clean, well-formed</strong> · Ending · between Jupiter &amp; Saturn fingers · Curve · moderate · Branching · minor, toward end · Reading · balanced, loyal, selective
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Heart line endings</div>
+      <div class="note">Under Jupiter · idealistic. Between Jupiter and Saturn · balanced. Under Saturn · self-interested in love.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Loyalty ↔ enmeshment. Steady love that respects autonomy.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 7</span></div>
+</section>
+
+
+<!-- ════ III · HEAD LINE ════ -->
+<section class="page" id="head">
+  <div class="running"><span>III · Head Line</span><span class="who">Focus 3 of 9</span></div>
+
+  <div class="content">
+    <!-- Standardised icon: palm-head — head line featured -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 32 88 Q 20 68 22 46 L 26 18 Q 28 12 34 12 Q 40 12 40 20 L 40 36 L 48 36 L 48 12 Q 48 6 54 6 Q 60 6 60 14 L 60 38 L 68 38 L 68 18 Q 68 10 74 10 Q 80 10 80 20 L 80 46 Q 82 68 70 88 Z"
+              fill="none" stroke="#a0522d" stroke-width="1.4" opacity="0.35"/>
+        <!-- Head line — featured, gently sloping downward -->
+        <path d="M 27 58 Q 46 55 66 62 Q 74 65 80 74" stroke="#a0522d" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus III · mind &amp; method</div>
+    <h2 class="section-title">The Head Line</h2>
+    <h3 class="section-sub">Long and gently sloping — analytical depth with a creative tilt</h3>
+
+    <div class="lead">
+      <p>The head line is long, clear, and continuous, with a gentle downward slope toward the Mount of Moon at the outer edge of the palm.</p>
+    </div>
+
+    <div class="text">
+      <p>Length in the head line is read as <em>analytical patience</em> — the ability to think problems through to their second and third order rather than stopping at the first answer. A long head line is the signature of someone who reads broadly, considers carefully, and is unwilling to settle for a partial explanation. The continuity and clarity of the line indicate that this thinking process is not easily fragmented; once engaged, it sustains.</p>
+
+      <p>The gentle slope toward the Mount of Moon indicates that imagination is integrated with reasoning rather than walled off from it. Pure analytical thinkers tend to have flat or upward-sloping head lines; pure dreamers have steeply sloping ones; the gentle slope here is the chirological signature of the imaginative analyst — someone whose ideas have texture and resonance as well as logical structure.</p>
+
+      <p>A small initial gap between the head line and the life line at their start (at the radial edge of the palm) is also visible. This gap is one of the classical markers of <em>independent judgement</em> — the willingness to act on one's own assessment rather than wait for consensus. Such people are decisive without being impulsive; they consult, but the final call is their own.</p>
+    </div>
+
+    <div class="calc">
+      Head Line · <strong>long, clear, continuous</strong> · Slope · gentle, toward Mount of Moon · Start · slight gap from life line · Reading · analytical patience, imaginative analyst, independent judgement
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Length</div>
+      <div class="note">Long head line · long-form thinking; able to follow a question past its first answer.</div>
+      <div class="note-label">Gap at start</div>
+      <div class="note">Head–life gap · independent decision-making.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 8</span></div>
+</section>
+
+
+<!-- ════ IV · LIFE LINE ════ -->
+<section class="page" id="life">
+  <div class="running"><span>IV · Life Line</span><span class="who">Focus 4 of 9</span></div>
+
+  <div class="content">
+    <!-- Standardised icon: palm-life — life line (arc) featured -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 32 88 Q 20 68 22 46 L 26 18 Q 28 12 34 12 Q 40 12 40 20 L 40 36 L 48 36 L 48 12 Q 48 6 54 6 Q 60 6 60 14 L 60 38 L 68 38 L 68 18 Q 68 10 74 10 Q 80 10 80 20 L 80 46 Q 82 68 70 88 Z"
+              fill="none" stroke="#a0522d" stroke-width="1.4" opacity="0.35"/>
+        <!-- Life line — wide arc, featured -->
+        <path d="M 38 28 Q 28 46 28 64 Q 30 78 44 86" stroke="#9b1f2a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus IV · vitality &amp; rhythm</div>
+    <h2 class="section-title">The Life Line</h2>
+    <h3 class="section-sub">Wide arc around the thumb — generous vitality, steady constitution</h3>
+
+    <div class="lead">
+      <p>The life line sweeps in a wide arc around the thumb, well clear of the Mount of Venus. The line is unbroken in its main course.</p>
+    </div>
+
+    <div class="text">
+      <p>A wide arc — where the line stays well away from the thumb's base — is traditionally read as <em>generous vitality, stamina, and openness to experience</em>. The world is not held at arm's length; energy is available for the things that matter; the field of activity is large. A narrow life line tightly hugging the thumb suggests a more cautious, conserving energy; the wide arc here suggests the opposite — energy spent freely on chosen projects, with reserves available.</p>
+
+      <p>The line is unbroken in its main course. In chirological tradition, breaks or chains in the life line are read not as predictions of accident or illness (a common misconception) but as marks of changes in the texture or pace of life — a chained section indicates a period of struggle, a break a transition. The absence of these in your main line is read as steadiness of constitution.</p>
+
+      <p>Combined with the small initial gap between the head and life lines (mentioned in the previous focus), the life line confirms a temperament that is <em>self-starting and resilient</em>. The bearer trusts their own movement, recovers well from setbacks, and does not need permission to act. The life is walked on a wide, well-built road.</p>
+    </div>
+
+    <div class="calc">
+      Life Line · <strong>wide arc, unbroken</strong> · Distance from thumb · well clear · Breaks · none in main course · Reading · generous vitality, steady constitution, self-starting
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Arc width</div>
+      <div class="note">Wide · open, energetic. Narrow · cautious, conserving.</div>
+      <div class="note-label">Common misconception</div>
+      <div class="note">Life-line length does not predict lifespan — it indicates quality and texture of life lived.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 9</span></div>
+</section>
+
+
+<!-- ════ V · FATE LINE ════ -->
+<section class="page" id="fate">
+  <div class="running"><span>V · Fate Line</span><span class="who">Focus 5 of 9</span></div>
+
+  <div class="content">
+    <!-- Standardised icon: palm-fate — fate line (vertical) featured -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 32 88 Q 20 68 22 46 L 26 18 Q 28 12 34 12 Q 40 12 40 20 L 40 36 L 48 36 L 48 12 Q 48 6 54 6 Q 60 6 60 14 L 60 38 L 68 38 L 68 18 Q 68 10 74 10 Q 80 10 80 20 L 80 46 Q 82 68 70 88 Z"
+              fill="none" stroke="#a0522d" stroke-width="1.4" opacity="0.35"/>
+        <!-- Fate line — understated vertical, featured with dashes -->
+        <line x1="54" y1="80" x2="54" y2="28" stroke="#b8893a" stroke-width="2.0" stroke-linecap="round" stroke-dasharray="5 3"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus V · path &amp; vocation</div>
+    <h2 class="section-title">The Fate Line</h2>
+    <h3 class="section-sub">Present but understated — a self-authored career path</h3>
+
+    <div class="lead">
+      <p>The fate line is visible but understated — present, traceable, but not the dominant feature of the palm.</p>
+    </div>
+
+    <div class="text">
+      <p>In modern chirology, an understated fate line is read as a <em>self-authored career path</em> rather than one inherited or imposed. Strongly drawn fate lines indicate lives whose direction was set by external circumstance — family business, social expectation, or some kind of clear external track. A faint or partial fate line indicates the opposite: a life in which direction has come from inner conviction more than from a pre-set path.</p>
+
+      <p>The line begins not at the wrist but a little above it, which the tradition reads as a career or vocation that <em>found itself</em> in the early adult years rather than being given at birth. Faint cross-lines through the centre of the palm suggest several pivots along the way, each a deliberate choice rather than a setback. The pivots together form a kind of considered drift — not random, but not pre-planned either.</p>
+
+      <p>The combination of an understated fate line with a strong head line and a wide life line is read as the chart of someone who builds a path through choice rather than necessity. Multiple chapters; conviction-led decisions; a vocation that is recognisable in retrospect more than at the moment of each turn.</p>
+    </div>
+
+    <div class="calc">
+      Fate Line · <strong>present but understated</strong> · Start · above the wrist · Cross-lines · several, indicating pivots · Reading · self-authored path, conviction-led, multi-chapter career
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Strong vs faint</div>
+      <div class="note">Strong · externally directed path. Faint · self-authored.</div>
+      <div class="note-label">Pivots</div>
+      <div class="note">Cross-lines marking deliberate turns rather than setbacks.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 10</span></div>
+</section>
+
+
+<!-- ════ VI · THE MOUNTS ════ -->
+<section class="page icon-right" id="mounts">
+  <div class="running"><span>VI · The Mounts</span><span class="who">Focus 6 of 9</span></div>
+
+  <div class="content">
+    <!-- Standardised icon: palm-mounts — mount cushions highlighted -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 32 88 Q 20 68 22 46 L 26 18 Q 28 12 34 12 Q 40 12 40 20 L 40 36 L 48 36 L 48 12 Q 48 6 54 6 Q 60 6 60 14 L 60 38 L 68 38 L 68 18 Q 68 10 74 10 Q 80 10 80 20 L 80 46 Q 82 68 70 88 Z"
+              fill="none" stroke="#a0522d" stroke-width="1.4" opacity="0.35"/>
+        <!-- Mount dots — Venus (large), Moon, Jupiter, Mercury -->
+        <circle cx="34" cy="72" r="5.5" fill="#9b1f2a" opacity="0.7"/>
+        <circle cx="70" cy="68" r="3.5" fill="#9b1f2a" opacity="0.5"/>
+        <circle cx="36" cy="30" r="3.0" fill="#a0522d" opacity="0.6"/>
+        <circle cx="72" cy="38" r="2.8" fill="#a0522d" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VI · the planetary cushions</div>
+    <h2 class="section-title">The Mounts</h2>
+    <h3 class="section-sub">Venus, Moon, Jupiter, and Mercury well developed — four planets quietly lit</h3>
+
+    <div class="lead">
+      <p>The mounts are the small cushions of muscle and tissue at specific points on the palm. Each carries the name and qualities of one of the classical planets. Reading them together gives the planetary signature of the hand.</p>
+    </div>
+
+    <div class="text">
+      <p>The <strong>Mount of Venus</strong>, at the base of the thumb, is full and rounded — the strongest single mount in this hand. The tradition reads a developed Venus as <em>genuine warmth, loyalty, and a strong sense of family</em>. The capacity for sustained love is a defining feature of this hand. The bearer is read as someone whose affections, once given, are long-running, and whose home and family are a settled centre of life.</p>
+
+      <p>The <strong>Mount of Moon</strong>, at the lower outer palm opposite Venus, is also well-developed. A developed Moon is read as <em>imagination, intuition, and an interest in meaning beyond the immediate facts</em>. Combined with the strong Venus, this gives the hand its characteristic mixture of warm groundedness and imaginative reach — the hand of someone capable of both deep practical attachment and broad imaginative life.</p>
+
+      <p>The <strong>Mount of Jupiter</strong>, at the base of the index finger, shows a clear cushion — read as <em>quiet ambition and a tendency to lead by example</em> rather than by volume. The <strong>Mount of Mercury</strong>, at the base of the little finger, is firm — suggesting articulate expression and an aptitude for negotiation, writing, or persuasion. Together, the four developed mounts (Venus, Moon, Jupiter, Mercury) describe a hand that is warm, imaginative, quietly ambitious, and articulate.</p>
+    </div>
+
+    <div class="calc">
+      Developed mounts · <strong>Venus, Moon, Jupiter, Mercury</strong> · Reading · warmth · imagination · quiet leadership · articulate communication
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Seven classical mounts</div>
+      <div class="note">Venus · Moon · Jupiter · Saturn · Sun · Mercury · Mars.</div>
+      <div class="note-label">Lit here</div>
+      <div class="note">Venus, Moon, Jupiter, Mercury — the warm, imaginative, articulate quartet.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 11</span></div>
+</section>
+
+
+<!-- ════ VII · FINGERS &amp; THUMB ════ -->
+<section class="page" id="fingers">
+  <div class="running"><span>VII · Fingers, Thumb &amp; Texture</span><span class="who">Focus 7 of 9</span></div>
+
+  <div class="content">
+    <!-- Standardised icon: palm-fingers — finger forms featured within consistent palm frame -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Four finger columns, proportionate and square-tipped -->
+        <rect x="28" y="18" width="9" height="38" rx="3" fill="none" stroke="#a0522d" stroke-width="1.6"/>
+        <rect x="41" y="14" width="9" height="42" rx="3" fill="none" stroke="#a0522d" stroke-width="1.6"/>
+        <rect x="54" y="16" width="9" height="40" rx="3" fill="none" stroke="#a0522d" stroke-width="1.6"/>
+        <rect x="67" y="22" width="9" height="34" rx="3" fill="none" stroke="#a0522d" stroke-width="1.6"/>
+        <!-- Palm base connecting fingers -->
+        <path d="M 28 56 Q 24 68 26 80 Q 32 88 50 88 Q 68 88 74 80 Q 76 68 76 56 L 76 56"
+              fill="none" stroke="#a0522d" stroke-width="1.6"/>
+        <!-- Thumb -->
+        <path d="M 28 60 Q 18 62 16 70 Q 16 80 24 82"
+              fill="none" stroke="#9b1f2a" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VII · the architecture of the hand</div>
+    <h2 class="section-title">Fingers, Thumb &amp; Texture</h2>
+    <h3 class="section-sub">Proportionate fingers, square-tipped; medium-large thumb; refined skin</h3>
+
+    <div class="lead">
+      <p>The fingers are proportionate to the palm with a slight squareness at the tips. The thumb is medium-to-large and held away from the palm when relaxed.</p>
+    </div>
+
+    <div class="text">
+      <p>Square fingertips are the classical signature of a <em>practical, methodical mind</em>. Where pointed tips suggest aesthetic sensibility and conic tips emotional warmth, square tips speak of someone who likes work to be solid, decisions to be considered, and the ground beneath any project to be firm. The slight squareness here — not extreme — gives the hand its grounded character without making it heavy.</p>
+
+      <p>The thumb is the most important single feature of the hand in chirological tradition; it represents the will. A medium-to-large thumb held away from the palm in repose indicates <em>strong willpower, generosity, and openness</em>. The bearer can decide and follow through, but is not closed off from others' input. Closely-held thumbs indicate caution or reserve; widely splayed thumbs indicate impulsiveness; the moderate angle here describes someone who acts deliberately, with their will their own.</p>
+
+      <p>The skin texture is medium-fine. Medium-fine indicates <em>refined sensibility</em> — sensitive to environment, mood and craft, but not fragile. Such hands belong to people who notice quality in things without being precious about it.</p>
+    </div>
+
+    <div class="calc">
+      Fingers · <strong>proportionate, square-tipped</strong> · Thumb · <strong>medium-large, held moderately</strong> · Skin · <strong>medium-fine</strong> · Reading · practical methodical mind, strong will, refined sensibility
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Fingertips</div>
+      <div class="note">Square · practical. Pointed · aesthetic. Conic · warm. Spatulate · active.</div>
+      <div class="note-label">Thumb</div>
+      <div class="note">The will of the hand. Held moderately · own will, open to input.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 12</span></div>
+</section>
+
+
+<!-- ════ VIII · LEFT &amp; RIGHT ════ -->
+<section class="page" id="twohands">
+  <div class="running"><span>VIII · Left &amp; Right</span><span class="who">Focus 8 of 9</span></div>
+
+  <div class="content">
+    <!-- Standardised icon: palm-both — two palm silhouettes, same size -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Left palm (smaller scale) -->
+        <g transform="translate(4,10) scale(0.44)">
+          <path d="M 32 88 Q 20 68 22 46 L 26 18 Q 28 12 34 12 Q 40 12 40 20 L 40 36 L 48 36 L 48 12 Q 48 6 54 6 Q 60 6 60 14 L 60 38 L 68 38 L 68 18 Q 68 10 74 10 Q 80 10 80 20 L 80 46 Q 82 68 70 88 Z"
+                fill="none" stroke="#9b1f2a" stroke-width="2.8"/>
+        </g>
+        <!-- Right palm (mirrored) -->
+        <g transform="translate(96,10) scale(-0.44,0.44)">
+          <path d="M 32 88 Q 20 68 22 46 L 26 18 Q 28 12 34 12 Q 40 12 40 20 L 40 36 L 48 36 L 48 12 Q 48 6 54 6 Q 60 6 60 14 L 60 38 L 68 38 L 68 18 Q 68 10 74 10 Q 80 10 80 20 L 80 46 Q 82 68 70 88 Z"
+                fill="none" stroke="#a0522d" stroke-width="2.8"/>
+        </g>
+        <!-- Labels -->
+        <text x="24" y="92" text-anchor="middle" font-family="serif" font-size="7" fill="#9b1f2a" font-style="italic">L</text>
+        <text x="76" y="92" text-anchor="middle" font-family="serif" font-size="7" fill="#a0522d" font-style="italic">R</text>
+        <!-- Connecting equals sign -->
+        <text x="50" y="60" text-anchor="middle" font-family="serif" font-size="10" fill="#b8893a">≈</text>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VIII · the inherited and the expressed</div>
+    <h2 class="section-title">Left &amp; Right</h2>
+    <h3 class="section-sub">Strong agreement between the two hands — integrity of self</h3>
+
+    <div class="lead">
+      <p>The left hand reads as the inherited disposition; the right hand as the lived expression. When the two agree closely, the reading is one of integrity of self.</p>
+    </div>
+
+    <div class="text">
+      <p>Your <strong>left hand</strong> shows warmth, imagination, an early-formed sense of independence, and a natural pull toward depth over surface. The lines were well-set from early life; the disposition is one of the chart's stable features. The bearer was given a particular way of being and a recognisable set of inclinations.</p>
+
+      <p>Your <strong>right hand</strong> shows what has been built with that disposition. The same warmth and imagination, sharpened by experience into deliberate judgement and a self-authored direction. The patterns are not different from the left; they are the same patterns more clearly drawn, deepened by use. The right hand is the left hand grown into itself.</p>
+
+      <p>The strong agreement between the two hands is the most telling signal in this reading. It points to <em>integrity of self</em> — what was given has been honoured rather than overwritten. There is no sharp split between potential and expression, no signal that the bearer has spent their life trying to be someone they were not. The chart describes a person who recognised their own inheritance early and built within it rather than against it.</p>
+    </div>
+
+    <div class="calc">
+      Left hand · <strong>the inherited disposition</strong> · Right hand · <strong>the lived expression</strong> · Correspondence · <strong>strong</strong> · Reading · integrity of self, inheritance honoured
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Left vs right</div>
+      <div class="note">For right-handed people · left passive, right active. Reverse for left-handed.</div>
+      <div class="note-label">Agreement</div>
+      <div class="note">Strong correspondence · integrity. Divergence · journey from inheritance to expression.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 13</span></div>
+</section>
+
+
+<!-- ════ IX · SYNTHESIS ════ -->
+<section class="page" id="synthesis">
+  <div class="running"><span>IX · Synthesis</span><span class="who">Focus 9 of 9</span></div>
+
+  <div class="content">
+    <!-- Standardised icon: palm-all — all major lines visible within palm form -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 32 88 Q 20 68 22 46 L 26 18 Q 28 12 34 12 Q 40 12 40 20 L 40 36 L 48 36 L 48 12 Q 48 6 54 6 Q 60 6 60 14 L 60 38 L 68 38 L 68 18 Q 68 10 74 10 Q 80 10 80 20 L 80 46 Q 82 68 70 88 Z"
+              fill="none" stroke="#a0522d" stroke-width="1.6"/>
+        <!-- All three major lines -->
+        <path d="M 26 48 Q 46 40 66 46 Q 74 50 80 42" stroke="#9b1f2a" stroke-width="1.0" fill="none"/>
+        <path d="M 27 60 Q 46 57 66 63 Q 74 66 80 74" stroke="#a0522d" stroke-width="0.9" fill="none"/>
+        <path d="M 38 28 Q 28 48 28 66 Q 30 80 44 88" stroke="#9b1f2a" stroke-width="0.9" fill="none"/>
+        <!-- Fate line (faint) -->
+        <line x1="54" y1="80" x2="54" y2="36" stroke="#b8893a" stroke-width="0.7" stroke-dasharray="3 2"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus IX · the portrait</div>
+    <h2 class="section-title">Synthesis</h2>
+    <h3 class="section-sub">Steady vitality, independent judgement, integrated imagination — the practical–intellectual hand</h3>
+
+    <div class="lead">
+      <p>Taken together, the palmistry reading describes a person of steady vitality, independent judgement, and integrated imagination — analytical without being cold, affectionate without being unguarded, ambitious without being theatrical.</p>
+    </div>
+
+    <div class="text">
+      <p>The heart line balances loyalty and discernment. The head line is long, gently sloped, and starts with a small gap from the life line — a long-form thinker with imagination integrated, willing to act on their own assessment. The life line is wide and unbroken — a generous, resilient constitution. The fate line is present but understated — a self-authored path. The mounts of Venus, Moon, Jupiter and Mercury are all lit — warmth, imagination, quiet leadership, articulate expression. The fingers are square-tipped and proportionate; the thumb is firm but moderate; the skin is medium-fine.</p>
+
+      <p>The strong agreement between the two hands is the most telling signal of all. The path is self-authored and likely to keep evolving in chapters; relationships are selective but deep; the mind prefers the long form. The defining strength is alignment — between thought and action, between heart and head, and between the inherited self and the expressed one. In the language of the palm: <em>this person has walked in the direction they were given</em>.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">The chord</div>
+      <div class="note">Balanced heart · long imaginative head · wide vital life · self-authored fate · four mounts lit · two hands aligned.</div>
+      <div class="note-label">The keynote</div>
+      <div class="note">A hand that walks in the same direction it was given.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading · End</span><span>Page 14</span></div>
+</section>
+
+<button class="print-fab" onclick="window.print()">🖨 Print / Save PDF</button>
+</body>
+</html>

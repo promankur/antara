@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Antara — Cover Gallery · Design Review</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    background: #2a2820;
+    color: #e8e0cc;
+    padding: 32px 40px 60px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #6b5d3a;
+    padding-bottom: 24px;
+  }
+  header h1 {
+    font-size: 26pt;
+    font-weight: 400;
+    letter-spacing: .12em;
+    color: #d0bc88;
+  }
+  header p {
+    font-size: 10pt;
+    color: #8a7d60;
+    letter-spacing: .08em;
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+
+  .group {
+    margin-bottom: 48px;
+  }
+  .group-label {
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    color: #8a7d60;
+    border-top: 1px solid #4a4230;
+    padding-top: 14px;
+    margin-bottom: 20px;
+  }
+
+  .covers-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .cover-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Clip container: exactly matches scaled A4 (210×297mm at 96dpi ≈ 794×1123px, scaled to 240px wide) */
+  .cover-clip {
+    width: 240px;
+    height: 339px;
+    overflow: hidden;
+    position: relative;
+    border: 1.5px solid #4a4230;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    border-radius: 2px;
+    background: #e8e0cc;
+  }
+
+  .cover-clip iframe {
+    width: 794px;
+    height: 1123px;
+    transform: scale(0.302);
+    transform-origin: top left;
+    border: none;
+    pointer-events: none;
+    /* Slight tweak: some reports have 8mm margin before first page,
+       shift up to start at page top */
+    margin-top:-9px;
+    margin-left: 0;
+  }
+
+  .cover-label {
+    font-size: 9pt;
+    text-align: center;
+    color: #b8a872;
+    letter-spacing: .06em;
+    line-height: 1.4;
+    max-width: 240px;
+  }
+  .cover-label .file-ref {
+    display: block;
+    font-size: 7.5pt;
+    color: #6b5d3a;
+    margin-top: 2px;
+    letter-spacing: .04em;
+  }
+
+  footer {
+    margin-top: 48px;
+    border-top: 1px solid #4a4230;
+    padding-top: 16px;
+    font-size: 8.5pt;
+    color: #6b5d3a;
+    text-align: center;
+    letter-spacing: .06em;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Antara · Cover Review</h1>
+  <p>All current reports — 16 May 2026 · V4 final · All files renamed and synced</p>
+</header>
+
+<!-- ── NUMEROLOGY ── -->
+<section class="group">
+  <div class="group-label">Numerology — Six lineages</div>
+  <div class="covers-row">
+
+    <div class="cover-card">
+      <div class="cover-clip">
+        <iframe src="N_Antaranka.html" loading="lazy"></iframe>
+      </div>
+      <div class="cover-label">Antarāṅka<br><span class="file-ref">5 lineages combined</span></div>
+    </div>
+
+    <div class="cover-card">
+      <div class="cover-clip">
+        <iframe src="N1_Pythagorean.html" loading="lazy"></iframe>
+      </div>
+      <div class="cover-label">Pythagorean<br><span class="file-ref">Greek · Western</span></div>
+    </div>
+
+    <div class="cover-card">
+      <div class="cover-clip">
+        <iframe src="N2_Chaldean.html" loading="lazy"></iframe>
+      </div>
+      <div class="cover-label">Chaldean<br><span class="file-ref">Babylonian</span></div>
+    </div>
+
+    <div class="cover-card">
+      <div class="cover-clip">
+        <iframe src="N3_Tamil_Vedic.html" loading="lazy"></iframe>
+      </div>
+      <div class="cover-label">Tamil · Vedic<br><span class="file-ref">South Indian</span></div>
+    </div>
+
+    <div class="cover-card">
+      <div class="cover-clip">
+        <iframe src="N4_Kabbalah.html" loading="lazy"></iframe>
+      </div>
+      <div class="cover-label">Kabbalah<br><span class="file-ref">Hebrew mystic</span></div>
+    </div>
+
+    <div class="cover-card">
+      <div class="cover-clip">
+        <iframe src="N5_Lo_Shu.html" loading="lazy"></iframe>
+      </div>
+      <div class="cover-label">Lo Shu<br><span class="file-ref">Chinese grid</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── HOROSCOPES ── -->
+<section class="group">
+  <div class="group-label">Horoscopes — Three traditions</div>
+  <div class="covers-row">
+
+    <div class="cover-card">
+      <div class="cover-clip">
+        <iframe src="H3_Western.html" loading="lazy"></iframe>
+      </div>
+      <div class="cover-label">Western / Tropical<br><span class="file-ref">Greek · Hellenistic</span></div>
+    </div>
+
+    <div class="cover-card">
+      <div class="cover-clip">
+        <iframe src="H1_Vedic_North.html" loading="lazy"></iframe>
+      </div>
+      <div class="cover-label">Vedic — North Indian<br><span class="file-ref">Jyotish · diamond chart</span></div>
+    </div>
+
+    <div class="cover-card">
+      <div class="cover-clip">
+        <iframe src="H2_Vedic_South.html" loading="lazy"></iframe>
+      </div>
+      <div class="cover-label">Vedic — South Indian<br><span class="file-ref">Jyotish · square chart</span></div>
+    </div>
+
+    <div class="cover-card">
+      <div class="cover-clip">
+        <iframe src="H_Chatur_Drishti.html" loading="lazy"></iframe>
+      </div>
+      <div class="cover-label">Chatur-Drishti · Four Visions<br><span class="file-ref">Four traditions combined</span></div>
+    </div>
+
+    <div class="cover-card">
+      <div class="cover-clip">
+        <iframe src="H4_BaZi.html" loading="lazy"></iframe>
+      </div>
+      <div class="cover-label">Chinese · BaZi · Four Pillars<br><span class="file-ref">Heavenly Stems · Wu Xing</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CHARACTER / BODY ── -->
+<section class="group">
+  <div class="group-label">Character &amp; Body reading</div>
+  <div class="covers-row">
+
+    <div class="cover-card">
+      <div class="cover-clip">
+        <iframe src="signature_analysis_V4.html" loading="lazy"></iframe>
+      </div>
+      <div class="cover-label">Signature Analysis<br><span class="file-ref">Graphology</span></div>
+    </div>
+
+    <div class="cover-card">
+      <div class="cover-clip">
+        <iframe src="palmistry_V4.html" loading="lazy"></iframe>
+      </div>
+      <div class="cover-label">Palmistry<br><span class="file-ref">Chirology</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── BIORHYTHM ── -->
+<section class="group">
+  <div class="group-label">Biorhythm — Three reports</div>
+  <div class="covers-row">
+
+    <div class="cover-card">
+      <div class="cover-clip">
+        <iframe src="B1_Monthly.html" loading="lazy"></iframe>
+      </div>
+      <div class="cover-label">Biorhythm · Monthly Report<br><span class="file-ref">Ankur Gupta</span></div>
+    </div>
+
+    <div class="cover-card">
+      <div class="cover-clip">
+        <iframe src="B2_Critical_Days.html" loading="lazy"></iframe>
+      </div>
+      <div class="cover-label">Biorhythm Critical Days · Annual<br><span class="file-ref">Priya Sharma</span></div>
+    </div>
+
+    <div class="cover-card">
+      <div class="cover-clip">
+        <iframe src="B3_Compatibility.html" loading="lazy"></iframe>
+      </div>
+      <div class="cover-label">Biorhythm Compatibility · Special Report<br><span class="file-ref">Rohit &amp; Meera Kapoor</span></div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  Antara · अन्तर · Interior Register &nbsp;·&nbsp; Covers gallery generated 15 May 2026 &nbsp;·&nbsp; Design consistency review
+</footer>
+
+</body>
+</html>

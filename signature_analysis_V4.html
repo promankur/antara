@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Signature Analysis — A Personal Reading for Ankur Gupta</title>
+<style>
+  /* ─────────── Antara Personal Reading — V3 template ─────────── */
+  @page { size: A4 portrait; margin: 0; }
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #c8c0a8; }
+  body {
+    font-family: "Cormorant Garamond","Iowan Old Style","Palatino Linotype",Georgia,serif;
+    font-size: 12pt; line-height: 1.5;
+    color: #1a1a2c; -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─────────── Palette: graphology / ink and paper ─────────── */
+  :root {
+    --paper:#f3ecdc;
+    --paper-2:#e9e0c8;
+    --ink:#1a1a2c;
+    --ink-2:#34344a;
+    --inkblue:#3a5e9a;
+    --inkblue-soft:#9bb0d0;
+    --sepia:#7a4a1a;
+    --sepia-soft:#c8a878;
+    --seal:#8a2a2a;
+    --parchment-gold:#a88a48;
+    --rule:#b9a166;
+    --muted:#6e5d33;
+
+    --page-w:210mm; --page-h:297mm;
+    --pad-top:17mm; --pad-bot:32mm;
+    --pad-left:25mm; --pad-right:22mm;
+    --col-text:125mm; --col-gap:6mm; --col-margin:32mm;
+    --content-w:163mm; --content-h:248mm; --content-top-pad:6mm;
+    --page-id: "Signature Analysis · Ankur Gupta";
+}
+
+  .page{
+    width:var(--page-w); height:var(--page-h);
+    background:var(--paper);
+    margin:8mm auto;
+    padding:var(--pad-top) var(--pad-right) var(--pad-bot) var(--pad-left);
+    position:relative; box-shadow:0 4px 18px rgba(0,0,0,0.18);
+    page-break-after:always; break-after:page;
+    display:grid; grid-template-columns: var(--col-text) var(--col-margin); column-gap: var(--col-gap);
+  }
+  .page:last-child{ page-break-after:auto; break-after:auto; }
+
+  /* .page.wide — full-width single column */
+  .page.wide{ grid-template-columns: 1fr; column-gap: 0; }
+  .page.wide .margin-area{ display:none; }
+
+  /* .page.icon-right — icon moves to upper margin */
+  .page.icon-right .content > .icon-block{ display:none; }
+
+  .page::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(58,94,154,0.04), transparent 40%),
+      radial-gradient(circle at 88% 90%, rgba(122,74,26,0.04), transparent 40%);
+    mix-blend-mode:multiply;
+  }
+
+  /* Top border: ink flourish at 9mm */
+  .page::after{
+    content:"";position:absolute;
+    left:var(--pad-left); right:var(--pad-right);
+    top:9mm; height:6mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><line x1='0' y1='10' x2='80' y2='10' stroke='%23a88a48' stroke-width='0.3'/><path d='M 0 6 Q 8 4 16 6 Q 24 8 32 6 Q 40 4 48 6 Q 56 8 64 6 Q 72 4 80 6' fill='none' stroke='%231a1a2c' stroke-width='0.6'/></svg>");
+    background-repeat:repeat-x; background-size:auto 6mm; opacity:.8;
+  }
+
+  .content{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+  }
+  .margin-area{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+  }
+
+  .running{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); top:5mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; letter-spacing:.18em; text-transform:uppercase; color:var(--inkblue);
+    font-family:"Iowan Old Style",Georgia,serif; font-weight:600;
+  }
+  .running .who{ color:var(--ink-2); letter-spacing:.12em; }
+
+  .pgfoot{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); bottom:14mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; color:var(--muted); letter-spacing:.06em;
+  }
+  .pgfoot::before{
+    content:""; position:absolute; left:0; right:0; top:-6mm; height:0.4mm;
+    background:var(--rule); opacity:.55;
+  }
+
+  h1.cover-title{
+    font-size:30pt; font-weight:600; color:var(--ink);
+    letter-spacing:.06em; line-height:1.15; margin-bottom:6mm;
+    font-variant:small-caps;
+  }
+  h2.section-title{
+    font-size:18pt; font-weight:600; color:var(--ink);
+    letter-spacing:.02em; line-height:1.2; margin-bottom:4mm;
+  }
+  h3.section-sub{
+    font-size:11pt; font-style:italic; color:var(--sepia); font-weight:400;
+    margin-bottom:5mm; letter-spacing:.02em; line-height:1.4;
+  }
+  .eyebrow{
+    font-size:10pt; letter-spacing:.32em; text-transform:uppercase; color:var(--inkblue);
+    font-weight:600; font-family:"Iowan Old Style",Georgia,serif; margin-bottom:3mm;
+  }
+
+  .text > p{ font-size:12pt; line-height:1.5; color:var(--ink); margin:0 0 8pt; }
+  .text > p:last-child{ margin-bottom:0; }
+  .lead{ margin-bottom:5mm; }
+  .lead > p{ font-size:13pt; line-height:1.5; color:var(--ink-2); font-style:italic; margin:0 0 6pt; }
+  .lead > p:last-child{ margin-bottom:0; }
+
+  .calc{
+    font-family:"Iowan Old Style",Georgia,serif;
+    font-size:10pt; line-height:1.5; color:var(--sepia);
+    border-top:0.4mm solid var(--rule); border-bottom:0.4mm solid var(--rule);
+    padding:3mm 0; margin:5mm 0 0; letter-spacing:.02em;
+  }
+  .calc strong{ color:var(--ink); font-weight:600; }
+  .fine{ font-size:10pt; line-height:1.5; color:var(--muted); font-style:italic; }
+
+  /* Cover — centred single column */
+  .cover{
+    grid-template-columns: 1fr;
+    text-align:center; align-content:center; padding-top:32mm;
+  }
+  .cover .markline{
+    margin:0 auto 12mm; width:60mm; height:5mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><path d='M 0 6 Q 8 4 16 6 Q 24 8 32 6 Q 40 4 48 6 Q 56 8 64 6 Q 72 4 80 6' fill='none' stroke='%231a1a2c' stroke-width='1.4'/></svg>");
+    background-repeat:repeat-x; background-size:auto 5mm;
+  }
+  .cover .greek-eyebrow{
+    font-size:11pt; letter-spacing:.4em; text-transform:uppercase; color:var(--inkblue);
+    margin-bottom:6mm; font-weight:600;
+  }
+  .cover .arithmos{
+    font-size:14pt; color:var(--sepia); font-style:italic; letter-spacing:.06em;
+    margin-bottom:8mm;
+  }
+  .cover .person{ font-size:13pt; color:var(--ink); margin-top:14mm; line-height:1.7; }
+  .cover .person .lbl{
+    font-size:10pt; letter-spacing:.22em; text-transform:uppercase; color:var(--muted);
+    font-weight:600; margin-right:6mm;
+  }
+  /* Signature on cover — captured mark rendering area */
+  .cover .sigmark{ margin:14mm auto 0; width:130mm; height:55mm; display:flex; align-items:center; justify-content:center; border-bottom:0.4mm solid var(--rule); border-top:0.4mm solid var(--rule); padding:6mm 0; }
+
+  .toc-list{ list-style:none; padding:0; margin:0; }
+  .toc-list li{
+    display:grid; grid-template-columns:8mm 1fr auto; gap:4mm;
+    align-items:baseline; padding:4mm 0;
+    border-bottom:0.3mm dashed var(--rule); font-size:12pt;
+  }
+  .toc-list li:last-child{ border-bottom:none; }
+  .toc-list .num{ color:var(--inkblue); font-variant-numeric:tabular-nums; font-weight:600; }
+  .toc-list .name{ color:var(--ink); }
+  .toc-list .pg{ color:var(--muted); font-size:10pt; letter-spacing:.06em; }
+  .toc-list a{ text-decoration:none; color:inherit; display:contents; }
+  .toc-list a:hover .name{ color:var(--seal); }
+
+  .icon-block{ width:26mm; height:26mm; margin-bottom:4mm; display:flex; align-items:center; justify-content:center; }
+  .icon-block svg{ width:100%; height:100%; }
+
+  .marginalia{
+    padding-top:12mm; color:var(--muted);
+    font-size:10pt; line-height:1.5; font-style:italic;
+  }
+  .marginalia .ornament{ width:28mm; height:28mm; margin-bottom:8mm; opacity:.6; }
+  .marginalia .note-label{
+    font-size:9pt; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--inkblue); font-weight:600; font-style:normal; margin-bottom:2mm;
+  }
+  .marginalia .note{ margin-bottom:8mm; }
+  .marginalia .note:last-child{ margin-bottom:0; }
+
+  /*
+   * ─── Standardised graphology icon set (V3) ───────────────────────
+   * Four marks replace all per-page custom icons:
+   *   .icon-nib        — pen nib (capitals, identity, self-presentation)
+   *   .icon-slant      — slant indicator (rhythm, speed, pressure)
+   *   .icon-underline  — underline / paraph (the paraph of self-emphasis)
+   *   .icon-dot        — closing dot (end stroke, finality, closure)
+   * ─────────────────────────────────────────────────────────────────
+   */
+
+  @media print{
+    html, body{ background:#fff; } body{ padding:0; }
+    .page{ margin:0; box-shadow:none; page-break-after:always; break-after:page; }
+    .page:last-child{ page-break-after:auto; break-after:auto; }
+  }
+  @media screen{ body{ padding:14mm 0; } }
+
+  /* ─── Print FAB ─── */
+  .print-fab{
+    position:fixed; bottom:24px; right:24px; z-index:9999;
+    background:#6b1a2c; color:#f5e8c8;
+    border:none; border-radius:28px;
+    padding:12px 22px; font-size:12pt; cursor:pointer;
+    box-shadow:0 4px 18px rgba(0,0,0,0.28);
+    font-family:inherit; letter-spacing:.04em;
+    transition:background .18s;
+  }
+  .print-fab:hover{background:#8a2238;}
+  @media print{.print-fab{display:none;}}
+
+  /* ─── Footer name override ─── */
+  .pgfoot > span:first-child{font-size:0;}
+  .pgfoot > span:first-child::after{
+    font-size:9pt; color:inherit;
+    content:var(--page-id,"Antara — Personal Reading");
+  }
+</style>
+</head>
+<body>
+
+<!-- ════ COVER ════ -->
+<section class="page cover" id="cover">
+  <div class="markline"></div>
+  <div class="arithmos">The hand that writes the name — what the stroke reveals</div>
+  <h1 class="cover-title">Signature Analysis</h1>
+  <div class="arithmos" style="margin-top:6mm">A reading from the graphological tradition</div>
+
+  <!-- Graphology icon — pen nib with analytical overlay -->
+  <div class="sigmark">
+    <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+      <!-- Pen nib body — elegant calligraphy nib shape -->
+      <path d="M 100 14 L 126 52 L 114 52 L 100 88 L 86 52 L 74 52 Z"
+            fill="none" stroke="var(--ink,#1a1a2c)" stroke-width="1.4" stroke-linejoin="round"/>
+      <!-- Nib slit — the characteristic graphology mark -->
+      <line x1="100" y1="30" x2="100" y2="88" stroke="var(--ink,#1a1a2c)" stroke-width="0.8" stroke-dasharray="2 1.5"/>
+      <!-- Nib tip dot — the point of contact -->
+      <circle cx="100" cy="88" r="2.2" fill="var(--gold,#a88842)"/>
+      <!-- Ink drop forming below the nib -->
+      <path d="M 100 91 Q 97 98 100 103 Q 103 98 100 91 Z"
+            fill="var(--gold,#a88842)" opacity="0.7"/>
+      <!-- Analytical slant line — showing the angle of inclination -->
+      <line x1="62" y1="104" x2="140" y2="26"
+            stroke="var(--bronze,#c8a85b)" stroke-width="0.7" stroke-dasharray="3 2" opacity="0.6"/>
+      <!-- Baseline rule — the graphology baseline -->
+      <line x1="54" y1="108" x2="146" y2="108"
+            stroke="var(--ink,#1a1a2c)" stroke-width="0.6" opacity="0.35"/>
+      <!-- Small arc above nib — cap/crown of the pen -->
+      <path d="M 88 18 Q 100 8 112 18" fill="none" stroke="var(--gold,#a88842)" stroke-width="1.1"
+            stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="person">
+    <div>Ankur Gupta</div>
+    <div><span class="lbl">From signature</span>captured on white paper</div>
+    <div><span class="lbl">Date</span>May 2026</div>
+  </div>
+
+  <div class="pgfoot" style="display:block;text-align:center;">
+  <div style="font-size:10.5pt;font-weight:700;letter-spacing:.18em;color:var(--gold,#a88842);">ANTARA PERSONAL READING</div>
+  <div style="font-size:9.5pt;font-style:italic;letter-spacing:.08em;color:var(--gold,#a88842);margin-top:1.5mm;">Interpretive Not Predictive</div>
+</div>
+</section>
+
+
+<!-- ════ INTRO 1 ════ -->
+<section class="page" id="intro-1">
+  <div class="running"><span>Signature Analysis</span><span class="who">Introduction · 1 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Introduction</div>
+    <h2 class="section-title">What this report is about</h2>
+    <h3 class="section-sub">Graphology and the reading of the signed name</h3>
+
+    <div class="text">
+      <p>Graphology is the study of handwriting as an expression of character. Its modern form was developed in nineteenth-century France by Jean-Hippolyte Michon, expanded by Jules Crépieux-Jamin, and carried into the twentieth century by writers in the German and Swiss traditions. The signature, within graphology, is treated as the most concentrated specimen of a person's hand — the one configuration of letters the writer has produced more often than any other, and the one in which conscious self-presentation and habitual movement most fully meet.</p>
+
+      <p>The signature differs from ordinary handwriting in one important way. Ordinary writing is a transparent record of how one thinks while writing; the signature is a small, repeated act of <em>self-naming</em>. It carries information about how the writer wishes to be encountered, how the writer instinctively presents themselves, and where the gap between intention and habit shows. For this reason graphologists give the signature an unusually careful reading.</p>
+
+      <p>This report reads your signature across eight focus areas — the capital letters of the given and family names, the stroke and rhythm of the writing, the legibility pattern of the whole, the underline, the closing stroke, and a final synthesis. Each focus describes what was observed in the signature and what the graphological tradition reads from that observation.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <!-- Pen nib ornament -->
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 50 16 L 56 70 L 50 78 L 44 70 Z" fill="none" stroke="#1a1a2c" stroke-width="1.2"/>
+          <line x1="50" y1="32" x2="50" y2="68" stroke="#1a1a2c" stroke-width="0.6"/>
+          <circle cx="50" cy="80" r="1.2" fill="#1a1a2c"/>
+          <path d="M 50 78 Q 54 84 56 90" fill="none" stroke="#1a1a2c" stroke-width="0.6"/>
+        </svg>
+      </div>
+      <div class="note-label">Tradition</div>
+      <div class="note">Modern graphology · Michon · Crépieux-Jamin · the French school.</div>
+      <div class="note-label">Honest framing</div>
+      <div class="note">Interpretive; not a clinical instrument. Useful as a structured mirror.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 2</span></div>
+</section>
+
+
+<!-- ════ INTRO 2 ════ -->
+<section class="page" id="intro-2">
+  <div class="running"><span>Signature Analysis</span><span class="who">Introduction · 2 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">How to read this report</div>
+    <h2 class="section-title">Structure &amp; method</h2>
+    <h3 class="section-sub">The signature first, then its features, then the synthesis</h3>
+
+    <div class="text">
+      <p>This report is structured so that each focus aspect lives on its own page. The first focus presents the signature itself; the next two describe the capital letters of given and family name. The fourth covers stroke and rhythm — slant, speed, pressure, and connectivity. The fifth describes the legibility pattern across the whole signature. The sixth treats the underline as the principal paraph of the signature. The seventh reads the end stroke and the small closing marks. The eighth is the synthesis.</p>
+
+      <p>Each focus carries a small icon from the standardised graphology set at the top of the page — pen nib for capitals and identity, slant indicator for stroke and rhythm, underline mark for the paraph, and dot for closure. The body is set in measured paragraphs at twelve point, with sentence-by-sentence pacing for slower reading.</p>
+
+      <p>A standard note applies to the whole. Graphology is an interpretive tradition, and the readings offered here are character reflections, not diagnostic statements. Take what is useful as a mirror for self-observation; the reader is the final authority on the reading.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <!-- Slant indicator ornament -->
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <line x1="50" y1="80" x2="50" y2="20" stroke="#1a1a2c" stroke-width="0.5" stroke-dasharray="2 2"/>
+          <line x1="50" y1="80" x2="62" y2="20" stroke="#1a1a2c" stroke-width="2" stroke-linecap="round"/>
+          <path d="M 50 36 Q 55 34 56 30" fill="none" stroke="#1a1a2c" stroke-width="0.8"/>
+        </svg>
+      </div>
+      <div class="note-label">Reading time</div>
+      <div class="note">Approximately twenty minutes at an unhurried pace.</div>
+      <div class="note-label">Authority</div>
+      <div class="note">Reflective, not prescriptive.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 3</span></div>
+</section>
+
+
+<!-- ════ CONTENTS ════ -->
+<section class="page" id="contents">
+  <div class="running"><span>Signature Analysis</span><span class="who">Contents</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Contents</div>
+    <h2 class="section-title">The eight focus pages</h2>
+    <h3 class="section-sub">Tap any title to jump to that page</h3>
+
+    <ol class="toc-list">
+      <li><a href="#sig"><span class="num">I</span><span class="name">The Signature · what was observed</span><span class="pg">p. 5</span></a></li>
+      <li><a href="#capa"><span class="num">II</span><span class="name">The Capital A · the public self</span><span class="pg">p. 6</span></a></li>
+      <li><a href="#capg"><span class="num">III</span><span class="name">The Capital G · lineage and aspiration</span><span class="pg">p. 7</span></a></li>
+      <li><a href="#stroke"><span class="num">IV</span><span class="name">Stroke &amp; Rhythm · slant, speed, pressure, connectivity</span><span class="pg">p. 8</span></a></li>
+      <li><a href="#legibility"><span class="num">V</span><span class="name">Legibility Pattern · public vs private</span><span class="pg">p. 9</span></a></li>
+      <li><a href="#paraph"><span class="num">VI</span><span class="name">The Underline · the paraph of self-emphasis</span><span class="pg">p. 10</span></a></li>
+      <li><a href="#closure"><span class="num">VII</span><span class="name">End Stroke &amp; Closure · the last marks</span><span class="pg">p. 11</span></a></li>
+      <li><a href="#synthesis"><span class="num">VIII</span><span class="name">Synthesis · the signature portrait</span><span class="pg">p. 12</span></a></li>
+    </ol>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <!-- Underline mark ornament -->
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 20 60 Q 28 44 36 50 Q 44 60 52 50 Q 60 38 70 44 Q 78 50 84 44" fill="none" stroke="#1a1a2c" stroke-width="1.4"/>
+          <line x1="18" y1="72" x2="84" y2="72" stroke="#1a1a2c" stroke-width="0.8"/>
+        </svg>
+      </div>
+      <div class="note-label">Headline</div>
+      <div class="note">Composed Momentum — decisive · forward-leaning · ambitious without theatre.</div>
+      <div class="note-label">Key markers</div>
+      <div class="note">Slight right slant · fast and fluent · long single underline · curled end stroke.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 4</span></div>
+</section>
+
+
+<!-- ════ I · SIGNATURE ════ -->
+<section class="page" id="sig">
+  <div class="running"><span>I · The Signature</span><span class="who">Focus 1 of 8</span></div>
+
+  <div class="content">
+    <!-- Standardised icon: pen nib — signature / identity -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Pen nib -->
+        <path d="M 50 14 L 58 72 L 50 82 L 42 72 Z" fill="none" stroke="#1a1a2c" stroke-width="1.8"/>
+        <line x1="50" y1="30" x2="50" y2="70" stroke="#1a1a2c" stroke-width="0.8"/>
+        <circle cx="50" cy="84" r="1.6" fill="#1a1a2c"/>
+        <path d="M 50 82 Q 55 88 57 94" fill="none" stroke="#1a1a2c" stroke-width="0.8"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus I · what was observed</div>
+    <h2 class="section-title">The Signature</h2>
+    <h3 class="section-sub">A fluent, rapid, well-rehearsed signature — clear at the opening, compressed in the middle, flourished at the end</h3>
+
+    <div class="lead">
+      <p>The signature reads "Ankur Gupta", written in fluent cursive with a distinctive vertical flourish on the final capital, underlined by a single long horizontal stroke and closed with two small dots.</p>
+    </div>
+
+    <div class="text">
+      <p>The opening capital A is clearly formed and the most legible character in the whole signature. The middle of the signature, through the lowercase letters of the given and family names, is more rapid and less legible — the strokes are confidently made but read as movement rather than as individual letters. The capital G of the surname is the most prominent feature, with a tall upward loop that reaches well above the line of the rest of the script.</p>
+
+      <p>A single long underline runs beneath nearly the entire length of the name. The underline is made in one fluent horizontal sweep, not retraced. Two small dots are placed beneath the line below the centre of the signature. The end of the signature curls back up rather than running off to the right, finishing the act with a small inward gesture.</p>
+
+      <p>The pressure is moderate and consistent across the stroke. The slant is slightly to the right of vertical. The connectivity is high — almost no lifts of the pen within either name. The speed reads as fast and habituated — this is a signature the writer has performed many times and no longer thinks about while making.</p>
+    </div>
+
+    <div class="calc">
+      Slant · <strong>slight right</strong> · Speed · <strong>fast, fluent</strong> · Pressure · <strong>moderate, consistent</strong> · Connectivity · <strong>high</strong> · Underline · <strong>long, single</strong> · Closure · <strong>curled back, with two dots</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">First impression</div>
+      <div class="note">The hand of someone who signs often, without hesitation, and is at ease being identified.</div>
+      <div class="note-label">Architecture</div>
+      <div class="note">Open–compressed–tall–underlined–dotted. A distinctive five-part shape.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 5</span></div>
+</section>
+
+
+<!-- ════ II · CAPITAL A ════ -->
+<section class="page" id="capa">
+  <div class="running"><span>II · The Capital A</span><span class="who">Focus 2 of 8</span></div>
+
+  <div class="content">
+    <!-- Standardised icon: pen nib — capitals -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50 14 L 58 72 L 50 82 L 42 72 Z" fill="none" stroke="#1a1a2c" stroke-width="1.8"/>
+        <line x1="50" y1="30" x2="50" y2="70" stroke="#1a1a2c" stroke-width="0.8"/>
+        <circle cx="50" cy="84" r="1.6" fill="#1a1a2c"/>
+        <path d="M 50 82 Q 55 88 57 94" fill="none" stroke="#1a1a2c" stroke-width="0.8"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus II · the public self</div>
+    <h2 class="section-title">The Capital A</h2>
+    <h3 class="section-sub">The clearest letter in the signature — direct, self-assured, approachable</h3>
+
+    <div class="lead">
+      <p>The opening capital A is the most legible character in the whole signature. The first letter of the given name is the most carefully made, even where the rest of the script is rapid.</p>
+    </div>
+
+    <div class="text">
+      <p>In graphology this is read as a classical signal of a clear, well-formed sense of personal identity. The writer presents themselves directly and expects to be addressed by the first name. The clarity at the opening of the signature contrasts with the more rapid middle, and that contrast is precisely the graphological signature of someone who is comfortable identifying themselves but not particularly concerned with displaying the rest of the name letter-by-letter.</p>
+
+      <p>The form of the A is slightly angular at the apex with a small softening at the base — the apex reads as structured thinking, while the softened base hints at warmth beneath the formal exterior. The crossbar is firmly placed at about the middle of the letter, indicating that the writer trusts the structure they have made. The letter is neither inflated nor diminished relative to the rest of the script — confident but not announced.</p>
+
+      <p>Taken together the capital A reads as the signature of a person who answers to their first name without ceremony, presents themselves cleanly, and trusts the impression they make. The A is the public self the world meets first; this A is at ease being met.</p>
+    </div>
+
+    <div class="calc">
+      Capital A · <strong>clearly formed, most legible character</strong> · Apex · slightly angular · Base · softened · Crossbar · firmly placed · Reading · direct, self-assured, approachable
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">First-name initial</div>
+      <div class="note">The clearest letter of the signature — the writer's public identity offered openly.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Confident ↔ insistent. The A that introduces, and the A that announces.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 6</span></div>
+</section>
+
+
+<!-- ════ III · CAPITAL G ════ -->
+<section class="page" id="capg">
+  <div class="running"><span>III · The Capital G</span><span class="who">Focus 3 of 8</span></div>
+
+  <div class="content">
+    <!-- Standardised icon: pen nib — capitals -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50 14 L 58 72 L 50 82 L 42 72 Z" fill="none" stroke="#1a1a2c" stroke-width="1.8"/>
+        <line x1="50" y1="30" x2="50" y2="70" stroke="#1a1a2c" stroke-width="0.8"/>
+        <circle cx="50" cy="84" r="1.6" fill="#1a1a2c"/>
+        <path d="M 50 82 Q 55 88 57 94" fill="none" stroke="#1a1a2c" stroke-width="0.8"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus III · lineage and aspiration</div>
+    <h2 class="section-title">The Capital G</h2>
+    <h3 class="section-sub">The tallest letter in the signature — the upper loop reaching well above the rest</h3>
+
+    <div class="lead">
+      <p>The capital G of the surname is the tallest and most flourished feature in the entire signature. Its upper loop reaches markedly above the line of the rest of the script.</p>
+    </div>
+
+    <div class="text">
+      <p>Surname capitals carry weight in graphology. They speak of identification with the family of origin, the sense of inherited name, and what the writer wishes to be associated with at the level of lineage. A tall surname capital is read as <em>pride in family, identification with legacy, and aspirational reach</em>. The native moves through life with the surname carried high.</p>
+
+      <p>A tall upper-zone loop, in the broader graphological language, is the classical signature of imagination, vision, ideals, and intellectual or spiritual reach. The writer thinks in long arcs rather than in quarterly ones. Such writers tend to be future-oriented, drawn to large projects and long horizons, and to take seriously the question of what the name they carry will mean a generation from now.</p>
+
+      <p>The G's loop is well-formed — not exaggerated, not inflated. The flourish is confident but not theatrical. The signature is therefore read as carrying aspirational reach without bluster: the upward gesture is what the writer means rather than what they wish to be seen meaning.</p>
+    </div>
+
+    <div class="calc">
+      Capital G · <strong>tallest letter in signature</strong> · Upper loop · reaches well above line · Form · well-made, confident · Reading · pride in family, long-arc thinking, aspirational reach
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Surname capital</div>
+      <div class="note">The letter that carries family weight — a tall G is family-rooted aspiration.</div>
+      <div class="note-label">Upper-zone loop</div>
+      <div class="note">Imagination, vision, the long-arc mind.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 7</span></div>
+</section>
+
+
+<!-- ════ IV · STROKE & RHYTHM ════ -->
+<section class="page" id="stroke">
+  <div class="running"><span>IV · Stroke &amp; Rhythm</span><span class="who">Focus 4 of 8</span></div>
+
+  <div class="content">
+    <!-- Standardised icon: slant indicator — rhythm, speed, pressure -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Vertical reference -->
+        <line x1="50" y1="84" x2="50" y2="18" stroke="#1a1a2c" stroke-width="0.5" stroke-dasharray="2.5 2.5"/>
+        <!-- Slanted stroke (slight right lean) -->
+        <line x1="50" y1="84" x2="64" y2="18" stroke="#1a1a2c" stroke-width="2.8" stroke-linecap="round"/>
+        <!-- Angle arc -->
+        <path d="M 50 60 Q 56 57 58 52" fill="none" stroke="#1a1a2c" stroke-width="1.0"/>
+        <!-- Baseline -->
+        <line x1="28" y1="84" x2="76" y2="84" stroke="#1a1a2c" stroke-width="0.8"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus IV · the mechanics of the hand</div>
+    <h2 class="section-title">Stroke &amp; Rhythm</h2>
+    <h3 class="section-sub">Slant, speed, pressure, connectivity — four measurements that describe the body of the signature</h3>
+
+    <div class="lead">
+      <p>Four basic measurements describe the mechanics of any signature — the slant, the speed, the pressure, and the connectivity of the strokes.</p>
+    </div>
+
+    <div class="text">
+      <p>The slant is slightly to the right of vertical. A right slant is read in graphology as forward orientation and sociability — an interest in people, in the future, in what comes next, balanced by enough uprightness to keep one's own judgement intact. The slant here is gentle rather than extreme, indicating warmth without leaning toward the dependence that strong right slants can suggest.</p>
+
+      <p>The speed is fast and fluent. A fast signature is the mark of someone who has signed their name many times — habit has taken over from deliberation. Speed in graphology is associated with quick decision-making and intellectual agility, and with someone who has done the work of becoming themselves and no longer needs to think about how to perform the act of signing.</p>
+
+      <p>The pressure is moderate and consistent. Moderate even pressure indicates emotional steadiness — engaged and present without being volatile. Energy is held in reserve rather than spent in display. Connectivity is high — almost no lifts of the pen within either name, with the strokes flowing into each other. This is the mark of a logical, sequential mind in which thoughts arrive in order and ideas are followed through to their conclusion rather than abandoned mid-stroke.</p>
+    </div>
+
+    <div class="calc">
+      Slant · <strong>slight right</strong> · forward-oriented, sociable · Speed · <strong>fast, fluent</strong> · decisive, habituated · Pressure · <strong>moderate, consistent</strong> · steady · Connectivity · <strong>high</strong> · sequential, follow-through
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Slant</div>
+      <div class="note">Right of vertical — forward, sociable, but not dependent.</div>
+      <div class="note-label">Connectivity</div>
+      <div class="note">High — sequential thought, follow-through to completion.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 8</span></div>
+</section>
+
+
+<!-- ════ V · LEGIBILITY ════ -->
+<section class="page" id="legibility">
+  <div class="running"><span>V · Legibility Pattern</span><span class="who">Focus 5 of 8</span></div>
+
+  <div class="content">
+    <!-- Standardised icon: pen nib — legibility and self-presentation -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50 14 L 58 72 L 50 82 L 42 72 Z" fill="none" stroke="#1a1a2c" stroke-width="1.8"/>
+        <line x1="50" y1="30" x2="50" y2="70" stroke="#1a1a2c" stroke-width="0.8"/>
+        <circle cx="50" cy="84" r="1.6" fill="#1a1a2c"/>
+        <path d="M 50 82 Q 55 88 57 94" fill="none" stroke="#1a1a2c" stroke-width="0.8"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus V · public vs private</div>
+    <h2 class="section-title">The Legibility Pattern</h2>
+    <h3 class="section-sub">Clear at the opening, compressed in the middle, tall at the end — the modern executive signature</h3>
+
+    <div class="lead">
+      <p>One of the most discussed signature shapes in modern graphology is precisely the one this signature shows — a clear opening capital, a compressed middle, and a tall final flourish.</p>
+    </div>
+
+    <div class="text">
+      <p>The reading of this pattern is consistent across the graphological tradition. Identity is offered openly — the world is told who the writer is. The inner working, the middle through the lowercase letters, is kept private; the writer does not feel the need to display each letter of the name in order to be themselves. And the upward gesture at the end — the tall surname capital — places aspiration above the everyday, marking the family name as something to be carried tall.</p>
+
+      <p>This pattern is not secrecy. It is selectivity, and it usually goes with a busy life that does not have time to explain itself letter by letter. Such signatures are very common among people who have signed enough documents in their lives that the act has become a single fluid gesture in which only the most meaningful features remain articulated — the first letter that identifies, the last letter that aspirates, and the underline that emphasises the whole.</p>
+
+      <p>The pattern is read as the signature of someone who introduces but does not narrate — comfortable being identified, not interested in performing the identification, carrying an aspiration about the family name that needs no elaboration to be visible.</p>
+    </div>
+
+    <div class="calc">
+      Pattern · <strong>clear opening · compressed middle · tall closing</strong> · Reading · identity offered openly, inner working kept private, aspiration in the family name
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Modern executive</div>
+      <div class="note">This signature shape is widely observed among those who have signed many documents in long professional careers.</div>
+      <div class="note-label">Read as</div>
+      <div class="note">Introduces, does not narrate. Selective, not secret.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 9</span></div>
+</section>
+
+
+<!-- ════ VI · THE UNDERLINE ════ -->
+<section class="page" id="paraph">
+  <div class="running"><span>VI · The Underline</span><span class="who">Focus 6 of 8</span></div>
+
+  <div class="content">
+    <!-- Standardised icon: underline mark — paraph -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Compact cursive mark above the underline -->
+        <path d="M 28 46 Q 36 36 44 42 Q 50 48 56 42 Q 64 34 72 42"
+              fill="none" stroke="#1a1a2c" stroke-width="1.8" stroke-linecap="round"/>
+        <!-- The underline — the defining mark -->
+        <line x1="18" y1="62" x2="82" y2="62" stroke="#1a1a2c" stroke-width="3.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VI · the paraph of self-emphasis</div>
+    <h2 class="section-title">The Underline</h2>
+    <h3 class="section-sub">A long, single, fluid horizontal sweep beneath nearly the full name</h3>
+
+    <div class="lead">
+      <p>A long, single, horizontal underline running beneath nearly the full length of the name is one of the strongest paraphs in graphology.</p>
+    </div>
+
+    <div class="text">
+      <p>It signals self-confidence, ownership of one's name, and a quiet need for recognition. The writer believes the name carries weight and is comfortable underscoring that fact. The underline is the writer's signal to the reader that the name above is significant — without saying anything beyond the stroke itself.</p>
+
+      <p>Because the underline is a single clean stroke — not heavy, not retraced, not scratched in — the confidence is read as earned and contained rather than performative. Heavy or repeated underlines suggest insistence; faint or broken underlines suggest hesitation; this underline is clean and continuous, the mark of someone who knows what they have built and is comfortable signing it.</p>
+
+      <p>The underline's length is also significant. Underlines that run only beneath part of the name are read as partial self-claim; this one runs beneath nearly the full name, claiming both the given and the family name in a single gesture. Combined with the doubled emphasis already present in the surname's tall capital, the underline reinforces the signature's overall message — the name above is fully owned, fully meant, and worth the reader's attention.</p>
+    </div>
+
+    <div class="calc">
+      Underline · <strong>long, single, fluid horizontal sweep</strong> · Form · clean stroke, not retraced · Length · runs beneath nearly full name · Reading · self-confidence, ownership of name, quiet need for recognition
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Paraph</div>
+      <div class="note">The emphatic stroke around a signature — read in graphology as self-statement.</div>
+      <div class="note-label">Polarity</div>
+      <div class="note">Earned confidence ↔ insistence. The line that underscores, and the line that demands.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 10</span></div>
+</section>
+
+
+<!-- ════ VII · CLOSURE ════ -->
+<section class="page" id="closure">
+  <div class="running"><span>VII · End Stroke &amp; Closure</span><span class="who">Focus 7 of 8</span></div>
+
+  <div class="content">
+    <!-- Standardised icon: dot — closure, finality -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Curled end stroke -->
+        <path d="M 22 58 Q 38 58 52 48 Q 66 38 64 24 Q 62 14 52 22"
+              fill="none" stroke="#1a1a2c" stroke-width="2.2" stroke-linecap="round"/>
+        <!-- The two closing dots — the defining mark of this focus -->
+        <circle cx="40" cy="76" r="3.2" fill="#1a1a2c"/>
+        <circle cx="50" cy="76" r="3.2" fill="#1a1a2c"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VII · the closing marks</div>
+    <h2 class="section-title">End Stroke &amp; Closure</h2>
+    <h3 class="section-sub">The final stroke curls back up; two small dots sit beneath the underline</h3>
+
+    <div class="lead">
+      <p>The final stroke of the signature curls upward and back to the left rather than running off the page to the right. Two small dots sit beneath the underline below the centre of the name.</p>
+    </div>
+
+    <div class="text">
+      <p>An end stroke that curls back rather than running off is read in graphology as self-protective closure. The writer signs out, but reserves a little — the gesture is open in approach but careful in commitment, deliberate at the close. Such writers are typically read as warm in opening, but selective about what they finally give. The curl is small and not theatrical; it is a quiet sealing of the signature rather than a flourish that asks for attention.</p>
+
+      <p>The two dots beneath the underline are a graphological tell of finality and attention to detail. They are not strictly necessary; they could have been omitted without anyone noticing. Their presence indicates that the writer treats the small closing acts as important, that things are closed properly, that nothing is left dangling. Dots in such positions are sometimes called <em>punctuation of the self</em> — the writer signs themselves not as a sentence but as a sentence that has been ended carefully.</p>
+
+      <p>Taken together with the curl, the closure of this signature reads as a kind of small ritual — the writer warm in approach, careful in commitment, deliberate at the close, and disinclined to leave even the smallest detail unattended. It is the closure of a writer who has signed enough things over a long life to have arrived at a personal style for finishing well.</p>
+    </div>
+
+    <div class="calc">
+      End stroke · <strong>curled back upward</strong> · open approach, careful closing · Closing dots · <strong>two, beneath underline</strong> · finality, attention to detail
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">End stroke</div>
+      <div class="note">The last gesture of the signature — how the writer leaves the page.</div>
+      <div class="note-label">Dots</div>
+      <div class="note">"Punctuation of the self" — careful closure, attention to detail.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 11</span></div>
+</section>
+
+
+<!-- ════ VIII · SYNTHESIS ════ -->
+<section class="page" id="synthesis">
+  <div class="running"><span>VIII · Synthesis</span><span class="who">Focus 8 of 8</span></div>
+
+  <div class="content">
+    <!-- Standardised icon: complete signature mark — synthesis -->
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Mini signature summary -->
+        <path d="M 14 56 Q 18 40 22 32 Q 26 40 30 56 M 17 48 L 27 48"
+              fill="none" stroke="#1a1a2c" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M 34 56 Q 38 46 42 56 Q 46 46 50 56 Q 54 46 58 56"
+              fill="none" stroke="#1a1a2c" stroke-width="1.4" stroke-linecap="round"/>
+        <!-- Tall G upstroke -->
+        <path d="M 64 30 L 70 18" fill="none" stroke="#1a1a2c" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M 78 36 Q 68 28 62 38 Q 58 50 64 58 Q 70 64 76 58 L 76 50 L 68 50"
+              fill="none" stroke="#1a1a2c" stroke-width="1.4" stroke-linecap="round"/>
+        <!-- Long underline -->
+        <line x1="12" y1="68" x2="80" y2="66" stroke="#1a1a2c" stroke-width="1.1"/>
+        <!-- Two dots -->
+        <circle cx="40" cy="75" r="1.0" fill="#1a1a2c"/>
+        <circle cx="45" cy="75" r="1.0" fill="#1a1a2c"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VIII · the portrait</div>
+    <h2 class="section-title">Synthesis</h2>
+    <h3 class="section-sub">Composed momentum — clear identity, family-rooted aspiration, fast sequential mind</h3>
+
+    <div class="lead">
+      <p>Eight observations and one reading. The signature describes a person with a clear public identity, strong family-rooted ambition, a fast sequential mind, and a careful instinct for closure.</p>
+    </div>
+
+    <div class="text">
+      <p>The opening capital A says — this is who I am, and I expect to be addressed by my first name. The tall capital G says — I carry my family name high, and what comes through it matters to me. The fast, connected, moderately pressured stroke says — I have done this many times, I decide quickly, I follow through, I am not volatile. The long single underline says — this name has weight, and I am comfortable underscoring it. The curled end stroke and the two small dots say — I close carefully, I attend to the small finishing acts, I leave nothing dangling.</p>
+
+      <p>The defining quality of the signature is <em>composed momentum</em>. The writer decides quickly, follows through, aims high without making a show of it, and closes the act with quiet care. It is the signature of someone moving in a chosen direction, with the surname carried high, the inner working kept private, and the small closing acts honoured.</p>
+
+      <p>This reading sits comfortably alongside the other readings in your suite. The Pythagorean Builder Four, the Scorpio Ascendant, the Mrigashira Moon in the dharma bhava, the Yin Earth Day Master — all describe variants of the same theme that the signature reads visually: a centred, productive person whose authority is exercised with quiet care, whose name is carried tall without theatre, and whose work is finished with the small dots that say <em>this is done</em>.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">The shape</div>
+      <div class="note">Clear A · compressed middle · tall G · long underline · curled close · two dots.</div>
+      <div class="note-label">The keynote</div>
+      <div class="note">Composed momentum — quiet care at every gesture.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading · End</span><span>Page 12</span></div>
+</section>
+
+<button class="print-fab" onclick="window.print()">🖨 Print / Save PDF</button>
+</body>
+</html>

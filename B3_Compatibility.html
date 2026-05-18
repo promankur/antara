@@ -41,6 +41,7 @@ body {
   --pad-left: 25mm; --pad-right: 22mm;
   --col-text: 125mm; --col-gap: 6mm; --col-margin: 32mm;
   --content-w: 163mm;
+  --page-id: "Biorhythm Compatibility · Rohit Kapoor & Meera Kapoor";
 }
 
 .page {
@@ -260,6 +261,26 @@ h3.section-sub {
   body { background: white; }
   .page { margin: 0; box-shadow: none; }
 }
+
+  /* ─── Print FAB ─── */
+  .print-fab{
+    position:fixed; bottom:24px; right:24px; z-index:9999;
+    background:#6b1a2c; color:#f5e8c8;
+    border:none; border-radius:28px;
+    padding:12px 22px; font-size:12pt; cursor:pointer;
+    box-shadow:0 4px 18px rgba(0,0,0,0.28);
+    font-family:inherit; letter-spacing:.04em;
+    transition:background .18s;
+  }
+  .print-fab:hover{background:#8a2238;}
+  @media print{.print-fab{display:none;}}
+
+  /* ─── Footer name override ─── */
+  .pgfoot > span:first-child{font-size:0;}
+  .pgfoot > span:first-child::after{
+    font-size:9pt; color:inherit;
+    content:var(--page-id,"Antara — Personal Reading");
+  }
 </style>
 </head>
 <body>
@@ -1062,5 +1083,6 @@ buildResonanceCalendar();
   }
 })();
 </script>
+<button class="print-fab" onclick="window.print()">🖨 Print / Save PDF</button>
 </body>
 </html>

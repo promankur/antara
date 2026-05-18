@@ -36,7 +36,8 @@
     --content-w:163mm;
     --content-h:248mm;
     --content-top-pad:6mm;
-  }
+    --page-id: "Vedic Horoscope (North) · Ankur Gupta";
+}
 
   .page{
     width:var(--page-w); height:var(--page-h);
@@ -187,6 +188,26 @@
     .page:last-child{ page-break-after:auto; break-after:auto; }
   }
   @media screen{ body{ padding:14mm 0; } }
+
+  /* ─── Print FAB ─── */
+  .print-fab{
+    position:fixed; bottom:24px; right:24px; z-index:9999;
+    background:#6b1a2c; color:#f5e8c8;
+    border:none; border-radius:28px;
+    padding:12px 22px; font-size:12pt; cursor:pointer;
+    box-shadow:0 4px 18px rgba(0,0,0,0.28);
+    font-family:inherit; letter-spacing:.04em;
+    transition:background .18s;
+  }
+  .print-fab:hover{background:#8a2238;}
+  @media print{.print-fab{display:none;}}
+
+  /* ─── Footer name override ─── */
+  .pgfoot > span:first-child{font-size:0;}
+  .pgfoot > span:first-child::after{
+    font-size:9pt; color:inherit;
+    content:var(--page-id,"Antara — Personal Reading");
+  }
 </style>
 </head>
 <body>
@@ -961,5 +982,6 @@
   <div class="pgfoot"><span>Antara — Personal Reading · End</span><span>Page 12</span></div>
 </section>
 
+<button class="print-fab" onclick="window.print()">🖨 Print / Save PDF</button>
 </body>
 </html>
