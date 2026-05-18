@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Biorhythm · Monthly Report — A Personal Reading for Ankur Gupta</title>
+<style>
+  /* ─────────── Antara Personal Reading — V3 template ─────────── */
+  @page { size: A4 portrait; margin: 0; }
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #c4c0b0; }
+  body {
+    font-family: "Cormorant Garamond","Iowan Old Style","Palatino Linotype",Georgia,serif;
+    font-size: 12pt; line-height: 1.5;
+    color: #2a3340; -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─────────── Palette: contemporary, four-cycle ─────────── */
+  :root {
+    --paper:#f0ece0;
+    --paper-2:#e6e1d2;
+    --ink:#2a3340;
+    --ink-2:#3d4554;
+    --physical:#c44a4a;
+    --emotional:#1f5e8a;
+    --intellectual:#3a7a3a;
+    --spiritual:#7048a0;
+    --gold:#a88842;
+    --gold-soft:#d0bc88;
+    --rule:#b8a464;
+    --muted:#6d6553;
+
+    --page-w:210mm; --page-h:297mm;
+    --pad-top:17mm; --pad-bot:32mm;
+    --pad-left:25mm; --pad-right:22mm;
+    --col-text:125mm; --col-gap:6mm; --col-margin:32mm;
+    --content-w:163mm; --content-h:248mm; --content-top-pad:6mm;
+  }
+
+  .page{
+    width:var(--page-w); height:var(--page-h);
+    background:var(--paper);
+    margin:8mm auto;
+    padding:var(--pad-top) var(--pad-right) var(--pad-bot) var(--pad-left);
+    position:relative; box-shadow:0 4px 18px rgba(0,0,0,0.18);
+    page-break-after:always; break-after:page;
+    display:grid; grid-template-columns: var(--col-text) var(--col-margin); column-gap: var(--col-gap);
+  }
+  .page:last-child{ page-break-after:auto; break-after:auto; }
+
+  /* .page.wide — full-width single column (chart pages) */
+  .page.wide{
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+  .page.wide .margin-area{ display:none; }
+
+  /* .page.icon-right — icon moves to upper margin, recovering vertical space */
+  .page.icon-right .content > .icon-block{ display:none; }
+
+  .page::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(168,136,66,0.04), transparent 40%),
+      radial-gradient(circle at 88% 90%, rgba(31,94,138,0.04), transparent 40%);
+    mix-blend-mode:multiply;
+  }
+
+  /* Top border: a sine wave at 9mm */
+  .page::after{
+    content:"";position:absolute;
+    left:var(--pad-left); right:var(--pad-right);
+    top:9mm; height:6mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><line x1='0' y1='10' x2='80' y2='10' stroke='%23a88842' stroke-width='0.3'/><path d='M 0 7 Q 5 3 10 7 Q 15 11 20 7 Q 25 3 30 7 Q 35 11 40 7 Q 45 3 50 7 Q 55 11 60 7 Q 65 3 70 7 Q 75 11 80 7' fill='none' stroke='%23a88842' stroke-width='0.7'/></svg>");
+    background-repeat:repeat-x; background-size:auto 6mm; opacity:.85;
+  }
+
+  .content{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+  }
+  .margin-area{
+    position:relative; z-index:1;
+    padding-top:var(--content-top-pad);
+  }
+
+  .running{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); top:5mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; letter-spacing:.18em; text-transform:uppercase; color:var(--gold);
+    font-family:"Iowan Old Style",Georgia,serif; font-weight:600;
+  }
+  .running .who{ color:var(--ink-2); letter-spacing:.12em; }
+
+  .pgfoot{
+    position:absolute; left:var(--pad-left); right:var(--pad-right); bottom:14mm;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9pt; color:var(--muted); letter-spacing:.06em;
+  }
+  .pgfoot::before{
+    content:""; position:absolute; left:0; right:0; top:-6mm; height:0.4mm;
+    background:var(--rule); opacity:.55;
+  }
+  .pgfoot::after{
+    content:"Share: antara-alpha.vercel.app?from=YourName";
+    position:absolute; left:0; right:0; bottom:-7mm;
+    font-size:7pt; color:var(--gold); letter-spacing:.04em;
+    text-align:center; opacity:.7;
+  }
+
+  h1.cover-title{
+    font-size:30pt; font-weight:600; color:var(--ink);
+    letter-spacing:.06em; line-height:1.15; margin-bottom:6mm;
+    font-variant:small-caps;
+  }
+  h2.section-title{
+    font-size:18pt; font-weight:600; color:var(--ink);
+    letter-spacing:.02em; line-height:1.2; margin-bottom:2mm;
+  }
+  h3.section-sub{
+    font-size:11pt; font-style:italic; color:var(--gold); font-weight:400;
+    margin-bottom:3mm; letter-spacing:.02em; line-height:1.4;
+  }
+  .eyebrow{
+    font-size:10pt; letter-spacing:.32em; text-transform:uppercase; color:var(--gold);
+    font-weight:600; font-family:"Iowan Old Style",Georgia,serif; margin-bottom:3mm;
+  }
+
+  .text > p{ font-size:12pt; line-height:1.5; color:var(--ink); margin:0 0 8pt; }
+  .text > p:last-child{ margin-bottom:0; }
+  .lead{ margin-bottom:5mm; }
+  .lead > p{ font-size:13pt; line-height:1.5; color:var(--ink-2); font-style:italic; margin:0 0 5pt; }
+  .lead > p:last-child{ margin-bottom:0; }
+
+  .calc{
+    font-family:"Iowan Old Style",Georgia,serif;
+    font-size:10pt; line-height:1.5; color:var(--gold);
+    border-top:0.4mm solid var(--rule); border-bottom:0.4mm solid var(--rule);
+    padding:3mm 0; margin:4mm 0 0; letter-spacing:.02em;
+  }
+  .calc strong{ color:var(--ink); font-weight:600; }
+  .fine{ font-size:10pt; line-height:1.5; color:var(--muted); font-style:italic; }
+
+  /* Cover — centred single column */
+  .cover{
+    grid-template-columns: 1fr;
+    text-align:center; align-content:center; padding-top:32mm;
+  }
+  .cover .markline{
+    margin:0 auto 12mm; width:60mm; height:5mm;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><path d='M 0 7 Q 5 3 10 7 Q 15 11 20 7 Q 25 3 30 7 Q 35 11 40 7 Q 45 3 50 7 Q 55 11 60 7 Q 65 3 70 7 Q 75 11 80 7' fill='none' stroke='%23a88842' stroke-width='1.2'/></svg>");
+    background-repeat:repeat-x; background-size:auto 5mm;
+  }
+  .cover .greek-eyebrow{
+    font-size:11pt; letter-spacing:.4em; text-transform:uppercase; color:var(--gold);
+    margin-bottom:6mm; font-weight:600;
+  }
+  .cover .arithmos{
+    font-size:14pt; color:var(--ink); font-style:italic; letter-spacing:.06em;
+    margin-bottom:8mm;
+  }
+  .cover .person{ font-size:13pt; color:var(--ink); margin-top:14mm; line-height:1.7; }
+  .cover .person .lbl{
+    font-size:10pt; letter-spacing:.22em; text-transform:uppercase; color:var(--muted);
+    font-weight:600; margin-right:6mm;
+  }
+  .cover .waves{ margin:14mm auto 0; width:90mm; height:50mm; display:flex; align-items:center; justify-content:center; }
+
+  .toc-list{ list-style:none; padding:0; margin:0; }
+  .toc-list li{
+    display:grid; grid-template-columns:8mm 1fr auto; gap:4mm;
+    align-items:baseline; padding:4mm 0;
+    border-bottom:0.3mm dashed var(--rule); font-size:12pt;
+  }
+  .toc-list li:last-child{ border-bottom:none; }
+  .toc-list .num{ color:var(--gold); font-variant-numeric:tabular-nums; font-weight:600; }
+  .toc-list .name{ color:var(--ink); }
+  .toc-list .pg{ color:var(--muted); font-size:10pt; letter-spacing:.06em; }
+  .toc-list a{ text-decoration:none; color:inherit; display:contents; }
+  .toc-list a:hover .name{ color:var(--emotional); }
+
+  .icon-block{ width:22mm; height:22mm; margin-bottom:4mm; display:flex; align-items:center; justify-content:center; }
+  .icon-block svg{ width:100%; height:100%; }
+
+  .marginalia{
+    padding-top:12mm; color:var(--muted);
+    font-size:10pt; line-height:1.5; font-style:italic;
+  }
+  .marginalia .ornament{ width:28mm; height:28mm; margin-bottom:8mm; opacity:.6; }
+  .marginalia .note-label{
+    font-size:9pt; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--gold); font-weight:600; font-style:normal; margin-bottom:2mm;
+  }
+  .marginalia .note{ margin-bottom:8mm; }
+  .marginalia .note:last-child{ margin-bottom:0; }
+
+  /* Wide biorhythm chart — full content width on .page.wide */
+  .biochart-wide{ width:163mm; margin:4mm auto 0; }
+
+  /* ──────────── Chart colour key (below chart) ──────────── */
+  .bio-chart-key{ width:163mm; margin:5mm auto 0; border-top:0.4mm solid var(--rule); padding-top:3mm; }
+  .bio-chart-key .key-days{
+    font-size:10pt; color:var(--gold); letter-spacing:.04em;
+    margin-bottom:3mm; font-family:"Iowan Old Style",Georgia,serif; font-weight:600;
+  }
+  .bio-chart-key .key-row{
+    display:flex; align-items:center; gap:5mm; padding:1.8mm 0;
+    border-bottom:0.2mm solid rgba(184,164,100,0.18);
+  }
+  .bio-chart-key .key-row:last-child{ border-bottom:none; }
+  .bio-chart-key .key-swatch{ flex:0 0 20mm; height:0; }
+  .bio-chart-key .key-swatch svg{ width:20mm; height:6mm; display:block; }
+  .bio-chart-key .key-name{ flex:0 0 26mm; font-size:11pt; color:var(--ink-2); font-weight:600; }
+  .bio-chart-key .key-val{ flex:0 0 18mm; font-size:12pt; font-weight:700; font-variant-numeric:tabular-nums; }
+  .bio-chart-key .key-period{ font-size:10pt; color:var(--muted); font-style:italic; }
+
+  /* ──────────── Day-by-day reference table (single column, fixed layout) ──────────── */
+  .bio-daily{ border-collapse:collapse; width:100%; table-layout:fixed;
+    font-family:"Iowan Old Style",Georgia,serif; font-size:9pt; line-height:1.3; }
+  .bio-daily thead th{
+    font-size:8pt; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--muted); padding:1.8mm 2mm 1.2mm;
+    border-bottom:0.5mm solid var(--rule); text-align:center; overflow:hidden;
+  }
+  .bio-daily thead th.bd-date-h{ text-align:left; }
+  .bio-daily thead th.bd-note-h{ text-align:left; }
+  .bio-daily td{
+    padding:1mm 2mm; border-bottom:0.2mm solid rgba(184,164,100,0.15);
+    text-align:center; font-variant-numeric:tabular-nums;
+    white-space:nowrap; overflow:hidden;
+  }
+  .bio-daily td.bd-date{ text-align:left; color:var(--ink-2); font-weight:600; }
+  .bio-daily td.bd-day{ color:var(--muted); font-style:italic; }
+  .bio-daily td.bd-notes{ text-align:left; font-size:8pt; letter-spacing:.02em; white-space:nowrap; }
+  .bd-month-tag{
+    font-size:6.5pt; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--gold); margin-right:1.5mm;
+  }
+  /* Value classes */
+  .bp{ color:#c44a4a; font-weight:600; }
+  .be{ color:#1f5e8a; font-weight:600; }
+  .bi{ color:#3a7a3a; font-weight:600; }
+  .bs{ color:#7048a0; font-weight:600; }
+  .bn{ color:#9a8070; }
+  .bc{ color:#a88842; font-weight:700; }
+
+  @media print{
+    html, body{ background:#fff; } body{ padding:0; }
+    .page{ margin:0; box-shadow:none; page-break-after:always; break-after:page; }
+    .page:last-child{ page-break-after:auto; break-after:auto; }
+  }
+  @media screen{ body{ padding:14mm 0; } }
+</style>
+</head>
+<body>
+
+<!-- ════ COVER ════ -->
+<section class="page cover" id="cover">
+  <div class="markline"></div>
+  <div class="arithmos" style="font-style:italic;">The rhythms beneath the days —</div>
+  <div class="arithmos" style="margin-top:2mm;font-style:normal;letter-spacing:.04em;">
+    <span style="color:#c44a4a;font-weight:700;">Physical</span> &nbsp;·&nbsp;
+    <span style="color:#1f5e8a;font-weight:700;">Emotional</span> &nbsp;·&nbsp;
+    <span style="color:#3a7a3a;font-weight:700;">Intellectual</span> &nbsp;·&nbsp;
+    <span style="color:#7048a0;font-weight:700;">Spiritual</span>
+  </div>
+  <h1 class="cover-title">Biorhythm · Monthly Report</h1>
+  <div class="arithmos" style="margin-top:6mm">Four sine cycles projected from the date of birth</div>
+
+  <div class="waves">
+    <svg viewBox="0 0 100 56" xmlns="http://www.w3.org/2000/svg">
+      <!-- Four overlapping waves -->
+      <path d="M 4 28 Q 12 14 20 28 Q 28 42 36 28 Q 44 14 52 28 Q 60 42 68 28 Q 76 14 84 28 Q 92 42 96 28"
+            fill="none" stroke="#c44a4a" stroke-width="0.7" opacity="0.85"/>
+      <path d="M 4 28 Q 14 16 24 28 Q 34 40 44 28 Q 54 16 64 28 Q 74 40 84 28 Q 90 22 96 28"
+            fill="none" stroke="#1f5e8a" stroke-width="0.7" opacity="0.85"/>
+      <path d="M 4 28 Q 16 18 28 28 Q 40 38 52 28 Q 64 18 76 28 Q 88 38 96 32"
+            fill="none" stroke="#3a7a3a" stroke-width="0.7" opacity="0.85"/>
+      <path d="M 4 28 Q 22 12 40 28 Q 58 44 76 28 Q 90 18 96 22"
+            fill="none" stroke="#7048a0" stroke-width="0.9" opacity="0.85"/>
+      <line x1="4" y1="28" x2="96" y2="28" stroke="#a88842" stroke-width="0.3" stroke-dasharray="1.5 1.5"/>
+    </svg>
+  </div>
+
+  <div class="person">
+    <div>Ankur Gupta</div>
+    <div>16 May 1953</div>
+    <div>Reading date · 12 May 2026</div>
+  </div>
+
+  <!-- Referral panel on cover -->
+  <div style="margin-top:8mm;border:0.4mm solid var(--rule);border-radius:2mm;padding:5mm 6mm;background:rgba(168,136,66,0.04);">
+    <div style="font-size:9pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:2.5mm;">Gift this reading to someone you care about</div>
+    <div style="font-size:8.5pt;color:var(--ink-2);line-height:1.6;margin-bottom:3mm;">Anyone who downloads Antara through your personal link receives <strong>two free reports</strong> — Biorhythm Monthly and Numerology Personal Profile — plus <strong>15% off</strong> their first purchase. And you earn rewards for every friend who joins.</div>
+    <div style="display:flex;gap:4mm;margin-bottom:3mm;">
+      <div style="flex:1;background:rgba(168,136,66,0.07);border-radius:1.5mm;padding:3mm 4mm;">
+        <div style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5mm;">Your friend gets</div>
+        <div style="font-size:8pt;color:var(--ink-2);line-height:1.5;">✓ Biorhythm Monthly — free<br>✓ Numerology Profile — free<br>✓ 15% off first purchase</div>
+      </div>
+      <div style="flex:1;background:rgba(168,136,66,0.07);border-radius:1.5mm;padding:3mm 4mm;">
+        <div style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5mm;">You earn</div>
+        <div style="font-size:8pt;color:var(--ink-2);line-height:1.5;">1 friend → free report<br>3 friends → Critical Days Annual<br>5 friends → bundle at ₹1,250</div>
+      </div>
+    </div>
+    <div style="font-size:8.5pt;color:var(--muted);font-style:italic;">Share your link: <strong style="color:var(--gold);font-style:normal;">antara-alpha.vercel.app?from=YourName</strong></div>
+  </div>
+
+  <div class="pgfoot" style="display:block;text-align:center;">
+    <div style="font-size:10.5pt;font-weight:700;letter-spacing:.18em;color:var(--gold,#a88842);">ANTARA PERSONAL READING</div>
+    <div style="font-size:9.5pt;font-style:italic;letter-spacing:.08em;color:var(--gold,#a88842);margin-top:1.5mm;">interpretative, not Predictive</div>
+  </div>
+</section>
+
+
+<!-- ════ INTRO 1 ════ -->
+<section class="page" id="intro-1">
+  <div class="running"><span>Biorhythm</span><span class="who">Introduction · 1 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Introduction</div>
+    <h2 class="section-title">What this report is about</h2>
+    <h3 class="section-sub">The classical three cycles, the extended Spiritual cycle, and the model's history</h3>
+
+    <div class="text">
+      <p>Biorhythm theory proposes that life moves in three independent sine-wave cycles that begin at birth and continue uninterrupted through life — a Physical cycle of 23 days, an Emotional cycle of 28 days, and an Intellectual cycle of 33 days. The model was first articulated by Wilhelm Fliess in the late 1800s, refined by Hermann Swoboda, and given its third (Intellectual) cycle by Alfred Teltscher in the 1920s. Later authors added an extended set — Intuitive (38 days), Aesthetic (43 days), Self-Awareness (48 days), and Spiritual (53 days) — of which the Spiritual cycle has the broadest agreement.</p>
+
+      <p>This report uses four cycles: the classical three plus the Spiritual. Each cycle's value at any moment is a number between minus one and plus one — the sine of the elapsed fraction of the cycle. Days near plus one are read as the high phase for that domain; days near minus one as the low; days near zero as the <em>critical days</em>, when the cycle crosses the midline and a brief instability may be felt before the next phase begins.</p>
+
+      <p>An honest framing applies to the whole. Biorhythm is an interpretive model and has not been validated in controlled studies. It is offered alongside numerology and palmistry as a traditional framework for self-reflection, not as a clinical instrument. Most readers find its actual value in the structured invitation to <em>notice</em> their own rhythms — to map their lived experience against a simple, regular pattern, and to discover where their own life does and does not respect the model.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 10 50 Q 22 30 34 50 Q 46 70 58 50 Q 70 30 82 50 Q 90 60 92 50" fill="none" stroke="#a88842" stroke-width="1.2"/>
+          <line x1="10" y1="50" x2="92" y2="50" stroke="#a88842" stroke-width="0.3" stroke-dasharray="2 2"/>
+        </svg>
+      </div>
+      <div class="note-label">Origin</div>
+      <div class="note">Fliess and Swoboda (late 1800s); Teltscher added the Intellectual cycle in the 1920s; extended cycles followed in later decades.</div>
+      <div class="note-label">Honest framing</div>
+      <div class="note">Not scientifically validated. Useful as a structured invitation to self-observation.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 2</span></div>
+</section>
+
+
+<!-- ════ INTRO 2 ════ -->
+<section class="page" id="intro-2">
+  <div class="running"><span>Biorhythm</span><span class="who">Introduction · 2 of 2</span></div>
+
+  <div class="content">
+    <div class="eyebrow">How to read this report</div>
+    <h2 class="section-title">Structure &amp; method</h2>
+    <h3 class="section-sub">The chart, the four cycles in turn, the critical days, and the synthesis</h3>
+
+    <div class="text">
+      <p>This report is structured so that each focus aspect lives on its own page. The first focus presents the biorhythm chart — all four cycles projected forward over ninety days from today. The next four focuses describe each cycle in turn — Physical, Emotional, Intellectual, Spiritual — with its current phase and what to make of it. The sixth focus describes the critical days and how to read them. The seventh is a synthesis with a brief note on the further extended cycles.</p>
+
+      <p>Calculations are simple: from your date of birth, 16 May 1953, the elapsed days as of the reading date are approximately 26 658. Each cycle's current phase is the remainder when that day-count is divided by the cycle length. From these phases the curves are extended forward into the year ahead. The reading is therefore profile-agnostic and continues to be valid however one tests it against lived experience.</p>
+
+      <p>A standard note applies. Biorhythm describes a pattern; it does not prescribe behaviour. Use the chart as a quiet reference for noticing what is happening rather than as an authority dictating what should happen. The reader is the final authority on the reading.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="32" fill="none" stroke="#a88842" stroke-width="0.8"/>
+          <line x1="50" y1="18" x2="50" y2="82" stroke="#a88842" stroke-width="0.4"/>
+          <line x1="18" y1="50" x2="82" y2="50" stroke="#a88842" stroke-width="0.4"/>
+          <circle cx="50" cy="50" r="3" fill="#c44a4a"/>
+        </svg>
+      </div>
+      <div class="note-label">Reading time</div>
+      <div class="note">Approximately twenty minutes at an unhurried pace.</div>
+      <div class="note-label">Authority</div>
+      <div class="note">A frame for self-observation, not a directive.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 3</span></div>
+</section>
+
+
+<!-- ════ CONTENTS ════ -->
+<section class="page" id="contents">
+  <div class="running"><span>Biorhythm</span><span class="who">Contents</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Contents</div>
+    <h2 class="section-title">The seven focus pages</h2>
+    <h3 class="section-sub">Tap any title to jump to that page</h3>
+
+    <ol class="toc-list">
+      <li><a href="#chart"><span class="num">I</span><span class="name">The Biorhythm Chart · four cycles, ninety days</span><span class="pg">p. 5</span></a></li>
+      <li><a href="#physical"><span class="num">II</span><span class="name" style="color:#c44a4a;">The Physical Cycle · 23 days</span><span class="pg">p. 6</span></a></li>
+      <li><a href="#emotional"><span class="num">III</span><span class="name" style="color:#1f5e8a;">The Emotional Cycle · 28 days</span><span class="pg">p. 7</span></a></li>
+      <li><a href="#intellectual"><span class="num">IV</span><span class="name" style="color:#3a7a3a;">The Intellectual Cycle · 33 days</span><span class="pg">p. 8</span></a></li>
+      <li><a href="#spiritual"><span class="num">V</span><span class="name" style="color:#7048a0;">The Spiritual Cycle · 53 days</span><span class="pg">p. 9</span></a></li>
+      <li><a href="#critical"><span class="num">VI</span><span class="name">Critical Days · how to read the crossings</span><span class="pg">p. 10</span></a></li>
+      <li><a href="#synthesis"><span class="num">VII</span><span class="name">Synthesis &amp; the Further Extended Cycles</span><span class="pg">p. 11</span></a></li>
+      <li><a href="#daily-table"><span class="num">—</span><span class="name">Day-by-Day Reference · 12 May to 11 June 2026</span><span class="pg">p. 12</span></a></li>
+    </ol>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="ornament">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <g stroke-width="1.2" fill="none">
+            <path d="M 14 50 Q 26 36 38 50 Q 50 64 62 50 Q 74 36 86 50" stroke="#c44a4a"/>
+            <path d="M 14 50 Q 30 38 46 50 Q 62 62 78 50 Q 86 44 88 50" stroke="#1f5e8a"/>
+            <path d="M 14 50 Q 32 40 50 50 Q 68 60 86 50" stroke="#3a7a3a"/>
+            <path d="M 14 50 Q 38 36 62 50 Q 78 60 86 56" stroke="#7048a0"/>
+          </g>
+        </svg>
+      </div>
+      <div class="note-label">Cycle lengths</div>
+      <div class="note">23 · 28 · 33 · 53 days · all in classical units.</div>
+      <div class="note-label">Reading</div>
+      <div class="note">Above midline · high · Below midline · low · At midline · critical day.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 4</span></div>
+</section>
+
+
+<!-- ════ I · CHART — wide page ════ -->
+<section class="page wide" id="chart">
+  <div class="running"><span>I · The Biorhythm Chart</span><span class="who">Focus 1 of 7</span></div>
+
+  <div class="content">
+    <div class="eyebrow">Focus I · all four cycles, ninety days forward</div>
+    <h2 class="section-title">Your Biorhythm Chart</h2>
+    <h3 class="section-sub">From today projected ninety days ahead — current state on the left edge</h3>
+
+    <div class="lead">
+      <p>The chart below shows your four biorhythm cycles projected forward over ninety days. The vertical line at the left edge marks today; curves continue across the full window.</p>
+    </div>
+
+    <div class="biochart-wide">
+      <svg viewBox="0 0 160 92" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background -->
+        <rect x="14" y="6" width="140" height="70" fill="#f7f4e8" stroke="#cdc8b8" stroke-width="0.3"/>
+
+        <!-- Grid lines horizontal -->
+        <line x1="14" y1="41" x2="154" y2="41" stroke="#a88842" stroke-width="0.35" stroke-dasharray="1.8 1.8"/>
+        <line x1="14" y1="23" x2="154" y2="23" stroke="#d0bc88" stroke-width="0.2" stroke-dasharray="1 2"/>
+        <line x1="14" y1="59" x2="154" y2="59" stroke="#d0bc88" stroke-width="0.2" stroke-dasharray="1 2"/>
+
+        <!-- Grid lines vertical every 10 days -->
+        <g stroke="#d0bc88" stroke-width="0.2" stroke-dasharray="1 2">
+          <line x1="29.6" y1="6" x2="29.6" y2="76"/>
+          <line x1="45.1" y1="6" x2="45.1" y2="76"/>
+          <line x1="60.7" y1="6" x2="60.7" y2="76"/>
+          <line x1="76.2" y1="6" x2="76.2" y2="76"/>
+          <line x1="91.8" y1="6" x2="91.8" y2="76"/>
+          <line x1="107.3" y1="6" x2="107.3" y2="76"/>
+          <line x1="122.9" y1="6" x2="122.9" y2="76"/>
+          <line x1="138.4" y1="6" x2="138.4" y2="76"/>
+        </g>
+
+        <!-- Today line -->
+        <line x1="14" y1="6" x2="14" y2="76" stroke="#2a3340" stroke-width="0.8"/>
+        <text x="14" y="83" text-anchor="middle" font-family="serif" font-size="3.2" fill="#2a3340" font-weight="700">TODAY</text>
+
+        <!-- X-axis labels -->
+        <g font-family="serif" font-size="2.8" fill="#7a7060" text-anchor="middle">
+          <text x="29.6" y="83">+10</text>
+          <text x="45.1" y="83">+20</text>
+          <text x="60.7" y="83">+30</text>
+          <text x="76.2" y="83">+40</text>
+          <text x="91.8" y="83">+50</text>
+          <text x="107.3" y="83">+60</text>
+          <text x="122.9" y="83">+70</text>
+          <text x="138.4" y="83">+80</text>
+          <text x="154" y="83">+90</text>
+        </g>
+        <text x="84" y="90" text-anchor="middle" font-family="serif" font-size="3.5" fill="#2a3340" font-weight="600">DAYS FORWARD</text>
+
+        <!-- Y-axis labels -->
+        <text x="12" y="9" text-anchor="end" font-family="serif" font-size="3" fill="#7a7060">HIGH</text>
+        <text x="12" y="42.5" text-anchor="end" font-family="serif" font-size="3" fill="#7a7060">0</text>
+        <text x="12" y="77" text-anchor="end" font-family="serif" font-size="3" fill="#7a7060">LOW</text>
+
+        <!-- Physical curve (red, 23-day) — phase day 1, value +0.27, 90-day projected -->
+        <path d="M 14 33.0 L 17.6 15.8 L 21.1 8.3 L 24.7 15.0 L 28.2 31.8 L 31.8 51.2 L 35.3 65.5 L 38.9 68.0 L 42.4 58.2 L 46.0 41.0 L 49.6 23.8 L 53.1 12.5 L 56.7 10.6 L 60.2 18.2 L 63.8 33.0 L 67.3 51.0 L 70.9 64.8 L 74.4 68.0 L 78.0 59.5 L 81.6 42.8 L 85.1 25.2 L 88.7 13.2 L 92.2 10.5 L 95.8 17.5 L 99.3 32.0 L 102.9 50.5 L 106.4 65.0 L 110.0 68.0 L 113.6 60.5 L 117.1 44.0 L 120.7 26.5 L 124.2 14.0 L 127.8 10.5 L 131.3 17.0 L 134.9 31.2 L 138.4 49.8 L 142.0 64.5 L 145.6 68.0 L 149.1 61.5 L 152.7 45.2 L 154 40.5"
+              fill="none" stroke="#c44a4a" stroke-width="0.75" opacity="0.9"/>
+
+        <!-- Emotional curve (blue, 28-day) — phase day 2, value +0.43 -->
+        <path d="M 14 28.5 L 17.6 14.2 L 21.1 8.1 L 24.7 12.0 L 28.2 25.4 L 31.8 43.5 L 35.3 59.5 L 38.9 68.0 L 42.4 66.5 L 46.0 55.2 L 49.6 38.2 L 53.1 20.8 L 56.7 8.8 L 60.2 7.0 L 63.8 15.5 L 67.3 30.8 L 70.9 48.8 L 74.4 63.2 L 78.0 68.5 L 81.6 63.8 L 85.1 50.2 L 88.7 32.5 L 92.2 16.0 L 95.8 7.0 L 99.3 8.5 L 102.9 20.5 L 106.4 37.5 L 110.0 54.5 L 113.6 66.0 L 117.1 68.0 L 120.7 60.5 L 124.2 45.5 L 127.8 28.0 L 131.3 13.0 L 134.9 7.0 L 138.4 10.0 L 142.0 23.5 L 145.6 40.8 L 149.1 57.0 L 152.7 66.8 L 154 68.0"
+              fill="none" stroke="#1f5e8a" stroke-width="0.75" opacity="0.9"/>
+
+        <!-- Intellectual curve (green, 33-day) — phase day 27, value −0.91 -->
+        <path d="M 14 73.5 L 17.6 64.2 L 21.1 50.5 L 24.7 34.5 L 28.2 19.8 L 31.8 9.8 L 35.3 7.2 L 38.9 13.0 L 42.4 26.8 L 46.0 43.5 L 49.6 58.8 L 53.1 68.0 L 56.7 68.5 L 60.2 59.5 L 63.8 44.5 L 67.3 28.0 L 70.9 14.0 L 74.4 7.0 L 78.0 9.2 L 81.6 20.5 L 85.1 36.0 L 88.7 52.5 L 92.2 64.5 L 95.8 68.5 L 99.3 63.5 L 102.9 50.0 L 106.4 33.5 L 110.0 18.5 L 113.6 8.5 L 117.1 7.0 L 120.7 15.5 L 124.2 30.0 L 127.8 47.0 L 131.3 61.5 L 134.9 68.5 L 138.4 66.5 L 142.0 55.5 L 145.6 39.5 L 149.1 23.0 L 152.7 11.0 L 154 8.2"
+              fill="none" stroke="#3a7a3a" stroke-width="0.75" opacity="0.9"/>
+
+        <!-- Spiritual curve (violet, 53-day) — phase day 52, value −0.12 -->
+        <path d="M 14 42.5 L 17.6 32.5 L 21.1 22.2 L 24.7 13.8 L 28.2 8.2 L 31.8 7.0 L 35.3 9.8 L 38.9 16.5 L 42.4 26.2 L 46.0 37.8 L 49.6 49.5 L 53.1 59.5 L 56.7 67.0 L 60.2 71.0 L 63.8 71.5 L 67.3 67.8 L 70.9 60.5 L 74.4 50.5 L 78.0 39.0 L 81.6 27.8 L 85.1 18.0 L 88.7 11.2 L 92.2 7.8 L 95.8 8.2 L 99.3 12.5 L 102.9 20.5 L 106.4 31.5 L 110.0 44.0 L 113.6 56.0 L 117.1 65.2 L 120.7 70.8 L 124.2 72.0 L 127.8 69.0 L 131.3 62.0 L 134.9 52.5 L 138.4 41.2 L 142.0 30.0 L 145.6 20.2 L 149.1 13.2 L 152.7 9.2 L 154 8.5"
+              fill="none" stroke="#7048a0" stroke-width="0.95" opacity="0.9"/>
+
+      </svg>
+    </div>
+
+    <div class="bio-chart-key">
+      <div class="key-days">Days lived · ~<strong>26 658</strong> · Phase today · 12 May 2026</div>
+      <div class="key-row">
+        <div class="key-swatch"><svg viewBox="0 0 36 6" xmlns="http://www.w3.org/2000/svg"><path d="M 0 3 Q 4.5 0.5 9 3 Q 13.5 5.5 18 3 Q 22.5 0.5 27 3 Q 31.5 5.5 36 3" fill="none" stroke="#c44a4a" stroke-width="1.4"/></svg></div>
+        <div class="key-name" style="color:#c44a4a;font-weight:600;">Physical</div>
+        <div class="key-val" style="color:#c44a4a">+0.27</div>
+        <div class="key-period">23 days · rising · peak ~day 5</div>
+      </div>
+      <div class="key-row">
+        <div class="key-swatch"><svg viewBox="0 0 36 6" xmlns="http://www.w3.org/2000/svg"><path d="M 0 3 Q 5 0.5 10 3 Q 15 5.5 20 3 Q 25 0.5 30 3 Q 33 1.8 36 3" fill="none" stroke="#1f5e8a" stroke-width="1.4"/></svg></div>
+        <div class="key-name" style="color:#1f5e8a;font-weight:600;">Emotional</div>
+        <div class="key-val" style="color:#1f5e8a">+0.43</div>
+        <div class="key-period">28 days · rising · peak ~day 5</div>
+      </div>
+      <div class="key-row">
+        <div class="key-swatch"><svg viewBox="0 0 36 6" xmlns="http://www.w3.org/2000/svg"><path d="M 0 5.5 Q 5.5 4 11 3 Q 16.5 1 22 3 Q 27.5 5 33 3 Q 34.5 2.5 36 2.8" fill="none" stroke="#3a7a3a" stroke-width="1.4"/></svg></div>
+        <div class="key-name" style="color:#3a7a3a;font-weight:600;">Intellectual</div>
+        <div class="key-val" style="color:#3a7a3a">−0.91</div>
+        <div class="key-period">33 days · deep low · critical ~day 6</div>
+      </div>
+      <div class="key-row">
+        <div class="key-swatch"><svg viewBox="0 0 36 6" xmlns="http://www.w3.org/2000/svg"><path d="M 0 3.2 Q 6 1 12 3 Q 18 5 24 3 Q 30 1 36 3" fill="none" stroke="#7048a0" stroke-width="1.6"/></svg></div>
+        <div class="key-name" style="color:#7048a0;font-weight:600;">Spiritual</div>
+        <div class="key-val" style="color:#7048a0">−0.12</div>
+        <div class="key-period">53 days · crossing midline · high opens tomorrow</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 5</span></div>
+</section>
+
+
+<!-- ════ II · PHYSICAL ════ -->
+<section class="page" id="physical">
+  <div class="running"><span>II · Physical Cycle</span><span class="who">Focus 2 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 18 50 Q 30 30 42 50 Q 54 70 66 50 Q 78 30 82 50" fill="none" stroke="#c44a4a" stroke-width="2.4" stroke-linecap="round"/>
+        <line x1="14" y1="50" x2="86" y2="50" stroke="#c44a4a" stroke-width="0.5" stroke-dasharray="2 2"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus II · the body's rhythm</div>
+    <h2 class="section-title" style="color:#c44a4a;">The Physical Cycle · 23 days</h2>
+    <h3 class="section-sub">Stamina, endurance, immune response, and physical confidence</h3>
+
+    <div class="lead">
+      <p>The Physical cycle is the shortest of the four and the most concrete. It governs stamina, endurance, physical strength, and the body's resilience to stress.</p>
+    </div>
+
+    <div class="text">
+      <p>On the high half of the cycle, people typically report easier sleep, faster recovery from exertion, stronger appetite, and a steadier baseline of physical energy. This is the half traditionally favoured for athletic events, manual work, surgical procedures elected at the patient's discretion, and any commitment that taxes the body. Travel feels less depleting; physical projects that have stalled often find a new push.</p>
+
+      <p>On the low half, the body asks for less. Recovery slows, energy is more easily spent than refilled, and the immune system runs at lower margin. The low half is not a problem so much as a different mode: it is a good time to rest, to consolidate, to delegate physical effort, and to accept that the same hour of exercise costs more than it did a fortnight ago. People who fight their physical low half often find themselves unwell at the end of it.</p>
+
+      <p>Your Physical cycle today reads at about plus zero point three of one — recently across the midline, in the first quarter of the high half. The next ten days are favourable for physical commitments. The cycle peaks around five days from now, descends to the midline at around day twelve, and reaches its trough at around day seventeen, at which point recovery and rest move to the top of the agenda.</p>
+    </div>
+
+    <div class="calc">
+      Period · <strong>23 days</strong> · Current phase · day <strong>1 of 23</strong> · Today's value · <strong>+0.27</strong> · Next peak · ~<strong>day 5</strong> · Next trough · ~<strong>day 17</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Governs</div>
+      <div class="note">Stamina, immune response, physical confidence, recovery from exertion.</div>
+      <div class="note-label">Favour</div>
+      <div class="note">Athletic and physical commitments on the high half; rest and recovery on the low.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 6</span></div>
+</section>
+
+
+<!-- ════ III · EMOTIONAL ════ -->
+<section class="page" id="emotional">
+  <div class="running"><span>III · Emotional Cycle</span><span class="who">Focus 3 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50 80 C 22 60 22 36 38 30 C 46 26 50 32 50 38 C 50 32 54 26 62 30 C 78 36 78 60 50 80 Z"
+              fill="none" stroke="#1f5e8a" stroke-width="2.4"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus III · the heart's rhythm</div>
+    <h2 class="section-title" style="color:#1f5e8a;">The Emotional Cycle · 28 days</h2>
+    <h3 class="section-sub">Mood, sensitivity, relational ease, and emotional resilience</h3>
+
+    <div class="lead">
+      <p>The Emotional cycle, at 28 days, is the longest of the classical three. It governs mood, sensitivity, the ease of relating to others, and the resilience of one's emotional baseline.</p>
+    </div>
+
+    <div class="text">
+      <p>On the high half, people typically experience a warmer baseline of mood, more easy contact with others, a livelier sense of humour, and a generally more generous reading of difficult situations. The world feels more workable. Difficult conversations land more softly; ambiguous comments are absorbed without strain. This is the half traditionally favoured for important conversations, family events, public-facing engagements, and the patient work of repair in close relationships.</p>
+
+      <p>On the low half, the emotional skin is thinner. Things land harder; minor remarks may stay with one longer than they merit; one's own moods may surprise one with their texture. The low half is not a depression in any clinical sense; it is the natural withdrawal of the emotional surplus that buoys the high half. Wisdom in the low is to expect the harder reading, take fewer commitments, and not to take one's own state as the definitive truth about a situation.</p>
+
+      <p>Your Emotional cycle today reads at about plus zero point four — climbing solidly toward the high. The next ten to twelve days are favourable for relational and family engagements. The cycle peaks around day six from now, returns to the midline around day fourteen, and reaches its low around day twenty-one.</p>
+    </div>
+
+    <div class="calc">
+      Period · <strong>28 days</strong> · Current phase · day <strong>2 of 28</strong> · Today's value · <strong>+0.43</strong> · Next peak · ~<strong>day 6</strong> · Next trough · ~<strong>day 21</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Governs</div>
+      <div class="note">Mood, relational ease, sensitivity, emotional resilience.</div>
+      <div class="note-label">Favour</div>
+      <div class="note">Conversations, public engagements, family work on the high half.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 7</span></div>
+</section>
+
+
+<!-- ════ IV · INTELLECTUAL ════ -->
+<section class="page" id="intellectual">
+  <div class="running"><span>IV · Intellectual Cycle</span><span class="who">Focus 4 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 30 70 Q 22 56 28 42 Q 32 30 46 28 Q 54 24 60 30 Q 72 32 74 46 Q 78 60 70 70 Q 66 76 56 76 L 44 76 Q 34 76 30 70 Z"
+              fill="none" stroke="#3a7a3a" stroke-width="2"/>
+        <line x1="36" y1="76" x2="64" y2="76" stroke="#3a7a3a" stroke-width="0.8"/>
+        <line x1="40" y1="80" x2="60" y2="80" stroke="#3a7a3a" stroke-width="0.8"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus IV · the mind's rhythm</div>
+    <h2 class="section-title" style="color:#3a7a3a;">The Intellectual Cycle · 33 days</h2>
+    <h3 class="section-sub">Concentration, analysis, memory, and the appetite for new learning</h3>
+
+    <div class="lead">
+      <p>The Intellectual cycle, at 33 days, governs the sharpness of attention, analytical work, memory, and the appetite for taking in new ideas.</p>
+    </div>
+
+    <div class="text">
+      <p>On the high half, mental work feels easier and faster. Concentration sustains for longer stretches, memory is more available, and one is more willing to take on intellectually demanding tasks — writing, complex reading, learning a new domain, designing something from scratch. The high intellectual half is the time to do the work that has been put off because it required more focus than one had been ready to give.</p>
+
+      <p>On the low half, the mind moves more slowly. Concentration tires sooner; memory is less reliable; familiar tasks may go fine but anything that requires fresh thinking costs more. The low half rewards rest from heavy intellectual demand and is well-suited to administrative work, routine review, and the kind of mental task that runs on previously-learned patterns rather than on freshly-built ones.</p>
+
+      <p>Your Intellectual cycle today reads at about minus zero point nine — near the deepest trough of the cycle. The next week is the low point intellectually; recovery toward the midline takes about seven days, and the next peak is reached around day fifteen from today. The chart suggests being kind to the mind for the immediate week ahead — keep the schedule lighter on demanding new thinking, and reserve major intellectual commitments for the second half of the month.</p>
+    </div>
+
+    <div class="calc">
+      Period · <strong>33 days</strong> · Current phase · day <strong>27 of 33</strong> · Today's value · <strong>−0.91</strong> · Next midline crossing (up) · ~<strong>day 7</strong> · Next peak · ~<strong>day 15</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Governs</div>
+      <div class="note">Concentration, analysis, memory, new learning.</div>
+      <div class="note-label">Current</div>
+      <div class="note">Deep low — favour routine; defer demanding new thinking.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 8</span></div>
+</section>
+
+
+<!-- ════ V · SPIRITUAL ════ -->
+<section class="page" id="spiritual">
+  <div class="running"><span>V · Spiritual Cycle</span><span class="who">Focus 5 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#7048a0" stroke-width="2" fill="none">
+          <path d="M 50 78 Q 30 64 30 46 Q 32 32 50 30 Q 68 32 70 46 Q 70 64 50 78 Z"/>
+          <path d="M 50 70 Q 38 60 38 50 Q 40 42 50 40 Q 60 42 62 50 Q 62 60 50 70 Z"/>
+        </g>
+        <circle cx="50" cy="50" r="3" fill="#7048a0"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus V · the inner rhythm</div>
+    <h2 class="section-title" style="color:#7048a0;">The Spiritual Cycle · 53 days</h2>
+    <h3 class="section-sub">Inner attunement, contemplative depth, the sense of meaning beyond the day</h3>
+
+    <div class="lead">
+      <p>The Spiritual cycle, at 53 days, is the slowest of the four and the most subtle. It governs the depth of inner attunement, the sense of meaning beyond the day's particulars, and the receptivity to what is quiet.</p>
+    </div>
+
+    <div class="text">
+      <p>On the high half, contemplative practices come more easily — meditation, reflective writing, prayer, the silent walk. The sense of being inwardly settled is stronger. One reads life as having a shape rather than only events; one is more available to silence and to the long perspective. This is the half traditionally favoured for retreats, study of contemplative texts, and the kind of inner work that requires a steady ground beneath it.</p>
+
+      <p>On the low half, the inner ground feels thinner. The day's events have more grip on attention; contemplative practices may feel mechanical or absent of their usual settling effect; one is more easily caught in surface noise. The low half is not a spiritual failure — it is the rest phase of a deep rhythm, and the wise response is to keep the form of practice without expecting the usual fullness from it. The inner ground returns in its own time.</p>
+
+      <p>Your Spiritual cycle today reads at about minus zero point one — just below the midline, transitioning upward. You are emerging from a long low phase and entering the rising half of the cycle. The cycle peaks around day fifteen from today and remains above the midline until about day twenty-six. The window now opening is one of the best in the year ahead for retreat, contemplative writing, or the deepening of any practice.</p>
+    </div>
+
+    <div class="calc">
+      Period · <strong>53 days</strong> · Current phase · day <strong>52 of 53</strong> · Today's value · <strong>−0.12</strong> · Next midline crossing (up) · <strong>tomorrow</strong> · Next peak · ~<strong>day 15</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Governs</div>
+      <div class="note">Inner attunement, contemplative depth, the sense of meaning.</div>
+      <div class="note-label">Current</div>
+      <div class="note">A long high half is opening — favourable for retreat and depth-work.</div>
+      <div class="note-label">Extended cycles</div>
+      <div class="note">Intuitive 38d · Aesthetic 43d · Self-Awareness 48d — noted but not charted; available on request.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 9</span></div>
+</section>
+
+
+<!-- ════ VI · CRITICAL DAYS ════ -->
+<section class="page" id="critical">
+  <div class="running"><span>VI · Critical Days</span><span class="who">Focus 6 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50 18 L 86 80 L 14 80 Z" fill="none" stroke="#a88842" stroke-width="2.4" stroke-linejoin="round"/>
+        <line x1="50" y1="40" x2="50" y2="62" stroke="#a88842" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="50" cy="72" r="2" fill="#a88842"/>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VI · the crossings</div>
+    <h2 class="section-title">Critical Days</h2>
+    <h3 class="section-sub">A moment of passage — brief instability as a cycle moves between its high and low halves</h3>
+
+    <div class="lead">
+      <p>A <em>critical day</em> in biorhythm theory is the day on which a cycle crosses the midline — rising from low to high, or descending from high to low.</p>
+    </div>
+
+    <div class="text">
+      <p>On a critical day, the cycle's value is near zero, and the body, heart, or mind associated with it is briefly between phases. The tradition reads this as a moment of slight instability — not bad luck, just absence of usual support. A physical critical day is associated with mild susceptibility to small accidents or fatigue; an emotional critical day with mood volatility; an intellectual critical day with a brief drop in concentration; a spiritual critical day with a passing flat patch in inner life.</p>
+
+      <p>For the year ahead, your critical days will fall approximately every twelve days for Physical, every fourteen for Emotional, every seventeen for Intellectual, and every twenty-six for Spiritual. <em>Double critical days</em> — when two cycles cross the midline together — happen occasionally and are read as more noticeable; <em>triple critical days</em>, rare and remembered.</p>
+
+      <p>The correct posture toward a critical day is gentle care, not avoidance. Do less on those days, keep the schedule flexible, expect to be slightly less than oneself for a short window. The next physical critical day for you falls around day twelve from now; the next emotional, around day fourteen; the next intellectual, around day seven (rising from the current low); the next spiritual, today or tomorrow as the long low ends and the high half opens.</p>
+    </div>
+
+    <div class="calc">
+      Critical day spacing · Physical ~<strong>12 days</strong> · Emotional ~<strong>14 days</strong> · Intellectual ~<strong>17 days</strong> · Spiritual ~<strong>26 days</strong>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Critical</div>
+      <div class="note">Crossings of the midline — slight instability, brief in duration.</div>
+      <div class="note-label">Care</div>
+      <div class="note">Lighten the schedule; expect to be less than oneself for a short window.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 10</span></div>
+</section>
+
+
+<!-- ════ VII · SYNTHESIS ════ -->
+<section class="page" id="synthesis">
+  <div class="running"><span>VII · Synthesis &amp; Extensions</span><span class="who">Focus 7 of 7</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke-width="1.6">
+          <path d="M 14 50 Q 26 34 38 50 Q 50 66 62 50 Q 74 34 86 50" stroke="#c44a4a"/>
+          <path d="M 14 50 Q 30 36 46 50 Q 62 64 78 50 Q 86 44 88 50" stroke="#1f5e8a"/>
+          <path d="M 14 50 Q 32 38 50 50 Q 68 62 86 50" stroke="#3a7a3a"/>
+          <path d="M 14 50 Q 38 34 62 50 Q 78 62 86 56" stroke="#7048a0"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="eyebrow">Focus VII · the portrait</div>
+    <h2 class="section-title">Synthesis</h2>
+    <h3 class="section-sub">The current pattern, the year ahead, and a note on the further extended cycles</h3>
+
+    <div class="lead">
+      <p>Read together, the four cycles produce a single picture for the immediate weeks ahead.</p>
+    </div>
+
+    <div class="text">
+      <p>The Physical cycle is climbing and will peak in a few days, supporting physical commitments through the next two weeks. The Emotional cycle is also climbing toward its peak around day six, suggesting a warm window for relational and family work. The Intellectual cycle is at its deep low and asks the mind to be spared heavy new work for about a week. The Spiritual cycle is just emerging from its long low and entering a fresh high half — the strongest invitation in this chart is toward inner work, contemplative writing, or retreat for the three to four weeks ahead.</p>
+
+      <p>The clearest single signal in the chart is the spiritual rising. The next three to four weeks form a temporal window unusually well-suited to depth-work: the body and heart are climbing, the mind can rest from heavy new demands, and the inner ground is opening.</p>
+
+      <p>Two further notes on the model. First, the extended biorhythm tradition also describes an Intuitive cycle of 38 days, an Aesthetic cycle of 43 days, and a Self-Awareness cycle of 48 days. These have less consensus than the four cycles charted here, and have been omitted from the visualisation for clarity; they can be added on request. Second, all biorhythm readings are interpretive rather than predictive — the value of this report is the structured invitation to <em>notice</em> one's own rhythms, and to find where one's life does and does not respect the model. The reader is the final authority on the reading.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">The window</div>
+      <div class="note">Spiritual rising · Emotional rising · Physical rising · Intellectual low — favour depth, defer heavy thinking.</div>
+      <div class="note-label">Extended cycles</div>
+      <div class="note">Intuitive 38d · Aesthetic 43d · Self-Awareness 48d — available on request.</div>
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading</span><span>Page 11</span></div>
+</section>
+
+
+<!-- ════ DAY-BY-DAY REFERENCE TABLE ════ -->
+<section class="page wide" id="daily-table">
+  <div class="running"><span>Day-by-Day · 12 May – 11 June 2026</span><span class="who">Reference Table</span></div>
+
+  <div class="content" style="padding-top:5mm;">
+    <h2 class="section-title" style="margin-bottom:1mm;">Biorhythm Day-by-Day</h2>
+    <div style="font-size:9pt; color:var(--muted); font-style:italic; margin-bottom:4mm; letter-spacing:.02em;">
+      12 May to 11 June 2026 · 31 days · Physical 23d · Emotional 28d · Intellectual 33d · Spiritual 53d · <strong style="color:var(--gold);">◈</strong> critical crossing (value within ±0.15 of midline)
+    </div>
+
+    <table class="bio-daily">
+      <thead>
+        <tr>
+          <th class="bd-date-h" style="width:22mm">Date</th>
+          <th class="bd-date-h" style="width:11mm">Day</th>
+          <th style="width:20mm;color:#c44a4a">PHY</th>
+          <th style="width:20mm;color:#1f5e8a">EMO</th>
+          <th style="width:20mm;color:#3a7a3a">INT</th>
+          <th style="width:20mm;color:#7048a0">SPI</th>
+          <th class="bd-note-h" style="width:50mm;color:var(--gold)">◈ Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="bd-date"><span class="bd-month-tag">May</span>12</td><td class="bd-day">Tue</td><td class="bp">+0.27</td><td class="be">+0.43</td><td class="bn">−0.91</td><td class="bn">−0.12</td><td class="bd-notes"></td></tr>
+        <tr><td class="bd-date">13</td><td class="bd-day">Wed</td><td class="bp">+0.52</td><td class="be">+0.62</td><td class="bn">−0.82</td><td class="bc">0.00</td><td class="bd-notes" style="color:#7048a0">◈ Spi ↑ crosses midline</td></tr>
+        <tr><td class="bd-date">14</td><td class="bd-day">Thu</td><td class="bp">+0.73</td><td class="be">+0.78</td><td class="bn">−0.69</td><td class="bs">+0.12</td><td class="bd-notes"></td></tr>
+        <tr><td class="bd-date">15</td><td class="bd-day">Fri</td><td class="bp">+0.89</td><td class="be">+0.90</td><td class="bn">−0.54</td><td class="bs">+0.23</td><td class="bd-notes"></td></tr>
+        <tr style="background:rgba(168,136,66,0.05)"><td class="bd-date">16</td><td class="bd-day">Sat</td><td class="bp">+0.98</td><td class="be">+0.97</td><td class="bn">−0.37</td><td class="bs">+0.35</td><td class="bd-notes" style="color:var(--gold);font-style:italic">Birthday · 73</td></tr>
+        <tr style="background:rgba(168,136,66,0.07)"><td class="bd-date">17</td><td class="bd-day">Sun</td><td class="bp" style="font-weight:800">+1.00</td><td class="be" style="font-weight:800">+1.00</td><td class="bn">−0.19</td><td class="bs">+0.46</td><td class="bd-notes" style="color:var(--muted);font-style:italic">Phy ▲ · Emo ▲ peak</td></tr>
+        <tr><td class="bd-date">18</td><td class="bd-day">Mon</td><td class="bp">+0.94</td><td class="be">+0.97</td><td class="bc">0.00</td><td class="bs">+0.56</td><td class="bd-notes" style="color:#3a7a3a">◈ Int ↑ crosses midline</td></tr>
+        <tr><td class="bd-date">19</td><td class="bd-day">Tue</td><td class="bp">+0.82</td><td class="be">+0.90</td><td class="bi">+0.19</td><td class="bs">+0.65</td><td class="bd-notes"></td></tr>
+        <tr><td class="bd-date">20</td><td class="bd-day">Wed</td><td class="bp">+0.64</td><td class="be">+0.78</td><td class="bi">+0.37</td><td class="bs">+0.73</td><td class="bd-notes"></td></tr>
+        <tr><td class="bd-date">21</td><td class="bd-day">Thu</td><td class="bp">+0.41</td><td class="be">+0.62</td><td class="bi">+0.54</td><td class="bs">+0.81</td><td class="bd-notes"></td></tr>
+        <tr><td class="bd-date">22</td><td class="bd-day">Fri</td><td class="bc">+0.14</td><td class="be">+0.43</td><td class="bi">+0.69</td><td class="bs">+0.88</td><td class="bd-notes" style="color:#c44a4a">◈ Phy ↓ near midline</td></tr>
+        <tr><td class="bd-date">23</td><td class="bd-day">Sat</td><td class="bc">−0.14</td><td class="be">+0.22</td><td class="bi">+0.82</td><td class="bs">+0.93</td><td class="bd-notes" style="color:#c44a4a">◈ Phy ↓ crosses midline</td></tr>
+        <tr><td class="bd-date">24</td><td class="bd-day">Sun</td><td class="bn">−0.41</td><td class="bc">0.00</td><td class="bi">+0.91</td><td class="bs">+0.96</td><td class="bd-notes" style="color:#1f5e8a">◈ Emo ↓ crosses midline</td></tr>
+        <tr><td class="bd-date">25</td><td class="bd-day">Mon</td><td class="bn">−0.64</td><td class="bn">−0.22</td><td class="bi">+0.97</td><td class="bs">+0.99</td><td class="bd-notes"></td></tr>
+        <tr style="background:rgba(168,136,66,0.07)"><td class="bd-date">26</td><td class="bd-day">Tue</td><td class="bn">−0.82</td><td class="bn">−0.43</td><td class="bi" style="font-weight:800">+1.00</td><td class="bs" style="font-weight:800">+1.00</td><td class="bd-notes" style="color:var(--muted);font-style:italic">Int ▲ · Spi ▲ peak</td></tr>
+        <tr><td class="bd-date">27</td><td class="bd-day">Wed</td><td class="bn">−0.94</td><td class="bn">−0.62</td><td class="bi">+0.99</td><td class="bs">+1.00</td><td class="bd-notes"></td></tr>
+        <tr style="background:rgba(168,136,66,0.07)"><td class="bd-date">28</td><td class="bd-day">Thu</td><td class="bn" style="font-weight:800">−1.00</td><td class="bn">−0.78</td><td class="bi">+0.95</td><td class="bs">+0.98</td><td class="bd-notes" style="color:var(--muted);font-style:italic">Phy ▼ trough</td></tr>
+        <tr><td class="bd-date">29</td><td class="bd-day">Fri</td><td class="bn">−0.98</td><td class="bn">−0.90</td><td class="bi">+0.87</td><td class="bs">+0.95</td><td class="bd-notes"></td></tr>
+        <tr><td class="bd-date">30</td><td class="bd-day">Sat</td><td class="bn">−0.89</td><td class="bn">−0.97</td><td class="bi">+0.76</td><td class="bs">+0.90</td><td class="bd-notes"></td></tr>
+        <tr style="background:rgba(168,136,66,0.07)"><td class="bd-date">31</td><td class="bd-day">Sun</td><td class="bn">−0.73</td><td class="bn" style="font-weight:800">−1.00</td><td class="bi">+0.63</td><td class="bs">+0.84</td><td class="bd-notes" style="color:var(--muted);font-style:italic">Emo ▼ trough</td></tr>
+        <tr><td class="bd-date"><span class="bd-month-tag">Jun</span>1</td><td class="bd-day">Mon</td><td class="bn">−0.52</td><td class="bn">−0.97</td><td class="bi">+0.48</td><td class="bs">+0.77</td><td class="bd-notes"></td></tr>
+        <tr><td class="bd-date">2</td><td class="bd-day">Tue</td><td class="bn">−0.27</td><td class="bn">−0.90</td><td class="bi">+0.31</td><td class="bs">+0.70</td><td class="bd-notes"></td></tr>
+        <tr><td class="bd-date">3</td><td class="bd-day">Wed</td><td class="bc">0.00</td><td class="bn">−0.78</td><td class="bc">+0.10</td><td class="bs">+0.61</td><td class="bd-notes">◈◈ Phy ↑ · Int ↓ double critical</td></tr>
+        <tr><td class="bd-date">4</td><td class="bd-day">Thu</td><td class="bp">+0.27</td><td class="bn">−0.62</td><td class="bc">−0.10</td><td class="bs">+0.52</td><td class="bd-notes" style="color:#3a7a3a">◈ Int ↓ crosses midline</td></tr>
+        <tr><td class="bd-date">5</td><td class="bd-day">Fri</td><td class="bp">+0.52</td><td class="bn">−0.43</td><td class="bn">−0.31</td><td class="bs">+0.42</td><td class="bd-notes"></td></tr>
+        <tr><td class="bd-date">6</td><td class="bd-day">Sat</td><td class="bp">+0.73</td><td class="bn">−0.22</td><td class="bn">−0.48</td><td class="bs">+0.29</td><td class="bd-notes"></td></tr>
+        <tr><td class="bd-date">7</td><td class="bd-day">Sun</td><td class="bp">+0.89</td><td class="bc">0.00</td><td class="bn">−0.63</td><td class="bs">+0.18</td><td class="bd-notes" style="color:#1f5e8a">◈ Emo ↑ crosses midline</td></tr>
+        <tr><td class="bd-date">8</td><td class="bd-day">Mon</td><td class="bp">+0.98</td><td class="be">+0.22</td><td class="bn">−0.76</td><td class="bc">+0.06</td><td class="bd-notes" style="color:#7048a0">◈ Spi ↓ near midline</td></tr>
+        <tr style="background:rgba(168,136,66,0.07)"><td class="bd-date">9</td><td class="bd-day">Tue</td><td class="bp" style="font-weight:800">+1.00</td><td class="be">+0.43</td><td class="bn">−0.87</td><td class="bc">−0.06</td><td class="bd-notes">Phy ▲ peak · ◈ Spi ↓ crosses</td></tr>
+        <tr><td class="bd-date">10</td><td class="bd-day">Wed</td><td class="bp">+0.94</td><td class="be">+0.62</td><td class="bn">−0.94</td><td class="bn">−0.18</td><td class="bd-notes"></td></tr>
+        <tr style="background:rgba(168,136,66,0.07)"><td class="bd-date">11</td><td class="bd-day">Thu</td><td class="bp">+0.82</td><td class="be">+0.78</td><td class="bn" style="font-weight:800">−0.99</td><td class="bn">−0.29</td><td class="bd-notes" style="color:var(--muted);font-style:italic">Int ▼ trough</td></tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:5mm; font-size:7.5pt; color:var(--muted); font-style:italic; border-top:0.3mm solid var(--rule); padding-top:2mm;">
+      Values range from −1.00 (full low) to +1.00 (full high) · Bold ▲▼ marks peaks and troughs · ◈ column names cycles crossing the midline on that day · 3 Jun is a double critical (P·I simultaneous)
+    </div>
+  </div>
+
+  <div class="pgfoot"><span>Antara — Personal Reading · End</span><span>Page 12</span></div>
+</section>
+
+</body>
+</html>
