@@ -2284,6 +2284,12 @@ function sendFreeReport(){
   if(!name){alert('Please enter your name.');return;}
   if(dd.length<1||mm.length<1||yy.length<4){alert('Please enter a complete date of birth — Day, Month, and Year.');return;}
   if(!email||!email.includes('@')){alert('Please enter a valid email address.');return;}
+  // Save user data to browser memory so all reports can personalise themselves
+  const dobISO=`${yy}-${mm.padStart(2,'0')}-${dd.padStart(2,'0')}`;
+  localStorage.setItem('antara_user', JSON.stringify({
+    name:name, dd:dd.padStart(2,'0'), mm:mm.padStart(2,'0'), yyyy:yy,
+    dob:dobISO, email:email, saved:Date.now()
+  }));
   document.getElementById('wlc-form-area').style.display='none';
   const sp=document.getElementById('wlc-spinner');
   sp.style.display='flex';

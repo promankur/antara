@@ -912,5 +912,83 @@
 </section>
 
 <button class="print-fab" onclick="window.print()">🖨 Print / Save PDF</button>
+
+<script>
+/* ── Layer 1: Personalise from localStorage ── */
+(function(){
+  try {
+    var raw = localStorage.getItem('antara_user');
+    if (!raw) return; // no data — keep demo content
+    var u = JSON.parse(raw);
+    if (!u.name || !u.dob) return;
+
+    var MONTHS = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+    var MON3   = MONTHS.map(function(m){ return m.slice(0,3); });
+
+    // Parse DOB
+    var parts = u.dob.split('-');
+    var yyyy = +parts[0], mm = +parts[1], dd = +parts[2];
+    var dobDisplay = dd + ' ' + MONTHS[mm-1] + ' ' + yyyy;
+
+    // Today
+    var today = new Date();
+    var todayDisplay = today.getDate() + ' ' + MONTHS[today.getMonth()] + ' ' + today.getFullYear();
+
+    // 31-day reading window
+    var end = new Date(today); end.setDate(end.getDate() + 30);
+    var rangeA = today.getDate()+' '+MON3[today.getMonth()]+' to '+end.getDate()+' '+MON3[end.getMonth()]+' '+end.getFullYear();
+    var rangeB = today.getDate()+' '+MON3[today.getMonth()]+' – '+end.getDate()+' '+MON3[end.getMonth()]+' '+end.getFullYear();
+
+    // Days lived (for biorhythm phase calculation)
+    var birth = new Date(yyyy, mm-1, dd);
+    var daysLived = Math.floor((today - birth) / 86400000);
+    var daysStr = daysLived.toLocaleString('en-IN');
+
+    // 1. Document title
+    document.title = document.title.replace('Ankur Gupta', u.name);
+
+    // 2. CSS --page-id (controls running footer name)
+    document.documentElement.style.setProperty('--page-id', '"Biorhythm Monthly · ' + u.name + '"');
+
+    // 3. Cover person block  (Name / DOB / Reading date)
+    var pd = document.querySelectorAll('.cover .person > div');
+    if (pd[0]) pd[0].textContent = u.name;
+    if (pd[1]) pd[1].textContent = dobDisplay;
+    if (pd[2]) pd[2].textContent = 'Reading date · ' + todayDisplay;
+
+    // 4. "Days lived" line in chart key
+    var kd = document.querySelector('.key-days');
+    if (kd) kd.innerHTML = 'Days lived · ~<strong>' + daysStr + '</strong> · Phase today · ' + todayDisplay;
+
+    // 5. TOC date range
+    document.querySelectorAll('.toc-list .name').forEach(function(el){
+      if (el.textContent.indexOf('12 May to 11 June') !== -1)
+        el.textContent = el.textContent.replace('12 May to 11 June 2026', rangeA);
+    });
+
+    // 6. Running header date range
+    document.querySelectorAll('.running span').forEach(function(el){
+      if (el.textContent.indexOf('12 May') !== -1)
+        el.textContent = el.textContent.replace('12 May – 11 June 2026', rangeB);
+    });
+
+    // 7. Table section subtitle date range
+    document.querySelectorAll('div').forEach(function(el){
+      if (el.children.length === 0 && el.textContent.indexOf('12 May to 11 June') !== -1)
+        el.innerHTML = el.innerHTML.replace('12 May to 11 June 2026', rangeA);
+    });
+
+    // 8. Paragraph mentioning DOB and days count
+    document.querySelectorAll('p').forEach(function(p){
+      if (p.innerHTML.indexOf('16 May 1953') !== -1)
+        p.innerHTML = p.innerHTML
+          .replace(/16 May 1953/g, dobDisplay)
+          .replace(/26[\s ]658/g, daysStr);
+    });
+
+  } catch(e){ /* silent fail — demo content stays intact */ }
+})();
+</script>
 </body>
 </html>
