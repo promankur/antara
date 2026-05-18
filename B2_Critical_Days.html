@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Biorhythm Critical Days · Annual Report — Priya Sharma</title>
+<style>
+/* ─────────── Antara Personal Reading — V4 template ─────────── */
+@page { size: A4 portrait; margin: 0; }
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #c4c0b0; }
+body {
+  font-family: "Cormorant Garamond","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  font-size: 12pt; line-height: 1.5;
+  color: #2a3340; -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  --paper:      #f0ece0;
+  --paper-2:    #e6e1d2;
+  --ink:        #2a3340;
+  --ink-2:      #3d4554;
+  --physical:   #c44a4a;
+  --emotional:  #1f5e8a;
+  --intellectual:#3a7a3a;
+  --spiritual:  #7048a0;
+  --gold:       #a88842;
+  --gold-soft:  #d0bc88;
+  --rule:       #b8a464;
+  --muted:      #6d6553;
+
+  --page-w: 210mm; --page-h: 297mm;
+  --pad-top: 17mm; --pad-bot: 32mm;
+  --pad-left: 25mm; --pad-right: 22mm;
+  --col-text: 125mm; --col-gap: 6mm; --col-margin: 32mm;
+  --content-w: 163mm;
+}
+
+.page {
+  width: var(--page-w); height: var(--page-h);
+  background: var(--paper);
+  margin: 8mm auto;
+  padding: var(--pad-top) var(--pad-right) var(--pad-bot) var(--pad-left);
+  position: relative; box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+  page-break-after: always; break-after: page;
+  display: grid;
+  grid-template-columns: var(--col-text) var(--col-margin);
+  column-gap: var(--col-gap);
+}
+.page:last-child { page-break-after: auto; break-after: auto; }
+
+.page.wide {
+  grid-template-columns: 1fr;
+  column-gap: 0;
+}
+.page.wide .margin-area { display: none; }
+
+.cover {
+  grid-template-columns: 1fr;
+  text-align: center;
+  align-content: center;
+  padding-top: 28mm;
+}
+
+.page::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(168,136,66,0.04), transparent 40%),
+    radial-gradient(circle at 88% 90%, rgba(112,72,160,0.04), transparent 40%);
+  mix-blend-mode: multiply;
+}
+
+/* Top ornament */
+.page::after {
+  content: ""; position: absolute;
+  left: var(--pad-left); right: var(--pad-right);
+  top: 9mm; height: 5mm;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 12'><line x1='0' y1='9' x2='80' y2='9' stroke='%23a88842' stroke-width='0.3'/><path d='M0 6Q5 2 10 6Q15 10 20 6Q25 2 30 6Q35 10 40 6Q45 2 50 6Q55 10 60 6Q65 2 70 6Q75 10 80 6' fill='none' stroke='%23a88842' stroke-width='0.7'/></svg>");
+  background-repeat: repeat-x; background-size: auto 5mm; opacity: .85;
+}
+
+.content { position: relative; z-index: 1; padding-top: 5mm; }
+.margin-area { position: relative; z-index: 1; padding-top: 5mm; }
+
+.running {
+  position: absolute; left: var(--pad-left); right: var(--pad-right); top: 5mm;
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 9pt; letter-spacing: .18em; text-transform: uppercase; color: var(--gold);
+  font-family: "Iowan Old Style", Georgia, serif; font-weight: 600;
+}
+.running .who { color: var(--ink-2); letter-spacing: .12em; }
+
+.pgfoot {
+  position: absolute; left: var(--pad-left); right: var(--pad-right); bottom: 14mm;
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 9pt; color: var(--muted); letter-spacing: .06em;
+}
+.pgfoot::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -5mm; height: 0.4mm;
+  background: var(--rule); opacity: .55;
+}
+
+/* ─── Cover typography ─── */
+.eyebrow {
+  font-size: 10pt; letter-spacing: .36em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; margin-bottom: 4mm;
+}
+.cover-title {
+  font-size: 28pt; font-weight: 600; color: var(--ink);
+  letter-spacing: .06em; line-height: 1.15; margin-bottom: 2mm;
+  font-variant: small-caps;
+}
+.cover-sub {
+  font-size: 13pt; font-style: italic; color: var(--ink-2);
+  letter-spacing: .04em; margin-bottom: 10mm; line-height: 1.4;
+}
+.cover .markline {
+  margin: 0 auto 10mm; width: 60mm; height: 5mm;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 12'><path d='M0 6Q5 2 10 6Q15 10 20 6Q25 2 30 6Q35 10 40 6Q45 2 50 6Q55 10 60 6Q65 2 70 6Q75 10 80 6' fill='none' stroke='%23a88842' stroke-width='1.2'/></svg>");
+  background-repeat: repeat-x; background-size: auto 5mm;
+}
+.cover .person {
+  font-size: 13pt; color: var(--ink); margin-top:14mm; line-height: 1.8;
+}
+.cover .person .lbl {
+  font-size: 9pt; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--muted); font-weight: 600; margin-right: 5mm;
+}
+.cover .period-badge {
+  display: inline-block; margin-top: 8mm;
+  border: 0.5mm solid var(--rule); padding: 3mm 8mm;
+  font-size: 11pt; color: var(--gold); letter-spacing: .12em;
+}
+
+/* ─── Content typography ─── */
+h2.section-title {
+  font-size: 16pt; font-weight: 600; color: var(--ink);
+  letter-spacing: .02em; line-height: 1.2; margin-bottom: 2mm;
+}
+h3.section-sub {
+  font-size: 11pt; font-style: italic; color: var(--gold);
+  font-weight: 400; margin-bottom: 3mm; letter-spacing: .02em;
+}
+.text > p { font-size: 11.5pt; line-height: 1.55; color: var(--ink); margin: 0 0 7pt; }
+.text > p:last-child { margin-bottom: 0; }
+.lead > p { font-size: 13pt; line-height: 1.5; color: var(--ink-2); font-style: italic; margin: 0 0 5pt; }
+.calc {
+  font-family: "Iowan Old Style", Georgia, serif;
+  font-size: 10pt; line-height: 1.6; color: var(--gold);
+  border-top: 0.4mm solid var(--rule); border-bottom: 0.4mm solid var(--rule);
+  padding: 3mm 0; margin: 5mm 0; letter-spacing: .02em;
+}
+.calc strong { color: var(--ink); font-weight: 600; }
+
+/* ─── Cycle legend ─── */
+.cycle-key {
+  display: flex; flex-wrap: wrap; gap: 5mm 8mm; margin: 5mm 0;
+}
+.cycle-key-item {
+  display: flex; align-items: center; gap: 2.5mm;
+  font-size: 10pt; color: var(--ink);
+}
+.cycle-key-swatch {
+  width: 8mm; height: 1.5mm; border-radius: 1mm; flex-shrink: 0;
+}
+
+/* ─── Month heading ─── */
+.month-head {
+  font-size: 13pt; font-weight: 600; color: var(--ink); letter-spacing: .08em;
+  text-transform: uppercase; margin-bottom: 1.5mm;
+  padding-bottom: 1.5mm; border-bottom: 0.4mm solid var(--rule);
+  display: flex; align-items: baseline; gap: 5mm;
+}
+.month-head .mdays {
+  font-size: 9.5pt; font-weight: 400; color: var(--muted);
+  letter-spacing: .06em; font-style: italic;
+}
+
+/* ─── Chart area ─── */
+.month-chart {
+  width: 100%; margin-bottom: 3mm;
+}
+.month-pair { margin-bottom: 4mm; }
+.month-pair:last-child { margin-bottom: 0; }
+
+/* ─── Critical day annotations ─── */
+.crit-list {
+  display: flex; flex-wrap: wrap; gap: 1.5mm 3mm;
+  margin-top: 1.5mm;
+}
+.crit-item {
+  display: flex; align-items: center; gap: 1.5mm;
+  font-size: 9pt; color: var(--ink-2); font-family: "Iowan Old Style", Georgia, serif;
+}
+.crit-dot {
+  width: 2.5mm; height: 2.5mm; border-radius: 50%; flex-shrink: 0;
+}
+.crit-item.crossing .crit-dot { border: 0.5mm solid currentColor; background: transparent; }
+.crit-item.peak .crit-dot { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); border-radius: 0; }
+.crit-item.trough .crit-dot { clip-path: polygon(50% 100%, 0% 0%, 100% 0%); border-radius: 0; }
+
+/* ─── Year summary table ─── */
+.summary-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 3.5mm; margin-top: 3mm;
+}
+.summary-col-head {
+  font-size: 10pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  padding: 1mm 0; margin-bottom: 2mm; border-bottom: 0.6mm solid currentColor;
+}
+.summary-item {
+  font-size: 9.5pt; padding: 0.5mm 0;
+  color: var(--ink);
+  display: flex; align-items: baseline; gap: 2mm;
+}
+.summary-item .si-date { color: var(--ink); font-weight: 600; }
+.summary-item .si-arrow { font-weight: 700; font-size: 10pt; }
+
+/* ─── Double critical entry row ─── */
+.dc-entry {
+  display: flex; align-items: baseline; gap: 8mm;
+  padding: 4mm 0; border-bottom: 0.3mm dashed rgba(184,164,100,0.4);
+}
+.dc-date { font-size: 12.5pt; color: var(--ink); font-weight: 600; min-width: 52mm; }
+
+/* ─── Marginalia ─── */
+.marginalia {
+  padding-top: 10mm; color: var(--muted);
+  font-size: 9.5pt; line-height: 1.55; font-style: italic;
+}
+.marginalia .note-label {
+  font-size: 9pt; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; font-style: normal; margin-bottom: 2mm;
+}
+.marginalia .note { margin-bottom: 8mm; }
+.marginalia .note:last-child { margin-bottom: 0; }
+
+/* ─── TOC ─── */
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-list li {
+  display: grid; grid-template-columns: 8mm 1fr auto; gap: 3mm;
+  align-items: baseline; padding: 3.5mm 0;
+  border-bottom: 0.3mm dashed var(--rule); font-size: 11pt;
+}
+.toc-list li:last-child { border-bottom: none; }
+.toc-list .num { color: var(--gold); font-weight: 600; }
+.toc-list .pg { color: var(--muted); font-size: 9.5pt; }
+
+/* ─── Cycle type badge ─── */
+.badge-phy { color: var(--physical); }
+.badge-emo { color: var(--emotional); }
+.badge-int { color: var(--intellectual); }
+.badge-spi { color: var(--spiritual); }
+
+/* ─── Icon block ─── */
+.icon-block { width: 20mm; height: 20mm; margin-bottom: 4mm; display: flex; align-items: center; justify-content: center; }
+.icon-block svg { width: 100%; height: 100%; }
+
+/* ─── TRS legend block below chart ─── */
+.chart-legend {
+  display: flex; gap: 6mm; align-items: center;
+  margin-top: 1.5mm; padding-top: 2mm;
+  border-top: 0.3mm solid var(--rule);
+}
+.chart-legend .leg-item {
+  display: flex; align-items: center; gap: 2mm;
+  font-size: 9pt; color: var(--muted);
+}
+.leg-line { width: 8mm; height: 1.5mm; border-radius: 0.5mm; }
+.leg-circle { width: 3mm; height: 3mm; border-radius: 50%; border: 0.5mm solid #888; background: transparent; }
+.leg-tri-up { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-bottom: 5px solid #888; }
+.leg-tri-dn { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 5px solid #888; }
+
+@media print {
+  body { background: white; }
+  .page { margin: 0; box-shadow: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ PAGE 1 — COVER ═══ -->
+<div class="page cover" id="p1">
+  <div class="markline"></div>
+
+  <div style="font-size:11pt;font-style:italic;color:var(--muted);letter-spacing:.06em;text-align:center;margin-bottom:2mm;">The rhythms beneath the days —</div>
+  <div style="font-size:11pt;text-align:center;letter-spacing:.04em;margin-bottom:6mm;">
+    <span style="color:#c44a4a;font-weight:700;">Physical</span> &nbsp;·&nbsp;
+    <span style="color:#1f5e8a;font-weight:700;">Emotional</span> &nbsp;·&nbsp;
+    <span style="color:#3a7a3a;font-weight:700;">Intellectual</span> &nbsp;·&nbsp;
+    <span style="color:#7048a0;font-weight:700;">Spiritual</span>
+  </div>
+
+  <!-- Cover chart: all 4 waves schematic -->
+  <div style="width:120mm;margin:0 auto 8mm;">
+    <svg viewBox="0 0 480 110" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+      <!-- zero line -->
+      <line x1="0" y1="55" x2="480" y2="55" stroke="#b8a464" stroke-width="0.6" opacity=".5"/>
+      <!-- Physical wave (23-day, 2 full cycles in 480px) -->
+      <path id="cover-phy" fill="none" stroke="#c44a4a" stroke-width="1.8" opacity=".85"/>
+      <!-- Emotional wave (28-day) -->
+      <path id="cover-emo" fill="none" stroke="#1f5e8a" stroke-width="1.8" opacity=".85"/>
+      <!-- Intellectual wave (33-day) -->
+      <path id="cover-int" fill="none" stroke="#3a7a3a" stroke-width="1.5" opacity=".85"/>
+      <!-- Spiritual wave (53-day, subtle) -->
+      <path id="cover-spi" fill="none" stroke="#7048a0" stroke-width="1.2" opacity=".7" stroke-dasharray="4 2"/>
+    </svg>
+  </div>
+
+  <div class="cover-title">Biorhythm Critical Days · Annual Report</div>
+  <div class="cover-sub">Zero-crossings, peaks &amp; troughs across all four cycles</div>
+
+  <div class="person" >
+    <div><span class="lbl">Prepared for</span>Priya Sharma</div>
+    <div><span class="lbl">Born</span>15 March 1990 · Mumbai, Maharashtra</div>
+  </div>
+  <div class="period-badge">1 June 2026 – 31 May 2027</div>
+
+  <div class="pgfoot" style="display:block;text-align:center;">
+  <div style="font-size:10.5pt;font-weight:700;letter-spacing:.18em;color:var(--gold,#a88842);">ANTARA PERSONAL READING</div>
+  <div style="font-size:9.5pt;font-style:italic;letter-spacing:.08em;color:var(--gold,#a88842);margin-top:1.5mm;">interpretative, not Predictive</div>
+</div>
+</div>
+
+
+<!-- ═══ PAGE 2 — Contents + Understanding ═══ -->
+<div class="page" id="p2">
+  <div class="running"><span>Antara · Critical Days</span><span class="who">Priya Sharma</span></div>
+
+  <div class="content">
+    <div class="eyebrow" style="margin-bottom:3mm;">Contents</div>
+
+    <ul class="toc-list">
+      <li><span class="num">1</span><span>Understanding Critical Days</span><span class="pg">3</span></li>
+      <li><span class="num">2</span><span>June – July 2026</span><span class="pg">4</span></li>
+      <li><span class="num">3</span><span>August – September 2026</span><span class="pg">5</span></li>
+      <li><span class="num">4</span><span>October – November 2026</span><span class="pg">6</span></li>
+      <li><span class="num">5</span><span>December 2026 – January 2027</span><span class="pg">7</span></li>
+      <li><span class="num">6</span><span>February – March 2027</span><span class="pg">8</span></li>
+      <li><span class="num">7</span><span>April – May 2027</span><span class="pg">9</span></li>
+      <li><span class="num">8</span><span>Year-at-a-Glance · Double Critical Days</span><span class="pg">10</span></li>
+      <li><span class="num">9</span><span>Zero Crossings · Complete List</span><span class="pg">11</span></li>
+      <li><span class="num">10</span><span>Interpreting Your Year</span><span class="pg">12</span></li>
+    </ul>
+
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Period covered</div>
+      <div class="note">1 June 2026 – 31 May 2027 · twelve months of critical day data.</div>
+
+      <div class="note-label">Four cycles</div>
+      <div class="note">Physical · 23 days<br>Emotional · 28 days<br>Intellectual · 33 days<br>Spiritual · 53 days</div>
+
+      <div class="note-label">Subject</div>
+      <div class="note" style="font-style:normal;">Priya Sharma<br><span style="font-style:italic;">15 March 1990</span></div>
+    </div>
+  </div>
+
+  <div class="pgfoot">
+    <span>Critical Days · Annual Report</span>
+    <span>Priya Sharma</span>
+    <span>2</span>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE 3 — Understanding Critical Days ═══ -->
+<div class="page" id="p3-under">
+  <div class="running"><span>Antara · Critical Days</span><span class="who">Priya Sharma</span></div>
+
+  <div class="content">
+    <h2 class="section-title">Understanding Critical Days</h2>
+    <h3 class="section-sub">The significance of zero-crossings</h3>
+
+    <div class="lead" style="margin-bottom:4mm;">
+      <p>A critical day is not a day to fear. It is a day of transition — the moment when a biological cycle moves through zero, shifting from high to low or low to high.</p>
+    </div>
+
+    <div class="text">
+      <p>Each of your four cycles — physical, emotional, intellectual, and spiritual — follows a precise sinusoidal rhythm from birth. When a cycle crosses the zero line, the body or mind governed by that cycle is in a state of flux rather than stable capacity. Physical zero days may bring coordination lapses and vulnerability to injury. Emotional zero days heighten reactivity and mood swings. Intellectual zero days blunt analytical sharpness. Spiritual zero days bring restlessness or disconnection.</p>
+      <p>The practical value of this report lies in awareness. Knowing that 14 March is a physical zero crossing allows you to avoid heavy gym sessions or long drives on that day. Knowing that 22 April is a triple crossing — physical, emotional, and intellectual simultaneously — suggests that day calls for rest and gentle activity rather than high-stakes decisions.</p>
+      <p>Peaks and troughs are also annotated. A peak is the cycle's highest point — energy, mood, or clarity at its strongest. A trough is the nadir. Neither peak nor trough carries the instability of a crossing; they are simply the extremes of your natural range, and awareness of them can help you plan demanding work or restorative periods accordingly.</p>
+    </div>
+
+    <div class="calc">
+      <strong>Days lived at start of period (1 June 2026):</strong> <span id="days-info">calculating…</span><br>
+      <strong>Cycle phases at start:</strong> <span id="phase-info">calculating…</span>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Cycle key</div>
+      <div class="note">
+        <div style="display:flex;align-items:center;gap:2.5mm;margin-bottom:3mm;">
+          <div style="width:8mm;height:2px;background:#c44a4a;border-radius:1px;flex-shrink:0;"></div>
+          <span style="color:#c44a4a;font-style:normal;font-weight:600;">Physical</span>
+        </div>
+        <div style="font-size:9pt;margin-bottom:4mm;">23-day · stamina, coordination</div>
+        <div style="display:flex;align-items:center;gap:2.5mm;margin-bottom:3mm;">
+          <div style="width:8mm;height:2px;background:#1f5e8a;border-radius:1px;flex-shrink:0;"></div>
+          <span style="color:#1f5e8a;font-style:normal;font-weight:600;">Emotional</span>
+        </div>
+        <div style="font-size:9pt;margin-bottom:4mm;">28-day · mood, intuition</div>
+        <div style="display:flex;align-items:center;gap:2.5mm;margin-bottom:3mm;">
+          <div style="width:8mm;height:2px;background:#3a7a3a;border-radius:1px;flex-shrink:0;"></div>
+          <span style="color:#3a7a3a;font-style:normal;font-weight:600;">Intellectual</span>
+        </div>
+        <div style="font-size:9pt;margin-bottom:4mm;">33-day · clarity, memory</div>
+        <div style="display:flex;align-items:center;gap:2.5mm;margin-bottom:3mm;">
+          <div style="width:8mm;height:2px;background:#7048a0;border-radius:1px;flex-shrink:0;"></div>
+          <span style="color:#7048a0;font-style:normal;font-weight:600;">Spiritual</span>
+        </div>
+        <div style="font-size:9pt;">53-day · harmony, purpose</div>
+      </div>
+
+      <div class="note-label" style="margin-top:4mm;">Markers</div>
+      <div class="note">
+        <div style="font-size:9pt;margin-bottom:3mm;font-style:normal;">
+          <span style="display:inline-block;width:3mm;height:3mm;border-radius:50%;border:0.5mm solid #444;vertical-align:middle;margin-right:2mm;"></span> Zero crossing
+        </div>
+        <div style="font-size:9pt;margin-bottom:3mm;font-style:normal;">▲ Peak</div>
+        <div style="font-size:9pt;font-style:normal;">▼ Trough</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pgfoot">
+    <span>Critical Days · Annual Report</span>
+    <span>Priya Sharma</span>
+    <span>3</span>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE 4 — June + July 2026 ═══ -->
+<div class="page wide" id="p4-jun">
+  <div class="running"><span>Antara · Critical Days</span><span class="who">Priya Sharma</span></div>
+  <div class="content" style="padding-top:6mm;">
+
+    <div class="month-pair">
+      <div class="month-head">
+        June 2026
+        <span class="mdays">30 days · starts Monday</span>
+      </div>
+      <svg id="chart-jun26" class="month-chart" viewBox="0 0 630 160" xmlns="http://www.w3.org/2000/svg" style="display:block;"></svg>
+      <div class="chart-legend">
+        <div class="leg-item"><div class="leg-line" style="background:#c44a4a;"></div> Physical</div>
+        <div class="leg-item"><div class="leg-line" style="background:#1f5e8a;"></div> Emotional</div>
+        <div class="leg-item"><div class="leg-line" style="background:#3a7a3a;"></div> Intellectual</div>
+        <div class="leg-item"><div class="leg-line" style="background:#7048a0;width:10mm;background:linear-gradient(90deg,#7048a0 3px,transparent 3px,transparent 5px,#7048a0 5px);"></div> Spiritual</div>
+        <div class="leg-item" style="margin-left:4mm;"><div class="leg-circle"></div> Zero crossing</div>
+        <div class="leg-item">▲ Peak</div>
+        <div class="leg-item">▼ Trough</div>
+      </div>
+      <div class="crit-list" id="crit-jun26" style="margin-top:2mm;"></div>
+    </div>
+
+    <div style="height:4mm;border-bottom:0.3mm dashed var(--rule);margin-bottom:4mm;"></div>
+
+    <div class="month-pair">
+      <div class="month-head">
+        July 2026
+        <span class="mdays">31 days · starts Wednesday</span>
+      </div>
+      <svg id="chart-jul26" class="month-chart" viewBox="0 0 630 160" xmlns="http://www.w3.org/2000/svg" style="display:block;"></svg>
+      <div class="crit-list" id="crit-jul26" style="margin-top:2mm;"></div>
+    </div>
+
+  </div>
+  <div class="pgfoot">
+    <span>Critical Days · Annual Report</span>
+    <span>Priya Sharma</span>
+    <span>4</span>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE 5 — August + September 2026 ═══ -->
+<div class="page wide" id="p4">
+  <div class="running"><span>Antara · Critical Days</span><span class="who">Priya Sharma</span></div>
+  <div class="content" style="padding-top:6mm;">
+
+    <div class="month-pair">
+      <div class="month-head">August 2026 <span class="mdays">31 days · starts Saturday</span></div>
+      <svg id="chart-aug26" class="month-chart" viewBox="0 0 630 160" xmlns="http://www.w3.org/2000/svg" style="display:block;"></svg>
+      <div class="crit-list" id="crit-aug26" style="margin-top:2mm;"></div>
+    </div>
+
+    <div style="height:4mm;border-bottom:0.3mm dashed var(--rule);margin-bottom:4mm;"></div>
+
+    <div class="month-pair">
+      <div class="month-head">September 2026 <span class="mdays">30 days · starts Tuesday</span></div>
+      <svg id="chart-sep26" class="month-chart" viewBox="0 0 630 160" xmlns="http://www.w3.org/2000/svg" style="display:block;"></svg>
+      <div class="crit-list" id="crit-sep26" style="margin-top:2mm;"></div>
+    </div>
+
+  </div>
+  <div class="pgfoot">
+    <span>Critical Days · Annual Report</span>
+    <span>Priya Sharma</span>
+    <span>5</span>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE 6 — October + November 2026 ═══ -->
+<div class="page wide" id="p5">
+  <div class="running"><span>Antara · Critical Days</span><span class="who">Priya Sharma</span></div>
+  <div class="content" style="padding-top:6mm;">
+
+    <div class="month-pair">
+      <div class="month-head">October 2026 <span class="mdays">31 days · starts Thursday</span></div>
+      <svg id="chart-oct26" class="month-chart" viewBox="0 0 630 160" xmlns="http://www.w3.org/2000/svg" style="display:block;"></svg>
+      <div class="crit-list" id="crit-oct26" style="margin-top:2mm;"></div>
+    </div>
+
+    <div style="height:4mm;border-bottom:0.3mm dashed var(--rule);margin-bottom:4mm;"></div>
+
+    <div class="month-pair">
+      <div class="month-head">November 2026 <span class="mdays">30 days · starts Sunday</span></div>
+      <svg id="chart-nov26" class="month-chart" viewBox="0 0 630 160" xmlns="http://www.w3.org/2000/svg" style="display:block;"></svg>
+      <div class="crit-list" id="crit-nov26" style="margin-top:2mm;"></div>
+    </div>
+
+  </div>
+  <div class="pgfoot">
+    <span>Critical Days · Annual Report</span>
+    <span>Priya Sharma</span>
+    <span>6</span>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE 7 — December 2026 + January 2027 ═══ -->
+<div class="page wide" id="p6">
+  <div class="running"><span>Antara · Critical Days</span><span class="who">Priya Sharma</span></div>
+  <div class="content" style="padding-top:6mm;">
+
+    <div class="month-pair">
+      <div class="month-head">December 2026 <span class="mdays">31 days · starts Tuesday</span></div>
+      <svg id="chart-dec26" class="month-chart" viewBox="0 0 630 160" xmlns="http://www.w3.org/2000/svg" style="display:block;"></svg>
+      <div class="crit-list" id="crit-dec26" style="margin-top:2mm;"></div>
+    </div>
+
+    <div style="height:4mm;border-bottom:0.3mm dashed var(--rule);margin-bottom:4mm;"></div>
+
+    <div class="month-pair">
+      <div class="month-head">January 2027 <span class="mdays">31 days · starts Friday</span></div>
+      <svg id="chart-jan27" class="month-chart" viewBox="0 0 630 160" xmlns="http://www.w3.org/2000/svg" style="display:block;"></svg>
+      <div class="crit-list" id="crit-jan27" style="margin-top:2mm;"></div>
+    </div>
+
+  </div>
+  <div class="pgfoot">
+    <span>Critical Days · Annual Report</span>
+    <span>Priya Sharma</span>
+    <span>7</span>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE 8 — February + March 2027 ═══ -->
+<div class="page wide" id="p7">
+  <div class="running"><span>Antara · Critical Days</span><span class="who">Priya Sharma</span></div>
+  <div class="content" style="padding-top:6mm;">
+
+    <div class="month-pair">
+      <div class="month-head">February 2027 <span class="mdays">28 days · starts Monday</span></div>
+      <svg id="chart-feb27" class="month-chart" viewBox="0 0 630 160" xmlns="http://www.w3.org/2000/svg" style="display:block;"></svg>
+      <div class="crit-list" id="crit-feb27" style="margin-top:2mm;"></div>
+    </div>
+
+    <div style="height:4mm;border-bottom:0.3mm dashed var(--rule);margin-bottom:4mm;"></div>
+
+    <div class="month-pair">
+      <div class="month-head">March 2027 <span class="mdays">31 days · starts Monday</span></div>
+      <svg id="chart-mar27" class="month-chart" viewBox="0 0 630 160" xmlns="http://www.w3.org/2000/svg" style="display:block;"></svg>
+      <div class="crit-list" id="crit-mar27" style="margin-top:2mm;"></div>
+    </div>
+
+  </div>
+  <div class="pgfoot">
+    <span>Critical Days · Annual Report</span>
+    <span>Priya Sharma</span>
+    <span>8</span>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE 9 — April + May 2027 ═══ -->
+<div class="page wide" id="p8">
+  <div class="running"><span>Antara · Critical Days</span><span class="who">Priya Sharma</span></div>
+  <div class="content" style="padding-top:6mm;">
+
+    <div class="month-pair">
+      <div class="month-head">April 2027 <span class="mdays">30 days · starts Thursday</span></div>
+      <svg id="chart-apr27" class="month-chart" viewBox="0 0 630 160" xmlns="http://www.w3.org/2000/svg" style="display:block;"></svg>
+      <div class="crit-list" id="crit-apr27" style="margin-top:2mm;"></div>
+    </div>
+
+    <div style="height:4mm;border-bottom:0.3mm dashed var(--rule);margin-bottom:4mm;"></div>
+
+    <div class="month-pair">
+      <div class="month-head">May 2027 <span class="mdays">31 days · Saturday</span></div>
+      <svg id="chart-may27" class="month-chart" viewBox="0 0 630 160" xmlns="http://www.w3.org/2000/svg" style="display:block;"></svg>
+      <div class="crit-list" id="crit-may27" style="margin-top:2mm;"></div>
+    </div>
+
+  </div>
+  <div class="pgfoot">
+    <span>Critical Days · Annual Report</span>
+    <span>Priya Sharma</span>
+    <span>9</span>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE 10 — Year-at-a-Glance · Double Critical Days ═══ -->
+<div class="page wide" id="p9">
+  <div class="running"><span>Antara · Critical Days</span><span class="who">Priya Sharma</span></div>
+  <div class="content" style="padding-top:6mm;">
+
+    <h2 class="section-title">Year-at-a-Glance</h2>
+    <h3 class="section-sub">June 2026 – May 2027 · Double critical days and cycle overview</h3>
+
+    <!-- Double critical section — JS populates -->
+    <div id="double-critical-section" style="margin-top:4mm;"></div>
+
+    <!-- Cycle crossing totals — JS populates -->
+    <div id="cycle-totals" style="margin-top:7mm;"></div>
+
+  </div>
+  <div class="pgfoot">
+    <span>Critical Days · Annual Report</span>
+    <span>Priya Sharma</span>
+    <span>10</span>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE 11 — Zero Crossings · Complete List ═══ -->
+<div class="page wide" id="p10x">
+  <div class="running"><span>Antara · Critical Days</span><span class="who">Priya Sharma</span></div>
+  <div class="content" style="padding-top:6mm;">
+
+    <h2 class="section-title">Zero Crossings · Complete List</h2>
+    <h3 class="section-sub">All cycle crossings · June 2026 – May 2027 &nbsp;·&nbsp; ↑ ascending · ↓ descending</h3>
+
+    <div class="summary-grid" id="summary-grid">
+      <!-- populated by JS -->
+    </div>
+
+    <div style="margin-top:5mm;padding-top:3mm;border-top:0.3mm dashed var(--rule);font-size:9.5pt;color:var(--muted);font-style:italic;">
+      ↑ Low → High: cycle energy rising through zero &nbsp;·&nbsp; ↓ High → Low: cycle energy falling through zero
+    </div>
+
+  </div>
+  <div class="pgfoot">
+    <span>Critical Days · Annual Report</span>
+    <span>Priya Sharma</span>
+    <span>11</span>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE 12 — Interpreting Your Year ═══ -->
+<div class="page" id="p11">
+  <div class="running"><span>Antara · Critical Days</span><span class="who">Priya Sharma</span></div>
+
+  <div class="content">
+    <div class="icon-block">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 18 Q7 8 10 18 Q13 28 16 18 Q19 8 22 18 Q25 28 28 18 Q31 8 34 18" stroke="#a88842" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+        <circle cx="10" cy="18" r="2" fill="none" stroke="#a88842" stroke-width="1.2"/>
+        <circle cx="22" cy="18" r="2" fill="none" stroke="#a88842" stroke-width="1.2"/>
+      </svg>
+    </div>
+
+    <h2 class="section-title">Interpreting Your Year</h2>
+    <h3 class="section-sub">A framework for working with biorhythmic cycles</h3>
+
+    <div class="lead" style="margin-bottom:4mm;">
+      <p>Biorhythm is best used as a lens of contextual awareness — not a deterministic oracle — and the greatest value emerges from consistency of observation over time.</p>
+    </div>
+
+    <div class="text">
+      <p>Physical zero crossings are the most practically significant. On these days — typically occurring every 11–12 days — the body transitions between its high and low half-cycles. Athletes consistently report slightly elevated injury rates and reduced coordination on physical crossing days. Simple adjustments help: warm up longer, avoid personal records, choose lighter training loads. The day after a crossing typically feels more settled.</p>
+      <p>Emotional zero crossings carry social consequence. The crossing itself may feel unremarkable, but interactions begun on such days are more prone to misreading. If you notice yourself reacting more sharply to criticism or more susceptible to flattery on a particular day, check your emotional phase — it will often be at or near zero. Equally, creative work begun at an emotional high tends to carry sustained momentum through its low phases.</p>
+      <p>Multi-cycle days — where two or three cycles cross zero simultaneously — are relatively rare and worth marking in your calendar in advance. They are not days for high-stakes decisions, difficult negotiations, or demanding physical performance. They are, however, unusually good days for introspection, journaling, and planning. The simultaneous reset of multiple cycles creates a rare moment of inner clarity, however briefly disorienting it may feel in the body.</p>
+    </div>
+
+    <div class="calc">
+      <strong>Next physical peak from today:</strong> day <span id="next-phy-peak">…</span><br>
+      <strong>Next multi-cycle critical day in this period:</strong> <span id="next-multi">…</span>
+    </div>
+
+    <div class="text" style="margin-top:3mm;">
+      <p>This report covers twelve months. Revisit it monthly — the most useful habit is to look one week ahead each Sunday, note any crossings approaching, and adjust plans gently rather than dramatically. Biorhythm does not forbid action; it enriches the quality of preparation for it.</p>
+    </div>
+  </div>
+
+  <div class="margin-area">
+    <div class="marginalia">
+      <div class="note-label">Frequency</div>
+      <div class="note">
+        Physical zero crossings occur roughly every 11–12 days, yielding around 32 crossing days per year. Emotional, every 14 days. Intellectual, every 16.5 days. Spiritual, every 26.5 days.
+      </div>
+
+      <div class="note-label">Double-critical days</div>
+      <div class="note">
+        When two cycles cross zero on the same day, the combined instability merits extra awareness. Priya's year contains several — see pages 10–11.
+      </div>
+
+      <div class="note-label">Peaks and troughs</div>
+      <div class="note">
+        A peak is a day of maximum cycle energy — not a guarantee of success, but an indicator that your underlying capacity is at its fullest. A trough is the complement: reserves are lowest, rest is restorative.
+      </div>
+
+      <div class="note-label">Spiritual cycle</div>
+      <div class="note">
+        At 53 days, the spiritual cycle moves slowly. Its zero crossings are less frequent but tend to mark shifts in outlook or long-term direction. Shown as a dashed line in all charts.
+      </div>
+    </div>
+  </div>
+
+  <div class="pgfoot">
+    <span>Critical Days · Annual Report</span>
+    <span>Priya Sharma · 15 March 1990</span>
+    <span>12</span>
+  </div>
+</div>
+
+
+<script>
+/* ─────────────────────────────────────────────
+   Biorhythm Engine — Critical Days Annual Report
+   Person: Priya Sharma, born 15 March 1990
+   ───────────────────────────────────────────── */
+
+const BIRTH = new Date(1990, 2, 15); // March 15, 1990
+
+const PERIODS = { physical: 23, emotional: 28, intellectual: 33, spiritual: 53 };
+const COLORS  = { physical: '#c44a4a', emotional: '#1f5e8a', intellectual: '#3a7a3a', spiritual: '#7048a0' };
+const LABELS  = { physical: 'Physical', emotional: 'Emotional', intellectual: 'Intellectual', spiritual: 'Spiritual' };
+const CYCLES  = ['physical', 'emotional', 'intellectual', 'spiritual'];
+
+function daysFromBirth(date) {
+  return Math.floor((date - BIRTH) / 86400000);
+}
+
+function cycleVal(d, period) {
+  return Math.sin(2 * Math.PI * d / period);
+}
+
+/* Returns true if day d is a zero crossing for given period */
+function isCrossing(d, period) {
+  const prev = cycleVal(d - 1, period);
+  const curr = cycleVal(d, period);
+  return prev * curr <= 0;
+}
+
+/* Returns true if day d is near a peak (local max, value > 0.85) */
+function isPeak(d, period) {
+  const v = cycleVal(d, period);
+  const vp = cycleVal(d - 1, period);
+  const vn = cycleVal(d + 1, period);
+  return v > 0.85 && v >= vp && v >= vn;
+}
+
+/* Returns true if day d is near a trough (local min, value < -0.85) */
+function isTrough(d, period) {
+  const v = cycleVal(d, period);
+  const vp = cycleVal(d - 1, period);
+  const vn = cycleVal(d + 1, period);
+  return v < -0.85 && v <= vp && v <= vn;
+}
+
+/* ─── Phase info on 1 June 2026 ─── */
+const d0 = daysFromBirth(new Date(2026, 5, 1));
+document.getElementById('days-info').textContent = d0.toLocaleString('en-IN') + ' days lived';
+
+const phaseStr = CYCLES.map(c => {
+  const p = PERIODS[c];
+  const phase = ((d0 % p) / p * 100).toFixed(0);
+  const v = cycleVal(d0, p);
+  return `${LABELS[c].slice(0,3)} ${v >= 0 ? '+' : ''}${v.toFixed(2)}`;
+}).join(' · ');
+document.getElementById('phase-info').textContent = phaseStr;
+
+/* ─── Chart renderer ─── */
+function daysInMonth(year, month) { // month 0-based
+  return new Date(year, month + 1, 0).getDate();
+}
+
+const SVG_W = 630, SVG_H = 160;
+const LEFT = 18, RIGHT = 8, TOP = 12, BOT = 26;
+const CHART_W = SVG_W - LEFT - RIGHT;
+const CHART_H = SVG_H - TOP - BOT;
+const MID_Y = TOP + CHART_H / 2;
+const AMP = (CHART_H / 2) * 0.82;
+
+function renderChart(svgId, critListId, year, month) {
+  const svg = document.getElementById(svgId);
+  if (!svg) return;
+  const N = daysInMonth(year, month);
+  const step = CHART_W / N;
+  const ns = 'http://www.w3.org/2000/svg';
+
+  // Background
+  const bg = document.createElementNS(ns, 'rect');
+  bg.setAttribute('x', LEFT); bg.setAttribute('y', TOP);
+  bg.setAttribute('width', CHART_W); bg.setAttribute('height', CHART_H);
+  bg.setAttribute('fill', '#f8f5ed'); bg.setAttribute('rx', '2');
+  svg.appendChild(bg);
+
+  // Week separator lines (every 7 days)
+  for (let w = 7; w <= N; w += 7) {
+    const x = LEFT + (w - 0.5) * step;
+    const vl = document.createElementNS(ns, 'line');
+    vl.setAttribute('x1', x); vl.setAttribute('y1', TOP);
+    vl.setAttribute('x2', x); vl.setAttribute('y2', TOP + CHART_H);
+    vl.setAttribute('stroke', '#d8d0bc'); vl.setAttribute('stroke-width', '0.5');
+    svg.appendChild(vl);
+  }
+
+  // Zero line
+  const zl = document.createElementNS(ns, 'line');
+  zl.setAttribute('x1', LEFT); zl.setAttribute('y1', MID_Y);
+  zl.setAttribute('x2', LEFT + CHART_W); zl.setAttribute('y2', MID_Y);
+  zl.setAttribute('stroke', '#b8a464'); zl.setAttribute('stroke-width', '0.6');
+  svg.appendChild(zl);
+
+  // +1 and -1 guide lines
+  [1, -1].forEach(v => {
+    const gl = document.createElementNS(ns, 'line');
+    const y = MID_Y - v * AMP;
+    gl.setAttribute('x1', LEFT); gl.setAttribute('y1', y);
+    gl.setAttribute('x2', LEFT + CHART_W); gl.setAttribute('y2', y);
+    gl.setAttribute('stroke', '#d8d0bc'); gl.setAttribute('stroke-width', '0.4');
+    gl.setAttribute('stroke-dasharray', '2 3');
+    svg.appendChild(gl);
+  });
+
+  // Day axis ticks + labels (every 5 days)
+  for (let d = 1; d <= N; d += 5) {
+    const x = LEFT + (d - 0.5) * step;
+    const tick = document.createElementNS(ns, 'line');
+    tick.setAttribute('x1', x); tick.setAttribute('y1', TOP + CHART_H);
+    tick.setAttribute('x2', x); tick.setAttribute('y2', TOP + CHART_H + 7);
+    tick.setAttribute('stroke', '#c8b890'); tick.setAttribute('stroke-width', '0.8');
+    svg.appendChild(tick);
+    const label = document.createElementNS(ns, 'text');
+    label.setAttribute('x', x); label.setAttribute('y', SVG_H - 4);
+    label.setAttribute('text-anchor', 'middle');
+    label.setAttribute('font-size', '13'); label.setAttribute('fill', '#6a5a40');
+    label.setAttribute('font-family', 'Georgia, serif');
+    label.textContent = d;
+    svg.appendChild(label);
+  }
+
+  // Y axis labels
+  ['P', '0', 'T'].forEach((lbl, i) => {
+    const y = i === 0 ? TOP + 7 : i === 1 ? MID_Y + 3 : TOP + CHART_H - 3;
+    const tl = document.createElementNS(ns, 'text');
+    tl.setAttribute('x', LEFT - 3); tl.setAttribute('y', y);
+    tl.setAttribute('text-anchor', 'end');
+    tl.setAttribute('font-size', '13'); tl.setAttribute('fill', '#7a6050');
+    tl.setAttribute('font-family', 'Georgia, serif');
+    tl.textContent = lbl;
+    svg.appendChild(tl);
+  });
+
+  // Build smooth paths for each cycle
+  CYCLES.forEach((c, ci) => {
+    const period = PERIODS[c];
+    const color = COLORS[c];
+    const pts = [];
+
+    // More points for smoothness
+    for (let d = 0.5; d <= N; d += 0.5) {
+      const dayTotal = daysFromBirth(new Date(year, month, 1)) + d - 0.5;
+      const val = cycleVal(dayTotal, period);
+      const x = LEFT + d * step;
+      const y = MID_Y - val * AMP;
+      pts.push(`${x.toFixed(1)},${y.toFixed(1)}`);
+    }
+
+    const path = document.createElementNS(ns, 'polyline');
+    path.setAttribute('points', pts.join(' '));
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', color);
+    path.setAttribute('stroke-width', ci === 3 ? '1.0' : '1.4');
+    if (ci === 3) path.setAttribute('stroke-dasharray', '4 3');
+    path.setAttribute('stroke-linecap', 'round');
+    svg.appendChild(path);
+  });
+
+  // Critical day markers + annotation
+  const annotations = [];
+  const baseDays = daysFromBirth(new Date(year, month, 1));
+
+  for (let d = 1; d <= N; d++) {
+    const dayTotal = baseDays + d - 1;
+    const x = LEFT + (d - 0.5) * step;
+
+    CYCLES.forEach(c => {
+      const period = PERIODS[c];
+      const color = COLORS[c];
+
+      if (isCrossing(dayTotal, period)) {
+        // Circle marker on zero line
+        const circ = document.createElementNS(ns, 'circle');
+        circ.setAttribute('cx', x); circ.setAttribute('cy', MID_Y);
+        circ.setAttribute('r', '2.5');
+        circ.setAttribute('fill', 'white'); circ.setAttribute('stroke', color);
+        circ.setAttribute('stroke-width', '1.2');
+        svg.appendChild(circ);
+
+        const dir = cycleVal(dayTotal - 0.5, period) > 0 ? '↓' : '↑';
+        annotations.push({ day: d, cycle: c, type: 'cross', label: `${LABELS[c].slice(0,3)} ${dir}`, color });
+      }
+
+      if (isPeak(dayTotal, period)) {
+        // Triangle up
+        const ty = MID_Y - AMP - 4;
+        const tri = document.createElementNS(ns, 'polygon');
+        tri.setAttribute('points', `${x},${ty - 5} ${x-3},${ty} ${x+3},${ty}`);
+        tri.setAttribute('fill', color); tri.setAttribute('opacity', '0.75');
+        svg.appendChild(tri);
+        annotations.push({ day: d, cycle: c, type: 'peak', label: `${LABELS[c].slice(0,3)} ▲`, color });
+      }
+
+      if (isTrough(dayTotal, period)) {
+        // Triangle down
+        const ty = MID_Y + AMP + 4;
+        const tri = document.createElementNS(ns, 'polygon');
+        tri.setAttribute('points', `${x},${ty + 5} ${x-3},${ty} ${x+3},${ty}`);
+        tri.setAttribute('fill', color); tri.setAttribute('opacity', '0.65');
+        svg.appendChild(tri);
+        annotations.push({ day: d, cycle: c, type: 'trough', label: `${LABELS[c].slice(0,3)} ▼`, color });
+      }
+    });
+  }
+
+  // Render annotation chips
+  const listEl = document.getElementById(critListId);
+  if (listEl && annotations.length > 0) {
+    // Group by day
+    const byDay = {};
+    annotations.forEach(a => {
+      if (!byDay[a.day]) byDay[a.day] = [];
+      byDay[a.day].push(a);
+    });
+
+    const days = Object.keys(byDay).map(Number).sort((a,b) => a-b);
+    let html = '';
+    days.forEach(d => {
+      const items = byDay[d];
+      const multiClass = items.filter(i => i.type === 'cross').length >= 2 ? ' style="font-weight:700;"' : '';
+      html += `<span style="display:inline-flex;align-items:center;gap:2px;background:rgba(184,164,100,0.10);border-radius:2px;padding:1px 4px;margin-bottom:1px;"${multiClass}>`;
+      html += `<span style="font-size:8pt;color:#6d6553;font-family:Georgia,serif;">Day ${d}</span>`;
+      items.forEach(it => {
+        html += `&nbsp;<span style="color:${it.color};font-size:8.5pt;">${it.label}</span>`;
+      });
+      html += '</span> ';
+    });
+    listEl.innerHTML = html;
+  } else if (listEl) {
+    listEl.innerHTML = '<span style="font-size:9pt;color:#9a8a74;font-style:italic;">No significant cycle events this month.</span>';
+  }
+
+  return annotations;
+}
+
+/* ─── Render all 12 months and collect all events ─── */
+const MONTHS = [
+  { id: 'jun26', critId: 'crit-jun26', y: 2026, m: 5 },
+  { id: 'jul26', critId: 'crit-jul26', y: 2026, m: 6 },
+  { id: 'aug26', critId: 'crit-aug26', y: 2026, m: 7 },
+  { id: 'sep26', critId: 'crit-sep26', y: 2026, m: 8 },
+  { id: 'oct26', critId: 'crit-oct26', y: 2026, m: 9 },
+  { id: 'nov26', critId: 'crit-nov26', y: 2026, m: 10 },
+  { id: 'dec26', critId: 'crit-dec26', y: 2026, m: 11 },
+  { id: 'jan27', critId: 'crit-jan27', y: 2027, m: 0 },
+  { id: 'feb27', critId: 'crit-feb27', y: 2027, m: 1 },
+  { id: 'mar27', critId: 'crit-mar27', y: 2027, m: 2 },
+  { id: 'apr27', critId: 'crit-apr27', y: 2027, m: 3 },
+  { id: 'may27', critId: 'crit-may27', y: 2027, m: 4 },
+];
+
+const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const MONTH_FULL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+const allEvents = [];
+MONTHS.forEach(mo => {
+  const events = renderChart('chart-' + mo.id, mo.critId, mo.y, mo.m);
+  if (events) {
+    events.forEach(ev => {
+      allEvents.push({ ...ev, year: mo.y, month: mo.m });
+    });
+  }
+});
+
+/* ─── Year summary — double critical days + crossings grid ─── */
+function buildSummary() {
+
+  /* ── Build day map for multi-cycle crossings ── */
+  const dayMap = {};
+  allEvents.filter(ev => ev.type === 'cross').forEach(ev => {
+    const key = `${ev.year}-${ev.month}-${ev.day}`;
+    if (!dayMap[key]) dayMap[key] = {
+      date: new Date(ev.year, ev.month, ev.day),
+      day: ev.day, year: ev.year, month: ev.month, cycles: []
+    };
+    dayMap[key].cycles.push(ev.cycle);
+  });
+  const multis = Object.values(dayMap)
+    .filter(d => d.cycles.length >= 2)
+    .sort((a, b) => a.date - b.date);
+
+  /* ── 1. Double critical days section (page 9) ── */
+  const dcSection = document.getElementById('double-critical-section');
+  if (dcSection) {
+    const hasTriple = multis.some(m => m.cycles.length >= 3);
+    const heading = hasTriple ? 'Double &amp; Triple Critical Days' : 'Double Critical Days';
+
+    let html = `<div style="font-size:13pt;font-weight:700;color:#2a3340;letter-spacing:.04em;
+      margin-bottom:5mm;padding-bottom:2mm;border-bottom:0.7mm solid var(--rule);">
+      ${heading}
+      <span style="font-size:10pt;font-weight:400;color:var(--muted);margin-left:5mm;font-style:italic;">
+        — when two or more cycles cross zero on the same day
+      </span>
+    </div>`;
+
+    if (multis.length === 0) {
+      html += `<p style="font-size:11pt;color:var(--muted);font-style:italic;">
+        No days with two or more simultaneous zero crossings in this period.</p>`;
+    } else {
+      multis.forEach(m => {
+        const dateStr = m.date.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+        const star = m.cycles.length >= 3
+          ? `<span style="color:var(--gold);margin-right:3mm;font-size:13pt;">★</span>` : '';
+
+        const cycleHtml = m.cycles.map((c, i) => {
+          const prevD = daysFromBirth(new Date(m.year, m.month, m.day - 1));
+          const prevVal = cycleVal(prevD, PERIODS[c]);
+          const arrow = prevVal > 0 ? '↓' : '↑';
+          const sep = i > 0
+            ? `<span style="color:var(--muted);margin:0 3mm;font-weight:400;font-size:12pt;">+</span>`
+            : '';
+          return `${sep}<span style="color:${COLORS[c]};font-weight:700;">${LABELS[c]}</span>`
+               + `<span style="color:${COLORS[c]};font-size:12pt;margin-left:1.5mm;">${arrow}</span>`;
+        }).join('');
+
+        html += `<div class="dc-entry">
+          <div class="dc-date">${star}${dateStr}</div>
+          <div style="font-size:12.5pt;line-height:1.5;">${cycleHtml}</div>
+        </div>`;
+      });
+    }
+    dcSection.innerHTML = html;
+  }
+
+  /* ── 2. Cycle crossing totals (page 9 lower section) ── */
+  const totals = { physical: 0, emotional: 0, intellectual: 0, spiritual: 0 };
+  allEvents.filter(ev => ev.type === 'cross').forEach(ev => totals[ev.cycle]++);
+
+  const totalsEl = document.getElementById('cycle-totals');
+  if (totalsEl) {
+    let html = `<div style="font-size:10pt;font-weight:700;color:#2a3340;letter-spacing:.04em;
+      margin-bottom:3mm;padding-bottom:2mm;border-bottom:0.4mm solid var(--rule);">
+      Crossing Frequency · 12-month overview
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;">`;
+    CYCLES.forEach(c => {
+      const n = totals[c];
+      const avgDays = n > 0 ? (365 / n).toFixed(1) : '—';
+      html += `<div style="padding:4mm;background:rgba(184,164,100,0.07);
+        border-top:1mm solid ${COLORS[c]};border-radius:0 0 1.5mm 1.5mm;">
+        <div style="font-size:9.5pt;letter-spacing:.16em;text-transform:uppercase;
+          color:${COLORS[c]};font-weight:700;margin-bottom:2.5mm;">${LABELS[c]}</div>
+        <div style="font-size:20pt;font-weight:700;color:#2a3340;line-height:1;">${n}</div>
+        <div style="font-size:8.5pt;color:var(--muted);margin-top:1.5mm;">crossings this year</div>
+        <div style="font-size:8.5pt;color:var(--muted);">avg every ${avgDays} days</div>
+      </div>`;
+    });
+    html += '</div>';
+    totalsEl.innerHTML = html;
+  }
+
+  /* ── 3. Zero crossings grid (page 10) ── */
+  const byType = { physical: [], emotional: [], intellectual: [], spiritual: [] };
+  allEvents.forEach(ev => {
+    if (ev.type === 'cross') {
+      const dateStr = `${ev.day} ${MONTH_NAMES[ev.month]}`;
+      const prevD = daysFromBirth(new Date(ev.year, ev.month, ev.day - 1));
+      const prevVal = cycleVal(prevD, PERIODS[ev.cycle]);
+      byType[ev.cycle].push({ dateStr, arrow: prevVal > 0 ? '↓' : '↑' });
+    }
+  });
+
+  const grid = document.getElementById('summary-grid');
+  if (!grid) return;
+
+  let html = '';
+  CYCLES.forEach(c => {
+    html += `<div>
+      <div class="summary-col-head" style="color:${COLORS[c]};border-bottom:0.8mm solid ${COLORS[c]};">
+        ${LABELS[c].toUpperCase()}
+      </div>`;
+    byType[c].forEach(it => {
+      html += `<div class="summary-item">
+        <span class="si-date">${it.dateStr}</span>
+        <span class="si-arrow" style="color:${COLORS[c]};">${it.arrow}</span>
+      </div>`;
+    });
+    html += '</div>';
+  });
+  grid.innerHTML = html;
+}
+
+buildSummary();
+
+/* ─── Cover chart ─── */
+(function drawCoverChart() {
+  const paths = {
+    physical: document.getElementById('cover-phy'),
+    emotional: document.getElementById('cover-emo'),
+    intellectual: document.getElementById('cover-int'),
+    spiritual: document.getElementById('cover-spi'),
+  };
+  if (!paths.physical) return;
+
+  const W = 480, H = 110;
+  const mid = H / 2;
+  const amp = (H / 2) * 0.75;
+  const startDay = d0;
+
+  CYCLES.forEach(c => {
+    const period = PERIODS[c];
+    const pts = [];
+    for (let x = 0; x <= W; x += 2) {
+      const d = startDay + x / W * 56; // show 2 months
+      const val = cycleVal(d, period);
+      const y = mid - val * amp;
+      pts.push(`${x},${y.toFixed(1)}`);
+    }
+    paths[c].setAttribute('d', 'M ' + pts.join(' L '));
+  });
+})();
+
+/* ─── Page 10: next peak and next multi ─── */
+(function computeNextEvents() {
+  const today = daysFromBirth(new Date());
+
+  // Next physical peak
+  let nextPeakDay = null;
+  for (let d = today + 1; d < today + 60; d++) {
+    if (isPeak(d, PERIODS.physical)) { nextPeakDay = d; break; }
+  }
+  const npEl = document.getElementById('next-phy-peak');
+  if (npEl && nextPeakDay) {
+    const date = new Date(BIRTH.getTime() + nextPeakDay * 86400000);
+    npEl.textContent = date.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  // Next multi-critical (from allEvents)
+  const dayMap = {};
+  allEvents.filter(ev => ev.type === 'cross').forEach(ev => {
+    const key = `${ev.year}-${ev.month}-${ev.day}`;
+    if (!dayMap[key]) dayMap[key] = { date: new Date(ev.year, ev.month, ev.day), cycles: [] };
+    dayMap[key].cycles.push(ev.cycle);
+  });
+  const nextMulti = Object.values(dayMap).filter(d => d.cycles.length >= 2 && d.date > new Date())
+    .sort((a, b) => a.date - b.date)[0];
+
+  const nmEl = document.getElementById('next-multi');
+  if (nmEl && nextMulti) {
+    nmEl.textContent = nextMulti.date.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
+      + ' (' + nextMulti.cycles.map(c => LABELS[c]).join(' + ') + ')';
+  } else if (nmEl) {
+    nmEl.textContent = 'See year summary on page 9';
+  }
+})();
+</script>
+</body>
+</html>
