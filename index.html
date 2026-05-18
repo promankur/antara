@@ -877,12 +877,18 @@ body{
   cursor:pointer;background:none;border:none;padding:2px;
 }
 .upi-logo{
-  width:44px;height:44px;border-radius:10px;
+  height:40px;max-width:72px;
   display:flex;align-items:center;justify-content:center;
-  font-family:Arial,sans-serif;font-size:11pt;font-weight:700;
-  color:white;border:2px solid transparent;transition:border-color .15s,transform .1s;
+  overflow:hidden;background:none;border:none;
+  border-bottom:2.5px solid transparent;
+  transition:border-color .15s,transform .1s;
 }
-.upi-chip.sel .upi-logo{border-color:var(--maroon);transform:scale(1.08);}
+.upi-logo img{
+  height:38px;width:auto;max-width:72px;
+  object-fit:contain;display:block;
+}
+.upi-chip.sel .upi-logo{border-bottom-color:var(--maroon);transform:scale(1.06);}
+.upi-chip.sel .upi-chip-label{color:var(--maroon);font-weight:700;}
 .upi-chip-label{
   font-family:Arial,sans-serif;font-size:7pt;color:var(--muted);
   letter-spacing:.02em;text-align:center;
@@ -1761,32 +1767,36 @@ body{
           <label class="pay-label">Choose your app</label>
           <div class="pay-upi-apps">
             <button class="upi-chip sel" onclick="selUpi(this)">
-              <div class="upi-logo" style="background:#4285F4;">G</div>
+              <div class="upi-logo"><img src="logos/Google%20Pay%20logo.png" alt="GPay"/></div>
               <span class="upi-chip-label">GPay</span>
             </button>
             <button class="upi-chip" onclick="selUpi(this)">
-              <div class="upi-logo" style="background:#5F259F;">Pe</div>
+              <div class="upi-logo"><img src="logos/PhonePe%20logo.png" alt="PhonePe"/></div>
               <span class="upi-chip-label">PhonePe</span>
             </button>
             <button class="upi-chip" onclick="selUpi(this)">
-              <div class="upi-logo" style="background:#FF9900;font-size:14pt;">a</div>
+              <div class="upi-logo"><img src="logos/Amazon%20Pay%20logo.png" alt="Amazon Pay"/></div>
               <span class="upi-chip-label">Amazon</span>
             </button>
             <button class="upi-chip" onclick="selUpi(this)">
-              <div class="upi-logo" style="background:#002970;">P</div>
+              <div class="upi-logo"><img src="logos/Paytm%20logo.png" alt="Paytm"/></div>
               <span class="upi-chip-label">Paytm</span>
             </button>
             <button class="upi-chip" onclick="selUpi(this)">
-              <div class="upi-logo" style="background:#138808;">B</div>
+              <div class="upi-logo"><img src="logos/BHIM%20logo.png" alt="BHIM"/></div>
               <span class="upi-chip-label">BHIM</span>
             </button>
             <button class="upi-chip" onclick="selUpi(this)">
-              <div class="upi-logo" style="background:#25D366;font-size:13pt;">W</div>
+              <div class="upi-logo"><img src="logos/WhatsApp%20logo.png" alt="WhatsApp Pay"/></div>
               <span class="upi-chip-label">WhatsApp</span>
             </button>
             <button class="upi-chip" onclick="selUpi(this)">
-              <div class="upi-logo" style="background:#1a1a2e;font-size:9pt;">CRED</div>
-              <span class="upi-chip-label">Cred</span>
+              <div class="upi-logo"><img src="logos/Jio%20Pay%20logo.png" alt="Jio Pay"/></div>
+              <span class="upi-chip-label">Jio</span>
+            </button>
+            <button class="upi-chip" onclick="selUpi(this)">
+              <div class="upi-logo"><img src="logos/UPI%20logo.png" alt="UPI"/></div>
+              <span class="upi-chip-label">Any UPI</span>
             </button>
           </div>
         </div>
