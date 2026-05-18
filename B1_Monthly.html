@@ -914,6 +914,154 @@
 <button class="print-fab" onclick="window.print()">🖨 Print / Save PDF</button>
 
 <script>
+/* ── Layer 2: Biorhythm Calculation Engine ── */
+(function(){
+  try {
+    var raw=localStorage.getItem('antara_user'); if(!raw)return;
+    var u=JSON.parse(raw); if(!u.dob)return;
+
+    // Parse birth date and calculate days lived
+    var dp=u.dob.split('-');
+    var birth=new Date(+dp[0],+dp[1]-1,+dp[2]);
+    var today=new Date(); today.setHours(0,0,0,0); birth.setHours(0,0,0,0);
+    var dL=Math.floor((today-birth)/86400000);
+
+    // Core biorhythm value: sin(2π × total_days / period)
+    function bv(d,period){ return Math.sin(2*Math.PI*(dL+d)/period); }
+
+    // Format value: +0.27 / −0.91 / 0.00
+    function fv(v){
+      var a=Math.abs(v).toFixed(2);
+      if(a==='0.00') return '0.00';
+      return (v>0?'+':'−')+a;
+    }
+
+    /* ── 1. REGENERATE MAIN 90-DAY CHART PATHS ── */
+    var MID=41, AMP=32, X0=14, XW=140;
+    function makePath(period){
+      var pts=[];
+      for(var d=0;d<=90;d+=2){
+        pts.push((X0+d*XW/90).toFixed(1)+' '+(MID-bv(d,period)*AMP).toFixed(1));
+      }
+      return 'M '+pts.join(' L ');
+    }
+    var cp=document.querySelectorAll('.biochart-wide svg path');
+    [23,28,33,53].forEach(function(p,i){ if(cp[i]) cp[i].setAttribute('d',makePath(p)); });
+
+    /* ── 2. UPDATE KEY VALUE READOUTS ── */
+    var PNAMES=['23 days','28 days','33 days','53 days'];
+    var kv=document.querySelectorAll('.key-val');
+    var kp=document.querySelectorAll('.key-period');
+    [23,28,33,53].forEach(function(per,i){
+      var v=bv(0,per), vp=bv(-1,per);
+      if(kv[i]) kv[i].textContent=fv(v);
+      var desc;
+      if(Math.abs(v)<0.15) desc='crossing midline';
+      else if(v>0.95) desc='at or near peak';
+      else if(v<-0.95) desc='at or near trough';
+      else desc=(v>0?'positive':'negative')+' · '+(v>vp?'rising':'falling');
+      if(kp[i]) kp[i].textContent=PNAMES[i]+' · '+desc;
+    });
+
+    /* ── 3. REBUILD DAY-BY-DAY TABLE ── */
+    var tbody=document.querySelector('.bio-daily tbody');
+    if(!tbody) return;
+
+    var DNAMES=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var MSHORT=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var CLS_POS=['bp','be','bi','bs'];   // positive: Physical, Emo, Intel, Spi
+    var CY_NAME=['Phy','Emo','Int','Spi'];
+    var CY_COL=['#c44a4a','#1f5e8a','#3a7a3a','#7048a0'];
+    var CY_PER=[23,28,33,53];
+    var CRIT=0.15, PEAK_T=0.995;
+
+    var birthMM=+dp[1]-1, birthDD=+dp[2], birthYY=+dp[0];
+    var curMonth=-1;
+    var doubleCritDays=[];
+    var rows='';
+
+    for(var d=0;d<31;d++){
+      var dt=new Date(today); dt.setDate(today.getDate()+d);
+      var vals=CY_PER.map(function(p){ return bv(d,p); });
+      var prevVals=CY_PER.map(function(p){ return bv(d-1,p); });
+
+      // Date cell — add month tag when month changes
+      var mo=dt.getMonth();
+      var dCell='<td class="bd-date">';
+      if(mo!==curMonth){ dCell+='<span class="bd-month-tag">'+MSHORT[mo]+'</span>'; curMonth=mo; }
+      dCell+=dt.getDate()+'</td>';
+
+      // Value cells & event detection
+      var vCells='';
+      var crossings=[], peakTroughs=[];
+      var critCount=0;
+
+      for(var i=0;i<4;i++){
+        var v=vals[i], pv=prevVals[i];
+        var absV=Math.abs(v);
+        var bold=(absV>=PEAK_T)?' style="font-weight:800"':'';
+        var cls;
+        if(absV<CRIT){
+          cls='bc'; critCount++;
+          var dir=(v>=pv)?'↑':'↓';
+          var word=((v>=0)!==(pv>=0))?'crosses midline':'near midline';
+          crossings.push({text:'◈ '+CY_NAME[i]+' '+dir+' '+word, color:CY_COL[i]});
+        } else {
+          cls=(v>=0)?CLS_POS[i]:'bn';
+        }
+        if(absV>=PEAK_T){
+          peakTroughs.push({name:CY_NAME[i], symb:(v>0?'▲':'▼'), isUp:(v>0)});
+        }
+        vCells+='<td class="'+cls+'"'+bold+'>'+fv(v)+'</td>';
+      }
+
+      if(critCount>=2) doubleCritDays.push(MSHORT[dt.getMonth()]+' '+dt.getDate());
+
+      // Note & row style
+      var isBirthday=(mo===birthMM && dt.getDate()===birthDD);
+      var rowBg='', noteHtml='', tdStyle='';
+
+      if(isBirthday){
+        var ageHere=dt.getFullYear()-birthYY;
+        rowBg=' style="background:rgba(168,136,66,0.05)"';
+        noteHtml='Birthday · '+ageHere;
+        tdStyle=' style="color:var(--gold);font-style:italic"';
+      } else if(peakTroughs.length>0 && crossings.length===0){
+        rowBg=' style="background:rgba(168,136,66,0.07)"';
+        var ptParts=peakTroughs.map(function(pt){ return pt.name+' '+pt.symb; });
+        var ptWord=peakTroughs.every(function(pt){ return pt.isUp; })?'peak':'trough';
+        if(!peakTroughs.every(function(pt){ return pt.isUp===peakTroughs[0].isUp; })) ptWord='';
+        noteHtml=ptParts.join(' · ')+(ptWord?' '+ptWord:'');
+        tdStyle=' style="color:var(--muted);font-style:italic"';
+      } else if(crossings.length>0){
+        rowBg=' style="background:rgba(168,136,66,0.04)"';
+        noteHtml=crossings.map(function(c){
+          return '<span style="color:'+c.color+'">'+c.text+'</span>';
+        }).join(' · ');
+      }
+
+      rows+='<tr'+rowBg+'>'+dCell+
+        '<td class="bd-day">'+DNAMES[dt.getDay()]+'</td>'+
+        vCells+
+        '<td class="bd-notes"'+tdStyle+'>'+noteHtml+'</td></tr>';
+    }
+
+    tbody.innerHTML=rows;
+
+    // Update table footnote
+    var fn=document.querySelector('.bio-daily + div');
+    if(fn){
+      var base='Values range from −1.00 (full low) to +1.00 (full high) · Bold ▲▼ marks peaks and troughs · ◈ names cycles crossing the midline on that day';
+      fn.textContent=doubleCritDays.length
+        ? base+' · '+doubleCritDays.join(', ')+(doubleCritDays.length===1?' is':' are')+' double-critical days'
+        : base;
+    }
+
+  } catch(e){ console.error('Layer 2 biorhythm error:',e); }
+})();
+</script>
+
+<script>
 /* ── Layer 1: Personalise from localStorage ── */
 (function(){
   try {
