@@ -1053,5 +1053,42 @@
 </section>
 
 <button class="print-fab" onclick="window.print()">🖨 Print / Save PDF</button>
+
+<script>
+/* ── Layer 1: Personalise from localStorage ── */
+(function(){
+  try {
+    var raw=localStorage.getItem('antara_user'); if(!raw)return;
+    var u=JSON.parse(raw); if(!u.name||!u.dob)return;
+    var M=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var p=u.dob.split('-'); var dob=+p[2]+' '+M[+p[1]-1]+' '+p[0];
+    var RN='Vedic Horoscope (South)';
+    // 1. Title
+    document.title=document.title.replace(/Ankur\ Gupta/,u.name);
+    // 2. CSS --page-id (footer running name)
+    document.documentElement.style.setProperty('--page-id','"'+RN+' · '+u.name+'"');
+    // 3. Cover person block
+    var pd=document.querySelectorAll('.cover .person > div');
+    if(pd[0]){ pd[0].textContent=u.name; }
+    if(pd[1]){ pd[1].textContent=dob; }
+    // 4. SVG text nodes with DOB (horoscope charts)
+    document.querySelectorAll('text').forEach(function(el){
+      if(/16\ May\ 1953/.test(el.textContent)) el.textContent=el.textContent.replace(/16\ May\ 1953/g,dob);
+    });
+    // 5. Running headers / note blocks
+    document.querySelectorAll('.running .who,.note,.note span').forEach(function(el){
+      if(/Ankur\ Gupta/.test(el.textContent)) el.textContent=el.textContent.replace(/Ankur\ Gupta/g,u.name);
+    });
+    // 6. Paragraphs mentioning name or DOB
+    document.querySelectorAll('p,li').forEach(function(el){
+      var h=el.innerHTML;
+      var changed=false;
+      if(/Ankur\ Gupta/.test(h)){ h=h.replace(/Ankur\ Gupta/g,u.name); changed=true; }
+      if(/16\ May\ 1953/.test(h)){ h=h.replace(/16\ May\ 1953/g,dob); changed=true; }
+      if(changed) el.innerHTML=h;
+    });
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
