@@ -216,6 +216,9 @@ body{
 .field-row{display:flex;gap:12px;align-items:flex-end;}
 .field-row .field{flex:1;margin-bottom:0;}
 .approx-wrap{display:flex;align-items:center;gap:7px;padding-bottom:7px;}
+.ampm-seg{display:flex;border:1px solid var(--rule);border-radius:3px;overflow:hidden;align-self:flex-end;margin-bottom:7px;}
+.ampm-btn{font-family:"Iowan Old Style",Georgia,serif;font-size:9pt;font-weight:700;letter-spacing:.08em;background:none;border:none;padding:4px 9px;cursor:pointer;color:var(--muted);transition:background .15s,color .15s;}
+.ampm-btn.active{background:var(--maroon);color:var(--paper);}
 .approx-lbl{
   font-family:Arial,sans-serif;font-size:7.5pt;font-weight:700;
   letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
@@ -1279,7 +1282,7 @@ body{
         <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#a87825" stroke-width="1.8" stroke-linecap="round"/>
       </svg>
     </button>
-    <div class="wordmark">Antara<sup>अन्तर</sup></div>
+    <div class="wordmark">Antara<sup>अन्तरा</sup></div>
     <button class="icon-btn">
       <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
         <circle cx="12" cy="12" r="3" stroke="#a87825" stroke-width="1.8"/>
@@ -1435,6 +1438,10 @@ body{
           <div class="field-row">
             <div class="field">
               <input type="text" id="f-time" placeholder="hh : mm" autocomplete="off" oninput="saveHomeData()"/>
+            </div>
+            <div class="ampm-seg">
+              <button type="button" class="ampm-btn active" id="ampm-am" onclick="setAmPm('AM')">AM</button>
+              <button type="button" class="ampm-btn" id="ampm-pm" onclick="setAmPm('PM')">PM</button>
             </div>
             <div class="approx-wrap">
               <span class="approx-lbl">Approx</span>
@@ -2295,6 +2302,21 @@ function sendFreeReport(){
   document.getElementById('wlc-form-area').style.display='none';
   const sp=document.getElementById('wlc-spinner');
   sp.style.display='flex';
+  // ── Calculate today's biorhythm values ──
+  const _dob=new Date(dobISO+'T12:00:00');
+  const _days=Math.floor((new Date()-_dob)/86400000);
+  const _cycleData={
+    phy:Math.sin(2*Math.PI*_days/23),
+    emo:Math.sin(2*Math.PI*_days/28),
+    int:Math.sin(2*Math.PI*_days/33),
+    spi:Math.sin(2*Math.PI*_days/53)
+  };
+  // ── Send report via API ──
+  fetch('/api/send-report',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({reportType:'biorhythm_monthly',name,dob:dobISO,email,cycleData:_cycleData})
+  }).catch(e=>console.error('Report send error:',e));
   setTimeout(()=>{
     sp.style.display='none';
     document.getElementById('wlc-sent-email').textContent=email;
@@ -2448,10 +2470,20 @@ function activateTicker() {
     if(fmm) fmm.value=u.mm||'';
     if(fyy) fyy.value=u.yyyy||'';
     if(u.time){const ft=document.getElementById('f-time');if(ft)ft.value=u.time;}
+    if(u.ampm){setAmPm(u.ampm);}
     if(u.place){const fp=document.getElementById('f-place');if(fp)fp.value=u.place;}
     setTimeout(()=>{if(typeof check==='function')check();},100);
   } catch(e){}
 })();
+
+/* ─── AM/PM toggle ─── */
+function setAmPm(v){
+  const am=document.getElementById('ampm-am');
+  const pm=document.getElementById('ampm-pm');
+  if(am) am.classList.toggle('active', v==='AM');
+  if(pm) pm.classList.toggle('active', v==='PM');
+  saveHomeData();
+}
 
 /* ─── Save Home form data to localStorage (called on every field change + Continue) ─── */
 function saveHomeData(){
@@ -2464,6 +2496,7 @@ function saveHomeData(){
     const time=(document.getElementById('f-time')||{value:''}).value.trim();
     const place=(document.getElementById('f-place')||{value:''}).value.trim();
     const approx=document.getElementById('f-approx')&&document.getElementById('f-approx').classList.contains('on');
+    const ampm=document.getElementById('ampm-pm')&&document.getElementById('ampm-pm').classList.contains('active')?'PM':'AM';
     const dobISO=`${yy}-${mm.padStart(2,'0')}-${dd.padStart(2,'0')}`;
     const existing=JSON.parse(localStorage.getItem('antara_user')||'{}');
     localStorage.setItem('antara_user', JSON.stringify({
@@ -2471,6 +2504,7 @@ function saveHomeData(){
       name:n, dd:dd.padStart(2,'0'), mm:mm.padStart(2,'0'), yyyy:yy,
       dob:dobISO,
       time:time||existing.time||'',
+      ampm:ampm,
       place:place||existing.place||'',
       timeApprox:approx,
       saved:Date.now()
