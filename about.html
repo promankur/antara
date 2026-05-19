@@ -7,6 +7,16 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
 
+/* ─────────── Antara · About Document — A4 ─────────── */
+@page { size: A4 portrait; margin: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #c4c0b0; }
+body {
+  font-family: "Cormorant Garamond", "Palatino Linotype", Georgia, serif;
+  font-size: 12pt; line-height: 1.5;
+  color: #1a1a3a; -webkit-font-smoothing: antialiased;
+}
+
 :root {
   --paper:    #f5e8c8;
   --paper-2:  #ece0b2;
@@ -14,603 +24,558 @@
   --maroon:   #6b1a2c;
   --saffron:  #c75a1a;
   --turmeric: #a87825;
+  --gold:     #c8a85c;
   --rule:     #c8a85c;
   --muted:    #7a5a30;
+  --page-w:   210mm;
+  --page-h:   297mm;
+  --pad-top:  17mm;
+  --pad-bot:  26mm;
+  --pad-left: 25mm;
+  --pad-right:22mm;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: "Cormorant Garamond", "Palatino Linotype", Georgia, serif;
+/* ══ PAGE ══ */
+.page {
+  width: var(--page-w); height: var(--page-h);
   background: var(--paper);
-  color: var(--ink);
-  line-height: 1.5;
+  margin: 8mm auto;
+  padding: var(--pad-top) var(--pad-right) var(--pad-bot) var(--pad-left);
+  position: relative; overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,.18);
+  page-break-after: always; break-after: page;
+}
+.page:last-child { page-break-after: auto; break-after: auto; }
+
+/* Sine-wave top rule */
+.page::after {
+  content: ""; position: absolute;
+  left: var(--pad-left); right: var(--pad-right);
+  top: 9mm; height: 6mm;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><line x1='0' y1='10' x2='80' y2='10' stroke='%23c8a85c' stroke-width='0.3'/><path d='M 0 7 Q 5 3 10 7 Q 15 11 20 7 Q 25 3 30 7 Q 35 11 40 7 Q 45 3 50 7 Q 55 11 60 7 Q 65 3 70 7 Q 75 11 80 7' fill='none' stroke='%23c8a85c' stroke-width='0.7'/></svg>");
+  background-repeat: repeat-x; background-size: auto 6mm; opacity: .75;
+  pointer-events: none;
 }
 
-/* ── NAV ── */
-nav {
-  background: var(--ink);
-  padding: 18px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* ══ RUNNING HEADER ══ */
+.running {
+  position: absolute; left: var(--pad-left); right: var(--pad-right); top: 5mm;
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 8pt; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600;
 }
-.nav-wordmark {
-  font-size: 22pt; color: var(--paper); font-style: italic;
-  letter-spacing: .06em; text-decoration: none;
-}
-.nav-wordmark sup {
-  font-style: normal; color: var(--rule); font-size: 13pt;
-  margin-left: 6px; vertical-align: middle;
-}
-.nav-link {
-  color: var(--muted); font-size: 10pt; letter-spacing: .12em;
-  text-transform: uppercase; text-decoration: none;
-  transition: color .2s;
-}
-.nav-link:hover { color: var(--rule); }
+.running .sub { color: var(--muted); letter-spacing: .10em; font-weight: 400; }
 
-/* ── HERO ── */
-.hero {
+/* ══ PAGE FOOTER ══ */
+.pgfoot {
+  position: absolute; left: var(--pad-left); right: var(--pad-right); bottom: 10mm;
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 8pt; color: var(--muted); letter-spacing: .06em;
+}
+.pgfoot::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -5mm;
+  height: .4mm; background: var(--rule); opacity: .4;
+}
+
+/* ══════════════════════════════════════════
+   COVER PAGE  (dark full-page background)
+══════════════════════════════════════════ */
+.page.cover {
   background: linear-gradient(160deg, #1a1a3a 0%, #28203a 60%, #3a1a2a 100%);
-  padding: 42px 40px 34px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
   text-align: center;
 }
-.hero-eyebrow {
-  font-size: 9pt; letter-spacing: .32em; text-transform: uppercase;
-  color: var(--rule); margin-bottom: 10px; font-weight: 700;
+/* Sine wave lighter on dark */
+.page.cover::after { opacity: .35; }
+/* Running header on dark */
+.page.cover .running { color: var(--gold); opacity: .7; }
+.page.cover .running .sub { color: rgba(245,232,200,.45); }
+/* Footer on dark */
+.page.cover .pgfoot { color: rgba(245,232,200,.35); }
+.page.cover .pgfoot a { color: var(--gold); text-decoration: none; }
+.page.cover .pgfoot::before { opacity: .18; }
+
+.cover-eyebrow {
+  font-size: 8pt; letter-spacing: .40em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; margin-bottom: 9mm;
 }
-.hero h1 {
-  font-size: 46pt; font-weight: 400; font-style: italic;
-  color: var(--paper); letter-spacing: .04em; line-height: 1.1;
-  margin-bottom: 8px;
+.cover-mark {
+  width: 55mm; height: 5mm; margin: 0 auto 10mm;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><path d='M 0 7 Q 5 3 10 7 Q 15 11 20 7 Q 25 3 30 7 Q 35 11 40 7 Q 45 3 50 7 Q 55 11 60 7 Q 65 3 70 7 Q 75 11 80 7' fill='none' stroke='%23c8a85c' stroke-width='1.2'/></svg>");
+  background-repeat: repeat-x; background-size: auto 5mm;
 }
-.hero h1 span {
-  font-style: normal; font-weight: 700; color: var(--rule); font-size: 30pt;
+.cover h1 {
+  font-size: 44pt; font-weight: 400; font-style: italic;
+  color: var(--paper); letter-spacing: .06em; line-height: 1.1;
+  margin-bottom: 2mm;
 }
-.hero-rule {
-  width: 80px; height: 1px; background: var(--rule);
-  margin: 12px auto; opacity: .5;
+.cover h1 span {
+  display: block; font-style: normal; font-weight: 700;
+  color: var(--gold); font-size: 26pt; letter-spacing: .10em; margin-top: 1mm;
 }
-.hero-lines {
-  font-size: 17pt; color: rgba(245,232,200,0.80);
-  font-style: italic; line-height: 1.6;
-  margin-bottom: 14px;
+.cover-rule {
+  width: 46mm; height: .5mm; background: var(--rule);
+  margin: 8mm auto; opacity: .45;
 }
-.hero-desc {
-  font-size: 12pt; color: rgba(245,232,200,0.55);
-  max-width: 560px; margin: 0 auto;
-  letter-spacing: .02em; line-height: 1.5;
+.cover-tagline {
+  font-size: 15pt; font-style: italic;
+  color: rgba(245,232,200,.80); line-height: 1.75; margin-bottom: 6mm;
+}
+.cover-desc {
+  font-size: 11pt; color: rgba(245,232,200,.50);
+  line-height: 1.5; margin-bottom: 11mm; font-style: italic;
 }
 
-/* ── VISUAL SEPARATOR ── */
-.sep {
-  display: flex; align-items: center; gap: 16px;
-  max-width: 760px; margin: 0 auto; padding: 0 24px;
+/* ══ QUOTE BOX (centred, on cover dark bg) ══ */
+.quote-box {
+  border: .5mm solid rgba(200,168,92,.35);
+  border-left: 4px solid var(--gold);
+  border-radius: 2px;
+  padding: 8mm 14mm;
+  text-align: center; width: 138mm;
+  background: rgba(255,255,255,.04);
 }
-.sep::before, .sep::after {
-  content: ""; flex: 1; height: 1px; background: var(--paper-2);
+.quote-box .exchange {
+  font-size: 10pt; color: rgba(245,232,200,.45);
+  letter-spacing: .06em; margin-bottom: 5mm; font-style: italic;
 }
-.sep-mark {
-  color: var(--rule); font-size: 16pt; opacity: .7; line-height: 1;
-  user-select: none;
+.quote-box p {
+  font-size: 14.5pt; font-style: italic;
+  color: rgba(245,232,200,.90); line-height: 1.55;
+}
+.quote-box cite {
+  display: block; margin-top: 6mm;
+  font-size: 8pt; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--gold); font-style: normal;
 }
 
-/* ── SECTION WRAPPER ── */
-.section {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 28px 24px;
-}
+/* ══════════════════════════════════════════
+   CONTENT PAGES
+══════════════════════════════════════════ */
+.content { position: relative; z-index: 1; }
+
 .eyebrow {
-  font-size: 8pt; letter-spacing: .28em; text-transform: uppercase;
-  color: var(--saffron); font-weight: 700; margin-bottom: 6px;
+  font-size: 7.5pt; letter-spacing: .32em; text-transform: uppercase;
+  color: var(--saffron); font-weight: 700; margin-bottom: 2mm;
 }
-.section h2 {
-  font-size: 28pt; font-weight: 400; color: var(--maroon);
-  margin-bottom: 12px; line-height: 1.15;
+h2 {
+  font-size: 20pt; font-weight: 400; color: var(--maroon);
+  line-height: 1.15; margin-bottom: 4mm;
 }
-.section p {
-  font-size: 13pt; color: var(--ink); margin-bottom: 8px;
-  max-width: 680px; line-height: 1.5;
+p {
+  font-size: 11pt; color: var(--ink);
+  line-height: 1.45; margin-bottom: 3mm; max-width: 155mm;
 }
-.section p:last-child { margin-bottom: 0; }
-.section p strong { color: var(--maroon); font-weight: 700; }
+p:last-child { margin-bottom: 0; }
+strong { color: var(--maroon); }
 
-/* ── POSITION CARD ── */
-.position-card {
-  background: var(--ink); border-radius: 3px;
-  padding: 18px 24px; margin: 14px 0;
-  border-left: 4px solid var(--rule);
-}
-.position-card .exchange {
-  font-size: 11pt; color: rgba(245,232,200,0.55);
-  letter-spacing: .06em; text-transform: uppercase;
-  margin-bottom: 10px;
-}
-.position-card p {
-  color: var(--paper); font-size: 15pt; font-style: italic;
-  margin-bottom: 0; line-height: 1.6;
-}
-.position-card cite {
-  display: block; margin-top: 14px;
-  font-size: 9pt; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--rule); font-style: normal;
+.section-rule {
+  height: .4mm; background: var(--paper-2); margin: 5mm 0;
 }
 
-/* ── STACKED PRINCIPLE LINES ── */
+/* Principle lines */
 .principle-lines {
-  margin: 10px 0 12px;
-  font-size: 13pt; color: var(--ink); font-style: italic;
-  line-height: 1.7;
+  margin: 2mm 0 4mm;
+  font-size: 12pt; color: var(--ink); font-style: italic; line-height: 1.7;
 }
-.principle-lines span {
-  display: block;
-}
+.principle-lines span { display: block; }
 
-/* ── TECHNICAL TERMS LIST ── */
+/* Tech list */
 .tech-list {
-  background: rgba(107,26,44,0.04);
+  background: rgba(107,26,44,.05);
   border-left: 3px solid var(--rule);
-  padding: 10px 16px; margin: 10px 0 14px;
-  font-size: 12pt; color: var(--ink); line-height: 1.5;
+  padding: 2.5mm 6mm; margin: 2mm 0 3mm;
+  font-size: 10.5pt; color: var(--ink); line-height: 1.45;
 }
-.tech-list .tl-row {
-  display: block;
-  padding: 2px 0;
-}
+.tech-list .tl-row { display: block; padding: 1mm 0; }
 .tech-list .tl-row + .tl-row {
-  border-top: 1px dashed rgba(200,168,92,0.25);
-  padding-top: 6px; margin-top: 4px;
+  border-top: .3mm dashed rgba(200,168,92,.28);
+  padding-top: 2.5mm; margin-top: 1.5mm;
 }
 
-/* ── BULLET POINTS ── */
-.point-list { list-style: none; margin: 14px 0; }
+/* Bullet list */
+.point-list { list-style: none; margin: 2mm 0; }
 .point-list li {
-  padding: 10px 0;
-  border-bottom: 1px solid var(--paper-2);
+  display: grid; grid-template-columns: 5mm 1fr;
+  gap: 3mm; padding: 2.5mm 0;
+  border-bottom: .3mm dashed rgba(200,168,92,.28);
 }
 .point-list li:last-child { border-bottom: none; }
-.point-list .pl-head {
-  display: flex; gap: 12px; align-items: flex-start;
-  margin-bottom: 3px;
-}
-.point-list .bullet {
-  color: var(--rule); font-size: 14pt; line-height: 1;
-  flex-shrink: 0; padding-top: 3px;
-}
-.point-list .pl-title {
-  font-size: 13pt; font-weight: 700; color: var(--maroon);
-}
-.point-list .pl-body {
-  font-size: 12pt; color: var(--ink); line-height: 1.5;
-  padding-left: 26px; max-width: 640px;
-}
+.bullet { color: var(--gold); font-size: 11pt; line-height: 1.5; }
+.pl-title { font-size: 11.5pt; font-weight: 700; color: var(--maroon); margin-bottom: .5mm; }
+.pl-body  { font-size: 10.5pt; color: var(--ink); line-height: 1.4; }
 
-/* ── SYSTEMS GRID ── */
-.systems-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 12px; margin: 12px 0;
+/* Systems table */
+.sys-table { width: 100%; border-collapse: collapse; margin: 4mm 0; }
+.sys-table th {
+  font-size: 7.5pt; letter-spacing: .16em; text-transform: uppercase;
+  font-weight: 700; padding: 2.5mm 4mm;
+  border-bottom: .5mm solid var(--rule); text-align: left;
 }
-@media (max-width: 600px) { .systems-grid { grid-template-columns: 1fr; } }
-.system-card {
-  background: white; border-radius: 3px;
-  padding: 18px; border-top: 3px solid var(--rule);
+.sys-table th.c1 { color: var(--maroon); }
+.sys-table th.c2 { color: var(--turmeric); }
+.sys-table th.c3 { color: var(--saffron); }
+.sys-table td {
+  font-size: 10.5pt; font-style: italic; color: var(--ink);
+  padding: 2mm 4mm;
+  border-bottom: .3mm dashed rgba(200,168,92,.2);
+  vertical-align: top;
 }
-.system-card.c1 { border-top-color: var(--maroon); }
-.system-card.c2 { border-top-color: var(--turmeric); }
-.system-card.c3 { border-top-color: var(--saffron); }
-.system-label {
-  font-size: 8pt; letter-spacing: .20em; text-transform: uppercase;
-  font-weight: 700; margin-bottom: 12px;
-}
-.system-card.c1 .system-label { color: var(--maroon); }
-.system-card.c2 .system-label { color: var(--turmeric); }
-.system-card.c3 .system-label { color: var(--saffron); }
-.system-card ul { list-style: none; font-size: 11.5pt; color: var(--ink); }
-.system-card ul li {
-  padding: 5px 0; border-bottom: 1px solid var(--paper-2);
-  font-style: italic;
-}
-.system-card ul li:last-child { border-bottom: none; }
+.sys-table tr:last-child td { border-bottom: none; }
 
-/* ── NAME SECTION ── */
-.name-section {
+/* ══ NAME BOX (contained, no negative margins) ══ */
+.name-box {
   background: linear-gradient(135deg, #1e1830 0%, #2a1828 100%);
-  padding: 36px 40px 32px;
+  border-radius: 2px;
+  padding: 8mm 12mm; margin-top: 6mm;
   text-align: center;
 }
-.name-section .ns-eyebrow {
-  font-size: 9pt; letter-spacing: .32em; text-transform: uppercase;
-  color: var(--rule); font-weight: 700; margin-bottom: 8px;
+.name-box .nb-ey {
+  font-size: 7.5pt; letter-spacing: .30em; text-transform: uppercase;
+  color: var(--gold); font-weight: 700; margin-bottom: 2mm;
 }
-.name-section .ns-title {
-  font-size: 32pt; color: var(--paper); font-style: italic;
-  font-weight: 400; letter-spacing: .06em; margin-bottom: 4px;
+.name-box .nb-title {
+  font-size: 22pt; color: var(--paper); font-style: italic;
+  letter-spacing: .06em; margin-bottom: 2mm;
 }
-.name-section .ns-title span {
-  font-style: normal; color: var(--rule); font-size: 22pt;
+.name-box .nb-title span {
+  font-style: normal; font-weight: 700; color: var(--gold); font-size: 15pt;
 }
-.name-section .ns-rule {
-  width: 60px; height: 1px; background: var(--rule);
-  margin: 10px auto; opacity: .45;
+.name-box .nb-rule {
+  width: 36mm; height: .5mm; background: var(--gold);
+  margin: 3mm auto; opacity: .38;
 }
-.name-section .ns-body {
-  max-width: 560px; margin: 0 auto;
-  font-size: 13pt; color: rgba(245,232,200,0.78);
-  line-height: 1.5;
+.name-box .nb-body {
+  font-size: 11pt; color: rgba(245,232,200,.78);
+  line-height: 1.5; max-width: 138mm; margin: 0 auto;
 }
-.name-section .ns-body p { margin-bottom: 10px; }
-.name-section .ns-body p:last-child { margin-bottom: 0; }
-.name-section .ns-body em { color: var(--rule); font-style: italic; }
-.name-section .ns-indent {
-  display: block; padding-left: 1.6em;
-  color: rgba(245,232,200,0.58); font-style: italic;
-}
-.name-section .ns-note {
-  display: inline-block; margin-top: 14px;
-  font-size: 11pt; color: rgba(245,232,200,0.45);
-  font-style: italic; letter-spacing: .02em;
+.name-box .nb-body p { margin-bottom: 4mm; color: rgba(245,232,200,.82); }
+.name-box .nb-body p:last-child { margin-bottom: 0; }
+.name-box .nb-body em { color: var(--gold); font-style: italic; }
+.name-box .nb-note {
+  display: inline-block; margin-top: 4mm;
+  font-size: 9.5pt; color: rgba(245,232,200,.38); font-style: italic;
 }
 
-/* ── FAQ ── */
-.faq { margin: 20px 0; }
-.faq-item { border-bottom: 1px solid var(--paper-2); }
+/* ══ FAQ (answers always visible — no accordion) ══ */
+.faq-item { padding: 2.5mm 0; border-bottom: .3mm dashed rgba(200,168,92,.28); }
+.faq-item:last-child { border-bottom: none; }
 .faq-q {
-  width: 100%; background: none; border: none;
-  text-align: left; padding: 16px 0; cursor: pointer;
-  display: flex; justify-content: space-between; align-items: flex-start;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 14pt; font-weight: 700; color: var(--maroon);
-  line-height: 1.3; gap: 16px;
+  font-size: 11.5pt; font-weight: 700; color: var(--maroon);
+  margin-bottom: 1.5mm; line-height: 1.3;
 }
-.faq-q .faq-icon {
-  font-size: 22pt; color: var(--rule); flex-shrink: 0;
-  transition: transform .2s; font-weight: 400; line-height: 1;
-  margin-top: 2px;
-}
-.faq-q.open .faq-icon { transform: rotate(45deg); }
-.faq-a {
-  display: none; padding: 0 0 18px;
-  font-size: 12.5pt; color: var(--ink);
-  line-height: 1.7; max-width: 640px;
-}
-.faq-a.open { display: block; }
-.faq-a p { margin-bottom: 10px; }
-.faq-a p:last-child { margin-bottom: 0; }
+.faq-a { font-size: 10.5pt; color: var(--ink); line-height: 1.5; }
 .faq-a em { color: var(--maroon); font-style: italic; }
 
-/* ── CLOSING QUOTE ── */
-.closing {
-  background: linear-gradient(135deg, #1a1a3a 0%, #2a1a2a 100%);
-  padding: 36px 40px; text-align: center;
+/* ══ CLOSING PAGE (dark full page, mirrors cover) ══ */
+.page.closing {
+  background: linear-gradient(160deg, #1a1a3a 0%, #2a1a3a 60%, #2a1828 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
 }
-.closing blockquote {
-  font-size: 20pt; font-style: italic; color: var(--paper);
-  max-width: 600px; margin: 0 auto;
-  line-height: 1.6; letter-spacing: .02em;
+.page.closing::after { opacity: .30; }
+.page.closing .running { color: var(--gold); opacity: .65; }
+.page.closing .running .sub { color: rgba(245,232,200,.40); }
+.page.closing .pgfoot { color: rgba(245,232,200,.30); }
+.page.closing .pgfoot a { color: var(--gold); text-decoration: none; }
+.page.closing .pgfoot::before { opacity: .15; }
+
+.closing-mark {
+  width: 40mm; height: 4mm; margin: 0 auto 14mm;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><path d='M 0 7 Q 5 3 10 7 Q 15 11 20 7 Q 25 3 30 7 Q 35 11 40 7 Q 45 3 50 7 Q 55 11 60 7 Q 65 3 70 7 Q 75 11 80 7' fill='none' stroke='%23c8a85c' stroke-width='1.2'/></svg>");
+  background-repeat: repeat-x; background-size: auto 4mm;
 }
-.closing cite {
-  display: block; margin-top: 18px;
-  font-size: 9pt; letter-spacing: .18em; text-transform: uppercase;
-  color: var(--rule); font-style: normal;
+.closing-rule {
+  width: 36mm; height: .5mm; background: var(--rule);
+  margin: 12mm auto; opacity: .35;
+}
+.closing-quote {
+  font-size: 22pt; font-style: italic; color: var(--paper);
+  line-height: 1.65; letter-spacing: .02em; max-width: 140mm;
+}
+.closing-cite {
+  display: block; margin-top: 10mm;
+  font-size: 8pt; letter-spacing: .20em; text-transform: uppercase;
+  color: var(--gold); font-style: normal;
 }
 
-/* ── FOOTER ── */
-footer {
-  background: var(--ink); padding: 28px 40px;
-  text-align: center;
-  font-size: 9pt; letter-spacing: .10em; text-transform: uppercase;
-  color: var(--muted);
+@media print {
+  html, body { background: white; }
+  .page { margin: 0; box-shadow: none; }
 }
-footer a { color: var(--rule); text-decoration: none; }
-footer a:hover { color: var(--paper); }
 </style>
 </head>
 <body>
 
-<!-- ══ NAV ══ -->
-<nav>
-  <a class="nav-wordmark" href="index.html">Antara <sup>अन्तरा</sup></a>
-  <a class="nav-link" href="index.html">Open the App →</a>
-</nav>
 
+<!-- ══════════════ PAGE 1 · COVER ══════════════ -->
+<div class="page cover">
+  <div class="running">
+    <span>Antara · अन्तरा</span>
+    <span class="sub">The Interior Life, Calculated</span>
+  </div>
 
-<!-- ══ HERO ══ -->
-<div class="hero">
-  <div class="hero-eyebrow">The Interior Life, Calculated</div>
-  <h1>Antara <span>अन्तरा</span></h1>
-  <div class="hero-rule"></div>
-  <div class="hero-lines">
+  <div class="cover-eyebrow">A Personal Reading by Antara</div>
+  <div class="cover-mark"></div>
+
+  <h1>Antara<span>अन्तरा</span></h1>
+  <div class="cover-rule"></div>
+
+  <div class="cover-tagline">
     Nine traditions.<br/>
     One person.<br/>
     Precise calculations.<br/>
     Interpretation remains yours.
   </div>
-  <div class="hero-desc">
-    A computational instrument for<br/>
-    Astrology, Numerology, Biorhythms and Cyclical Systems<br/>
-    <em style="color:rgba(245,232,200,0.40);">...Built with mathematical rigour, not doctrinal certainty.</em>
+
+  <div class="cover-desc">
+    A computational instrument for Astrology, Numerology,<br/>
+    Biorhythms and Cyclical Systems<br/>
+    Built with mathematical rigour, not doctrinal certainty.
   </div>
-</div>
 
-
-<!-- ══ SEPARATOR ══ -->
-<div class="sep" style="padding-top:28px;"><span class="sep-mark">◇</span></div>
-
-
-<!-- ══ SECTION 1: WHY THIS EXISTS ══ -->
-<div class="section">
-  <div class="eyebrow">Why this exists</div>
-  <h2>Built by a rationalist.<br/>For the curious.</h2>
-
-  <p>The creator of Antara is known among friends as a rationalist. Their first question was immediate:</p>
-
-  <div class="position-card">
+  <div class="quote-box">
     <div class="exchange">"You believe in all this?"</div>
     <p>"I did not enter the belief system. I built the instrument."</p>
     <cite>— The guiding principle behind Antara</cite>
   </div>
 
-  <p>Across cultures and centuries, billions of people have used symbolic systems to understand personality, timing, compatibility, and cycles of life. Whether one accepts their interpretations or not, the underlying calculations deserve precision.</p>
-
-  <p>Antara exists for exactly that reason.</p>
-
-  <div class="principle-lines">
-    <span>Not to persuade.</span>
-    <span>Not to predict.</span>
-    <span>But to calculate correctly.</span>
+  <div class="pgfoot">
+    <span>Antara · अन्तरा</span>
+    <span>antara-alpha.vercel.app</span>
+    <a href="about_hi.html">हिन्दी में पढ़ें</a>
   </div>
 </div>
 
 
-<!-- ══ SEPARATOR ══ -->
-<div class="sep"><span class="sep-mark">◇</span></div>
-
-
-<!-- ══ SECTION 2: WHAT ANTARA IS ══ -->
-<div class="section">
-  <div class="eyebrow">What Antara is</div>
-  <h2>The instrument,<br/>not the conclusion.</h2>
-
-  <p>Every tradition has its own mathematics. Antara computes those systems with technical fidelity:</p>
-
-  <div class="tech-list">
-    <span class="tl-row">Lagna degrees · Nakshatras · BaZi pillars · Life Paths · Lo Shu grids</span>
-    <span class="tl-row">Dashas · Kua numbers · Biorhythm cycles · Critical days</span>
-    <span class="tl-row" style="font-style:italic;color:var(--muted);font-size:11pt;">Computed correctly for any person, any date.</span>
+<!-- ══════════════ PAGE 2 · WHY + WHAT ══════════════ -->
+<div class="page">
+  <div class="running">
+    <span>Antara · अन्तरा</span>
+    <span class="sub">The Interior Life, Calculated</span>
   </div>
 
-  <p>What these patterns mean is left entirely to the individual, practitioner, philosopher, skeptic, or believer reading them. Antara ends where interpretation begins.</p>
+  <div class="content">
 
-  <ul class="point-list">
-    <li>
-      <div class="pl-head">
+    <div class="eyebrow">Why this exists</div>
+    <h2>Built by a rationalist.<br/>For the curious.</h2>
+
+    <p>The creator of Antara is known among friends as a rationalist. Across cultures and centuries, billions of people have used symbolic systems to understand personality, timing, compatibility, and cycles of life. Whether one accepts their interpretations or not, the underlying calculations deserve precision.</p>
+
+    <p>Antara exists for exactly that reason.</p>
+
+    <div class="principle-lines">
+      <span>Not to persuade.</span>
+      <span>Not to predict.</span>
+      <span>But to calculate correctly.</span>
+    </div>
+
+    <div class="section-rule"></div>
+
+    <div class="eyebrow">What Antara is</div>
+    <h2>The instrument,<br/>not the conclusion.</h2>
+
+    <p>Every tradition has its own mathematics. Antara computes those systems with technical fidelity:</p>
+
+    <div class="tech-list">
+      <span class="tl-row">Lagna degrees · Nakshatras · BaZi pillars · Life Paths · Lo Shu grids</span>
+      <span class="tl-row">Dashas · Kua numbers · Biorhythm cycles · Critical days</span>
+      <span class="tl-row" style="font-style:italic;color:var(--muted);font-size:10.5pt;">Computed correctly for any person, any date.</span>
+    </div>
+
+    <p>What these patterns mean is left entirely to the individual — practitioner, philosopher, skeptic, or believer. Antara ends where interpretation begins.</p>
+
+    <ul class="point-list">
+      <li>
         <span class="bullet">◇</span>
-        <span class="pl-title">Canonical methods</span>
-      </div>
-      <div class="pl-body">Each system follows the accepted framework of its own tradition — Lahiri ayanamsha, Placidus houses, Vimshottari dasha, classical numerological assignments, and standard calendrical conversions.</div>
-    </li>
-    <li>
-      <div class="pl-head">
+        <span>
+          <div class="pl-title">Canonical methods</div>
+          <div class="pl-body">Each system follows the accepted framework of its own tradition — Lahiri ayanamsha, Placidus houses, Vimshottari dasha, classical numerological assignments, and standard calendrical conversions.</div>
+        </span>
+      </li>
+      <li>
         <span class="bullet">◇</span>
-        <span class="pl-title">Cross-tradition comparison</span>
-      </div>
-      <div class="pl-body">The same birth data is processed simultaneously through multiple systems. Users may observe convergence, contradiction, resonance, or pattern overlap for themselves.</div>
-    </li>
-    <li>
-      <div class="pl-head">
+        <span>
+          <div class="pl-title">Cross-tradition comparison</div>
+          <div class="pl-body">The same birth data is processed simultaneously through multiple systems. Users may observe convergence, contradiction, resonance, or pattern overlap for themselves.</div>
+        </span>
+      </li>
+      <li>
         <span class="bullet">◇</span>
-        <span class="pl-title">Mathematical transparency</span>
-      </div>
-      <div class="pl-body">Every parameter is visible. Every report is traceable. No black-box mysticism.</div>
-    </li>
-    <li>
-      <div class="pl-head">
+        <span>
+          <div class="pl-title">Mathematical transparency</div>
+          <div class="pl-body">Every parameter is visible. Every report is traceable. No black-box mysticism.</div>
+        </span>
+      </li>
+      <li>
         <span class="bullet">◇</span>
-        <span class="pl-title">Precision for practitioners</span>
-      </div>
-      <div class="pl-body">Most consultations — with a pandit, astrologer, numerologist, or any practitioner — begin with incomplete or approximate data. Antara provides a clean computational foundation for further human interpretation.</div>
-    </li>
-  </ul>
-</div>
+        <span>
+          <div class="pl-title">Precision for practitioners</div>
+          <div class="pl-body">Most consultations — with a pandit, astrologer, or numerologist — begin with incomplete data. Antara provides a clean computational foundation for further human interpretation.</div>
+        </span>
+      </li>
+    </ul>
 
-
-<!-- ══ SEPARATOR ══ -->
-<div class="sep"><span class="sep-mark">◇</span></div>
-
-
-<!-- ══ SECTION 3: THE NINE TRADITIONS ══ -->
-<div class="section">
-  <div class="eyebrow">The nine traditions</div>
-  <h2>One person.<br/>Multiple symbolic lenses.</h2>
-
-  <p>No single practitioner typically masters all nine systems. A Vedic astrologer rarely knows Lo Shu. A Pythagorean numerologist rarely knows BaZi. Antara is the first place where all nine sit side by side, calculated for the same person, on the same day.</p>
-
-  <div class="systems-grid">
-    <div class="system-card c1">
-      <div class="system-label">Horoscopic Systems</div>
-      <ul>
-        <li>Vedic · North Indian</li>
-        <li>Vedic · South Indian</li>
-        <li>Western · Natal</li>
-        <li>Chinese · BaZi</li>
-      </ul>
-    </div>
-    <div class="system-card c2">
-      <div class="system-label">Numerological Systems</div>
-      <ul>
-        <li>Pythagorean</li>
-        <li>Chaldean</li>
-        <li>Tamil · Vedic</li>
-        <li>Kabbalah</li>
-        <li>Lo Shu · Chinese</li>
-      </ul>
-    </div>
-    <div class="system-card c3">
-      <div class="system-label">Biorhythmic Reports</div>
-      <ul>
-        <li>Monthly Cycles</li>
-        <li>Critical Days · Annual</li>
-        <li>Compatibility</li>
-      </ul>
-    </div>
   </div>
 
-  <p>Each report is delivered in a print-ready A4 format designed for clarity, continuity, and long-form reading — typeset in the classical Indian reading tradition, with every parameter shown and every calculation transparent.</p>
-</div>
-
-
-<!-- ══ THE NAME — dark panel ══ -->
-<div class="name-section">
-  <div class="ns-eyebrow">The Name</div>
-  <div class="ns-title">Antara <span>अन्तरा</span></div>
-  <div class="ns-rule"></div>
-  <div class="ns-body">
-    <p>In Sanskrit, <em>antara</em> refers to the interior —<br/>
-    <span class="ns-indent">the inner space, the inward passage,</span>
-    <span class="ns-indent">the depth beneath the visible surface.</span></p>
-
-    <p>In Indian classical music, the <em>antara</em> is the second movement of a composition:<br/>
-    <span class="ns-indent">the passage that leaves the opening refrain and</span>
-    <span class="ns-indent">moves inward toward emotional and melodic depth.</span></p>
-
-    <p>The name was chosen because these traditions, regardless of their claims,<br/>
-    are ultimately concerned with interior patterns —<br/>
-    <span class="ns-indent">identity, temperament, rhythm, timing, memory, and meaning.</span></p>
-
-    <p>Not prediction. <em>Interiority.</em></p>
-
-    <p>The distinction from अन्तर (<em>antar</em> — gap, separation, difference) is intentional.<br/>
-    Where <em>antar</em> implies absence between two points,<br/>
-    <em>Antara</em> implies inner substance — depth, not distance.</p>
-
-    <span class="ns-note">The name was not invented. It was recognised.</span>
+  <div class="pgfoot">
+    <span>Antara · अन्तरा</span>
+    <span>antara-alpha.vercel.app</span>
+    <span>2 / 5</span>
   </div>
 </div>
 
 
-<!-- ══ SEPARATOR ══ -->
-<div class="sep" style="padding-top:28px;"><span class="sep-mark">◇</span></div>
+<!-- ══════════════ PAGE 3 · NINE TRADITIONS + THE NAME ══════════════ -->
+<div class="page">
+  <div class="running">
+    <span>Antara · अन्तरा</span>
+    <span class="sub">The Interior Life, Calculated</span>
+  </div>
 
+  <div class="content">
 
-<!-- ══ SECTION 4: FAQ ══ -->
-<div class="section">
-  <div class="eyebrow">Frequently asked</div>
-  <h2>The questions<br/>we expected.</h2>
+    <div class="eyebrow">The nine traditions</div>
+    <h2>One person.<br/>Multiple symbolic lenses.</h2>
 
-  <div class="faq">
+    <p>No single practitioner typically masters all nine systems. A Vedic astrologer rarely knows Lo Shu. A Pythagorean numerologist rarely knows BaZi. Antara is the first place where all nine sit side by side, calculated for the same person, on the same day.</p>
 
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Are you predicting my future?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-a">
-        <p>No. Antara calculates numbers. It does not interpret them.</p>
-        <p>A thermometer measures temperature. It does not tell you what to wear. The phrase <em>Interpretive, not Predictive</em> appears on every report — not as a legal disclaimer, but as the philosophy.</p>
-      </div>
+    <table class="sys-table">
+      <thead>
+        <tr>
+          <th class="c1">Horoscopic Systems</th>
+          <th class="c2">Numerological Systems</th>
+          <th class="c3">Biorhythmic Reports</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Vedic · North Indian</td><td>Pythagorean</td><td>Monthly Cycles</td></tr>
+        <tr><td>Vedic · South Indian</td><td>Chaldean</td><td>Critical Days · Annual</td></tr>
+        <tr><td>Western · Natal</td><td>Tamil · Vedic</td><td>Compatibility</td></tr>
+        <tr><td>Chinese · BaZi</td><td>Kabbalah</td><td></td></tr>
+        <tr><td></td><td>Lo Shu · Chinese</td><td></td></tr>
+      </tbody>
+    </table>
+
+    <p>Each report is delivered in a print-ready A4 format designed for clarity and long-form reading — typeset in the classical Indian reading tradition, every parameter shown, every calculation transparent.</p>
+
+  </div>
+
+  <div class="name-box">
+    <div class="nb-ey">The Name</div>
+    <div class="nb-title">Antara <span>अन्तरा</span></div>
+    <div class="nb-rule"></div>
+    <div class="nb-body">
+      <p>In Sanskrit, <em>antara</em> refers to the interior —<br/>
+      the inner space, the inward passage,<br/>
+      the depth beneath the visible surface.</p>
+
+      <p>In Indian classical music, the <em>antara</em> is the second movement of a composition:<br/>
+      the passage that leaves the opening refrain<br/>
+      and moves inward toward emotional and melodic depth.</p>
+
+      <p>The distinction from <em>antar</em> (अन्तर — gap, difference) is intentional.<br/>
+      Where <em>antar</em> implies absence between two points,<br/>
+      <em>Antara</em> implies inner substance — depth, not distance.</p>
+
+      <span class="nb-note">The name was not invented. It was recognised.</span>
     </div>
+  </div>
 
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Do you believe in astrology or numerology?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-a">
-        <p>The creator is a rationalist. Belief is not required for calculation.</p>
-        <p>Whether the traditions are true is a question Antara does not answer. Whether the numbers are correct is one it insists on.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Is any of this scientific?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-a">
-        <p>The calculations are mathematically precise. Whether the underlying traditions have predictive scientific validity is a separate question — one that Antara does not take a position on.</p>
-        <p>These are internally consistent systems refined over centuries by some of the sharpest mathematical minds of their eras. The Vedic nakshatra system alone is a remarkable feat of astronomical observation. Respecting that rigour is not the same as accepting every claim made in its name.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Why nine systems? Why not just one?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-a">
-        <p>Because traditions disagree — and that disagreement is itself informative. Where Vedic, Western, BaZi, and numerology all point to the same characteristic in a person, the convergence is notable. Where they diverge, it tells you something about the limits of each system.</p>
-        <p>Antara's synthesis report, <em>Chatur-Drishti</em>, is built specifically to find those convergence points across all four horoscopic traditions.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Who is Antara for?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-a">
-        <p>For the curious. For the person who wants to know what their astrologer or numerologist is actually working from. For the rationalist who wants the data without the doctrine. For the believer who deserves better data than they have been getting. For someone who wants to give a deeply considered, beautifully produced gift.</p>
-        <p>Antara does not require belief. It only requires a birth date.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        What do I do with the reports?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-a">
-        <p>Whatever you like. Take them to your pandit or practitioner — who now has the precise technical parameters they need to work from. Read them yourself and reflect. File them away. Frame the cover. Share them with someone whose birth chart has always intrigued you.</p>
-        <p>The reports are produced to a standard worth keeping — typeset documents, not generated text, formatted to A4 in the classical Indian reading tradition.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        What does Antara mean?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-a">
-        <p><em>Antara</em> (अन्तरा) refers to the interior — the inner space, the depth beneath the visible surface. In Indian classical music, the <em>antara</em> is the second movement of a raga: the passage that moves away from the opening refrain toward emotional and melodic depth.</p>
-        <p>The linguistic deviation from <em>antar</em> (अन्तर — gap, separation, difference) is deliberate. Where <em>antar</em> implies absence between two points, <em>antara</em> implies inner substance — depth, not distance. These traditions, whatever their claims, are ultimately instruments of self-knowledge.</p>
-        <p>The name was not invented. It was recognised.</p>
-      </div>
-    </div>
-
+  <div class="pgfoot">
+    <span>Antara · अन्तरा</span>
+    <span>antara-alpha.vercel.app</span>
+    <span>3 / 5</span>
   </div>
 </div>
 
 
-<!-- ══ CLOSING QUOTE ══ -->
-<div class="closing">
-  <blockquote>
-    "I have not decided what these numbers mean.<br/>
-    I have decided they should at least be correct."
-  </blockquote>
-  <cite>— The founding principle of Antara</cite>
+<!-- ══════════════ PAGE 4 · FAQ + CLOSING ══════════════ -->
+<div class="page">
+  <div class="running">
+    <span>Antara · अन्तरा</span>
+    <span class="sub">The Interior Life, Calculated</span>
+  </div>
+
+  <div class="content">
+
+    <div class="eyebrow">Frequently asked</div>
+    <h2>The questions<br/>we expected.</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">Are you predicting my future?</div>
+      <div class="faq-a">No. Antara calculates numbers; it does not interpret them. A thermometer measures temperature — it does not tell you what to wear. <em>Interpretive, not Predictive</em> appears on every report as philosophy, not disclaimer.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Do you believe in astrology or numerology?</div>
+      <div class="faq-a">The creator is a rationalist. Belief is not required for calculation. Whether the traditions are true is a question Antara does not answer. Whether the numbers are correct is one it insists on.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Is any of this scientific?</div>
+      <div class="faq-a">The calculations are mathematically precise. Whether the underlying traditions have predictive scientific validity is a separate question — one Antara does not take a position on. These are internally consistent systems refined over centuries by some of the sharpest mathematical minds of their eras.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Why nine systems? Why not just one?</div>
+      <div class="faq-a">Because traditions disagree — and that disagreement is itself informative. Where Vedic, Western, BaZi, and numerology all point to the same characteristic, the convergence is notable. Antara's synthesis report, <em>Chatur-Drishti</em>, is built specifically to find those convergence points.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Who is Antara for?</div>
+      <div class="faq-a">For the curious. For the person who wants to know what their astrologer is actually working from. For the rationalist who wants data without doctrine. For the believer who deserves better data than they have been getting. Antara does not require belief — it only requires a birth date.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What do I do with the reports?</div>
+      <div class="faq-a">Whatever you like. Take them to your pandit or practitioner. Read them and reflect. Frame the cover. Share them with someone whose birth chart has always intrigued you. The reports are typeset documents produced to a standard worth keeping.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What does Antara mean?</div>
+      <div class="faq-a"><em>Antara</em> (अन्तरा) refers to the interior — the depth beneath the visible surface. In Indian classical music, the <em>antara</em> is the movement toward emotional depth. The deviation from <em>antar</em> (अन्तर — gap, difference) is deliberate: depth, not distance. The name was not invented. It was recognised.</div>
+    </div>
+
+  </div>
+
+  <div class="pgfoot">
+    <span>Antara · अन्तरा</span>
+    <span>antara-alpha.vercel.app</span>
+    <span>4 / 5</span>
+  </div>
 </div>
 
 
-<!-- ══ FOOTER ══ -->
-<footer>
-  <p>Antara · अन्तरा · The Interior Life, Calculated &nbsp;·&nbsp; <a href="index.html">Open the App →</a></p>
-</footer>
+<!-- ══════════════ PAGE 5 · CLOSING ══════════════ -->
+<div class="page closing">
+  <div class="running">
+    <span>Antara · अन्तरा</span>
+    <span class="sub">The Interior Life, Calculated</span>
+  </div>
 
+  <div class="closing-mark"></div>
 
-<script>
-function toggleFaq(btn) {
-  const answer = btn.nextElementSibling;
-  const isOpen = answer.classList.contains('open');
-  document.querySelectorAll('.faq-a.open').forEach(a => a.classList.remove('open'));
-  document.querySelectorAll('.faq-q.open').forEach(b => b.classList.remove('open'));
-  if (!isOpen) {
-    answer.classList.add('open');
-    btn.classList.add('open');
-  }
-}
-</script>
+  <p class="closing-quote">
+    "I have not decided<br/>
+    what these numbers mean.<br/>
+    I have decided they<br/>
+    should at least be correct."
+  </p>
+
+  <div class="closing-rule"></div>
+
+  <span class="closing-cite">— The founding principle of Antara</span>
+
+  <div class="pgfoot">
+    <span>Antara · अन्तरा</span>
+    <span>antara-alpha.vercel.app</span>
+    <a href="about_hi.html">हिन्दी में पढ़ें</a>
+  </div>
+</div>
+
 
 </body>
 </html>

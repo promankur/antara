@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>अन्तरा के बारे में · आंतरिक जीवन, गणना-सहित</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap');
+
+/* ─────────── अन्तरा · परिचय दस्तावेज़ — A4 ─────────── */
+@page { size: A4 portrait; margin: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #c4c0b0; }
+body {
+  font-family: "Cormorant Garamond", "Noto Serif Devanagari", "Palatino Linotype", Georgia, serif;
+  font-size: 12pt; line-height: 1.5;
+  color: #1a1a3a; -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  --paper:    #f5e8c8;
+  --paper-2:  #ece0b2;
+  --ink:      #1a1a3a;
+  --maroon:   #6b1a2c;
+  --saffron:  #c75a1a;
+  --turmeric: #a87825;
+  --gold:     #c8a85c;
+  --rule:     #c8a85c;
+  --muted:    #7a5a30;
+  --page-w:   210mm;
+  --page-h:   297mm;
+  --pad-top:  17mm;
+  --pad-bot:  26mm;
+  --pad-left: 25mm;
+  --pad-right:22mm;
+}
+
+/* ══ PAGE ══ */
+.page {
+  width: var(--page-w); height: var(--page-h);
+  background: var(--paper);
+  margin: 8mm auto;
+  padding: var(--pad-top) var(--pad-right) var(--pad-bot) var(--pad-left);
+  position: relative; overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,.18);
+  page-break-after: always; break-after: page;
+}
+.page:last-child { page-break-after: auto; break-after: auto; }
+
+.page::after {
+  content: ""; position: absolute;
+  left: var(--pad-left); right: var(--pad-right);
+  top: 9mm; height: 6mm;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><line x1='0' y1='10' x2='80' y2='10' stroke='%23c8a85c' stroke-width='0.3'/><path d='M 0 7 Q 5 3 10 7 Q 15 11 20 7 Q 25 3 30 7 Q 35 11 40 7 Q 45 3 50 7 Q 55 11 60 7 Q 65 3 70 7 Q 75 11 80 7' fill='none' stroke='%23c8a85c' stroke-width='0.7'/></svg>");
+  background-repeat: repeat-x; background-size: auto 6mm; opacity: .75;
+  pointer-events: none;
+}
+
+/* ══ RUNNING HEADER ══ */
+.running {
+  position: absolute; left: var(--pad-left); right: var(--pad-right); top: 5mm;
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 8pt; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600;
+}
+.running .sub { color: var(--muted); letter-spacing: .08em; font-weight: 400; }
+
+/* ══ PAGE FOOTER ══ */
+.pgfoot {
+  position: absolute; left: var(--pad-left); right: var(--pad-right); bottom: 10mm;
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 8pt; color: var(--muted); letter-spacing: .06em;
+}
+.pgfoot::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -5mm;
+  height: .4mm; background: var(--rule); opacity: .4;
+}
+
+/* ══ COVER PAGE ══ */
+.page.cover {
+  background: linear-gradient(160deg, #1a1a3a 0%, #28203a 60%, #3a1a2a 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+}
+.page.cover::after { opacity: .35; }
+.page.cover .running { color: var(--gold); opacity: .7; }
+.page.cover .running .sub { color: rgba(245,232,200,.45); }
+.page.cover .pgfoot { color: rgba(245,232,200,.35); }
+.page.cover .pgfoot a { color: var(--gold); text-decoration: none; }
+.page.cover .pgfoot::before { opacity: .18; }
+
+.cover-eyebrow {
+  font-size: 8pt; letter-spacing: .30em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; margin-bottom: 9mm;
+}
+.cover-mark {
+  width: 55mm; height: 5mm; margin: 0 auto 10mm;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><path d='M 0 7 Q 5 3 10 7 Q 15 11 20 7 Q 25 3 30 7 Q 35 11 40 7 Q 45 3 50 7 Q 55 11 60 7 Q 65 3 70 7 Q 75 11 80 7' fill='none' stroke='%23c8a85c' stroke-width='1.2'/></svg>");
+  background-repeat: repeat-x; background-size: auto 5mm;
+}
+.cover h1 {
+  font-size: 44pt; font-weight: 400; font-style: italic;
+  color: var(--paper); letter-spacing: .06em; line-height: 1.1; margin-bottom: 2mm;
+}
+.cover h1 span {
+  display: block; font-style: normal; font-weight: 700;
+  color: var(--gold); font-size: 26pt; letter-spacing: .10em; margin-top: 1mm;
+}
+.cover-rule {
+  width: 46mm; height: .5mm; background: var(--rule);
+  margin: 8mm auto; opacity: .45;
+}
+.cover-tagline {
+  font-size: 15pt; font-style: italic;
+  color: rgba(245,232,200,.80); line-height: 1.75; margin-bottom: 6mm;
+}
+.cover-desc {
+  font-size: 11pt; color: rgba(245,232,200,.50);
+  line-height: 1.5; margin-bottom: 11mm; font-style: italic;
+}
+
+/* ══ QUOTE BOX ══ */
+.quote-box {
+  border: .5mm solid rgba(200,168,92,.35);
+  border-left: 4px solid var(--gold);
+  border-radius: 2px;
+  padding: 8mm 14mm;
+  text-align: center; width: 138mm;
+  background: rgba(255,255,255,.04);
+}
+.quote-box .exchange {
+  font-size: 10pt; color: rgba(245,232,200,.45);
+  letter-spacing: .06em; margin-bottom: 5mm; font-style: italic;
+}
+.quote-box p {
+  font-size: 14.5pt; font-style: italic;
+  color: rgba(245,232,200,.90); line-height: 1.55;
+}
+.quote-box cite {
+  display: block; margin-top: 6mm;
+  font-size: 8pt; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--gold); font-style: normal;
+}
+
+/* ══ CONTENT ══ */
+.content { position: relative; z-index: 1; }
+
+.eyebrow {
+  font-size: 7.5pt; letter-spacing: .26em; text-transform: uppercase;
+  color: var(--saffron); font-weight: 700; margin-bottom: 2mm;
+}
+h2 {
+  font-size: 20pt; font-weight: 400; color: var(--maroon);
+  line-height: 1.2; margin-bottom: 4mm;
+}
+p {
+  font-size: 11pt; color: var(--ink);
+  line-height: 1.45; margin-bottom: 3mm; max-width: 155mm;
+}
+p:last-child { margin-bottom: 0; }
+
+.section-rule { height: .4mm; background: var(--paper-2); margin: 5mm 0; }
+
+.principle-lines {
+  margin: 2mm 0 4mm;
+  font-size: 12pt; color: var(--ink); font-style: italic; line-height: 1.7;
+}
+.principle-lines span { display: block; }
+
+.tech-list {
+  background: rgba(107,26,44,.05);
+  border-left: 3px solid var(--rule);
+  padding: 2.5mm 6mm; margin: 2mm 0 3mm;
+  font-size: 10.5pt; color: var(--ink); line-height: 1.45;
+}
+.tech-list .tl-row { display: block; padding: 1mm 0; }
+.tech-list .tl-row + .tl-row {
+  border-top: .3mm dashed rgba(200,168,92,.28);
+  padding-top: 2.5mm; margin-top: 1.5mm;
+}
+
+.point-list { list-style: none; margin: 2mm 0; }
+.point-list li {
+  display: grid; grid-template-columns: 5mm 1fr;
+  gap: 3mm; padding: 2.5mm 0;
+  border-bottom: .3mm dashed rgba(200,168,92,.28);
+}
+.point-list li:last-child { border-bottom: none; }
+.bullet { color: var(--gold); font-size: 11pt; line-height: 1.5; }
+.pl-title { font-size: 11.5pt; font-weight: 700; color: var(--maroon); margin-bottom: .5mm; }
+.pl-body  { font-size: 10.5pt; color: var(--ink); line-height: 1.4; }
+
+.sys-table { width: 100%; border-collapse: collapse; margin: 4mm 0; }
+.sys-table th {
+  font-size: 7.5pt; letter-spacing: .12em; text-transform: uppercase;
+  font-weight: 700; padding: 2.5mm 4mm;
+  border-bottom: .5mm solid var(--rule); text-align: left;
+}
+.sys-table th.c1 { color: var(--maroon); }
+.sys-table th.c2 { color: var(--turmeric); }
+.sys-table th.c3 { color: var(--saffron); }
+.sys-table td {
+  font-size: 10.5pt; font-style: italic; color: var(--ink);
+  padding: 2mm 4mm;
+  border-bottom: .3mm dashed rgba(200,168,92,.2);
+  vertical-align: top;
+}
+.sys-table tr:last-child td { border-bottom: none; }
+
+/* ══ NAME BOX ══ */
+.name-box {
+  background: linear-gradient(135deg, #1e1830 0%, #2a1828 100%);
+  border-radius: 2px;
+  padding: 8mm 12mm; margin-top: 6mm;
+  text-align: center;
+}
+.name-box .nb-ey {
+  font-size: 7.5pt; letter-spacing: .26em; text-transform: uppercase;
+  color: var(--gold); font-weight: 700; margin-bottom: 2mm;
+}
+.name-box .nb-title {
+  font-size: 22pt; color: var(--paper); font-style: italic;
+  letter-spacing: .06em; margin-bottom: 2mm;
+}
+.name-box .nb-title span {
+  font-style: normal; font-weight: 700; color: var(--gold); font-size: 15pt;
+}
+.name-box .nb-rule {
+  width: 36mm; height: .5mm; background: var(--gold);
+  margin: 3mm auto; opacity: .38;
+}
+.name-box .nb-body {
+  font-size: 11pt; color: rgba(245,232,200,.78);
+  line-height: 1.5; max-width: 138mm; margin: 0 auto;
+}
+.name-box .nb-body p { margin-bottom: 4mm; color: rgba(245,232,200,.82); }
+.name-box .nb-body p:last-child { margin-bottom: 0; }
+.name-box .nb-body em { color: var(--gold); font-style: italic; }
+.name-box .nb-note {
+  display: inline-block; margin-top: 4mm;
+  font-size: 9.5pt; color: rgba(245,232,200,.38); font-style: italic;
+}
+
+/* ══ FAQ (answers always visible) ══ */
+.faq-item { padding: 2.5mm 0; border-bottom: .3mm dashed rgba(200,168,92,.28); }
+.faq-item:last-child { border-bottom: none; }
+.faq-q {
+  font-size: 11.5pt; font-weight: 700; color: var(--maroon);
+  margin-bottom: 1.5mm; line-height: 1.3;
+}
+.faq-a { font-size: 10.5pt; color: var(--ink); line-height: 1.5; }
+.faq-a em { color: var(--maroon); font-style: italic; }
+
+/* ══ CLOSING PAGE ══ */
+.page.closing {
+  background: linear-gradient(160deg, #1a1a3a 0%, #2a1a3a 60%, #2a1828 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+}
+.page.closing::after { opacity: .30; }
+.page.closing .running { color: var(--gold); opacity: .65; }
+.page.closing .running .sub { color: rgba(245,232,200,.40); }
+.page.closing .pgfoot { color: rgba(245,232,200,.30); }
+.page.closing .pgfoot a { color: var(--gold); text-decoration: none; }
+.page.closing .pgfoot::before { opacity: .15; }
+
+.closing-mark {
+  width: 40mm; height: 4mm; margin: 0 auto 14mm;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 14'><path d='M 0 7 Q 5 3 10 7 Q 15 11 20 7 Q 25 3 30 7 Q 35 11 40 7 Q 45 3 50 7 Q 55 11 60 7 Q 65 3 70 7 Q 75 11 80 7' fill='none' stroke='%23c8a85c' stroke-width='1.2'/></svg>");
+  background-repeat: repeat-x; background-size: auto 4mm;
+}
+.closing-rule {
+  width: 36mm; height: .5mm; background: var(--rule);
+  margin: 12mm auto; opacity: .35;
+}
+.closing-quote {
+  font-size: 22pt; font-style: italic; color: var(--paper);
+  line-height: 1.65; letter-spacing: .02em; max-width: 140mm;
+}
+.closing-cite {
+  display: block; margin-top: 10mm;
+  font-size: 8pt; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--gold); font-style: normal;
+}
+
+@media print {
+  html, body { background: white; }
+  .page { margin: 0; box-shadow: none; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- ══════════════ पृष्ठ १ · आवरण ══════════════ -->
+<div class="page cover">
+  <div class="running">
+    <span>Antara · अन्तरा</span>
+    <span class="sub">आंतरिक जीवन, गणना-सहित</span>
+  </div>
+
+  <div class="cover-eyebrow">अन्तरा व्यक्तिगत पठन</div>
+  <div class="cover-mark"></div>
+
+  <h1>Antara<span>अन्तरा</span></h1>
+  <div class="cover-rule"></div>
+
+  <div class="cover-tagline">
+    नौ परम्पराएँ।<br/>
+    एक व्यक्ति।<br/>
+    सटीक गणनाएँ।<br/>
+    व्याख्या आपकी अपनी।
+  </div>
+
+  <div class="cover-desc">
+    ज्योतिष, अंकशास्त्र, बायोरिदम और चक्रीय प्रणालियों के लिए एक गणना-उपकरण<br/>
+    गणितीय कठोरता से निर्मित, सिद्धांतवादी निश्चितता से नहीं।
+  </div>
+
+  <div class="quote-box">
+    <div class="exchange">"क्या आप इन सब में विश्वास करते हैं?"</div>
+    <p>"मैं विश्वास-प्रणाली में नहीं उतरा। मैंने यंत्र बनाया।"</p>
+    <cite>— अन्तरा के पीछे का मार्गदर्शक सिद्धांत</cite>
+  </div>
+
+  <div class="pgfoot">
+    <span>Antara · अन्तरा</span>
+    <span>antara-alpha.vercel.app</span>
+    <a href="about.html">Read in English</a>
+  </div>
+</div>
+
+
+<!-- ══════════════ पृष्ठ २ · यह क्यों बना + अन्तरा क्या है ══════════════ -->
+<div class="page">
+  <div class="running">
+    <span>Antara · अन्तरा</span>
+    <span class="sub">आंतरिक जीवन, गणना-सहित</span>
+  </div>
+
+  <div class="content">
+
+    <div class="eyebrow">यह क्यों बना</div>
+    <h2>एक तर्कवादी ने बनाया।<br/>जिज्ञासुओं के लिए।</h2>
+
+    <p>अन्तरा के निर्माता को उनके मित्र-मण्डल में एक तर्कवादी के रूप में जाना जाता है। शताब्दियों से, अनेक संस्कृतियों के असंख्य लोग — व्यक्तित्व, समय, अनुकूलता और जीवन के चक्रों को समझने के लिए — प्रतीकात्मक प्रणालियों का उपयोग करते आए हैं। कोई उनकी व्याख्याओं को माने या न माने, उनके अंतर्निहित गणित में सटीकता होनी चाहिए।</p>
+
+    <p>अन्तरा ठीक इसी कारण अस्तित्व में है।</p>
+
+    <div class="principle-lines">
+      <span>मनाने के लिए नहीं।</span>
+      <span>भविष्यवाणी के लिए नहीं।</span>
+      <span>बल्कि सही गणना के लिए।</span>
+    </div>
+
+    <div class="section-rule"></div>
+
+    <div class="eyebrow">अन्तरा क्या है</div>
+    <h2>यंत्र,<br/>निष्कर्ष नहीं।</h2>
+
+    <p>प्रत्येक परम्परा का अपना गणित है। अन्तरा उन प्रणालियों की गणना तकनीकी निष्ठा के साथ करता है:</p>
+
+    <div class="tech-list">
+      <span class="tl-row">लग्न अंश · नक्षत्र · BaZi स्तम्भ · जीवन-पथ संख्याएँ · लो शु ग्रिड</span>
+      <span class="tl-row">दशाएँ · कुआ संख्याएँ · बायोरिदम चक्र · क्रांतिक दिन</span>
+      <span class="tl-row" style="font-style:italic;color:var(--muted);font-size:10.5pt;">किसी भी व्यक्ति, किसी भी तारीख के लिए — सटीक गणना।</span>
+    </div>
+
+    <p>इन पैटर्नों का क्या अर्थ है — यह पूर्णतः व्यक्ति पर छोड़ा जाता है। अन्तरा वहाँ समाप्त होता है जहाँ व्याख्या शुरू होती है।</p>
+
+    <ul class="point-list">
+      <li>
+        <span class="bullet">◇</span>
+        <span>
+          <div class="pl-title">परम्परागत विधियाँ</div>
+          <div class="pl-body">प्रत्येक प्रणाली अपनी परम्परा के स्वीकृत ढाँचे का अनुसरण करती है — लाहिरी अयनांश, प्लेसिडस भाव, विंशोत्तरी दशा, शास्त्रीय अंकशास्त्रीय मानचित्रण, और मानक कैलेण्डर रूपान्तरण।</div>
+        </span>
+      </li>
+      <li>
+        <span class="bullet">◇</span>
+        <span>
+          <div class="pl-title">अन्तर-परम्परा तुलना</div>
+          <div class="pl-body">एक ही जन्म-डेटा को एक साथ अनेक प्रणालियों में संसाधित किया जाता है। उपयोगकर्ता स्वयं अभिसरण, विरोधाभास, या पैटर्न-अतिव्यापन देख सकते हैं।</div>
+        </span>
+      </li>
+      <li>
+        <span class="bullet">◇</span>
+        <span>
+          <div class="pl-title">गणितीय पारदर्शिता</div>
+          <div class="pl-body">प्रत्येक मापदण्ड दृश्यमान है। प्रत्येक रिपोर्ट अनुरेखणीय है। कोई रहस्यमय ब्लैक-बॉक्स नहीं।</div>
+        </span>
+      </li>
+      <li>
+        <span class="bullet">◇</span>
+        <span>
+          <div class="pl-title">साधकों के लिए सटीकता</div>
+          <div class="pl-body">अधिकांश परामर्श — पण्डित, ज्योतिषी, अंकशास्त्री — अपूर्ण या अनुमानित डेटा से शुरू होते हैं। अन्तरा आगे की मानवीय व्याख्या के लिए एक स्वच्छ गणनात्मक आधार प्रदान करता है।</div>
+        </span>
+      </li>
+    </ul>
+
+  </div>
+
+  <div class="pgfoot">
+    <span>Antara · अन्तरा</span>
+    <span>antara-alpha.vercel.app</span>
+    <span>२ / ५</span>
+  </div>
+</div>
+
+
+<!-- ══════════════ पृष्ठ ३ · नौ परम्पराएँ + नाम ══════════════ -->
+<div class="page">
+  <div class="running">
+    <span>Antara · अन्तरा</span>
+    <span class="sub">आंतरिक जीवन, गणना-सहित</span>
+  </div>
+
+  <div class="content">
+
+    <div class="eyebrow">नौ परम्पराएँ</div>
+    <h2>एक व्यक्ति।<br/>अनेक प्रतीकात्मक दृष्टियाँ।</h2>
+
+    <p>सामान्यतः कोई एक साधक नौ प्रणालियों में दक्षता नहीं रखता। वैदिक ज्योतिषी प्रायः लो शु नहीं जानते। पाइथागोरस-आधारित अंकशास्त्री प्रायः BaZi नहीं जानते। अन्तरा पहली जगह है जहाँ नौ परम्पराएँ एक साथ बैठती हैं — एक ही व्यक्ति के लिए, एक ही दिन, गणना की गई।</p>
+
+    <table class="sys-table">
+      <thead>
+        <tr>
+          <th class="c1">ज्योतिष प्रणालियाँ</th>
+          <th class="c2">अंकशास्त्र प्रणालियाँ</th>
+          <th class="c3">बायोरिदम रिपोर्ट</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>वैदिक · उत्तर भारतीय</td><td>Pythagorean</td><td>मासिक चक्र</td></tr>
+        <tr><td>वैदिक · दक्षिण भारतीय</td><td>Chaldean</td><td>क्रांतिक दिन · वार्षिक</td></tr>
+        <tr><td>पाश्चात्य · जन्मकुण्डली</td><td>तमिल · वैदिक</td><td>अनुकूलता</td></tr>
+        <tr><td>चीनी · BaZi</td><td>Kabbalah</td><td></td></tr>
+        <tr><td></td><td>लो शु · चीनी</td><td></td></tr>
+      </tbody>
+    </table>
+
+    <p>प्रत्येक रिपोर्ट A4 प्रिंट-तैयार प्रारूप में दी जाती है — स्पष्टता और दीर्घकालिक पठन के लिए डिज़ाइन की गई। शास्त्रीय भारतीय पठन-परम्परा में टाइपसेट, हर मापदण्ड दृश्यमान और हर गणना पारदर्शी।</p>
+
+  </div>
+
+  <div class="name-box">
+    <div class="nb-ey">नाम के विषय में</div>
+    <div class="nb-title">Antara <span>अन्तरा</span></div>
+    <div class="nb-rule"></div>
+    <div class="nb-body">
+      <p>संस्कृत में, <em>अन्तरा</em> का अर्थ है आंतरिक —<br/>
+      भीतरी अवकाश, अंतर्मुखी मार्ग,<br/>
+      दृश्य सतह के नीचे की गहराई।</p>
+
+      <p>भारतीय शास्त्रीय संगीत में, <em>अन्तरा</em> किसी रचना का दूसरा आंदोलन है:<br/>
+      वह मार्ग जो आरंभिक स्थायी से दूर जाकर<br/>
+      भावनात्मक और सुरीली गहराई की ओर बढ़ता है।</p>
+
+      <p><em>अन्तर</em> (antar — अंतराल, भेद) से यह भिन्नता जानबूझकर है।<br/>
+      जहाँ <em>अन्तर</em> दो बिंदुओं के बीच अनुपस्थिति का बोध कराता है,<br/>
+      <em>अन्तरा</em> आंतरिक सार की अनुभूति कराता है — दूरी नहीं, गहराई।</p>
+
+      <span class="nb-note">यह नाम आविष्कृत नहीं हुआ। यह पहचाना गया।</span>
+    </div>
+  </div>
+
+  <div class="pgfoot">
+    <span>Antara · अन्तरा</span>
+    <span>antara-alpha.vercel.app</span>
+    <span>३ / ५</span>
+  </div>
+</div>
+
+
+<!-- ══════════════ पृष्ठ ४ · FAQ + समापन ══════════════ -->
+<div class="page">
+  <div class="running">
+    <span>Antara · अन्तरा</span>
+    <span class="sub">आंतरिक जीवन, गणना-सहित</span>
+  </div>
+
+  <div class="content">
+
+    <div class="eyebrow">प्रायः पूछे जाने वाले प्रश्न</div>
+    <h2>वे प्रश्न<br/>जिनकी हमें उम्मीद थी।</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">क्या आप मेरे भविष्य की भविष्यवाणी कर रहे हैं?</div>
+      <div class="faq-a">नहीं। अन्तरा संख्याओं की गणना करता है, व्याख्या नहीं। थर्मामीटर तापमान मापता है — वह यह नहीं बताता कि क्या पहनें। <em>व्याख्यात्मक, भविष्यवाणी नहीं</em> — प्रत्येक रिपोर्ट पर यह दर्शन के रूप में दिखता है, अस्वीकरण के रूप में नहीं।</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">क्या आप ज्योतिष या अंकशास्त्र में विश्वास करते हैं?</div>
+      <div class="faq-a">निर्माता एक तर्कवादी हैं। गणना के लिए विश्वास की आवश्यकता नहीं होती। ये परम्पराएँ सत्य हैं या नहीं — यह प्रश्न अन्तरा नहीं उठाता। संख्याएँ सही हैं या नहीं — यह वह सुनिश्चित करता है।</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">क्या यह वैज्ञानिक है?</div>
+      <div class="faq-a">गणनाएँ गणितीय रूप से सटीक हैं। क्या परम्पराओं की भविष्यसूचक वैज्ञानिक वैधता है — यह अलग प्रश्न है, जिस पर अन्तरा कोई पक्ष नहीं लेता। ये शताब्दियों में परिष्कृत आंतरिक रूप से सुसंगत प्रणालियाँ हैं — उनके कठोर गणित का सम्मान करना उनके हर दावे को स्वीकार करने के समान नहीं है।</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">नौ प्रणालियाँ क्यों? केवल एक क्यों नहीं?</div>
+      <div class="faq-a">क्योंकि परम्पराएँ असहमत होती हैं — और वह असहमति स्वयं जानकारी देती है। जहाँ सभी प्रणालियाँ एक ही विशेषता की ओर संकेत करती हैं, वह अभिसरण उल्लेखनीय है। अन्तरा की संश्लेषण रिपोर्ट, <em>चतुर-दृष्टि</em>, उन्हीं अभिसरण बिंदुओं को खोजने के लिए बनी है।</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">अन्तरा किसके लिए है?</div>
+      <div class="faq-a">जिज्ञासुओं के लिए। उस तर्कवादी के लिए जो सिद्धांत के बिना डेटा चाहता है। उस आस्थावान के लिए जो बेहतर डेटा का हकदार है। उस व्यक्ति के लिए जो गहराई से सोचा हुआ, सुंदर उपहार देना चाहता है। अन्तरा को केवल एक जन्म-तिथि चाहिए।</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">रिपोर्ट का क्या करूँ?</div>
+      <div class="faq-a">जो चाहें। अपने पण्डित के पास ले जाएँ। कवर को फ्रेम करें। किसी ऐसे व्यक्ति के साथ साझा करें जिसकी जन्मपत्री ने हमेशा आपको आकर्षित किया हो। रिपोर्ट उस मानक पर तैयार की जाती हैं जो संजोने योग्य हैं।</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">अन्तरा का क्या अर्थ है?</div>
+      <div class="faq-a"><em>अन्तरा</em> का अर्थ है आंतरिक — दृश्य सतह के नीचे की गहराई। शास्त्रीय संगीत में यह स्थायी से दूर भावनात्मक गहराई की ओर जाने वाला मार्ग है। <em>अन्तर</em> (अंतराल, भेद) से यह विचलन जानबूझकर है — दूरी नहीं, गहराई। यह नाम आविष्कृत नहीं हुआ। यह पहचाना गया।</div>
+    </div>
+
+  </div>
+
+  <div class="pgfoot">
+    <span>Antara · अन्तरा</span>
+    <span>antara-alpha.vercel.app</span>
+    <span>४ / ५</span>
+  </div>
+</div>
+
+
+<!-- ══════════════ पृष्ठ ५ · समापन ══════════════ -->
+<div class="page closing">
+  <div class="running">
+    <span>Antara · अन्तरा</span>
+    <span class="sub">आंतरिक जीवन, गणना-सहित</span>
+  </div>
+
+  <div class="closing-mark"></div>
+
+  <p class="closing-quote">
+    "मैंने यह तय नहीं किया<br/>
+    कि इन संख्याओं का क्या अर्थ है।<br/>
+    मैंने यह तय किया कि<br/>
+    वे कम से कम सही तो हों।"
+  </p>
+
+  <div class="closing-rule"></div>
+
+  <span class="closing-cite">— अन्तरा का संस्थापक सिद्धांत</span>
+
+  <div class="pgfoot">
+    <span>Antara · अन्तरा</span>
+    <span>antara-alpha.vercel.app</span>
+    <a href="about.html">Read in English</a>
+  </div>
+</div>
+
+
+</body>
+</html>
