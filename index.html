@@ -1279,7 +1279,7 @@ body{
         <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#a87825" stroke-width="1.8" stroke-linecap="round"/>
       </svg>
     </button>
-    <div class="wordmark">Antara<sup>अन्तर</sup></div>
+    <div class="wordmark">Antara<sup>अन्तरा</sup></div>
     <button class="icon-btn">
       <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
         <circle cx="12" cy="12" r="3" stroke="#a87825" stroke-width="1.8"/>
@@ -2293,6 +2293,21 @@ function sendFreeReport(){
   document.getElementById('wlc-form-area').style.display='none';
   const sp=document.getElementById('wlc-spinner');
   sp.style.display='flex';
+  // ── Calculate today's biorhythm values ──
+  const _dob=new Date(dobISO+'T12:00:00');
+  const _days=Math.floor((new Date()-_dob)/86400000);
+  const _cycleData={
+    phy:Math.sin(2*Math.PI*_days/23),
+    emo:Math.sin(2*Math.PI*_days/28),
+    int:Math.sin(2*Math.PI*_days/33),
+    spi:Math.sin(2*Math.PI*_days/53)
+  };
+  // ── Send report via API ──
+  fetch('/api/send-report',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({reportType:'biorhythm_monthly',name,dob:dobISO,email,cycleData:_cycleData})
+  }).catch(e=>console.error('Report send error:',e));
   setTimeout(()=>{
     sp.style.display='none';
     document.getElementById('wlc-sent-email').textContent=email;
