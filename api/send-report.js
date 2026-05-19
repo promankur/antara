@@ -107,7 +107,7 @@ Use first names once each. Be grounded and avoid clichés.`;
 
 export default async function handler(req, res) {
   // CORS headers — allow the Vercel site to call this
-  res.setHeader('Access-Control-Allow-Origin', process.env.SITE_URL || '*');
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
