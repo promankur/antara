@@ -685,8 +685,16 @@ h3.section-sub {
    Review period: June – August 2026
    ───────────────────────────────────────────────────────── */
 
-const BIRTH_A = new Date(1988, 6, 22); // Rohit — July 22, 1988
-const BIRTH_B = new Date(1991, 10, 5); // Meera — November 5, 1991
+const BIRTH_A = (function(){
+  try { var u=JSON.parse(localStorage.getItem('antara_user')||'{}'); if(u.dob){var p=u.dob.split('-');return new Date(+p[0],+p[1]-1,+p[2]);} } catch(e){}
+  return new Date(1988, 6, 22); // fallback: Rohit Kapoor
+})();
+const BIRTH_B = (function(){
+  try { var u=JSON.parse(localStorage.getItem('antara_partner')||'{}'); if(u.dob){var p=u.dob.split('-');return new Date(+p[0],+p[1]-1,+p[2]);} } catch(e){}
+  return new Date(1991, 10, 5); // fallback: Meera Kapoor
+})();
+const NAME_A = (function(){ try { return JSON.parse(localStorage.getItem('antara_user')||'{}').name||'Rohit Kapoor'; } catch(e){ return 'Rohit Kapoor'; } })();
+const NAME_B = (function(){ try { return JSON.parse(localStorage.getItem('antara_partner')||'{}').name||'Meera Kapoor'; } catch(e){ return 'Meera Kapoor'; } })();
 
 const PERIODS = { physical: 23, emotional: 28, intellectual: 33, spiritual: 53 };
 const CYCLES  = ['physical', 'emotional', 'intellectual', 'spiritual'];
@@ -1018,7 +1026,7 @@ buildResonanceCalendar();
   const summaryLead = document.getElementById('summary-lead');
   if (summaryLead) {
     let descriptor = overallAvg >= 75 ? 'strong natural alignment' : overallAvg >= 55 ? 'moderate rhythmic compatibility' : 'complementary rather than resonant cycles';
-    summaryLead.textContent = `Rohit and Meera show ${descriptor} across the three-month period, with an overall biorhythmic compatibility of ${overallAvg}%.`;
+    summaryLead.textContent = `${NAME_A} and ${NAME_B} show ${descriptor} across the three-month period, with an overall biorhythmic compatibility of ${overallAvg}%.`;
   }
 
   const physEl = document.getElementById('summary-physical');
@@ -1084,5 +1092,124 @@ buildResonanceCalendar();
 })();
 </script>
 <button class="print-fab" onclick="window.print()">🖨 Print / Save PDF</button>
+
+<script>
+/* ── Layer 1: Personalise from localStorage ── */
+(function(){
+  try {
+    var rawA = localStorage.getItem('antara_user'); if (!rawA) return;
+    var uA = JSON.parse(rawA); if (!uA.name || !uA.dob) return;
+    var rawB = localStorage.getItem('antara_partner');
+    var uB = null; try { if (rawB) uB = JSON.parse(rawB); } catch(e) {}
+    var M = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var pA = uA.dob.split('-');
+    var dobA = +pA[2] + ' ' + M[+pA[1]-1] + ' ' + pA[0];
+    var nameA = uA.name;
+    var nameB = (uB && uB.name) ? uB.name : 'Meera Kapoor';
+    var dobB = '5 November 1991';
+    if (uB && uB.dob) { var pB = uB.dob.split('-'); dobB = +pB[2]+' '+M[+pB[1]-1]+' '+pB[0]; }
+    var shortA = nameA.split(' ')[0];
+    var shortB = nameB.split(' ')[0];
+
+    // 1. Title
+    document.title = document.title.replace(/Rohit Kapoor/g, nameA).replace(/Meera Kapoor/g, nameB);
+    // 2. CSS --page-id (footer running name)
+    document.documentElement.style.setProperty('--page-id', '"Biorhythm Compatibility · '+nameA+' & '+nameB+'"');
+    // 3. Running headers — "Rohit & Meera Kapoor"
+    document.querySelectorAll('.running .who').forEach(function(el){
+      el.textContent = el.textContent.replace('Rohit & Meera Kapoor', shortA+' & '+nameB);
+    });
+    // 4. pgfoot spans
+    document.querySelectorAll('.pgfoot span').forEach(function(el){
+      if (/Rohit|Meera/.test(el.textContent)) {
+        el.textContent = el.textContent.replace(/Rohit Kapoor/g, nameA).replace(/Meera Kapoor/g, nameB)
+          .replace(/Rohit/g, shortA).replace(/Meera/g, shortB);
+      }
+    });
+    // 5. Person name cards (.pc-name)
+    document.querySelectorAll('.pc-name').forEach(function(el){
+      el.textContent = el.textContent.replace('Rohit Kapoor', nameA).replace('Meera Kapoor', nameB);
+    });
+    // 6. Paragraphs and list items
+    document.querySelectorAll('p, li').forEach(function(el){
+      var h = el.innerHTML; var c = false;
+      if (/Rohit Kapoor/.test(h)) { h = h.replace(/Rohit Kapoor/g, nameA); c = true; }
+      if (/Meera Kapoor/.test(h)) { h = h.replace(/Meera Kapoor/g, nameB); c = true; }
+      if (/22 July 1988/.test(h)) { h = h.replace(/22 July 1988/g, dobA); c = true; }
+      if (/5 November 1991/.test(h)) { h = h.replace(/5 November 1991/g, dobB); c = true; }
+      if (c) el.innerHTML = h;
+    });
+    // 7. Marginalia notes
+    document.querySelectorAll('.note').forEach(function(el){
+      var h = el.innerHTML; var c = false;
+      if (/Rohit Kapoor/.test(h)) { h = h.replace(/Rohit Kapoor/g, nameA); c = true; }
+      if (/Meera Kapoor/.test(h)) { h = h.replace(/Meera Kapoor/g, nameB); c = true; }
+      if (/22 July 1988/.test(h)) { h = h.replace(/22 July 1988/g, dobA); c = true; }
+      if (/5 November 1991/.test(h)) { h = h.replace(/5 November 1991/g, dobB); c = true; }
+      if (c) el.innerHTML = h;
+    });
+    // 8. Cover person bars (leaf divs — the anonymous name/dob divs)
+    document.querySelectorAll('.cover div, .content div').forEach(function(el){
+      if (el.childElementCount > 0) return;
+      var h = el.innerHTML; var c = false;
+      if (/Rohit Kapoor/.test(h)) { h = h.replace(/Rohit Kapoor/g, nameA); c = true; }
+      if (/Meera Kapoor/.test(h)) { h = h.replace(/Meera Kapoor/g, nameB); c = true; }
+      if (/22 July 1988/.test(h)) { h = h.replace(/22 July 1988/g, dobA); c = true; }
+      if (/5 November 1991/.test(h)) { h = h.replace(/5 November 1991/g, dobB); c = true; }
+      if (c) el.innerHTML = h;
+    });
+  } catch(e) {}
+})();
+</script>
+
+<!-- ── Email delivery button (Layer 3) ── -->
+<style>
+.email-fab{
+  position:fixed; bottom:24px; left:24px; z-index:9999;
+  background:#1a3a6e; color:#f5e8c8;
+  border:none; border-radius:28px;
+  padding:12px 22px; font-size:12pt; cursor:pointer;
+  box-shadow:0 4px 18px rgba(0,0,0,0.28);
+  font-family:inherit; letter-spacing:.04em;
+  transition:background .18s;
+}
+.email-fab:hover{background:#2a5a9e;}
+.email-fab:disabled{background:#6a7a8a;cursor:default;}
+@media print{.email-fab{display:none;}}
+</style>
+<button class="email-fab" id="email-fab-btn" onclick="sendReportEmail()">✉ Email This Report</button>
+<script>
+async function sendReportEmail(){
+  const btn=document.getElementById('email-fab-btn');
+  try {
+    const raw=localStorage.getItem('antara_user'); if(!raw){alert('Please complete your profile in the Antara app first.');return;}
+    const u=JSON.parse(raw); if(!u.email){alert('No email address found. Please re-enter your details in the Antara app.');return;}
+    btn.disabled=true; btn.textContent='Sending…';
+    const partner=JSON.parse(localStorage.getItem('antara_partner')||'{}');
+    // Get overall score from cover Venn text
+    const scoreEl=document.getElementById('cover-score');
+    const overall=scoreEl?parseInt(scoreEl.textContent)||50:50;
+    const res=await fetch('/api/send-report',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        reportType:'biorhythm_compat',
+        name:u.name, dob:u.dob, email:u.email,
+        partnerName:partner.name||'', partnerDob:partner.dob||'',
+        cycleData:{overall}
+      })
+    });
+    if(res.ok){
+      btn.textContent='✓ Sent to '+u.email;
+      setTimeout(()=>{btn.disabled=false;btn.textContent='✉ Email This Report';},6000);
+    } else {
+      throw new Error('Server returned '+res.status);
+    }
+  } catch(e){
+    btn.disabled=false; btn.textContent='✉ Email This Report';
+    alert('Could not send email. Please try again later.\n('+e.message+')');
+  }
+}
+</script>
 </body>
 </html>

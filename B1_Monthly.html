@@ -1138,5 +1138,54 @@
   } catch(e){ /* silent fail — demo content stays intact */ }
 })();
 </script>
+
+<!-- ── Email delivery button (Layer 3) ── -->
+<style>
+.email-fab{
+  position:fixed; bottom:24px; left:24px; z-index:9999;
+  background:#1a3a6e; color:#f5e8c8;
+  border:none; border-radius:28px;
+  padding:12px 22px; font-size:12pt; cursor:pointer;
+  box-shadow:0 4px 18px rgba(0,0,0,0.28);
+  font-family:inherit; letter-spacing:.04em;
+  transition:background .18s;
+}
+.email-fab:hover{background:#2a5a9e;}
+.email-fab:disabled{background:#6a7a8a;cursor:default;}
+@media print{.email-fab{display:none;}}
+</style>
+<button class="email-fab" id="email-fab-btn" onclick="sendReportEmail()">✉ Email This Report</button>
+<script>
+async function sendReportEmail(){
+  const btn=document.getElementById('email-fab-btn');
+  try {
+    const raw=localStorage.getItem('antara_user'); if(!raw){alert('Please complete your profile in the Antara app first.');return;}
+    const u=JSON.parse(raw); if(!u.email){alert('No email address found. Please re-enter your details in the Antara app.');return;}
+    btn.disabled=true; btn.textContent='Sending…';
+    // Collect current cycle values from the DOM
+    const kvs=document.querySelectorAll('.key-val');
+    const nums=[...kvs].map(el=>parseFloat(el.textContent)||0);
+    const res=await fetch('/api/send-report',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        reportType:'biorhythm_monthly',
+        name:u.name, dob:u.dob, email:u.email,
+        time:u.time||'', place:u.place||'',
+        cycleData:{phy:nums[0]||0,emo:nums[1]||0,int:nums[2]||0,spi:nums[3]||0}
+      })
+    });
+    if(res.ok){
+      btn.textContent='✓ Sent to '+u.email;
+      setTimeout(()=>{btn.disabled=false;btn.textContent='✉ Email This Report';},6000);
+    } else {
+      throw new Error('Server returned '+res.status);
+    }
+  } catch(e){
+    btn.disabled=false; btn.textContent='✉ Email This Report';
+    alert('Could not send email. Please try again later.\n('+e.message+')');
+  }
+}
+</script>
 </body>
 </html>
