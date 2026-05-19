@@ -1065,23 +1065,28 @@
 /* ── Layer 1: Personalise from localStorage ── */
 (function(){
   try {
-    var raw = localStorage.getItem('antara_user');
-    if (!raw) return; // no data — keep demo content
-    var u = JSON.parse(raw);
-    if (!u.name || !u.dob) return;
-
     var MONTHS = ['January','February','March','April','May','June',
                   'July','August','September','October','November','December'];
     var MON3   = MONTHS.map(function(m){ return m.slice(0,3); });
+
+    // ── Always update reading date to today (no localStorage needed) ──
+    var today = new Date();
+    var todayDisplay = today.getDate() + ' ' + MONTHS[today.getMonth()] + ' ' + today.getFullYear();
+    var pd0 = document.querySelectorAll('.cover .person > div');
+    if (pd0[2]) pd0[2].textContent = 'Reading date · ' + todayDisplay;
+    var kd0 = document.querySelector('.key-days');
+    // Update only the "Phase today" part; leave days-lived as demo until DOB is known
+    if (kd0) kd0.innerHTML = kd0.innerHTML.replace(/Phase today · \d+ \w+ \d{4}/, 'Phase today · ' + todayDisplay);
+
+    var raw = localStorage.getItem('antara_user');
+    if (!raw) return; // no profile data — keep remaining demo content
+    var u = JSON.parse(raw);
+    if (!u.name || !u.dob) return;
 
     // Parse DOB
     var parts = u.dob.split('-');
     var yyyy = +parts[0], mm = +parts[1], dd = +parts[2];
     var dobDisplay = dd + ' ' + MONTHS[mm-1] + ' ' + yyyy;
-
-    // Today
-    var today = new Date();
-    var todayDisplay = today.getDate() + ' ' + MONTHS[today.getMonth()] + ' ' + today.getFullYear();
 
     // 31-day reading window
     var end = new Date(today); end.setDate(end.getDate() + 30);
