@@ -2,10 +2,6 @@
   "version": 2,
   "functions": {
     "api/send-report.js": {
-      "runtime": "nodejs20.x",
-      "maxDuration": 30
-    }
-  },
   "routes": [
     {
       "src": "/api/(.*)",
