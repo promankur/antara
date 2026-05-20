@@ -102,7 +102,7 @@
     background:var(--rule); opacity:.55;
   }
   .pgfoot::after{
-    content:"Share: antara-alpha.vercel.app?from=YourName";
+    content:"Share: antara.promankur.com?from=YourName";
     position:absolute; left:0; right:0; bottom:-7mm;
     font-size:7pt; color:var(--gold); letter-spacing:.04em;
     text-align:center; opacity:.7;
@@ -305,25 +305,10 @@
   <div class="person">
     <div>Ankur Gupta</div>
     <div>16 May 1953</div>
-    <div>Reading date · 12 May 2026</div>
+    <div>12 May 2026 – 11 June 2026</div>
   </div>
 
   <!-- Referral panel on cover -->
-  <div style="margin-top:8mm;border:0.4mm solid var(--rule);border-radius:2mm;padding:5mm 6mm;background:rgba(168,136,66,0.04);">
-    <div style="font-size:9pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:2.5mm;">Gift this reading to someone you care about</div>
-    <div style="font-size:8.5pt;color:var(--ink-2);line-height:1.6;margin-bottom:3mm;">Anyone who downloads Antara through your personal link receives <strong>two free reports</strong> — Biorhythm Monthly and Numerology Personal Profile — plus <strong>15% off</strong> their first purchase. And you earn rewards for every friend who joins.</div>
-    <div style="display:flex;gap:4mm;margin-bottom:3mm;">
-      <div style="flex:1;background:rgba(168,136,66,0.07);border-radius:1.5mm;padding:3mm 4mm;">
-        <div style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5mm;">Your friend gets</div>
-        <div style="font-size:8pt;color:var(--ink-2);line-height:1.5;">✓ Biorhythm Monthly — free<br>✓ Numerology Profile — free<br>✓ 15% off first purchase</div>
-      </div>
-      <div style="flex:1;background:rgba(168,136,66,0.07);border-radius:1.5mm;padding:3mm 4mm;">
-        <div style="font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5mm;">You earn</div>
-        <div style="font-size:8pt;color:var(--ink-2);line-height:1.5;">1 friend → free report<br>3 friends → Critical Days Annual<br>5 friends → bundle at ₹1,250</div>
-      </div>
-    </div>
-    <div style="font-size:8.5pt;color:var(--muted);font-style:italic;">Share your link: <strong style="color:var(--gold);font-style:normal;">antara-alpha.vercel.app?from=YourName</strong></div>
-  </div>
 
   <div class="pgfoot" style="display:block;text-align:center;">
     <div style="font-size:10.5pt;font-weight:700;letter-spacing:.18em;color:var(--gold,#a88842);">ANTARA PERSONAL READING</div>
@@ -418,7 +403,7 @@
     <h3 class="section-sub">Tap any title to jump to that page</h3>
 
     <ol class="toc-list">
-      <li><a href="#chart"><span class="num">I</span><span class="name">The Biorhythm Chart · four cycles, ninety days</span><span class="pg">p. 5</span></a></li>
+      <li><a href="#chart"><span class="num">I</span><span class="name">Your 90-Day Biorhythm Chart</span><span class="pg">p. 5</span></a></li>
       <li><a href="#physical"><span class="num">II</span><span class="name" style="color:#c44a4a;">The Physical Cycle · 23 days</span><span class="pg">p. 6</span></a></li>
       <li><a href="#emotional"><span class="num">III</span><span class="name" style="color:#1f5e8a;">The Emotional Cycle · 28 days</span><span class="pg">p. 7</span></a></li>
       <li><a href="#intellectual"><span class="num">IV</span><span class="name" style="color:#3a7a3a;">The Intellectual Cycle · 33 days</span><span class="pg">p. 8</span></a></li>
@@ -458,8 +443,7 @@
 
   <div class="content">
     <div class="eyebrow">Focus I · all four cycles, ninety days forward</div>
-    <h2 class="section-title">Your Biorhythm Chart</h2>
-    <h3 class="section-sub">From today projected ninety days ahead — current state on the left edge</h3>
+    <h2 class="section-title">Your 90-Day Biorhythm Chart</h2>
 
     <div class="lead">
       <p>The chart below shows your four biorhythm cycles projected forward over ninety days. The vertical line at the left edge marks today; curves continue across the full window.</p>
@@ -852,7 +836,7 @@
 
   <div class="content" style="padding-top:5mm;">
     <h2 class="section-title" style="margin-bottom:1mm;">Biorhythm Day-by-Day</h2>
-    <div style="font-size:9pt; color:var(--muted); font-style:italic; margin-bottom:4mm; letter-spacing:.02em;">
+    <div id="tbl-date-note" style="font-size:9pt; color:var(--muted); font-style:italic; margin-bottom:4mm; letter-spacing:.02em;">
       12 May to 11 June 2026 · 31 days · Physical 23d · Emotional 28d · Intellectual 33d · Spiritual 53d · <strong style="color:var(--gold);">◈</strong> critical crossing (value within ±0.15 of midline)
     </div>
 
@@ -1170,7 +1154,10 @@ function copyRefLink(){
     var today = new Date();
     var todayDisplay = today.getDate() + ' ' + MONTHS[today.getMonth()] + ' ' + today.getFullYear();
     var pd0 = document.querySelectorAll('.cover .person > div');
-    if (pd0[2]) pd0[2].textContent = 'Reading date · ' + todayDisplay;
+    var end0 = new Date(today); end0.setDate(end0.getDate() + 30);
+    var MONTHS0 = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var periodDisplay0 = today.getDate()+' '+MONTHS0[today.getMonth()]+' '+today.getFullYear()+' – '+end0.getDate()+' '+MONTHS0[end0.getMonth()]+' '+end0.getFullYear();
+    if (pd0[2]) pd0[2].textContent = periodDisplay0;
     var kd0 = document.querySelector('.key-days');
     // Update only the "Phase today" part; leave days-lived as demo until DOB is known
     if (kd0) kd0.innerHTML = kd0.innerHTML.replace(/Phase today · \d+ \w+ \d{4}/, 'Phase today · ' + todayDisplay);
@@ -1205,7 +1192,9 @@ function copyRefLink(){
     var pd = document.querySelectorAll('.cover .person > div');
     if (pd[0]) pd[0].textContent = u.name;
     if (pd[1]) pd[1].textContent = dobDisplay;
-    if (pd[2]) pd[2].textContent = 'Reading date · ' + todayDisplay;
+    var endDate0 = new Date(today); endDate0.setDate(endDate0.getDate() + 30);
+    var periodStr = today.getDate()+' '+MONTHS[today.getMonth()]+' '+today.getFullYear()+' – '+endDate0.getDate()+' '+MONTHS[endDate0.getMonth()]+' '+endDate0.getFullYear();
+    if (pd[2]) pd[2].textContent = periodStr;
 
     // 4. "Days lived" line in chart key
     var kd = document.querySelector('.key-days');
@@ -1436,7 +1425,7 @@ async function sendReportEmail(){
       var rh=document.querySelector('#daily-table .running .who');
       if(rh) rh.textContent='Day-by-Day · '+today.getDate()+' '+MS3[today.getMonth()]+' – '+endDate.getDate()+' '+MS3[endDate.getMonth()]+' '+endDate.getFullYear();
 
-      var tn=document.querySelector('#daily-table .content > div[style*="font-style:italic"]');
+      var tn=document.getElementById('tbl-date-note');
       if(tn) tn.innerHTML=(today.getDate()+' '+MS[today.getMonth()]+' '+today.getFullYear())+' to '+(endDate.getDate()+' '+MS[endDate.getMonth()]+' '+endDate.getFullYear())+' · 31 days · Physical 23d · Emotional 28d · Intellectual 33d · Spiritual 53d · <strong style="color:var(--gold);">◈</strong> critical crossing (value within ±0.15 of midline)';
 
       var dobP=u.dob.split('-'), userBDay=-1, userAge=0;
@@ -1471,7 +1460,7 @@ async function sendReportEmail(){
           [{v:pv,p:pP,l:'Phy',c:'#c44a4a'},{v:ev,p:pE,l:'Emo',c:'#1f5e8a'},{v:iv,p:pI,l:'Int',c:'#3a7a3a'},{v:sv,p:pS,l:'Spi',c:'#7048a0'}].forEach(function(ci){
             if(Math.abs(ci.v)<=0.15) cx.push({label:ci.l+(ci.v>=0?' ↑':' ↓')+' crosses midline',color:ci.c});
           });
-          if(cx.length>=2){ note='◈◈ '+cx.map(function(c){return c.label;}).join(' · '); noteStyle='color:var(--gold)'; }
+          if(cx.length>=2){ note='◈◈ '+cx.map(function(c){return c.label.replace(' crosses midline','').replace(' near midline','');}).join(' · '); noteStyle='color:var(--gold)'; }
           else if(cx.length===1){ note='◈ '+cx[0].label; noteStyle='color:'+cx[0].color; }
         }
         var rowStyle=d===userBDay?'background:rgba(168,136,66,0.05)':
@@ -1489,6 +1478,7 @@ async function sendReportEmail(){
       }
       tbody.innerHTML=rows;
     }
+
 
   } catch(e){ console.error('Antara Layer 2 error:',e); }
 })();
