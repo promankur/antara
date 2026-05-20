@@ -2553,7 +2553,7 @@ function renderCart(){
     <div class="sum-row total"><span class="sl">Total</span><span class="sv">₹${(total+gst).toLocaleString('en-IN')}</span></div>
   </div>
   <div class="checkout-area">
-    <div class="checkout-note">🔒 &nbsp;Secure payment via Stripe · All reports delivered instantly</div>
+    <div class="checkout-note">🔒 &nbsp;Secure payment via Razorpay · All reports delivered instantly</div>
     <button class="checkout-btn" onclick="openPayment()">Proceed to Payment →</button>
   </div>`;
   el.innerHTML=html;
@@ -2723,8 +2723,6 @@ function openPayment(){
       : names.slice(0,2).join(' · ')+' + '+(names.length-2)+' more';
   document.getElementById('pay-items-summary').textContent=summary;
 
-  // reset to card tab
-  switchPayTab('card');
   document.getElementById('pay-overlay').classList.remove('show');
 
   go('payment',null);
