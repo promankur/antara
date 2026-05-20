@@ -911,6 +911,103 @@
   <div class="pgfoot"><span>Antara — Personal Reading · End</span><span>Page 12</span></div>
 </section>
 
+<!-- ════ REFERRAL PANEL — web only, hidden in print ════ -->
+<div class="ref-panel" id="ref-panel">
+  <div class="ref-inner">
+    <div class="ref-eyebrow">A gift from you</div>
+    <h2 class="ref-title">Know someone who would appreciate this?</h2>
+    <p class="ref-body">Share your personal link below. Anyone who opens it will be offered the same free Biorhythm Monthly Report — calculated fresh for them, no account needed.</p>
+    <div class="ref-link-row">
+      <div class="ref-link-box" id="ref-link-text">antara.promankur.com</div>
+      <button class="ref-copy-btn" id="ref-copy-btn" onclick="copyRefLink()">Copy link</button>
+    </div>
+    <p class="ref-note" id="ref-copied" style="opacity:0;transition:opacity .3s;">✓ Link copied to clipboard</p>
+    <div class="ref-divider"></div>
+    <p class="ref-footer">Antara · अन्तर · The Interior Register<br/>Nine traditions · One person · Precise calculations</p>
+  </div>
+</div>
+
+<style>
+.ref-panel{
+  display:flex; justify-content:center; align-items:center;
+  min-height:60vh; padding:48px 24px;
+  background:linear-gradient(160deg,#1a1a2e 0%,#2a2010 100%);
+}
+.ref-inner{
+  max-width:560px; width:100%; text-align:center;
+  font-family:"Cormorant Garamond","Iowan Old Style",Georgia,serif;
+  color:#e8dcc8;
+}
+.ref-eyebrow{
+  font-size:9pt; letter-spacing:.28em; text-transform:uppercase;
+  color:#a88842; font-weight:700; margin-bottom:14px;
+}
+.ref-title{
+  font-size:22pt; font-weight:400; color:#f0e4c8;
+  letter-spacing:.04em; line-height:1.2; margin:0 0 16px;
+}
+.ref-body{
+  font-size:12pt; line-height:1.65; color:rgba(232,220,200,0.75);
+  margin:0 0 28px;
+}
+.ref-link-row{
+  display:flex; gap:10px; align-items:stretch;
+  background:rgba(255,255,255,0.06); border:1px solid rgba(200,168,92,0.3);
+  border-radius:4px; padding:4px 4px 4px 16px; margin-bottom:10px;
+}
+.ref-link-box{
+  flex:1; font-family:Arial,sans-serif; font-size:10pt;
+  color:#c8a85c; text-align:left; padding:8px 0;
+  word-break:break-all;
+}
+.ref-copy-btn{
+  background:#6b1a2c; color:#f5e8c8; border:none; border-radius:3px;
+  padding:10px 20px; font-family:inherit; font-size:9pt;
+  font-weight:700; letter-spacing:.08em; cursor:pointer;
+  transition:background .15s; white-space:nowrap;
+}
+.ref-copy-btn:hover{background:#8b2a3c;}
+.ref-note{
+  font-size:9pt; color:#a88842; margin:4px 0 0; height:16px;
+}
+.ref-divider{
+  border:none; border-top:1px solid rgba(200,168,92,0.2);
+  margin:32px 0 20px;
+}
+.ref-footer{
+  font-size:8pt; letter-spacing:.1em; color:rgba(200,168,92,0.45);
+  text-transform:uppercase; line-height:1.8;
+}
+@media print{ .ref-panel{ display:none !important; } }
+</style>
+
+<script>
+(function(){
+  const raw=localStorage.getItem('antara_user');
+  const base='https://antara.promankur.com/';
+  let link=base;
+  if(raw){
+    try{
+      const u=JSON.parse(raw);
+      const first=(u.name||'').trim().split(' ')[0];
+      if(first) link=base+'?from='+encodeURIComponent(first);
+    }catch(e){}
+  }
+  document.getElementById('ref-link-text').textContent=link;
+  document.getElementById('ref-copy-btn').dataset.link=link;
+})();
+
+function copyRefLink(){
+  const link=document.getElementById('ref-copy-btn').dataset.link||
+              document.getElementById('ref-link-text').textContent;
+  navigator.clipboard.writeText(link).then(()=>{
+    const note=document.getElementById('ref-copied');
+    note.style.opacity='1';
+    setTimeout(()=>note.style.opacity='0',2500);
+  });
+}
+</script>
+
 <button class="print-fab" onclick="window.print()">🖨 Print / Save PDF</button>
 
 <script>
@@ -1191,6 +1288,210 @@ async function sendReportEmail(){
     alert('Could not send email. Please try again later.\n('+e.message+')');
   }
 }
+</script>
+
+<script>
+/* ── Layer 2: Real biorhythm calculations — runs after Layer 1 ── */
+(function(){
+  try {
+    var raw=localStorage.getItem('antara_user'); if(!raw)return;
+    var u=JSON.parse(raw); if(!u.dob)return;
+
+    var today=new Date(); today.setHours(12,0,0,0);
+    var dob=new Date(u.dob+'T12:00:00');
+    var daysLived=Math.floor((today-dob)/86400000);
+
+    var LENS=[23,28,33,53];
+    var CK=['phy','emo','int','spi'];
+    var CNAMES=['Physical','Emotional','Intellectual','Spiritual'];
+    var COLORS=['#c44a4a','#1f5e8a','#3a7a3a','#7048a0'];
+    var PCLS=['bp','be','bi','bs'];
+    var SECS=['physical','emotional','intellectual','spiritual'];
+    var MS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var MS3=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var DOWS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var MINUS='−';
+
+    /* ── Calculate cycle states ── */
+    var C={};
+    CK.forEach(function(k,i){
+      var len=LENS[i];
+      var phase=daysLived%len;
+      var val=Math.sin(2*Math.PI*phase/len);
+      var pk=((len/4  -phase)%len+len)%len; if(pk<0.5)pk=len;
+      var tr=((3*len/4-phase)%len+len)%len; if(tr<0.5)tr=len;
+      var up=((len    -phase)%len+len)%len; if(up<0.5)up=len;
+      var dn=((len/2  -phase)%len+len)%len; if(dn<0.5)dn=len;
+      C[k]={len:len,phase:phase,phaseDay:phase+1,val:val,
+            pk:Math.round(pk),tr:Math.round(tr),up:Math.round(up),dn:Math.round(dn)};
+    });
+
+    /* ── Helpers ── */
+    function fmt(v){ return(v>=0?'+':MINUS)+Math.abs(v).toFixed(2); }
+    function vw(v){ return(v>=0?'plus ':'minus ')+Math.abs(v).toFixed(2); }
+    function cellCls(v,pcls){ return Math.abs(v)<=0.15?'bc':(v>0?pcls:'bn'); }
+    function boldIf(v){ return Math.abs(v)>=0.97?' style="font-weight:800"':''; }
+
+    /* ── 1. Days lived in intro-2 ── */
+    var intro2=document.getElementById('intro-2');
+    if(intro2){ intro2.querySelectorAll('p').forEach(function(p){
+      if(/26[\s,]*658/.test(p.innerHTML)) p.innerHTML=p.innerHTML.replace(/26[\s,]*658/g,daysLived.toLocaleString());
+    });}
+
+    /* ── 2. Chart key ── */
+    var keyDays=document.querySelector('.key-days');
+    if(keyDays){
+      var ts=today.getDate()+' '+MS[today.getMonth()]+' '+today.getFullYear();
+      keyDays.innerHTML='Days lived · ~<strong>'+daysLived.toLocaleString()+'</strong> · Phase today · '+ts;
+    }
+    var keyVals=document.querySelectorAll('.key-val');
+    var keyPds=document.querySelectorAll('.key-period');
+    CK.forEach(function(k,i){
+      var c=C[k];
+      if(keyVals[i]) keyVals[i].textContent=fmt(c.val);
+      if(keyPds[i]){
+        var desc=Math.abs(c.val)<0.12?'critical crossing':
+                 c.val>0.7?'near peak · peak day '+c.pk:
+                 c.val>0?'rising · peak ~day '+c.pk:
+                 c.val<-0.7?'near trough':'falling · trough ~day '+c.tr;
+        keyPds[i].textContent=c.len+' days · '+desc;
+      }
+    });
+
+    /* ── 3. SVG chart paths ── */
+    var chartSvg=document.querySelector('#chart .biochart-wide svg');
+    if(chartSvg){ CK.forEach(function(k,i){
+      var c=C[k];
+      var path=chartSvg.querySelector('path[stroke="'+COLORS[i]+'"]'); if(!path)return;
+      var pts=[];
+      for(var d=0;d<=90;d+=2){
+        var x=(14+d*140/90).toFixed(1);
+        var y=(41-35*Math.sin(2*Math.PI*(c.phase+d)/c.len)).toFixed(1);
+        pts.push(x+' '+y);
+      }
+      path.setAttribute('d','M '+pts.join(' L '));
+    });}
+
+    /* ── 4. Cycle pages ── */
+    function cycleParagraph(name,c){
+      var v=vw(c.val);
+      if(Math.abs(c.val)<0.12) return 'Your '+name+' cycle today is at the midline — a critical day. This brief instability passes in a day or two. The next peak arrives around day '+c.pk+' from now.';
+      if(c.val>0.85) return 'Your '+name+' cycle today reads at about '+v+' — very near its peak, at the height of the high half. Make the most of the coming days; the cycle descends toward the midline around day '+c.dn+' and its trough around day '+c.tr+'.';
+      if(c.val>0.35) return 'Your '+name+' cycle today reads at about '+v+' — solidly in the high half. The cycle peaks around day '+c.pk+' from now, then descends toward the midline around day '+c.dn+' and reaches its trough at around day '+c.tr+'.';
+      if(c.val>0.12) return 'Your '+name+' cycle today reads at about '+v+' — recently across the midline and climbing. The cycle peaks around day '+c.pk+' from now, returns to the midline around day '+c.dn+', and reaches its trough at around day '+c.tr+'.';
+      if(c.val<-0.85) return 'Your '+name+' cycle today reads at about '+v+' — near the deepest trough. Recovery toward the midline takes about '+c.up+' days; the next peak arrives around day '+c.pk+' from today. Rest and reduced demands serve well for the immediate period.';
+      if(c.val<-0.35) return 'Your '+name+' cycle today reads at about '+v+' — descending into the lower half. The trough arrives around day '+c.tr+' from now, followed by recovery to the midline around day '+c.up+' and the next peak around day '+c.pk+'.';
+      return 'Your '+name+' cycle today reads at about '+v+' — recently across the midline and descending. The trough arrives around day '+c.tr+' from now; recovery to the midline at around day '+c.up+', with the next peak at around day '+c.pk+'.';
+    }
+
+    SECS.forEach(function(secId,i){
+      var k=CK[i]; var c=C[k];
+      var sec=document.getElementById(secId); if(!sec)return;
+      var calc=sec.querySelector('.calc');
+      if(calc) calc.innerHTML='Period · <strong>'+c.len+' days</strong> · Current phase · day <strong>'+c.phaseDay+' of '+c.len+'</strong> · Today\'s value · <strong>'+fmt(c.val)+'</strong> · Next peak · ~<strong>day '+c.pk+'</strong> · Next trough · ~<strong>day '+c.tr+'</strong>';
+      var tps=sec.querySelectorAll('.text p');
+      if(tps.length) tps[tps.length-1].textContent=cycleParagraph(CNAMES[i],c);
+    });
+
+    /* ── 5. Critical days ── */
+    var critSec=document.getElementById('critical');
+    if(critSec){
+      var calc=critSec.querySelector('.calc');
+      if(calc) calc.innerHTML='Critical day spacing · Physical ~<strong>'+Math.round(LENS[0]/2)+' days</strong> · Emotional ~<strong>'+Math.round(LENS[1]/2)+' days</strong> · Intellectual ~<strong>'+Math.round(LENS[2]/2)+' days</strong> · Spiritual ~<strong>'+Math.round(LENS[3]/2)+' days</strong>';
+      var cps=critSec.querySelectorAll('.text p');
+      if(cps.length){
+        var pcrit=Math.min(C.phy.up,C.phy.dn), ecrit=Math.min(C.emo.up,C.emo.dn);
+        var icit=Math.min(C.int.up,C.int.dn), scrit=Math.min(C.spi.up,C.spi.dn);
+        cps[cps.length-1].textContent='The correct posture toward a critical day is gentle care, not avoidance. Do less on those days, keep the schedule flexible, and expect to be slightly less than oneself for a short window. Your next physical critical day falls around day '+pcrit+' from now; the next emotional around day '+ecrit+'; the next intellectual around day '+icit+'; the next spiritual around day '+scrit+'.';
+      }
+    }
+
+    /* ── 6. Synthesis ── */
+    var synthSec=document.getElementById('synthesis');
+    if(synthSec){
+      var sps=synthSec.querySelectorAll('.text p');
+      if(sps.length>=2){
+        var parts=CK.map(function(k,i){
+          var c=C[k],n=CNAMES[i];
+          if(Math.abs(c.val)<0.12) return 'The '+n+' cycle is at a critical crossing today';
+          if(c.val>0.5) return 'The '+n+' cycle is in the high half, with its peak '+c.pk+' days away';
+          if(c.val>0) return 'The '+n+' cycle has recently crossed the midline upward, building toward its peak in '+c.pk+' days';
+          if(c.val<-0.5) return 'The '+n+' cycle is in its deep low — recovery toward the midline begins in '+c.up+' days';
+          return 'The '+n+' cycle is descending into the low half, with its trough '+c.tr+' days away';
+        });
+        sps[0].textContent=parts.join('. ')+'.';
+        var dom=CK.reduce(function(b,k){ return Math.abs(C[k].val)>Math.abs(C[b].val)?k:b; });
+        var dc=C[dom], dn=CNAMES[CK.indexOf(dom)];
+        sps[1].textContent=dc.val>0
+          ?'The clearest single signal in the chart is the '+dn.toLowerCase()+' high. '+(dc.pk<=5?'The peak arrives imminently — within '+dc.pk+' days — and the window now opening is well-suited to whatever draws most on this domain.':'The high half extends for another '+dc.dn+' days before the descent begins; use this period well.')
+          :'The clearest single signal in the chart is the '+dn.toLowerCase()+' low. '+(dc.up<=5?'Recovery to the midline is close — '+dc.up+' days away — and the difficult phase is nearly through.':'Recovery begins in '+dc.up+' days; until then, the '+dn.toLowerCase()+' domain rewards patience over performance.');
+      }
+    }
+
+    /* ── 7. Day-by-day table ── */
+    var tbody=document.querySelector('#daily-table tbody');
+    if(tbody){
+      var endDate=new Date(today); endDate.setDate(endDate.getDate()+30);
+
+      var rh=document.querySelector('#daily-table .running .who');
+      if(rh) rh.textContent='Day-by-Day · '+today.getDate()+' '+MS3[today.getMonth()]+' – '+endDate.getDate()+' '+MS3[endDate.getMonth()]+' '+endDate.getFullYear();
+
+      var tn=document.querySelector('#daily-table .content > div[style*="font-style:italic"]');
+      if(tn) tn.innerHTML=(today.getDate()+' '+MS[today.getMonth()]+' '+today.getFullYear())+' to '+(endDate.getDate()+' '+MS[endDate.getMonth()]+' '+endDate.getFullYear())+' · 31 days · Physical 23d · Emotional 28d · Intellectual 33d · Spiritual 53d · <strong style="color:var(--gold);">◈</strong> critical crossing (value within ±0.15 of midline)';
+
+      var dobP=u.dob.split('-'), userBDay=-1, userAge=0;
+      for(var d=0;d<=30;d++){
+        var td2=new Date(today); td2.setDate(td2.getDate()+d);
+        if(td2.getMonth()+1===parseInt(dobP[1])&&td2.getDate()===parseInt(dobP[2])){ userBDay=d; userAge=td2.getFullYear()-parseInt(dobP[0]); break; }
+      }
+
+      var rows='', pP,pE,pI,pS;
+      for(var d=0;d<=30;d++){
+        var rd=new Date(today); rd.setDate(rd.getDate()+d);
+        var dl=daysLived+d;
+        var pv=Math.sin(2*Math.PI*(dl%23)/23);
+        var ev=Math.sin(2*Math.PI*(dl%28)/28);
+        var iv=Math.sin(2*Math.PI*(dl%33)/33);
+        var sv=Math.sin(2*Math.PI*(dl%53)/53);
+        var dm=rd.getDate(), mo=rd.getMonth();
+        var dateStr=(d===0||dm===1)?'<span class="bd-month-tag">'+MS3[mo]+'</span>'+dm:''+dm;
+        var dowStr=DOWS[rd.getDay()];
+        var note='',noteStyle='';
+        if(d===userBDay){ note='Birthday · '+userAge; noteStyle='color:var(--gold);font-style:italic'; }
+        if(!note){
+          var pt=[];
+          if(Math.abs(pv)>=0.97) pt.push('Phy '+(pv>0?'▲':'▼')+(pv>0?' peak':' trough'));
+          if(Math.abs(ev)>=0.97) pt.push('Emo '+(ev>0?'▲':'▼')+(ev>0?' peak':' trough'));
+          if(Math.abs(iv)>=0.97) pt.push('Int '+(iv>0?'▲':'▼')+(iv>0?' peak':' trough'));
+          if(Math.abs(sv)>=0.97) pt.push('Spi '+(sv>0?'▲':'▼')+(sv>0?' peak':' trough'));
+          if(pt.length){ note=pt.join(' · '); noteStyle='color:var(--muted);font-style:italic'; }
+        }
+        if(!note&&d>0){
+          var cx=[];
+          [{v:pv,p:pP,l:'Phy',c:'#c44a4a'},{v:ev,p:pE,l:'Emo',c:'#1f5e8a'},{v:iv,p:pI,l:'Int',c:'#3a7a3a'},{v:sv,p:pS,l:'Spi',c:'#7048a0'}].forEach(function(ci){
+            if(Math.abs(ci.v)<=0.15) cx.push({label:ci.l+(ci.v>=0?' ↑':' ↓')+' crosses midline',color:ci.c});
+          });
+          if(cx.length>=2){ note='◈◈ '+cx.map(function(c){return c.label;}).join(' · '); noteStyle='color:var(--gold)'; }
+          else if(cx.length===1){ note='◈ '+cx[0].label; noteStyle='color:'+cx[0].color; }
+        }
+        var rowStyle=d===userBDay?'background:rgba(168,136,66,0.05)':
+          (Math.abs(pv)>=0.97||Math.abs(ev)>=0.97||Math.abs(iv)>=0.97||Math.abs(sv)>=0.97)?'background:rgba(168,136,66,0.07)':'';
+        rows+='<tr'+(rowStyle?' style="'+rowStyle+'"':'')+'>'+
+          '<td class="bd-date">'+dateStr+'</td>'+
+          '<td class="bd-day">'+dowStr+'</td>'+
+          '<td class="'+cellCls(pv,'bp')+'"'+boldIf(pv)+'>'+fmt(pv)+'</td>'+
+          '<td class="'+cellCls(ev,'be')+'"'+boldIf(ev)+'>'+fmt(ev)+'</td>'+
+          '<td class="'+cellCls(iv,'bi')+'"'+boldIf(iv)+'>'+fmt(iv)+'</td>'+
+          '<td class="'+cellCls(sv,'bs')+'"'+boldIf(sv)+'>'+fmt(sv)+'</td>'+
+          '<td class="bd-notes"'+(noteStyle?' style="'+noteStyle+'"':'')+'>'+note+'</td>'+
+          '</tr>';
+        pP=pv; pE=ev; pI=iv; pS=sv;
+      }
+      tbody.innerHTML=rows;
+    }
+
+  } catch(e){ console.error('Antara Layer 2 error:',e); }
+})();
 </script>
 </body>
 </html>
