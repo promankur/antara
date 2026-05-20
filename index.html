@@ -2762,22 +2762,74 @@ function fmtExp(inp){
   inp.value=v;
 }
 
-function simulatePay(){
+async function simulatePay(){
+  // Load Razorpay script if not already loaded
+  if(!window.Razorpay){
+    await new Promise((resolve,reject)=>{
+      const s=document.createElement('script');
+      s.src='https://checkout.razorpay.com/v1/checkout.js';
+      s.onload=resolve; s.onerror=reject;
+      document.head.appendChild(s);
+    });
+  }
+
+  const user=JSON.parse(localStorage.getItem('antara_user')||'{}');
+  const keys=Object.keys(cart);
+  const subtotal=keys.reduce((s,k)=>s+cart[k].price,0);
+  const gst=Math.round(subtotal*0.18);
+  const total=subtotal+gst;
+
+  // Show processing overlay while creating order
   const overlay=document.getElementById('pay-overlay');
   overlay.classList.add('show');
-  setTimeout(()=>{
-    overlay.classList.remove('show');
-    buildConfirm();                          // capture cart snapshot first
-    // clear cart state completely
-    Object.keys(cart).forEach(k=>delete cart[k]);
-    ['add-h','add-n','add-b'].forEach(id=>{
-      const b=document.getElementById(id);
-      if(b){b.classList.remove('added');b.textContent='Add';}
+
+  let order;
+  try {
+    const res=await fetch('/api/create-order',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({amount:total, currency:'INR', receipt:'antara_'+Date.now()})
     });
-    document.querySelectorAll('.sub-chk').forEach(e=>{e.classList.remove('on');e.textContent='';});
-    renderCart();                            // resets badge to 0
-    go('confirm',null);
-  }, 2200);
+    order=await res.json();
+    if(!order.id) throw new Error('No order ID returned');
+  } catch(e) {
+    overlay.classList.remove('show');
+    alert('Could not initiate payment. Please try again.\n('+e.message+')');
+    return;
+  }
+
+  overlay.classList.remove('show');
+
+  const options={
+    key: 'rzp_test_SrVTyYYufrnUDr',
+    amount: order.amount,
+    currency: order.currency,
+    order_id: order.id,
+    name: 'Antara · अन्तर',
+    description: 'Personal Reading Reports',
+    image: '',
+    prefill: { name: user.name||'', email: user.email||'' },
+    theme: { color: '#6b1a2c' },
+    modal: { backdropclose: false },
+    handler: function(response){
+      // Payment successful — go to confirm screen
+      buildConfirm();
+      Object.keys(cart).forEach(k=>delete cart[k]);
+      ['add-h','add-n','add-b'].forEach(id=>{
+        const b=document.getElementById(id);
+        if(b){b.classList.remove('added');b.textContent='Add';}
+      });
+      document.querySelectorAll('.sub-chk').forEach(e=>{e.classList.remove('on');e.textContent='';});
+      renderCart();
+      go('confirm',null);
+    },
+  };
+
+  const rzp=new window.Razorpay(options);
+  rzp.on('payment.failed',function(response){
+    alert('Payment failed: '+response.error.description);
+  });
+  rzp.open();
 }
 
 function buildConfirm(){
