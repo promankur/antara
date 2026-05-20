@@ -65,7 +65,7 @@ Their cycle values today are:
 - Intellectual (33-day cycle): ${int >= 0 ? '+' : ''}${Number(int).toFixed(2)} — ${int > 0.5 ? 'sharp and analytical' : int < -0.5 ? 'intuitive over logical' : 'mental recalibration'}
 - Spiritual (53-day cycle): ${spi >= 0 ? '+' : ''}${Number(spi).toFixed(2)} — ${spi > 0.5 ? 'aligned with purpose' : spi < -0.5 ? 'seeking deeper meaning' : 'spiritual crossroads'}
 
-Write 3 short paragraphs (60–80 words each):
+Write 3 short paragraphs (60–80 words each). Use plain prose only — no markdown, no asterisks, no headings, no bullet points:
 1. Overall tone of this month given these positions.
 2. Practical guidance for the high-energy cycles.
 3. What the low or crossing cycles suggest for rest and adjustment.
@@ -200,10 +200,19 @@ function buildEmailHtml({ firstName, name, config, reportUrl, interpretation, bo
     ? new Date(body.dob + 'T12:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
     : '';
 
-  const interpretationBlock = interpretation
+ const interpretationHtml = interpretation
+    ? interpretation
+        .replace(/^## (.+)$/gm, '<strong style="display:block;margin:14px 0 4px;font-size:13px;color:#2a3340;letter-spacing:0.04em;">$1</strong>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n\n/g, '</p><p style="margin:8px 0 0;">')
+        .replace(/^/, '<p style="margin:0">')
+        .replace(/$/, '</p>')
+    : '';
+
+  const interpretationBlock = interpretationHtml
     ? `<div style="margin:24px 0;padding:20px 24px;background:#f8f4e8;border-left:3px solid #a88842;border-radius:2px;">
         <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#a88842;font-weight:700;margin-bottom:10px;">Your Personalised Interpretation</div>
-        <div style="font-size:15px;line-height:1.65;color:#2a3340;font-family:Georgia,serif;">${interpretation.replace(/\n\n/g, '</p><p style="margin:10px 0 0;">').replace(/^/, '<p style="margin:0">').replace(/$/, '</p>')}</div>
+        <div style="font-size:14px;line-height:1.65;color:#2a3340;font-family:Georgia,serif;">${interpretationHtml}</div>
       </div>`
     : '';
 
