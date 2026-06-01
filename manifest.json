@@ -1,0 +1,18 @@
+{
+  "name": "Antara",
+  "short_name": "Antara",
+  "description": "Primal cross-cultural natal coordinates, birth grids & cycle analysis.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#3b120c",
+  "theme_color": "#5a1607",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "Antara_App_Icon_512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

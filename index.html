@@ -1315,6 +1315,7 @@ body::before{
 </style>
   <meta name="description" content="Antara is a traditional cross-cultural mathematical life-engine and archetypal systems cartography. Calibrate your natal coordinates, biological rhythms, and name phonetic values across Vedic, Western tropical, and Chinese solar Four Pillars traditions.">
   <link rel="icon" type="image/png" href="Antara_Logo.png">
+  <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
@@ -2847,6 +2848,15 @@ Beyond Prediction. Into Insights.
       window.addEventListener('resize', resize);
       requestAnimationFrame(draw);
     })();
+
+    // Register Service Worker for PWA/Play Store Compliance
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('Service Worker registered successfully!', reg.scope))
+          .catch(err => console.log('Service Worker registration failed:', err));
+      });
+    }
 </script>
 
 </body>
