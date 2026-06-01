@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.promankur.antara",
+      "sha256_cert_fingerprints": [
+        "3F:99:E1:0C:7D:3D:0B:6D:E0:9F:9D:13:25:2F:AD:48:A3:D8:0B:CF:4D:12:8E:23:44:AC:B0:F2:4E:B1:E4:BA"
+      ]
+    }
+  }
+]

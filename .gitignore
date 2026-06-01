@@ -1,0 +1,13 @@
+# Antara Git Ignore list
+local_tools/
+.bubblewrap/
+twa-project/
+app-release-signed.aab
+app-release-unsigned.aab
+*.keystore
+*.der
+.DS_Store
+
+# Ignore loose assetlinks in root but track .well-known
+assetlinks.json
+!.well-known/assetlinks.json
