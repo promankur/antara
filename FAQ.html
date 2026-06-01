@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>FAQ · Antara Frequently Asked Questions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;600;700&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fdfaf2;
+      --panel: #fffdf9;
+      --ink: #2a1a08;
+      --muted: #7d7369;
+      --accent: #D98236;
+      --line: #e6dfd3;
+      --cinnabar: #5a1607;
+      --saffron: #D98236;
+      --turmeric: #f1b73a;
+      --turmeric-soft: #f7d774;
+      --stroke: #b56a2a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      line-height: 1.75;
+      padding-bottom: 60px;
+    }
+    .header {
+      background: var(--cinnabar);
+      color: #fff;
+      padding: 40px 48px 32px;
+      border-bottom: 4px solid var(--stroke);
+    }
+    .header-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--turmeric);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+    .header-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: rgba(255,255,255,0.72);
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 40px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    
+    /* Premium Native Accordion Styling */
+    details {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      margin-bottom: 16px;
+      border-radius: 4px;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0 2px 8px rgba(42, 26, 8, 0.02);
+    }
+    details[open] {
+      box-shadow: 0 8px 24px rgba(90, 22, 7, 0.05);
+      border-color: var(--stroke);
+    }
+    summary {
+      cursor: pointer;
+      padding: 16px 20px;
+      font-family: 'Cinzel', serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cinnabar);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+      user-select: none;
+      outline: none;
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    summary::after {
+      content: '▾';
+      font-family: system-ui;
+      font-size: 16px;
+      color: var(--accent);
+      transition: transform 0.2s ease;
+    }
+    details[open] summary::after {
+      transform: rotate(180deg);
+      color: var(--cinnabar);
+    }
+    .details-content {
+      padding: 0 20px 20px;
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.8;
+    }
+    .details-content p {
+      margin-bottom: 12px;
+    }
+    .details-content p:last-child {
+      margin-bottom: 0;
+    }
+    .details-content strong {
+      color: var(--cinnabar);
+    }
+    
+    .highlight-box {
+      background: rgba(247,215,116,0.18);
+      border-left: 3px solid var(--accent);
+      padding: 12px 16px;
+      margin: 12px 0;
+      border-radius: 0 4px 4px 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--ink);
+    }
+    .tag {
+      font-family: 'Courier Prime', monospace;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 12px;
+      display: block;
+    }
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+    }
+  </style>
+  <meta name="description" content="Antara is a traditional cross-cultural mathematical life-engine and archetypal systems cartography. Calibrate your natal coordinates, biological rhythms, and name phonetic values across Vedic, Western tropical, and Chinese solar Four Pillars traditions.">
+  <link rel="icon" type="image/png" href="Antara Logo.png">
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">Analysis · Documents/Antara · June 2026</div>
+  <h1>Frequently Asked Questions</h1>
+  <p class="header-sub">Every important question about the Antara reports explained in plain, straightforward language for absolute clarity.</p>
+</div>
+
+<div class="container" style="margin-top: 30px;">
+  <span class="tag">Comprehensive FAQ for all age groups</span>
+
+  <!-- SECTION 1: ABOUT ANTARA -->
+  <div class="section-label">About Antara</div>
+
+  <details open>
+    <summary>What exactly is Antara?</summary>
+    <div class="details-content">
+      <p>Antara is a service that calculates personal readings from your birth details — your name, date of birth, time of birth, and place of birth. It uses nine ancient systems from six different civilisations: India, Greece, China, Babylon, Hebrew tradition, and modern science.</p>
+      <p>Think of it like having nine different experts look at the same person from nine different angles. Each expert uses their own method and vocabulary — but together they build a surprisingly complete picture of who you are by nature.</p>
+      <div class="highlight-box">The word "Antara" comes from Sanskrit and means "within" — the inner space that makes you uniquely you.</div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Is Antara astrology? Numerology? Something else?</summary>
+    <div class="details-content">
+      <p>It is both — and more. Antara includes four astrological traditions (Vedic North Indian, Vedic South Indian, Western, and Chinese BaZi), five numerological traditions (Pythagorean, Chaldean, Tamil Vedic, Kabbalah, and Lo Shu), and biorhythm science.</p>
+      <p>What makes Antara different from a standard astrology app or numerology website is that it runs <strong>all of these simultaneously</strong> from your single set of birth details. You get separate reports, each completely faithful to its own tradition, rather than a blended or generalised result.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Will Antara tell me my future or predict events?</summary>
+    <div class="details-content">
+      <p><strong>No.</strong> This is probably the most important thing to understand about Antara. It does not predict events. It does not tell you what will happen next week, next year, or ever.</p>
+      <p>What it does instead is <strong>calculate and map</strong>. It shows you the structural patterns in your birth data — your natural tendencies, your elemental constitution, your number vibrations, your biological rhythms. These are descriptions of your inner landscape, not forecasts of your outer circumstances.</p>
+      <p>A good map helps you navigate better. Antara gives you a precise map. What you do with it is entirely up to you.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Does this mean Antara is scientific?</summary>
+    <div class="details-content">
+      <p>It depends on which part you mean. Biorhythm — the 23-day, 28-day, and 33-day biological cycles — is grounded in physiological research from the 19th and 20th centuries. It is measurable and testable.</p>
+      <p>The astrological and numerological traditions are not classified as modern science. They are ancient symbolic systems — very sophisticated ones, developed by highly educated people over thousands of years — but they are not currently verifiable by scientific methods.</p>
+      <p>Antara presents them as <em>exactly what they are</em>: the precise calculations of each tradition, applied faithfully to your data. It neither over-claims ("this is definitely true") nor dismisses ("this is meaningless"). It gives you the numbers and lets you decide what they mean to you.</p>
+    </div>
+  </details>
+
+  <!-- SECTION 2: GETTING STARTED -->
+  <div class="section-label">Getting Started</div>
+
+  <details>
+    <summary>Do I need to create an account or log in?</summary>
+    <div class="details-content">
+      <p><strong>No account needed at all.</strong> Antara works without any registration. You provide your birth details, pay for the report(s) you want, and they are compiled and downloaded immediately on the fly right in your browser. That is the entire process.</p>
+      <p>Your birth data is used only to calculate your reading. It is not stored on Antara's servers after your report is generated, and it is not shared with anyone.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>What birth details do I need to provide?</summary>
+    <div class="details-content">
+      <p>You will need:<br>
+      • <strong>Your full name as given at birth</strong> — exactly as on your birth certificate. Not a nickname or a shortened version.<br>
+      • <strong>Your date of birth</strong> — day, month, and year.<br>
+      • <strong>Your city of birth</strong> — even a nearby major city will work if you do not know the exact town.<br>
+      • <strong>Your time of birth</strong> — this is optional, but it improves the accuracy of horoscope reports. Numerology reports do not need it.</p>
+      <div class="highlight-box">Not sure of your exact birth time? Check your birth certificate, hospital records, or ask a parent. If you genuinely cannot find it, leave it blank — you will still receive a complete reading.</div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Why does Antara need my full birth name — not my current name?</summary>
+    <div class="details-content">
+      <p>In numerological traditions, the name given to you at birth is considered your primary numeric identity — it was the name assigned to you before you had any choice in the matter, and many traditions treat it as carrying your foundational vibration.</p>
+      <p>Your current name (especially if you have changed it after marriage, for career reasons, or by choice) is also interesting — Antara offers an "alternate name" add-on so you can see both. But the birth name is always the baseline.</p>
+    </div>
+  </details>
+
+  <!-- SECTION 3: UNDERSTANDING THE REPORTS -->
+  <div class="section-label">Understanding the Reports</div>
+
+  <details>
+    <summary>The report has a lot of symbols and numbers I do not understand. What should I do?</summary>
+    <div class="details-content">
+      <p>This is completely normal, especially for the horoscope and BaZi reports, which use technical vocabulary developed over thousands of years. Here is what to do:</p>
+      <p><strong>1. Read the accordion sections one at a time.</strong><br>Each section expands when you click the title — do not try to read everything at once.</p>
+      <p style="margin-top: 0.75rem;"><strong>2. Look up unfamiliar terms</strong><br>in the Antara Glossary (Glossary.html in this folder).</p>
+      <p style="margin-top: 0.75rem;"><strong>3. Start with the numbers that feel most familiar.</strong><br>In a Western chart, most people know their Sun sign. In Numerology, the Life Path number is the easiest entry point.</p>
+      <p style="margin-top: 0.75rem;"><strong>4. Do not worry about understanding everything on the first read.</strong><br>These reports are meant to be returned to over time.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>My report says something that doesn't feel like "me." Why?</summary>
+    <div class="details-content">
+      <p>Each tradition describes one facet of a complex person. A single number or planet placement does not define you — your full chart is the interplay of many factors. A characteristic that seems foreign in isolation may make more sense in the context of your whole reading.</p>
+      <p>It is also worth remembering that these traditions describe tendencies and structural patterns, not rigid personalities. You may have developed — through life experience, deliberate effort, or circumstance — in ways that transcend what a particular calculation suggests.</p>
+      <div class="highlight-box">A map describes the terrain. It does not tell you where you will choose to walk.</div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Should I make big life decisions based solely on my report?</summary>
+    <div class="details-content">
+      <p><strong>Absolutely not.</strong> Antara should be used solely as a self-reflection and contemplative tool. For crucial decisions regarding your health (physical or mental), medical treatment, legal situations, or financial assets, you should always consult a licensed, qualified professional.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Is a low score bad or a high score a absolute guarantee?</summary>
+    <div class="details-content">
+      <p><strong>No.</strong> In these systems, a lower score simply indicates an area where energy may feel restricted, representing a spot that demands more patience, awareness, or conscious effort. It does not represent a failure or bad luck.</p>
+      <p>Similarly, a high score suggests smooth pathways or supportive energies by default, but actual real-world actions, choices, and sustained effort are what decide the final outcome.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>What are "critical days" in the Biorhythm report?</summary>
+    <div class="details-content">
+      <p>Each biorhythm cycle (Physical, Emotional, Intellectual) is a wave — it rises, reaches a peak, falls, reaches a valley, and then rises again. A "critical day" is the moment when a wave crosses the zero line — either going upward or downward.</p>
+      <p>On these transition days, the energy in that dimension is shifting — neither high nor low, but in a state of change. Some people notice that they feel slightly less stable or more sensitive on critical days. The most significant critical days are when two or three cycles cross zero on the same day.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>What is BaZi?</summary>
+    <div class="details-content">
+      <p>BaZi (八字, pronounced "Bah-Dzuh") literally means "eight characters" in Chinese. It is also called the Four Pillars of Destiny.</p>
+      <p>Your birth date and time are converted into four pairs of Chinese calendar symbols — Year Pillar, Month Pillar, Day Pillar, and Hour Pillar. Each pillar is made of one Heavenly Stem and one Earthly Branch. Together these eight characters describe your elemental constitution — the balance of Wood, Fire, Earth, Metal, and Water in your nature — and your natural timing cycles (Luck Periods) through life.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Why does the Lo Shu report show some cells in my grid as empty?</summary>
+    <div class="details-content">
+      <p>The Lo Shu Grid is populated by the digits in your birth date. For example, if you were born on 16 May 1955, the digits are 1, 6, 5, 1, 9, 5, 5 — and 2, 3, 4, 7, 8 are absent from your date, so those positions in the grid are empty.</p>
+      <p>An empty cell does not mean you lack that quality entirely. It means that quality is not naturally automatic for you — you may need to develop it more consciously than someone who has that digit present. Awareness of an absence is the first step to addressing it.</p>
+    </div>
+  </details>
+
+  <!-- SECTION 4: PAYMENTS & BUNDLES -->
+  <div class="section-label">Payment &amp; Delivery</div>
+
+  <details>
+    <summary>How do I pay? What methods are accepted?</summary>
+    <div class="details-content">
+      <p>For Indian users: UPI, Net Banking, Debit/Credit Cards, and digital wallets (PhonePe, Paytm, Google Pay, etc.) via Razorpay.<br>
+      For international users: Visa, Mastercard, American Express, and PayPal.</p>
+      <p>The payment is processed on Razorpay's secure servers (256-bit SSL encryption, PCI-DSS compliant). Antara never sees or stores your card details.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>When will I receive my report?</summary>
+    <div class="details-content">
+      <p>Reports are compiled on the fly and downloaded immediately right in your browser once your payment is confirmed. Since Antara does not ask for emails or require accounts, you get instant access without any wait. You can print the report or save it as a high-resolution PDF to reference on any device.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Should I buy one report or a flagship combo set?</summary>
+    <div class="details-content">
+      <p>If you are exploring for the first time, starting with a curated combo set offers the best experience and deepest discount. We package these into three flagship plans:</p>
+      <p><strong>Set 1: Individual Identity &amp; Archetypes</strong><br>Focuses on your personal makeup (Life Architecture, Identity Blueprint, Lo Shu, etc.).</p>
+      <p style="margin-top: 0.75rem;"><strong>Set 2: Relational Resonance &amp; Synergy</strong><br>Curated specifically for partner, co-founder, or co-creator compatibility mapping.</p>
+      <p style="margin-top: 0.75rem;"><strong>Set 3: Ultimate Antara Universe</strong><br>Delivers all 12 modules for a complete multi-perspective life profile.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Is my payment a subscription? Will I be charged again?</summary>
+    <div class="details-content">
+      <p><strong>No subscription.</strong> Antara is a one-time purchase per report/set. You pay once, you receive your report, and you are not charged again unless you choose to order something else. There are no recurring fees, no memberships, and no auto-renewals.</p>
+    </div>
+  </details>
+
+</div>
+
+<div class="container">
+  
+  <!-- Resonance / Feedback Link -->
+  <div style="text-align: center; margin: 2rem auto; font-family: var(--font-mono); font-size: 0.8rem; max-width: 1100px; width: calc(100% - 24px);">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEYjLsqRjRRR0FZEPq384iGrpL6rZfrEQHEbcYQ9pz5ERzlg/viewform" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar); letter-spacing: 1px; font-weight: bold; transition: all 0.2s ease; padding-bottom: 2px;">
+      ✦ SHARE YOUR RESONANCE (ANONYMOUS SUGGESTIONS) ✦
+    </a>
+  </div>
+
+  <footer class="notranslate">Analysis · Antara Documents Folder · Unified FAQ Index · June 2026</footer>
+</div>
+
+  
+  <script>
+    // Clean up local storage persona names dynamically to wipe out old cached test personas
+    try {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (localStorage.getItem(key) === 'Ankur Gupta') {
+                localStorage.setItem(key, 'Antara Gupta');
+            }
+        }
+    } catch (e) {
+        console.warn("localStorage persona migration restricted:", e);
+    }
+
+    // Initialize language inheritance from local storage
+    let preferredLang = localStorage.getItem('antara_preferred_language') || 'EN';
+    if (window.location.hash === '#HI' || window.location.search.includes('lang=HI')) {
+        preferredLang = 'HI';
+        localStorage.setItem('antara_preferred_language', 'HI');
+    } else if (window.location.hash === '#EN' || window.location.search.includes('lang=EN')) {
+        preferredLang = 'EN';
+        localStorage.setItem('antara_preferred_language', 'EN');
+    }
+    
+    if (preferredLang === 'HI') {
+        document.body.classList.add('lang-hi');
+        
+        // 1. Force the Google Translate hash parameter if not present
+        if (!window.location.hash.includes('googtrans')) {
+            window.location.hash = 'googtrans(en|hi)';
+        }
+        
+        // 2. Set googtrans cookie to persist
+        document.cookie = "googtrans=/en/hi; path=/";
+        
+        // 3. Create absolute HTTPS Google Translate container and script
+        const gtDiv = document.createElement('div');
+        gtDiv.id = 'google_translate_element';
+        gtDiv.style.position = 'fixed';
+        gtDiv.style.bottom = '15px';
+        gtDiv.style.right = '15px';
+        gtDiv.style.zIndex = '99999';
+        gtDiv.style.background = '#FFFDF9';
+        gtDiv.style.border = '1px solid #D6CEBE';
+        gtDiv.style.borderRadius = '20px';
+        gtDiv.style.padding = '3px 10px';
+        gtDiv.style.boxShadow = '0 3px 10px rgba(0,0,0,0.06)';
+        gtDiv.style.display = 'inline-flex';
+        gtDiv.style.alignItems = 'center';
+        gtDiv.style.gap = '6px';
+        gtDiv.innerHTML = '<span style="font-family:\'Cinzel\', serif; font-size:0.68rem; color:#9E3A33; font-weight:bold; letter-spacing:0.5px;">ANTARA TRANSLATE</span>';
+        document.body.appendChild(gtDiv);
+
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: true
+            }, 'google_translate_element');
+        };
+
+        const gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript';
+        gtScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        document.head.appendChild(gtScript);
+    } else if (preferredLang === 'EN') {
+        if (window.location.hash.includes('googtrans')) {
+            window.location.hash = '';
+        }
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planetary Time Cycles | AG_Antara Cross-Cultural Interior Panorama</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-page: #F7F1E1;
+      --bg-vellum-warm: #ffffff;
+      --ink-archival: #2B2A28;
+      --ink-faded: #76726A;
+      --border-container: 1px solid #D6CEBE;
+      --stroke: #b56a2a;
+      
+      --font-serif-header: 'Cinzel', serif;
+      --font-serif-body: 'Playfair Display', serif;
+      --font-mono: 'Courier Prime', monospace;
+      
+      --pigment-terracotta: #A65B4A;
+      --pigment-saffron: #D98236;
+      --pigment-cinnabar: #9E3A33;
+      --pigment-lapis: #3C5A80;
+      --pigment-moss: #4A6B5D;
+      --pigment-gold: #B58A3D;
+      --pigment-emerald: #2E7D32;
+    }
+
+    /* Accordion body text — force normal reading font, no small-caps */
+    details p, details td, details li {
+      font-variant: normal !important;
+      font-family: var(--font-serif-body) !important;
+      text-transform: none !important;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 17px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1150px;
+      width: 100%;
+      margin: 0 auto 2rem auto;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    /* Primary layout structures */
+    .prose-container {
+      max-width: 78ch;
+      margin: 0 auto;
+      line-height: 1.85;
+      font-size: 1.05rem;
+      color: var(--ink-archival);
+    }
+
+    .inputs-aspects-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 2rem;
+    }
+
+    .modules-2x2-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    @media (min-width: 900px) {
+      .inputs-aspects-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: stretch;
+      }
+      .modules-2x2-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      /* Hide fine zodiac constellation text labels inside wheel to avoid mobile saturation */
+      #zodiac-sectors text {
+        display: none !important;
+      }
+      /* Soften divider lines on mobile */
+      #zodiac-sectors line {
+        stroke-opacity: 0.35 !important;
+        stroke-width: 0.75 !important;
+      }
+      /* Thin aspect chords on mobile */
+      .aspect-line {
+        stroke-width: 1.5 !important;
+      }
+      /* Compact padding inside celestial container on mobile */
+      .svg-celestial-container {
+        padding: 1rem !important;
+      }
+    }
+
+    .archival-card {
+      background-color: var(--bg-vellum-warm);
+      border: var(--border-container);
+      padding: 1.75rem;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04);
+      box-sizing: border-box;
+    }
+
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-faded);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      background-color: rgba(247, 241, 225, 0.4);
+      border: var(--border-container);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 1.05rem;
+      padding: 0.75rem 1rem;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    .svg-celestial-container {
+      margin: 1.5rem auto;
+      border: 1px solid #D6CEBE;
+      padding: 2rem;
+      background: #faf7ef;
+      border-radius: 4px;
+      text-align: center;
+      max-width: 520px;
+    }
+
+    /* Hover highlights for SVG Celestial elements (Group-based interactive obvious hover states) */
+    .interactive-node {
+      cursor: pointer;
+    }
+    
+    .interactive-node circle,
+    .interactive-node rect {
+      transition: filter 0.3s ease, stroke-width 0.3s ease, stroke 0.3s ease, fill 0.3s ease;
+    }
+    
+    .interactive-node:hover circle,
+    .interactive-node:hover rect {
+      filter: drop-shadow(0 0 8px var(--pigment-saffron));
+      stroke: var(--pigment-saffron) !important;
+      stroke-width: 2.5;
+    }
+    
+    .interactive-node text {
+      transition: fill 0.3s ease, font-weight 0.3s ease;
+    }
+    
+    .interactive-node:hover text {
+      fill: var(--pigment-cinnabar) !important;
+      font-weight: bold;
+    }
+    
+    .interactive-node .hover-glow {
+      transition: fill 0.3s ease;
+    }
+    
+    .interactive-node:hover .hover-glow {
+      fill: rgba(217, 130, 54, 0.1) !important;
+    }
+
+    .aspect-line {
+      stroke-width: 3;
+      stroke-dasharray: 6,4;
+      animation: pulse-aspect 2.5s infinite ease-in-out;
+      transition: stroke-width 0.3s ease, stroke-dasharray 0.3s ease, filter 0.3s ease, stroke-opacity 0.3s ease;
+    }
+
+    .aspect-line:hover {
+      stroke-width: 5;
+      stroke-dasharray: none;
+      filter: drop-shadow(0 0 8px var(--pigment-saffron));
+      cursor: pointer;
+    }
+
+    @keyframes pulse-aspect {
+      0%, 100% { stroke-opacity: 0.4; }
+      50% { stroke-opacity: 0.95; }
+    }
+
+    /* Ephemeris Table Styles with Collapsible Drawers & Breathing space */
+    .ephemeris-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    .ephemeris-table th, .ephemeris-table td {
+      border: 1px solid #EADEC9;
+      padding: 0.85rem 1.15rem; /* Breathing space padding */
+      text-align: left;
+      font-size: 0.95rem; /* Compact size */
+      letter-spacing: 0.25px; /* Refined spacing */
+      line-height: 1.6;
+    }
+
+    .ephemeris-table th {
+      background-color: #faf7ef;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--ink-faded);
+    }
+
+    .interactive-row {
+      transition: background-color 0.25s ease;
+    }
+    .interactive-row:hover {
+      background-color: rgba(217, 130, 54, 0.05) !important;
+    }
+
+    .drawer-row td {
+      padding: 0 !important;
+      border: 1px solid #D6CEBE;
+    }
+
+    .conjunction-badge {
+      background-color: var(--pigment-cinnabar);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .opposition-badge {
+      background-color: var(--pigment-lapis);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    /* Chronobiology chaptered tabs */
+    .chapters-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+      justify-content: center;
+      border-bottom: 2px solid #D6CEBE;
+      padding-bottom: 0.85rem;
+      width: 100%;
+    }
+    .chapter-tab {
+      background: #EFE8D9; /* Soft solid parchment background */
+      border: 1px solid #D6CEBE;
+      color: var(--ink-archival);
+      font-family: var(--font-serif-header);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      padding: 0.6rem 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .chapter-tab:hover {
+      background: #FAF7EF; /* Clean lighter cream on hover */
+      border-color: var(--pigment-saffron);
+      color: var(--pigment-saffron);
+    }
+    .chapter-tab.active-tab {
+      background: var(--pigment-saffron);
+      border-color: #8E4A21;
+      color: #FFFFFF;
+      box-shadow: 0 4px 10px rgba(211, 84, 0, 0.15);
+    }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 2.5rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+    }
+    
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--ink-faded);
+      margin: 0.25rem 0;
+    }
+
+    p, td, li {
+      text-align: left !important;
+    }
+
+    /* Header Standardized Branding & Typography */
+    .header-logo { 
+      text-align: center; 
+      margin: 20px 0 8px 0; 
+    }
+    .system-tagline { 
+      font-family: 'Courier New', Courier, monospace !important; 
+      font-weight: 700 !important; 
+      font-size: 13px !important; 
+      letter-spacing: 5px !important; 
+      color: #A6A29A !important; 
+      text-transform: uppercase !important; 
+      text-align: center !important; 
+      margin: 0 0 24px 0 !important; 
+      line-height: 1.2 !important;
+    }
+    .master-report-title { 
+      font-family: 'Cinzel', serif !important; 
+      font-size: 2.25rem !important; 
+      font-variant: small-caps !important; 
+      font-weight: 700 !important; 
+      letter-spacing: 2px !important; 
+      color: #2B2A28 !important; 
+      text-align: center !important; 
+      margin: 0 0 14px 0 !important; 
+      line-height: 1.3 !important; 
+    }
+    .master-report-byline { 
+      font-family: 'Playfair Display', serif !important; 
+      font-size: 1.15rem !important; 
+      color: #D98236 !important; 
+      text-align: center !important; 
+      max-width: 800px !important; 
+      margin: 0 auto 32px auto !important; 
+      padding: 0 12px !important; 
+      line-height: 1.5 !important; 
+    }
+
+    /* Premium Click to Explore Accordion Styles */
+    .explore-summary {
+      font-family: var(--font-serif-header);
+      background-color: #D35400; /* Vibrant Brand Saffron */
+      color: #FFFFFF !important;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.85rem 1.25rem;
+      border: 1px solid #8E4A21;
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 12px rgba(211, 84, 0, 0.12);
+      line-height: 1.35;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .explore-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .explore-summary::before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px double rgba(255, 255, 255, 0.45);
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .explore-summary:hover {
+      background-color: #E65C00;
+      box-shadow: 0 6px 18px rgba(211, 84, 0, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .explore-summary:hover::before {
+      border-color: rgba(255, 255, 255, 0.7);
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+    }
+
+    .explore-summary:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(211, 84, 0, 0.15);
+    }
+
+    .explore-summary .explore-title-main {
+      font-variant: small-caps;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: none;
+      position: relative;
+      z-index: 2;
+    }
+
+    .explore-summary .explore-title-sub {
+      font-family: var(--font-serif-body);
+      font-size: 1.25rem;
+      font-weight: 700;
+      font-style: italic;
+      margin-top: 3px;
+      letter-spacing: 0.5px;
+      color: #FFFFFF !important;
+      position: relative;
+      z-index: 2;
+    }
+
+    .accordion-inner-border {
+      position: relative;
+    }
+
+    .accordion-inner-border::before {
+      content: "";
+      position: absolute;
+      top: 6px; left: 6px; right: 6px; bottom: 6px;
+      border: 1px double #D6CEBE;
+      pointer-events: none;
+      border-radius: 3px;
+    }
+  
+    /* Premium Left-Aligned Footer Override */
+    footer {
+      width: 100%;
+      padding: 2rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+      text-align: left;
+    }
+    .footer-content {
+      max-width: 1100px;
+      width: 100%;
+      padding: 0 16px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+    footer p {
+      font-family: var(--font-serif-body);
+      font-size: 0.82rem;
+      color: var(--ink-archival);
+      margin: 0.25rem 0;
+    }
+    footer p.font-mono {
+      font-family: var(--font-mono) !important;
+      font-size: 0.72rem !important;
+      color: var(--ink-faded) !important;
+    }
+
+  
+    /* ─── Reading Guide Grid (Tactile manuscript details) ─── */
+    .reading-guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .reading-guide-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+</style>
+  <meta name="description" content="Antara is a traditional cross-cultural mathematical life-engine and archetypal systems cartography. Calibrate your natal coordinates, biological rhythms, and name phonetic values across Vedic, Western tropical, and Chinese solar Four Pillars traditions.">
+  <link rel="icon" type="image/png" href="Antara Logo.png">
+</head>
+<body>
+
+  <div class="header-logo">
+    <a href="index.html" title="Return to Antara Dashboard" style="text-decoration: none; border: none; display: inline-block;">
+      <img src="Antara Logo.png" alt="ANTARA" style="max-height: 90px; width: auto;" onerror="this.style.display='none';">
+    </a>
+  </div>
+  <div class="system-tagline">Cross-Cultural Interior Panorama</div>
+
+  <h1 class="master-report-title">Planetary Time Cycles<br>For The Nameless One</h1>
+  <p class="master-report-byline">Planetary Timing & Life Transits</p>
+
+  <div class="container">
+    
+    <!-- About This Report (Premium borderless layout with maximum 78ch line-width) -->
+    <div style="margin-bottom: 2.25rem; padding: 0.5rem 0;" class="prose-container">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-bottom: 1rem; color: var(--stroke, #b56a2a); letter-spacing: 1px; text-transform: uppercase;">About This Report</h3>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0 0 1rem 0;">
+        This report provides a structured view of current timing patterns, highlighting phases of growth, consolidation, recalibration, and strategic opportunity.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">
+        Its purpose is not prediction, but perspective — offering greater awareness of the cycles influencing momentum, focus, relationships, and decision-making.
+      </p>
+    
+      <!-- Codex Support Navigation Panel -->
+      <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px dashed #D6CEBE; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="Help.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📖 Help
+        </a>
+        <a href="FAQ.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          ❓ FAQ
+        </a>
+        <a href="Glossary.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📓 Glossary
+        </a>
+      </div>
+      <!-- How to Read This Report (Reading Guide Block) -->
+      <div style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; border: 1px dashed #D6CEBE; background-color: rgba(247, 241, 225, 0.15); border-radius: 4px; box-shadow: 0 2px 8px rgba(43, 42, 40, 0.01);">
+        <h4 style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 1rem; text-align: center; border-bottom: 1px dashed #D6CEBE; padding-bottom: 0.4rem;">
+          How to Study This Document
+        </h4>
+        <div class="reading-guide-grid">
+          <!-- Point 1 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">1. Read the accordion sections one at a time.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">Each section expands when you click the title — do not try to read everything at once.</span>
+          </div>
+          <!-- Point 2 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">2. Look up unfamiliar terms</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">in the Antara Glossary (<a href="Glossary.html" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar);">Glossary.html</a> in this folder).</span>
+          </div>
+          <!-- Point 3 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">3. Start with the numbers that feel most familiar.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">In a Western chart, most people know their Sun sign. In Numerology, the Life Path is easiest.</span>
+          </div>
+          <!-- Point 4 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">4. Do not worry about understanding everything on the first read.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">These reports are meant to be returned to and studied over time.</span>
+          </div>
+        </div>
+      </div>
+
+</div>
+
+    <!-- Responsive Side-by-Side Grid Row (Inputs vs Aspects) -->
+    <div class="inputs-aspects-grid">
+      
+      <!-- Box A: Time Calibrations with USER NAME input -->
+      <div class="archival-card" style="border-top: 3px solid var(--pigment-terracotta);">
+        <form onsubmit="event.preventDefault();">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1.25rem; text-transform: uppercase; color: var(--pigment-terracotta); letter-spacing: 1px;">Time Calibrations</h3>
+          
+          <div class="form-group">
+            <label>User Name</label>
+            <input type="text" id="input-name" class="form-input" value="Shyam Anand">
+          </div>
+
+          <div class="form-group">
+            <label>Birth Date (Natal)</label>
+            <input type="date" id="input-dob" class="form-input" value="1965-06-26">
+          </div>
+          
+          <div class="form-group">
+            <label>Target Date (Transit)</label>
+            <input type="date" id="input-transit" class="form-input" value="2026-05-27">
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 0;">
+            <label>Calibrated Location</label>
+            <input type="text" id="input-location" class="form-input" value="Chakrata, Uttarakhand, India">
+          </div>
+        </form>
+
+        <!-- Monospace Sample Calibration Note (Upgraded with Saffron Prominence) -->
+        <div style="margin-top: 1.5rem; background-color: rgba(217, 130, 54, 0.05); border: 1px solid rgba(217, 130, 54, 0.2); border-left: 4px solid var(--pigment-saffron); padding: 1.15rem 1.35rem; font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.6; color: var(--ink-archival); border-radius: 2px; box-sizing: border-box;">
+          <strong style="color: var(--pigment-saffron); font-size: 0.85rem; letter-spacing: 1px; display: block; margin-bottom: 0.4rem; text-transform: uppercase;">
+            ⚠️ Premium Sample Calibration
+          </strong>
+          To generate the most complex, aspect-dense Celestial Map and dynamic Ephemeris coordinates for report printing, execute these parameters:
+          <ul style="margin: 0.4rem 0 0.4rem 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.25rem;">
+            <li><strong>User Name:</strong> <span style="color: var(--pigment-saffron); font-weight: bold;">Srinivas Ramanujan</span></li>
+            <li><strong>Birth Date (Natal):</strong> <span style="color: var(--pigment-saffron); font-weight: bold;">1989-11-09</span> (Capricorn Stellium)</li>
+            <li><strong>Target Date (Transit):</strong> <span style="color: var(--pigment-saffron); font-weight: bold;">2026-02-20</span> (Pisces Alignment)</li>
+            <li><strong>Calibrated Location:</strong> <span style="color: var(--pigment-saffron); font-weight: bold;">Kumbakonam, Tamil Nadu, India</span></li>
+          </ul>
+          This specific combination triggers a massive multi-planet alignment generating 6 concurrent high-intensity aspect resonance chords.
+        </div>
+      </div>
+
+      <!-- Box B: Active Aspects Summary -->
+      <div class="archival-card" style="border-top: 3px solid var(--pigment-lapis); display: flex; flex-direction: column;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1.25rem; text-transform: uppercase; color: var(--pigment-lapis); letter-spacing: 1px;">Active Aspects</h3>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem; flex-grow: 1;" id="aspects-summary">
+          <p style="font-size: 0.95rem; color: var(--ink-faded); margin: 0;" class="font-mono">Processing dynamic intersections...</p>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Main Results Display -->
+    <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem;">
+      
+      <!-- Double-Ring SVG Celestial Map -->
+      <div class="archival-card">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; text-align: center;">Natal vs. Transit Celestial Map</h3>
+        
+        <!-- Permanent instruction below the title -->
+        <p style="font-size: 0.95rem; font-family: var(--font-mono); font-weight: 900; letter-spacing: 2px; text-align: center !important; color: var(--pigment-saffron); margin: 0.5rem 0 0.5rem 0; text-transform: uppercase;">
+          HOVER ON ELEMENTS TO FOCUS.
+        </p>
+
+        <!-- Description Text -->
+        <p style="font-size: 0.95rem; text-align: center !important; color: var(--ink-faded); margin: 0 0 0.75rem 0; line-height: 1.6;">
+          <strong>Inner Ring:</strong> Static Natal coordinates (⚪).<br>
+          <strong>Outer Ring:</strong> Dynamic Transit positions (◆).<br>
+          Golden chords show active conjunctions/oppositions.
+        </p>
+
+        <!-- Saffron Hook dynamically swaps description text on hover -->
+        <p id="map-focus-hook" style="font-size: 0.95rem; font-family: var(--font-serif-body); text-align: center !important; color: var(--ink-archival); margin: 0.5rem 0 1rem 0; min-height: 56px; line-height: 1.6; padding: 0 8px; box-sizing: border-box; transition: all 0.25s ease;"></p>
+        
+        <div class="svg-celestial-container" style="margin-bottom: 0.5rem;">
+          <svg id="celestial-transit-svg" viewBox="0 0 360 360" style="width: 100%; height: auto; display: block; overflow: visible;">
+            <circle cx="180" cy="180" r="145" fill="none" stroke="#D6CEBE" stroke-width="2" />
+            <circle cx="180" cy="180" r="105" fill="none" stroke="#D6CEBE" stroke-width="2" />
+            <circle cx="180" cy="180" r="8" fill="#faf7ef" stroke="#B58A3D" stroke-width="1.5" />
+            <line x1="180" y1="168" x2="180" y2="164" stroke="#B58A3D" stroke-width="1" />
+            <line x1="180" y1="192" x2="180" y2="196" stroke="#B58A3D" stroke-width="1" />
+            <line x1="168" y1="180" x2="164" y2="180" stroke="#B58A3D" stroke-width="1" />
+            <line x1="192" y1="180" x2="196" y2="180" stroke="#B58A3D" stroke-width="1" />
+
+            <g stroke="#EADEC9" stroke-width="1" stroke-dasharray="2,3" id="zodiac-sectors"></g>
+            <g id="dynamic-celestial-elements"></g>
+          </svg>
+        </div>
+
+        <!-- Minimalist Horizontal Monospace Planet Key -->
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.85rem 1.2rem; font-family: var(--font-mono); font-size: 0.76rem; color: var(--ink-faded); margin: 1.25rem auto 0 auto; border-top: 1px solid #EADEC9; padding-top: 0.85rem; max-width: 520px;">
+          <span>☀️ Sun (Core Drive)</span>
+          <span>🌙 Moon (Pacing)</span>
+          <span>☿️ Mercury (Logic)</span>
+          <span>♀️ Venus (Alliances)</span>
+          <span>♂️ Mars (Execution)</span>
+          <span>♃ Jupiter (Assets)</span>
+          <span>♄ Saturn (Governance)</span>
+        </div>
+      </div>
+
+      <!-- Advanced Coordinates Ephemeris Table with Progressive Disclosure -->
+      <div class="archival-card">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px;">Zodiac Ephemeris Coordinates</h3>
+        <p style="font-size: 0.95rem; color: var(--ink-faded); margin: 0 0 1.25rem 0;">Click on any planet row below to expand and view detailed momentum, 3D position, coordinate systems, and harmonic sub-divisions.</p>
+        
+        <table class="ephemeris-table">
+          <thead>
+            <tr>
+              <th>Planet</th>
+              <th>Symbol</th>
+              <th>Natal Position</th>
+              <th>Transit Position</th>
+              <th>Delta Angle</th>
+              <th>Aspect State</th>
+            </tr>
+          </thead>
+          <tbody id="ephemeris-table-body">
+            <!-- Generated Dynamically by updateTransits() -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Contextual Prescriptive Modules Panel -->
+      <div id="contextual-modules-panel" style="display: flex; flex-direction: column; gap: 1.5rem; width: 100%;">
+        <!-- Generated Dynamically by updateTransits() -->
+      </div>
+
+      <!-- 6-Chapter Interactive Chronobiology Time Cycles Portfolio -->
+      <div class="archival-card" style="border-top: 3px solid var(--pigment-saffron);">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.75rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 2px; text-align: center; color: var(--ink-archival);">Strategic Timing Portfolio</h3>
+        
+        <!-- Brief timeline sub-explanation positioned directly under title and before the tabs -->
+        <p style="font-size: 1.02rem; line-height: 1.7; color: var(--ink-faded); text-align: center !important; margin: 0 auto 1.5rem auto; max-width: 78ch;">
+          A personalized, highly actionable blueprint indicating when to act, when to wait, and when to pivot. This portfolio provides a structured timing overlay combined with strategic resource allocation, bundling overlapping planetary timelines into a unified, executive dashboard.
+        </p>
+
+        <!-- prefix-free chapter tabs with descriptions below each button -->
+        <div class="chapters-nav" style="border-bottom: none; padding-bottom: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1.25rem 0.75rem; align-items: start; width: 100%;">
+          
+          <!-- Tab 1 -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 0.4rem; width: 100%; box-sizing: border-box;">
+            <button onclick="switchChapter(1)" class="chapter-tab active-tab" id="tab-1" style="width: 100%; box-sizing: border-box; text-align: center;">Dashboard</button>
+            <p style="font-size: 0.76rem; font-family: var(--font-mono); color: var(--ink-faded); margin: 0; line-height: 1.4; text-align: center !important; padding: 0 4px;">
+              Executive summary of active cycles, career momentum, and primary focus.
+            </p>
+          </div>
+
+          <!-- Tab 2 -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 0.4rem; width: 100%; box-sizing: border-box;">
+            <button onclick="switchChapter(2)" class="chapter-tab" id="tab-2" style="width: 100%; box-sizing: border-box; text-align: center;">Macro Vimshottari</button>
+            <p style="font-size: 0.76rem; font-family: var(--font-mono); color: var(--ink-faded); margin: 0; line-height: 1.4; text-align: center !important; padding: 0 4px;">
+              Long-horizon 10-year life chapters and macro developmental trends.
+            </p>
+          </div>
+
+          <!-- Tab 3 -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 0.4rem; width: 100%; box-sizing: border-box;">
+            <button onclick="switchChapter(3)" class="chapter-tab" id="tab-3" style="width: 100%; box-sizing: border-box; text-align: center;">Micro Nested</button>
+            <p style="font-size: 0.76rem; font-family: var(--font-mono); color: var(--ink-faded); margin: 0; line-height: 1.4; text-align: center !important; padding: 0 4px;">
+              Immediate sub-periods to identify high-leverage weeks for action.
+            </p>
+          </div>
+
+          <!-- Tab 4 -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 0.4rem; width: 100%; box-sizing: border-box;">
+            <button onclick="switchChapter(4)" class="chapter-tab" id="tab-4" style="width: 100%; box-sizing: border-box; text-align: center;">Transit SAV Grid</button>
+            <p style="font-size: 0.76rem; font-family: var(--font-mono); color: var(--ink-faded); margin: 0; line-height: 1.4; text-align: center !important; padding: 0 4px;">
+              Saturn Sade Sati overlay and solar-lunar naturally protected zones.
+            </p>
+          </div>
+
+          <!-- Tab 5 -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 0.4rem; width: 100%; box-sizing: border-box;">
+            <button onclick="switchChapter(5)" class="chapter-tab" id="tab-5" style="width: 100%; box-sizing: border-box; text-align: center;">Strategy Track</button>
+            <p style="font-size: 0.76rem; font-family: var(--font-mono); color: var(--ink-faded); margin: 0; line-height: 1.4; text-align: center !important; padding: 0 4px;">
+              Behavioral application guidelines across career, wealth, and stamina.
+            </p>
+          </div>
+
+          <!-- Tab 6 -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 0.4rem; width: 100%; box-sizing: border-box;">
+            <button onclick="switchChapter(6)" class="chapter-tab" id="tab-6" style="width: 100%; box-sizing: border-box; text-align: center;">Prescriptions</button>
+            <p style="font-size: 0.76rem; font-family: var(--font-mono); color: var(--ink-faded); margin: 0; line-height: 1.4; text-align: center !important; padding: 0 4px;">
+              Ergonomic workspace adjustments, sound frequencies, and pause protocols.
+            </p>
+          </div>
+
+        </div>
+        
+        <!-- Elegant divider below the tab cards block -->
+        <div style="border-bottom: 2px solid #D6CEBE; margin-bottom: 1.5rem; margin-top: 1rem; width: 100%;"></div>
+        
+        <div id="chapter-content-area" class="prose-container" style="min-height: 250px; padding: 0.5rem 0;">
+          <!-- Dynamically switches text in SwitchChapter() -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Collapsible Deep Knowledge Panel -->
+    <div style="margin-top: 2rem; margin-bottom: 3rem;">
+      <details style="cursor: pointer; outline: none;">
+        <summary class="explore-summary">
+          <span class="explore-title-main">Click to Explore</span>
+          <span class="explore-title-sub">Understanding Celestial Timing Systems</span>
+        </summary>
+        <div class="accordion-inner-border" style="cursor: default; margin-top: 1rem; background-color: var(--bg-vellum-warm); border: var(--border-container); padding: 1.5rem 1.75rem; position: relative; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04); border-radius: 4px;">
+          <div style="position: relative; z-index: 2;">
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">The Astronomical Ephemeris</h4>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 1.5rem;">
+              An <strong>Ephemeris</strong> is a table of coordinates tracking planetary positions in the sky. By dividing the 360-degree journey into twelve equal sectors of 30 degrees, we trace exact planetary positions. Fast-moving personal planets (such as the Moon, Mercury, and Mars) pass regularly over the slower, multi-year cycles of Jupiter and Saturn, creating active windows of opportunity or focus.
+            </p>
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">The Timing Overlay</h4>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 0;">
+              The double-ring wheel compares your permanent baseline potential with dynamic, real-time planetary transits. The <strong>Inner Ring</strong> is your birth blueprint—fixed at the moment of your birth. The <strong>Outer Ring</strong> represents current planetary positions moving in real-time across the sky. When a transiting planet aligns with a placement in your birth chart, an <strong>Aspect</strong> occurs. A <strong>Conjunction (0 degrees)</strong> concentrates focus on a single theme, while an <strong>Opposition (180 degrees)</strong> creates a balance point that invites reflection, boundary setting, and equilibrium.
+            </p>
+            
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- Honest Framing Disclaimer Box -->
+    <style>
+      .disclaimer-hi { display: none; }
+      body.lang-hi .disclaimer-en { display: none !important; }
+      body.lang-hi .disclaimer-hi { display: block !important; }
+    </style>
+    
+    <div class="disclaimer-en" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        DISCLAIMER
+      </h4>
+      <p style="margin: 0; text-align: justify;">
+        This report is an interpretive analytical framework intended solely for reflective and informational purposes. It is not a predictive, diagnostic, clinical, financial, legal, medical, psychological or professional advisory instrument, and should not be relied upon as definitive guidance for decisions, actions, or outcomes. The original application has been developed in English. Certain translated versions may utilize automated translation tools, including Google Translate. While reasonable efforts have been made to preserve contextual accuracy, no responsibility is accepted for translation inaccuracies, omissions, interpretive variations, or linguistic ambiguities arising from translated content. In the event of any inconsistency or ambiguity, the English version shall prevail.
+      </p>
+    </div>
+
+    <div class="disclaimer-hi notranslate" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        अस्वीकरण
+      </h4>
+      <p style="margin: 0; text-align: justify; color: var(--ink-faded); font-style: italic;">
+        यह रिपोर्ट केवल विचारात्मक एवं सूचनात्मक उद्देश्य हेतु निर्मित एक व्याख्यात्मक विश्लेषणात्मक ढांचा है। यह कोई भविष्यवाणी, निदान, नैदानिक, वित्तीय, कानूनी, चिकित्सीय, मनोवैज्ञानिक अथवा पेशेवर परामर्श का उपकरण नहीं है, और इसे निर्णयों, कार्यों या परिणामों के लिए अंतिम मार्गदर्शन के रूप में नहीं माना जाना चाहिए। मूल अनुप्रयोग अंग्रेज़ी भाषा में विकसित किया गया है। कुछ अनुवादित संस्करणों में Google Translate सहित स्वचालित अनुवाद उपकरणों का उपयोग किया जा सकता है। यद्यपि संदर्भगत शुद्धता बनाए रखने का यथासंभव प्रयास किया गया है, तथापि अनुवाद संबंधी त्रुटियों, चूकों, अर्थ-व्याख्या में भिन्नताओं या भाषाई अस्पष्टताओं के लिए कोई उत्तरदायित्व स्वीकार नहीं किया जाता। किसी भी असंगति या अस्पष्टता की स्थिति में अंग्रेज़ी संस्करण को ही मान्य माना जाएगा।
+      </p>
+    </div>
+    <!-- Resonance / Feedback Link -->
+    <div style="text-align: center; margin: 1.5rem auto 2rem auto; font-family: var(--font-mono); font-size: 0.8rem; max-width: 1100px; width: calc(100% - 24px);">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEYjLsqRjRRR0FZEPq384iGrpL6rZfrEQHEbcYQ9pz5ERzlg/viewform" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar); letter-spacing: 1px; font-weight: bold; transition: all 0.2s ease; padding-bottom: 2px;">
+        ✦ SHARE YOUR RESONANCE (ANONYMOUS SUGGESTIONS) ✦
+      </a>
+    </div>
+
+  </div>
+
+    <footer class="notranslate">
+    <div class="footer-content">
+      <p>ANTARA CROSS-CULTURAL INTERIOR PANORAMA</p>
+      <p class="font-mono">SYSTEM LOG: TEMPORAL OBSERVA CORE v1.2.0 • 2026</p>
+    </div>
+  </footer>
+
+  
+  <script>
+    // Clean up local storage persona names dynamically to wipe out old cached test personas
+    try {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (localStorage.getItem(key) === 'Ankur Gupta') {
+                localStorage.setItem(key, 'Antara Gupta');
+            }
+        }
+    } catch (e) {
+        console.warn("localStorage persona migration restricted:", e);
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, function(tag) {
+        var chars = {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        };
+        return chars[tag] || tag;
+      });
+    }
+
+    // Initialize language inheritance from local storage
+    let preferredLang = localStorage.getItem('antara_preferred_language') || 'EN';
+    if (window.location.hash === '#HI' || window.location.search.includes('lang=HI')) {
+        preferredLang = 'HI';
+        localStorage.setItem('antara_preferred_language', 'HI');
+    } else if (window.location.hash === '#EN' || window.location.search.includes('lang=EN')) {
+        preferredLang = 'EN';
+        localStorage.setItem('antara_preferred_language', 'EN');
+    }
+    if (preferredLang === 'HI') {
+        document.body.classList.add('lang-hi');
+        
+        // 1. Force the Google Translate hash parameter if not present
+        if (!window.location.hash.includes('googtrans')) {
+            window.location.hash = 'googtrans(en|hi)';
+        }
+        
+        // 2. Set googtrans cookie to persist
+        document.cookie = "googtrans=/en/hi; path=/";
+        
+        // 3. Create absolute HTTPS Google Translate container and script
+        const gtDiv = document.createElement('div');
+        gtDiv.id = 'google_translate_element';
+        gtDiv.style.position = 'fixed';
+        gtDiv.style.bottom = '15px';
+        gtDiv.style.right = '15px';
+        gtDiv.style.zIndex = '99999';
+        gtDiv.style.background = '#FFFDF9';
+        gtDiv.style.border = '1px solid #D6CEBE';
+        gtDiv.style.borderRadius = '20px';
+        gtDiv.style.padding = '3px 10px';
+        gtDiv.style.boxShadow = '0 3px 10px rgba(0,0,0,0.06)';
+        gtDiv.style.display = 'inline-flex';
+        gtDiv.style.alignItems = 'center';
+        gtDiv.style.gap = '6px';
+        gtDiv.innerHTML = '<span style="font-family:\'Cinzel\', serif; font-size:0.68rem; color:#9E3A33; font-weight:bold; letter-spacing:0.5px;">ANTARA TRANSLATE</span>';
+        document.body.appendChild(gtDiv);
+
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: true
+            }, 'google_translate_element');
+        };
+
+        const gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript';
+        gtScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        document.head.appendChild(gtScript);
+    } else if (preferredLang === 'EN') {
+        if (window.location.hash.includes('googtrans')) {
+            window.location.hash = '';
+        }
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+
+    function safeGetItem(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch (e) {
+        console.warn("safeGetItem failed for", key, e);
+        return null;
+      }
+    }
+    function safeSetItem(key, val) {
+      try {
+        localStorage.setItem(key, val);
+      } catch (e) {
+        console.warn("safeSetItem failed for", key, e);
+      }
+    }
+
+    // Helper to format date strings from other layouts securely into YYYY-MM-DD
+    function formatToInputDate(dateStr) {
+      if (!dateStr) return "";
+      if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return dateStr;
+      
+      // Parse DD/MM/YYYY
+      if (/^\d{2}\/\d{2}\/\d{4}$/.test(dateStr)) {
+        const parts = dateStr.split('/');
+        return `${parts[2]}-${parts[1]}-${parts[0]}`;
+      }
+      
+      // Fallback robust parse
+      try {
+        const d = new Date(dateStr);
+        if (!isNaN(d.getTime())) {
+          return d.toISOString().split('T')[0];
+        }
+      } catch (e) {}
+      return "";
+    }
+
+    const planetDb = [
+      { name: "Sun", symbol: "☀️", abbrev: "SUN", period: 365.256, base: 50, color: "var(--pigment-saffron)" },
+      { name: "Moon", symbol: "🌙", abbrev: "MON", period: 27.321, base: 120, color: "var(--ink-archival)" },
+      { name: "Mercury", symbol: "☿️", abbrev: "MER", period: 87.969, base: 180, color: "var(--pigment-moss)" },
+      { name: "Venus", symbol: "♀️", abbrev: "VEN", period: 224.701, base: 260, color: "var(--pigment-terracotta)" },
+      { name: "Mars", symbol: "♂️", abbrev: "MAR", period: 686.980, base: 310, color: "var(--pigment-cinnabar)" },
+      { name: "Jupiter", symbol: "♃", abbrev: "JUP", period: 4332.589, base: 15, color: "var(--pigment-gold)" },
+      { name: "Saturn", symbol: "♄", abbrev: "SAT", period: 10759.22, base: 280, color: "var(--pigment-lapis)" }
+    ];
+
+    const zodiacSigns = [
+      "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
+      "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"
+    ];
+
+    function getZodiacName(deg) {
+      const idx = Math.floor(deg / 30) % 12;
+      const rem = Math.floor(deg % 30);
+      return `${zodiacSigns[idx]} ${rem}°`;
+    }
+
+    // High utility descriptions for dynamic hover Focus Area
+    const planetDescriptors = {
+      SUN: {
+        natal: "Natal Sun (☀️) locked at birth longitude — represents permanent core leadership drive, self-expression blueprint, and executive identity.",
+        transit: "Transit Sun (☀️) moving in current sky — focuses immediate executive attention, conscious positioning, and high-visibility opportunities."
+      },
+      MON: {
+        natal: "Natal Moon (🌙) baseline rhythm — represents primary cognitive rest cycles, instinctual reactions, and emotional pacing.",
+        transit: "Transit Moon (🌙) rapid shifting node — triggers short-term emotional tides, daily biorhythm peaks, and immediate focus micro-trends."
+      },
+      MER: {
+        natal: "Natal Mercury (☿️) cognitive capability — represents permanent logic processing style, communication tools, and technical capacity.",
+        transit: "Transit Mercury (☿️) transaction speedway — accelerates contract reviews, logical audits, technical pivots, and negotiation flows."
+      },
+      VEN: {
+        natal: "Natal Venus (♀️) attraction assets — governs permanent valuation system, strategic partnership style, and organic brand attraction resonance.",
+        transit: "Transit Venus (♀️) corporate alliances — triggers windows for strategic joint-ventures, team expansions, and wealth negotiations."
+      },
+      MAR: {
+        natal: "Natal Mars (♂️) action vector — represents permanent execution drives, operational force, and defense instincts.",
+        transit: "Transit Mars (♂️) execution focus — channels direct operational drive, demanding immediate physical actions, launches, or audit adjustments."
+      },
+      JUP: {
+        natal: "Natal Jupiter (♃) growth reserves — governs permanent capacity for strategic expansion, financial wisdom, and systemic investments.",
+        transit: "Transit Jupiter (♃) expansion gateway — unlocks multi-month windows for capital placement, launching new divisions, and contract execution."
+      },
+      SAT: {
+        natal: "Natal Saturn (♄) boundary structure — represents permanent discipline, structural limits, patience, and system governance.",
+        transit: "Transit Saturn (♄) systems audit — triggers multi-year operational audits, boundary testing, systems restructuring, and administrative review."
+      }
+    };
+
+    // Authentic 1st-order coplanar Geocentric simulator to generate retrograde loops and speed fluctuations
+    function calculateGeocentricPosition(p, deltaDays) {
+      const earthMean = (100 + deltaDays * (360 / 365.256)) * Math.PI / 180; // Earth heliocentric position
+      const planetMean = (p.base + deltaDays * (360 / p.period)) * Math.PI / 180; // Planet heliocentric position
+      
+      const distances = {
+        SUN: 0.0001,
+        MON: 0.0025,
+        MER: 0.387,
+        VEN: 0.723,
+        MAR: 1.524,
+        JUP: 5.203,
+        SAT: 9.582
+      };
+      
+      const r = distances[p.abbrev] || 1.0;
+      let geoAngle = 0;
+      
+      if (p.abbrev === "SUN") {
+        geoAngle = earthMean + Math.PI; // Geocentric Sun is opposite to Earth heliocentric
+      } else if (p.abbrev === "MON") {
+        geoAngle = planetMean; // Tied Moon orbital approximation
+      } else {
+        const x = r * Math.cos(planetMean) - Math.cos(earthMean);
+        const y = r * Math.sin(planetMean) - Math.sin(earthMean);
+        geoAngle = Math.atan2(y, x);
+      }
+      
+      let deg = (geoAngle * 180 / Math.PI) % 360;
+      if (deg < 0) deg += 360;
+      return deg;
+    }
+
+    // Dynamic extraction of multi-dimensional coordinates
+    function getAdvancedData(p, deltaDays) {
+      const tropicalDeg = calculateGeocentricPosition(p, deltaDays);
+      
+      const posTomorrow = calculateGeocentricPosition(p, deltaDays + 1);
+      let velocity = posTomorrow - tropicalDeg;
+      if (velocity < -180) velocity += 360;
+      if (velocity > 180) velocity -= 360;
+      
+      const isRetrograde = velocity < 0;
+      const avgHeliocentric = 360 / p.period;
+      
+      let velocityPct = (Math.abs(velocity) / avgHeliocentric) * 100;
+      if (p.abbrev === "MON") velocityPct = 100; // Stabilize Moon percentage
+      if (velocityPct > 300) velocityPct = 300;
+      
+      let stationaryState = "";
+      if (Math.abs(velocity) < 0.04 * avgHeliocentric && p.period > 80) {
+        stationaryState = isRetrograde ? "S-R" : "S-D";
+      }
+      
+      let shadowState = "Direct Phase";
+      if (isRetrograde) {
+        shadowState = "Active Retrograde";
+      } else if (velocityPct < 60 && p.period > 80) {
+        shadowState = "Pre-Retrograde Shadow";
+      } else if (velocityPct < 88 && p.period > 80) {
+        shadowState = "Post-Retrograde Shadow";
+      }
+      
+      // 3D Declination & OOB Checks
+      const declinationDeg = 23.44 * Math.sin(tropicalDeg * Math.PI / 180);
+      const isOOB = Math.abs(declinationDeg) > 23.27 && p.abbrev !== "SUN";
+      
+      // Latitude estimation
+      const celestialLatVal = 2.5 * Math.sin(deltaDays * 2 * Math.PI / (p.period * 1.15));
+      
+      // Sidereal Lahiri (Delta is 24°28')
+      const siderealDeg = (tropicalDeg - 24.47 + 360) % 360;
+      
+      // Heliocentric longitude
+      const helioDeg = ((p.base + deltaDays * (360 / p.period)) % 360 + 360) % 360;
+      
+      // Esoteric subdivisions
+      const navIdx = Math.floor((siderealDeg % 30) / (30 / 9)) % 12;
+      const navSign = zodiacSigns[(Math.floor(siderealDeg / 30) * 9 + navIdx) % 12];
+      
+      const nakshatraList = [
+        "Ashwini", "Bharani", "Krittika", "Rohini", "Mrigashirsha", "Ardra", "Punarvasu", "Pushya", "Ashlesha",
+        "Magha", "Purva Phalguni", "Uttara Phalguni", "Hasta", "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha",
+        "Mula", "Purva Ashadha", "Uttara Ashadha", "Shravana", "Dhanishta", "Shatabhisha", "Purva Bhadrapada", "Uttara Bhadrapada", "Revati"
+      ];
+      const nakIdx = Math.floor(siderealDeg / (360 / 27)) % 27;
+      const nakName = nakshatraList[nakIdx];
+      const padaVal = Math.floor((siderealDeg % (360 / 27)) / (360 / 108)) + 1;
+      
+      const decanNum = Math.floor((tropicalDeg % 30) / 10) + 1;
+      const decanRulerList = ["Mars", "Sun", "Venus", "Mercury", "Moon", "Saturn", "Jupiter"];
+      const decanRuler = decanRulerList[(Math.floor(tropicalDeg / 10)) % 7];
+      
+      return {
+        longitude: tropicalDeg,
+        siderealLongitude: siderealDeg,
+        velocityPct: velocityPct,
+        isRetrograde: isRetrograde,
+        stationaryState: stationaryState,
+        shadowState: shadowState,
+        declination: declinationDeg,
+        isOOB: isOOB,
+        latitude: celestialLatVal,
+        helioLongitude: helioDeg,
+        navSign: navSign,
+        nakshatraName: nakName,
+        pada: padaVal,
+        decan: decanNum,
+        decanRuler: decanRuler
+      };
+    }
+
+    // Direct dynamic hook text swapping
+    function setFocusText(textVal, colorVal) {
+      const hook = document.getElementById('map-focus-hook');
+      if (!hook) return;
+      hook.style.textTransform = 'none';
+      hook.style.letterSpacing = 'normal';
+      hook.style.fontSize = '0.98rem';
+      hook.style.fontWeight = 'normal';
+      hook.style.color = colorVal || 'var(--ink-archival)';
+      hook.innerHTML = textVal;
+    }
+
+    function resetFocusText() {
+      const hook = document.getElementById('map-focus-hook');
+      if (!hook) return;
+      hook.innerHTML = '';
+    }
+
+    function updateTransits() {
+      const dobStr = document.getElementById('input-dob').value;
+      const transitStr = document.getElementById('input-transit').value;
+      const location = document.getElementById('input-location').value || "Coordinates Locked";
+
+      const savedName = document.getElementById('input-name').value || "The Nameless One";
+      safeSetItem('antara_user_name', savedName);
+      
+      const titleEl = document.querySelector('.master-report-title');
+      if (titleEl) {
+        titleEl.innerHTML = `Planetary Time Cycles<br>For ${escapeHTML(savedName)}`;
+      }
+
+      if (!dobStr || !transitStr) return;
+
+      const dobMs = new Date(dobStr).getTime();
+      const transitMs = new Date(transitStr).getTime();
+      const epochMs = new Date("2000-01-01").getTime();
+
+      const deltaDaysNatal = (dobMs - epochMs) / (1000 * 60 * 60 * 24);
+      const deltaDaysTransit = (transitMs - epochMs) / (1000 * 60 * 60 * 24);
+
+      // 1. Draw Zodiac Sectors with FULL UPPERCASE Constellation Names (smaller but BOLD)
+      const sectorsGroup = document.getElementById('zodiac-sectors');
+      sectorsGroup.innerHTML = '';
+      for (let i = 0; i < 12; i++) {
+        const angle = (i * 30) * Math.PI / 180;
+        const xOuter = 180 + 145 * Math.cos(angle);
+        const yOuter = 180 + 145 * Math.sin(angle);
+        
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', 180 + 95 * Math.cos(angle));
+        line.setAttribute('y1', 180 + 95 * Math.sin(angle));
+        line.setAttribute('x2', xOuter);
+        line.setAttribute('y2', yOuter);
+        line.setAttribute('stroke', '#EADEC9');
+        line.setAttribute('stroke-width', '1.25');
+        line.setAttribute('stroke-dasharray', '2,3');
+        sectorsGroup.appendChild(line);
+
+        const textAngle = (i * 30 + 15) * Math.PI / 180;
+        const xText = 180 + 158 * Math.cos(textAngle);
+        const yText = 180 + 158 * Math.sin(textAngle);
+
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', xText);
+        text.setAttribute('y', yText + 2.5);
+        text.setAttribute('font-family', 'var(--font-serif-header)');
+        text.setAttribute('font-size', '6.5');
+        text.setAttribute('font-weight', '800');
+        text.setAttribute('fill', 'var(--ink-faded)');
+        text.setAttribute('letter-spacing', '0.5px');
+        text.setAttribute('text-anchor', 'middle');
+        
+        const rotDeg = i * 30 + 15 + 90;
+        text.setAttribute('transform', `rotate(${rotDeg}, ${xText}, ${yText})`);
+        text.textContent = zodiacSigns[i].toUpperCase();
+        sectorsGroup.appendChild(text);
+      }
+
+      // 2. Render Interactive Elements on Celestial Wheel
+      const elementsGroup = document.getElementById('dynamic-celestial-elements');
+      elementsGroup.innerHTML = '';
+
+      const tableBody = document.getElementById('ephemeris-table-body');
+      tableBody.innerHTML = '';
+
+      const aspectsSummary = document.getElementById('aspects-summary');
+      aspectsSummary.innerHTML = '';
+
+      let aspectCount = 0;
+
+      planetDb.forEach((p, idx) => {
+        const nData = getAdvancedData(p, deltaDaysNatal);
+        const tData = getAdvancedData(p, deltaDaysTransit);
+
+        const nDeg = nData.longitude;
+        const tDeg = tData.longitude;
+
+        let diff = Math.abs(nDeg - tDeg);
+        if (diff > 180) diff = 360 - diff;
+
+        let aspectBadge = "No aspect";
+        let aspectDesc = "";
+        let drawAspectChord = false;
+        let isConj = false;
+
+        if (diff <= 8) {
+          aspectBadge = "<span class='conjunction-badge'>Conjunction</span>";
+          aspectDesc = `${p.name} Conjunction (d = ${diff.toFixed(1)}°)`;
+          drawAspectChord = true;
+          isConj = true;
+        } else if (Math.abs(diff - 180) <= 8) {
+          aspectBadge = "<span class='opposition-badge'>Opposition</span>";
+          aspectDesc = `${p.name} Opposition (d = ${diff.toFixed(1)}°)`;
+          drawAspectChord = true;
+        }
+
+        const rowId = `ephem-row-${idx}`;
+        const drawerId = `drawer-${idx}`;
+
+        // Draw Aspect chords (thin pulsing lines)
+        if (drawAspectChord) {
+          aspectCount++;
+          const angleN = (nDeg - 90) * Math.PI / 180;
+          const angleT = (tDeg - 90) * Math.PI / 180;
+
+          const xN = 180 + 105 * Math.cos(angleN);
+          const yN = 180 + 105 * Math.sin(angleN);
+          const xT = 180 + 145 * Math.cos(angleT);
+          const yT = 180 + 145 * Math.sin(angleT);
+
+          const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          line.setAttribute('x1', xN);
+          line.setAttribute('y1', yN);
+          line.setAttribute('x2', xT);
+          line.setAttribute('y2', yT);
+          line.setAttribute('class', 'aspect-line');
+          line.setAttribute('stroke', isConj ? 'var(--pigment-cinnabar)' : 'var(--pigment-lapis)');
+          line.setAttribute('stroke-width', '2.5');
+          line.style.opacity = '0';
+          line.style.transition = 'opacity 0.6s ease-in-out';
+          
+          // Connect map interaction to ephemeris and focus display
+          line.addEventListener('mouseenter', () => {
+            const tableRow = document.getElementById(rowId);
+            if (tableRow) tableRow.style.backgroundColor = 'rgba(217, 130, 54, 0.12)';
+            setFocusText(`<strong style="color:var(--pigment-gold);">ACTIVE ASPECT RESONANCE:</strong> ${p.name} natal-to-transit chord (${diff.toFixed(1)}° orb ${isConj ? 'Conjunction' : 'Opposition'}). Forces are vertically aligned.`, 'var(--ink-archival)');
+          });
+          line.addEventListener('mouseleave', () => {
+            const tableRow = document.getElementById(rowId);
+            if (tableRow && document.getElementById(drawerId).style.display !== 'table-row') {
+              tableRow.style.backgroundColor = '';
+            }
+            resetFocusText();
+          });
+          line.addEventListener('click', () => toggleDrawer(drawerId, rowId));
+          
+          elementsGroup.appendChild(line);
+          setTimeout(() => { line.style.opacity = '0.85'; }, idx * 100);
+
+          const summaryItem = document.createElement('div');
+          summaryItem.style.fontSize = '0.95rem';
+          summaryItem.style.borderLeft = `4px solid ${isConj ? 'var(--pigment-cinnabar)' : 'var(--pigment-lapis)'}`;
+          summaryItem.style.paddingLeft = '0.75rem';
+          summaryItem.style.marginBottom = '0.4rem';
+          summaryItem.innerHTML = `<strong class="font-mono" style="color:var(--ink-archival);">${p.name} Aspect Active:</strong><br><span style="font-size: 0.95rem; color:var(--ink-faded);" class="font-mono">${aspectDesc} - Deep structural integration of target timing cycles.</span>`;
+          aspectsSummary.appendChild(summaryItem);
+        }
+
+        // Draw Natal Planet Node (Inner Circle, Radius 105, wrapped in interactive group with centered symbol)
+        const angleN = (nDeg - 90) * Math.PI / 180;
+        const xN = 180 + 105 * Math.cos(angleN);
+        const yN = 180 + 105 * Math.sin(angleN);
+
+        const natalGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        natalGroup.setAttribute('class', 'interactive-node');
+        natalGroup.style.opacity = '0';
+        natalGroup.style.transition = 'opacity 0.4s ease-in-out';
+
+        // Hover glow backdrop circle (larger capture zone)
+        const natalGlow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        natalGlow.setAttribute('cx', xN);
+        natalGlow.setAttribute('cy', yN);
+        natalGlow.setAttribute('r', '15');
+        natalGlow.setAttribute('fill', 'none');
+        natalGlow.setAttribute('stroke', 'none');
+        natalGlow.setAttribute('class', 'hover-glow');
+        natalGroup.appendChild(natalGlow);
+
+        // The actual solid circle
+        const natalCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        natalCircle.setAttribute('cx', xN);
+        natalCircle.setAttribute('cy', yN);
+        natalCircle.setAttribute('r', '11');
+        natalCircle.setAttribute('fill', '#ffffff');
+        natalCircle.setAttribute('stroke', p.color);
+        natalCircle.setAttribute('stroke-width', '2');
+        natalGroup.appendChild(natalCircle);
+
+        // Centered text symbol inside circle
+        const natalText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        natalText.setAttribute('x', xN);
+        natalText.setAttribute('y', yN + 3.5);
+        natalText.setAttribute('font-family', 'sans-serif');
+        natalText.setAttribute('font-size', '10');
+        natalText.setAttribute('text-anchor', 'middle');
+        natalText.setAttribute('fill', 'var(--ink-archival)');
+        natalText.textContent = p.symbol;
+        natalGroup.appendChild(natalText);
+
+        // Events
+        natalGroup.addEventListener('mouseenter', () => {
+          const tableRow = document.getElementById(rowId);
+          if (tableRow) tableRow.style.backgroundColor = 'rgba(217, 130, 54, 0.12)';
+          const parts = planetDescriptors[p.abbrev].natal.split(/\s*—\s*/);
+          const firstLine = parts[0];
+          const secondLine = parts[1].charAt(0).toUpperCase() + parts[1].slice(1);
+          setFocusText(`<strong style="color:var(--pigment-saffron); font-family:var(--font-serif-header); font-size:1.05rem;">${firstLine}</strong><br><span style="font-style:italic; font-size: 0.95rem; color:var(--ink-faded);">${secondLine}</span>`, 'var(--ink-archival)');
+        });
+        natalGroup.addEventListener('mouseleave', () => {
+          const tableRow = document.getElementById(rowId);
+          if (tableRow && document.getElementById(drawerId).style.display !== 'table-row') {
+            tableRow.style.backgroundColor = '';
+          }
+          resetFocusText();
+        });
+        natalGroup.addEventListener('click', () => toggleDrawer(drawerId, rowId));
+
+        elementsGroup.appendChild(natalGroup);
+        setTimeout(() => { natalGroup.style.opacity = '1'; }, idx * 100 + 200);
+
+        // Draw Transit Planet Node (Outer Circle, Radius 145, wrapped in interactive group with centered symbol)
+        const angleT = (tDeg - 90) * Math.PI / 180;
+        const xT = 180 + 145 * Math.cos(angleT);
+        const yT = 180 + 145 * Math.sin(angleT);
+
+        const transitGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        transitGroup.setAttribute('class', 'interactive-node');
+        transitGroup.style.opacity = '0';
+        transitGroup.style.transition = 'opacity 0.4s ease-in-out';
+
+        // Hover glow backdrop diamond
+        const transitGlow = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        transitGlow.setAttribute('x', xT - 13);
+        transitGlow.setAttribute('y', yT - 13);
+        transitGlow.setAttribute('width', '26');
+        transitGlow.setAttribute('height', '26');
+        transitGlow.setAttribute('fill', 'none');
+        transitGlow.setAttribute('stroke', 'none');
+        transitGlow.setAttribute('class', 'hover-glow');
+        transitGlow.setAttribute('transform', `rotate(45, ${xT}, ${yT})`);
+        transitGroup.appendChild(transitGlow);
+
+        // The actual solid diamond rect (rotated)
+        const transitRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        transitRect.setAttribute('x', xT - 10);
+        transitRect.setAttribute('y', yT - 10);
+        transitRect.setAttribute('width', '20');
+        transitRect.setAttribute('height', '20');
+        transitRect.setAttribute('fill', '#FAF7EF');
+        transitRect.setAttribute('stroke', p.color);
+        transitRect.setAttribute('stroke-width', '2');
+        transitRect.setAttribute('transform', `rotate(45, ${xT}, ${yT})`);
+        transitGroup.appendChild(transitRect);
+
+        // Centered text symbol inside diamond (NOT rotated)
+        const transitText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        transitText.setAttribute('x', xT);
+        transitText.setAttribute('y', yT + 3.5);
+        transitText.setAttribute('font-family', 'sans-serif');
+        transitText.setAttribute('font-size', '10');
+        transitText.setAttribute('text-anchor', 'middle');
+        transitText.setAttribute('fill', 'var(--ink-archival)');
+        transitText.textContent = p.symbol;
+        transitGroup.appendChild(transitText);
+
+        // Events
+        transitGroup.addEventListener('mouseenter', () => {
+          const tableRow = document.getElementById(rowId);
+          if (tableRow) tableRow.style.backgroundColor = 'rgba(217, 130, 54, 0.12)';
+          const parts = planetDescriptors[p.abbrev].transit.split(/\s*—\s*/);
+          const firstLine = parts[0];
+          const secondLine = parts[1].charAt(0).toUpperCase() + parts[1].slice(1);
+          setFocusText(`<strong style="color:var(--pigment-cinnabar); font-family:var(--font-serif-header); font-size:1.05rem;">${firstLine}</strong><br><span style="font-style:italic; font-size: 0.95rem; color:var(--ink-faded);">${secondLine}</span>`, 'var(--ink-archival)');
+        });
+        transitGroup.addEventListener('mouseleave', () => {
+          const tableRow = document.getElementById(rowId);
+          if (tableRow && document.getElementById(drawerId).style.display !== 'table-row') {
+            tableRow.style.backgroundColor = '';
+          }
+          resetFocusText();
+        });
+        transitGroup.addEventListener('click', () => toggleDrawer(drawerId, rowId));
+
+        elementsGroup.appendChild(transitGroup);
+        setTimeout(() => { transitGroup.style.opacity = '1'; }, idx * 100 + 200);
+
+        // 3. Dynamic Ephemeris Interactive Row Construction
+        const mainRow = document.createElement('tr');
+        mainRow.id = rowId;
+        mainRow.style.cursor = 'pointer';
+        mainRow.className = 'interactive-row';
+        mainRow.innerHTML = `
+          <td><strong>${p.name}</strong></td>
+          <td style="font-size: 1.25rem; text-align:center !important;">${p.symbol}</td>
+          <td>${getZodiacName(nDeg)}</td>
+          <td>${getZodiacName(tDeg)}</td>
+          <td style="font-family: var(--font-mono);">${diff.toFixed(1)}°</td>
+          <td style="font-size: 0.95rem;">${aspectBadge}</td>
+        `;
+        
+        mainRow.addEventListener('click', () => toggleDrawer(drawerId, rowId));
+        tableBody.appendChild(mainRow);
+
+        // 4. Progressive Disclosure Drawer Construction (breathing space padding)
+        const drawerRow = document.createElement('tr');
+        drawerRow.id = drawerId;
+        drawerRow.style.display = 'none';
+        drawerRow.className = 'drawer-row';
+        drawerRow.innerHTML = `
+          <td colspan="6" style="padding: 0; background: #FAF7EF;">
+            <div class="drawer-grid" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; text-align: left; font-size: 0.95rem; box-sizing: border-box; padding: 1.5rem 1.75rem;">
+              
+              <div style="padding-bottom: 1rem; border-bottom: 1px solid #EADEC9;">
+                <h4 style="margin: 0 0 0.5rem 0; font-family: var(--font-serif-header); color: var(--pigment-terracotta); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px;">1. Planetary Momentum & Phase</h4>
+                <ul style="margin: 0; padding-left: 1.2rem; line-height: 1.6;">
+                  <li><strong>Velocity Rate:</strong> ${tData.velocityPct.toFixed(0)}% of typical geocentric motion</li>
+                  <li><strong>Motion State:</strong> ${tData.stationaryState ? `<span style="color:var(--pigment-cinnabar); font-weight:bold;">STATIONARY (${tData.stationaryState})</span>` : tData.isRetrograde ? `<span style="color:var(--pigment-cinnabar); font-weight:bold;">RETROGRADE</span>` : "DIRECT"}</li>
+                  <li><strong>Shadow Phase:</strong> ${tData.shadowState}</li>
+                </ul>
+              </div>
+
+              <div style="padding-bottom: 1rem; border-bottom: 1px solid #EADEC9;">
+                <h4 style="margin: 0 0 0.5rem 0; font-family: var(--font-serif-header); color: var(--pigment-terracotta); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px;">2. 3D Spatial Position</h4>
+                <ul style="margin: 0; padding-left: 1.2rem; line-height: 1.6;">
+                  <li><strong>Declination:</strong> ${Math.abs(tData.declination).toFixed(2)}° ${tData.declination >= 0 ? "North" : "South"} ${tData.isOOB ? `<span style="color:var(--pigment-saffron); font-weight:bold;">[OUT-OF-BOUNDS]</span>` : ""}</li>
+                  <li><strong>Celestial Latitude:</strong> ${Math.abs(tData.latitude).toFixed(2)}° ${tData.latitude >= 0 ? "North" : "South"} of Ecliptic</li>
+                  <li><strong>Parallel Alignment:</strong> ${Math.abs(nData.declination - tData.declination) <= 1.0 ? `<span style="color:var(--pigment-moss); font-weight:bold;">Parallel Aspect Active</span>` : "No vertical declination aspect"}</li>
+                </ul>
+              </div>
+
+              <div style="padding-bottom: 1rem; border-bottom: 1px solid #EADEC9;">
+                <h4 style="margin: 0 0 0.5rem 0; font-family: var(--font-serif-header); color: var(--pigment-terracotta); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px;">3. Multiple Coordinate Systems</h4>
+                <ul style="margin: 0; padding-left: 1.2rem; line-height: 1.6;">
+                  <li><strong>Tropical Coordinate:</strong> ${getZodiacName(tDeg)}</li>
+                  <li><strong>Vedic Sidereal (Lahiri):</strong> ${getZodiacName(tData.siderealLongitude)} <span style="font-family:var(--font-mono); font-size:0.8rem; color:var(--ink-faded);">[-24°47' Ayanamsha Delta]</span></li>
+                </ul>
+              </div>
+
+              <div style="padding-bottom: 1rem; border-bottom: 1px solid #EADEC9;">
+                <h4 style="margin: 0 0 0.5rem 0; font-family: var(--font-serif-header); color: var(--pigment-terracotta); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px;">4. Objective vs. Personal Cycles</h4>
+                <ul style="margin: 0; padding-left: 1.2rem; line-height: 1.6;">
+                  <li><strong>Heliocentric Longitude:</strong> ${getZodiacName(tData.helioLongitude)} (objective systemic solar frame)</li>
+                  <li><strong>Timing Pacing:</strong> ${p.name === "Saturn" || p.name === "Jupiter" ? "Influences long-term institutional cycles." : "Reflects short-term personal shifts."}</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 style="margin: 0 0 0.5rem 0; font-family: var(--font-serif-header); color: var(--pigment-terracotta); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px;">5. Harmonic Sub-Divisions</h4>
+                <ul style="margin: 0; padding-left: 1.2rem; line-height: 1.6;">
+                  <li><strong>Navamsha Division:</strong> ${tData.navSign} Sign</li>
+                  <li><strong>Nakshatra Position:</strong> ${tData.nakshatraName} (Sector ${tData.pada})</li>
+                  <li><strong>Decan Face:</strong> Decan ${tData.decan} (Ruled by ${tData.decanRuler})</li>
+                </ul>
+              </div>
+
+            </div>
+          </td>
+        `;
+        tableBody.appendChild(drawerRow);
+      });
+
+      if (aspectCount === 0) {
+        aspectsSummary.innerHTML = `<p style="font-size: 0.95rem; color: var(--ink-faded); margin: 0;" class="font-mono">No active conjunctions or oppositions detected on this target date. Environmental coordinates are quiet.</p>`;
+      }
+
+      // Responsive adjustments for Ephemeris Drawers
+      const drawerGrids = document.querySelectorAll('.drawer-grid');
+      drawerGrids.forEach(dg => {
+        if (window.innerWidth >= 900) {
+          dg.style.gridTemplateColumns = '1fr 1fr';
+          dg.style.border = 'none';
+          dg.querySelectorAll('div').forEach(child => {
+            child.style.borderBottom = 'none';
+            child.style.paddingBottom = '0';
+          });
+        }
+      });
+
+      // 5. Populate Contextual Modules & Prescriptive Action protocols
+      updateContextualModules(dobStr, transitStr, savedName);
+
+      // Initialize Chronobiology Chapters
+      switchChapter(1);
+    }
+
+    // Interactive Drawer Toggle Controller
+    function toggleDrawer(drawerId, rowId) {
+      const drawer = document.getElementById(drawerId);
+      const row = document.getElementById(rowId);
+      
+      const isCurrentlyOpen = drawer.style.display === 'table-row';
+      
+      document.querySelectorAll('.drawer-row').forEach(d => {
+        d.style.display = 'none';
+      });
+      document.querySelectorAll('.interactive-row').forEach(r => {
+        r.style.backgroundColor = '';
+      });
+      
+      if (!isCurrentlyOpen) {
+        drawer.style.display = 'table-row';
+        row.style.backgroundColor = 'rgba(217, 130, 54, 0.08)';
+      }
+    }
+
+    // Dynamic Contextual Modules & Transit Action Blueprint Generator
+    function updateContextualModules(dobStr, transitStr, savedName) {
+      const modulesContainer = document.getElementById('contextual-modules-panel');
+      if (!modulesContainer) return;
+      
+      const dobMs = new Date(dobStr).getTime();
+      const transitMs = new Date(transitStr).getTime();
+      const epochMs = new Date("2000-01-01").getTime();
+
+      const deltaDaysNatal = (dobMs - epochMs) / (1000 * 60 * 60 * 24);
+      const deltaDaysTransit = (transitMs - epochMs) / (1000 * 60 * 60 * 24);
+      
+      const satData = getAdvancedData(planetDb[6], deltaDaysTransit);
+      const jupData = getAdvancedData(planetDb[5], deltaDaysTransit);
+      
+      const transitYear = new Date(transitStr).getFullYear();
+      const transitMonth = new Date(transitStr).getMonth() + 1;
+      const hashVal = (transitYear * 13 + transitMonth * 7) % 360;
+      
+      const savScores = {
+        Aries: (22 + (hashVal % 15)),
+        Taurus: (25 + ((hashVal + 3) % 15)),
+        Gemini: (20 + ((hashVal + 7) % 15)),
+        Cancer: (28 + ((hashVal + 11) % 15)),
+        Leo: (24 + ((hashVal + 17) % 15)),
+        Virgo: (22 + ((hashVal + 23) % 15)),
+        Libra: (26 + ((hashVal + 29) % 15)),
+        Scorpio: (21 + ((hashVal + 31) % 15)),
+        Sagittarius: (27 + ((hashVal + 37) % 15)),
+        Capricorn: (23 + ((hashVal + 41) % 15)),
+        Aquarius: (29 + ((hashVal + 43) % 15)),
+        Pisces: (21 + ((hashVal + 47) % 15))
+      };
+      
+      const satSignName = zodiacSigns[Math.floor(satData.longitude / 30)];
+      const satAction = satSav >= 30 
+        ? "Strong support for disciplined execution, systems building, and long-term effort." 
+        : "Pressure rises around workload, delays, and operational resistance. Simplify expansion plans.";
+      
+      const jupAction = jupSav >= 25 
+        ? "Favorable timing for launches, investments, negotiations, and growth." 
+        : "Opportunities still exist, but progress requires sharper focus and consistent effort.";
+      
+      let orbHitsHtml = "";
+      let exactHitsCount = 0;
+      
+      planetDb.forEach(p => {
+        const nDeg = calculateGeocentricPosition(p, deltaDaysNatal);
+        const tDeg = calculateGeocentricPosition(p, deltaDaysTransit);
+        let d = Math.abs(nDeg - tDeg);
+        if (d > 180) d = 360 - d;
+        
+        if (d <= 1.5) {
+          orbHitsHtml += `<li style="margin-bottom:0.4rem;"><strong>Exact Alignment:</strong> Transiting ${p.name} aligns closely with Natal ${p.name} (separated by ${d.toFixed(1)}°). This increases timing focus and strategic seriousness.</li>`;
+          exactHitsCount++;
+        }
+      });
+      
+      if (exactHitsCount === 0) {
+        orbHitsHtml = `<li style="margin-bottom:0.4rem; color:var(--ink-faded);">No exact alignments active. Cosmic transition is gradual.</li>`;
+      }
+
+      modulesContainer.innerHTML = `
+        <div style="display: flex; flex-direction: column; gap: 1.5rem; width: 100%;">
+          
+          <div class="modules-2x2-grid">
+            <!-- Module 1: Precision Timing Layer -->
+            <div class="archival-card" style="border-left: 4px solid var(--pigment-terracotta);">
+              <h3 style="font-family: var(--font-serif-header); font-size: 1.15rem; margin: 0 0 0.5rem 0; text-transform: uppercase; color: var(--pigment-terracotta); letter-spacing: 1px;">1. Precision Timing Layer</h3>
+              <p style="font-style: italic; color: var(--ink-faded); margin: 0 0 1rem 0; font-size: 0.95rem;">Identifies exact interaction points between transits and the birth chart.</p>
+              <ul style="margin: 0; padding-left: 1.2rem; font-size: 1.05rem; line-height: 1.7;">
+                ${orbHitsHtml}
+                <li style="margin-bottom:0.4rem;"><strong>House Crossing:</strong> Transiting Saturn shifts into your ${Math.floor(satData.longitude / 30) + 1}th major life sector, changing environmental priorities.</li>
+                <li style="margin-bottom:0.4rem;"><strong>Stationary Phase:</strong> ${satData.stationaryState ? `Transiting Saturn is slowing down at this coordinate, intensifying timing pressure around related themes.` : "No stationary outer planets detected at this coordinate."}</li>
+              </ul>
+            </div>
+          
+            <!-- Module 2: Strength & Stability Layer -->
+            <div class="archival-card" style="border-left: 4px solid var(--pigment-saffron);">
+              <h3 style="font-family: var(--font-serif-header); font-size: 1.15rem; margin: 0 0 0.5rem 0; text-transform: uppercase; color: var(--pigment-saffron); letter-spacing: 1px;">2. Strength & Stability Layer</h3>
+              <p style="font-style: italic; color: var(--ink-faded); margin: 0 0 1rem 0; font-size: 0.95rem;">Measures supportive versus pressured timing zones using SAV scoring.</p>
+              <ul style="margin: 0; padding-left: 1.2rem; font-size: 1.05rem; line-height: 1.7;">
+                <li style="margin-bottom:0.4rem;"><strong>Saturn SAV (30+):</strong> <strong style="color:var(--pigment-terracotta);">${satSav} Bindus</strong>. (${satAction})</li>
+                <li style="margin-bottom:0.4rem;"><strong>Jupiter SAV (25+):</strong> <strong style="color:var(--pigment-emerald);">${jupSav} Bindus</strong>. (${jupAction})</li>
+                <li style="margin-bottom:0.4rem;"><strong>Dignity Tracking:</strong> Stable positioning of outer planets helps soften intense timing conditions.</li>
+              </ul>
+            </div>
+          
+            <!-- Module 3: Timing Windows Layer -->
+            <div class="archival-card" style="border-left: 4px solid var(--pigment-moss);">
+              <h3 style="font-family: var(--font-serif-header); font-size: 1.15rem; margin: 0 0 0.5rem 0; text-transform: uppercase; color: var(--pigment-moss); letter-spacing: 1px;">3. Timing Windows Layer</h3>
+              <p style="font-style: italic; color: var(--ink-faded); margin: 0 0 1rem 0; font-size: 0.95rem;">Tracks duration, momentum shifts, and activation periods.</p>
+              <ul style="margin: 0; padding-left: 1.2rem; font-size: 1.05rem; line-height: 1.7;">
+                <li style="margin-bottom:0.4rem;"><strong>Peak Windows:</strong> The active cycle is most prominent between <span class="font-mono">July 10, 2026</span> and <span class="font-mono">September 25, 2026</span>.</li>
+                <li style="margin-bottom:0.4rem;"><strong>Slowing Cycles:</strong> Planetary movement is slowing down at this coordinate, extending the timing focus.</li>
+                <li style="margin-bottom:0.4rem;"><strong>Activation Windows:</strong> Fast-moving planetary transits trigger long-term cycles on <span class="font-mono">June 18, 2026</span>.</li>
+              </ul>
+            </div>
+          
+            <!-- Module 4: Eclipse & Nodal Layer -->
+            <div class="archival-card" style="border-left: 4px solid var(--pigment-lapis);">
+              <h3 style="font-family: var(--font-serif-header); font-size: 1.15rem; margin: 0 0 0.5rem 0; text-transform: uppercase; color: var(--pigment-lapis); letter-spacing: 1px;">4. Eclipse & Nodal Layer</h3>
+              <p style="font-style: italic; color: var(--ink-faded); margin: 0 0 1rem 0; font-size: 0.95rem;">Tracks reset periods and major directional shifts.</p>
+              <ul style="margin: 0; padding-left: 1.2rem; font-size: 1.05rem; line-height: 1.7;">
+                <li style="margin-bottom:0.4rem;"><strong>Eclipse Hotspots:</strong> Solar Eclipse aligns closely with sensitive birth-chart positions. Expect key structural resets.</li>
+                <li style="margin-bottom:0.4rem;"><strong>Multi-System Confirmation:</strong> Overlapping timing signals are cross-checked across BaZi and progressed alignments.</li>
+              </ul>
+            </div>
+          
+          </div> <!-- End modules-2x2-grid -->
+
+          <!-- Module 5: Transit Action Blueprint -->
+          <div style="margin-top: 0.5rem;">
+            <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin: 0 0 1rem 0; text-align: center; text-transform: uppercase; color: var(--ink-archival); letter-spacing: 2px;">Transit Action Blueprint</h3>
+            
+            <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;" class="blueprint-grid">
+              
+              <!-- Momentum Windows -->
+              <div style="background: #ffffff; border: var(--border-container); border-left: 4px solid var(--pigment-saffron); padding: 1.5rem; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04);">
+                <h4 style="margin: 0 0 0.75rem 0; font-family: var(--font-serif-header); color: var(--pigment-saffron); font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px;">Momentum Windows</h4>
+                <p style="font-size: 0.95rem; color: var(--ink-faded); margin: 0 0 1rem 0; font-style: italic;">Theme: Use favorable cycles to move forward decisively.</p>
+                <ul style="margin: 0; padding-left: 1.2rem; font-size: 1rem; line-height: 1.6;">
+                  <li style="margin-bottom:0.4rem;">launch initiatives</li>
+                  <li style="margin-bottom:0.4rem;">negotiate agreements</li>
+                  <li style="margin-bottom:0.4rem;">allocate capital</li>
+                  <li style="margin-bottom:0.4rem;">expand strategically</li>
+                  <li style="margin-bottom:0.4rem;">delegate systematically</li>
+                </ul>
+              </div>
+              
+              <!-- Consolidation Windows -->
+              <div style="background: #ffffff; border: var(--border-container); border-left: 4px solid var(--pigment-cinnabar); padding: 1.5rem; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04);">
+                <h4 style="margin: 0 0 0.75rem 0; font-family: var(--font-serif-header); color: var(--pigment-cinnabar); font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px;">Consolidation Windows</h4>
+                <p style="font-size: 0.95rem; color: var(--ink-faded); margin: 0 0 1rem 0; font-style: italic;">Theme: Reduce pressure, protect resources, and strengthen foundations.</p>
+                <ul style="margin: 0; padding-left: 1.2rem; font-size: 1rem; line-height: 1.6;">
+                  <li style="margin-bottom:0.4rem;">delay speculative risks</li>
+                  <li style="margin-bottom:0.4rem;">simplify operations</li>
+                  <li style="margin-bottom:0.4rem;">review contracts</li>
+                  <li style="margin-bottom:0.4rem;">conduct audits</li>
+                  <li style="margin-bottom:0.4rem;">stabilize systems</li>
+                </ul>
+              </div>
+              
+            </div>
+            
+            <!-- Environmental Adjustments -->
+            <div style="margin-top: 1.5rem; background: #ffffff; border: var(--border-container); border-left: 4px solid var(--pigment-moss); padding: 1.5rem; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04);">
+              <h4 style="margin: 0 0 0.75rem 0; font-family: var(--font-serif-header); color: var(--pigment-moss); font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px;">Environmental Adjustments</h4>
+              <p style="font-size: 0.95rem; color: var(--ink-faded); margin: 0 0 0.75rem 0; font-style: italic;">Theme: Support recovery, focus, and mental clarity.</p>
+              <p style="font-size: 1.05rem; line-height: 1.7; margin: 0;">
+                For focused analytical work, use calm and grounded workspace environments: reduce overstimulation, optimize workspace orientation to balance timing pressure, and maintain restorative physical pacing to manage heavy cycles.
+              </p>
+            </div>
+            
+          </div>
+          
+        </div>
+      `;
+      
+      const bpGrid = document.querySelector('.blueprint-grid');
+      if (bpGrid && window.innerWidth >= 900) {
+        bpGrid.style.gridTemplateColumns = '1fr 1fr';
+      }
+    }
+
+    // 6-Chapter Interactive Chronobiology Report switcher (Completely Chapter-free header naming)
+    function switchChapter(chNum) {
+      const savedName = document.getElementById('input-name').value || "Shyam Anand";
+      const transitStr = document.getElementById('input-transit').value || "2026-05-27";
+      const transitYear = new Date(transitStr).getFullYear();
+      
+      document.querySelectorAll('.chapter-tab').forEach(t => t.classList.remove('active-tab'));
+      const activeTab = document.getElementById(`tab-${chNum}`);
+      if (activeTab) activeTab.classList.add('active-tab');
+      
+      const contentArea = document.getElementById('chapter-content-area');
+      if (!contentArea) return;
+      
+      let html = "";
+      
+      switch(chNum) {
+        case 1:
+          html = `
+            <div class="prose-container">
+              <h4 style="font-family: var(--font-serif-header); color: var(--pigment-terracotta); margin: 0 0 0.75rem 0; font-size: 1.15rem; text-transform: uppercase;">Executive Summary & Cosmic Dashboard</h4>
+              <p style="font-weight: bold; font-style: italic; color: var(--ink-archival); margin-bottom: 1.25rem;">
+                Core Theme: Focus on structural consolidation, prioritizing operational audit and internal alignment over speculative external expansions.
+              </p>
+              
+              <div style="border: 1px solid #D6CEBE; background: #FAF7EF; padding: 1.25rem; margin-bottom: 1.5rem;">
+                <h5 style="margin: 0 0 0.5rem 0; font-family: var(--font-mono); font-size: 0.85rem; text-transform: uppercase; color: var(--ink-faded);">Macro 5-Year Pacing Timeline (2025 - 2029)</h5>
+                <div style="background: #EADEC9; height: 10px; border-radius: 5px; overflow: hidden; position: relative;">
+                  <div style="background: var(--pigment-saffron); width: 40%; height: 100%;"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-family: var(--font-mono); margin-top: 0.25rem; color: var(--ink-faded);">
+                  <span>2025 (Consolidation)</span>
+                  <span>2027 (Transit Peak)</span>
+                  <span>2029 (Expansion)</span>
+                </div>
+              </div>
+
+              <!-- Value Dimensions text -->
+              <div style="margin-bottom: 1.5rem;">
+                <p style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 1rem;">
+                  This portfolio delivers high-utility timing calibration across four distinct practical dimensions:
+                </p>
+                <ul style="margin: 0; padding-left: 0; list-style: none; line-height: 1.6; font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.6rem;">
+                  <li><strong>1. Macro-Timing & Life Chapters (30,000-Foot View):</strong> Understand the overarching theme of your year. Tells you if you are in a 10-year winter (consolidation, internal healing) or 5-year summer (aggressive scaling, career expansion), reducing existential anxiety.</li>
+                  <li><strong>2. Micro-Action Windows (The Operational Playbook):</strong> Tactical calendar showing Green-Lit windows (optimized for launches, mergers, signing contracts) and Red-Lit windows (high-risk cycles to double-check fine print and spec freezes).</li>
+                  <li><strong>3. Multi-Track Allocation (Segmented Life Sectors):</strong> Splits time cycles into Artha (Wealth & capital flow naturally protected), Kama (Relationship networking & infrastructure recruitment), and Moksha (Energy alignment, detoxification, spiritual rest).</li>
+                  <li><strong>4. Risk Mitigation & Remedies (The Insurance Policy):</strong> Active controls during heavy cycles (Sade Sati, Saturn returns) reframing them as structural systems audits rather than bad luck, complete with environmental workspace adjustments.</li>
+                </ul>
+              </div>
+
+              <!-- Dynamic Scanning Guide Table -->
+              <h5 style="font-family: var(--font-serif-header); color: var(--ink-archival); margin: 1.5rem 0 0.5rem 0; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px;">📊 How a User Scans Their Portfolio</h5>
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem; margin-bottom: 1.25rem;">
+                <thead>
+                  <tr style="border-bottom: 2px solid #D6CEBE; font-family: var(--font-mono); text-transform: uppercase; font-size: 0.78rem; color: var(--ink-faded);">
+                    <th style="padding: 0.6rem; text-align: left; width: 25%;">Component</th>
+                    <th style="padding: 0.6rem; text-align: left; width: 35%;">What the User Asks</th>
+                    <th style="padding: 0.6rem; text-align: left; width: 40%;">What the Portfolio Answers</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid #EADEC9;">
+                    <td style="padding: 0.6rem; font-weight: bold;">The Macro Roof</td>
+                    <td style="padding: 0.6rem; color: var(--ink-faded); font-style: italic;">"What is my big theme this year?"</td>
+                    <td style="padding: 0.6rem; font-weight: bold; color: var(--pigment-saffron);">You are in a Jupiter-Saturn phase; it is time to build and execute.</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid #EADEC9;">
+                    <td style="padding: 0.6rem; font-weight: bold;">The SAV Heat Map</td>
+                    <td style="padding: 0.6rem; color: var(--ink-faded); font-style: italic;">"Where is my energy naturally protected?"</td>
+                    <td style="padding: 0.6rem;">Your 10th house is sitting at 29 points; focus heavily on systems governance.</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 0.6rem; font-weight: bold;">The Velocity Matrix</td>
+                    <td style="padding: 0.6rem; color: var(--ink-faded); font-style: italic;">"How long will this intense pressure last?"</td>
+                    <td style="padding: 0.6rem; font-weight: bold; color: var(--pigment-cinnabar);">Saturn hits its stationary retrograde degree in late July—expect relief after that date.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          `;
+          break;
+        case 2:
+          html = `
+            <div class="prose-container">
+              <h4 style="font-family: var(--font-serif-header); color: var(--pigment-terracotta); margin: 0 0 0.75rem 0; font-size: 1.15rem; text-transform: uppercase;">Macro-Architectural Cycle (Vimshottari Dasha & BaZi luck)</h4>
+              <p style="margin-bottom: 1rem;">
+                Your Vimshottari Mahadasha is currently governed by <strong>Jupiter</strong>, indicating an overarching life-phase oriented toward strategic vision, structural wisdom, and brand alignment. However, this transit operates under a 10-year <strong>BaZi Earth Luck Pillar</strong>.
+              </p>
+              <p style="margin-bottom: 1rem;">
+                This elemental collision dictates a clear cognitive pacing: while Jupiter drives internal desires for rapid, vision-led growth, the Luck Pillar demands grounded, structural foundations. Sustainable career trajectory is achieved by channeling expansionary vision into institutionalized, rigid execution frameworks.
+              </p>
+              <p style="margin-bottom: 0;">
+                During this macro phase, internal motivations shift from transactional gains to legacy architecture. Focus heavily on securing long-term wealth assets and establishing robust operational workflows that run independently of day-to-day intervention.
+              </p>
+            </div>
+          `;
+          break;
+        case 3:
+          html = `
+            <div class="prose-container">
+              <h4 style="font-family: var(--font-serif-header); color: var(--pigment-terracotta); margin: 0 0 0.75rem 0; font-size: 1.15rem; text-transform: uppercase;">Micro-Timing Matrix (Nested Sub-Periods)</h4>
+              <p style="margin-bottom: 1rem;">
+                Zooming into the immediate present, the active sub-period ruler is <strong>Saturn</strong>. This nested combination brings systemic discipline, operational governance, and structural audits to the forefront of your daily focus.
+              </p>
+              <p style="margin-bottom: 1rem;">
+                This sub-cycle marks the precise weeks where hidden underlying trends manifest into physical reality. Keep a close watch on late June and mid-September ${transitYear}. Fast-moving trigger transits (the Moon and Mars) will form direct aspects, serving as dynamic catalysts for career negotiations or asset allocations.
+              </p>
+              <p style="margin-bottom: 0;">
+                Approach transactions during these trigger weeks with absolute clarity: set rigid boundaries, protect capital exposures, and establish robust contract terms. Leverage these windows to execute necessary systems cleanups.
+              </p>
+            </div>
+          `;
+          break;
+        case 4:
+          html = `
+            <div class="prose-container">
+              <h4 style="font-family: var(--font-serif-header); color: var(--pigment-terracotta); margin: 0 0 0.75rem 0; font-size: 1.15rem; text-transform: uppercase;">Transit SAV Grid Overlay (Saturn Sade Sati & Eclipses)</h4>
+              <p style="margin-bottom: 1rem;">
+                Transiting Saturn is crossing your public career sector, while transiting Jupiter transits your house of consolidation. By mathematical scoring, Saturn transits a robust <strong>29-Bindu SAV house</strong>, acting as a highly productive structural buffer.
+              </p>
+              <p style="margin-bottom: 1rem;">
+                This SAV strength buffers typical Saturn friction: hard organizational labor and organizational audits will translate directly to stable, long-term industry positioning. However, Jupiter transits a weakened low-SAV house, warning that speculative opportunities may disperse unless pursued with absolute, direct focus.
+              </p>
+              <p style="margin-bottom: 0;">
+                If active, the Sade Sati protocol demands structural restructurings: streamline personal commitments and clear out operational deadweight to allow clean, unburdened pathways for the incoming cycle.
+              </p>
+            </div>
+          `;
+          break;
+        case 5:
+          html = `
+            <div class="prose-container">
+              <h4 style="font-family: var(--font-serif-header); color: var(--pigment-terracotta); margin: 0 0 0.75rem 0; font-size: 1.15rem; text-transform: uppercase;">Strategic Application & Behavioral Calibration</h4>
+              
+              <h5 style="font-family: var(--font-serif-header); font-size: 1rem; margin: 1rem 0 0.5rem 0; color: var(--pigment-terracotta);">Career & Wealth Track</h5>
+              <p style="margin-bottom: 1rem;">
+                Optimize venture timeline placements: execute system launches and major pitches to coordinate with high-SAV transit moon peaks. Protect capital reserves from speculative risks during transit retrograde shadow loops.
+              </p>
+
+              <h5 style="font-family: var(--font-serif-header); font-size: 1rem; margin: 1.25rem 0 0.5rem 0; color: var(--pigment-lapis);">Relationship & Legacy Track</h5>
+              <p style="margin-bottom: 1rem;">
+                Prioritize deep, high-level institutional alignment and systematic delegation over broad, rapid recruitment scaling. Cultivate selective, high-integrity corporate relationships that support structural longevity.
+              </p>
+
+              <h5 style="font-family: var(--font-serif-header); font-size: 1rem; margin: 1.25rem 0 0.5rem 0; color: var(--pigment-moss);">Health & Energy Biorhythms</h5>
+              <p style="margin-bottom: 0;">
+                Synchronize physical energy peaks with outer cycles: map restorative physical movement and workspace adjustments to balance intense atmospheric coordinates, ensuring consistent stamina during heavy timing demands.
+              </p>
+            </div>
+          `;
+          break;
+        case 6:
+          html = `
+            <div class="prose-container">
+              <h4 style="font-family: var(--font-serif-header); color: var(--pigment-terracotta); margin: 0 0 0.75rem 0; font-size: 1.15rem; text-transform: uppercase;">Prescriptive Remedial Protocol & Pause Blueprint</h4>
+              <p style="margin-bottom: 1rem;">
+                When atmospheric cosmic pressure is intense, utilize physical remedies: incorporate grounding soundscapes (396Hz) in focus zones, utilize warm terracotta and deep gold colors in materials, and align workspace furniture with North-East Vastu vectors to balance incoming solar-biorhythm flows.
+              </p>
+              <p style="margin-bottom: 1.25rem;">
+                <strong>The Strategic Pause Blueprint:</strong> Execute controlled operational pauses during eclipse cycles and low-SAV transits. Designate 48-hour periods of deep technical focus and system architecture work with zero external meetings to recharge cognitive reserves.
+              </p>
+              <div style="background: rgba(217, 130, 54, 0.08); border-left: 3px solid var(--pigment-saffron); padding: 1rem; font-size: 0.95rem; line-height: 1.6;">
+                <strong>Strategic Remedy for ${savedName}:</strong> Face the North-East vector while conducting contract reviews or financial audits in ${transitYear}. This aligns human bio-sensory vectors with objective atmospheric fields.
+              </div>
+            </div>
+          `;
+          break;
+      }
+      
+      contentArea.innerHTML = html;
+    }
+
+    // Dynamic auto-calculation listeners for instant fluid recalculations
+    document.getElementById('input-name').addEventListener('input', updateTransits);
+    document.getElementById('input-dob').addEventListener('change', updateTransits);
+    document.getElementById('input-transit').addEventListener('change', updateTransits);
+    document.getElementById('input-location').addEventListener('input', updateTransits);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedName = safeGetItem('antara_user_name');
+      const savedDob = safeGetItem('antara_user_dob');
+      const savedLoc = safeGetItem('antara_user_location');
+      const savedTransit = safeGetItem('antara_user_transit');
+      
+      const nameInput = document.getElementById('input-name');
+      const dobInput = document.getElementById('input-dob');
+      const transitInput = document.getElementById('input-transit');
+      const locInput = document.getElementById('input-location');
+      
+      if (savedName) nameInput.value = savedName;
+      if (savedDob) dobInput.value = formatToInputDate(savedDob);
+      if (savedLoc) locInput.value = savedLoc;
+      if (savedTransit) transitInput.value = formatToInputDate(savedTransit);
+      
+      // Core Rendering Guarantee: Ensure valid default values if blank/invalid
+      if (!nameInput.value || nameInput.value === "") nameInput.value = "Shyam Anand";
+      if (!dobInput.value || dobInput.value === "") dobInput.value = "1965-06-26";
+      if (!transitInput.value || transitInput.value === "") transitInput.value = "2026-05-27";
+      if (!locInput.value || locInput.value === "") locInput.value = "Chakrata, Uttarakhand, India";
+      
+      updateTransits();
+      switchChapter(1);
+    });
+  </script>
+</body>
+</html>

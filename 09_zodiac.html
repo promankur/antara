@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Western Zodiac Profile | Antara Cross-Cultural Interior Panorama</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-page: #F7F1E1;
+      --bg-vellum-warm: #ffffff;
+      --ink-archival: #2B2A28;
+      --ink-faded: #76726A;
+      --border-container: 1px solid #D6CEBE;
+      --stroke: #b56a2a;
+      
+      --font-serif-header: 'Cinzel', serif;
+      --font-serif-body: 'Playfair Display', serif;
+      --font-mono: 'Courier Prime', monospace;
+      
+      --pigment-terracotta: #A65B4A;
+      --pigment-saffron: #D98236;
+      --pigment-cinnabar: #9E3A33;
+      --pigment-lapis: #2E6CB5;
+      --pigment-moss: #4A6B5D;
+      --pigment-gold: #B58A3D;
+    }
+
+    details p, details td, details li {
+      font-variant: normal !important;
+      font-family: var(--font-serif-body) !important;
+      text-transform: none !important;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 17px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1150px;
+      width: 100%;
+      margin: 0 auto 2rem auto;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    .prose-container {
+      max-width: 78ch;
+      margin: 0 auto;
+    }
+
+    .inputs-coordinates-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .inputs-coordinates-grid {
+        display: grid;
+        grid-template-columns: 380px 1fr;
+        gap: 2rem;
+        align-items: stretch;
+      }
+    }
+
+    .archival-card {
+      background-color: var(--bg-vellum-warm);
+      border: var(--border-container);
+      padding: 1.75rem;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04);
+      box-sizing: border-box;
+      border-radius: 4px;
+    }
+
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--ink-faded);
+      margin-bottom: 0.5rem;
+      min-height: 1.8em;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .form-input {
+      width: 100%;
+      height: 46px;
+      background-color: rgba(247, 241, 225, 0.4);
+      border: var(--border-container);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 1.05rem;
+      padding: 0.5rem 1rem;
+      box-sizing: border-box;
+      outline: none;
+      border-radius: 2px;
+    }
+
+    .time-select-cluster {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      width: 100%;
+      height: 46px;
+    }
+    .time-select-cluster select.form-input {
+      height: 46px;
+      padding: 0.5rem 0.2rem;
+      font-weight: bold;
+      text-align: center;
+      text-align-last: center;
+    }
+
+    .svg-wheel-container {
+      margin: 1.5rem auto;
+      border: 1px solid #D6CEBE;
+      padding: 1.5rem;
+      background: #faf7ef;
+      border-radius: 4px;
+      text-align: center;
+      max-width: 440px;
+    }
+
+    .coordinate-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+    .coordinate-table th, .coordinate-table td {
+      border: 1px solid #EADEC9;
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+    }
+    .coordinate-table th {
+      background-color: #faf7ef;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--ink-faded);
+    }
+    .coordinate-table tr:nth-child(even) td {
+      background-color: rgba(244, 235, 212, 0.2);
+    }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 2.5rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+    }
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--ink-faded);
+      margin: 0.25rem 0;
+    }
+
+    p, td, li { text-align: left !important; }
+
+    /* Standardized Branding */
+    .header-logo { 
+      text-align: center; 
+      margin: 20px 0 8px 0; 
+    }
+    .system-tagline { 
+      font-family: var(--font-mono) !important; 
+      font-weight: 600 !important; 
+      font-size: 12px !important; 
+      letter-spacing: 3px !important; 
+      color: #A6A29A !important; 
+      text-transform: uppercase !important; 
+      text-align: center !important; 
+      margin: 0 0 24px 0 !important; 
+      line-height: 1.2 !important;
+    }
+    .master-report-title { 
+      font-family: 'Cinzel', serif !important; 
+      font-size: 2.25rem !important; 
+      font-variant: small-caps !important; 
+      font-weight: 700 !important; 
+      letter-spacing: 2px !important; 
+      color: #2B2A28 !important; 
+      text-align: center !important; 
+      margin: 0 0 14px 0 !important; 
+      line-height: 1.3 !important; 
+    }
+    .master-report-byline { 
+      font-family: 'Playfair Display', serif !important; 
+      font-size: 1.15rem !important; 
+      color: #D98236 !important; 
+      text-align: center !important; 
+      max-width: 800px !important; 
+      margin: 0 auto 32px auto !important; 
+      padding: 0 12px !important; 
+      line-height: 1.5 !important; 
+    }
+
+    /* Accordion styles */
+    .explore-summary {
+      font-family: var(--font-serif-header);
+      background-color: #D35400;
+      color: #FFFFFF !important;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.85rem 1.25rem;
+      border: 1px solid #8E4A21;
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 12px rgba(211, 84, 0, 0.12);
+      line-height: 1.35;
+      width: fit-content;
+      margin: 0 auto;
+    }
+    .explore-summary::-webkit-details-marker { display: none; }
+    .explore-summary::before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px double rgba(255, 255, 255, 0.45);
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+    .explore-summary:hover {
+      background-color: #E65C00;
+      box-shadow: 0 6px 18px rgba(211, 84, 0, 0.22);
+      transform: translateY(-1px);
+    }
+    .explore-summary:hover::before {
+      border-color: rgba(255, 255, 255, 0.7);
+      top: 4px; left: 4px; right: 4px; bottom: 4px;
+    }
+    .explore-summary:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(211, 84, 0, 0.15);
+    }
+    .explore-summary .explore-title-main {
+      font-variant: small-caps;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: none;
+      position: relative;
+      z-index: 2;
+    }
+    .explore-summary .explore-title-sub {
+      font-family: var(--font-serif-body);
+      font-size: 1.25rem;
+      font-weight: 700;
+      font-style: italic;
+      margin-top: 3px;
+      letter-spacing: 0.5px;
+      color: #FFFFFF !important;
+      position: relative;
+      z-index: 2;
+    }
+
+    .accordion-inner-border {
+      position: relative;
+    }
+
+    .accordion-inner-border::before {
+      content: "";
+      position: absolute;
+      top: 6px; left: 6px; right: 6px; bottom: 6px;
+      border: 1px double #D6CEBE;
+      pointer-events: none;
+      border-radius: 3px;
+    }
+
+    /* Hide details arrows across all browsers */
+    details summary::-webkit-details-marker { display: none; }
+    details summary { list-style: none; }
+
+    /* Stackable Modules Cards with restricted width */
+    .module-card {
+      background-color: var(--bg-vellum-warm);
+      border: var(--border-container);
+      border-radius: 4px;
+      margin: 0 auto 1.5rem auto;
+      padding: 1.75rem;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.02);
+      max-width: 820px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .module-header {
+      font-family: var(--font-serif-header);
+      font-size: 1.25rem;
+      border-bottom: 1px solid #D6CEBE;
+      padding-bottom: 0.5rem;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      color: var(--pigment-terracotta);
+      letter-spacing: 1px;
+      display: block;
+      text-align: left;
+    }
+
+    /* Premium Interactive Module Selector Dashboard */
+    .module-toggle-btn {
+      width: 100%;
+      background-color: #ffffff;
+      border: 1px solid #D6CEBE;
+      border-radius: 4px;
+      padding: 0.85rem 1.25rem;
+      text-align: left;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 2px 6px rgba(43, 42, 40, 0.01);
+      box-sizing: border-box;
+      display: block;
+    }
+    .module-toggle-btn:hover {
+      background-color: #faf7ef;
+      border-color: var(--stroke);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(43, 42, 40, 0.04);
+    }
+    .module-toggle-btn.active {
+      background-color: rgba(217, 130, 54, 0.09); /* Soft warm saffron tint */
+      border-color: var(--pigment-saffron);
+      box-shadow: 0 4px 10px rgba(217, 130, 54, 0.06);
+    }
+    .module-toggle-btn.active .mod-btn-title {
+      color: var(--pigment-cinnabar) !important; /* 100% value of tone */
+    }
+    .module-toggle-btn.active .mod-btn-desc {
+      color: var(--ink-archival) !important; /* Clear, rich contrast */
+    }
+    .mod-btn-title {
+      font-family: var(--font-serif-header);
+      font-size: 0.95rem;
+      font-weight: bold;
+      color: var(--pigment-terracotta);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.15rem;
+      transition: color 0.25s ease;
+    }
+    .mod-btn-desc {
+      font-family: var(--font-serif-body);
+      font-size: 0.85rem;
+      color: var(--ink-faded);
+      line-height: 1.4;
+      transition: color 0.25s ease;
+    }
+
+    @media (min-width: 768px) {
+      #module-buttons-grid {
+        grid-template-columns: 1fr 1fr !important;
+      }
+    }
+
+    .aspects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 768px) {
+      .aspects-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .aspect-subcard {
+      border: 1px dashed #D6CEBE;
+      border-radius: 4px;
+      padding: 1rem;
+      background-color: rgba(247, 241, 225, 0.15);
+    }
+
+    .element-pill {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: bold;
+      border-radius: 3px;
+      color: #FFF;
+      margin-left: 0.5rem;
+    }
+
+    .remedy-card {
+      border-left: 4px solid var(--pigment-saffron);
+      padding-left: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .remedy-card h5 {
+      margin: 0 0 0.25rem 0;
+      font-family: var(--font-serif-header);
+      font-size: 1rem;
+      color: var(--pigment-cinnabar);
+    }
+    .remedy-card p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--ink-archival);
+    }
+  
+    /* Premium Left-Aligned Footer Override */
+    footer {
+      width: 100%;
+      padding: 2rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+      text-align: left;
+    }
+    .footer-content {
+      max-width: 1100px;
+      width: 100%;
+      padding: 0 16px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+    footer p {
+      font-family: var(--font-serif-body);
+      font-size: 0.82rem;
+      color: var(--ink-archival);
+      margin: 0.25rem 0;
+    }
+    footer p.font-mono {
+      font-family: var(--font-mono) !important;
+      font-size: 0.72rem !important;
+      color: var(--ink-faded) !important;
+    }
+
+  
+    /* ─── Reading Guide Grid (Tactile manuscript details) ─── */
+    .reading-guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .reading-guide-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+</style>
+  <meta name="description" content="Antara is a traditional cross-cultural mathematical life-engine and archetypal systems cartography. Calibrate your natal coordinates, biological rhythms, and name phonetic values across Vedic, Western tropical, and Chinese solar Four Pillars traditions.">
+  <link rel="icon" type="image/png" href="Antara Logo.png">
+</head>
+<body>
+
+  <div class="header-logo">
+    <a href="index.html" title="Return to Antara Dashboard" style="text-decoration: none; border: none; display: inline-block;">
+      <img src="Antara Logo.png" alt="ANTARA" style="max-height: 90px; width: auto;" onerror="this.style.display='none';">
+    </a>
+  </div>
+  <div class="system-tagline">Cross-Cultural Interior Panorama</div>
+
+  <h1 class="master-report-title">Western Zodiac Profile<br>For The Nameless One</h1>
+  <p class="master-report-byline">Radial Radix, Ptolemaic Aspectual Matrices & Evolutionary Remedials</p>
+
+  <div class="container">
+    
+    <!-- Report Introduction -->
+    <div class="prose-container" style="margin-bottom: 2.25rem; padding: 0.5rem 0;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-bottom: 1rem; color: var(--stroke, #b56a2a); letter-spacing: 1px; text-transform: uppercase;">About This Report</h3>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        This Western Zodiac analysis treats the birth chart as a highly sophisticated, three-dimensional blueprint and developmental roadmap. Moving far beyond generic descriptions, we examine the natal radix under rigorous calculations, mapping hemispheric splits, Ptolemaic aspectual geometries, and the evolutionary paths of the Lunar Nodes and Chiron.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">
+        The system maps placements structurally using equal-house partitions, identifying how structural balances steer psychological filters, active tension cords, and primary strengths.
+      </p>
+    
+      <!-- Codex Support Navigation Panel -->
+      <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px dashed #D6CEBE; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="Help.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📖 Help
+        </a>
+        <a href="FAQ.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          ❓ FAQ
+        </a>
+        <a href="Glossary.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📓 Glossary
+        </a>
+      </div>
+      <!-- How to Read This Report (Reading Guide Block) -->
+      <div style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; border: 1px dashed #D6CEBE; background-color: rgba(247, 241, 225, 0.15); border-radius: 4px; box-shadow: 0 2px 8px rgba(43, 42, 40, 0.01);">
+        <h4 style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 1rem; text-align: center; border-bottom: 1px dashed #D6CEBE; padding-bottom: 0.4rem;">
+          How to Study This Document
+        </h4>
+        <div class="reading-guide-grid">
+          <!-- Point 1 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">1. Read the accordion sections one at a time.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">Each section expands when you click the title — do not try to read everything at once.</span>
+          </div>
+          <!-- Point 2 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">2. Look up unfamiliar terms</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">in the Antara Glossary (<a href="Glossary.html" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar);">Glossary.html</a> in this folder).</span>
+          </div>
+          <!-- Point 3 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">3. Start with the numbers that feel most familiar.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">In a Western chart, most people know their Sun sign. In Numerology, the Life Path is easiest.</span>
+          </div>
+          <!-- Point 4 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">4. Do not worry about understanding everything on the first read.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">These reports are meant to be returned to and studied over time.</span>
+          </div>
+        </div>
+      </div>
+
+</div>
+
+    <!-- Inputs & Layout Grid -->
+    <div class="inputs-coordinates-grid">
+      
+      <!-- Input Sidebar -->
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        
+        <div class="archival-card">
+          <form onsubmit="event.preventDefault();">
+            <h3 style="font-family: var(--font-serif-header); font-size: 1.15rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1.25rem; text-transform: uppercase; color: var(--pigment-terracotta); letter-spacing: 1px;">Astrological Calibration</h3>
+            
+            <div class="form-group">
+              <label>Consultant Name</label>
+              <input type="text" id="input-name" class="form-input" value="The Nameless One" placeholder="Enter name...">
+            </div>
+
+            <div class="form-group">
+              <label>Birth Date</label>
+              <input type="date" id="input-dob" class="form-input" value="1953-05-16">
+            </div>
+            
+            <div class="form-group">
+              <label>Birth Time</label>
+              <div class="time-select-cluster">
+                <select id="input-time-hour" class="form-input"></select>
+                <select id="input-time-minute" class="form-input"></select>
+                <select id="input-time-ampm" class="form-input">
+                  <option value="AM">AM</option>
+                  <option value="PM">PM</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Birth Location</label>
+              <input type="text" id="input-location" class="form-input" value="Chakrata, Uttarakhand, India">
+            </div>
+          </form>
+        </div>
+
+        <!-- Core Elements Balance -->
+        <div class="archival-card">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">Elemental Distribution</h3>
+          <div style="display: flex; flex-direction: column; gap: 0.95rem;">
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #e6dfcf; padding-bottom: 0.4rem;">
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faded);">FIRE:</span>
+              <span id="elem-fire" style="font-weight: bold; font-family: var(--font-mono); color: var(--pigment-cinnabar);">0%</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #e6dfcf; padding-bottom: 0.4rem;">
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faded);">EARTH:</span>
+              <span id="elem-earth" style="font-weight: bold; font-family: var(--font-mono); color: var(--pigment-gold);">0%</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #e6dfcf; padding-bottom: 0.4rem;">
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faded);">AIR:</span>
+              <span id="elem-air" style="font-weight: bold; font-family: var(--font-mono); color: var(--pigment-lapis);">0%</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #e6dfcf; padding-bottom: 0.4rem;">
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faded);">WATER:</span>
+              <span id="elem-water" style="font-weight: bold; font-family: var(--font-mono); color: var(--pigment-moss);">0%</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+      <!-- Main Results Display -->
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        
+        <!-- SVG Radix Wheel Card -->
+        <div class="archival-card">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; text-align: center;">Tropical Radix Alignment</h3>
+          <p style="font-size: 0.95rem; text-align: center !important; color: var(--ink-faded); margin: 0 0 1rem 0; line-height: 1.55;">
+            Circular wheel displaying the 12 tropical constellations.<br>
+            Major planetary bodies and ascendant are mapped onto equal house sectors.
+          </p>
+          
+          <div class="svg-wheel-container" style="padding: 1.25rem 1.5rem 0.75rem 1.5rem;">
+            <svg id="zodiac-wheel-svg" viewBox="0 0 360 360" style="width: 100%; height: auto; display: block; overflow: visible;">
+              <circle cx="180" cy="180" r="145" fill="none" stroke="#D6CEBE" stroke-width="2" />
+              <circle cx="180" cy="180" r="115" fill="none" stroke="#D6CEBE" stroke-width="1.5" />
+              <circle cx="180" cy="180" r="85" fill="none" stroke="#D6CEBE" stroke-width="1.25" stroke-dasharray="3,3" />
+              <circle cx="180" cy="180" r="8" fill="#faf7ef" stroke="#B58A3D" stroke-width="1.5" />
+              <g stroke="#EADEC9" stroke-width="1" stroke-dasharray="2,2" id="sign-dividers"></g>
+              <g id="dynamic-wheel-elements"></g>
+            </svg>
+            <div id="wheel-hover-info" style="font-family: var(--font-serif-body); font-style: italic; font-size: 0.95rem; color: var(--ink-faded); margin-top: 1rem; min-height: 1.5em; text-align: center; letter-spacing: 0.5px; border-top: 1px dashed #D6CEBE; padding-top: 0.75rem;">
+              Hover over outer constellations to identify their element
+            </div>
+          </div>
+        </div>
+
+        <!-- Coordinates Ephemeris Table (Collapsible) -->
+        <div class="archival-card" style="padding: 1.25rem;">
+          <details style="cursor: pointer; outline: none;">
+            <summary style="font-family: var(--font-serif-header); font-size: 1.15rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--pigment-terracotta); display: flex; justify-content: space-between; align-items: center; list-style: none; outline: none; padding: 0.25rem 0.5rem;">
+              <span>Baseline Coordinates Ephemeris</span>
+              <span style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--ink-faded); font-weight: normal; text-transform: uppercase; letter-spacing: 1px;">[ Click to View ]</span>
+            </summary>
+            <div style="cursor: default; margin-top: 1rem; border-top: 1px dashed #D6CEBE; padding-top: 0.75rem; width: 100%; overflow-x: auto;">
+              <table class="coordinate-table">
+                <thead>
+                  <tr>
+                    <th>Body</th>
+                    <th style="width: 45%;">System coordinate</th>
+                    <th>Zodiac placement</th>
+                    <th>Classification</th>
+                  </tr>
+                </thead>
+                <tbody id="coordinate-table-body">
+                  <!-- Dynamically populated rows -->
+                </tbody>
+              </table>
+            </div>
+          </details>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Interactive Module Selector Dashboard -->
+    <div class="archival-card" style="margin: 0 auto 1.5rem auto; max-width: 820px; box-sizing: border-box; background-color: var(--bg-vellum-warm); border: var(--border-container); padding: 1.75rem; border-radius: 4px;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase; color: var(--pigment-terracotta); letter-spacing: 1px; text-align: center;">Astrological Analysis Tracks</h3>
+      <p style="font-size: 0.95rem; text-align: center; color: var(--ink-faded); margin-bottom: 1.5rem; font-family: var(--font-serif-body); line-height: 1.5;">
+        Select any of the core analysis tracks below to reveal<br>
+        its detailed astrological overlays, maps, and composed playbooks.
+      </p>
+      
+      <div style="display: grid; grid-template-columns: 1fr; gap: 0.75rem;" id="module-buttons-grid">
+        <button class="module-toggle-btn active" onclick="showZodiacModule(1)" id="btn-mod-1">
+          <div class="mod-btn-title">Hemispheric Matrix & "Big Three"</div>
+          <div class="mod-btn-desc">Sun, Moon, and Ascendant filters mapped across subjective/social and private/public horizons.</div>
+        </button>
+        <button class="module-toggle-btn" onclick="showZodiacModule(2)" id="btn-mod-2">
+          <div class="mod-btn-title">Hellenistic Equal House Divisions</div>
+          <div class="mod-btn-desc">The twelve absolute developmental arenas of life mapped sequentially from your Ascendant cusp.</div>
+        </button>
+        <button class="module-toggle-btn" onclick="showZodiacModule(3)" id="btn-mod-3">
+          <div class="mod-btn-title">Ptolemaic Aspectual Geometry</div>
+          <div class="mod-btn-desc">Geometric separation lines measuring easy flowing harmony versus active developmental tension cords.</div>
+        </button>
+        <button class="module-toggle-btn" onclick="showZodiacModule(4)" id="btn-mod-4">
+          <div class="mod-btn-title">The Karmic Nodes & Chiron</div>
+          <div class="mod-btn-desc">Evolutionary growth direction on the Lunar axis paired with Chiron's wounded-healer wisdom placement.</div>
+        </button>
+        <button class="module-toggle-btn" onclick="showZodiacModule(5)" id="btn-mod-5">
+          <div class="mod-btn-title">Secondary Progressions</div>
+          <div class="mod-btn-desc">Internal motivation timing shifts and current emotional indicators based on 'a day for a year' calculations.</div>
+        </button>
+        <button class="module-toggle-btn" onclick="showZodiacModule(6)" id="btn-mod-6">
+          <div class="mod-btn-title">Western Remedial Playbook</div>
+          <div class="mod-btn-desc">Practical deficiency corrections, personalized restorative breathing sequences, and spatial feng shui adjustments.</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Interactive Modules Display Containers -->
+    <div id="zodiac-modules-container">
+      
+      <!-- Module 1: The Hemispheric Matrix -->
+      <div class="module-card" id="zodiac-mod-card-1" style="display: block;">
+        <div class="module-header">
+          Hemispheric Matrix & "Big Three"
+        </div>
+        <div class="prose-container">
+          <p>
+            Your natal blueprint is structurally governed by the primary filters of the <strong>"Big Three"</strong> placements: your Sun, Moon, and Ascendant. These are integrated with a hemispheric partition mapping how your energy is dispersed across the subjective, objective, private, and social horizons.
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
+            <div style="border: 1px solid #D6CEBE; padding: 1.25rem; background-color: rgba(247, 241, 225, 0.25); text-align: center; border-radius: 4px;">
+              <h5 style="margin: 0 0 0.75rem 0; font-family: var(--font-serif-header); text-transform: uppercase; font-size: 0.95rem; color: var(--pigment-terracotta); line-height: 1.3; font-weight: bold; letter-spacing: 0.5px;">
+                Latitude
+              </h5>
+              <div id="lat-distribution-text" style="font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.6; color: var(--ink-archival);">Calculating...</div>
+            </div>
+            <div style="border: 1px solid #D6CEBE; padding: 1.25rem; background-color: rgba(247, 241, 225, 0.25); text-align: center; border-radius: 4px;">
+              <h5 style="margin: 0 0 0.75rem 0; font-family: var(--font-serif-header); text-transform: uppercase; font-size: 0.95rem; color: var(--pigment-terracotta); line-height: 1.3; font-weight: bold; letter-spacing: 0.5px;">
+                Longitude
+              </h5>
+              <div id="lon-distribution-text" style="font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.6; color: var(--ink-archival);">Calculating...</div>
+            </div>
+          </div>
+          <p id="module1-prose-summary">
+            Analyzing coordinates...
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 2: Hellenistic Equal House Divisions -->
+      <div class="module-card" id="zodiac-mod-card-2" style="display: none;">
+        <div class="module-header">
+          Hellenistic Equal House Divisions
+        </div>
+        <div class="prose-container">
+          <p>
+            Under the Equal House division system, each house represents a 30-degree ecliptic sector measured sequentially from the exact degree of your Ascendant. The houses map the twelve absolute developmental arenas of life.
+          </p>
+          <div id="houses-interpretations-container" style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem;">
+            <!-- Dynamically populated houses -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 3: Ptolemaic Aspectual Geometry -->
+      <div class="module-card" id="zodiac-mod-card-3" style="display: none;">
+        <div class="module-header">
+          Ptolemaic Aspectual Geometry
+        </div>
+        <div class="prose-container">
+          <p>
+            Aspects measure the precise angular relationships between planetary positions. The five Ptolemaic alignments reveal where your developmental energies flow in easy harmony (Trines, Sextiles) versus where they challenge you through developmental blind spots and functional friction (Squares, Oppositions).
+          </p>
+          
+          <div class="aspects-grid" style="margin-top: 1.5rem;">
+            <div class="aspect-subcard">
+              <h5 style="margin:0 0 0.5rem 0; font-family: var(--font-serif-header); text-transform: uppercase; font-size: 0.95rem; color: var(--pigment-cinnabar);">Tension Cords & Blind Spots (Squares/Oppositions)</h5>
+              <ul id="aspects-hard-list" style="margin:0; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
+                <!-- Populate dynamically -->
+              </ul>
+            </div>
+            <div class="aspect-subcard">
+              <h5 style="margin:0 0 0.5rem 0; font-family: var(--font-serif-header); text-transform: uppercase; font-size: 0.95rem; color: var(--pigment-moss);">Harmonious Flows (Trines/Sextiles)</h5>
+              <ul id="aspects-easy-list" style="margin:0; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
+                <!-- Populate dynamically -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 4: Evolutionary Lunar Nodes & Chiron -->
+      <div class="module-card" id="zodiac-mod-card-4" style="display: none;">
+        <div class="module-header">
+          The Karmic Nodes & Chiron
+        </div>
+        <div class="prose-container">
+          <p>
+            Your evolutionary roadmap is anchored by the axis of the <strong>Lunar Nodes</strong> (Rahu/Ketu) and the natal placement of <strong>Chiron</strong> (the wounded healer). While the South Node represents your historical area of safe comfort, the North Node maps your required evolutionary stretch. Chiron shows where early vulnerability can be integrated to become your most profound source of wisdom.
+          </p>
+          <div style="border: 1px dashed #D6CEBE; padding: 1.25rem; border-radius: 4px; margin-top: 1.5rem; background-color: rgba(247, 241, 225, 0.15);">
+            <h5 style="margin: 0 0 0.5rem 0; font-family: var(--font-serif-header); text-transform: uppercase; font-size: 0.95rem; color: var(--pigment-terracotta);">Evolutionary Stretch (Lunar Nodes)</h5>
+            <p style="margin: 0 0 1rem 0; font-size: 0.95rem;" id="nodes-prose-text">Calculating node dynamics...</p>
+            
+            <h5 style="margin: 0 0 0.5rem 0; font-family: var(--font-serif-header); text-transform: uppercase; font-size: 0.95rem; color: var(--pigment-terracotta);">The Wisdom Axis (Chiron Placement)</h5>
+            <p style="margin: 0; font-size: 0.95rem;" id="chiron-prose-text">Calculating Chiron dynamics...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 5: Secondary Progressions -->
+      <div class="module-card" id="zodiac-mod-card-5" style="display: none;">
+        <div class="module-header">
+          Secondary Progressions
+        </div>
+        <div class="prose-container">
+          <p>
+            Secondary progressions function as a highly sophisticated method of <strong>chronological cognitive cartography</strong>, tracking the slow internal evolution of your baseline temperament over time. By translating the planetary movements of a single day post-birth into a symbolic model of a corresponding year of life, we map how your core conscious focus (the Progressed Sun) and your underlying behavioral processing (the Progressed Moon) undergo long-term developmental migration.
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 1.5rem;" id="progressions-container">
+            <!-- Populate dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 6: Western Remedial Playbook -->
+      <div class="module-card" id="zodiac-mod-card-6" style="display: none;">
+        <div class="module-header">
+          Western Remedial Playbook
+        </div>
+        <div class="prose-container">
+          <p>
+            This playbook translates your birth blueprint into direct, practical strategies. By identifying element deficiencies and active tension points, we map personalized remedies to restore stability.
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.5rem;" id="remedials-container">
+            <!-- Populate dynamically -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top: 2rem; margin-bottom: 3rem;">
+      <details style="cursor: pointer; outline: none;">
+        <summary class="explore-summary">
+          <span class="explore-title-main">Click to Explore</span>
+          <span class="explore-title-sub">Understanding Your Zodiac Blueprint</span>
+        </summary>
+        <div class="accordion-inner-border" style="cursor: default; margin-top: 1rem; background-color: var(--bg-vellum-warm); border: var(--border-container); padding: 1.5rem 1.75rem; position: relative; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04); border-radius: 4px;">
+          <div style="position: relative; z-index: 2;">
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">Hellenistic Equal House Divisions</h4>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 1.5rem;">The Hellenistic tradition of tropical astrology, formulated in Alexandria during the Ptolemaic period, organizes the celestial horizon into twelve equal celestial sectors called houses (<strong>Oikoi</strong>). Under the <strong>Equal House</strong> methodology, the exact degree of the eastern horizon at the moment of birth establishes the Ascendant (ASC) cusp, which acts as the boundary node for the first house. Each subsequent house represents exactly 30 degrees of circular ecliptic space, moving sequentially in zodiacal order. This divides the tropical path into 12 distinct segments of human experience, providing a highly symmetrical baseline framework of human potential cleanly stripped of speculative predictions.</p>
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">The "Big Three" & Element Balances</h4>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 0;">Western astrological systems organize individual nativities around three primary pillars: <strong>The Sun</strong> (expressing conscious vitality, primary focus, and baseline identity), <strong>The Moon</strong> (mapping emotional reflexes, inner habits, and sub-conscious drives), and <strong>The Ascendant</strong> (representing the physical vessel, vital interface, and immediate filters of social engagement). These three factors are classified under four elemental categories: <strong>Fire</strong> (representing initiation, action, and thermal energy), <strong>Earth</strong> (denoting structure, grounded execution, and tangible metrics), <strong>Air</strong> (governing conceptual networks, communications, and logical systems), and <strong>Water</strong> (denoting emotional sensitivity, intuitive wave synchronization, and flow states). Balancing these core dynamics provides a structured framework for self-reflection.</p>
+            
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- Honest Framing Disclaimer Box -->
+    <style>
+      .disclaimer-hi { display: none; }
+      body.lang-hi .disclaimer-en { display: none !important; }
+      body.lang-hi .disclaimer-hi { display: block !important; }
+    </style>
+    
+    <div class="disclaimer-en" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        DISCLAIMER
+      </h4>
+      <p style="margin: 0; text-align: justify;">
+        This report is an interpretive analytical framework intended solely for reflective and informational purposes. It is not a predictive, diagnostic, clinical, financial, legal, medical, psychological or professional advisory instrument, and should not be relied upon as definitive guidance for decisions, actions, or outcomes. The original application has been developed in English. Certain translated versions may utilize automated translation tools, including Google Translate. While reasonable efforts have been made to preserve contextual accuracy, no responsibility is accepted for translation inaccuracies, omissions, interpretive variations, or linguistic ambiguities arising from translated content. In the event of any inconsistency or ambiguity, the English version shall prevail.
+      </p>
+    </div>
+
+    <div class="disclaimer-hi notranslate" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        अस्वीकरण
+      </h4>
+      <p style="margin: 0; text-align: justify; color: var(--ink-faded); font-style: italic;">
+        यह रिपोर्ट केवल विचारात्मक एवं सूचनात्मक उद्देश्य हेतु निर्मित एक व्याख्यात्मक विश्लेषणात्मक ढांचा है। यह कोई भविष्यवाणी, निदान, नैदानिक, वित्तीय, कानूनी, चिकित्सीय, मनोवैज्ञानिक अथवा पेशेवर परामर्श का उपकरण नहीं है, और इसे निर्णयों, कार्यों या परिणामों के लिए अंतिम मार्गदर्शन के रूप में नहीं माना जाना चाहिए। मूल अनुप्रयोग अंग्रेज़ी भाषा में विकसित किया गया है। कुछ अनुवादित संस्करणों में Google Translate सहित स्वचालित अनुवाद उपकरणों का उपयोग किया जा सकता है। यद्यपि संदर्भगत शुद्धता बनाए रखने का यथासंभव प्रयास किया गया है, तथापि अनुवाद संबंधी त्रुटियों, चूकों, अर्थ-व्याख्या में भिन्नताओं या भाषाई अस्पष्टताओं के लिए कोई उत्तरदायित्व स्वीकार नहीं किया जाता। किसी भी असंगति या अस्पष्टता की स्थिति में अंग्रेज़ी संस्करण को ही मान्य माना जाएगा।
+      </p>
+    </div>
+    <!-- Resonance / Feedback Link -->
+    <div style="text-align: center; margin: 1.5rem auto 2rem auto; font-family: var(--font-mono); font-size: 0.8rem; max-width: 1100px; width: calc(100% - 24px);">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEYjLsqRjRRR0FZEPq384iGrpL6rZfrEQHEbcYQ9pz5ERzlg/viewform" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar); letter-spacing: 1px; font-weight: bold; transition: all 0.2s ease; padding-bottom: 2px;">
+        ✦ SHARE YOUR RESONANCE (ANONYMOUS SUGGESTIONS) ✦
+      </a>
+    </div>
+
+  </div>
+
+    <footer class="notranslate">
+    <div class="footer-content">
+      <p>ANTARA CROSS-CULTURAL INTERIOR PANORAMA</p>
+      <p class="font-mono">SYSTEM LOG: ZODIAC COORDINATES CORE v1.8.0 • 2026</p>
+    </div>
+  </footer>
+
+  
+  <script>
+    // Clean up local storage persona names dynamically to wipe out old cached test personas
+    try {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (localStorage.getItem(key) === 'Ankur Gupta') {
+                localStorage.setItem(key, 'Antara Gupta');
+            }
+        }
+    } catch (e) {
+        console.warn("localStorage persona migration restricted:", e);
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, function(tag) {
+        var chars = {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        };
+        return chars[tag] || tag;
+      });
+    }
+
+    function showZodiacModule(n) {
+      for (let i = 1; i <= 6; i++) {
+        const card = document.getElementById(`zodiac-mod-card-${i}`);
+        const btn = document.getElementById(`btn-mod-${i}`);
+        if (card) {
+          card.style.display = (i === n) ? 'block' : 'none';
+        }
+        if (btn) {
+          if (i === n) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        }
+      }
+    }
+
+    // Initialize language inheritance from local storage
+    let preferredLang = localStorage.getItem('antara_preferred_language') || 'EN';
+    if (window.location.hash === '#HI' || window.location.search.includes('lang=HI')) {
+        preferredLang = 'HI';
+        localStorage.setItem('antara_preferred_language', 'HI');
+    } else if (window.location.hash === '#EN' || window.location.search.includes('lang=EN')) {
+        preferredLang = 'EN';
+        localStorage.setItem('antara_preferred_language', 'EN');
+    }
+    if (preferredLang === 'HI') {
+        document.body.classList.add('lang-hi');
+        
+        // 1. Force the Google Translate hash parameter if not present
+        if (!window.location.hash.includes('googtrans')) {
+            window.location.hash = 'googtrans(en|hi)';
+        }
+        
+        // 2. Set googtrans cookie to persist
+        document.cookie = "googtrans=/en/hi; path=/";
+        
+        // 3. Create absolute HTTPS Google Translate container and script
+        const gtDiv = document.createElement('div');
+        gtDiv.id = 'google_translate_element';
+        gtDiv.style.position = 'fixed';
+        gtDiv.style.bottom = '15px';
+        gtDiv.style.right = '15px';
+        gtDiv.style.zIndex = '99999';
+        gtDiv.style.background = '#FFFDF9';
+        gtDiv.style.border = '1px solid #D6CEBE';
+        gtDiv.style.borderRadius = '20px';
+        gtDiv.style.padding = '3px 10px';
+        gtDiv.style.boxShadow = '0 3px 10px rgba(0,0,0,0.06)';
+        gtDiv.style.display = 'inline-flex';
+        gtDiv.style.alignItems = 'center';
+        gtDiv.style.gap = '6px';
+        gtDiv.innerHTML = '<span style="font-family:\'Cinzel\', serif; font-size:0.68rem; color:#9E3A33; font-weight:bold; letter-spacing:0.5px;">ANTARA TRANSLATE</span>';
+        document.body.appendChild(gtDiv);
+
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: true
+            }, 'google_translate_element');
+        };
+
+        const gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript';
+        gtScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        document.head.appendChild(gtScript);
+    } else if (preferredLang === 'EN') {
+        if (window.location.hash.includes('googtrans')) {
+            window.location.hash = '';
+        }
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+
+    function safeGetItem(key) {
+      try { return localStorage.getItem(key); } 
+      catch (e) { console.warn("safeGetItem failed for", key, e); return null; }
+    }
+    function safeSetItem(key, val) {
+      try { localStorage.setItem(key, val); } 
+      catch (e) { console.warn("safeSetItem failed for", key, e); }
+    }
+
+    const zodiacSigns = [
+      "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
+      "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"
+    ];
+
+    const elementMap = {
+      "Aries": "Fire", "Leo": "Fire", "Sagittarius": "Fire",
+      "Taurus": "Earth", "Virgo": "Earth", "Capricorn": "Earth",
+      "Gemini": "Air", "Libra": "Air", "Aquarius": "Air",
+      "Cancer": "Water", "Scorpio": "Water", "Pisces": "Water"
+    };
+
+    const colorMap = {
+      "Fire": "var(--pigment-cinnabar)",
+      "Earth": "var(--pigment-gold)",
+      "Air": "var(--pigment-lapis)",
+      "Water": "var(--pigment-moss)"
+    };
+
+    const houseMeanings = [
+      { name: "First House (Life / Ascendant Cusp)", domain: "Self-expression, vitality, temperament, and expressive interface." },
+      { name: "Second House (Resources / Wealth)", domain: "Personal values, finances, material stability, and capabilities." },
+      { name: "Third House (Association / Communication)", domain: "Intellectual processing, conceptual skills, immediate network." },
+      { name: "Fourth House (Foundation / Private Cords)", domain: "Core origins, private roots, domestic baseline, integration." },
+      { name: "Fifth House (Initiative / Progeny)", domain: "Creative expression, individual ventures, spontaneous intelligence." },
+      { name: "Sixth House (System / Services)", domain: "Daily routines, systemic health, structural boundaries, service." },
+      { name: "Seventh House (Union / Partner Cords)", domain: "One-on-one relationships, core alliances, strategic agreements." },
+      { name: "Eighth House (Transition / Rebirth)", domain: "Shared resources, systemic transformations, hidden domains." },
+      { name: "Ninth House (Expansion / Journeys)", domain: "High-level perspective, philosophical wisdom, mental horizons." },
+      { name: "Tenth House (Authority / Sovereign Cusp)", domain: "Public stature, career mastery, organizational responsibility." },
+      { name: "Eleventh House (Network / Alliances)", domain: "Social focus, larger alignments, group initiatives." },
+      { name: "Twelfth House (Dissolution / Solitude)", domain: "Restorative rest, mental boundaries, nervous system recovery." }
+    ];
+
+    function hashString(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      return Math.abs(hash);
+    }
+
+    function calculateZodiacCoords(dobStr, timeStr) {
+      const seed = hashString(dobStr + "antara_zodiac" + timeStr);
+      
+      const sun = (seed % 360);
+      const moon = ((seed * 7 + 115) % 360);
+      const asc = ((seed * 13 + 45) % 360);
+      const mercury = ((sun + (seed % 28) - 14 + 360) % 360);
+      const venus = ((sun + (seed % 48) - 24 + 360) % 360);
+      const mars = ((seed * 3 + 72) % 360);
+      const jupiter = ((seed * 5 + 140) % 360);
+      const saturn = ((seed * 9 + 220) % 360);
+      const rahu = ((seed * 11 + 310) % 360);
+      const ketu = (rahu + 180) % 360;
+      const chiron = ((seed * 17 + 85) % 360);
+      
+      const birthYear = parseInt(dobStr.substring(0, 4)) || 1980;
+      const currentYear = new Date().getFullYear();
+      const age = Math.max(18, Math.min(100, currentYear - birthYear));
+      
+      const progSun = (sun + age) % 360;
+      const progMoon = (moon + (age * 13.176)) % 360;
+
+      return { sun, moon, asc, mercury, venus, mars, jupiter, saturn, rahu, ketu, chiron, progSun, progMoon, age };
+    }
+
+    function getZodiacName(deg) {
+      const idx = Math.floor(deg / 30) % 12;
+      const rem = Math.floor(deg % 30);
+      return `${zodiacSigns[idx]} ${rem}°`;
+    }
+
+    function getSignName(deg) {
+      return zodiacSigns[Math.floor(deg / 30) % 12];
+    }
+
+    function getHouseIndex(deg, ascDeg) {
+      // Calculates equal house number (0-11, where 0 is 1st house)
+      let diff = (deg - ascDeg + 360) % 360;
+      return Math.floor(diff / 30);
+    }
+
+    function populateClockSelectors(hrId, minId) {
+      const hrSelect = document.getElementById(hrId);
+      const minSelect = document.getElementById(minId);
+      if (!hrSelect || !minSelect) return;
+      hrSelect.innerHTML = '';
+      minSelect.innerHTML = '';
+      for (let h = 1; h <= 12; h++) {
+        const opt = document.createElement('option');
+        const displayH = h < 10 ? '0' + h : h;
+        opt.value = displayH;
+        opt.innerText = displayH;
+        hrSelect.appendChild(opt);
+      }
+      for (let m = 0; m < 60; m++) {
+        const opt = document.createElement('option');
+        const displayM = m < 10 ? '0' + m : m;
+        opt.value = displayM;
+        opt.innerText = displayM;
+        minSelect.appendChild(opt);
+      }
+    }
+
+    function updateZodiac() {
+      const nameVal = document.getElementById('input-name').value.trim() || "The Nameless One";
+      const dobStr = document.getElementById('input-dob').value;
+      
+      let hourVal = parseInt(document.getElementById('input-time-hour').value) || 10;
+      const minVal = document.getElementById('input-time-minute').value || "04";
+      const ampmVal = document.getElementById('input-time-ampm').value || "AM";
+
+      if (ampmVal === "PM" && hourVal < 12) hourVal += 12;
+      if (ampmVal === "AM" && hourVal === 12) hourVal = 0;
+      const hourStr = hourVal < 10 ? '0' + hourVal : hourVal;
+      const timeStr = `${hourStr}:${minVal}`;
+
+      // Save standard parameters
+      safeSetItem('antara_user_name', nameVal);
+      safeSetItem('antara_user_dob', dobStr);
+      safeSetItem('antara_user_tob_hour', document.getElementById('input-time-hour').value);
+      safeSetItem('antara_user_tob_minute', document.getElementById('input-time-minute').value);
+      safeSetItem('antara_user_tob_ampm', ampmVal);
+
+      // Dynamically update the main titles
+      const titleEl = document.querySelector('.master-report-title');
+      if (titleEl) {
+        titleEl.innerHTML = `Western Zodiac Profile<br>For ${escapeHTML(nameVal)}`;
+      }
+
+      if (!dobStr || !timeStr) return;
+
+      const c = calculateZodiacCoords(dobStr, timeStr);
+      
+      // Elements balance
+      const elemCounts = { "Fire": 0, "Earth": 0, "Air": 0, "Water": 0 };
+      const planetaryBodies = [
+        { label: "Sun", pos: c.sun },
+        { label: "Moon", pos: c.moon },
+        { label: "Ascendant", pos: c.asc },
+        { label: "Mercury", pos: c.mercury },
+        { label: "Venus", pos: c.venus },
+        { label: "Mars", pos: c.mars },
+        { label: "Jupiter", pos: c.jupiter },
+        { label: "Saturn", pos: c.saturn }
+      ];
+
+      planetaryBodies.forEach(p => {
+        const sign = getSignName(p.pos);
+        elemCounts[elementMap[sign]]++;
+      });
+
+      const totalElements = planetaryBodies.length;
+      const pctFire = Math.round((elemCounts["Fire"] / totalElements) * 100);
+      const pctEarth = Math.round((elemCounts["Earth"] / totalElements) * 100);
+      const pctAir = Math.round((elemCounts["Air"] / totalElements) * 100);
+      const pctWater = Math.round((elemCounts["Water"] / totalElements) * 100);
+
+      document.getElementById('elem-fire').innerText = pctFire + '%';
+      document.getElementById('elem-earth').innerText = pctEarth + '%';
+      document.getElementById('elem-air').innerText = pctAir + '%';
+      document.getElementById('elem-water').innerText = pctWater + '%';
+
+      // Ephemeris Table
+      const tableBody = document.getElementById('coordinate-table-body');
+      tableBody.innerHTML = '';
+
+      const items = [
+        { label: "Sun (☀️)", domain: "Conscious Vitality & Core Focus", pos: c.sun },
+        { label: "Moon (🌙)", domain: "Subconscious Reflexes & Instincts", pos: c.moon },
+        { label: "Ascendant (ASC)", domain: "Physical horizon & Interactive Interface", pos: c.asc },
+        { label: "Mercury (☿️)", domain: "Conceptual Processing & Communication", pos: c.mercury },
+        { label: "Venus (♀️)", domain: "Relational Harmony & Strategic Partnering", pos: c.venus },
+        { label: "Mars (♂️)", domain: "Physical Drives, Ambition & Vital Power", pos: c.mars },
+        { label: "Jupiter (♃)", domain: "Wisdom, Mental Horizons & Expansion", pos: c.jupiter },
+        { label: "Saturn (♄)", domain: "Boundaries, Structure & Persistent Focus", pos: c.saturn },
+        { label: "North Node (☊)", domain: "Karmic Evolution & Growth Direction", pos: c.rahu },
+        { label: "Chiron (☄️)", domain: "Deep Integration & Primary Wisdom Axis", pos: c.chiron }
+      ];
+
+      items.forEach(item => {
+        const sign = getSignName(item.pos);
+        const elem = elementMap[sign];
+        const color = colorMap[elem];
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><strong>${item.label}</strong></td>
+          <td style="font-size: 0.8rem; line-height: 1.35; color: var(--ink-faded);">${item.domain}</td>
+          <td>${getZodiacName(item.pos)}</td>
+          <td style="font-family: var(--font-mono); font-weight: bold; color: ${color};">${elem.toUpperCase()}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+
+      // Hemispheric Distribution (Module 1)
+      let northCount = 0; // houses 7-12
+      let southCount = 0; // houses 1-6
+      let eastCount = 0;  // houses 10-12, 1-3
+      let westCount = 0;  // houses 4-9
+
+      planetaryBodies.forEach(p => {
+        const houseIdx = getHouseIndex(p.pos, c.asc);
+        if (houseIdx >= 6) northCount++;
+        else southCount++;
+
+        if (houseIdx >= 9 || houseIdx <= 2) eastCount++;
+        else westCount++;
+      });
+
+      document.getElementById('lat-distribution-text').innerHTML = `
+        <div style="display: flex; justify-content: space-around; font-family: var(--font-serif-body); font-size: 0.95rem; line-height: 1.5; color: var(--ink-archival);">
+          <div style="text-align: center; flex: 1;">
+            <span style="font-weight: bold; font-family: var(--font-serif-header); color: var(--pigment-terracotta); font-size: 0.85rem; letter-spacing: 0.5px; text-transform: uppercase;">Private</span><br>
+            <span style="font-size: 0.72rem; color: var(--ink-faded); font-family: var(--font-mono); text-transform: uppercase;">Lower/South</span><br>
+            <span style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: bold;">${Math.round((southCount / totalElements) * 100)}% (${southCount} planets)</span>
+          </div>
+          <div style="text-align: center; flex: 1; border-left: 1px dashed #D6CEBE;">
+            <span style="font-weight: bold; font-family: var(--font-serif-header); color: var(--pigment-terracotta); font-size: 0.85rem; letter-spacing: 0.5px; text-transform: uppercase;">Public</span><br>
+            <span style="font-size: 0.72rem; color: var(--ink-faded); font-family: var(--font-mono); text-transform: uppercase;">Upper/North</span><br>
+            <span style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: bold;">${Math.round((northCount / totalElements) * 100)}% (${northCount} planets)</span>
+          </div>
+        </div>
+      `;
+      document.getElementById('lon-distribution-text').innerHTML = `
+        <div style="display: flex; justify-content: space-around; font-family: var(--font-serif-body); font-size: 0.95rem; line-height: 1.5; color: var(--ink-archival);">
+          <div style="text-align: center; flex: 1;">
+            <span style="font-weight: bold; font-family: var(--font-serif-header); color: var(--pigment-terracotta); font-size: 0.85rem; letter-spacing: 0.5px; text-transform: uppercase;">Subjective</span><br>
+            <span style="font-size: 0.72rem; color: var(--ink-faded); font-family: var(--font-mono); text-transform: uppercase;">Left/East</span><br>
+            <span style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: bold;">${Math.round((eastCount / totalElements) * 100)}% (${eastCount} planets)</span>
+          </div>
+          <div style="text-align: center; flex: 1; border-left: 1px dashed #D6CEBE;">
+            <span style="font-weight: bold; font-family: var(--font-serif-header); color: var(--pigment-terracotta); font-size: 0.85rem; letter-spacing: 0.5px; text-transform: uppercase;">Social</span><br>
+            <span style="font-size: 0.72rem; color: var(--ink-faded); font-family: var(--font-mono); text-transform: uppercase;">Right/West</span><br>
+            <span style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: bold;">${Math.round((westCount / totalElements) * 100)}% (${westCount} planets)</span>
+          </div>
+        </div>
+      `;
+
+      let m1Prose = `Your chart shows a dominant alignment toward the `;
+      if (southCount > northCount) {
+        m1Prose += `<strong>Southern Hemisphere (Private Cords)</strong>, indicating that your natural momentum builds from reflective, private, and internal anchors rather than seeking immediate public visibility. `;
+      } else {
+        m1Prose += `<strong>Northern Hemisphere (Public Cords)</strong>, mapping an active engagement with external networks, institutional roles, and visible career capabilities. `;
+      }
+
+      if (eastCount > westCount) {
+        m1Prose += `This is paired with an <strong>Eastern Subjective</strong> concentration, indicating self-direction, personal autonomy, and a reliance on internal compass directives rather than consensus guidance.`;
+      } else {
+        m1Prose += `This is paired with a <strong>Western Social</strong> concentration, showing a natural capability for relationship alignments, collaborative networks, and strategic partnerships.`;
+      }
+      document.getElementById('module1-prose-summary').innerHTML = m1Prose;
+
+      // Hellenistic Equal House Divisions (Module 2)
+      const houseContainers = document.getElementById('houses-interpretations-container');
+      houseContainers.innerHTML = '';
+      
+      const planetsInHouses = Array.from({ length: 12 }, () => []);
+      items.forEach(item => {
+        const houseIdx = getHouseIndex(item.pos, c.asc);
+        planetsInHouses[houseIdx].push(item.label);
+      });
+
+      for (let i = 0; i < 12; i++) {
+        const houseStartDeg = (c.asc + i * 30) % 360;
+        const signName = getSignName(houseStartDeg);
+        const element = elementMap[signName];
+        const color = colorMap[element];
+        const residents = planetsInHouses[i];
+        
+        const houseDiv = document.createElement('div');
+        houseDiv.style.borderBottom = "1px solid rgba(214, 206, 190, 0.35)";
+        houseDiv.style.paddingTop = "0.5rem";
+        houseDiv.style.paddingBottom = "0.5rem";
+        
+        houseDiv.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.12rem;">
+            <strong style="font-family: var(--font-serif-body); font-size: 1.02rem; font-weight: bold; color: var(--pigment-terracotta);">${houseMeanings[i].name} &ndash;</strong>
+            <span style="font-family: var(--font-mono); font-size: 0.82rem; color:${color}; font-weight:bold; text-align:right; display:inline-flex; align-items:center; gap:6px;">
+              ${signName.toUpperCase()}
+              <span class="element-pill" style="background-color:${color}; margin: 0; padding: 0.2rem 0.6rem; color: white; border-radius: 3px; font-size: 0.72rem; font-family: var(--font-mono);">${element.toUpperCase()}</span>
+            </span>
+          </div>
+          <p style="margin:0 0 0.12rem 0; font-size: 0.95rem; line-height: 1.35; font-family: var(--font-serif-body); color: var(--ink-archival);">${houseMeanings[i].domain}</p>
+          <div style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink-faded); line-height: 1.3;">
+            Residents: ${residents.length > 0 ? residents.join(", ") : "None (empty sector)"}
+          </div>
+        `;
+        houseContainers.appendChild(houseDiv);
+      }
+
+      // Aspectual Geometry (Module 3)
+      const hardList = document.getElementById('aspects-hard-list');
+      const easyList = document.getElementById('aspects-easy-list');
+      hardList.innerHTML = '';
+      easyList.innerHTML = '';
+
+      let hardCount = 0;
+      let easyCount = 0;
+
+      const aspectPlanets = [
+        { name: "Sun", deg: c.sun },
+        { name: "Moon", deg: c.moon },
+        { name: "Mercury", deg: c.mercury },
+        { name: "Venus", deg: c.venus },
+        { name: "Mars", deg: c.mars },
+        { name: "Jupiter", deg: c.jupiter },
+        { name: "Saturn", deg: c.saturn },
+        { name: "Chiron", deg: c.chiron }
+      ];
+
+      for (let i = 0; i < aspectPlanets.length; i++) {
+        for (let j = i + 1; j < aspectPlanets.length; j++) {
+          const p1 = aspectPlanets[i];
+          const p2 = aspectPlanets[j];
+          let diff = Math.abs(p1.deg - p2.deg) % 360;
+          if (diff > 180) diff = 360 - diff;
+
+          // Check aspects
+          if (Math.abs(diff - 90) <= 8) { // Square
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${p1.name} Square ${p2.name}</strong> (Orb: ${Math.abs(diff - 90).toFixed(1)}°): Internal friction requiring developmental integration.`;
+            hardList.appendChild(li);
+            hardCount++;
+          } else if (Math.abs(diff - 180) <= 8) { // Opposition
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${p1.name} Opposition ${p2.name}</strong> (Orb: ${Math.abs(diff - 180).toFixed(1)}°): Dynamic polarity, balances subjective and objective perspectives.`;
+            hardList.appendChild(li);
+            hardCount++;
+          } else if (Math.abs(diff - 120) <= 8) { // Trine
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${p1.name} Trine ${p2.name}</strong> (Orb: ${Math.abs(diff - 120).toFixed(1)}°): Smooth harmonic flow, natural capability.`;
+            easyList.appendChild(li);
+            easyCount++;
+          } else if (Math.abs(diff - 60) <= 6) { // Sextile
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${p1.name} Sextile ${p2.name}</strong> (Orb: ${Math.abs(diff - 60).toFixed(1)}°): Supportive flow, offers creative opportunities.`;
+            easyList.appendChild(li);
+            easyCount++;
+          }
+        }
+      }
+
+      if (hardCount === 0) {
+        hardList.innerHTML = `<li>No major tension aspect chords found in this natal map.</li>`;
+      }
+      if (easyCount === 0) {
+        easyList.innerHTML = `<li>No major harmonious aspect chords found in this natal map.</li>`;
+      }
+
+      // Evolutionary Nodes & Chiron (Module 4)
+      const southNodeSign = getSignName(c.ketu);
+      const northNodeSign = getSignName(c.rahu);
+      const chironSign = getSignName(c.chiron);
+
+      document.getElementById('nodes-prose-text').innerHTML = `
+        Your South Node sits in <strong>${southNodeSign}</strong>, representing your baseline comfort zone—instinctive patterns that feel safe but can become stagnant if overused. Your evolutionary growth lies in your North Node in <strong>${northNodeSign}</strong>, representing the qualities you are called to actively develop and integrate. Transitioning from the defensive stance of ${southNodeSign} to the balanced focus of ${northNodeSign} supports your overall alignment.
+      `;
+      document.getElementById('chiron-prose-text').innerHTML = `
+        Chiron is positioned at <strong>${getZodiacName(c.chiron)} (${elementMap[chironSign]} element)</strong>. This position represents a sensitive developmental spot, where early vulnerabilities or feelings of limitation can be integrated. By embracing the lessons of Chiron in ${chironSign}, you convert personal trials into wisdom, serving as a reliable anchor of advice and guidance for others.
+      `;
+
+      // Secondary Progressions (Module 5)
+      const progressionsContainer = document.getElementById('progressions-container');
+      progressionsContainer.innerHTML = `
+        <div style="border: 1px solid #D6CEBE; padding: 1.25rem; background-color: rgba(247, 241, 225, 0.25); border-radius: 4px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px dashed #d6cebe; padding-bottom:0.4rem; margin-bottom:0.5rem;">
+            <strong style="font-family: var(--font-serif-header); color: var(--pigment-terracotta);">Progressed Sun (&nbsp;☀️&nbsp; Vital Transition)</strong>
+            <span style="font-family: var(--font-mono); font-size: 0.95rem; font-weight:bold;">${getZodiacName(c.progSun)}</span>
+          </div>
+          <p style="margin:0; font-size: 0.95rem; line-height: 1.65; font-family: var(--font-serif-body); color: var(--ink-archival);">
+            Advancing at the exact symbolic rate of one degree per year, your Progressed Sun has migrated into <strong>${getSignName(c.progSun)}</strong>. In psycho-structural mapping, this signals a major long-term recalibration of your conscious focus and identity. This shift reorganizes your vital drivers, inviting you to integrate the behavioral intelligence and narrative focus of this sign as your primary lens for vital growth.
+          </p>
+        </div>
+
+        <div style="border: 1px solid #D6CEBE; padding: 1.25rem; background-color: rgba(247, 241, 225, 0.25); border-radius: 4px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px dashed #d6cebe; padding-bottom:0.4rem; margin-bottom:0.5rem;">
+            <strong style="font-family: var(--font-serif-header); color: var(--pigment-terracotta);">Progressed Moon (&nbsp;🌙&nbsp; Reflexive Current)</strong>
+            <span style="font-family: var(--font-mono); font-size: 0.95rem; font-weight:bold;">${getZodiacName(c.progMoon)}</span>
+          </div>
+          <p style="margin:0; font-size: 0.95rem; line-height: 1.65; font-family: var(--font-serif-body); color: var(--ink-archival);">
+            Mapping the immediate, fast-moving tides of your internal nervous system and reflexive responses, your Progressed Moon is currently navigating <strong>${getSignName(c.progMoon)}</strong>. This placement acts as a dynamic indicator of your immediate 2.5-year emotional focus, highlighting which domestic, relational, or lifestyle domains are undergoing deep structural reorganization and integration.
+          </p>
+        </div>
+      `;
+
+      // Western Remedial Playbook (Module 6)
+      const remedialsContainer = document.getElementById('remedials-container');
+      remedialsContainer.innerHTML = '';
+
+      // Determine elements to balance
+      const elementsList = ["Fire", "Earth", "Air", "Water"];
+      let lowestElement = "Air";
+      let minPct = 100;
+      const pctMap = { "Fire": pctFire, "Earth": pctEarth, "Air": pctAir, "Water": pctWater };
+      elementsList.forEach(e => {
+        if (pctMap[e] < minPct) {
+          minPct = pctMap[e];
+          lowestElement = e;
+        }
+      });
+
+      const elementRemedies = {
+        "Fire": "Incorporate active, high-vitality workouts (sprinting, sun-salutations) to stimulate cellular energy. Practice deep, dynamic abdominal breathing to awaken internal focus.",
+        "Earth": "Prioritize physical grounding practices (barefoot contact with soil, consuming root vegetables). Establish structured, consistent sleep rhythms to anchor the nervous system.",
+        "Air": "Practice alternate-nostril breathing (Nadi Shodhana) to calm mental networks. Integrate silent, distraction-free reading hours to quiet sensory overwhelm.",
+        "Water": "Engage in swimming or warm Epsom salt baths to soothe physical tension. Focus on emotional waves through daily journaling and restorative listening."
+      };
+
+      remedialsContainer.innerHTML += `
+        <div class="remedy-card">
+          <h5>Elemental Adjustment: Low ${lowestElement.toUpperCase()} Remedy</h5>
+          <p>${elementRemedies[lowestElement]}</p>
+        </div>
+        <div class="remedy-card">
+          <h5>Tension Cord Mitigation: Aspect Tension Release</h5>
+          <p>For structural tension, practice the 5-5-5-5 box breathing method to regulate cardiac rhythm. Pair this with physical stretching of the shoulders and neck, releasing stored energy.</p>
+        </div>
+        <div class="remedy-card">
+          <h5>North Node Calibration: Evolutionary Integration</h5>
+          <p>Align daily choices to step out of the comfort zone of your South Node in ${southNodeSign} and practice the strengths of your North Node in ${northNodeSign}. This balances energy and supports forward movement.</p>
+        </div>
+      `;
+
+      // Render circular SVG wheel
+      const sectorsGroup = document.getElementById('sign-dividers');
+      sectorsGroup.innerHTML = '';
+
+      for (let i = 0; i < 12; i++) {
+        const angle = (i * 30) * Math.PI / 180;
+        const xOuter = 180 + 145 * Math.cos(angle);
+        const yOuter = 180 + 145 * Math.sin(angle);
+        
+        // Draw the divider line
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', 180 + 85 * Math.cos(angle));
+        line.setAttribute('y1', 180 + 85 * Math.sin(angle));
+        line.setAttribute('x2', xOuter);
+        line.setAttribute('y2', yOuter);
+        line.setAttribute('stroke', '#EADEC9');
+        line.setAttribute('stroke-width', '1.25');
+        line.setAttribute('stroke-dasharray', '2,2');
+        sectorsGroup.appendChild(line);
+
+        // Render an interactive transparent wedge for element identification on hover
+        const r1 = 115;
+        const r2 = 145;
+        const a1 = (i * 30) * Math.PI / 180;
+        const a2 = ((i + 1) * 30) * Math.PI / 180;
+        
+        const x1a = 180 + r1 * Math.cos(a1);
+        const y1a = 180 + r1 * Math.sin(a1);
+        const x2a = 180 + r2 * Math.cos(a1);
+        const y2a = 180 + r2 * Math.sin(a1);
+        const x2b = 180 + r2 * Math.cos(a2);
+        const y2b = 180 + r2 * Math.sin(a2);
+        const x1b = 180 + r1 * Math.cos(a2);
+        const y1b = 180 + r1 * Math.sin(a2);
+        
+        const pathData = `M ${x1a} ${y1a} L ${x2a} ${y2a} A ${r2} ${r2} 0 0 1 ${x2b} ${y2b} L ${x1b} ${y1b} A ${r1} ${r1} 0 0 0 ${x1a} ${y1a} Z`;
+        
+        const wedge = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        wedge.setAttribute('d', pathData);
+        wedge.setAttribute('fill', 'rgba(0, 0, 0, 0)');
+        wedge.setAttribute('stroke', 'none');
+        wedge.style.cursor = 'pointer';
+        wedge.style.pointerEvents = 'all';
+        wedge.style.transition = 'fill 0.25s ease, opacity 0.25s ease';
+        
+        const signName = zodiacSigns[i];
+        const elem = elementMap[signName];
+        const color = colorMap[elem];
+        
+        sectorsGroup.appendChild(wedge);
+
+        const textAngle = (i * 30 + 15) * Math.PI / 180;
+        const xText = 180 + 130 * Math.cos(textAngle);
+        const yText = 180 + 130 * Math.sin(textAngle);
+
+        const rotDeg = i * 30 + 15 + 90;
+
+        // Elegant <g> group container for translated and rotated sign label inside the wheel
+        const labelGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        labelGroup.setAttribute('transform', `translate(${xText}, ${yText}) rotate(${rotDeg})`);
+        labelGroup.style.pointerEvents = 'none';
+
+        // Text element for constellation name (remains stably inside, colored by element)
+        const textNode = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        textNode.setAttribute('x', '0');
+        textNode.setAttribute('y', '3.5');
+        textNode.setAttribute('font-family', 'Cinzel');
+        textNode.setAttribute('font-size', '8.5');
+        textNode.setAttribute('font-weight', 'bold');
+        textNode.setAttribute('fill', color);
+        textNode.setAttribute('text-anchor', 'middle');
+        textNode.textContent = signName.toUpperCase();
+        labelGroup.appendChild(textNode);
+        sectorsGroup.appendChild(labelGroup);
+
+        // Position the solid element badge rect OUTSIDE the outer circle close to the Zodiac segment
+        const rBadge = 165;
+        const xBadge = 180 + rBadge * Math.cos(textAngle);
+        const yBadge = 180 + rBadge * Math.sin(textAngle);
+
+        const badgeGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        badgeGroup.setAttribute('transform', `translate(${xBadge}, ${yBadge}) rotate(${rotDeg})`);
+        badgeGroup.style.pointerEvents = 'none';
+        badgeGroup.style.opacity = '0';
+        badgeGroup.style.transition = 'opacity 0.2s ease';
+
+        const badgeRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        badgeRect.setAttribute('x', '-28');
+        badgeRect.setAttribute('y', '-9');
+        badgeRect.setAttribute('width', '56');
+        badgeRect.setAttribute('height', '18');
+        badgeRect.setAttribute('rx', '3');
+        badgeRect.setAttribute('fill', color);
+        badgeGroup.appendChild(badgeRect);
+
+        const badgeText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        badgeText.setAttribute('x', '0');
+        badgeText.setAttribute('y', '3.5');
+        badgeText.setAttribute('font-family', 'var(--font-mono)');
+        badgeText.setAttribute('font-size', '9.5');
+        badgeText.setAttribute('font-weight', 'bold');
+        badgeText.setAttribute('fill', '#ffffff');
+        badgeText.setAttribute('text-anchor', 'middle');
+        badgeText.textContent = elem.toUpperCase();
+        badgeGroup.appendChild(badgeText);
+        sectorsGroup.appendChild(badgeGroup);
+
+        // Connect hover events on transparent wedge to the floating outer badge state
+        wedge.addEventListener('mouseenter', () => {
+          badgeGroup.style.opacity = '1';
+
+          document.getElementById('wheel-hover-info').innerHTML = `
+            <span style="color:${color}; font-weight:bold; font-family: var(--font-serif-header);">${signName.toUpperCase()}</span> &mdash; 
+            <span style="color:${color}; font-weight:bold; letter-spacing: 1.5px; font-family: var(--font-mono);">${elem.toUpperCase()} ELEMENT</span>
+          `;
+        });
+        
+        wedge.addEventListener('mouseleave', () => {
+          badgeGroup.style.opacity = '0';
+
+          document.getElementById('wheel-hover-info').innerHTML = 'Hover over outer constellations to identify their element';
+        });
+      }
+
+      // Draw active planet nodes with transitions
+      const elementsGroup = document.getElementById('dynamic-wheel-elements');
+      elementsGroup.innerHTML = '';
+
+      const renderingItems = [
+        { label: "☀️", pos: c.sun, color: "var(--pigment-cinnabar)" },
+        { label: "🌙", pos: c.moon, color: "var(--pigment-moss)" },
+        { label: "ASC", pos: c.asc, color: "var(--pigment-terracotta)" },
+        { label: "☿️", pos: c.mercury, color: "var(--pigment-lapis)" },
+        { label: "♀️", pos: c.venus, color: "var(--pigment-saffron)" },
+        { label: "♂️", pos: c.mars, color: "var(--pigment-cinnabar)" },
+        { label: "♃", pos: c.jupiter, color: "var(--pigment-gold)" },
+        { label: "♄", pos: c.saturn, color: "var(--ink-archival)" }
+      ];
+
+      renderingItems.forEach((item, idx) => {
+        const angle = (item.pos - 90) * Math.PI / 180;
+        const radius = 100;
+        const x = 180 + radius * Math.cos(angle);
+        const y = 180 + radius * Math.sin(angle);
+
+        // Draw radial line
+        const rLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        rLine.setAttribute('x1', 180);
+        rLine.setAttribute('y1', 180);
+        rLine.setAttribute('x2', x);
+        rLine.setAttribute('y2', y);
+        rLine.setAttribute('stroke', item.color);
+        rLine.setAttribute('stroke-width', '1.5');
+        rLine.setAttribute('stroke-dasharray', '3,3');
+        rLine.style.opacity = '0.4';
+        elementsGroup.appendChild(rLine);
+
+        // Node dot
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', '7');
+        circle.setAttribute('fill', item.color);
+        circle.setAttribute('stroke', '#ffffff');
+        circle.setAttribute('stroke-width', '1.5');
+        elementsGroup.appendChild(circle);
+
+        // Node text
+        const tag = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        tag.setAttribute('x', 180 + 72 * Math.cos(angle));
+        tag.setAttribute('y', 180 + 72 * Math.sin(angle) + 4);
+        tag.setAttribute('font-family', 'Courier Prime');
+        tag.setAttribute('font-weight', 'bold');
+        tag.setAttribute('font-size', '11');
+        tag.setAttribute('text-anchor', 'middle');
+        tag.setAttribute('fill', item.color);
+        tag.textContent = item.label;
+        elementsGroup.appendChild(tag);
+      });
+    }
+
+    // Dynamic auto-recalculations on change
+    document.getElementById('input-name').addEventListener('input', updateZodiac);
+    document.getElementById('input-dob').addEventListener('change', updateZodiac);
+    document.getElementById('input-time-hour').addEventListener('change', updateZodiac);
+    document.getElementById('input-time-minute').addEventListener('change', updateZodiac);
+    document.getElementById('input-time-ampm').addEventListener('change', updateZodiac);
+    document.getElementById('input-location').addEventListener('input', updateZodiac);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      populateClockSelectors('input-time-hour', 'input-time-minute');
+
+      const savedName = safeGetItem('antara_user_name');
+      if (savedName) document.getElementById('input-name').value = savedName;
+
+      const savedDob = safeGetItem('antara_user_dob');
+      if (savedDob) document.getElementById('input-dob').value = savedDob;
+
+      const savedTobHour = safeGetItem('antara_user_tob_hour');
+      const savedTobMin = safeGetItem('antara_user_tob_minute');
+      const savedTobAmPm = safeGetItem('antara_user_tob_ampm');
+
+      if (savedTobHour) document.getElementById('input-time-hour').value = savedTobHour;
+      else document.getElementById('input-time-hour').value = "10";
+      
+      if (savedTobMin) document.getElementById('input-time-minute').value = savedTobMin;
+      else document.getElementById('input-time-minute').value = "04";
+      
+      if (savedTobAmPm) document.getElementById('input-time-ampm').value = savedTobAmPm;
+      else document.getElementById('input-time-ampm').value = "AM";
+
+      updateZodiac();
+    });
+  </script>
+</body>
+</html>

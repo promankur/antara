@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help | Antara</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F7F1E1;
+      --panel: #FFFDF9;
+      --ink: #2B2A28;
+      --muted: #76726A;
+      --line: #D6CEBE;
+      --saffron: #D98236;
+      --cinnabar: #9E3A33;
+      --terra: #A65B4A;
+      --stroke: #b56a2a;
+      --lapis: #3C5A80;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      line-height: 1.75;
+      padding-bottom: 80px;
+    }
+    
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    
+    /* Premium Header */
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+      padding: 30px 20px;
+      border-bottom: 2px solid var(--line);
+      position: relative;
+    }
+    
+    .header::after {
+      content: "✦ ✦ ✦";
+      display: block;
+      font-family: 'Cinzel', serif;
+      color: var(--saffron);
+      font-size: 0.9rem;
+      letter-spacing: 6px;
+      margin-top: 15px;
+    }
+    
+    .tag {
+      font-family: 'Courier Prime', monospace;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-bottom: 12px;
+    }
+    
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--cinnabar);
+      margin-bottom: 8px;
+      font-variant: small-caps;
+    }
+    
+    .header-sub {
+      font-style: italic;
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    
+    /* Collapsible Accordion & Info Boxes */
+    h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      color: var(--cinnabar);
+      margin: 32px 0 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 6px;
+      letter-spacing: 1px;
+    }
+    
+    .box {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--saffron);
+      border-radius: 0 8px 8px 0;
+      padding: 24px 28px;
+      margin: 24px 0;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.03);
+    }
+    
+    .box-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      color: var(--cinnabar);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    
+    p {
+      margin-bottom: 16px;
+    }
+    
+    p:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* 5-Step Journey Map */
+    .journey {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 28px 0;
+    }
+    
+    .journey-step {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(43, 42, 40, 0.02);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .journey-step:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(43, 42, 40, 0.05);
+    }
+    
+    .step-num {
+      background: var(--cinnabar);
+      color: #fff;
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid var(--line);
+    }
+    
+    .step-body {
+      padding: 20px 24px;
+    }
+    
+    .step-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: var(--cinnabar);
+      margin-bottom: 6px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    
+    .step-detail {
+      font-size: 0.95rem;
+      color: var(--ink);
+      line-height: 1.7;
+    }
+    
+    .step-tip {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      color: var(--saffron);
+      font-weight: 700;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    /* Sourced Report Card Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+      margin: 28px 0;
+    }
+    
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--cinnabar);
+      border-radius: 4px 4px 8px 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(43, 42, 40, 0.03);
+      transition: transform 0.22s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(43, 42, 40, 0.06);
+    }
+    
+    .card-meta {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.74rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    
+    .card-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      color: var(--cinnabar);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    
+    .card-block {
+      margin-bottom: 14px;
+    }
+    
+    .card-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      margin-bottom: 4px;
+      display: block;
+    }
+    
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    
+    .card-tip {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    
+    .card-footer {
+      border-top: 1px dashed var(--line);
+      padding-top: 14px;
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .card-price {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: rgba(166, 91, 74, 0.09);
+      color: var(--terra);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    
+    /* Mirror Metaphor Box */
+    .mirror-wrapper {
+      background: linear-gradient(135deg, var(--cinnabar), #6b211c);
+      color: #FFFDF9;
+      border-radius: 8px;
+      padding: 32px;
+      margin: 40px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .mirror-wrapper::before {
+      content: "";
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 140px;
+      height: 140px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 50%;
+    }
+    
+    .mirror-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      color: var(--saffron);
+      margin-bottom: 14px;
+      font-variant: small-caps;
+    }
+    
+    .mirror-text {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 16px;
+    }
+    
+    .mirror-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 24px;
+    }
+    
+    .mirror-col h4 {
+      font-family: 'Cinzel', serif;
+      color: var(--saffron);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+    
+    .mirror-col ul {
+      list-style-type: none;
+    }
+    
+    .mirror-col ul li {
+      font-size: 0.88rem;
+      margin-bottom: 8px;
+      padding-left: 18px;
+      position: relative;
+    }
+    
+    .mirror-col ul li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--saffron);
+      font-size: 0.75rem;
+    }
+    
+    /* Footer Quick Links Navigation */
+    .help-navigation {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 40px 0;
+      flex-wrap: wrap;
+    }
+    
+    .nav-btn {
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 14px 28px;
+      border-radius: 30px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .nav-btn:hover {
+      background: var(--cinnabar);
+      color: #fff;
+      border-color: var(--cinnabar);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(158, 58, 51, 0.2);
+    }
+    
+    footer {
+      text-align: center;
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+      margin-top: 48px;
+    }
+    
+    @media (max-width: 768px) {
+      .mirror-grid {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .journey-step {
+        grid-template-columns: 10fr;
+      }
+      .step-num {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        min-height: 48px;
+      }
+    }
+  </style>
+  <meta name="description" content="Antara is a traditional cross-cultural mathematical life-engine and archetypal systems cartography. Calibrate your natal coordinates, biological rhythms, and name phonetic values across Vedic, Western tropical, and Chinese solar Four Pillars traditions.">
+  <link rel="icon" type="image/png" href="Antara Logo.png">
+</head>
+<body>
+
+<main>
+  
+  <div class="header">
+    <div class="tag">Symbolic Intelligence Guide</div>
+    <h1>Antara Help</h1>
+    <div class="header-sub">An approachable, simple navigation guide to help any seeker—from age 15 to 90—understand, explore, and utilize their personal inner maps.</div>
+  </div>
+
+  <div class="box">
+    <div class="box-title">Welcome to Antara</div>
+    <p>You carry a unique energetic and symbolic signature. Ancient cultures observed that the coordinates of your birth (time, location, date, and name vibrations) serve as a mathematical footprint representing recurring human archetypes.</p>
+    <p>This Help guide acts as your map legend. Below, we explain the step-by-step user journey, translate what each calculation module is studying, and clarify how to approach the findings with absolute simplicity.</p>
+  </div>
+
+  <!-- User Journey -->
+  <h2>Your Step-By-Step Journey</h2>
+  <div class="journey">
+    
+    <div class="journey-step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Land on the Canvas (The Homepage)</div>
+        <div class="step-detail">
+          You arrive at the Antara home screen. You will see a beautiful spinning celestial clock representing time orbits, or a breathing grid representing spatial patterns. They represent the same core concept: many ancient calculations working together in harmony.<br>
+          Select your local currency region (<strong>India · ₹ · UPI</strong> or <strong>World · $ · Card</strong>) and select either English or Hindi as your preferred reading language.
+        </div>
+        <div class="step-tip">💡 Account-Free: There are no usernames, passwords, or logins required. Your privacy is absolute.</div>
+      </div>
+    </div>
+
+    <div class="journey-step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">Select Your Personal Maps</div>
+        <div class="step-detail">
+          You will see three premium flagship packages and a collapsible archive of nine modular indexes. Click any button to select that map. The card will highlight with a warm saffron border to show it is added to your track. You can add or remove modules freely.<br>
+          <em>Not sure where to begin?</em> We recommend starting with <strong>Life Architecture</strong> (for your comprehensive natal blueprint) or <strong>Energy Cycles</strong> (the most immediately practical).
+        </div>
+        <div class="step-tip">💡 Duo-Chart: If you select a compatibility report, a companion input section will safely and automatically slide open.</div>
+      </div>
+    </div>
+
+    <div class="journey-step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Anchor Your Birth Coordinates</div>
+        <div class="step-detail">
+          Enter your <strong>full name given at birth</strong> (exactly as written on your birth certificate), your <strong>date of birth</strong>, your <strong>time of birth</strong> (select as accurately as possible; if completely unknown, leave it blank), and your <strong>place of birth</strong> (as you type, select your city from the instant lookup dropdown).
+        </div>
+        <div class="step-tip">💡 Why your Birth Name? Nicknames and current married names are useful, but your birth certificate name represents your foundational vibrational blueprint.</div>
+      </div>
+    </div>
+
+    <div class="journey-step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title">Compile and Checkout</div>
+        <div class="step-detail">
+          Your total updates instantly as you add or remove reports. Click the Pay button to process your order securely via Razorpay UPI (for India) or our secure stripe-level checkout (internationally). Once payment clears, your dynamic, high-resolution PDF download links are compiled and generated instantly.
+        </div>
+        <div class="step-tip">💡 Instant Access: Your reports are stored locally on your device for immediate reflection, and a backup link is sent to you.</div>
+      </div>
+    </div>
+
+    <div class="journey-step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <div class="step-title">Read and Reflect</div>
+        <div class="step-detail">
+          Each report is designed with premium accordion panels. This keeps the text beautifully structured so you don't feel overwhelmed. Read each section slowly from top to bottom, checking out the visual charts and graphs before diving into the deep text analysis.
+        </div>
+        <div class="step-tip">💡 How to Read: Think of these reports as an objective mirror showing your inner habits, not as rigid predictions of your future.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- The 12 Reports Map -->
+  <h2>What Each Report Analyzes</h2>
+  <div class="grid">
+
+    <!-- Report 1 -->
+    <div class="card">
+      <div>
+        <div class="card-meta">01_lifemap.html</div>
+        <div class="card-title">Life Architecture</div>
+        <div class="card-block">
+          <span class="card-label">What it analyzes</span>
+          <div class="card-desc">Your classical Vedic birth chart (Kundali) mapped in the elegant North Indian diamond format. It graphs active planetary positions, house alignments, and Dasha (major time-cycle) active periods.</div>
+        </div>
+      </div>
+      <div>
+        <div class="card-block">
+          <span class="card-label">15-Year-Old Friendly Tip</span>
+          <div class="card-tip">The top central diamond house is your "Lagna" (Rising Sign)—this represents your main baseline character and how you handle the world!</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-price">Vedic Astrology</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report 2 -->
+    <div class="card">
+      <div>
+        <div class="card-meta">02_identity.html</div>
+        <div class="card-title">Identity Blueprint</div>
+        <div class="card-block">
+          <span class="card-label">What it analyzes</span>
+          <div class="card-desc">The vibrational frequency of your name. It extracts the numerical value of your name letters across three ancient mathematical systems (Pythagorean, Chaldean, and Tamil sound metrics).</div>
+        </div>
+      </div>
+      <div>
+        <div class="card-block">
+          <span class="card-label">15-Year-Old Friendly Tip</span>
+          <div class="card-tip">If your birth certificate name has a different number value than your current everyday nickname, it shows where your natural blueprint and public personality might have friction!</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-price">Name Numerology</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report 3 -->
+    <div class="card">
+      <div>
+        <div class="card-meta">03_compatibility.html</div>
+        <div class="card-title">Compatibility Compass</div>
+        <div class="card-block">
+          <span class="card-label">What it analyzes</span>
+          <div class="card-desc">A deep, three-layered compatibility overlay matching two individuals' birth details across planetary elements, temperament coordinates, and name vibration compatibility scores.</div>
+        </div>
+      </div>
+      <div>
+        <div class="card-block">
+          <span class="card-label">15-Year-Old Friendly Tip</span>
+          <div class="card-tip">This is not a "pass/fail" test. High scores show where things flow naturally; lower scores simply highlight the areas where you both have different styles that require communication!</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-price">Duo-Alignment</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report 4 -->
+    <div class="card">
+      <div>
+        <div class="card-meta">04_energycycles.html</div>
+        <div class="card-title">Energy Cycles</div>
+        <div class="card-block">
+          <span class="card-label">What it analyzes</span>
+          <div class="card-desc">Your daily biological waves plotted across Physical (23-day), Emotional (28-day), and Intellectual (33-day) rhythms, showing your energetic peaks, release valleys, and highly sensitive transition days.</div>
+        </div>
+      </div>
+      <div>
+        <div class="card-block">
+          <span class="card-label">15-Year-Old Friendly Tip</span>
+          <div class="card-tip">Watch the line charts. When a wave line crosses the exact center zero point, it's a "critical day" where you might feel a bit off, tired, or unfocused. Excellent for scheduling rest!</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-price">Biorhythms</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report 5 -->
+    <div class="card">
+      <div>
+        <div class="card-meta">05_loshugrid.html</div>
+        <div class="card-title">Lo Shu Matrix</div>
+        <div class="card-block">
+          <span class="card-label">What it analyzes</span>
+          <div class="card-desc">A classical 3x3 magic grid mapped from your birth date numbers. Each cell represents a specific aspect of human temperament (such as Willpower, Intellect, or Action). Empty spaces show missing links.</div>
+        </div>
+      </div>
+      <div>
+        <div class="card-block">
+          <span class="card-label">15-Year-Old Friendly Tip</span>
+          <div class="card-tip">An empty cell is not a bad thing! It simply shows an area where you have to act with conscious effort and attention, rather than just running on autopilot.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-price">Magic Grid</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report 6 -->
+    <div class="card">
+      <div>
+        <div class="card-meta">06_corporate.html</div>
+        <div class="card-title">Enterprise Blueprint</div>
+        <div class="card-block">
+          <span class="card-label">What it analyzes</span>
+          <div class="card-desc">Designed for career, business name selection, and professional timing. It utilizes advanced point distribution matrices to outline leadership styles and ideal windows for major initiatives.</div>
+        </div>
+      </div>
+      <div>
+        <div class="card-block">
+          <span class="card-label">15-Year-Old Friendly Tip</span>
+          <div class="card-tip">Perfect if you are choosing a career direction, starting a freelance hustle, or signing business paperwork—it guides you on when to act and when to plan!</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-price">Commercial Timing</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report 7 -->
+    <div class="card">
+      <div>
+        <div class="card-meta">07_transits.html</div>
+        <div class="card-title">Time Cycles</div>
+        <div class="card-block">
+          <span class="card-label">What it analyzes</span>
+          <div class="card-desc">A dynamic, 12-month calendar mapping current planetary movements as they pass over your personal natal positions. It identifies active windows of opportunity, health priorities, and environmental changes.</div>
+        </div>
+      </div>
+      <div>
+        <div class="card-block">
+          <span class="card-label">15-Year-Old Friendly Tip</span>
+          <div class="card-tip">Think of this as a cosmic weather report. If a challenging planetary transit is active, it just means you should carry an umbrella (plan ahead, sleep more) in that specific area of life!</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-price">12-Month Cycles</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report 8 -->
+    <div class="card">
+      <div>
+        <div class="card-meta">08_lifepath.html</div>
+        <div class="card-title">Life Path Blueprint</div>
+        <div class="card-block">
+          <span class="card-label">What it analyzes</span>
+          <div class="card-desc">Your Pythagorean numerical path. It reduces your birth date and original name letters into single digits (1 to 9) and master numbers (11, 22) to expose your core purpose and timeline stages.</div>
+        </div>
+      </div>
+      <div>
+        <div class="card-block">
+          <span class="card-label">15-Year-Old Friendly Tip</span>
+          <div class="card-tip">Your Life Path number (date of birth) represents the road you are walking on, while your Expression number (name letters) is the vehicle you drive!</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-price">Pythagorean Path</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report 9 -->
+    <div class="card">
+      <div>
+        <div class="card-meta">09_zodiac.html</div>
+        <div class="card-title">Zodiac Profile</div>
+        <div class="card-block">
+          <span class="card-label">What it analyzes</span>
+          <div class="card-desc">Your classical tropical natal chart. It plots the exact degree positions of the Sun, Moon, Mercury, and outer planets across the 12 Western zodiac signs and houses at your moment of birth.</div>
+        </div>
+      </div>
+      <div>
+        <div class="card-block">
+          <span class="card-label">15-Year-Old Friendly Tip</span>
+          <div class="card-tip">You are much more than just your birth month sign (your Sun sign)! Your Moon sign represents your private emotional self, and your Ascendant represents your outer personality profile.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-price">Western Astrology</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report 10 -->
+    <div class="card">
+      <div>
+        <div class="card-meta">10_resonance.html</div>
+        <div class="card-title">Relationship Resonance Index</div>
+        <div class="card-block">
+          <span class="card-label">What it analyzes</span>
+          <div class="card-desc">Astrological synastry overlaps and midpoint composite compatibility mapping for dual-entity partnerships ranging from intimate unions to co-founder alliances. Mapped across symbolic systems.</div>
+        </div>
+      </div>
+      <div>
+        <div class="card-block">
+          <span class="card-label">15-Year-Old Friendly Tip</span>
+          <div class="card-tip">This report helps you and a close friend, partner, or family member see where your styles mesh beautifully and where you might occasionally misinterpret each other's actions.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-price">Synastry Overlay</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report 11 -->
+    <div class="card">
+      <div>
+        <div class="card-meta">11_bazi.html</div>
+        <div class="card-title">Four Pillars Blueprint</div>
+        <div class="card-block">
+          <span class="card-label">What it analyzes</span>
+          <div class="card-desc">The traditional Chinese solar calendar system. It maps your birth details into four elemental columns (Year, Month, Day, Hour) using Heavenly Stems and Earthly Branches to assess your inner potential.</div>
+        </div>
+      </div>
+      <div>
+        <div class="card-block">
+          <span class="card-label">15-Year-Old Friendly Tip</span>
+          <div class="card-tip">Your "Day Master" (the element on the top of the Day Pillar) represents your primary core self. Think of it as your elemental operating system!</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-price">Chinese BaZi</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report 12 -->
+    <div class="card">
+      <div>
+        <div class="card-meta">12_synthesis.html</div>
+        <div class="card-title">Archetypal Blueprint</div>
+        <div class="card-block">
+          <span class="card-label">What it analyzes</span>
+          <div class="card-desc">The master synthesis report. It compiles structural calculations from all nine core traditions, mapping their intersections to show where diverse ancient systems agree on your inner strengths.</div>
+        </div>
+      </div>
+      <div>
+        <div class="card-block">
+          <span class="card-label">15-Year-Old Friendly Tip</span>
+          <div class="card-tip">If Vedic astrology, BaZi, and name numerology all point to the exact same strength or cycle peak in your life, you can trust that it represents a core structural highlight!</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-price">Unified Synthesis</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- The Objective Mirror Metaphor -->
+  <div class="mirror-wrapper">
+    <div class="mirror-title">The Mirror Principle — How to use Antara</div>
+    <div class="mirror-text">
+      Antara operates on the <strong>Mirror Principle</strong>. Each calculation translates the patterns of your name, time, and location into symbolic coordinates. These coordinates do not control your destiny—they simply reflect your structural makeup. Think of your reports as an objective mirror.
+    </div>
+    
+    <div class="mirror-grid">
+      <div class="mirror-col">
+        <h4>What Antara Can Do</h4>
+        <ul>
+          <li>Provide a clean, unbiased map of your psychological habits.</li>
+          <li>Reveal structural strengths you can lean on during challenges.</li>
+          <li>Help you identify recurring cycle phases for optimal scheduling and rest.</li>
+          <li>Explain natural friction points in names, relationships, or timelines.</li>
+        </ul>
+      </div>
+      <div class="mirror-col">
+        <h4>What Antara Cannot Do</h4>
+        <ul>
+          <li>Predict the future, dictate your choices, or tell you what will happen.</li>
+          <li>Declare relationships "perfect" or "doomed" (relationships require active care!).</li>
+          <li>Act as a substitute for your personal free will and conscious planning.</li>
+          <li>Store, sell, or compromise your personal coordinates (privacy is local).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- B2B & Help Navigation Buttons -->
+  <div class="help-navigation">
+    <a href="FAQ.html" class="nav-btn">❓ View Frequently Asked Questions</a>
+    <a href="Glossary.html" class="nav-btn">📖 Open Glossary</a>
+  </div>
+
+  
+  <!-- Resonance / Feedback Link -->
+  <div style="text-align: center; margin: 2rem auto; font-family: var(--font-mono); font-size: 0.8rem; max-width: 1100px; width: calc(100% - 24px);">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEYjLsqRjRRR0FZEPq384iGrpL6rZfrEQHEbcYQ9pz5ERzlg/viewform" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar); letter-spacing: 1px; font-weight: bold; transition: all 0.2s ease; padding-bottom: 2px;">
+      ✦ SHARE YOUR RESONANCE (ANONYMOUS SUGGESTIONS) ✦
+    </a>
+  </div>
+
+  <footer class="notranslate">
+    ✦ ANTARA RESEARCH GROUP · WEB ALLIANCE PORTAL · CLIENT-SIDE CALCULATOR ✦
+  </footer>
+
+</main>
+
+
+  
+  <script>
+    // Clean up local storage persona names dynamically to wipe out old cached test personas
+    try {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (localStorage.getItem(key) === 'Ankur Gupta') {
+                localStorage.setItem(key, 'Antara Gupta');
+            }
+        }
+    } catch (e) {
+        console.warn("localStorage persona migration restricted:", e);
+    }
+
+    // Initialize language inheritance from local storage
+    let preferredLang = localStorage.getItem('antara_preferred_language') || 'EN';
+    if (window.location.hash === '#HI' || window.location.search.includes('lang=HI')) {
+        preferredLang = 'HI';
+        localStorage.setItem('antara_preferred_language', 'HI');
+    } else if (window.location.hash === '#EN' || window.location.search.includes('lang=EN')) {
+        preferredLang = 'EN';
+        localStorage.setItem('antara_preferred_language', 'EN');
+    }
+    
+    if (preferredLang === 'HI') {
+        document.body.classList.add('lang-hi');
+        
+        // 1. Force the Google Translate hash parameter if not present
+        if (!window.location.hash.includes('googtrans')) {
+            window.location.hash = 'googtrans(en|hi)';
+        }
+        
+        // 2. Set googtrans cookie to persist
+        document.cookie = "googtrans=/en/hi; path=/";
+        
+        // 3. Create absolute HTTPS Google Translate container and script
+        const gtDiv = document.createElement('div');
+        gtDiv.id = 'google_translate_element';
+        gtDiv.style.position = 'fixed';
+        gtDiv.style.bottom = '15px';
+        gtDiv.style.right = '15px';
+        gtDiv.style.zIndex = '99999';
+        gtDiv.style.background = '#FFFDF9';
+        gtDiv.style.border = '1px solid #D6CEBE';
+        gtDiv.style.borderRadius = '20px';
+        gtDiv.style.padding = '3px 10px';
+        gtDiv.style.boxShadow = '0 3px 10px rgba(0,0,0,0.06)';
+        gtDiv.style.display = 'inline-flex';
+        gtDiv.style.alignItems = 'center';
+        gtDiv.style.gap = '6px';
+        gtDiv.innerHTML = '<span style="font-family:\'Cinzel\', serif; font-size:0.68rem; color:#9E3A33; font-weight:bold; letter-spacing:0.5px;">ANTARA TRANSLATE</span>';
+        document.body.appendChild(gtDiv);
+
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: true
+            }, 'google_translate_element');
+        };
+
+        const gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript';
+        gtScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        document.head.appendChild(gtScript);
+    } else if (preferredLang === 'EN') {
+        if (window.location.hash.includes('googtrans')) {
+            window.location.hash = '';
+        }
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+  </script>
+
+</body>
+</html>

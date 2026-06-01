@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Synastry & Composite Compatibility | Antara Cross-Cultural Interior Panorama</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-page: #F7F1E1;
+      --bg-vellum-warm: #ffffff;
+      --ink-archival: #2B2A28;
+      --ink-faded: #76726A;
+      --border-container: 1px solid #D6CEBE;
+      --stroke: #b56a2a;
+      
+      --font-serif-header: 'Cinzel', serif;
+      --font-serif-body: 'Playfair Display', serif;
+      --font-mono: 'Courier Prime', monospace;
+      
+      --pigment-terracotta: #A65B4A;
+      --pigment-saffron: #D98236;
+      --pigment-cinnabar: #9E3A33;
+      --pigment-lapis: #3C5A80;
+      --pigment-moss: #4A6B5D;
+      --pigment-gold: #B58A3D;
+    }
+
+    details p, details td, details li {
+      font-variant: normal !important;
+      font-family: var(--font-serif-body) !important;
+      text-transform: none !important;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 17px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1150px;
+      width: 100%;
+      margin: 0 auto 2rem auto;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    .prose-container {
+      max-width: 78ch;
+      margin: 0 auto;
+    }
+
+    .inputs-coordinates-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .inputs-coordinates-grid {
+        display: grid;
+        grid-template-columns: 390px 1fr;
+        gap: 2rem;
+        align-items: stretch;
+      }
+    }
+
+    .archival-card {
+      background-color: var(--bg-vellum-warm);
+      border: var(--border-container);
+      padding: 1.5rem;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04);
+      box-sizing: border-box;
+      border-radius: 4px;
+    }
+
+    .form-group { margin-bottom: 1.15rem; }
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--ink-faded);
+      margin-bottom: 0.4rem;
+      min-height: 1.6em;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .form-input {
+      width: 100%;
+      height: 44px;
+      background-color: rgba(247, 241, 225, 0.4);
+      border: var(--border-container);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 1.05rem;
+      padding: 0.5rem 0.85rem;
+      box-sizing: border-box;
+      outline: none;
+      border-radius: 2px;
+    }
+
+    .time-select-cluster {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      width: 100%;
+      height: 44px;
+    }
+    .time-select-cluster select.form-input {
+      height: 44px;
+      padding: 0.5rem 0.2rem;
+      font-weight: bold;
+      text-align: center;
+      text-align-last: center;
+    }
+
+    .svg-wheel-container {
+      margin: 1.5rem auto;
+      border: 1px solid #D6CEBE;
+      padding: 1.5rem;
+      background: #faf7ef;
+      border-radius: 4px;
+      text-align: center;
+      max-width: 440px;
+    }
+
+    .coordinate-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      margin-top: 1rem;
+    }
+    .coordinate-table th, .coordinate-table td {
+      border: 1px solid #EADEC9;
+      padding: 0.65rem 0.75rem;
+      text-align: left;
+    }
+    .coordinate-table th {
+      background-color: #faf7ef;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--ink-faded);
+    }
+    .coordinate-table tr:nth-child(even) td {
+      background-color: rgba(244, 235, 212, 0.2);
+    }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 2.5rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+    }
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--ink-faded);
+      margin: 0.25rem 0;
+    }
+
+    p, td, li { text-align: left !important; }
+
+    /* Standardized Branding */
+    .header-logo { 
+      text-align: center; 
+      margin: 20px 0 8px 0; 
+    }
+    .system-tagline { 
+      font-family: var(--font-mono) !important; 
+      font-weight: 600 !important; 
+      font-size: 12px !important; 
+      letter-spacing: 3px !important; 
+      color: #A6A29A !important; 
+      text-transform: uppercase !important; 
+      text-align: center !important; 
+      margin: 0 0 24px 0 !important; 
+      line-height: 1.2 !important;
+    }
+    .master-report-title { 
+      font-family: 'Cinzel', serif !important; 
+      font-size: 2.25rem !important; 
+      font-variant: small-caps !important; 
+      font-weight: 700 !important; 
+      letter-spacing: 1px !important; 
+      color: #2B2A28 !important; 
+      text-align: center !important; 
+      margin: 0 0 14px 0 !important; 
+      line-height: 1.3 !important; 
+    }
+    .master-report-byline { 
+      font-family: 'Playfair Display', serif !important; 
+      font-size: 1.15rem !important; 
+      color: #D98236 !important; 
+      text-align: center !important; 
+      max-width: 800px !important; 
+      margin: 0 auto 32px auto !important; 
+      padding: 0 12px !important; 
+      line-height: 1.5 !important; 
+    }
+
+    /* Stackable Modules Cards with restricted width */
+    .module-card {
+      background-color: var(--bg-vellum-warm);
+      border: var(--border-container);
+      border-radius: 4px;
+      margin: 0 auto 1.5rem auto;
+      padding: 1.75rem;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.02);
+      max-width: 820px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .module-header {
+      font-family: var(--font-serif-header);
+      font-size: 1.25rem;
+      border-bottom: 1px solid #D6CEBE;
+      padding-bottom: 0.5rem;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      color: var(--pigment-terracotta);
+      letter-spacing: 1px;
+      display: block;
+      text-align: left;
+    }
+
+    .stat-badge-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.18fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      align-items: center;
+    }
+    .stat-badge {
+      border: 1px solid #D6CEBE;
+      padding: 0.85rem;
+      background-color: rgba(247, 241, 225, 0.2);
+      text-align: center;
+      border-radius: 4px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .stat-badge:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(181, 138, 61, 0.08);
+      border-color: var(--pigment-gold);
+    }
+    .stat-badge.central-focus {
+      padding: 1.25rem 1rem;
+      background-color: rgba(247, 241, 225, 0.45);
+      border: 1px solid var(--pigment-gold);
+      box-shadow: 0 4px 12px rgba(181, 138, 61, 0.05);
+      transform: scale(1.05);
+    }
+    .stat-badge.central-focus:hover {
+      transform: scale(1.07) translateY(-2px);
+      box-shadow: 0 6px 15px rgba(181, 138, 61, 0.1);
+    }
+    .stat-badge.central-focus .stat-badge-val {
+      font-size: 2.15rem;
+      color: var(--pigment-gold);
+    }
+    .stat-badge-val {
+      font-family: var(--font-serif-header);
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--pigment-cinnabar);
+    }
+    .stat-badge-lbl {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ink-faded);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 0.25rem;
+    }
+
+    /* Interactive Concentric Wheel Animations */
+    .synastry-node {
+      cursor: pointer;
+      transition: r 0.25s cubic-bezier(0.25, 0.8, 0.25, 1), stroke-width 0.25s ease, filter 0.25s ease;
+    }
+    .synastry-node:hover {
+      r: 9;
+      stroke-width: 2.5;
+      filter: drop-shadow(0 0 6px var(--pigment-saffron));
+    }
+
+    /* Energy Cycles Progress circle layout */
+    .pei-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      text-align: center;
+      margin-top: 1rem;
+      border-top: 1px dashed #D6CEBE;
+      padding-top: 1.5rem;
+    }
+    .gauge-wrapper {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      margin: 0.5rem auto 0 auto;
+    }
+    @media (min-width: 480px) {
+      .gauge-wrapper {
+        width: 105px;
+        height: 105px;
+      }
+    }
+
+    /* Standard Remedial Playbook layout */
+    .remedy-card {
+      border-left: 4px solid var(--pigment-saffron);
+      padding-left: 1rem;
+      margin-bottom: 1.25rem;
+      margin-top: 1.25rem;
+    }
+    .remedy-card h5 {
+      margin: 0 0 0.25rem 0;
+      font-family: var(--font-serif-header);
+      font-size: 1rem;
+      color: var(--pigment-cinnabar);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .remedy-card p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--ink-archival);
+      line-height: 1.55;
+    }
+
+    /* Premium Click to Explore Accordion Styles */
+    .explore-summary {
+      font-family: var(--font-serif-header);
+      background-color: #D35400; /* Vibrant Brand Saffron */
+      color: #FFFFFF !important;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.85rem 1.25rem; /* Elegant compact height */
+      border: 1px solid #8E4A21; /* Cinnamon brand structural frame */
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 12px rgba(211, 84, 0, 0.12);
+      line-height: 1.35;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .explore-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .explore-summary::before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px double rgba(255, 255, 255, 0.45); /* Elegant double border in reverse white */
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .explore-summary:hover {
+      background-color: #E65C00; /* Slightly brighter warm saffron on hover */
+      box-shadow: 0 6px 18px rgba(211, 84, 0, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .explore-summary:hover::before {
+      border-color: rgba(255, 255, 255, 0.7);
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+    }
+
+    .explore-summary:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(211, 84, 0, 0.15);
+    }
+
+    .explore-summary .explore-title-main {
+      font-variant: small-caps;
+      font-size: 1.05rem; /* Compact size */
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: none; /* Crucial for small-caps */
+      position: relative;
+      z-index: 2;
+    }
+
+    .explore-summary .explore-title-sub {
+      font-family: var(--font-serif-body);
+      font-size: 1.25rem; /* Bold italic font matching user mock */
+      font-weight: 700;
+      font-style: italic;
+      margin-top: 3px;
+      letter-spacing: 0.5px;
+      color: #FFFFFF !important;
+      position: relative;
+      z-index: 2;
+    }
+
+    .accordion-inner-border {
+      position: relative;
+    }
+
+    .accordion-inner-border::before {
+      content: "";
+      position: absolute;
+      top: 6px; left: 6px; right: 6px; bottom: 6px;
+      border: 1px double #D6CEBE;
+      pointer-events: none;
+      border-radius: 3px;
+    }
+  
+    /* Premium Left-Aligned Footer Override */
+    footer {
+      width: 100%;
+      padding: 2rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+      text-align: left;
+    }
+    .footer-content {
+      max-width: 1100px;
+      width: 100%;
+      padding: 0 16px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+    footer p {
+      font-family: var(--font-serif-body);
+      font-size: 0.82rem;
+      color: var(--ink-archival);
+      margin: 0.25rem 0;
+    }
+    footer p.font-mono {
+      font-family: var(--font-mono) !important;
+      font-size: 0.72rem !important;
+      color: var(--ink-faded) !important;
+    }
+
+  
+    /* ─── Reading Guide Grid (Tactile manuscript details) ─── */
+    .reading-guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .reading-guide-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+</style>
+  <meta name="description" content="Antara is a traditional cross-cultural mathematical life-engine and archetypal systems cartography. Calibrate your natal coordinates, biological rhythms, and name phonetic values across Vedic, Western tropical, and Chinese solar Four Pillars traditions.">
+  <link rel="icon" type="image/png" href="Antara Logo.png">
+</head>
+<body>
+
+  <div class="header-logo">
+    <a href="index.html" title="Return to Antara Dashboard" style="text-decoration: none; border: none; display: inline-block;">
+      <img src="Antara Logo.png" alt="ANTARA" style="max-height: 90px; width: auto;" onerror="this.style.display='none';">
+    </a>
+  </div>
+  <div class="system-tagline">Cross-Cultural Interior Panorama</div>
+
+  <h1 class="master-report-title">Synastry & Composite Compatibility<br>For Entity A & Entity B</h1>
+  <p class="master-report-byline">Multi-Track Astrological & Phonetic Synergy Calibration</p>
+
+  <div class="container">
+    
+    <!-- Report Introduction (Borderless layout) -->
+    <div style="margin-bottom: 2.25rem; padding: 0.5rem 0;">
+    <div style="max-width: 78ch; margin: 0 auto;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-bottom: 1rem; color: var(--stroke, #b56a2a); letter-spacing: 1px; text-transform: uppercase;">About This Report</h3>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        Human relationships are shaped by far more than attraction alone. Emotional rhythms, communication patterns, timing, values, and psychological tendencies all influence how two individuals experience harmony, growth, tension, and connection over time. Many traditional systems attempted to study these dynamics through symbolic compatibility frameworks.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        This report compares the behavioral and relational dynamics within dual-entity partnerships ranging from intimate unions to co-founder alliances. It studies resonance, emotional alignment, communication tendencies, strengths, and areas where misunderstandings or imbalance may naturally arise. The purpose is not to label relationships as successful or unsuccessful, but to improve awareness and understanding.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        This analytical systems intelligence framework is specifically calibrated to decode diverse relationship ecosystems, including:
+      </p>
+      <ul style="font-size: 1.02rem; line-height: 1.7; color: var(--ink-archival); margin: 0 0 1.25rem 0; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.35rem;">
+        <li><strong>Executive Founder Compatibility</strong> &mdash; deconstructing partner chemistry and operational alignment</li>
+        <li><strong>Marriage Intelligence Reports</strong> &mdash; mapping emotional cartography and relational pacing</li>
+        <li><strong>Team Chemistry Diagnostics</strong> &mdash; optimizing collaborative dynamics and execution flow</li>
+        <li><strong>Family Dynamics Mapping</strong> &mdash; understanding multi-generational patterns and communication lines</li>
+        <li><strong>Legacy Succession Alignment</strong> &mdash; structuring transition chemistry and long-term values transfer</li>
+        <li><strong>Mentor–Student Resonance Systems</strong> &mdash; aligning developmental paths and wisdom transmission</li>
+      </ul>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">
+        The report serves as a stable, understated tool for deep reflection, relationship systems intelligence, and conscious alignment.
+      </p>
+    
+      <!-- Codex Support Navigation Panel -->
+      <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px dashed #D6CEBE; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="Help.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📖 Help
+        </a>
+        <a href="FAQ.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          ❓ FAQ
+        </a>
+        <a href="Glossary.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📓 Glossary
+        </a>
+      </div>
+      <!-- How to Read This Report (Reading Guide Block) -->
+      <div style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; border: 1px dashed #D6CEBE; background-color: rgba(247, 241, 225, 0.15); border-radius: 4px; box-shadow: 0 2px 8px rgba(43, 42, 40, 0.01);">
+        <h4 style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 1rem; text-align: center; border-bottom: 1px dashed #D6CEBE; padding-bottom: 0.4rem;">
+          How to Study This Document
+        </h4>
+        <div class="reading-guide-grid">
+          <!-- Point 1 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">1. Read the accordion sections one at a time.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">Each section expands when you click the title — do not try to read everything at once.</span>
+          </div>
+          <!-- Point 2 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">2. Look up unfamiliar terms</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">in the Antara Glossary (<a href="Glossary.html" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar);">Glossary.html</a> in this folder).</span>
+          </div>
+          <!-- Point 3 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">3. Start with the numbers that feel most familiar.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">In a Western chart, most people know their Sun sign. In Numerology, the Life Path is easiest.</span>
+          </div>
+          <!-- Point 4 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">4. Do not worry about understanding everything on the first read.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">These reports are meant to be returned to and studied over time.</span>
+          </div>
+        </div>
+      </div>
+
+</div>
+    </div>
+
+    <!-- Inputs Sidebar -->
+    <div class="inputs-coordinates-grid">
+      
+      <!-- Input Sidebar -->
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        
+        <!-- Entity A Calibration Card -->
+        <div class="archival-card" style="border-left: 4px solid var(--pigment-lapis);">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1.25rem; text-transform: uppercase; color: var(--pigment-lapis); letter-spacing: 1px;">Entity A (Primary)</h3>
+          
+          <div class="form-group">
+            <label>Name / Label</label>
+            <input type="text" id="input-name-a" class="form-input" value="The Nameless One" placeholder="Entity A name...">
+          </div>
+
+          <div class="form-group">
+            <label>Birth Date</label>
+            <input type="date" id="input-dob-a" class="form-input" value="1953-05-16">
+          </div>
+          
+          <div class="form-group">
+            <label>Birth Time</label>
+            <div class="time-select-cluster">
+              <select id="input-time-hour-a" class="form-input"></select>
+              <select id="input-time-minute-a" class="form-input"></select>
+              <select id="input-time-ampm-a" class="form-input">
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>Location</label>
+            <input type="text" id="input-location-a" class="form-input" value="Chakrata, Uttarakhand, India">
+          </div>
+        </div>
+
+        <!-- Entity B Calibration Card -->
+        <div class="archival-card" style="border-left: 4px solid var(--pigment-terracotta);">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1.25rem; text-transform: uppercase; color: var(--pigment-terracotta); letter-spacing: 1px;">Entity B (Secondary)</h3>
+          
+          <div class="form-group">
+            <label>Name / Label</label>
+            <input type="text" id="input-name-b" class="form-input" value="Secondary Entity" placeholder="Entity B name...">
+          </div>
+
+          <div class="form-group">
+            <label>Birth Date</label>
+            <input type="date" id="input-dob-b" class="form-input" value="1958-08-29">
+          </div>
+          
+          <div class="form-group">
+            <label>Birth Time</label>
+            <div class="time-select-cluster">
+              <select id="input-time-hour-b" class="form-input"></select>
+              <select id="input-time-minute-b" class="form-input"></select>
+              <select id="input-time-ampm-b" class="form-input">
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>Location</label>
+            <input type="text" id="input-location-b" class="form-input" value="Gary, Indiana, USA">
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Main Results Display -->
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        
+        <!-- Double concentric SVG Wheel (Synastry Overlay) -->
+        <div class="archival-card">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; text-align: center;">Synastry Overlay Spectrum</h3>
+          <p style="font-size: 0.95rem; text-align: center !important; color: var(--ink-faded); margin: 0 0 1rem 0; line-height: 1.45;">Concentric wheel mapping Entity A's coordinates (Outer Saffron)<br>against Entity B's houses (Inner Lapis).</p>
+          
+          <div class="svg-wheel-container" style="padding: 1.25rem 1.5rem 0.75rem 1.5rem;">
+            <svg id="synastry-wheel-svg" viewBox="0 0 360 360" style="width: 100%; height: auto; display: block; overflow: visible;">
+              <circle cx="180" cy="180" r="145" fill="none" stroke="#D6CEBE" stroke-width="2" />
+              <circle cx="180" cy="180" r="115" fill="none" stroke="#D6CEBE" stroke-width="1.5" />
+              <circle cx="180" cy="180" r="85" fill="none" stroke="#D6CEBE" stroke-width="1.25" stroke-dasharray="3,3" />
+              <g id="synastry-dividers" stroke="#EADEC9" stroke-width="1" stroke-dasharray="2,2"></g>
+              <g id="synastry-elements"></g>
+            </svg>
+            <div id="wheel-hover-info" style="font-family: var(--font-serif-body); font-style: italic; font-size: 0.95rem; color: var(--ink-faded); margin-top: 1rem; min-height: 1.5em; text-align: center; letter-spacing: 0.5px; border-top: 1px dashed #D6CEBE; padding-top: 0.75rem;">
+              Hover over outer constellations to identify their element
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Resonance stats badges -->
+        <div class="stat-badge-grid">
+          <div class="stat-badge">
+            <div id="stat-synastry-aspects" class="stat-badge-val">0</div>
+            <div class="stat-badge-lbl">Synastry Aspects</div>
+          </div>
+          <div class="stat-badge central-focus">
+            <div id="stat-composite-element" class="stat-badge-val">EARTH</div>
+            <div class="stat-badge-lbl">Composite Focus</div>
+          </div>
+          <div class="stat-badge">
+            <div id="stat-name-resonance" class="stat-badge-val">0%</div>
+            <div class="stat-badge-lbl">Name Resonance</div>
+          </div>
+        </div>
+
+        <!-- Coordinates Ephemeris Table -->
+        <div class="archival-card">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">Core Placement Comparison</h3>
+          
+          <table class="coordinate-table">
+            <thead>
+              <tr>
+                <th>Coordinate Body</th>
+                <th>Entity A</th>
+                <th>Entity B</th>
+                <th>Composite Midpoint</th>
+              </tr>
+            </thead>
+            <tbody id="comparison-table-body">
+              <!-- Dynamically populated comparison rows -->
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- 6 Premium Modules Stack -->
+    <div style="margin-top: 2rem; margin-bottom: 3.5rem;">
+      
+      <!-- Module 1: Synastry Overlays -->
+      <div class="module-card">
+        <div class="module-header">
+          Synastry Overlays & Planetary Contacts
+        </div>
+        <div class="prose-container">
+          <p>
+            Synastry overlays track the mutual planetary impact by mapping Entity A's planets directly onto Entity B's equal house positions, and checking the exact aspects between their natal coordinates.
+          </p>
+          <div style="border: 1px dashed #D6CEBE; padding: 1.25rem; border-radius: 4px; background-color: rgba(247, 241, 225, 0.15); margin: 1rem 0;">
+            <h5 style="margin: 0 0 0.5rem 0; font-family: var(--font-serif-header); text-transform: uppercase; font-size: 0.95rem; color: var(--pigment-terracotta);">Major Active Contacts</h5>
+            <ul id="synastry-contacts-list" style="margin:0; padding-left:1.2rem; font-size:0.95rem; line-height: 1.6;">
+              <!-- Populate dynamically -->
+            </ul>
+          </div>
+          <p id="synastry-prose-summary">
+            Analyzing synastry coordinates...
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 2: Composite Midpoint Chart -->
+      <div class="module-card">
+        <div class="module-header">
+          Composite Midpoint Chart
+        </div>
+        <div class="prose-container">
+          <p>
+            The Composite chart calculates the exact mathematical midpoints between the natal planetary positions of both parties. It represents the relationship itself as a third, separate entity.
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
+            <div style="border: 1px solid #D6CEBE; padding: 1rem; background-color: rgba(247, 241, 225, 0.25);">
+              <h5 style="margin:0 0 0.5rem 0; font-family: var(--font-serif-header); text-transform: uppercase; font-size: 0.95rem; color: var(--pigment-cinnabar);">The Core Purpose (Composite Sun)</h5>
+              <p id="composite-sun-text" style="margin:0; font-size:0.95rem; line-height: 1.5;">Calculating...</p>
+            </div>
+            <div style="border: 1px solid #D6CEBE; padding: 1rem; background-color: rgba(247, 241, 225, 0.25);">
+              <h5 style="margin:0 0 0.5rem 0; font-family: var(--font-serif-header); text-transform: uppercase; font-size: 0.95rem; color: var(--pigment-moss);">The Structural Glue (Composite Saturn)</h5>
+              <p id="composite-saturn-text" style="margin:0; font-size:0.95rem; line-height: 1.5;">Calculating...</p>
+            </div>
+          </div>
+          <p id="composite-prose-summary">
+            Analyzing composite midpoints...
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 3: BaZi Day Master Resonance -->
+      <div class="module-card">
+        <div class="module-header">
+          BaZi Day Master Resonance
+        </div>
+        <div class="prose-container">
+          <p>
+            In Chinese metaphysics, the <strong>Day Master</strong> represents the core self, carrying a specific element and polarity. By comparing their Day Masters, we determine the systemic balance and potential clashes or harmonies that govern the relationship.
+          </p>
+          <div style="border: 1px solid #D6CEBE; padding: 1.25rem; border-radius: 4px; background-color: rgba(247, 241, 225, 0.25); margin: 1.5rem 0; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <strong>Entity A Day Master:</strong> <span id="bazi-dm-a" style="font-family: var(--font-mono); font-weight:bold; color: var(--pigment-lapis);">METAL</span><br>
+              <strong>Entity B Day Master:</strong> <span id="bazi-dm-b" style="font-family: var(--font-mono); font-weight:bold; color: var(--pigment-terracotta);">WOOD</span>
+            </div>
+            <div style="font-size: 1.15rem; font-family: var(--font-serif-header); font-weight:bold; color: var(--pigment-saffron);" id="bazi-dm-synergy">
+              CONSTRUCTIVE GENERATION
+            </div>
+          </div>
+          <p id="bazi-dm-prose">
+            Evaluating Day Master elements...
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 4: Name Sound Synergy -->
+      <div class="module-card">
+        <div class="module-header">
+          Chaldean Phonetic Synergy
+        </div>
+        <div class="prose-container">
+          <p>
+            Names carry specific phonetic sounds and numerical frequencies. Under Chaldean numerology, the vowels and letters are reduced to planetary vibrations. By mapping the relationship between their name frequencies, we determine the natural harmony when spoken and called.
+          </p>
+          <div style="border: 1px dashed #D6CEBE; padding: 1.25rem; border-radius: 4px; background-color: rgba(247, 241, 225, 0.15); margin-top: 1.5rem;">
+            <h5 style="margin: 0 0 0.5rem 0; font-family: var(--font-serif-header); text-transform: uppercase; font-size: 0.95rem; color: var(--pigment-terracotta);">Phonetic Alignment Analysis</h5>
+            <p style="margin: 0; font-size: 0.95rem;" id="name-synergy-prose">Analyzing name resonance...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 5: Biorhythm & Timeline Overlaps -->
+      <div class="module-card">
+        <div class="module-header">
+          Biorhythm & Timeline Overlaps
+        </div>
+        <div class="prose-container">
+          <p>
+            We compare the chronobiological sine waves of both entities, checking the physical, emotional, and intellectual cycle alignment at the current timing horizon, as well as transit overlaps.
+          </p>
+          <div style="border: 1px solid #D6CEBE; padding: 1.25rem; border-radius: 4px; background-color: rgba(247, 241, 225, 0.25); margin: 1.5rem 0;">
+            <h5 style="margin: 0 0 0.5rem 0; font-family: var(--font-serif-header); text-transform: uppercase; font-size: 0.95rem; color: var(--pigment-terracotta); text-align: center;">Overlapping Cycle Sync</h5>
+            <div class="pei-container" style="border: none; padding-top: 0.5rem; margin-top: 0.5rem;">
+              <!-- Physical Column -->
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                <div id="lbl-physical" style="font-family: var(--font-serif-header); font-size: 0.85rem; letter-spacing: 2px; color: var(--pigment-terracotta); text-transform: uppercase; font-weight: bold;">PHYSICAL</div>
+                <div class="gauge-wrapper">
+                  <svg width="100%" height="100%" viewBox="0 0 100 100" style="overflow: visible;">
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#F4EFE6" stroke-width="8" />
+                    <circle id="gauge-physical" cx="50" cy="50" r="40" fill="none" stroke="var(--pigment-terracotta)" stroke-width="8"
+                            stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" transform="rotate(-90 50 50)" style="transition: stroke-dashoffset 0.8s ease-out;" />
+                  </svg>
+                  <div id="sync-physical" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: var(--font-serif-body); font-size: 1.6rem; font-weight: bold; color: var(--pigment-terracotta);">0%</div>
+                </div>
+              </div>
+
+              <!-- Emotional Column -->
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                <div id="lbl-emotional" style="font-family: var(--font-serif-header); font-size: 0.85rem; letter-spacing: 2px; color: var(--pigment-saffron); text-transform: uppercase; font-weight: bold;">EMOTIONAL</div>
+                <div class="gauge-wrapper">
+                  <svg width="100%" height="100%" viewBox="0 0 100 100" style="overflow: visible;">
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#F4EFE6" stroke-width="8" />
+                    <circle id="gauge-emotional" cx="50" cy="50" r="40" fill="none" stroke="var(--pigment-saffron)" stroke-width="8"
+                            stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" transform="rotate(-90 50 50)" style="transition: stroke-dashoffset 0.8s ease-out;" />
+                  </svg>
+                  <div id="sync-emotional" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: var(--font-serif-body); font-size: 1.6rem; font-weight: bold; color: var(--pigment-saffron);">0%</div>
+                </div>
+              </div>
+
+              <!-- Intellectual Column -->
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                <div id="lbl-intellectual" style="font-family: var(--font-serif-header); font-size: 0.85rem; letter-spacing: 2px; color: var(--pigment-lapis); text-transform: uppercase; font-weight: bold;">INTELLECTUAL</div>
+                <div class="gauge-wrapper">
+                  <svg width="100%" height="100%" viewBox="0 0 100 100" style="overflow: visible;">
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#F4EFE6" stroke-width="8" />
+                    <circle id="gauge-intellectual" cx="50" cy="50" r="40" fill="none" stroke="var(--pigment-lapis)" stroke-width="8"
+                            stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" transform="rotate(-90 50 50)" style="transition: stroke-dashoffset 0.8s ease-out;" />
+                  </svg>
+                  <div id="sync-intellectual" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: var(--font-serif-body); font-size: 1.6rem; font-weight: bold; color: var(--pigment-lapis);">0%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p id="timeline-sync-prose">
+            Calculating biorhythm overlaps...
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 6: Combined Remedial Playbook -->
+      <div class="module-card">
+        <div style="border-bottom: 1px solid var(--border-container); padding-bottom: 0.5rem; margin-bottom: 1rem;">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin: 0; text-transform: uppercase; letter-spacing: 1px;">Combined Remedial Playbook</h3>
+          <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faded); text-transform: uppercase; margin: 2px 0 0 0; letter-spacing: 1px;">Tactical & Psycho-structural Action Protocols</p>
+        </div>
+        <div class="prose-container">
+          <p style="margin-top: 0;">
+            Every relationship carries specific growth challenges. This playbook details tactical, psycho-structural, and conversational remedies to mitigate friction and channel composite energies constructively.
+          </p>
+          <div class="remedy-card">
+            <h5>Constructive Friction Management</h5>
+            <p id="remedial-conflict-prose">Establishing conflict practices...</p>
+          </div>
+          <div class="remedy-card" style="border-left-color: var(--pigment-cinnabar);">
+            <h5>Structural Relational Grounding</h5>
+            <p>Pair barefoot earth grounding with shared, non-verbal breath synchronization intervals. Face each other in silent attentional synchronization for three minutes, aligning breath cycles to calm nervous systems.</p>
+          </div>
+          <div class="remedy-card" style="border-left-color: var(--pigment-moss);">
+            <h5>Shared Space / Feng Shui Alignment</h5>
+            <p>In collaborative workspaces, establish clean, open passages in the East and South-West zones. Clear away old folders and clutter to allow clear conceptual communication.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top: 2rem; margin-bottom: 3rem;">
+      <details style="cursor: pointer; outline: none;">
+        <summary class="explore-summary">
+          <span class="explore-title-main">Click to Explore</span>
+          <span class="explore-title-sub">Understanding Relationship Compatibility</span>
+        </summary>
+        <div class="accordion-inner-border" style="cursor: default; margin-top: 1rem; background-color: var(--bg-vellum-warm); border: var(--border-container); padding: 1.5rem 1.75rem; position: relative; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04); border-radius: 4px;">
+          <div style="position: relative; z-index: 2;">
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">The Vedic Ashta Koota Matching System</h4>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 1.5rem;">For over two millennia, Indian astrological science has utilized the <strong>Ashta Koota</strong> framework to map structural compatibility between dual nativities. Built upon the position of the Moon within the 27 stellar Nakshatras, this system evaluates eight independent structural dimensions (Kootas) totaling 36 points (Bindus). Ranging from <strong>Vashya</strong> (magnetic draw, 2 points) and <strong>Yoni</strong> (physical instinct and temperament matching, 4 points) to <strong>Bhakoot</strong> (mutual emotional waves, 7 points) and <strong>Nadi</strong> (essential interactional health, 8 points), the score isolates points of systemic friction. A score of 18 is considered the minimum baseline for healthy partnership alignment, while scores above 24 indicate exceptional structural harmony. This module calibrates a customized representation using name seed letter mappings to isolate harmony coefficients.</p>
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">Concentric Biorhythm Radar Intersections</h4>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 0;">In addition to ancient sound coordinate checks, modern analytical compatibility benefits from mapping overlapping biological wave profiles. By calculating the physical (23-day), emotional (28-day), and intellectual (33-day) wave coordinates of both partners for a target date, we generate a polar concentric map. Where the terracotta polygon of Partner A and the lapis polygon of Partner B overlap extensively, high environmental synchronization exists. Complete overlays are rare and not necessarily ideal; secondary friction and complementary offsets are vital structural dynamics that encourage individual growth and long-term relational resilience.</p>
+            
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- Honest Framing Disclaimer Box -->
+    <style>
+      .disclaimer-hi { display: none; }
+      body.lang-hi .disclaimer-en { display: none !important; }
+      body.lang-hi .disclaimer-hi { display: block !important; }
+    </style>
+    
+    <div class="disclaimer-en" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        DISCLAIMER
+      </h4>
+      <p style="margin: 0; text-align: justify;">
+        This report is an interpretive analytical framework intended solely for reflective and informational purposes. It is not a predictive, diagnostic, clinical, financial, legal, medical, psychological or professional advisory instrument, and should not be relied upon as definitive guidance for decisions, actions, or outcomes. The original application has been developed in English. Certain translated versions may utilize automated translation tools, including Google Translate. While reasonable efforts have been made to preserve contextual accuracy, no responsibility is accepted for translation inaccuracies, omissions, interpretive variations, or linguistic ambiguities arising from translated content. In the event of any inconsistency or ambiguity, the English version shall prevail.
+      </p>
+    </div>
+
+    <div class="disclaimer-hi notranslate" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        अस्वीकरण
+      </h4>
+      <p style="margin: 0; text-align: justify; color: var(--ink-faded); font-style: italic;">
+        यह रिपोर्ट केवल विचारात्मक एवं सूचनात्मक उद्देश्य हेतु निर्मित एक व्याख्यात्मक विश्लेषणात्मक ढांचा है। यह कोई भविष्यवाणी, निदान, नैदानिक, वित्तीय, कानूनी, चिकित्सीय, मनोवैज्ञानिक अथवा पेशेवर परामर्श का उपकरण नहीं है, और इसे निर्णयों, कार्यों या परिणामों के लिए अंतिम मार्गदर्शन के रूप में नहीं माना जाना चाहिए। मूल अनुप्रयोग अंग्रेज़ी भाषा में विकसित किया गया है। कुछ अनुवादित संस्करणों में Google Translate सहित स्वचालित अनुवाद उपकरणों का उपयोग किया जा सकता है। यद्यपि संदर्भगत शुद्धता बनाए रखने का यथासंभव प्रयास किया गया है, तथापि अनुवाद संबंधी त्रुटियों, चूकों, अर्थ-व्याख्या में भिन्नताओं या भाषाई अस्पष्टताओं के लिए कोई उत्तरदायित्व स्वीकार नहीं किया जाता। किसी भी असंगति या अस्पष्टता की स्थिति में अंग्रेज़ी संस्करण को ही मान्य माना जाएगा।
+      </p>
+    </div>
+    <!-- Resonance / Feedback Link -->
+    <div style="text-align: center; margin: 1.5rem auto 2rem auto; font-family: var(--font-mono); font-size: 0.8rem; max-width: 1100px; width: calc(100% - 24px);">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEYjLsqRjRRR0FZEPq384iGrpL6rZfrEQHEbcYQ9pz5ERzlg/viewform" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar); letter-spacing: 1px; font-weight: bold; transition: all 0.2s ease; padding-bottom: 2px;">
+        ✦ SHARE YOUR RESONANCE (ANONYMOUS SUGGESTIONS) ✦
+      </a>
+    </div>
+
+  </div>
+
+    <footer class="notranslate">
+    <div class="footer-content">
+      <p>ANTARA CROSS-CULTURAL INTERIOR PANORAMA</p>
+      <p class="font-mono">SYSTEM LOG: COMPATIBILITY SCAN CORE v1.8.0 • 2026</p>
+    </div>
+  </footer>
+
+  
+  <script>
+    // Clean up local storage persona names dynamically to wipe out old cached test personas
+    try {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (localStorage.getItem(key) === 'Ankur Gupta') {
+                localStorage.setItem(key, 'Antara Gupta');
+            }
+        }
+    } catch (e) {
+        console.warn("localStorage persona migration restricted:", e);
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, function(tag) {
+        var chars = {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        };
+        return chars[tag] || tag;
+      });
+    }
+
+    // Initialize language inheritance from local storage
+    let preferredLang = localStorage.getItem('antara_preferred_language') || 'EN';
+    if (window.location.hash === '#HI' || window.location.search.includes('lang=HI')) {
+        preferredLang = 'HI';
+        localStorage.setItem('antara_preferred_language', 'HI');
+    } else if (window.location.hash === '#EN' || window.location.search.includes('lang=EN')) {
+        preferredLang = 'EN';
+        localStorage.setItem('antara_preferred_language', 'EN');
+    }
+    if (preferredLang === 'HI') {
+        document.body.classList.add('lang-hi');
+        
+        // 1. Force the Google Translate hash parameter if not present
+        if (!window.location.hash.includes('googtrans')) {
+            window.location.hash = 'googtrans(en|hi)';
+        }
+        
+        // 2. Set googtrans cookie to persist
+        document.cookie = "googtrans=/en/hi; path=/";
+        
+        // 3. Create absolute HTTPS Google Translate container and script
+        const gtDiv = document.createElement('div');
+        gtDiv.id = 'google_translate_element';
+        gtDiv.style.position = 'fixed';
+        gtDiv.style.bottom = '15px';
+        gtDiv.style.right = '15px';
+        gtDiv.style.zIndex = '99999';
+        gtDiv.style.background = '#FFFDF9';
+        gtDiv.style.border = '1px solid #D6CEBE';
+        gtDiv.style.borderRadius = '20px';
+        gtDiv.style.padding = '3px 10px';
+        gtDiv.style.boxShadow = '0 3px 10px rgba(0,0,0,0.06)';
+        gtDiv.style.display = 'inline-flex';
+        gtDiv.style.alignItems = 'center';
+        gtDiv.style.gap = '6px';
+        gtDiv.innerHTML = '<span style="font-family:\'Cinzel\', serif; font-size:0.68rem; color:#9E3A33; font-weight:bold; letter-spacing:0.5px;">ANTARA TRANSLATE</span>';
+        document.body.appendChild(gtDiv);
+
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: true
+            }, 'google_translate_element');
+        };
+
+        const gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript';
+        gtScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        document.head.appendChild(gtScript);
+    } else if (preferredLang === 'EN') {
+        if (window.location.hash.includes('googtrans')) {
+            window.location.hash = '';
+        }
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+
+    function safeGetItem(key) {
+      try { return localStorage.getItem(key); } 
+      catch (e) { console.warn("safeGetItem failed for", key, e); return null; }
+    }
+    function safeSetItem(key, val) {
+      try { localStorage.setItem(key, val); } 
+      catch (e) { console.warn("safeSetItem failed for", key, e); }
+    }
+
+    const zodiacSigns = [
+      "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
+      "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"
+    ];
+
+    const elementMap = {
+      "Aries": "Fire", "Leo": "Fire", "Sagittarius": "Fire",
+      "Taurus": "Earth", "Virgo": "Earth", "Capricorn": "Earth",
+      "Gemini": "Air", "Libra": "Air", "Aquarius": "Air",
+      "Cancer": "Water", "Scorpio": "Water", "Pisces": "Water"
+    };
+
+    const colorMap = {
+      "Fire": "var(--pigment-cinnabar)",
+      "Earth": "var(--pigment-gold)",
+      "Air": "var(--pigment-lapis)",
+      "Water": "var(--pigment-moss)"
+    };
+
+    const chaldeanLetterVals = {
+      'A': 1, 'I': 1, 'J': 1, 'Q': 1, 'Y': 1, 'B': 2, 'K': 2, 'R': 2,
+      'C': 3, 'G': 3, 'L': 3, 'S': 3, 'D': 4, 'M': 4, 'T': 4, 'E': 5,
+      'H': 5, 'N': 5, 'X': 5, 'U': 6, 'V': 6, 'W': 6, 'O': 7, 'Z': 7,
+      'F': 8, 'P': 8
+    };
+
+    const baziDMMap = ["Wood", "Fire", "Earth", "Metal", "Water"];
+
+    function hashString(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      return Math.abs(hash);
+    }
+
+    function calculatePlacements(dobStr, timeStr, keyPrefix) {
+      const seed = hashString(dobStr + "synastry" + timeStr + keyPrefix);
+      const sun = (seed % 360);
+      const moon = ((seed * 7 + 105) % 360);
+      const asc = ((seed * 13 + 45) % 360);
+      const venus = ((sun + (seed % 48) - 24 + 360) % 360);
+      const mars = ((seed * 3 + 80) % 360);
+      const saturn = ((seed * 9 + 220) % 360);
+      const dm = baziDMMap[seed % 5];
+      return { sun, moon, asc, venus, mars, saturn, dm, seed };
+    }
+
+    function getZodiacName(deg) {
+      const idx = Math.floor(deg / 30) % 12;
+      const rem = Math.floor(deg % 30);
+      return `${zodiacSigns[idx]} ${rem}°`;
+    }
+
+    function getSignName(deg) {
+      return zodiacSigns[Math.floor(deg / 30) % 12];
+    }
+
+    function getMidpoint(deg1, deg2) {
+      let diff = Math.abs(deg1 - deg2) % 360;
+      let mid = (deg1 + deg2) / 2;
+      if (diff > 180) {
+        mid = (mid + 180) % 360;
+      }
+      return mid;
+    }
+
+    function getChaldeanNameVal(name) {
+      const letters = name.toUpperCase().replace(/[^A-Z]/g, '').split('');
+      let total = 0;
+      letters.forEach(c => {
+        total += (chaldeanLetterVals[c] || 0);
+      });
+      return total === 0 ? 5 : ((total - 1) % 9) + 1;
+    }
+
+    function populateClockSelectors(hrId, minId) {
+      const hrSelect = document.getElementById(hrId);
+      const minSelect = document.getElementById(minId);
+      if (!hrSelect || !minSelect) return;
+      hrSelect.innerHTML = '';
+      minSelect.innerHTML = '';
+      for (let h = 1; h <= 12; h++) {
+        const opt = document.createElement('option');
+        const displayH = h < 10 ? '0' + h : h;
+        opt.value = displayH;
+        opt.innerText = displayH;
+        hrSelect.appendChild(opt);
+      }
+      for (let m = 0; m < 60; m++) {
+        const opt = document.createElement('option');
+        const displayM = m < 10 ? '0' + m : m;
+        opt.value = displayM;
+        opt.innerText = displayM;
+        minSelect.appendChild(opt);
+      }
+    }
+
+    function updateSynastry() {
+      const nameA = document.getElementById('input-name-a').value.trim() || "Entity A";
+      const dobA = document.getElementById('input-dob-a').value;
+      let hrA = parseInt(document.getElementById('input-time-hour-a').value) || 10;
+      const minA = document.getElementById('input-time-minute-a').value || "04";
+      const ampmA = document.getElementById('input-time-ampm-a').value || "AM";
+
+      if (ampmA === "PM" && hrA < 12) hrA += 12;
+      if (ampmA === "AM" && hrA === 12) hrA = 0;
+      const hrStrA = hrA < 10 ? '0' + hrA : hrA;
+      const timeStrA = `${hrStrA}:${minA}`;
+
+      const nameB = document.getElementById('input-name-b').value.trim() || "Entity B";
+      const dobB = document.getElementById('input-dob-b').value;
+      let hrB = parseInt(document.getElementById('input-time-hour-b').value) || 10;
+      const minB = document.getElementById('input-time-minute-b').value || "04";
+      const ampmB = document.getElementById('input-time-ampm-b').value || "AM";
+
+      if (ampmB === "PM" && hrB < 12) hrB += 12;
+      if (ampmB === "AM" && hrB === 12) hrB = 0;
+      const hrStrB = hrB < 10 ? '0' + hrB : hrB;
+      const timeStrB = `${hrStrB}:${minB}`;
+
+      // Save to local storage
+      safeSetItem('antara_user_name', nameA);
+      safeSetItem('antara_user_dob', dobA);
+      safeSetItem('antara_user_tob_hour', document.getElementById('input-time-hour-a').value);
+      safeSetItem('antara_user_tob_minute', document.getElementById('input-time-minute-a').value);
+      safeSetItem('antara_user_tob_ampm', ampmA);
+
+      safeSetItem('antara_user_name_b', nameB);
+      safeSetItem('antara_user_dob_b', dobB);
+      safeSetItem('antara_user_tob_hour_b', document.getElementById('input-time-hour-b').value);
+      safeSetItem('antara_user_tob_minute_b', document.getElementById('input-time-minute-b').value);
+      safeSetItem('antara_user_tob_ampm_b', ampmB);
+
+      // Title
+      const titleEl = document.querySelector('.master-report-title');
+      if (titleEl) {
+        titleEl.innerHTML = `Synastry & Composite Compatibility<br>For ${escapeHTML(nameA)} & ${escapeHTML(nameB)}`;
+      }
+
+      if (!dobA || !timeStrA || !dobB || !timeStrB) return;
+
+      const pA = calculatePlacements(dobA, timeStrA, "A");
+      const pB = calculatePlacements(dobB, timeStrB, "B");
+
+      const compSun = getMidpoint(pA.sun, pB.sun);
+      const compMoon = getMidpoint(pA.moon, pB.moon);
+      const compAsc = getMidpoint(pA.asc, pB.asc);
+      const compVenus = getMidpoint(pA.venus, pB.venus);
+      const compMars = getMidpoint(pA.mars, pB.mars);
+      const compSaturn = getMidpoint(pA.saturn, pB.saturn);
+
+      // Display Comparison table
+      const tbody = document.getElementById('comparison-table-body');
+      tbody.innerHTML = `
+        <tr>
+          <td><strong>Sun (☀️) Focus</strong></td>
+          <td>${getZodiacName(pA.sun)}</td>
+          <td>${getZodiacName(pB.sun)}</td>
+          <td><strong>${getZodiacName(compSun)}</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Moon (🌙) Emotion</strong></td>
+          <td>${getZodiacName(pA.moon)}</td>
+          <td>${getZodiacName(pB.moon)}</td>
+          <td><strong>${getZodiacName(compMoon)}</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Ascendant (ASC) interface</strong></td>
+          <td>${getZodiacName(pA.asc)}</td>
+          <td>${getZodiacName(pB.asc)}</td>
+          <td><strong>${getZodiacName(compAsc)}</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Venus (♀️) Union</strong></td>
+          <td>${getZodiacName(pA.venus)}</td>
+          <td>${getZodiacName(pB.venus)}</td>
+          <td><strong>${getZodiacName(compVenus)}</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Mars (♂️) Drive</strong></td>
+          <td>${getZodiacName(pA.mars)}</td>
+          <td>${getZodiacName(pB.mars)}</td>
+          <td><strong>${getZodiacName(compMars)}</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Saturn (♄) Structure</strong></td>
+          <td>${getZodiacName(pA.saturn)}</td>
+          <td>${getZodiacName(pB.saturn)}</td>
+          <td><strong>${getZodiacName(compSaturn)}</strong></td>
+        </tr>
+      `;
+
+      // Composite Focus stat
+      const compSunSign = getSignName(compSun);
+      const compSunElem = elementMap[compSunSign];
+      document.getElementById('stat-composite-element').innerText = compSunElem.toUpperCase();
+      document.getElementById('stat-composite-element').style.color = colorMap[compSunElem];
+
+      // Synastry Aspects count (Module 1 contacts)
+      const contactsList = document.getElementById('synastry-contacts-list');
+      contactsList.innerHTML = '';
+      let aspectsCount = 0;
+
+      const pairs = [
+        { label: `${nameA}'s Sun and ${nameB}'s Moon`, degA: pA.sun, degB: pB.moon, role: "Sun-Moon connection, governing conscious and subconscious coordination." },
+        { label: `${nameA}'s Moon and ${nameB}'s Ascendant`, degA: pA.moon, degB: pB.asc, role: "Moon-Ascendant bond, highlighting intuitive trust and baseline ease." },
+        { label: `${nameA}'s Venus and ${nameB}'s Mars`, degA: pA.venus, degB: pB.mars, role: "Venus-Mars alignment, driving relational attraction and active synergy." },
+        { label: `${nameA}'s Saturn and ${nameB}'s Sun`, degA: pA.saturn, degB: pB.sun, role: "Saturn-Sun contact, providing structural commitment and functional guidance." }
+      ];
+
+      pairs.forEach(pair => {
+        let diff = Math.abs(pair.degA - pair.degB) % 360;
+        if (diff > 180) diff = 360 - diff;
+
+        let aspectName = "";
+        if (Math.abs(diff - 0) <= 8) aspectName = "Conjunction (0°)";
+        else if (Math.abs(diff - 90) <= 8) aspectName = "Square (90°)";
+        else if (Math.abs(diff - 120) <= 8) aspectName = "Trine (120°)";
+        else if (Math.abs(diff - 180) <= 8) aspectName = "Opposition (180°)";
+
+        if (aspectName) {
+          const li = document.createElement('li');
+          li.innerHTML = `<strong>${pair.label}</strong> forms a <strong>${aspectName}</strong> alignment: ${pair.role}`;
+          contactsList.appendChild(li);
+          aspectsCount++;
+        }
+      });
+
+      if (aspectsCount === 0) {
+        contactsList.innerHTML = `<li>No primary tight aspect cords active between primary coordinates. A silent, self-directed partnership flow is indicated.</li>`;
+      }
+      document.getElementById('stat-synastry-aspects').innerText = aspectsCount;
+
+      let synProse = `Evaluating overlays shows that ${nameA}'s placements superimpose on ${nameB}'s houses to create `;
+      if (aspectsCount > 2) {
+        synProse += `a high-density aspectual matrix. This indicates a robust, highly active alignment where daily choices, plans, and long-term values are constantly intersecting, providing substantial interactive momentum.`;
+      } else {
+        synProse += `a stable, independent alignment structure. This supports maximum personal space and autonomy, allowing both parties to pursue individual work while cooperating without emotional friction.`;
+      }
+      document.getElementById('synastry-prose-summary').innerHTML = synProse;
+
+      // Composite Midpoints (Module 2)
+      document.getElementById('composite-sun-text').innerHTML = `
+        Your relationship's core purpose resides at the composite midpoint degree of <strong>${getZodiacName(compSun)} in ${compSunSign} (${compSunElem} element)</strong>. This coordinate maps the central theme of your alliance—the core vitality and primary direction that your merged entity is designed to express.
+      `;
+      document.getElementById('composite-saturn-text').innerHTML = `
+        Your relationship's structural framework sits at <strong>${getZodiacName(compSaturn)} (${elementMap[getSignName(compSaturn)]} element)</strong>. Saturn represents the structural glue, providing the boundaries, longevity, and administrative capability needed to turn your shared concepts into stable realities.
+      `;
+
+      let compProse = `This midpoint configuration indicates that your shared entity functions as a `;
+      if (compSunElem === "Earth" || compSunElem === "Water") {
+        compProse += `<strong>Reflective, Grounded Alliance</strong>. The core drive is orienting toward consolidation, practical security, material outcomes, and shared emotional trust. It excels in methodical, long-range planning.`;
+      } else {
+        compProse += `<strong>Expressive, Conceptual Alliance</strong>. The core drive maps toward bold creative ventures, conceptual projects, expansion of mental horizons, and continuous social engagement. It is best optimized for pioneering steps.`;
+      }
+      document.getElementById('composite-prose-summary').innerHTML = compProse;
+
+      // BaZi Day Master Resonance (Module 3)
+      document.getElementById('bazi-dm-a').innerText = pA.dm.toUpperCase();
+      document.getElementById('bazi-dm-b').innerText = pB.dm.toUpperCase();
+
+      const generating = {
+        "Wood": "Fire", "Fire": "Earth", "Earth": "Metal", "Metal": "Water", "Water": "Wood"
+      };
+      const controlling = {
+        "Wood": "Earth", "Earth": "Water", "Water": "Fire", "Fire": "Metal", "Metal": "Wood"
+      };
+
+      let dmSynergy = "INDEPENDENT FLOW";
+      let dmProse = "";
+
+      if (generating[pA.dm] === pB.dm) {
+        dmSynergy = "SUPPORTIVE GENERATION";
+        dmProse = `Your Day Masters form a supportive generation cycle: ${nameA}'s ${pA.dm} fuels and nourishes ${nameB}'s ${pB.dm}. This ensures a fluid relationship where help, ideas, and structural fuel flow easily without draining Entity A's energies.`;
+      } else if (generating[pB.dm] === pA.dm) {
+        dmSynergy = "SUPPORTIVE GENERATION";
+        dmProse = `Your Day Masters form a supportive generation cycle: ${nameB}'s ${pB.dm} fuels and nourishes ${nameA}'s ${pA.dm}. This creates an intuitive supportive flow, where Entity B acts as a natural resource anchor and conceptual fuel source for Entity A.`;
+      } else if (controlling[pA.dm] === pB.dm) {
+        dmSynergy = "SYSTEMIC REGULATION";
+        dmProse = `Your Day Masters form a controlling/regulating dynamic: ${nameA}'s ${pA.dm} regulates ${nameB}'s ${pB.dm}. This introduced structural discipline, requiring Entity A to practice patient boundaries and Entity B to respect organizational constraints.`;
+      } else if (controlling[pB.dm] === pA.dm) {
+        dmSynergy = "SYSTEMIC REGULATION";
+        dmProse = `Your Day Masters form a controlling/regulating dynamic: ${nameB}'s ${pB.dm} regulates ${nameA}'s ${pA.dm}. This ensures that Entity B acts as a firm grounding authority, guiding Entity A's actions toward practical execution and institutional frameworks.`;
+      } else {
+        dmSynergy = "BALANCED HARMONY";
+        dmProse = `Your Day Masters occupy complementary elemental positions. This balance is highly collaborative, ensuring that neither entity controls or drains the other, allowing both to cooperate as equal peers.`;
+      }
+
+      document.getElementById('bazi-dm-synergy').innerText = dmSynergy;
+      document.getElementById('bazi-dm-prose').innerHTML = dmProse;
+
+      // Name Resonance (Module 4)
+      const numA = getChaldeanNameVal(nameA);
+      const numB = getChaldeanNameVal(nameB);
+      const nameSyncPct = Math.round((100 - (Math.abs(numA - numB) * 11)) % 100);
+      document.getElementById('stat-name-resonance').innerText = nameSyncPct + "%";
+
+      let nameProse = `Your names reduce to Chaldean frequencies of <strong>${numA}</strong> and <strong>${numB}</strong> respectively, yielding a phonetic resonance score of <strong>${nameSyncPct}%</strong>. `;
+      if (nameSyncPct >= 75) {
+        nameProse += `This exceptionally high score reveals a Shared Vocal Harmony. When your names are spoken together, their sound vibrations connect fluidly, generating instant rapport, mutual trust, and clear communication under pressure.`;
+      } else if (nameSyncPct >= 45) {
+        nameProse += `This score maps a Moderate Vocal Balance. Your frequencies connect constructively, though they require both parties to practice deliberate communication, active listening, and clear verbal agreements.`;
+      } else {
+        nameProse += `This maps a Complementary Contrast pattern. Your name sounds operate at different, highly distinct frequencies. This is excellent for partners who manage separate divisions or functions, as it prevents overlapping tasks and maintains clean, individual roles.`;
+      }
+      document.getElementById('name-synergy-prose').innerHTML = nameProse;
+
+      // Biorhythms & Timeline Sync (Module 5)
+      const diffMs = Math.abs(new Date(dobA) - new Date(dobB));
+      const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+      
+      const syncPhys = Math.round(Math.abs(Math.cos((diffDays % 23) * 2 * Math.PI / 23)) * 100);
+      const syncEmo = Math.round(Math.abs(Math.cos((diffDays % 28) * 2 * Math.PI / 28)) * 100);
+      const syncIntel = Math.round(Math.abs(Math.cos((diffDays % 33) * 2 * Math.PI / 33)) * 100);
+
+      document.getElementById('sync-physical').innerText = syncPhys + "%";
+      document.getElementById('sync-emotional').innerText = syncEmo + "%";
+      document.getElementById('sync-intellectual').innerText = syncIntel + "%";
+
+      // Update top labels to follow the exact reduced copy format
+      document.getElementById('lbl-physical').innerText = "PHYSICAL : " + syncPhys + "%";
+      document.getElementById('lbl-emotional').innerText = "EMOTIONAL : " + syncEmo + "%";
+      document.getElementById('lbl-intellectual').innerText = "INTELLECTUAL : " + syncIntel + "%";
+
+      // Update circle completion gauges on Module 5
+      const circ = 2 * Math.PI * 40; // 251.2
+      const gPhys = document.getElementById('gauge-physical');
+      const gEmo = document.getElementById('gauge-emotional');
+      const gIntel = document.getElementById('gauge-intellectual');
+      if (gPhys) gPhys.setAttribute('stroke-dashoffset', circ * (1 - syncPhys / 100));
+      if (gEmo) gEmo.setAttribute('stroke-dashoffset', circ * (1 - syncEmo / 100));
+      if (gIntel) gIntel.setAttribute('stroke-dashoffset', circ * (1 - syncIntel / 100));
+
+      let timeProse = `Analyzing your chronobiological sine waves reveals an overall cycle synchronicity. `;
+      if (syncIntel > 65) {
+        timeProse += `Your high <strong>Intellectual cycle alignment (${syncIntel}%)</strong> ensures that conceptual alignment, joint brainstorming, and business strategies flow with ease. `;
+      } else {
+        timeProse += `Your distinct intellectual frequencies suggest that joint strategies benefit from detailed, written task lists to avoid conceptual misalignment. `;
+      }
+
+      if (syncEmo > 65) {
+        timeProse += `Additionally, a synchronized <strong>Emotional cycle (${syncEmo}%)</strong> supports intuitive empathy, making it easy to remain unified during intense developmental transits.`;
+      } else {
+        timeProse += `The emotional cycle difference indicates that restrained personal boundaries and individual rest cycles are required to avoid draining each other's vitality.`;
+      }
+      document.getElementById('timeline-sync-prose').innerHTML = timeProse;
+
+      // Combined Remedial Playbook (Module 6)
+      let conflictProse = `To constructively manage friction, establish a <strong>Shared Strategic Pause</strong> protocol. `;
+      if (dmSynergy.includes("REGULATION")) {
+        conflictProse += `Given the regulating dynamic between your Day Masters, prioritize strict administrative boundaries. Entity A manages strategic planning, while Entity B controls financial execution, keeping reviews brief and structured to eliminate micro-management.`;
+      } else {
+        conflictProse += `Given your peer-like elemental flow, focus on weekly collaborative reviews. Avoid unspoken frustrations by scheduling a weekly 30-minute structured check-in, keeping communication direct and document-based.`;
+      }
+      document.getElementById('remedial-conflict-prose').innerHTML = conflictProse;
+
+      // Render circular SVG wheel with interactive wedges and floating element badges
+      const sectorsGroup = document.getElementById('synastry-dividers');
+      sectorsGroup.innerHTML = '';
+
+      for (let i = 0; i < 12; i++) {
+        // Transparent wedge path for hover
+        const r1 = 115;
+        const r2 = 145;
+        const a1 = (i * 30) * Math.PI / 180;
+        const a2 = ((i + 1) * 30) * Math.PI / 180;
+        
+        const x1a = 180 + r1 * Math.cos(a1);
+        const y1a = 180 + r1 * Math.sin(a1);
+        const x2a = 180 + r2 * Math.cos(a1);
+        const y2a = 180 + r2 * Math.sin(a1);
+        const x2b = 180 + r2 * Math.cos(a2);
+        const y2b = 180 + r2 * Math.sin(a2);
+        const x1b = 180 + r1 * Math.cos(a2);
+        const y1b = 180 + r1 * Math.sin(a2);
+        
+        const pathData = `M ${x1a} ${y1a} L ${x2a} ${y2a} A ${r2} ${r2} 0 0 1 ${x2b} ${y2b} L ${x1b} ${y1b} A ${r1} ${r1} 0 0 0 ${x1a} ${y1a} Z`;
+        
+        const wedge = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        wedge.setAttribute('d', pathData);
+        wedge.setAttribute('fill', 'rgba(0, 0, 0, 0)');
+        wedge.setAttribute('stroke', 'none');
+        wedge.style.cursor = 'pointer';
+        wedge.style.pointerEvents = 'all';
+        wedge.style.transition = 'fill 0.25s ease, opacity 0.25s ease';
+        
+        const signName = zodiacSigns[i];
+        const elem = elementMap[signName];
+        const color = colorMap[elem];
+        
+        sectorsGroup.appendChild(wedge);
+
+        // Divider lines
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', 180 + 85 * Math.cos(a1));
+        line.setAttribute('y1', 180 + 85 * Math.sin(a1));
+        line.setAttribute('x2', x2a);
+        line.setAttribute('y2', y2a);
+        line.setAttribute('stroke', '#EADEC9');
+        line.setAttribute('stroke-width', '1.25');
+        line.setAttribute('stroke-dasharray', '2,2');
+        sectorsGroup.appendChild(line);
+
+        const textAngle = (i * 30 + 15) * Math.PI / 180;
+        const xText = 180 + 130 * Math.cos(textAngle);
+        const yText = 180 + 130 * Math.sin(textAngle);
+        const rotDeg = i * 30 + 15 + 90;
+
+        // Group container for label
+        const labelGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        labelGroup.setAttribute('transform', `translate(${xText}, ${yText}) rotate(${rotDeg})`);
+        labelGroup.style.pointerEvents = 'none';
+
+        const textNode = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        textNode.setAttribute('x', '0');
+        textNode.setAttribute('y', '3.5');
+        textNode.setAttribute('font-family', 'Cinzel');
+        textNode.setAttribute('font-size', '8.5');
+        textNode.setAttribute('font-weight', 'bold');
+        textNode.setAttribute('fill', color);
+        textNode.setAttribute('text-anchor', 'middle');
+        textNode.textContent = signName.toUpperCase();
+        labelGroup.appendChild(textNode);
+        sectorsGroup.appendChild(labelGroup);
+
+        // Solid element badge rect OUTSIDE the outer circle
+        const rBadge = 165;
+        const xBadge = 180 + rBadge * Math.cos(textAngle);
+        const yBadge = 180 + rBadge * Math.sin(textAngle);
+
+        const badgeGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        badgeGroup.setAttribute('transform', `translate(${xBadge}, ${yBadge}) rotate(${rotDeg})`);
+        badgeGroup.style.pointerEvents = 'none';
+        badgeGroup.style.opacity = '0';
+        badgeGroup.style.transition = 'opacity 0.2s ease';
+
+        const badgeRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        badgeRect.setAttribute('x', '-28');
+        badgeRect.setAttribute('y', '-9');
+        badgeRect.setAttribute('width', '56');
+        badgeRect.setAttribute('height', '18');
+        badgeRect.setAttribute('rx', '3');
+        badgeRect.setAttribute('fill', color);
+        badgeGroup.appendChild(badgeRect);
+
+        const badgeText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        badgeText.setAttribute('x', '0');
+        badgeText.setAttribute('y', '3.5');
+        badgeText.setAttribute('font-family', 'var(--font-mono)');
+        badgeText.setAttribute('font-size', '9.5');
+        badgeText.setAttribute('font-weight', 'bold');
+        badgeText.setAttribute('fill', '#ffffff');
+        badgeText.setAttribute('text-anchor', 'middle');
+        badgeText.textContent = elem.toUpperCase();
+        badgeGroup.appendChild(badgeText);
+        sectorsGroup.appendChild(badgeGroup);
+
+        // Hover events
+        wedge.addEventListener('mouseenter', () => {
+          wedge.setAttribute('fill', 'rgba(217, 130, 54, 0.04)');
+          badgeGroup.style.opacity = '1';
+          document.getElementById('wheel-hover-info').innerHTML = `
+            <span style="color:${color}; font-weight:bold; font-family: var(--font-serif-header);">${signName.toUpperCase()}</span> &mdash; 
+            <span style="color:${color}; font-weight:bold; letter-spacing: 1.5px; font-family: var(--font-mono);">${elem.toUpperCase()} ELEMENT</span>
+          `;
+        });
+        
+        wedge.addEventListener('mouseleave', () => {
+          wedge.setAttribute('fill', 'rgba(0, 0, 0, 0)');
+          badgeGroup.style.opacity = '0';
+          document.getElementById('wheel-hover-info').innerHTML = 'Hover over outer constellations to identify their element';
+        });
+      }
+
+      // Draw active planet nodes with transitions
+      const elementsGroup = document.getElementById('synastry-elements');
+      elementsGroup.innerHTML = '';
+
+      // Entity A placements (Outer Saffron Ring)
+      const renderingItemsA = [
+        { label: "☀️ A", pos: pA.sun, color: "var(--pigment-cinnabar)" },
+        { label: "🌙 A", pos: pA.moon, color: "var(--pigment-saffron)" },
+        { label: "ASC A", pos: pA.asc, color: "var(--pigment-gold)" }
+      ];
+
+      renderingItemsA.forEach(item => {
+        const angle = (item.pos - 90) * Math.PI / 180;
+        const radius = 125;
+        const x = 180 + radius * Math.cos(angle);
+        const y = 180 + radius * Math.sin(angle);
+
+        // Node dot
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', '6');
+        circle.setAttribute('class', 'synastry-node');
+        circle.setAttribute('fill', item.color);
+        circle.setAttribute('stroke', '#ffffff');
+        circle.setAttribute('stroke-width', '1.5');
+        elementsGroup.appendChild(circle);
+
+        // Text
+        const tag = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        tag.setAttribute('x', 180 + 138 * Math.cos(angle));
+        tag.setAttribute('y', 180 + 138 * Math.sin(angle) + 3);
+        tag.setAttribute('font-family', 'Courier Prime');
+        tag.setAttribute('font-weight', 'bold');
+        tag.setAttribute('font-size', '9');
+        tag.setAttribute('text-anchor', 'middle');
+        tag.setAttribute('fill', item.color);
+        tag.textContent = item.label;
+        elementsGroup.appendChild(tag);
+      });
+
+      // Entity B placements (Inner Lapis Ring)
+      const renderingItemsB = [
+        { label: "☀️ B", pos: pB.sun, color: "var(--pigment-lapis)" },
+        { label: "🌙 B", pos: pB.moon, color: "var(--pigment-moss)" },
+        { label: "ASC B", pos: pB.asc, color: "var(--pigment-terracotta)" }
+      ];
+
+      renderingItemsB.forEach(item => {
+        const angle = (item.pos - 90) * Math.PI / 180;
+        const radius = 95;
+        const x = 180 + radius * Math.cos(angle);
+        const y = 180 + radius * Math.sin(angle);
+
+        // Node dot
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', '6');
+        circle.setAttribute('class', 'synastry-node');
+        circle.setAttribute('fill', item.color);
+        circle.setAttribute('stroke', '#ffffff');
+        circle.setAttribute('stroke-width', '1.5');
+        elementsGroup.appendChild(circle);
+
+        // Text
+        const tag = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        tag.setAttribute('x', 180 + 72 * Math.cos(angle));
+        tag.setAttribute('y', 180 + 72 * Math.sin(angle) + 4);
+        tag.setAttribute('font-family', 'Courier Prime');
+        tag.setAttribute('font-weight', 'bold');
+        tag.setAttribute('font-size', '9');
+        tag.setAttribute('text-anchor', 'middle');
+        tag.setAttribute('fill', item.color);
+        tag.textContent = item.label;
+        elementsGroup.appendChild(tag);
+      });
+    }
+
+    // Dynamic auto-recalculations on change
+    const triggerIds = [
+      'input-name-a', 'input-dob-a', 'input-time-hour-a', 'input-time-minute-a', 'input-time-ampm-a', 'input-location-a',
+      'input-name-b', 'input-dob-b', 'input-time-hour-b', 'input-time-minute-b', 'input-time-ampm-b', 'input-location-b'
+    ];
+
+    triggerIds.forEach(id => {
+      document.getElementById(id).addEventListener('change', updateSynastry);
+      if (id.includes('name') || id.includes('location')) {
+        document.getElementById(id).addEventListener('input', updateSynastry);
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      populateClockSelectors('input-time-hour-a', 'input-time-minute-a');
+      populateClockSelectors('input-time-hour-b', 'input-time-minute-b');
+
+      // Load Entity A
+      const nameA = safeGetItem('antara_user_name');
+      if (nameA) document.getElementById('input-name-a').value = nameA;
+
+      const dobA = safeGetItem('antara_user_dob');
+      if (dobA) document.getElementById('input-dob-a').value = dobA;
+
+      const savedTobHourA = safeGetItem('antara_user_tob_hour');
+      const savedTobMinA = safeGetItem('antara_user_tob_minute');
+      const savedTobAmPmA = safeGetItem('antara_user_tob_ampm');
+
+      if (savedTobHourA) document.getElementById('input-time-hour-a').value = savedTobHourA;
+      else document.getElementById('input-time-hour-a').value = "10";
+      
+      if (savedTobMinA) document.getElementById('input-time-minute-a').value = savedTobMinA;
+      else document.getElementById('input-time-minute-a').value = "04";
+      
+      if (savedTobAmPmA) document.getElementById('input-time-ampm-a').value = savedTobAmPmA;
+      else document.getElementById('input-time-ampm-a').value = "AM";
+
+      // Load Entity B
+      const nameB = safeGetItem('antara_user_name_b');
+      if (nameB) document.getElementById('input-name-b').value = nameB;
+
+      const dobB = safeGetItem('antara_user_dob_b');
+      if (dobB) document.getElementById('input-dob-b').value = dobB;
+
+      const savedTobHourB = safeGetItem('antara_user_tob_hour_b');
+      const savedTobMinB = safeGetItem('antara_user_tob_minute_b');
+      const savedTobAmPmB = safeGetItem('antara_user_tob_ampm_b');
+
+      if (savedTobHourB) document.getElementById('input-time-hour-b').value = savedTobHourB;
+      else document.getElementById('input-time-hour-b').value = "08";
+      
+      if (savedTobMinB) document.getElementById('input-time-minute-b').value = savedTobMinB;
+      else document.getElementById('input-time-minute-b').value = "30";
+      
+      if (savedTobAmPmB) document.getElementById('input-time-ampm-b').value = savedTobAmPmB;
+      else document.getElementById('input-time-ampm-b').value = "PM";
+
+      updateSynastry();
+    });
+  </script>
+</body>
+</html>

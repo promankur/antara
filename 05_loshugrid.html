@@ -1,0 +1,2797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lo Shu Energy Grid | AG_Antara Cross-Cultural Interior Panorama</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================
+       1. Design Tokens & Root Variables
+       ========================================== */
+    :root {
+      --bg-vellum: #FDFBF7; 
+      --bg-vellum-warm: #FFFFFF; 
+      --ink-archival: #2B2A28;
+      --ink-faded: #76726A;
+      --border-container: 1px solid #D6CEBE;
+      --stroke: #b56a2a;
+      
+      /* Fonts */
+      --font-serif-header: 'Cinzel', serif;
+      --font-serif-body: 'Playfair Display', serif;
+      --font-mono: 'Courier Prime', monospace;
+      
+      /* Historical & Regional Pigments */
+      --pigment-terracotta: #A65B4A;
+      --pigment-saffron: #D98236;
+      --pigment-cinnabar: #9E3A33;
+      --pigment-lapis: #3C5A80;
+    }
+
+    /* Custom Webkit Scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-vellum-warm);
+      border-left: var(--border-container);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--ink-faded);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--ink-archival);
+    }
+
+    /* ==========================================
+       2. Global Styles & Typography
+       ========================================== */
+
+    /* Accordion body text — force normal reading font, no small-caps */
+    details p, details td, details li {
+      font-variant: normal !important;
+      font-family: var(--font-serif-body) !important;
+      text-transform: none !important;
+    }
+
+    body {
+      background-color: var(--bg-vellum);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 17px;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-serif-header);
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 0;
+      color: var(--ink-archival);
+    }
+
+    .font-mono {
+      font-family: var(--font-mono);
+    }
+
+    /* ==========================================
+       3. Structural Layout & Responsive Toggles
+       ========================================== */
+    .container {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto 2rem auto;
+      padding: 0 12px;
+      box-sizing: border-box;
+    }
+
+    .grid, .insights-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .container {
+        width: 90%;
+        padding: 0 1rem;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 360px 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+      .insights-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        align-items: start;
+      }
+    }
+
+    /* ==========================================
+       4. Premium Containers & Card Overrides
+       ========================================== */
+    .archival-card {
+      background-color: var(--bg-vellum-warm);
+      border: var(--border-container);
+      padding: 1rem 1.25rem;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04);
+    }
+
+    @media (min-width: 600px) {
+      .archival-card {
+        padding: 1.25rem 1.5rem;
+      }
+    }
+
+    .manuscript-card {
+      background-color: var(--bg-vellum-warm);
+      border: var(--border-container);
+      border-left: 8px solid var(--pigment-cinnabar);
+      padding: 1rem 1.25rem;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04);
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 600px) {
+      .manuscript-card {
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 1.25rem;
+      }
+    }
+
+    /* inner double-border removed — breathing space preferred */
+
+    .profile-display-row {
+      margin-bottom: 0.85rem;
+      font-size: 0.95rem;
+    }
+
+    .profile-display-row strong {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-faded);
+      display: block;
+      letter-spacing: 1px;
+    }
+
+    /* ==========================================
+       5. The Lo Shu 3x3 Grid & Specificity
+       ========================================== */
+    .loshu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 1rem auto;
+      max-width: 320px;
+      width: 100%;
+    }
+
+    @media (min-width: 600px) {
+      .loshu-grid {
+        gap: 12px;
+        margin: 1.5rem auto;
+        max-width: 360px;
+      }
+    }
+
+    .grid-cell {
+      border: var(--border-container);
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 6px;
+      position: relative;
+      cursor: help;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      border-radius: 4px;
+    }
+
+    /* Core Architectural Color Preservation Rules with Staggered Activation Entry */
+    .grid-cell {
+      animation: cellLoadFade 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) both;
+    }
+    #grid-4 { animation-delay: 0.05s; }
+    #grid-9 { animation-delay: 0.10s; }
+    #grid-2 { animation-delay: 0.15s; }
+    #grid-3 { animation-delay: 0.20s; }
+    #grid-5 { animation-delay: 0.25s; }
+    #grid-7 { animation-delay: 0.30s; }
+    #grid-8 { animation-delay: 0.35s; }
+    #grid-1 { animation-delay: 0.40s; }
+    #grid-6 { animation-delay: 0.45s; }
+
+    @keyframes cellLoadFade {
+      0% { opacity: 0; transform: translateY(12px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Pseudo-element backgrounds for interleaving vector lines */
+    .grid-cell::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      border-radius: 4px;
+      pointer-events: none;
+      transition: background-color 0.3s ease;
+    }
+
+    body .loshu-grid .cell-wood::before { background-color: #E3ECE4 !important; }
+    body .loshu-grid .cell-fire::before { background-color: #F0E4E2 !important; }
+    body .loshu-grid .cell-earth::before { background-color: #EADEC9 !important; }
+    body .loshu-grid .cell-metal::before { background-color: #E8EAE6 !important; }
+    body .loshu-grid .cell-water::before { background-color: #E3E8EE !important; }
+
+    /* Interpretive Heat Mapping Core Colors */
+    body .loshu-grid .grid-cell.active.freq-single::before {
+        background-color: rgba(255, 242, 230, 0.75) !important;
+    }
+    body .loshu-grid .grid-cell.active.freq-single {
+        border: 1.5px solid rgba(217, 130, 54, 0.7) !important;
+    }
+    
+    body .loshu-grid .grid-cell.active.freq-repeated::before {
+        background-color: rgba(255, 230, 204, 0.95) !important;
+    }
+    body .loshu-grid .grid-cell.active.freq-repeated {
+        border: 2px solid rgba(217, 130, 54, 0.9) !important;
+        box-shadow: 0 4px 10px rgba(217, 130, 54, 0.08) !important;
+    }
+    
+    body .loshu-grid .grid-cell.active.freq-dominant::before {
+        background-color: #FFF2E6 !important;
+    }
+    body .loshu-grid .grid-cell.active.freq-dominant {
+        border: 2.5px solid var(--pigment-cinnabar) !important;
+        /* Run both entrance fade and dominant pulse animations in parallel with custom delays */
+        animation-name: cellLoadFade, dominantPulse;
+        animation-duration: 0.6s, 2s;
+        animation-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1), ease-in-out;
+        animation-iteration-count: 1, infinite;
+        animation-fill-mode: both, none;
+    }
+
+    @keyframes dominantPulse {
+      0%, 100% { box-shadow: 0 0 10px rgba(158, 58, 51, 0.35); }
+      50% { box-shadow: 0 0 18px rgba(158, 58, 51, 0.65); }
+    }
+
+    /* Soft Elemental Hover Glows */
+    .grid-cell {
+      transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .grid-cell.cell-wood:hover {
+      transform: scale(1.06) !important;
+      border-color: #558B6E !important;
+      box-shadow: 0 6px 20px rgba(143, 185, 150, 0.45) !important;
+      z-index: 10;
+    }
+    .grid-cell.cell-fire:hover {
+      transform: scale(1.06) !important;
+      border-color: #C14949 !important;
+      box-shadow: 0 6px 20px rgba(224, 122, 95, 0.45) !important;
+      z-index: 10;
+    }
+    .grid-cell.cell-earth:hover {
+      transform: scale(1.06) !important;
+      border-color: #8E4A21 !important;
+      box-shadow: 0 6px 20px rgba(217, 130, 54, 0.45) !important;
+      z-index: 10;
+    }
+    .grid-cell.cell-metal:hover {
+      transform: scale(1.06) !important;
+      border-color: #6C757D !important;
+      box-shadow: 0 6px 20px rgba(173, 181, 189, 0.45) !important;
+      z-index: 10;
+    }
+    .grid-cell.cell-water:hover {
+      transform: scale(1.06) !important;
+      border-color: #2D5D7B !important;
+      box-shadow: 0 6px 20px rgba(78, 137, 174, 0.45) !important;
+      z-index: 10;
+    }
+
+    .grid-cell.tapped-highlight {
+      border-color: var(--pigment-cinnabar) !important;
+      box-shadow: 0 0 15px rgba(158, 58, 51, 0.45) !important;
+      transform: scale(1.03) !important;
+      z-index: 9;
+    }
+
+    .cell-element {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: bold;
+      color: var(--ink-faded);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .cell-value {
+      font-family: var(--font-serif-header);
+      font-size: 1.8rem;
+      position: relative;
+      z-index: 3;
+    }
+
+    /* Subtle active number pulse */
+    @keyframes activeNumberPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+
+    .cell-number-active {
+      color: #9E3A33 !important;
+      font-weight: 700;
+      font-size: 2rem;
+      display: none;
+      transform: scale(0.9);
+      transition: transform 0.4s ease;
+    }
+
+    .grid-cell.active .cell-number-active {
+      animation: activeNumberPulse 3.5s ease-in-out infinite;
+      text-shadow: 0 0 6px #FFF2E6, 0 0 6px #FFF2E6, 0 0 10px #FFF2E6;
+    }
+    
+    .grid-cell.active .cell-element {
+      text-shadow: 0 0 5px #FFF2E6, 0 0 5px #FFF2E6;
+    }
+
+    .grid-cell .cell-number-active.visible {
+      display: inline-block !important;
+      transform: scale(1) !important;
+    }
+
+    .cell-number-inactive {
+      color: var(--ink-faded) !important;
+      font-weight: normal !important;
+      opacity: 0.25 !important;
+      font-size: 1.8rem !important;
+      font-family: var(--font-serif-header) !important;
+      display: inline-block;
+    }
+
+    .grid-cell .cell-number-inactive.hidden {
+      display: none !important;
+    }
+
+    /* SVG Energy Flow Tracing Keyframe */
+    @keyframes energyFlow {
+      0% { stroke-dashoffset: 50; }
+      100% { stroke-dashoffset: 0; }
+    }
+
+    @keyframes pulsePrompt {
+      0%, 100% { opacity: 0.75; }
+      50% { opacity: 1; }
+    }
+
+    /* Mobile tab selector and progressive disclosure elements */
+    #planes-tab-nav {
+      display: none;
+    }
+
+    /* Planes of Existence Layout */
+    .planes-flex-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .plane-sub-card {
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    /* Global containers for Dynamic Sections (Mobile First) */
+    .remedies-grid-container,
+    .careers-directions-container,
+    .amplifications-voids-container,
+    .personal-year-grid-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    @media (max-width: 767px) {
+      #planes-tab-nav {
+        display: flex !important;
+        justify-content: space-around;
+        gap: 0.25rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid #D6CEBE;
+        padding-bottom: 0.25rem;
+      }
+      .plane-tab {
+        background: none;
+        border: none;
+        font-family: var(--font-serif-header);
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--ink-faded);
+        cursor: pointer;
+        padding: 0.5rem 0.75rem;
+        position: relative;
+        transition: color 0.3s ease;
+      }
+      .plane-tab.active {
+        color: var(--pigment-cinnabar);
+      }
+      .plane-tab.active::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background-color: var(--pigment-cinnabar);
+        border-radius: 2px;
+      }
+      .plane-sub-card {
+        display: none !important; /* Hide all by default on mobile tabs */
+      }
+      .plane-sub-card.active-tab {
+        display: block !important; /* Show active tab card */
+      }
+      .reveal-guidance-btn {
+        display: block !important;
+        background: rgba(217, 130, 54, 0.05);
+        border: 1px solid rgba(217, 130, 54, 0.25);
+        color: var(--pigment-cinnabar);
+        font-family: var(--font-serif-header);
+        font-size: 0.85rem;
+        padding: 0.6rem 1rem;
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-top: 0.75rem;
+        transition: all 0.2s ease;
+      }
+      .reveal-guidance-btn:hover {
+        background: rgba(217, 130, 54, 0.1);
+      }
+      .plane-guidance-box {
+        display: none; /* Collapsed by default on mobile */
+        margin-top: 0.75rem;
+        transition: all 0.3s ease;
+      }
+      .plane-guidance-box.visible {
+        display: block !important;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .planes-flex-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1.5rem;
+        align-items: start;
+      }
+      .plane-sub-card {
+        display: block !important;
+        border-right: 1px dashed var(--border-container);
+        padding-right: 1.25rem;
+      }
+      .plane-sub-card:last-child {
+        border-right: none;
+        padding-right: 0;
+      }
+      
+      /* New grid and flex containers for Section D & Section C */
+      .remedies-grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .careers-directions-container, .amplifications-voids-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        align-items: start;
+      }
+      .personal-year-grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+        align-items: start;
+      }
+      .careers-directions-container .plane-sub-card, .amplifications-voids-container .plane-sub-card {
+        display: block !important;
+        border-right: 1px dashed var(--border-container);
+        padding-right: 1.5rem;
+      }
+      .careers-directions-container .plane-sub-card:last-child, .amplifications-voids-container .plane-sub-card:last-child {
+        border-right: none;
+        padding-right: 0;
+      }
+      
+      .reveal-guidance-btn {
+        display: block !important;
+        background: rgba(217, 130, 54, 0.05);
+        border: 1px solid rgba(217, 130, 54, 0.25);
+        color: var(--pigment-cinnabar);
+        font-family: var(--font-serif-header);
+        font-size: 0.85rem;
+        padding: 0.6rem 1rem;
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-top: 0.75rem;
+        transition: all 0.2s ease;
+      }
+      .reveal-guidance-btn:hover {
+        background: rgba(217, 130, 54, 0.1);
+      }
+      .plane-guidance-box {
+        display: none; /* Collapsed by default */
+        margin-top: 0.75rem;
+        transition: all 0.3s ease;
+      }
+      .plane-guidance-box.visible {
+        display: block !important;
+      }
+    }
+
+
+    /* ==========================================
+       6. Progress Bar Components
+       ========================================== */
+    .progress-bar-container { margin: 1rem 0; }
+    .custom-progress-track { height: 10px; background-color: #E6DBBE; border: 1px solid var(--ink-faded); position: relative; overflow: hidden; }
+    .custom-progress-fill { height: 100%; width: 0%; background-color: var(--pigment-cinnabar); transition: width 0.8s ease; }
+    .custom-progress-fill.completed { background: linear-gradient(90deg, #9E3A33 0%, #D98236 50%, #9E3A33 100%); background-size: 200% auto; animation: goldShimmer 2s linear infinite; }
+    @keyframes goldShimmer { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+    .progress-ticks { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faded); margin-top: 4px; }
+    .detail-banner { margin-top: 1.5rem; border-left: 4px solid var(--pigment-saffron); padding-left: 1.25rem; }
+    .banner-title { font-family: var(--font-serif-header); font-size: 1.15rem; margin-bottom: 0.25rem; }
+    .banner-subtitle { font-size: 0.75rem; font-weight: bold; color: var(--pigment-saffron); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.75rem; }
+
+    /* ==========================================
+       7. Unified Master Branding Standards
+       ========================================== */
+    /* Header Standardized Branding & Typography */
+    .header-logo { 
+      text-align: center; 
+      margin: 20px 0 8px 0; 
+    }
+    .system-tagline { 
+      font-family: 'Courier New', Courier, monospace !important; 
+      font-weight: 700 !important; 
+      font-size: 13px !important; 
+      letter-spacing: 5px !important; 
+      color: #A6A29A !important; 
+      text-transform: uppercase !important; 
+      text-align: center !important; 
+      margin: 0 0 24px 0 !important; 
+      line-height: 1.2 !important;
+    }
+    .master-report-title { 
+      font-family: 'Cinzel', serif !important; 
+      font-size: 2.25rem !important; 
+      font-variant: small-caps !important; 
+      font-weight: 700 !important; 
+      letter-spacing: 2px !important; 
+      color: #2B2A28 !important; 
+      text-align: center !important; 
+      margin: 0 0 14px 0 !important; 
+      line-height: 1.3 !important; 
+    }
+    .master-report-byline { 
+      font-family: 'Playfair Display', serif !important; 
+      font-size: 1.15rem !important; 
+      color: #D98236 !important; 
+      text-align: center !important; 
+      max-width: 800px !important; 
+      margin: 0 auto 32px auto !important; 
+      padding: 0 12px !important; 
+      line-height: 1.5 !important; 
+    }
+    
+    .archival-btn {
+      width: 100%;
+      background-color: var(--pigment-terracotta);
+      color: var(--bg-vellum);
+      border: 1px solid var(--pigment-terracotta);
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      padding: 0.85rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      text-transform: uppercase;
+    }
+
+    /* Section A: Core Identity Mirror Styles */
+    .identity-mirror-card {
+      background-color: var(--bg-vellum-warm);
+      border: 2px solid var(--pigment-saffron);
+      border-radius: 6px;
+      padding: 1.5rem;
+      position: relative;
+      box-shadow: 0 8px 24px rgba(217, 130, 54, 0.06);
+      margin-bottom: 2rem;
+      box-sizing: border-box;
+    }
+    .identity-mirror-card::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      right: 6px;
+      bottom: 6px;
+      border: 1px double var(--pigment-saffron);
+      pointer-events: none;
+      border-radius: 4px;
+    }
+    .signature-para {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      text-align: justify;
+      font-style: italic;
+      color: var(--ink-archival);
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    .mirror-grid-cols {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    @media (min-width: 768px) {
+      .mirror-grid-cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: start;
+      }
+    }
+    .mirror-mini-card {
+      border-left: 4px solid var(--pigment-cinnabar);
+      padding-left: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .mirror-mini-card-title {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--ink-faded);
+      margin-bottom: 4px;
+    }
+    .mirror-mini-card-val {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink-archival);
+      line-height: 1.4;
+    }
+    .human-truth-quote {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #9E3A33; /* Cinnabar Red quote */
+      font-weight: bold;
+      padding: 0.65rem 1.05rem;
+      border-left: 2px solid var(--pigment-saffron);
+      background: rgba(244, 235, 212, 0.15);
+      margin-bottom: 0.5rem;
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* Premium Click to Explore Accordion Styles */
+    .explore-summary {
+      font-family: var(--font-serif-header);
+      background-color: #D35400; /* Vibrant Brand Saffron */
+      color: #FFFFFF !important;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.85rem 1.25rem; /* Elegant compact height */
+      border: 1px solid #8E4A21; /* Cinnamon brand structural frame */
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 12px rgba(211, 84, 0, 0.12);
+      line-height: 1.35;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .explore-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .explore-summary::before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px double rgba(255, 255, 255, 0.45); /* Elegant double border in reverse white */
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .explore-summary:hover {
+      background-color: #E65C00; /* Slightly brighter warm saffron on hover */
+      box-shadow: 0 6px 18px rgba(211, 84, 0, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .explore-summary:hover::before {
+      border-color: rgba(255, 255, 255, 0.7);
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+    }
+
+    .explore-summary:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(211, 84, 0, 0.15);
+    }
+
+    .explore-summary .explore-title-main {
+      font-variant: small-caps;
+      font-size: 1.05rem; /* Compact size */
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: none; /* Crucial for small-caps */
+      position: relative;
+      z-index: 2;
+    }
+
+    .explore-summary .explore-title-sub {
+      font-family: var(--font-serif-body);
+      font-size: 1.25rem; /* Bold italic font matching user mock */
+      font-weight: 700;
+      font-style: italic;
+      margin-top: 3px;
+      letter-spacing: 0.5px;
+      color: #FFFFFF !important;
+      position: relative;
+      z-index: 2;
+    }
+
+    .accordion-inner-border {
+      position: relative;
+    }
+
+    .accordion-inner-border::before {
+      content: "";
+      position: absolute;
+      top: 6px; left: 6px; right: 6px; bottom: 6px;
+      border: 1px double #D6CEBE;
+      pointer-events: none;
+      border-radius: 3px;
+    }
+
+    /* Horizontal Reveal Buttons Row & Responsive Panels */
+    .reveal-buttons-row {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      margin: 2.5rem auto 1.5rem auto;
+      box-sizing: border-box;
+    }
+
+    @media (min-width: 900px) {
+      .reveal-buttons-row {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 1.25rem;
+        max-width: 1100px;
+      }
+    }
+
+    /* Individual Reveal Button (Premium Soft Amber Tint) */
+    .reveal-btn {
+      font-family: var(--font-serif-header);
+      background-color: #FAF4E8; /* Soft light vellum cream/saffron background tint */
+      color: #9E3A33 !important; /* Deep saffron/cinnamon text for premium readability */
+      border: 1px solid #E6D0BA; /* Softer, light cinnamon border */
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(211, 84, 0, 0.04);
+      line-height: 1.35;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    @media (min-width: 900px) {
+      .reveal-btn {
+        width: 32%; /* Approximately 30% of the page width */
+      }
+    }
+
+    .reveal-btn::before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+      border: 1px double rgba(158, 58, 51, 0.25); /* Subtle double border frame in deep cinnamon */
+      pointer-events: none;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .reveal-btn:hover {
+      background-color: #F3E6D0; /* Richer soft tint on hover */
+      border-color: #D6CEBE;
+      box-shadow: 0 4px 12px rgba(158, 58, 51, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .reveal-btn:hover::before {
+      border-color: rgba(158, 58, 51, 0.4);
+      top: 3px;
+      left: 3px;
+      right: 3px;
+      bottom: 3px;
+    }
+
+    .reveal-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 1px 4px rgba(158, 58, 51, 0.04);
+    }
+
+    /* Active State (When panel is expanded) */
+    .reveal-btn.active {
+      background-color: #EEDCBE; /* Warm, deeply grounded beige when active */
+      border-color: #C28B61;
+      box-shadow: inset 0 2px 6px rgba(158, 58, 51, 0.06);
+    }
+
+    .reveal-btn.active::before {
+      border-color: rgba(158, 58, 51, 0.55);
+    }
+
+    /* Button Text Styles */
+    .reveal-btn .reveal-title-main {
+      font-variant: small-caps;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: none;
+      margin-bottom: 2px;
+      color: #9E3A33;
+    }
+
+    .reveal-btn .reveal-title-sub {
+      font-family: var(--font-serif-body);
+      font-size: 0.85rem;
+      font-weight: normal;
+      font-style: italic;
+      color: var(--ink-faded);
+      letter-spacing: 0.2px;
+    }
+
+    /* Content Panels */
+    .reveal-panel {
+      display: none;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 2rem;
+      animation: fadeInReveal 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    }
+
+    .reveal-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeInReveal {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* Readability & Prose Container */
+    .prose-container {
+      max-width: 78ch;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+    
+    /* Section summaries */
+    .section-summary-text {
+      font-family: var(--font-serif-body);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--ink-faded);
+      margin: 0.25rem auto 1.25rem auto;
+      text-align: center !important;
+      display: block;
+      max-width: 78ch;
+      font-variant: normal !important;
+      text-transform: none !important;
+    }
+
+
+
+    /* Visual Rest Zones for mobile breathing room */
+    .visual-rest-zone {
+      margin-bottom: 2.5rem !important;
+    }
+
+    @media (max-width: 768px) {
+      .master-report-title {
+        font-size: 2.25rem !important;
+        letter-spacing: 1px !important;
+      }
+      .master-report-byline {
+        font-size: 0.95rem; !important;
+        margin-bottom: 20px !important;
+      }
+      .prose-container {
+        max-width: 100%;
+      }
+      /* Tap target optimizations */
+      .reveal-btn, .explore-summary, details summary, button, select, input {
+        min-height: 48px !important;
+        padding: 14px 18px !important;
+      }
+      /* Clean border presentation: Double border removal on mobile */
+      .reveal-btn::before, .explore-summary::before, .archival-card::before, .manuscript-card::before, .decorative-double-border {
+        display: none !important;
+      }
+      /* Micro-air padding changes for mobile */
+      .archival-card, .manuscript-card {
+        padding: 1.25rem !important;
+        box-shadow: none !important; /* Flat luxury aesthetic on mobile */
+      }
+      .visual-rest-zone {
+        margin-bottom: 2rem !important;
+      }
+    }
+
+
+  
+    /* Premium Left-Aligned Footer Override */
+    footer {
+      width: 100%;
+      padding: 2rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+      text-align: left;
+    }
+    .footer-content {
+      max-width: 1100px;
+      width: 100%;
+      padding: 0 16px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+    footer p {
+      font-family: var(--font-serif-body);
+      font-size: 0.82rem;
+      color: var(--ink-archival);
+      margin: 0.25rem 0;
+    }
+    footer p.font-mono {
+      font-family: var(--font-mono) !important;
+      font-size: 0.72rem !important;
+      color: var(--ink-faded) !important;
+    }
+
+  
+    /* ─── Reading Guide Grid (Tactile manuscript details) ─── */
+    .reading-guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .reading-guide-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+</style>
+  <meta name="description" content="Antara is a traditional cross-cultural mathematical life-engine and archetypal systems cartography. Calibrate your natal coordinates, biological rhythms, and name phonetic values across Vedic, Western tropical, and Chinese solar Four Pillars traditions.">
+  <link rel="icon" type="image/png" href="Antara Logo.png">
+</head>
+<body>
+
+
+
+  <div class="header-logo">
+    <a href="index.html" title="Return to Antara Dashboard" style="text-decoration: none; border: none; display: inline-block;">
+      <img src="Antara Logo.png" alt="ANTARA" style="max-height: 90px; width: auto;" onerror="this.style.display='none';">
+    </a>
+  </div>
+  <div class="system-tagline">Symbolic Identity System</div>
+
+  <h1 class="master-report-title">Lo Shu Energy Grid<br><span id="title-name">For The Nameless One</span></h1>
+  <p class="master-report-byline">Nine-Palace Grid & Core Drivers</p>
+
+  <div class="container">
+    <!-- Report Introduction (Borderless layout) -->
+    <div style="margin-bottom: 2.25rem; padding: 0.5rem 0;" class="visual-rest-zone">
+      <div class="prose-container">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-bottom: 1rem; color: var(--stroke); letter-spacing: 1px; text-transform: uppercase;">About This Report</h3>
+        <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+          This report maps your personal birth details to analyze your core temperament, execution vectors, and developmental blind spots through the nine-palace matrix.
+        </p>
+        <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+          Traced back to ancient Chinese numerical cosmology, the Lo Shu Grid maps your birth data into a dynamic nine-palace matrix. By parsing vector active alignments, elemental frequencies, and structural gaps, this scroll constructs a clear, personalized psychological mirror of your core motivations, natural strengths, and developmental blind spots.
+        </p>
+        <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+          This report analyzes the mathematical alignments of your birth details inside the Lo Shu matrix, evaluating the flow of wood, fire, earth, metal, and water frequencies. It identifies completed vector alignments (Arrows of Strength) and empty grids (Voids) to understand how different archetypal patterns influence your behavior.
+        </p>
+        <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">
+          People often use this grid as a reflective framework for self-improvement and emotional pacing. It provides practical remedies, careers, and optimal spatial directions to restore structural balance in daily life.
+        </p>
+      
+      <!-- Codex Support Navigation Panel -->
+      <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px dashed #D6CEBE; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="Help.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📖 Help
+        </a>
+        <a href="FAQ.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          ❓ FAQ
+        </a>
+        <a href="Glossary.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📓 Glossary
+        </a>
+      </div>
+      <!-- How to Read This Report (Reading Guide Block) -->
+      <div style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; border: 1px dashed #D6CEBE; background-color: rgba(247, 241, 225, 0.15); border-radius: 4px; box-shadow: 0 2px 8px rgba(43, 42, 40, 0.01);">
+        <h4 style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 1rem; text-align: center; border-bottom: 1px dashed #D6CEBE; padding-bottom: 0.4rem;">
+          How to Study This Document
+        </h4>
+        <div class="reading-guide-grid">
+          <!-- Point 1 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">1. Read the accordion sections one at a time.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">Each section expands when you click the title — do not try to read everything at once.</span>
+          </div>
+          <!-- Point 2 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">2. Look up unfamiliar terms</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">in the Antara Glossary (<a href="Glossary.html" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar);">Glossary.html</a> in this folder).</span>
+          </div>
+          <!-- Point 3 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">3. Start with the numbers that feel most familiar.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">In a Western chart, most people know their Sun sign. In Numerology, the Life Path is easiest.</span>
+          </div>
+          <!-- Point 4 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">4. Do not worry about understanding everything on the first read.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">These reports are meant to be returned to and studied over time.</span>
+          </div>
+        </div>
+      </div>
+
+</div>
+    </div>
+
+    <div class="grid">
+      
+      <div>
+        <div class="archival-card" style="margin-bottom: 1.5rem;">
+          <h3 style="font-size: 1.1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-bottom: 1.25rem;">Calibrated Profile</h3>
+          <div id="profile-display-panel">
+            <div class="profile-display-row"><strong>Full Name</strong><span id="lblDisplayName">Antara Gupta</span></div>
+            <div class="profile-display-row"><strong>Identity Vibration (Chaldean Root)</strong><span id="lblDisplayChaldean" class="font-mono" style="color: var(--pigment-cinnabar); font-weight: bold;">Calculating...</span></div>
+            <div class="profile-display-row"><strong>Date of Birth</strong><span id="lblDisplayDob">1953-05-16</span></div>
+            <div class="profile-display-row"><strong>Time of Birth</strong><span id="lblDisplayTob">10:04 AM</span></div>
+            <div class="profile-display-row"><strong>Calibrated Anchor</strong><span id="lblDisplayPob">Chakrata, Uttarakhand, India</span></div>
+          </div>
+          <button type="button" onclick="window.print();" class="archival-btn">Print Scroll</button>
+        </div>
+
+
+      </div>
+
+      <div>
+        <div class="archival-card" style="margin-bottom: 1.5rem; height: auto; box-sizing: border-box;">
+          <h3 style="font-size: 1.1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-bottom: 1.5rem; text-align: center;">The Lo Shu Matrix</h3>
+          
+          <div class="loshu-grid" style="position: relative;">
+            <div class="grid-cell cell-wood" id="grid-4" onmouseover="showCellDetails(4)" onmouseout="clearCellDetails()" onclick="handleCellTap(4)">
+              <div class="cell-element">Planner</div>
+              <div class="cell-value" id="cell-4"><span class="cell-number-inactive">4</span><span class="cell-number-active" style="display:none;">4</span></div>
+            </div>
+            <div class="grid-cell cell-fire" id="grid-9" onmouseover="showCellDetails(9)" onmouseout="clearCellDetails()" onclick="handleCellTap(9)">
+              <div class="cell-element">Visionary</div>
+              <div class="cell-value" id="cell-9"><span class="cell-number-inactive">9</span><span class="cell-number-active" style="display:none;">9</span></div>
+            </div>
+            <div class="grid-cell cell-earth" id="grid-2" onmouseover="showCellDetails(2)" onmouseout="clearCellDetails()" onclick="handleCellTap(2)">
+              <div class="cell-element">Connector</div>
+              <div class="cell-value" id="cell-2"><span class="cell-number-inactive">2</span><span class="cell-number-active" style="display:none;">2</span></div>
+            </div>
+            <div class="grid-cell cell-wood" id="grid-3" onmouseover="showCellDetails(3)" onmouseout="clearCellDetails()" onclick="handleCellTap(3)">
+              <div class="cell-element">Initiator</div>
+              <div class="cell-value" id="cell-3"><span class="cell-number-inactive">3</span><span class="cell-number-active" style="display:none;">3</span></div>
+            </div>
+            <div class="grid-cell cell-earth" id="grid-5" onmouseover="showCellDetails(5)" onmouseout="clearCellDetails()" onclick="handleCellTap(5)">
+              <div class="cell-element">Anchor</div>
+              <div class="cell-value" id="cell-5"><span class="cell-number-inactive">5</span><span class="cell-number-active" style="display:none;">5</span></div>
+            </div>
+            <div class="grid-cell cell-metal" id="grid-7" onmouseover="showCellDetails(7)" onmouseout="clearCellDetails()" onclick="handleCellTap(7)">
+              <div class="cell-element">Creator</div>
+              <div class="cell-value" id="cell-7"><span class="cell-number-inactive">7</span><span class="cell-number-active" style="display:none;">7</span></div>
+            </div>
+            <div class="grid-cell cell-earth" id="grid-8" onmouseover="showCellDetails(8)" onmouseout="clearCellDetails()" onclick="handleCellTap(8)">
+              <div class="cell-element">Seeker</div>
+              <div class="cell-value" id="cell-8"><span class="cell-number-inactive">8</span><span class="cell-number-active" style="display:none;">8</span></div>
+            </div>
+            <div class="grid-cell cell-water" id="grid-1" onmouseover="showCellDetails(1)" onmouseout="clearCellDetails()" onclick="handleCellTap(1)">
+              <div class="cell-element">Journeyer</div>
+              <div class="cell-value" id="cell-1"><span class="cell-number-inactive">1</span><span class="cell-number-active" style="display:none;">1</span></div>
+            </div>
+            <div class="grid-cell cell-metal" id="grid-6" onmouseover="showCellDetails(6)" onmouseout="clearCellDetails()" onclick="handleCellTap(6)">
+              <div class="cell-element">Supporter</div>
+              <div class="cell-value" id="cell-6"><span class="cell-number-inactive">6</span><span class="cell-number-active" style="display:none;">6</span></div>
+            </div>
+            
+            <!-- SVG Overlay for Arrows -->
+            <svg id="arrow-svg-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2;">
+               <defs>
+                  <filter id="glow-vector" x="-20%" y="-20%" width="140%" height="140%">
+                     <feGaussianBlur stdDeviation="4" result="blur" />
+                     <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                     </feMerge>
+                  </filter>
+               </defs>
+            </svg>
+          </div>
+
+          <!-- Interaction prompt displayed prominently below the grid -->
+          <div class="grid-interaction-prompt" style="text-align: center; margin: 1.25rem auto 0 auto; font-family: var(--font-mono); font-size: 0.78rem; color: var(--pigment-cinnabar); font-weight: bold; letter-spacing: 1px; text-transform: uppercase; animation: pulsePrompt 2.5s ease-in-out infinite;">
+             ✦ Click/tap individual cells to reveal their local properties ✦
+          </div>
+
+          <!-- Hover detail banner directly integrated inside the Lo Shu Grid card at the bottom -->
+          <div class="detail-banner" id="loshu-detail-banner" style="margin-top: 1.5rem; border-top: 1px dashed #D6CEBE; padding-top: 1.25rem;">
+            <div class="banner-title" id="banner-cell-name">Hover Over the Grid</div>
+            <div class="banner-subtitle font-mono" id="banner-cell-element">TO READ ITS COSMIC MEANING</div>
+            <div class="banner-desc" id="banner-cell-meaning">Columns, rows, and diagonals within this sacred square eternally sum to 15. Hover over individual cells to reveal their properties.</div>
+          </div>
+        </div>
+
+        <!-- Active Strengths (Full Arrows) Card positioned directly below Lo Shu Matrix in Column 2 -->
+        <div class="archival-card" style="margin-bottom: 0; box-sizing: border-box;">
+          <div style="border-bottom: 1px solid var(--border-container); padding-bottom: 0.5rem; margin-bottom: 1rem;">
+            <div style="font-family: var(--font-serif-header); font-size: 1.15rem; font-weight: 600;">Active Strengths (Full Arrows)</div>
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); text-transform: uppercase; letter-spacing: 1px;">Completed Vectors & Integrated Talents</div>
+          </div>
+          <div id="dyn-full-arrows" style="font-size: 0.95rem; line-height: 1.6;">Calculating completed vector arrows...</div>
+        </div>
+      </div>
+    </div> <!-- Close .grid container -->
+
+        <!-- SECTION A: Core Identity Snapshot -->
+    <div class="identity-mirror-card" id="identity-snapshot-section">
+      <div style="border-bottom: 1px solid var(--border-container); padding-bottom: 0.75rem; margin-bottom: 1.25rem; text-align: center;">
+        <h2 style="font-size: 1.35rem; margin-bottom: 0.25rem; color: var(--ink-archival); letter-spacing: 2px;">Core Identity Snapshot</h2>
+        <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase;">Your Psychological Mirror & Core Archetypes</div>
+      </div>
+      
+      <!-- Core Signature Paragraph -->
+      <div style="margin-bottom: 1.5rem; text-align: center;">
+        <p class="signature-para" id="dyn-core-signature" style="max-width: 900px; margin: 0 auto 1.5rem auto;">Calculating your core signature...</p>
+      </div>
+
+      <!-- Antara Human Translation Layer Centerpiece -->
+      <div style="background: rgba(244, 235, 212, 0.15); border: 1px solid var(--border-container); padding: 1.25rem; border-radius: 4px; margin-bottom: 1.75rem; position: relative;">
+        <div style="content: ''; position: absolute; top: 4px; left: 4px; right: 4px; bottom: 4px; border: 1px dashed rgba(217, 130, 54, 0.25); pointer-events: none; border-radius: 3px;"></div>
+        <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--pigment-cinnabar); font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; text-align: center;">✦ Antara Human Translation Layer ✦</div>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 0.75rem; font-size: 0.95rem; line-height: 1.5;">
+          <div style="text-align: center;">
+            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); text-transform: uppercase; display: block; letter-spacing: 1px;">Symbolic Pattern Vibration</span>
+            <strong id="dyn-symbolic-pattern" style="color: var(--ink-archival); font-size: 1.05rem;">Loading...</strong>
+          </div>
+          <div style="text-align: center; border-top: 1px dashed var(--border-container); padding-top: 0.75rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); text-transform: uppercase; display: block; letter-spacing: 1px;">Felt Human Recognition</span>
+            <span id="dyn-human-translation" style="font-style: italic; color: #9E3A33; font-weight: 600; font-size: 1.15rem; line-height: 1.4; display: block; margin-top: 2px;">“Loading...”</span>
+          </div>
+          <div style="text-align: center; border-top: 1px dashed var(--border-container); padding-top: 0.75rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); text-transform: uppercase; display: block; letter-spacing: 1px;">Growth Edge Navigation</span>
+            <strong id="dyn-growth-edge" style="color: var(--pigment-saffron); font-size: 1rem;">Loading...</strong>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Highlighted Insights Grid -->
+      <div class="mirror-grid-cols">
+        <div>
+          <div class="mirror-mini-card">
+            <div class="mirror-mini-card-title">Most Dominant Energy</div>
+            <div class="mirror-mini-card-val" id="dyn-dominant-energy">Loading...</div>
+          </div>
+          <div class="mirror-mini-card">
+            <div class="mirror-mini-card-title">Growth Lever</div>
+            <div class="mirror-mini-card-val" id="dyn-growth-lever">Loading...</div>
+          </div>
+          <div class="mirror-mini-card">
+            <div class="mirror-mini-card-title">People Experience You As</div>
+            <div class="mirror-mini-card-val" id="dyn-experience-as">Loading...</div>
+          </div>
+          <div class="mirror-mini-card">
+            <div class="mirror-mini-card-title">When Emotionally Overloaded</div>
+            <div class="mirror-mini-card-val" id="dyn-overloaded">Loading...</div>
+          </div>
+          <div class="mirror-mini-card">
+            <div class="mirror-mini-card-title">What Drains You Fastest</div>
+            <div class="mirror-mini-card-val" id="dyn-drains">Loading...</div>
+          </div>
+          <div class="mirror-mini-card">
+            <div class="mirror-mini-card-title">What Restores Your Energy</div>
+            <div class="mirror-mini-card-val" id="dyn-restores">Loading...</div>
+          </div>
+          <div class="mirror-mini-card">
+            <div class="mirror-mini-card-title">Your Hidden Default Pattern</div>
+            <div class="mirror-mini-card-val" id="dyn-hidden-default">Loading...</div>
+          </div>
+          <div class="mirror-mini-card">
+            <div class="mirror-mini-card-title">Optimal Working Environment</div>
+            <div class="mirror-mini-card-val" id="dyn-best-env">Loading...</div>
+          </div>
+        </div>
+        
+        <div>
+          <div style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink-faded); margin-bottom: 12px; border-bottom: 1px dashed var(--border-container); padding-bottom: 6px;">The Human Mirror • Screenshot-able Truths</div>
+          <div id="dyn-human-truths">
+            <div class="human-truth-quote">Loading your first personal truth...</div>
+            <div class="human-truth-quote">Loading your second personal truth...</div>
+            <div class="human-truth-quote">Loading your third personal truth...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Unified Planes of Existence Card (Full-Width) -->
+    <div class="manuscript-card" id="unified-planes-card" style="border-left: 8px solid var(--pigment-cinnabar); margin-top: 1rem; margin-bottom: 1.25rem; box-sizing: border-box;">
+      <h2 style="font-size: 1.35rem; margin-bottom: 1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; text-align: center;">Planes of Existence</h2>
+
+      <!-- Interactive tab nav bar for mobile progressive disclosure -->
+      <div id="planes-tab-nav">
+        <button class="plane-tab active" id="tab-mental" onclick="switchPlaneTab('mental')">Mental</button>
+        <button class="plane-tab" id="tab-emotional" onclick="switchPlaneTab('emotional')">Emotional</button>
+        <button class="plane-tab" id="tab-practical" onclick="switchPlaneTab('practical')">Practical</button>
+      </div>
+
+      <div class="planes-flex-container">
+        <div class="plane-sub-card active-tab" id="card-mental">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-container); padding-bottom: 0.5rem; margin-bottom: 1rem;">
+            <div>
+              <div style="font-family: var(--font-serif-header); font-size: 1.2rem; font-weight: 600;">Mental / Thought Plane</div>
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faded);">Numbers 4 - 9 - 2 • Intelligence</div>
+            </div>
+            <div class="font-mono" id="strength-val-mental" style="font-weight: bold; font-size: 1.15rem; color: var(--pigment-cinnabar);">0%</div>
+          </div>
+          <div class="progress-bar-container"><div class="custom-progress-track"><div class="custom-progress-fill" id="progress-fill-mental"></div></div></div>
+          <div id="analysis-text-mental" style="margin-bottom: 0.75rem; min-height: 40px; font-size: 0.95rem; line-height: 1.55; color: var(--ink-archival);">Awaiting entry...</div>
+          <div id="guidance-container-mental" style="font-size: 0.95rem; line-height: 1.5; color: #9E3A33; font-family: var(--font-serif-body);">
+            <strong>Action:</strong> <span id="guidance-text-mental">Awaiting birthdate analysis...</span>
+          </div>
+        </div>
+
+        <div class="plane-sub-card" id="card-emotional">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-container); padding-bottom: 0.5rem; margin-bottom: 1rem;">
+            <div>
+              <div style="font-family: var(--font-serif-header); font-size: 1.2rem; font-weight: 600;">Emotional / Soul Plane</div>
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faded);">Numbers 3 - 5 - 7 • Intuition</div>
+            </div>
+            <div class="font-mono" id="strength-val-emotional" style="font-weight: bold; font-size: 1.15rem; color: var(--pigment-cinnabar);">0%</div>
+          </div>
+          <div class="progress-bar-container"><div class="custom-progress-track"><div class="custom-progress-fill" id="progress-fill-emotional"></div></div></div>
+          <div id="analysis-text-emotional" style="margin-bottom: 0.75rem; min-height: 40px; font-size: 0.95rem; line-height: 1.55; color: var(--ink-archival);">Awaiting entry...</div>
+          <div id="guidance-container-emotional" style="font-size: 0.95rem; line-height: 1.5; color: #9E3A33; font-family: var(--font-serif-body);">
+            <strong>Action:</strong> <span id="guidance-text-emotional">Awaiting birthdate analysis...</span>
+          </div>
+        </div>
+
+        <div class="plane-sub-card" id="card-practical">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-container); padding-bottom: 0.5rem; margin-bottom: 1rem;">
+            <div>
+              <div style="font-family: var(--font-serif-header); font-size: 1.2rem; font-weight: 600;">Practical / Physical Plane</div>
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faded);">Numbers 8 - 1 - 6 • Action</div>
+            </div>
+            <div class="font-mono" id="strength-val-practical" style="font-weight: bold; font-size: 1.15rem; color: var(--pigment-cinnabar);">0%</div>
+          </div>
+          <div class="progress-bar-container"><div class="custom-progress-track"><div class="custom-progress-fill" id="progress-fill-practical"></div></div></div>
+          <div id="analysis-text-practical" style="margin-bottom: 0.75rem; min-height: 40px; font-size: 0.95rem; line-height: 1.55; color: var(--ink-archival);">Awaiting entry...</div>
+          <div id="guidance-container-practical" style="font-size: 0.95rem; line-height: 1.5; color: #9E3A33; font-family: var(--font-serif-body);">
+            <strong>Action:</strong> <span id="guidance-text-practical">Awaiting birthdate analysis...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Centered Reveal Accordions Column -->
+    <div class="reveal-sections-container">
+      
+      <!-- Horizontal Buttons Row -->
+      <div class="reveal-buttons-row">
+        <!-- Button C -->
+        <button class="reveal-btn" id="btn-reveal-c" onclick="toggleRevealSection('c')">
+          <span class="reveal-title-main">Amplifications & Voids</span>
+        </button>
+        
+        <!-- Button D -->
+        <button class="reveal-btn" id="btn-reveal-d" onclick="toggleRevealSection('d')">
+          <span class="reveal-title-main">Balance & Life Integration</span>
+        </button>
+        
+        <!-- Button E -->
+        <button class="reveal-btn" id="btn-reveal-e" onclick="toggleRevealSection('e')">
+          <span class="reveal-title-main">Your Personal Trend for 2026</span>
+        </button>
+      </div>
+
+      <!-- Content Panel C: Amplifications & Voids -->
+      <div class="reveal-panel" id="panel-reveal-c">
+        <div class="manuscript-card" style="border-left: 8px solid var(--pigment-cinnabar); margin-top: 1rem; margin-bottom: 0; box-sizing: border-box;">
+          <div class="prose-container">
+            <div style="border-bottom: 1px solid var(--border-container); padding-bottom: 0.5rem; margin-bottom: 1rem;">
+              <div style="font-family: var(--font-serif-header); font-size: 1.25rem; font-weight: 600;">Amplifications & Voids</div>
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faded);">Repeated Frequencies & Missing Energies</div>
+            </div>
+            
+            <div class="amplifications-voids-container">
+              <div class="plane-sub-card">
+                <h4 style="font-family: var(--font-serif-header); font-size: 1.05rem; color: var(--pigment-cinnabar); margin-top: 0; margin-bottom: 0.75rem; border-bottom: 1px dashed var(--border-container); padding-bottom: 6px;">Over-Amplified Energies</h4>
+                <div id="dyn-repeated-numbers" style="font-size: 0.95rem; line-height: 1.6;">Analyzing repeated frequencies...</div>
+              </div>
+        
+              <div class="plane-sub-card" style="border-right: none;">
+                <h4 style="font-family: var(--font-serif-header); font-size: 1.05rem; color: var(--pigment-cinnabar); margin-top: 0; margin-bottom: 0.75rem; border-bottom: 1px dashed var(--border-container); padding-bottom: 6px;">Life Blind Spots</h4>
+                <div id="dyn-missing-numbers" style="font-size: 0.95rem; line-height: 1.6;">Analyzing missing frequencies...</div>
+              </div>
+            </div>
+          </div> <!-- Close .prose-container -->
+        </div>
+      </div>
+
+      <!-- Content Panel D: Applied Balance & Life Integration -->
+      <div class="reveal-panel" id="panel-reveal-d">
+        <div class="manuscript-card" style="border-left: 8px solid var(--pigment-lapis); margin-top: 1rem; margin-bottom: 0; box-sizing: border-box;">
+          <div class="prose-container">
+            <div style="border-bottom: 1px solid var(--border-container); padding-bottom: 0.75rem; margin-bottom: 1.5rem; text-align: center;">
+              <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin-bottom: 0.25rem; color: var(--ink-archival); font-weight: 600;">Balance & Life Integration</h3>
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase;">Practical Remedies, Career Roles & Focus Directions</div>
+            </div>
+            
+            <!-- Remedies Box -->
+            <div style="margin-bottom: 2rem; border-bottom: 1px dashed var(--border-container); padding-bottom: 1.75rem;">
+              <h4 style="font-family: var(--font-serif-header); font-size: 1.15rem; color: var(--pigment-cinnabar); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px dashed var(--border-container); padding-bottom: 6px;">Missing Energy Remedies</h4>
+              <div id="dyn-remedies" class="remedies-grid-container" style="font-size: 0.95rem; line-height: 1.65;">Generating remedies...</div>
+            </div>
+            
+            <!-- Careers & Directions Row -->
+            <div class="careers-directions-container">
+              <div class="plane-sub-card">
+                <h4 style="font-family: var(--font-serif-header); font-size: 1.05rem; color: var(--pigment-cinnabar); margin-top: 0; margin-bottom: 0.75rem; border-bottom: 1px dashed var(--border-container); padding-bottom: 6px;">Career & Life Roles</h4>
+                <div id="dyn-careers" style="font-size: 0.95rem; line-height: 1.6;">Generating ideal career alignments...</div>
+              </div>
+
+              <div class="plane-sub-card" style="border-right: none;">
+                <h4 style="font-family: var(--font-serif-header); font-size: 1.05rem; color: var(--pigment-cinnabar); margin-top: 0; margin-bottom: 0.75rem; border-bottom: 1px dashed var(--border-container); padding-bottom: 6px;">Optimal Directions</h4>
+                <div id="dyn-directions" style="font-size: 0.95rem; line-height: 1.6;">Generating optimal alignments...</div>
+              </div>
+            </div>
+          </div> <!-- Close .prose-container -->
+        </div>
+      </div>
+
+      <!-- Content Panel E: Your Personal Year Trend for 2026 -->
+      <div class="reveal-panel" id="panel-reveal-e">
+        <div class="manuscript-card" style="border-left: 8px solid var(--pigment-terracotta); margin-top: 1rem; margin-bottom: 0; box-sizing: border-box;">
+          <div class="prose-container">
+            <div style="border-bottom: 1px solid var(--border-container); padding-bottom: 0.5rem; margin-bottom: 1rem;">
+              <div style="font-family: var(--font-serif-header); font-size: 1.25rem; font-weight: 600; text-align: center;">Your Personal Trend for 2026</div>
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faded); text-align: center; letter-spacing: 0.5px;">Numerological Theme & Growth Directives</div>
+            </div>
+            <!-- Calendar Year Horizon Clarification -->
+            <p style="font-size: 0.95rem; font-style: italic; color: var(--ink-faded); margin-top: -0.5rem; margin-bottom: 1.25rem; line-height: 1.5; border-bottom: 1px dashed rgba(43, 42, 40, 0.1); padding-bottom: 0.75rem;">
+              ✦ <strong>Calendar Year Horizon:</strong> In traditional numerology, your Personal Year cycle runs strictly with the Gregorian calendar year (from January 1st to December 31st), rather than a rolling 12-month period. If reviewing this scroll in the latter half of the year, use these insights to reflect upon and integrate the lessons you are completing.
+            </p>
+
+            <div style="font-size: 0.95rem; line-height: 1.65;">
+              <div id="dyn-personal-year-calc" style="font-family: var(--font-mono); font-size: 0.95rem; background-color: rgba(43, 42, 40, 0.03); padding: 0.75rem 1rem; border-left: 4px solid var(--pigment-terracotta); border-radius: 4px; margin-bottom: 1rem;">Calculating your trend...</div>
+              <h3 id="dyn-personal-year-theme" style="font-family: var(--font-serif-header); font-size: 1.15rem; color: var(--pigment-cinnabar); margin: 1rem 0 0.5rem 0;">Theme: Loading...</h3>
+              <p id="dyn-personal-year-desc" style="text-align: justify; margin-top: 0; margin-bottom: 1.25rem;">Analyzing personal year themes...</p>
+              
+              <div class="personal-year-grid-container">
+                <div style="background: rgba(217, 130, 54, 0.03); border-left: 3px solid var(--pigment-saffron); padding: 0.75rem 1rem; border-radius: 0 4px 4px 0;">
+                  <strong style="color: var(--pigment-saffron); font-size: 0.95rem; text-transform: uppercase; font-family: var(--font-mono); display: block; margin-bottom: 6px;">What This Year Supports</strong>
+                  <ul id="dyn-personal-year-supports" style="padding-left: 1.25rem; margin: 0; font-size: 0.95rem; line-height: 1.55; color: var(--ink-archival);">
+                    <li>Loading...</li>
+                  </ul>
+                </div>
+                <div style="background: rgba(158, 58, 51, 0.03); border-left: 3px solid var(--pigment-cinnabar); padding: 0.75rem 1rem; border-radius: 0 4px 4px 0;">
+                  <strong style="color: var(--pigment-cinnabar); font-size: 0.95rem; text-transform: uppercase; font-family: var(--font-mono); display: block; margin-bottom: 6px;">What To Avoid</strong>
+                  <ul id="dyn-personal-year-avoid" style="padding-left: 1.25rem; margin: 0; font-size: 0.95rem; line-height: 1.55; color: var(--ink-archival);">
+                    <li>Loading...</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div style="border-top: 1px dashed #D6CEBE; padding-top: 0.85rem; margin-top: 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+                <strong>Best Use of Energy:</strong> <span id="dyn-personal-year-advice" style="font-style: italic; color: var(--ink-archival);">Analyzing dynamic advice...</span>
+              </div>
+            </div>
+          </div> <!-- Close .prose-container -->
+        </div>
+      </div>
+
+    </div>
+
+    </div>
+
+    <div style="margin-top: 2rem; margin-bottom: 3rem;">
+      <details id="loshu-reference-details" style="cursor: pointer; outline: none;">
+        <summary class="explore-summary">
+          <span class="explore-title-main">Click to Explore</span>
+          <span class="explore-title-sub">Understanding the Lo Shu Grid</span>
+        </summary>
+        <div class="accordion-inner-border" style="cursor: default; margin-top: 1rem; background-color: var(--bg-vellum-warm); border: var(--border-container); padding: 1.5rem 1.75rem; position: relative; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04); border-radius: 4px;">
+          <div style="position: relative; z-index: 2;" class="prose-container">
+            
+            <span class="section-summary-text" style="text-align: left !important; margin: 0 0 1rem 0;">Explanatory guide detailing the mathematical magic square, core metric definitions, and vector arrows.</span>
+            <h4 class="font-mono" style="color: var(--pigment-cinnabar); font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem;">The Magic Square Matrix</h4>
+            <p style="font-size: 0.95rem; line-height: 1.6; text-align: justify; margin-top: 0; margin-bottom: 1.25rem;">The Lo Shu magic square features a mathematical harmony: every row, column, and diagonal sums to fifteen. Traced back to the legend of a sacred tortoise shell emerging from the River Lo, this Nine-Palace grid maps individual birth date digits into distinct zones of elemental and behavioral influence.</p>
+            <h4 class="font-mono" style="color: var(--pigment-cinnabar); font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem;">Core Metrics & Companion Numbers</h4>
+            <ul style="font-size: 0.95rem; line-height: 1.6; margin-top: 0; margin-bottom: 1.25rem; padding-left: 1.5rem;">
+              <li style="margin-bottom: 0.4rem;"><strong>Driver Number (Birth Day Reduction)</strong>: Dictates your immediate operational motor and psychological drive.</li>
+              <li style="margin-bottom: 0.4rem;"><strong>Conductor Number (Full Birthday Reduction)</strong>: Maps the overarching life trajectory and primary developmental purpose.</li>
+              <li style="margin-bottom: 0.4rem;"><strong>Kua Number (Solar Year & Gender Trigram)</strong>: Defines your environmental and spatial alignment, anchoring your energy in a specific primary direction.</li>
+            </ul>
+            <h4 class="font-mono" style="color: var(--pigment-cinnabar); font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem;">Vector Arrows & Structural Voids</h4>
+            <p style="font-size: 0.95rem; line-height: 1.6; text-align: justify; margin-top: 0; margin-bottom: 0;">Completed lines (horizontal, vertical, or diagonal) form <strong>Arrows of Strength</strong>, highlighting integrated vectors of talent. Voids (entire empty rows or columns) mark developmental invitations, prompting conscious adjustments and remedies to restore structural balance.</p>
+            
+        </div> <!-- Close .prose-container -->
+      </div>
+    </details>
+  </div>
+
+    <!-- Honest Framing Disclaimer Box -->
+    <style>
+      .disclaimer-hi { display: none; }
+      body.lang-hi .disclaimer-en { display: none !important; }
+      body.lang-hi .disclaimer-hi { display: block !important; }
+    </style>
+    
+    <div class="disclaimer-en" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        DISCLAIMER
+      </h4>
+      <p style="margin: 0; text-align: justify;">
+        This report is an interpretive analytical framework intended solely for reflective and informational purposes. It is not a predictive, diagnostic, clinical, financial, legal, medical, psychological or professional advisory instrument, and should not be relied upon as definitive guidance for decisions, actions, or outcomes. The original application has been developed in English. Certain translated versions may utilize automated translation tools, including Google Translate. While reasonable efforts have been made to preserve contextual accuracy, no responsibility is accepted for translation inaccuracies, omissions, interpretive variations, or linguistic ambiguities arising from translated content. In the event of any inconsistency or ambiguity, the English version shall prevail.
+      </p>
+    </div>
+
+    <div class="disclaimer-hi notranslate" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        अस्वीकरण
+      </h4>
+      <p style="margin: 0; text-align: justify; color: var(--ink-faded); font-style: italic;">
+        यह रिपोर्ट केवल विचारात्मक एवं सूचनात्मक उद्देश्य हेतु निर्मित एक व्याख्यात्मक विश्लेषणात्मक ढांचा है। यह कोई भविष्यवाणी, निदान, नैदानिक, वित्तीय, कानूनी, चिकित्सीय, मनोवैज्ञानिक अथवा पेशेवर परामर्श का उपकरण नहीं है, और इसे निर्णयों, कार्यों या परिणामों के लिए अंतिम मार्गदर्शन के रूप में नहीं माना जाना चाहिए। मूल अनुप्रयोग अंग्रेज़ी भाषा में विकसित किया गया है। कुछ अनुवादित संस्करणों में Google Translate सहित स्वचालित अनुवाद उपकरणों का उपयोग किया जा सकता है। यद्यपि संदर्भगत शुद्धता बनाए रखने का यथासंभव प्रयास किया गया है, तथापि अनुवाद संबंधी त्रुटियों, चूकों, अर्थ-व्याख्या में भिन्नताओं या भाषाई अस्पष्टताओं के लिए कोई उत्तरदायित्व स्वीकार नहीं किया जाता। किसी भी असंगति या अस्पष्टता की स्थिति में अंग्रेज़ी संस्करण को ही मान्य माना जाएगा।
+      </p>
+    </div>
+    <!-- Resonance / Feedback Link -->
+    <div style="text-align: center; margin: 1.5rem auto 2rem auto; font-family: var(--font-mono); font-size: 0.8rem; max-width: 1100px; width: calc(100% - 24px);">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEYjLsqRjRRR0FZEPq384iGrpL6rZfrEQHEbcYQ9pz5ERzlg/viewform" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar); letter-spacing: 1px; font-weight: bold; transition: all 0.2s ease; padding-bottom: 2px;">
+        ✦ SHARE YOUR RESONANCE (ANONYMOUS SUGGESTIONS) ✦
+      </a>
+    </div>
+
+  </div>
+
+    <footer class="notranslate">
+    <div class="footer-content">
+      <p>ANTARA CROSS-CULTURAL INTERIOR PANORAMA</p>
+      <p class="font-mono">SYSTEM LOG: NINE-PALACE MATRIX CORE v1.2.0 • 2026</p>
+    </div>
+  </footer>
+
+  
+  <script>
+    // Clean up local storage persona names dynamically to wipe out old cached test personas
+    try {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (localStorage.getItem(key) === 'Ankur Gupta') {
+                localStorage.setItem(key, 'Antara Gupta');
+            }
+        }
+    } catch (e) {
+        console.warn("localStorage persona migration restricted:", e);
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, function(tag) {
+        var chars = {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        };
+        return chars[tag] || tag;
+      });
+    }
+
+    // Initialize language inheritance from local storage
+    let preferredLang = localStorage.getItem('antara_preferred_language') || 'EN';
+    if (window.location.hash === '#HI' || window.location.search.includes('lang=HI')) {
+        preferredLang = 'HI';
+        localStorage.setItem('antara_preferred_language', 'HI');
+    } else if (window.location.hash === '#EN' || window.location.search.includes('lang=EN')) {
+        preferredLang = 'EN';
+        localStorage.setItem('antara_preferred_language', 'EN');
+    }
+    if (preferredLang === 'HI') {
+        document.body.classList.add('lang-hi');
+        
+        // 1. Force the Google Translate hash parameter if not present
+        if (!window.location.hash.includes('googtrans')) {
+            window.location.hash = 'googtrans(en|hi)';
+        }
+        
+        // 2. Set googtrans cookie to persist
+        document.cookie = "googtrans=/en/hi; path=/";
+        
+        // 3. Create absolute HTTPS Google Translate container and script
+        const gtDiv = document.createElement('div');
+        gtDiv.id = 'google_translate_element';
+        gtDiv.style.position = 'fixed';
+        gtDiv.style.bottom = '15px';
+        gtDiv.style.right = '15px';
+        gtDiv.style.zIndex = '99999';
+        gtDiv.style.background = '#FFFDF9';
+        gtDiv.style.border = '1px solid #D6CEBE';
+        gtDiv.style.borderRadius = '20px';
+        gtDiv.style.padding = '3px 10px';
+        gtDiv.style.boxShadow = '0 3px 10px rgba(0,0,0,0.06)';
+        gtDiv.style.display = 'inline-flex';
+        gtDiv.style.alignItems = 'center';
+        gtDiv.style.gap = '6px';
+        gtDiv.innerHTML = '<span style="font-family:\'Cinzel\', serif; font-size:0.68rem; color:#9E3A33; font-weight:bold; letter-spacing:0.5px;">ANTARA TRANSLATE</span>';
+        document.body.appendChild(gtDiv);
+
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: true
+            }, 'google_translate_element');
+        };
+
+        const gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript';
+        gtScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        document.head.appendChild(gtScript);
+    } else if (preferredLang === 'EN') {
+        if (window.location.hash.includes('googtrans')) {
+            window.location.hash = '';
+        }
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+
+    function safeGetItem(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch (e) {
+        console.warn("safeGetItem failed for", key, e);
+        return null;
+      }
+    }
+    function safeSetItem(key, val) {
+      try {
+        localStorage.setItem(key, val);
+      } catch (e) {
+        console.warn("safeSetItem failed for", key, e);
+      }
+    }
+
+    const cellDetails = {
+      1: {
+        name: "1 • The Journeyer",
+        element: "North • Water (Kan Trigram)",
+        meaning: "You grow through movement, reinvention, and lived experience. Stagnation drains you far more than hard work ever will."
+      },
+      2: {
+        name: "2 • The Connector",
+        element: "Southwest • Earth (Kun Trigram)",
+        meaning: "You naturally absorb and stabilize emotional environments, though you may sometimes carry responsibilities that were never fully yours."
+      },
+      3: {
+        name: "3 • The Initiator",
+        element: "East • Wood (Zhen Trigram)",
+        meaning: "You thrive when momentum exists. Delays, hesitation, or overly rigid structures can quietly frustrate your natural energy."
+      },
+      4: {
+        name: "4 • The Planner",
+        element: "Southeast • Wood (Xun Trigram)",
+        meaning: "You naturally organize ideas into long-term pathways, finding safety in preparation, though you may sometimes over-prepare to avoid beginning."
+      },
+      5: {
+        name: "5 • The Anchor",
+        element: "Center • Earth (Zhong State)",
+        meaning: "You are the grounding center, seeking balance and self-possession amidst chaos, yet you can become immovably resistant to unexpected pivots."
+      },
+      6: {
+        name: "6 • The Supporter",
+        element: "Northwest • Metal (Qian Trigram)",
+        meaning: "You thrive when facilitating structure and organizing support for others, though you must watch for a default tendency to carry everyone else's standards."
+      },
+      7: {
+        name: "7 • The Creator",
+        element: "West • Metal (Dui Trigram)",
+        meaning: "You seek beauty, clean communication, and joyful refinement in all details, yet you can quickly detach when environments become dense or critical."
+      },
+      8: {
+        name: "8 • The Seeker",
+        element: "Northeast • Earth (Gen Trigram)",
+        meaning: "You gather strength through introspection, silent study, and internal benchmarks, though you can easily build walls of skepticism around your insights."
+      },
+      9: {
+        name: "9 • The Visionary",
+        element: "South • Fire (Li Trigram)",
+        meaning: "You operate with a high-vibrational spark, seeking absolute clarity and purposeful recognition, yet you can burn out rapidly when your passion isn't matched by immediate momentum."
+      }
+    };
+
+    const chaldeanAlphabetMatrix = {
+        a:1, i:1, j:1, q:1, y:1,
+        b:2, k:2, r:2,
+        c:3, g:3, l:3, s:3,
+        d:4, m:4, t:4,
+        e:5, h:5, n:5, x:5,
+        u:6, v:6, w:6,
+        o:7, z:7,
+        f:8, p:8
+    };
+
+    const titleName = document.getElementById('title-name');
+    const bannerName = document.getElementById('banner-cell-name');
+    const bannerElement = document.getElementById('banner-cell-element');
+    const bannerMeaning = document.getElementById('banner-cell-meaning');
+
+    const planeContent = {
+      mental: {
+        "100": {
+          analysis: "Strategic Mindscape. You instinctively organize complexity into systems, patterns, and long-range strategy.",
+          guidance: "Build toward meaningful long-term goals, but stay anchored through routines that reconnect you with the physical world."
+        },
+        "66": {
+          analysis: "Active Intellect. Your mind seeks clarity, structure, and practical understanding in everything it engages with.",
+          guidance: "Define priorities early so mental energy remains focused rather than scattered across too many directions."
+        },
+        "33": {
+          analysis: "Non-Linear Thinker. Your insights emerge through intuition, creative leaps, and unexpected mental connections rather than step-by-step logic.",
+          guidance: "Capture ideas the moment they appear — many of your strongest insights arrive spontaneously."
+        },
+        "0": {
+          analysis: "Intuitive Mind. You rely more on instinct, perception, and inner sensing than rigid analysis when making decisions.",
+          guidance: "Trust your first impressions, while using structured review or trusted allies to verify important details."
+        }
+      },
+      emotional: {
+        "100": {
+          analysis: "Empathetic Resonance. You absorb the emotional atmosphere around you quickly and often sense what others are feeling before they express it.",
+          guidance: "Protect your emotional balance through clear boundaries and regular periods of recovery and solitude."
+        },
+        "66": {
+          analysis: "Expressive Soul. You connect through warmth, emotional honesty, and a strong sensitivity to human dynamics.",
+          guidance: "Give emotions a healthy outlet through reflection, conversation, creativity, or quiet personal rituals."
+        },
+        "33": {
+          analysis: "Selective Heart. You keep your emotional world protected until trust feels genuine and emotionally safe.",
+          guidance: "Allow vulnerability to grow gradually within relationships that feel stable, supportive, and emotionally grounded."
+        },
+        "0": {
+          analysis: "Internal Sentinel. You process emotions privately and tend to remain composed even during emotionally intense situations.",
+          guidance: "Deepen emotional connection by listening fully before shifting into advice, logic, or problem-solving mode."
+        }
+      },
+      practical: {
+        "100": {
+          analysis: "Masterful Builder. You excel at turning ideas into structured, tangible, and measurable results.",
+          guidance: "Trust your execution strength, while staying flexible enough to adapt when circumstances shift unexpectedly."
+        },
+        "66": {
+          analysis: "Grounded Realist. You approach responsibilities with steady discipline, practicality, and dependable follow-through.",
+          guidance: "Break ambitious goals into visible, manageable steps to maintain clarity and momentum."
+        },
+        "33": {
+          analysis: "Focused Executor. Your productivity rises when personal passion and practical effort move together.",
+          guidance: "Create an intentional workspace that supports concentration, consistency, and sustained creative energy."
+        },
+        "0": {
+          analysis: "Visionary Spirit. Your attention gravitates toward ideas, imagination, and future possibilities more than repetitive operational detail.",
+          guidance: "Partner with grounded executors who can help transform vision into consistent real-world progress."
+        }
+      }
+    };
+
+    let currentProfileSummary = {
+        element: "TO READ ITS COSMIC MEANING",
+        desc: "Columns, rows, and diagonals within this sacred square eternally sum to 15. Hover over individual cells to reveal their properties."
+    };
+
+    let activeFrequencies = null;
+    let selectedCell = null;
+
+    function showCellDetails(num) {
+      if (cellDetails[num]) {
+        const freq = activeFrequencies ? activeFrequencies[num] : 0;
+        bannerName.innerText = cellDetails[num].name;
+        
+        if (freq > 0) {
+          bannerElement.innerHTML = `${cellDetails[num].element} <span style="color: #9E3A33; font-size: 0.72rem; font-family: var(--font-mono); margin-left: 8px; border: 1px solid #9E3A33; padding: 2px 8px; border-radius: 3px; vertical-align: middle; font-weight: bold; background-color: rgba(158, 58, 51, 0.05);">✦ ACTIVE FREQUENCY: ${freq} ✦</span>`;
+          bannerMeaning.innerHTML = cellDetails[num].meaning;
+        } else {
+          bannerElement.innerHTML = `${cellDetails[num].element} <span style="color: var(--ink-faded); font-size: 0.72rem; font-family: var(--font-mono); margin-left: 8px; border: 1px dashed var(--border-container); padding: 2px 8px; border-radius: 3px; vertical-align: middle; opacity: 0.85;">○ MISSING ENERGY (VOID)</span>`;
+          bannerMeaning.innerHTML = `${cellDetails[num].meaning} <span style="display: block; margin-top: 8px; font-style: italic; color: #9E3A33; font-size: 0.95rem;">✦ This element is a personal void in your birth grid. Open and review "Balance & Life Integration" below for practical remedies to balance this space.</span>`;
+        }
+      }
+    }
+
+    function clearCellDetails() {
+      if (selectedCell !== null) {
+        showCellDetails(selectedCell);
+      } else {
+        bannerName.innerText = "Cosmic Synthesis";
+        bannerElement.innerHTML = currentProfileSummary.element;
+        bannerMeaning.innerHTML = currentProfileSummary.desc;
+      }
+    }
+
+    function handleCellTap(num) {
+      const allCells = document.querySelectorAll('.grid-cell');
+      
+      if (selectedCell === num) {
+        selectedCell = null;
+        allCells.forEach(c => c.classList.remove('tapped-highlight'));
+        clearCellDetails();
+      } else {
+        selectedCell = num;
+        allCells.forEach(c => c.classList.remove('tapped-highlight'));
+        const cell = document.getElementById(`grid-${num}`);
+        if (cell) cell.classList.add('tapped-highlight');
+        showCellDetails(num);
+      }
+    }
+
+    function toggleGuidance(btn) {
+      const card = btn.closest('.plane-sub-card');
+      if (!card) return;
+      const box = card.querySelector('.plane-guidance-box');
+      if (!box) return;
+      if (box.classList.contains('visible')) {
+        box.classList.remove('visible');
+        btn.innerText = "✦ Reveal Guided Insights";
+      } else {
+        box.classList.add('visible');
+        btn.innerText = "✦ Hide Guided Insights";
+      }
+    }
+
+    function switchPlaneTab(planeName) {
+      // Toggle tab buttons
+      const tabs = document.querySelectorAll('.plane-tab');
+      tabs.forEach(t => t.classList.remove('active'));
+      const activeTab = document.getElementById(`tab-${planeName}`);
+      if (activeTab) activeTab.classList.add('active');
+      
+      // Toggle plane sub-cards
+      const cards = document.querySelectorAll('.plane-sub-card');
+      cards.forEach(c => c.classList.remove('active-tab'));
+      const activeCard = document.getElementById(`card-${planeName}`);
+      if (activeCard) activeCard.classList.add('active-tab');
+    }
+
+    function toggleRevealSection(secName) {
+      const activePanel = document.getElementById(`panel-reveal-${secName}`);
+      const activeBtn = document.getElementById(`btn-reveal-${secName}`);
+      
+      if (!activePanel || !activeBtn) return;
+      
+      const isAlreadyActive = activePanel.classList.contains('active');
+      
+      // Close all reveal panels and buttons
+      document.querySelectorAll('.reveal-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.reveal-btn').forEach(b => b.classList.remove('active'));
+      
+      // If it wasn't active, open it
+      if (!isAlreadyActive) {
+        activePanel.classList.add('active');
+        activeBtn.classList.add('active');
+        
+        // Dynamic smooth scroll to expanded panel
+        setTimeout(() => {
+          activePanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 120);
+      }
+    }
+
+
+    const arrowsConfig = [
+      {
+        name: "Arrow of Intellect & Strategy",
+        cells: [4, 9, 2],
+        coords: { x1: "16.67%", y1: "16.67%", x2: "83.33%", y2: "16.67%" },
+        color: "#E07A5F",
+        meaning: "Your mind instinctively scans for structure, patterns, and future consequences before taking action. You excel at systems thinking, strategic foresight, and organizing complex concepts into clear blueprints."
+      },
+      {
+        name: "Arrow of Emotion & Intuition",
+        cells: [3, 5, 7],
+        coords: { x1: "16.67%", y1: "50.0%", x2: "83.33%", y2: "50.0%" },
+        color: "#D98236",
+        meaning: "You naturally attune to the unvoiced emotional temperature of a space, operating from gut feel, deep interpersonal empathy, and authentic connection."
+      },
+      {
+        name: "Arrow of Action & Practicality",
+        cells: [8, 1, 6],
+        coords: { x1: "16.67%", y1: "83.33%", x2: "83.33%", y2: "83.33%" },
+        color: "#4E89AE",
+        meaning: "You look at concepts through a single lens: how does this work in reality? You bring ideas down to earth through consistent work ethic and grounded realism."
+      },
+      {
+        name: "Arrow of Vision & Planning",
+        cells: [4, 3, 8],
+        coords: { x1: "16.67%", y1: "16.67%", x2: "16.67%", y2: "83.33%" },
+        color: "#558B6E",
+        meaning: "You naturally foresee structural trends early, designing blueprints and organizing resources with high foresight and long-term vision."
+      },
+      {
+        name: "Arrow of Willpower & Determination",
+        cells: [9, 5, 1],
+        coords: { x1: "50.0%", y1: "16.67%", x2: "50.0%", y2: "83.33%" },
+        color: "#C14949",
+        meaning: "You rarely quit once emotionally committed, carrying massive projects or obligations through steep challenges long after others would have stepped away."
+      },
+      {
+        name: "Arrow of Activity & Execution",
+        cells: [2, 7, 6],
+        coords: { x1: "83.33%", y1: "16.67%", x2: "83.33%", y2: "83.33%" },
+        color: "#6C757D",
+        meaning: "You operate best in fast-moving environments where decisions, communication, and execution happen dynamically, energizing teams through responsiveness."
+      },
+      {
+        name: "Arrow of Spirituality & Balance",
+        cells: [4, 5, 6],
+        coords: { x1: "16.67%", y1: "16.67%", x2: "83.33%", y2: "83.33%" },
+        color: "#8FB996",
+        meaning: "You naturally seek the philosophical bridge between material reality and inner meaning, aiming for absolute personal equilibrium and self-awareness."
+      },
+      {
+        name: "Arrow of Prosperity & Stability",
+        cells: [2, 5, 8],
+        coords: { x1: "83.33%", y1: "16.67%", x2: "16.67%", y2: "83.33%" },
+        color: "#CBB38B",
+        meaning: "You possess the patient endurance and common sense required to build secure, long-term foundations, steady wealth consolidation, and reliable practical security."
+      }
+    ];
+
+    function drawArrowLine(x1, y1, x2, y2, color) {
+      const svg = document.getElementById('arrow-svg-overlay');
+      if (!svg) return;
+      
+      const glowLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      glowLine.setAttribute('x1', x1);
+      glowLine.setAttribute('y1', y1);
+      glowLine.setAttribute('x2', x2);
+      glowLine.setAttribute('y2', y2);
+      glowLine.setAttribute('stroke', color);
+      glowLine.setAttribute('stroke-width', '24');
+      glowLine.setAttribute('opacity', '0.22');
+      glowLine.setAttribute('stroke-linecap', 'round');
+      glowLine.setAttribute('filter', 'url(#glow-vector)');
+      svg.appendChild(glowLine);
+      
+      const coreLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      coreLine.setAttribute('x1', x1);
+      coreLine.setAttribute('y1', y1);
+      coreLine.setAttribute('x2', x2);
+      coreLine.setAttribute('y2', y2);
+      coreLine.setAttribute('stroke', color);
+      coreLine.setAttribute('stroke-width', '4.5');
+      coreLine.setAttribute('opacity', '0.55');
+      coreLine.setAttribute('stroke-linecap', 'round');
+      svg.appendChild(coreLine);
+      
+      const energyLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      energyLine.setAttribute('x1', x1);
+      energyLine.setAttribute('y1', y1);
+      energyLine.setAttribute('x2', x2);
+      energyLine.setAttribute('y2', y2);
+      energyLine.setAttribute('stroke', '#FFFFFF');
+      energyLine.setAttribute('stroke-width', '2.8');
+      energyLine.setAttribute('opacity', '0.85');
+      energyLine.setAttribute('stroke-dasharray', '8 15');
+      energyLine.setAttribute('stroke-linecap', 'round');
+      energyLine.style.animation = 'energyFlow 2.5s linear infinite';
+      svg.appendChild(energyLine);
+    }
+
+    function calculateChaldeanRoot(nameString) {
+        let totalSum = 0;
+        const normalizedString = nameString.toLowerCase().replace(/[^a-z]/g, '');
+        
+        for (let i = 0; i < normalizedString.length; i++) {
+            const char = normalizedString[i];
+            if (chaldeanAlphabetMatrix[char]) {
+                totalSum += chaldeanAlphabetMatrix[char];
+            }
+        }
+        
+        while (totalSum > 9) {
+            let reducedSum = 0;
+            const digitStrings = totalSum.toString();
+            for (let j = 0; j < digitStrings.length; j++) {
+                reducedSum += parseInt(digitStrings[j]);
+            }
+            totalSum = reducedSum;
+        }
+        
+        return totalSum === 0 ? 1 : totalSum;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const liveSessionData = {
+            name: "Antara Gupta",
+            dob: "1953-05-16",
+            tob: "10:04 AM",
+            pob: "Chakrata, Uttarakhand, India"
+        };
+
+        const savedName = safeGetItem('antara_user_name');
+        const savedDob = safeGetItem('antara_user_dob');
+        if (savedName) liveSessionData.name = savedName;
+        if (savedDob) liveSessionData.dob = savedDob;
+
+        const identityVibrationNumber = calculateChaldeanRoot(liveSessionData.name);
+
+        document.getElementById('lblDisplayName').innerText = liveSessionData.name;
+        document.getElementById('lblDisplayChaldean').innerText = `${identityVibrationNumber} (Resonance Calculated)`;
+        document.getElementById('lblDisplayDob').innerText = liveSessionData.dob;
+        document.getElementById('lblDisplayTob').innerText = liveSessionData.tob;
+        document.getElementById('lblDisplayPob').innerText = liveSessionData.pob;
+        titleName.innerText = `For ${liveSessionData.name}`;
+
+        processAutomatedGrid(liveSessionData.dob, identityVibrationNumber);
+    });
+
+    function processAutomatedGrid(dobStr, nameVibration) {
+      if (!dobStr) return;
+
+      const digits = dobStr.replace(/[^1-9]/g, '').split('');
+      const frequencies = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0};
+      
+      digits.forEach(d => { frequencies[parseInt(d)]++; });
+      
+      if (nameVibration >= 1 && nameVibration <= 9) {
+          frequencies[nameVibration]++;
+      }
+      
+      activeFrequencies = frequencies;
+
+      [1,2,3,4,5,6,7,8,9].forEach(num => {
+        const cellContainer = document.getElementById(`grid-${num}`);
+        if (!cellContainer) return;
+        
+        const inactiveSpan = cellContainer.querySelector('.cell-number-inactive');
+        const activeSpan = cellContainer.querySelector('.cell-number-active');
+        const freq = frequencies[num];
+        
+        cellContainer.classList.remove('active', 'freq-single', 'freq-repeated', 'freq-dominant');
+        
+        if (freq > 0) {
+          let text = "";
+          for(let i=0; i<freq; i++) text += (i===0?"":" ") + num;
+          activeSpan.innerText = text;
+          
+          cellContainer.classList.add('active');
+          if (freq === 1) cellContainer.classList.add('freq-single');
+          else if (freq === 2) cellContainer.classList.add('freq-repeated');
+          else cellContainer.classList.add('freq-dominant');
+          
+          if (inactiveSpan) inactiveSpan.classList.add('hidden');
+          if (activeSpan) activeSpan.classList.add('visible');
+        } else {
+          if (inactiveSpan) inactiveSpan.classList.remove('hidden');
+          if (activeSpan) activeSpan.classList.remove('visible');
+        }
+      });
+
+      const elementFrequencies = {
+        Wood: frequencies[3] + frequencies[4],
+        Fire: frequencies[9],
+        Earth: frequencies[2] + frequencies[5] + frequencies[8],
+        Metal: frequencies[6] + frequencies[7],
+        Water: frequencies[1]
+      };
+      
+      let dominantElement = "Wood";
+      let maxCount = -1;
+      for (const [el, count] of Object.entries(elementFrequencies)) {
+        if (count > maxCount) {
+          maxCount = count;
+          dominantElement = el;
+        }
+      }
+      
+      const elementDescriptors = {
+        Wood: "Wood (Expansive & Flexible Growth)",
+        Fire: "Fire (Highly Passionate, Expressive & Directing)",
+        Earth: "Earth (Grounded, Stable & Deeply Centered)",
+        Metal: "Metal (Disciplined, Structured & Analytical)",
+        Water: "Water (Wisdom, Dynamic Career Flow & Intuitive Deepness)"
+      };
+
+      const completedArrows = [];
+      const missingArrows = [];
+      
+      const svg = document.getElementById('arrow-svg-overlay');
+      if (svg) {
+        const defs = svg.querySelector('defs');
+        svg.innerHTML = '';
+        if (defs) svg.appendChild(defs);
+      }
+      
+      arrowsConfig.forEach(arrow => {
+        const isComplete = arrow.cells.every(c => frequencies[c] > 0);
+        const isMissing = arrow.cells.every(c => frequencies[c] === 0);
+        
+        if (isComplete) {
+          completedArrows.push(arrow);
+          drawArrowLine(arrow.coords.x1, arrow.coords.y1, arrow.coords.x2, arrow.coords.y2, arrow.color);
+        } else if (isMissing) {
+          missingArrows.push(arrow);
+        }
+      });
+      
+      const activeContainer = document.getElementById('active-arrows-list');
+      const missingContainer = document.getElementById('missing-arrows-list');
+      
+      if (activeContainer && missingContainer) {
+        activeContainer.innerHTML = '';
+        missingContainer.innerHTML = '';
+        
+        if (completedArrows.length > 0) {
+          completedArrows.forEach(arrow => {
+            const item = document.createElement('div');
+            item.style.cssText = `border: 1px solid ${arrow.color}; background-color: rgba(217, 130, 54, 0.04); padding: 0.65rem 0.85rem; border-radius: 5px; margin-bottom: 0.55rem; font-size: 0.95rem; border-left: 5px solid ${arrow.color};`;
+            item.innerHTML = `<strong style="color: var(--stroke); display: block; margin-bottom: 2px;">✦ ${arrow.name} <span style="font-size: 0.75rem; font-family: var(--font-mono); color: ${arrow.color}; text-transform: uppercase;">[Active Vector]</span></strong> <span style="color: var(--ink-archival); line-height: 1.4; font-size: 0.95rem;">${arrow.meaning}</span>`;
+            activeContainer.appendChild(item);
+          });
+        } else {
+          activeContainer.innerHTML = '<div style="border: 1px dashed #D6CEBE; background-color: rgba(43, 42, 40, 0.02); padding: 0.65rem 0.85rem; border-radius: 5px; font-size: 0.95rem; color: var(--ink-faded); text-align: center;">No active arrows. Energy flows evenly without dominant vector concentration.</div>';
+        }
+        
+        if (missingArrows.length > 0) {
+          missingArrows.forEach(arrow => {
+            const item = document.createElement('div');
+            item.style.cssText = 'border: 1px dashed rgba(43, 42, 40, 0.15); background-color: rgba(43, 42, 40, 0.01); padding: 0.55rem 0.75rem; border-radius: 5px; margin-bottom: 0.45rem; font-size: 0.85rem; color: var(--ink-faded); opacity: 0.85;';
+            item.innerHTML = `<strong style="display: block; margin-bottom: 1px; color: var(--stroke);">○ Arrow of ${arrow.name.split(' ')[2]} invitation</strong> <span style="font-size: 0.82rem; line-height: 1.45;">Invites conscious cultivation of focus and core stability.</span>`;
+            missingContainer.appendChild(item);
+          });
+        }
+      }
+
+      currentProfileSummary.element = `${elementDescriptors[dominantElement]}`;
+      currentProfileSummary.desc = `<strong>Dominant Element Vibration: ${dominantElement}.</strong> Grid calibrated with ${completedArrows.length} Active Arrows of Strength and ${missingArrows.length} Arrows of conscious growth.`;
+      
+      clearCellDetails();
+
+      let mCount = (frequencies[4]>0?1:0) + (frequencies[9]>0?1:0) + (frequencies[2]>0?1:0);
+      updatePlaneUI('mental', Math.round((mCount/3)*100));
+
+      let eCount = (frequencies[3]>0?1:0) + (frequencies[5]>0?1:0) + (frequencies[7]>0?1:0);
+      updatePlaneUI('emotional', Math.round((eCount/3)*100));
+
+      let pCount = (frequencies[8]>0?1:0) + (frequencies[1]>0?1:0) + (frequencies[6]>0?1:0);
+      updatePlaneUI('practical', Math.round((pCount/3)*100));
+
+      renderComprehensiveInsights(frequencies, completedArrows, missingArrows, dobStr, dominantElement);
+    }
+
+    function updatePlaneUI(pName, pct) {
+      const fill = document.getElementById(`progress-fill-${pName}`);
+      const val = document.getElementById(`strength-val-${pName}`);
+      const txt = document.getElementById(`analysis-text-${pName}`);
+      const gd = document.getElementById(`guidance-text-${pName}`);
+
+      if(!fill || !val || !txt || !gd) return;
+      val.innerText = `${pct}%`;
+      fill.style.width = `${pct}%`;
+      if(pct===100) fill.classList.add('completed'); else fill.classList.remove('completed');
+
+      let key = "0";
+      if(pct>=99) key="100"; else if(pct>=65) key="66"; else if(pct>=30) key="33";
+      if(planeContent[pName][key]) {
+        txt.innerText = planeContent[pName][key].analysis;
+        gd.innerText = planeContent[pName][key].guidance;
+      }
+    }
+
+    const repeatedNumbersDb = {
+      1: "You communicate easily with the world, but not always with your deepest emotional truth.",
+      2: "You naturally absorb and stabilize emotional environments, but may carry responsibilities that were never fully yours.",
+      3: "Your mind is brilliant at scanning for patterns, but prone to late-night overthinking.",
+      4: "You bring absolute precision and structure, but can slide into perfectionist rigidity.",
+      5: "You possess an intense need for personal freedom, detesting any form of micromanagement.",
+      6: "You carry a powerful creative drive and family devotion, but tend to over-worry about those you protect.",
+      7: "You think deeply before trusting deeply, keeping a highly private inner sanctuary.",
+      8: "You are an exceptional organizer of material structures, but can become overly reliant on strict routines.",
+      9: "You seek high altruistic ideals, but can hold unrealistic expectations of yourself and others."
+    };
+
+    const missingNumbersDb = {
+      1: "<strong>Missing 1 (Water Element • Voice & Identity)</strong><br><strong>Behavioral Outcome:</strong> Your unique path may feel secondary to others' expectations, leading to unexpressed frustration when confronting resistance.<br><strong>Growth Practice:</strong> Share minor, everyday preferences immediately to build your authentic presence.",
+      2: "<strong>Missing 2 (Earth Element • Connection & Collaboration)</strong><br><strong>Behavioral Outcome:</strong> You may carry excessive operational or emotional burdens alone, leading to exhaustion before asking for support.<br><strong>Growth Practice:</strong> Delegate one small daily responsibility, consciously inviting teamwork.",
+      3: "<strong>Missing 3 (Wood Element • Creative Confidence)</strong><br><strong>Behavioral Outcome:</strong> You may hold back your strongest insights, causing others to miss out on your true expertise.<br><strong>Growth Practice:</strong> Share one raw idea or sketch daily without evaluating it beforehand.",
+      4: "<strong>Missing 4 (Wood Element • Structure & Routine)</strong><br><strong>Behavioral Outcome:</strong> Daily life and personal focus can feel scattered, making it hard to sustain long-term goals.<br><strong>Growth Practice:</strong> Create a simple three-step morning ritual to anchor your day.",
+      5: "<strong>Missing 5 (Earth Element • Center & Grounding)</strong><br><strong>Behavioral Outcome:</strong> Sudden, unexpected transitions can cause high anxiety and disrupt your inner stability.<br><strong>Growth Practice:</strong> Take three deep breaths from your core before responding to high-stakes requests.",
+      6: "<strong>Missing 6 (Metal Element • Support & Execution)</strong><br><strong>Behavioral Outcome:</strong> You may struggle to balance professional ambitions with personal relationships and well-being.<br><strong>Growth Practice:</strong> Keep distinct boundaries by stepping away from work completely at a set hour.",
+      7: "<strong>Missing 7 (Metal Element • Self-Reflection)</strong><br><strong>Behavioral Outcome:</strong> Constant outward busyness may prevent you from addressing deeper personal questions and needs.<br><strong>Growth Practice:</strong> Dedicate five minutes of quiet, device-free reflection at the end of each day.",
+      8: "<strong>Missing 8 (Earth Element • Resource Focus)</strong><br><strong>Behavioral Outcome:</strong> Financial growth and resource management may remain unstructured, limiting your long-term stability.<br><strong>Growth Practice:</strong> Review your expenses and savings on a set day each week.",
+      9: "<strong>Missing 9 (Fire Element • Execution Motivation)</strong><br><strong>Behavioral Outcome:</strong> Project completions may decline as your initial passion fades, leaving goals unfinished.<br><strong>Growth Practice:</strong> Break major goals into micro-milestones to celebrate consistent progress."
+    };
+
+    const remediesDb = {
+      1: {
+        title: "The Journeyer • Voice & Identity",
+        shadow: "You may struggle to express your unique path openly.",
+        practice: "Begin speaking your minor, low-stakes truths immediately.",
+        support: "Deep water blues, dark accents, and simple visible water features."
+      },
+      2: {
+        title: "The Connector • Collaboration & Union",
+        shadow: "Carrying massive operational or emotional burdens alone.",
+        practice: "Delegate at least one minor task daily, inviting support.",
+        support: "Display bedroom items in identical pairs, use warm earth tones."
+      },
+      3: {
+        title: "The Initiator • Creative Confidence",
+        shadow: "Creative self-doubt or hesitation to trust your wisdom.",
+        practice: "Write or sketch your raw thoughts without editing for 10 minutes.",
+        support: "Incorporate leafy green plants and simple wooden accents."
+      },
+      4: {
+        title: "The Planner • Structure & Routine",
+        shadow: "Resisting rigid systems, schedules, or organization.",
+        practice: "Establish simple daily morning and evening micro-rituals.",
+        support: "Natural greens, orderly workspaces, and visible planners."
+      },
+      5: {
+        title: "The Anchor • Center Stability",
+        shadow: "Difficulty maintaining stability during rapid changes.",
+        practice: "Practice five conscious, slow breaths from your center before responding.",
+        support: "Warm terracotta tones, raw stone, or simple clay pots."
+      },
+      6: {
+        title: "The Supporter • Focus & Execution",
+        shadow: "Struggling to balance milestones with family focus.",
+        practice: "Create distinct containment boundaries for offline family time.",
+        support: "Subtle silver, brass, or metallic accents in your office."
+      },
+      7: {
+        title: "The Creator • Self-Reflection",
+        shadow: "Chasing external validation to avoid quiet inner questions.",
+        practice: "Dedicate 10 minutes of complete silence in the evening.",
+        support: "Clean, minimal white or gray surfaces in your workspace."
+      },
+      8: {
+        title: "The Seeker • Resource Grounding",
+        shadow: "Casual attitude toward consolidating wealth and structures.",
+        practice: "Conduct a weekly review of financial inputs and reserves.",
+        support: "Warm sandy colors and a single raw citrine stone near records."
+      },
+      9: {
+        title: "The Visionary • Execution & Passion",
+        shadow: "Struggling to finish goals once initial excitement fades.",
+        practice: "Break large milestones into micro-goals, celebrating small steps.",
+        support: "Vibrant red or orange accents, warm ambient lighting, or a single candle."
+      }
+    };
+
+    const personalYearDb = {
+      1: {
+        theme: "Reflection & Launch: Year of New Beginnings",
+        desc: "A high-energy launch phase initiating a brand new 9-year cycle.",
+        supports: [
+          "Launching fresh career directions and creative ventures",
+          "Initiating self-directed habits and personal boundaries",
+          "Surges of physical vitality and proactive exploration"
+        ],
+        avoid: [
+          "Repeating outdated habits out of sheer comfort",
+          "Waiting for outside validation or permission to begin"
+        ],
+        advice: "Declare your personal trajectory with bold, calculated action. View this year as a completely clean canvas for self-determination."
+      },
+      2: {
+        theme: "Integration & Patience: Year of Cooperation",
+        desc: "A slow-building, cooperative cycle focused on partnership and integration.",
+        supports: [
+          "Strengthening professional and personal networks",
+          "Deep active listening and behind-the-scenes building",
+          "Resolving old interpersonal friction with diplomatic patience"
+        ],
+        avoid: [
+          "Forcing rapid external expansion or hasty decisions",
+          "Ignoring subtle interpersonal dynamics or gut feelings"
+        ],
+        advice: "Allow early concepts to mature organically. Nurture collaborations and treat the slower pace as a powerful stabilizing leverage."
+      },
+      3: {
+        theme: "Self-Expression & Expansion: Year of Creative Flow",
+        desc: "A highly expressive, socially active year of mental and social expansion.",
+        supports: [
+          "Writing, public presentation, and artistic channels",
+          "Socializing and building inspiring personal connections",
+          "Expressing your authentic voice with clarity and confidence"
+        ],
+        avoid: [
+          "Scattering mental focus across too many minor options",
+          "Suppressing your genuine thoughts to maintain superficial harmony"
+        ],
+        advice: "Channel your insights into highly refined, shareable creative output. Opt for depth in a few key channels over scattered complexity."
+      },
+      4: {
+        theme: "Structure & Security: Year of the Foundation",
+        desc: "A structured calibration cycle dedicated to organization, physical routine, and security.",
+        supports: [
+          "Cleaning up administrative, financial, and legal details",
+          "Establishing steady physical routines and grounding habits",
+          "Securing properties, spaces, and everyday tools"
+        ],
+        avoid: [
+          "Taking speculative financial gambles or sudden risks",
+          "Erratic timetables or avoiding standard maintenance"
+        ],
+        advice: "Embrace steady organization. Treat routine not as a restriction, but as the essential maintenance work that secures your next major growth spurt."
+      },
+      5: {
+        theme: "Transition & Versatility: Year of Pivotal Change",
+        desc: "A high-velocity, versatile cycle designed to break obsolete routines and expand personal freedom.",
+        supports: [
+          "Restructuring outdated schedules and rules",
+          "Spontaneous travel, exploring fresh cultures, and shifting perspective",
+          "Swift adaptation to sudden, unexpected opportunities"
+        ],
+        avoid: [
+          "Clinging to comfortable zones out of fear of transition",
+          "Committing to rigid long-term plans prematurely"
+        ],
+        advice: "Remain highly flexible. Treat every sudden pivot or detour as an invitation to learn and restructure your operational style."
+      },
+      6: {
+        theme: "Domestic Harmony & Support: Year of Responsibility",
+        desc: "A deeply supportive cycle focused on family, service, and environmental harmony.",
+        supports: [
+          "Beautifying and upgrading your living/workspace",
+          "Acting as a stable emotional anchor for close circles",
+          "Nurturing deep, close-knit relationships"
+        ],
+        avoid: [
+          "Carrying everyone else's emotional burdens to personal burnout",
+          "Neglecting your own physical and mental well-being"
+        ],
+        advice: "Put on your own oxygen mask first. Serve others from a place of personal overflow, maintaining strict boundaries to protect your energy."
+      },
+      7: {
+        theme: "Reflection & Calibration: Year of Inner Study",
+        desc: "A quiet, highly introspective cycle dedicated to research, self-study, and internal calibration.",
+        supports: [
+          "Deep research, strategic thinking, and solitary learning",
+          "Nature walks, meditation, and quiet mental recharge",
+          "Aligning your external steps with internal principles"
+        ],
+        avoid: [
+          "Aggressive outward striving or material scaling",
+          "Forced social visibility or over-analyzing feelings as data"
+        ],
+        advice: "Treat this year as a quiet sanctuary. Focus on learning, introspection, and perspective shifts rather than external expansion."
+      },
+      8: {
+        theme: "Harvest & Leverage: Year of Manifestation",
+        desc: "A powerful year of concrete execution, commercial harvest, and recognized authority.",
+        supports: [
+          "Executing scaled business plans and financial decisions",
+          "Claiming leadership and speaking with executive confidence",
+          "Building robust systems that multiply your wealth and leverage"
+        ],
+        avoid: [
+          "Indecisiveness, false humility, or cutting ethical corners",
+          "Overriding your body's vital need for rest under pressure"
+        ],
+        advice: "Drive your ambitions with calm precision. Lead with absolute integrity, ensuring that your achievements serve to lift up your entire ecosystem."
+      },
+      9: {
+        theme: "Altruistic Release & Closure: Year of Completion",
+        desc: "A cycle of completion, altruistic release, and clearing out outdated baggage.",
+        supports: [
+          "Wrapping up unfinished projects and settling debts",
+          "Letting go of toxic patterns, clutter, and unneeded obligations",
+          "Directing your wisdom toward volunteering or service"
+        ],
+        avoid: [
+          "Launching major, multi-year business initiatives",
+          "Holding onto resentments, obsolete assets, or relationships"
+        ],
+        advice: "Clear the canvas completely. Spend these months closing old cycles so you can stand totally unencumbered when your new cycle starts next year."
+      }
+    };
+
+    function generatePsychologicalMirror(frequencies, completedArrows, missingArrows, dominantElement) {
+      const hasWill = completedArrows.some(a => a.cells.includes(9) && a.cells.includes(5) && a.cells.includes(1));
+      const hasEmotion = completedArrows.some(a => a.cells.includes(3) && a.cells.includes(5) && a.cells.includes(7));
+      const hasIntellect = completedArrows.some(a => a.cells.includes(4) && a.cells.includes(9) && a.cells.includes(2));
+      const hasAction = completedArrows.some(a => a.cells.includes(8) && a.cells.includes(1) && a.cells.includes(6));
+      
+      let signature = "";
+      let dominantEnergy = "";
+      let truths = [];
+      let experienceAs = "";
+      let underStress = "";
+      let growthLever = "";
+      
+      // New companion-level identity intelligence fields:
+      let symbolicPattern = "";
+      let humanTranslation = "";
+      let growthEdge = "";
+      let whenOverloaded = "";
+      let whatDrains = "";
+      let whatRestores = "";
+      let hiddenDefault = "";
+      let bestEnvironment = "";
+
+      if (hasWill && hasEmotion) {
+        symbolicPattern = "The Axis of Determination & Soul Intuition (9-5-1 & 3-5-7)";
+        humanTranslation = "You carry a rare structural synthesis—combining profoundly perceptive empathy with an unbreakable, quiet resolve.";
+        growthEdge = "Learning to invite others to share operational workloads rather than silently carrying them all.";
+        
+        signature = "You carry a rare structural synthesis, combining a profoundly perceptive emotional intelligence with an unbreakable, quiet resolve. You read the hidden dynamics of any room instantly, yet your inner axis remains completely self-guided—allowing you to support and anchor others without ever losing your own direction.";
+        dominantEnergy = "The Axis of Determination & Emotional Intuition";
+        truths = [
+          "You carry massive emotional or operational responsibilities silently, long before anyone else notices.",
+          "You seek environments of absolute intellectual freedom, detaching quietly from rigid micromanagement.",
+          "You possess a highly private core; even those closest to you feel there is a deep sanctuary in your mind."
+        ];
+        experienceAs = "A reassuring, deeply perceptive anchor who is warm yet retains a private, self-guided core.";
+        underStress = "You quietly absorb the emotional temperature, lock your vulnerabilities away, and solve it on your own.";
+        growthLever = "Pairing your profound intuitive empathy with clear, structured limits.";
+        
+        whenOverloaded = "You turn completely silent, pulling your energy inward to process the weight alone.";
+        whatDrains = "Superficial small talk, transaction-heavy networking, and chaotic environments that ignore human values.";
+        whatRestores = "Time spent in solitary nature, silent reading, or deep one-on-one dialogues with trusted friends.";
+        hiddenDefault = "Assuming you must act as the primary emotional stabilizer and protector of those around you.";
+        bestEnvironment = "A high-trust, flexible creative space with clear boundary alignments and minimal administrative bureaucracy.";
+      } else if (hasWill) {
+        symbolicPattern = "The Column of Unwavering Willpower (9-5-1)";
+        humanTranslation = "You rarely quit once emotionally committed, carrying massive projects through steep challenges.";
+        growthEdge = "Recognizing that knowing when to release or pivot is as much a strength as knowing how to persist.";
+        
+        signature = "Your blueprint is built around an immense concentration of willpower and single-minded determination. Once you lock your focus onto a long-term goal, you possess the rare endurance to push through major operational roadblocks, independent of outside approval or initial encouragement.";
+        dominantEnergy = "The Column of Unwavering Willpower (9-5-1)";
+        truths = [
+          "You find it incredibly difficult to abandon a project or relationship even when it is no longer productive.",
+          "Under pressure, you rely on sheer discipline to force progress, occasionally overriding your body's signals.",
+          "You respect direct, high-integrity communication and have little patience for corporate politics."
+        ];
+        experienceAs = "An unstoppable, self-motivated force who projects quiet authority and absolute reliability under pressure.";
+        underStress = "You double down on raw effort, refusing to ask for assistance, and treat rest as an obstacle.";
+        growthLever = "Intentionally inviting collaborative consensus and letting others contribute to execution.";
+        
+        whenOverloaded = "You become highly rigid, forcing goals through absolute discipline and sheer effort.";
+        whatDrains = "Delays, hesitation, over-analysis, and groups that lack momentum or clean direction.";
+        whatRestores = "Physical exercise, clean organization of your workspace, or checking off concrete milestones.";
+        hiddenDefault = "Defaulting to 'do it all myself' because you believe others won't match your speed or standards.";
+        bestEnvironment = "Fast-moving, high-velocity settings where decisions, communication, and execution happen dynamically.";
+      } else if (hasEmotion) {
+        symbolicPattern = "The Row of Soul Intuition (3-5-7)";
+        humanTranslation = "You attune naturally to the unvoiced emotional temperature of a space, operating from gut feel.";
+        growthEdge = "Setting clear, unapologetic boundaries and recognizing that keeping the peace at your expense is not harmony.";
+        
+        signature = "Your presence is anchored in high empathy and emotional intelligence. You are attuning naturally to the unvoiced needs, feelings, and social currents of your environment, acting as a supportive relational glue that brings harmony and trust to groups.";
+        dominantEnergy = "The Row of Soul Intuition (3-5-7)";
+        truths = [
+          "You feel when a relationship is out of alignment long before anyone else speaks, occasionally over-anticipating conflict.",
+          "You frequently defer difficult boundaries to keep the immediate peace, absorbing friction that isn't yours.",
+          "You thrive on authentic connections and feel drained by highly transactional or superficial environments."
+        ];
+        experienceAs = "A warm, deeply supportive, and empathetic advisor who makes others feel heard and safe.";
+        underStress = "You over-identify with other people's problems, taking on their stress as your own personal responsibility.";
+        growthLever = "Establishing clear, unapologetic boundaries and protecting your own energy first.";
+        
+        whenOverloaded = "You absorb the surrounding anxiety, becoming emotionally exhausted and hyper-sensitive to criticism.";
+        whatDrains = "Cold, purely transactional environments, emotional dishonesty, and aggressive operational pressure.";
+        whatRestores = "Creative writing, ambient music, reflective journaling, and safe spaces where you are listened to.";
+        hiddenDefault = "Prioritizing external peace and others' comfort over your own vital needs.";
+        bestEnvironment = "Empathy-driven, collaborative workspaces that value psychological safety and human relationships.";
+      } else if (hasIntellect) {
+        symbolicPattern = "The Row of Strategy & Logic (4-9-2)";
+        humanTranslation = "Your mind instinctively scans for structure, patterns, and future consequences before taking action.";
+        growthEdge = "Learning to trust your gut instincts early, taking swift action before all data is fully compiled.";
+        
+        signature = "Your blueprint is characterized by a highly active, strategic intellect. You excel at structural planning, systems thinking, and mapping out complex pathways before committing resources, preferring logical clarity over hasty action.";
+        dominantEnergy = "The Row of Strategy & Logic (4-9-2)";
+        truths = [
+          "Your mind is constantly running scenarios, which makes you brilliant at strategy but highly prone to late-night overthinking.",
+          "You dislike chaotic, unorganized spaces because your cognition naturally seeks order, structure, and clear patterns.",
+          "You value intellectual competence above all else and need regular mental challenges to feel fully engaged."
+        ];
+        experienceAs = "A sharp, highly objective strategist who brings structural order and calm analytical clarity to chaotic situations.";
+        underStress = "You retreat into intense logic, analyzing feelings as if they were technical data points and isolating yourself.";
+        growthLever = "Trusting your gut instincts early, taking swift action before all data is fully compiled.";
+        
+        whenOverloaded = "You spin in hyper-analysis, getting stuck in infinite loops of scenario planning and worry.";
+        whatDrains = "Chaotic, unorganized processes, sudden shifts without logical reasoning, and intellectual stagnation.";
+        whatRestores = "Solving structured puzzles, organizing folders, reading complex manuals, or clear-cut planning sessions.";
+        hiddenDefault = "Attempting to solve emotional or relationship problems purely through logic and structured analysis.";
+        bestEnvironment = "Intellectually challenging, highly ordered spaces with clear logic, stable parameters, and strategic goals.";
+      } else if (hasAction) {
+        symbolicPattern = "The Row of Practical Action (8-1-6)";
+        humanTranslation = "You look at concepts through a single lens: how does this work in reality? You bring ideas down to earth.";
+        growthEdge = "Allowing yourself to dream and explore conceptual possibilities without immediately demanding their practical justification.";
+        
+        signature = "Your blueprint is defined by pragmatic, hands-on execution. You look at concepts through a single lens—'How does this work in reality?'—and bring ideas down to earth through consistent work ethic and real-world implementation.";
+        dominantEnergy = "The Row of Practical Action (8-1-6)";
+        truths = [
+          "You express your loyalty and support through tangible actions and help, rather than purely through emotional check-ins or verbal praise.",
+          "You get intensely frustrated by endless conceptual meetings that do not lead to immediate, concrete operational steps.",
+          "You find deep satisfaction in structured physical routines, checklists, and seeing direct results of your day's work."
+        ];
+        experienceAs = "A highly grounded, realistic, and execution-focused builder who anchors projects with reliable, hands-on labor.";
+        underStress = "You throw yourself into physical work or minor technical details to avoid dealing with deeper, unstructured emotional tensions.";
+        growthLever = "Allowing yourself to dream without immediate practical constraints, exploring open-ended concepts.";
+        
+        whenOverloaded = "You fixate on minor physical tasks or detailed checklists, working in overdrive to avoid dealing with emotional tension.";
+        whatDrains = "Vague, open-ended brainstorming sessions, lack of tangible tools, and erratic execution schedules.";
+        whatRestores = "Working with your hands, gardening, simple physical routines, or organizing your physical tools.";
+        hiddenDefault = "Measuring your personal self-worth entirely by the volume of tasks you physically complete.";
+        bestEnvironment = "Pragmatic, execution-focused environments where quality standards are clear and physical results are valued.";
+      } else {
+        symbolicPattern = `${dominantElement} Element Harmony`;
+        humanTranslation = "Your blueprint is defined by high adaptability and a balanced, versatile capacity to bridge different styles.";
+        growthEdge = "Deliberately choosing a single, highly focused priority and committing to it despite external options.";
+        
+        signature = "Your blueprint is defined by high adaptability and a balanced structural footprint. Lacking extreme vector concentrations, you possess a versatile capacity to bridge different roles, elements, and styles, adjusting your operational stance based on what the current environment requires.";
+        dominantEnergy = `${dominantElement} Element Harmony`;
+        truths = [
+          "You often act as the objective mediator because you can see multiple sides without being locked into a single viewpoint.",
+          "You value harmony and balance, and will quietly adjust your own habits to keep external situations running smoothly.",
+          "You prefer a versatile lifestyle with space for spontaneous pivots over rigid, heavily pre-planned routines."
+        ];
+        experienceAs = "A highly flexible, diplomatic, and approachable collaborator who can seamlessly adapt to diverse group dynamics.";
+        underStress = "You try to please too many stakeholders at once, scattering your attention and diluting your personal priorities.";
+        growthLever = "Deliberately choosing a single, highly focused priority and committing to it despite external options.";
+        
+        whenOverloaded = "You scatter your attention across too many tasks, trying to please everyone and leaving your own plans half-done.";
+        whatDrains = "Rigid, unchanging single-topic focus, highly aggressive conflict, and narrow compartmentalized tasks.";
+        whatRestores = "Changing your focus, exploring new projects, soft diplomatic discussions, and taking a break from high demands.";
+        hiddenDefault = "Defaulting to high flexibility and diplomacy to bypass necessary, healthy confrontation.";
+        bestEnvironment = "Versatile, collaborative team environments where you can bridge different departments and coordinate creative ideas.";
+      }
+
+      if (frequencies[5] >= 2 && truths.length > 1) {
+        truths[1] = "You possess a powerful need for personal freedom, and will quietly but decisively withdraw from any environment that attempts to micromanage your time.";
+      }
+      if (frequencies[2] === 0 && truths.length > 2) {
+        truths[2] = "You are fiercely independent to a fault, frequently carrying heavy operational burdens alone because you dislike asking others for help.";
+      }
+
+      return {
+        signature, dominantEnergy, truths, experienceAs, underStress, growthLever,
+        symbolicPattern, humanTranslation, growthEdge,
+        whenOverloaded, whatDrains, whatRestores, hiddenDefault, bestEnvironment
+      };
+    }
+
+    function renderComprehensiveInsights(frequencies, completedArrows, missingArrows, dobStr, dominantElement) {
+        // 0. Generate Psychological Core Identity Mirror
+        const mirror = generatePsychologicalMirror(frequencies, completedArrows, missingArrows, dominantElement);
+        
+        const hasWill = completedArrows.some(a => a.cells.includes(9) && a.cells.includes(5) && a.cells.includes(1));
+        const hasEmotion = completedArrows.some(a => a.cells.includes(3) && a.cells.includes(5) && a.cells.includes(7));
+
+        const sigEl = document.getElementById('dyn-core-signature');
+        const domEl = document.getElementById('dyn-dominant-energy');
+        const groEl = document.getElementById('dyn-growth-lever');
+        const expEl = document.getElementById('dyn-experience-as');
+        const truthsEl = document.getElementById('dyn-human-truths');
+
+        // New centerpiece elements
+        const symEl = document.getElementById('dyn-symbolic-pattern');
+        const humEl = document.getElementById('dyn-human-translation');
+        const edgeEl = document.getElementById('dyn-growth-edge');
+
+        // New behavioral dynamic elements
+        const ovrEl = document.getElementById('dyn-overloaded');
+        const drnEl = document.getElementById('dyn-drains');
+        const rstEl = document.getElementById('dyn-restores');
+        const defEl = document.getElementById('dyn-hidden-default');
+        const envEl = document.getElementById('dyn-best-env');
+
+        if (sigEl) sigEl.innerText = mirror.signature;
+        if (domEl) domEl.innerText = mirror.dominantEnergy;
+        if (groEl) groEl.innerText = mirror.growthLever;
+        if (expEl) expEl.innerText = mirror.experienceAs;
+
+        if (symEl) symEl.innerText = mirror.symbolicPattern;
+        if (humEl) humEl.innerText = `“${mirror.humanTranslation}”`;
+        if (edgeEl) edgeEl.innerText = mirror.growthEdge;
+
+        if (ovrEl) ovrEl.innerText = mirror.whenOverloaded;
+        if (drnEl) drnEl.innerText = mirror.whatDrains;
+        if (rstEl) rstEl.innerText = mirror.whatRestores;
+        if (defEl) defEl.innerText = mirror.hiddenDefault;
+        if (envEl) envEl.innerText = mirror.bestEnvironment;
+
+        if (truthsEl && mirror.truths.length > 0) {
+            truthsEl.innerHTML = mirror.truths.map(t => `<div class="human-truth-quote">“${t}”</div>`).join('');
+        }
+
+        // 1. Completed Strengths (Full Arrows)
+        const fullArrowsEl = document.getElementById('dyn-full-arrows');
+        if (completedArrows.length > 0) {
+            let html = '<ul style="padding-left: 1.5rem; margin: 0;">';
+            completedArrows.forEach(arrow => {
+                html += `<li style="margin-bottom: 0.75rem;"><strong>${arrow.name} (Full ${arrow.name.includes('Intellect') || arrow.name.includes('Soul') || arrow.name.includes('Action') ? 'Row' : arrow.name.includes('Vision') || arrow.name.includes('Determination') || arrow.name.includes('Activity') ? 'Column' : 'Diagonal'}: ${arrow.cells.join('-')}):</strong> ${arrow.meaning}</li>`;
+            });
+            html += '</ul>';
+            fullArrowsEl.innerHTML = html;
+        } else {
+            fullArrowsEl.innerHTML = '<div style="color: var(--ink-faded); font-style: italic;">No completed arrows. Your energies are distributed evenly across the grid, allowing for high flexibility without a single dominant vector constraint.</div>';
+        }
+
+        // 2. Over-Amplified Energies & Life Blind Spots
+        const repeatedEl = document.getElementById('dyn-repeated-numbers');
+        const missingEl = document.getElementById('dyn-missing-numbers');
+        
+        if (repeatedEl) {
+            let repeatedList = [];
+            for (let i = 1; i <= 9; i++) {
+                if (frequencies[i] >= 2) {
+                    let label = i === 5 ? "Double 5 (From your birth details)" : i === 1 ? "Double 1 (From your birth details)" : i === 3 ? "Double 3 (From your birth details)" : `Repeated ${i}`;
+                    repeatedList.push(`<li style="margin-bottom: 0.75rem;"><strong>${label}:</strong> ${repeatedNumbersDb[i]}</li>`);
+                }
+            }
+            if (repeatedList.length > 0) {
+                repeatedEl.innerHTML = `<ul style="padding-left: 1.5rem; margin: 0;">${repeatedList.join('')}</ul>`;
+            } else {
+                repeatedEl.innerHTML = '<div style="color: var(--ink-faded); font-style: italic;">No highly repeated numbers. Your elemental energies operate at a clean, balanced frequency without over-amplified intensity.</div>';
+            }
+        }
+
+        if (missingEl) {
+            let missingList = [];
+            let missingDigits = [];
+            for (let i = 1; i <= 9; i++) {
+                if (frequencies[i] === 0) {
+                    missingDigits.push(i);
+                    // Extract paren info and strip redundant "Missing X" prefix
+                    let rawText = missingNumbersDb[i] || '';
+                    let cleanText = rawText
+                        .replace(/<strong>Missing\s+\d+\s*\(([^)]+)\)<\/strong>/i, '<strong style="color:var(--pigment-cinnabar); font-family:var(--font-serif-header); font-size:1.02rem; text-transform:none;">$1</strong>')
+                        .replace(/<strong>Missing\s+\d+<\/strong>/i, '');
+                    missingList.push(`
+                      <div class="insight-card" style="border: 1px solid rgba(166, 91, 74, 0.2); border-left: 4px solid var(--pigment-cinnabar); background-color: rgba(244, 235, 212, 0.15); padding: 12px 14px; border-radius: 4px; font-size: 0.95rem; line-height: 1.6; color: var(--ink-archival); margin: 0.85rem 0; text-align: left; break-inside: avoid;">
+                        ${cleanText}
+                      </div>
+                    `);
+                }
+            }
+            if (missingList.length > 0) {
+                const bigDigitsHtml = `<div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem; flex-flow: row wrap;">` + 
+                    missingDigits.map(d => `<div style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border: 1px dashed #D6CEBE; border-radius: 4px; background: #FAF7EF; font-family: var(--font-serif-header); font-size: 1.3rem; font-weight: 700; color: #C4BBAA;">${d}</div>`).join('') + 
+                    `</div>`;
+                missingEl.innerHTML = bigDigitsHtml + missingList.join('');
+            } else {
+                missingEl.innerHTML = '<div style="color: var(--ink-faded); font-style: italic;">Congratulations! You have a completely full grid with zero missing numbers. All nine palaces of energy flow to you naturally.</div>';
+            }
+        }
+
+        // 3. Remedies, Careers & Directions
+        const remediesEl = document.getElementById('dyn-remedies');
+        const careersEl = document.getElementById('dyn-careers');
+        const directionsEl = document.getElementById('dyn-directions');
+        
+        if (remediesEl) {
+            let remediesList = [];
+            for (let i = 1; i <= 9; i++) {
+                if (frequencies[i] === 0) {
+                    const data = remediesDb[i];
+                    remediesList.push(`
+                        <div class="insight-card" style="border: 1px solid rgba(217, 130, 54, 0.2); border-left: 4px solid var(--pigment-saffron); background-color: rgba(244, 235, 212, 0.12); padding: 12px 14px; border-radius: 4px; font-size: 0.95rem; line-height: 1.6; color: var(--ink-archival); margin: 0.85rem 0; text-align: left; break-inside: avoid;">
+                            <strong style="color: var(--pigment-cinnabar); font-family: var(--font-serif-header); font-size: 1rem; display: block; margin-bottom: 4px;">✦ ${data.title}</strong>
+                            <div style="color: var(--ink-archival);">
+                              <div style="margin-bottom: 4px; font-style: italic; color: var(--ink-faded);">${data.shadow}</div>
+                              <div style="margin-bottom: 4px;"><strong>Growth Practice:</strong> ${data.practice}</div>
+                              <div><strong>Tactile Workspace:</strong> ${data.support}</div>
+                            </div>
+                        </div>
+                    `);
+                }
+            }
+            if (remediesList.length > 0) {
+                remediesEl.innerHTML = remediesList.join('');
+            } else {
+                remediesEl.innerHTML = '<div style="color: var(--ink-faded); font-style: italic;">No remedies needed! All palaces are active in your grid, creating a natural, self-sustaining flow of elemental energy.</div>';
+            }
+        }
+
+        if (careersEl) {
+            if (hasWill && hasEmotion) {
+                careersEl.innerHTML = `
+                    <p style="margin-top: 0; margin-bottom: 0.75rem;">Because your grid is dominated by the <strong>Arrow of Willpower (9-5-1)</strong> and the <strong>Arrow of Emotion (3-5-7)</strong>, you do not thrive in highly rigid, micromanaged environments. Your layout points directly toward roles that involve:</p>
+                    <ul style="padding-left: 1.5rem; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><strong>Independent Leadership:</strong> You possess the determination (Willpower) to work without supervision. Roles where you are the boss, an independent consultant, or running your own venture suit you best.</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>People-Centric Fields:</strong> Your high emotional intelligence means you excel in roles requiring deep empathy. This includes advisory positions, counselling, teaching, human relations, or any work where understanding human nature is key.</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Problem Solving & Creativity:</strong> With your sharp knowledge elements and desire for freedom, you excel in dynamic environments where you can solve unique problems, write, or create, rather than doing repetitive data entry.</li>
+                    </ul>
+                `;
+            } else if (hasWill) {
+                careersEl.innerHTML = `
+                    <p style="margin-top: 0; margin-bottom: 0.75rem;">Because your grid features the strong <strong>Arrow of Willpower (9-5-1)</strong>, you excel in highly challenging, goal-oriented environments. You are highly self-motivated and thrive in roles involving:</p>
+                    <ul style="padding-left: 1.5rem; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><strong>Independent Execution:</strong> Project management, entrepreneurship, or high-stakes consultancy.</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Direct Action:</strong> Sales, engineering, or operations where persistence is the primary metric of success.</li>
+                    </ul>
+                `;
+            } else if (hasEmotion) {
+                careersEl.innerHTML = `
+                    <p style="margin-top: 0; margin-bottom: 0.75rem;">Because your grid features the strong <strong>Arrow of Emotion (3-5-7)</strong>, you thrive in environments that value human relationships and strategic vision. You excel in:</p>
+                    <ul style="padding-left: 1.5rem; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><strong>Coaching & Mentorship:</strong> Human relations, organizational development, psychology, or teaching.</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Creative Communication:</strong> Arts, writing, or strategic leadership where reading the room is essential.</li>
+                    </ul>
+                `;
+            } else {
+                careersEl.innerHTML = `
+                    <p style="margin-top: 0; margin-bottom: 0.75rem;">Because your grid has a highly balanced and flexible elemental distribution, you thrive in roles that require adaptability, synthesis, and multifaceted execution:</p>
+                    <ul style="padding-left: 1.5rem; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><strong>Cross-Domain Operations:</strong> Operations management, strategic advisory, or multi-disciplinary consulting where you bridge technical and human needs.</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Systems Coordination:</strong> Product management or developmental planning where organizing structural elements is key.</li>
+                    </ul>
+                `;
+            }
+        }
+
+        if (directionsEl) {
+            let sitDir = "North or East";
+            let sleepDir = "South or South-West";
+            
+            if (dominantElement.includes("Wood")) {
+                sitDir = "South or South-East";
+                sleepDir = "North or East";
+            } else if (dominantElement.includes("Fire")) {
+                sitDir = "East or North-East";
+                sleepDir = "South or East";
+            } else if (dominantElement.includes("Metal")) {
+                sitDir = "West or North-West";
+                sleepDir = "North-East or South-West";
+            } else if (dominantElement.includes("Water")) {
+                sitDir = "South or North";
+                sleepDir = "West or North-West";
+            }
+            
+            directionsEl.innerHTML = `
+                <ul style="padding-left: 1.5rem; margin: 0;">
+                    <li style="margin-bottom: 0.5rem;"><strong>To boost work productivity and focus:</strong> Try to sit facing the <strong>${sitDir}</strong>.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>To enhance relaxation and better sleep:</strong> Position your bed headboard pointing toward the <strong>${sleepDir}</strong>.</li>
+                </ul>
+            `;
+        }
+
+        // 4. Personal Year Cycle for 2026
+        const dobParts = dobStr.split('-');
+        if (dobParts.length >= 3) {
+            const monthVal = parseInt(dobParts[1]);
+            const dayVal = parseInt(dobParts[2]);
+            
+            const dayDigits = dayVal.toString().split('').map(d => parseInt(d));
+            const monthDigits = monthVal.toString().split('').map(d => parseInt(d));
+            const yearDigits = [2,0,2,6];
+            
+            let initialSum = 0;
+            dayDigits.forEach(d => initialSum += d);
+            monthDigits.forEach(d => initialSum += d);
+            yearDigits.forEach(d => initialSum += d);
+            
+            let formulaStr = dayDigits.join('+') + '(Date)+' + monthDigits.join('+') + '(Month)+' + yearDigits.join('+') + '(Current Year 2026) = ' + initialSum;
+            
+            let finalVal = initialSum;
+            while (finalVal > 9) {
+                let temp = 0;
+                finalVal.toString().split('').forEach(d => temp += parseInt(d));
+                formulaStr += ` → ${finalVal.toString().split('').join('+')} = Personal Year ${temp}`;
+                finalVal = temp;
+            }
+            
+            const calcEl = document.getElementById('dyn-personal-year-calc');
+            const themeEl = document.getElementById('dyn-personal-year-theme');
+            const descEl = document.getElementById('dyn-personal-year-desc');
+            const supportsEl = document.getElementById('dyn-personal-year-supports');
+            const avoidEl = document.getElementById('dyn-personal-year-avoid');
+            const adviceEl = document.getElementById('dyn-personal-year-advice');
+            
+            if (calcEl) calcEl.innerHTML = `<strong>2026 Calculation Math:</strong> ${formulaStr}`;
+            
+            if (personalYearDb[finalVal]) {
+                const data = personalYearDb[finalVal];
+                if (themeEl) themeEl.innerText = `Theme for 2026: ${data.theme}`;
+                if (descEl) descEl.innerText = data.desc;
+                if (supportsEl) {
+                    supportsEl.innerHTML = data.supports.map(s => `<li style="margin-bottom: 0.45rem;">${s}</li>`).join('');
+                }
+                if (avoidEl) {
+                    avoidEl.innerHTML = data.avoid.map(av => `<li style="margin-bottom: 0.45rem;">${av}</li>`).join('');
+                }
+                if (adviceEl) adviceEl.innerText = data.advice;
+            }
+        }
+    }
+  </script>
+</body>
+</html>

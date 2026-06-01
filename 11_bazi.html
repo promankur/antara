@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chinese BaZi Four Pillars | Antara Cross-Cultural Interior Panorama</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-page: #F7F1E1;
+      --bg-vellum-warm: #ffffff;
+      --ink-archival: #2B2A28;
+      --ink-faded: #76726A;
+      --border-container: 1px solid #D6CEBE;
+      --stroke: #b56a2a;
+      
+      --font-serif-header: 'Cinzel', serif;
+      --font-serif-body: 'Playfair Display', serif;
+      --font-mono: 'Courier Prime', monospace;
+      
+      --pigment-terracotta: #A65B4A;
+      --pigment-saffron: #D98236;
+      --pigment-cinnabar: #9E3A33;
+      --pigment-lapis: #2E6CB5;
+      --pigment-moss: #4A6B5D;
+      --pigment-gold: #B58A3D;
+    }
+
+    details p, details td, details li {
+      font-variant: normal !important;
+      font-family: var(--font-serif-body) !important;
+      text-transform: none !important;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 17px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1150px;
+      width: 100%;
+      margin: 0 auto 2rem auto;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    .prose-container {
+      max-width: 78ch;
+      margin: 0 auto;
+    }
+
+    .inputs-coordinates-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .inputs-coordinates-grid {
+        display: grid;
+        grid-template-columns: 330px 1fr;
+        gap: 2rem;
+      }
+      .bazi-grid-cell-calib { grid-column: 1; grid-row: 1; border-color: rgba(214, 206, 190, 0.6) !important; }
+      .bazi-grid-cell-pillars { grid-column: 2; grid-row: 1; }
+      .bazi-grid-cell-yongshen { grid-column: 1; grid-row: 2; border-color: rgba(214, 206, 190, 0.6) !important; }
+      .bazi-grid-cell-wuxing { grid-column: 2; grid-row: 2; }
+    }
+
+    .archival-card {
+      background-color: var(--bg-vellum-warm);
+      border: var(--border-container);
+      padding: 1.5rem;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04);
+      box-sizing: border-box;
+      border-radius: 4px;
+    }
+
+    .form-group { margin-bottom: 1.15rem; }
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--ink-faded);
+      margin-bottom: 0.5rem;
+      min-height: 1.8em;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .form-input {
+      width: 100%;
+      height: 46px;
+      background-color: rgba(247, 241, 225, 0.4);
+      border: var(--border-container);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 1.05rem;
+      padding: 0.5rem 1rem;
+      box-sizing: border-box;
+      outline: none;
+      border-radius: 2px;
+    }
+
+    .time-select-cluster {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      width: 100%;
+      height: 46px;
+    }
+    .time-select-cluster select.form-input {
+      height: 46px;
+      padding: 0.5rem 0.2rem;
+      font-weight: bold;
+      text-align: center;
+      text-align-last: center;
+    }
+
+    /* BaZi 4x2 Pillars Grid */
+    .bazi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+    }
+    .bazi-pillar-card {
+      border: 1px solid #D6CEBE;
+      border-radius: 4px;
+      background-color: #faf7ef;
+      text-align: center;
+      padding: 1.25rem 0.5rem;
+      box-sizing: border-box;
+    }
+    .bazi-pillar-header {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--ink-archival);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px dashed #D6CEBE;
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.75rem;
+      font-weight: 900;
+    }
+    .bazi-char-large {
+      font-size: 2.2rem;
+      line-height: 1.1;
+      font-weight: normal;
+      color: var(--ink-archival);
+      margin: 0.25rem 0;
+    }
+    .bazi-pinyin {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: normal;
+      color: var(--ink-faded);
+      margin-top: 0.15rem;
+      line-height: 1.35;
+    }
+    .bazi-elem-tag {
+      display: inline-block;
+      padding: 0.12rem 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: normal;
+      border-radius: 3px;
+      color: #FFF;
+      margin-top: 0.4rem;
+      text-transform: uppercase;
+    }
+
+    /* Standard Remedial Playbook layout */
+    .remedy-card {
+      border-left: 4px solid var(--pigment-saffron);
+      padding-left: 1rem;
+      margin-bottom: 1.25rem;
+      margin-top: 1.25rem;
+    }
+    .remedy-card h5 {
+      margin: 0 0 0.25rem 0;
+      font-family: var(--font-serif-header);
+      font-size: 1rem;
+      color: var(--pigment-cinnabar);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .remedy-card p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--ink-archival);
+      line-height: 1.55;
+    }
+
+    /* Ten Gods Archetype Cards */
+    .shishen-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    @media (min-width: 750px) {
+      .shishen-grid {
+        grid-template-columns: 1.12fr 0.88fr; /* asymmetrical layout */
+      }
+    }
+    .shishen-card {
+      border: 1px solid #D6CEBE;
+      padding: 1.5rem;
+      background-color: rgba(247, 241, 225, 0.15);
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 150px;
+      box-shadow: 0 4px 12px rgba(43,42,40,0.02);
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+    }
+    .shishen-card:hover {
+      background-color: var(--bg-vellum-warm);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(43,42,40,0.04);
+    }
+    .shishen-seal-bg {
+      position: absolute;
+      right: -10px;
+      bottom: -15px;
+      font-size: 6.5rem;
+      font-weight: 900;
+      color: rgba(214, 206, 190, 0.12); /* faded archetype seal watermark */
+      font-family: var(--font-serif-header);
+      user-select: none;
+      pointer-events: none;
+      line-height: 1;
+    }
+    .shishen-potency-scale {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 0.85rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-faded);
+    }
+
+    .luck-pillars-timeline {
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+      padding: 1rem 0 1.25rem 0;
+      margin: 1rem 0;
+      -webkit-overflow-scrolling: touch;
+    }
+    .luck-pillars-timeline::-webkit-scrollbar {
+      height: 6px;
+    }
+    .luck-pillars-timeline::-webkit-scrollbar-track {
+      background: rgba(214, 206, 190, 0.25);
+      border-radius: 3px;
+    }
+    .luck-pillars-timeline::-webkit-scrollbar-thumb {
+      background: #D6CEBE;
+      border-radius: 3px;
+    }
+    .luck-pillars-timeline::-webkit-scrollbar-thumb:hover {
+      background: var(--ink-faded);
+    }
+    .luck-pillar-card {
+      min-width: 90px;
+      flex: 1;
+      border: 1px solid #D6CEBE;
+      background-color: rgba(247, 241, 225, 0.25);
+      border-radius: 4px;
+      text-align: center;
+      padding: 0.85rem 0.4rem;
+      transition: all 0.3s ease;
+    }
+    .luck-pillar-card:hover {
+      background-color: var(--bg-vellum-warm);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    }
+    .luck-age {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: bold;
+      color: var(--pigment-terracotta);
+      margin-bottom: 0.4rem;
+    }
+
+    /* Stackable Modules Cards with restricted width */
+    .module-card {
+      background-color: var(--bg-vellum-warm);
+      border: var(--border-container);
+      border-radius: 4px;
+      margin: 0 auto 1.5rem auto;
+      padding: 1.75rem;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.02);
+      max-width: 820px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .module-header {
+      font-family: var(--font-serif-header);
+      font-size: 1.25rem;
+      border-bottom: 1px solid #D6CEBE;
+      padding-bottom: 0.5rem;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      color: var(--pigment-terracotta);
+      letter-spacing: 1px;
+      display: block;
+      text-align: left;
+    }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 2.5rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+    }
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--ink-faded);
+      margin: 0.25rem 0;
+    }
+
+    p, td, li { text-align: left !important; }
+
+    /* Standardized Branding */
+    .header-logo { 
+      text-align: center; 
+      margin: 20px 0 8px 0; 
+    }
+    .system-tagline { 
+      font-family: var(--font-mono) !important; 
+      font-weight: 600 !important; 
+      font-size: 12px !important; 
+      letter-spacing: 3px !important; 
+      color: #A6A29A !important; 
+      text-transform: uppercase !important; 
+      text-align: center !important; 
+      margin: 0 0 24px 0 !important; 
+      line-height: 1.2 !important;
+    }
+    .master-report-title { 
+      font-family: 'Cinzel', serif !important; 
+      font-size: 2.25rem !important; 
+      font-variant: small-caps !important; 
+      font-weight: 700 !important; 
+      letter-spacing: 2px !important; 
+      color: #2B2A28 !important; 
+      text-align: center !important; 
+      margin: 0 0 14px 0 !important; 
+      line-height: 1.3 !important; 
+    }
+    .master-report-byline { 
+      font-family: 'Playfair Display', serif !important; 
+      font-size: 1.15rem !important; 
+      color: #D98236 !important; 
+      text-align: center !important; 
+      max-width: 800px !important; 
+      margin: 0 auto 32px auto !important; 
+      padding: 0 12px !important; 
+      line-height: 1.5 !important; 
+    }
+
+    .coordinate-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+    .coordinate-table th, .coordinate-table td {
+      border: 1px solid #EADEC9;
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+    }
+    .coordinate-table th {
+      background-color: #faf7ef;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--ink-faded);
+    }
+
+    /* Premium Click to Explore Accordion Styles */
+    .explore-summary {
+      font-family: var(--font-serif-header);
+      background-color: #D35400; /* Vibrant Brand Saffron */
+      color: #FFFFFF !important;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.85rem 1.25rem; /* Elegant compact height */
+      border: 1px solid #8E4A21; /* Cinnamon brand structural frame */
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 12px rgba(211, 84, 0, 0.12);
+      line-height: 1.35;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .explore-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .explore-summary::before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px double rgba(255, 255, 255, 0.45); /* Elegant double border in reverse white */
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .explore-summary:hover {
+      background-color: #E65C00; /* Slightly brighter warm saffron on hover */
+      box-shadow: 0 6px 18px rgba(211, 84, 0, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .explore-summary:hover::before {
+      border-color: rgba(255, 255, 255, 0.7);
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+    }
+
+    .explore-summary:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(211, 84, 0, 0.15);
+    }
+
+    .explore-summary .explore-title-main {
+      font-variant: small-caps;
+      font-size: 1.05rem; /* Compact size */
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: none; /* Crucial for small-caps */
+      position: relative;
+      z-index: 2;
+    }
+
+    .explore-summary .explore-title-sub {
+      font-family: var(--font-serif-body);
+      font-size: 1.25rem; /* Bold italic font matching user mock */
+      font-weight: 700;
+      font-style: italic;
+      margin-top: 3px;
+      letter-spacing: 0.5px;
+      color: #FFFFFF !important;
+      position: relative;
+      z-index: 2;
+    }
+
+    .accordion-inner-border {
+      position: relative;
+    }
+
+    .accordion-inner-border::before {
+      content: "";
+      position: absolute;
+      top: 6px; left: 6px; right: 6px; bottom: 6px;
+      border: 1px double #D6CEBE;
+      pointer-events: none;
+      border-radius: 3px;
+    }
+  
+    /* Premium Left-Aligned Footer Override */
+    footer {
+      width: 100%;
+      padding: 2rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+      text-align: left;
+    }
+    .footer-content {
+      max-width: 1100px;
+      width: 100%;
+      padding: 0 16px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+    footer p {
+      font-family: var(--font-serif-body);
+      font-size: 0.82rem;
+      color: var(--ink-archival);
+      margin: 0.25rem 0;
+    }
+    footer p.font-mono {
+      font-family: var(--font-mono) !important;
+      font-size: 0.72rem !important;
+      color: var(--ink-faded) !important;
+    }
+
+  
+    /* ─── Reading Guide Grid (Tactile manuscript details) ─── */
+    .reading-guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .reading-guide-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+</style>
+  <meta name="description" content="Antara is a traditional cross-cultural mathematical life-engine and archetypal systems cartography. Calibrate your natal coordinates, biological rhythms, and name phonetic values across Vedic, Western tropical, and Chinese solar Four Pillars traditions.">
+  <link rel="icon" type="image/png" href="Antara Logo.png">
+</head>
+<body>
+
+  <div class="header-logo">
+    <a href="index.html" title="Return to Antara Dashboard" style="text-decoration: none; border: none; display: inline-block;">
+      <img src="Antara Logo.png" alt="ANTARA" style="max-height: 90px; width: auto;" onerror="this.style.display='none';">
+    </a>
+  </div>
+  <div class="system-tagline">Cross-Cultural Interior Panorama</div>
+
+  <h1 class="master-report-title">BaZi Four Pillars Profile<br>For The Nameless One</h1>
+  <p class="master-report-byline">Heavenly Stems & Earthly Branches Calibrated Destiny Matrix</p>
+
+  <div class="container">
+    
+    <!-- About section -->
+    <div class="prose-container" style="margin-bottom: 2.25rem; padding: 0.5rem 0;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-bottom: 1rem; color: var(--stroke, #b56a2a); letter-spacing: 1px; text-transform: uppercase;">About This Report</h3>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        In the Chinese solar metaphysical tradition, <strong>BaZi (四柱命理 - The Four Pillars of Destiny)</strong> maps your structural blueprint into a 4x2 matrix of Heavenly Stems and Earthly Branches. Rather than speculative forecasts, this profile deconstructs your birth coordinate grid to evaluate elemental distributions and identify the <strong>Yong Shen (Useful God)</strong> element required to maintain systemic equilibrium.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">
+        By evaluating the balance between Stems/Branches, the Ten Gods talent profiles, symbolic stars (Shen Sha), and the Luck Pillars (Da Yun) chronology, this report delivers clear, highly practical career and lifestyle directions.
+      </p>
+    
+      <!-- Codex Support Navigation Panel -->
+      <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px dashed #D6CEBE; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="Help.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📖 Help
+        </a>
+        <a href="FAQ.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          ❓ FAQ
+        </a>
+        <a href="Glossary.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📓 Glossary
+        </a>
+      </div>
+      <!-- How to Read This Report (Reading Guide Block) -->
+      <div style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; border: 1px dashed #D6CEBE; background-color: rgba(247, 241, 225, 0.15); border-radius: 4px; box-shadow: 0 2px 8px rgba(43, 42, 40, 0.01);">
+        <h4 style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 1rem; text-align: center; border-bottom: 1px dashed #D6CEBE; padding-bottom: 0.4rem;">
+          How to Study This Document
+        </h4>
+        <div class="reading-guide-grid">
+          <!-- Point 1 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">1. Read the accordion sections one at a time.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">Each section expands when you click the title — do not try to read everything at once.</span>
+          </div>
+          <!-- Point 2 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">2. Look up unfamiliar terms</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">in the Antara Glossary (<a href="Glossary.html" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar);">Glossary.html</a> in this folder).</span>
+          </div>
+          <!-- Point 3 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">3. Start with the numbers that feel most familiar.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">In a Western chart, most people know their Sun sign. In Numerology, the Life Path is easiest.</span>
+          </div>
+          <!-- Point 4 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">4. Do not worry about understanding everything on the first read.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">These reports are meant to be returned to and studied over time.</span>
+          </div>
+        </div>
+      </div>
+
+</div>
+
+    <!-- Inputs & Layout Grid (Flattened 2x2 Grid) -->
+    <div class="inputs-coordinates-grid">
+      
+        <div class="archival-card bazi-grid-cell-calib">
+          <form onsubmit="event.preventDefault();">
+            <h3 style="font-family: var(--font-serif-header); font-size: 1.15rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1.25rem; text-transform: uppercase; color: var(--pigment-terracotta); letter-spacing: 1px;">Temporal Calibration</h3>
+            
+            <div class="form-group">
+              <label>Consultant Name</label>
+              <input type="text" id="input-name" class="form-input" value="The Nameless One" placeholder="Enter name...">
+            </div>
+
+            <div class="form-group">
+              <label>Birth Date</label>
+              <input type="date" id="input-dob" class="form-input" value="1953-05-16">
+            </div>
+            
+            <div class="form-group">
+              <label>Birth Time</label>
+              <div class="time-select-cluster">
+                <select id="input-time-hour" class="form-input"></select>
+                <select id="input-time-minute" class="form-input"></select>
+                <select id="input-time-ampm" class="form-input">
+                  <option value="AM">AM</option>
+                  <option value="PM">PM</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Birth Location</label>
+              <input type="text" id="input-location" class="form-input" value="Chakrata, Uttarakhand, India">
+            </div>
+          </form>
+        </div>
+
+        <!-- Useful God element card -->
+        <div class="archival-card bazi-grid-cell-yongshen" style="border-left: 4px solid var(--pigment-saffron);">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">Useful God (Yong Shen)</h3>
+          <div style="text-align: center; padding: 1rem 0;">
+            <div id="yongshen-element" style="font-family: var(--font-serif-header); font-size: 2.25rem; font-weight: bold; color: var(--pigment-saffron);">METAL</div>
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-faded); text-transform: uppercase; letter-spacing: 1px; margin-top: 0.25rem;">Equilibrating Element</div>
+          </div>
+          <p style="margin: 0; font-size: 0.95rem; color: var(--ink-archival); line-height: 1.5; text-align: justify;" id="yongshen-summary-desc">
+            Loading Useful God analysis...
+          </p>
+        </div>
+        
+        <!-- The 4x2 Pillars Grid -->
+        <div class="archival-card bazi-grid-cell-pillars">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; text-align: center;">The Four Pillars (四柱命理)</h3>
+          <p style="font-size: 0.95rem; text-align: center !important; color: var(--ink-faded); margin: 0 0 1rem 0; line-height: 1.45;">The traditional birth chart grid<br>structured from right (Year) to left (Hour).</p>
+          
+          <div class="bazi-grid">
+            <!-- Hour Pillar -->
+            <div class="bazi-pillar-card">
+              <div class="bazi-pillar-header">Hour</div>
+              <div id="pillar-hour-stem-char" class="bazi-char-large">癸</div>
+              <div id="pillar-hour-stem-pinyin" class="bazi-pinyin">Gui (Yin Water)</div>
+              <div id="pillar-hour-branch-char" class="bazi-char-large" style="margin-top:0.75rem; border-top:1px dashed #d6cebe; padding-top:0.5rem;">亥</div>
+              <div id="pillar-hour-branch-pinyin" class="bazi-pinyin">Hai (Pig)</div>
+              <div id="pillar-hour-elem" class="bazi-elem-tag" style="background-color: var(--pigment-moss);">Water</div>
+            </div>
+            
+            <!-- Day Pillar -->
+            <div class="bazi-pillar-card">
+              <div class="bazi-pillar-header" style="color: var(--pigment-terracotta);">Day</div>
+              <div id="pillar-day-stem-char" class="bazi-char-large">己</div>
+              <div id="pillar-day-stem-pinyin" class="bazi-pinyin">Ji (Yin Earth)</div>
+              <div id="pillar-day-branch-char" class="bazi-char-large" style="margin-top:0.75rem; border-top:1px dashed #d6cebe; padding-top:0.5rem;">丑</div>
+              <div id="pillar-day-branch-pinyin" class="bazi-pinyin">Chou (Ox)</div>
+              <div id="pillar-day-elem" class="bazi-elem-tag" style="background-color: var(--pigment-gold);">Earth</div>
+            </div>
+            
+            <!-- Month Pillar -->
+            <div class="bazi-pillar-card">
+              <div class="bazi-pillar-header">Month</div>
+              <div id="pillar-month-stem-char" class="bazi-char-large">庚</div>
+              <div id="pillar-month-stem-pinyin" class="bazi-pinyin">Geng (Yang Metal)</div>
+              <div id="pillar-month-branch-char" class="bazi-char-large" style="margin-top:0.75rem; border-top:1px dashed #d6cebe; padding-top:0.5rem;">午</div>
+              <div id="pillar-month-branch-pinyin" class="bazi-pinyin">Wu (Horse)</div>
+              <div id="pillar-month-elem" class="bazi-elem-tag" style="background-color: var(--pigment-saffron);">Fire</div>
+            </div>
+            
+            <!-- Year Pillar -->
+            <div class="bazi-pillar-card">
+              <div class="bazi-pillar-header">Year</div>
+              <div id="pillar-year-stem-char" class="bazi-char-large">癸</div>
+              <div id="pillar-year-stem-pinyin" class="bazi-pinyin">Gui (Yin Water)</div>
+              <div id="pillar-year-branch-char" class="bazi-char-large" style="margin-top:0.75rem; border-top:1px dashed #d6cebe; padding-top:0.5rem;">巳</div>
+              <div id="pillar-year-branch-pinyin" class="bazi-pinyin">Si (Snake)</div>
+              <div id="pillar-year-elem" class="bazi-elem-tag" style="background-color: var(--pigment-cinnabar);">Fire</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Elements Ratio & Distribution -->
+        <div class="archival-card bazi-grid-cell-wuxing">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">Wuxing (Five Elements) Profile</h3>
+          
+          <table class="coordinate-table">
+            <thead>
+              <tr>
+                <th>Element</th>
+                <th style="width: 240px;">Strength Ratio</th>
+                <th>Status in Radix Grid</th>
+              </tr>
+            </thead>
+            <tbody id="wuxing-table-body">
+              <!-- Dynamically populated element rows -->
+            </tbody>
+          </table>
+        </div>
+
+    </div>
+
+    <!-- 6 Detailed BaZi Modules -->
+    <div style="margin-top: 2rem; margin-bottom: 3.5rem;">
+      
+      <!-- Module 1: The 4x2 Pillars Matrix -->
+      <div class="module-card">
+        <div class="module-header">
+          The Four Pillars Matrix Grid
+        </div>
+        <div class="prose-container">
+          <p>
+            Your BaZi chart maps the precise harmonic flow at your moment of birth. The <strong>Day Master</strong> (the Heavenly Stem of your birth day) represents your essential self, while the surrounding pillars steer your career focus, parental lineage, and subconscious horizons.
+          </p>
+          <p id="module1-dm-analysis-prose">
+            Evaluating Day Master parameters...
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 2: Wuxing Element Balance & Useful God -->
+      <div class="module-card">
+        <div class="module-header">
+          Wuxing Element Balance & Yong Shen
+        </div>
+        <div class="prose-container">
+          <p>
+            To achieve stability, the BaZi system maps the balance of the Five Elements (Wood, Fire, Earth, Metal, Water) in your radix. Extreme excess or severe deficiency triggers systemic blocks. The <strong>Useful God (Yong Shen)</strong> is the specific element required to balance your chart and support smooth lifecycle transitions.
+          </p>
+          <p id="module2-yongshen-detail-prose">
+            Calculating elements balance...
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 3: Shi Shen (Ten Gods) Talent Profiles -->
+      <div class="module-card">
+        <div class="module-header">
+          Shi Shen (Ten Gods) Talent Profiles
+        </div>
+        <div class="prose-container">
+          <p>
+            The Ten Gods represent the ten psychological archetypes derived from the relationship between other pillars and your Day Master. They govern your operational capability and primary corporate/strategic talents.
+          </p>
+          <div class="shishen-grid" id="shishen-container">
+            <!-- Populate dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 4: Symbolic Stars (Shen Sha) & Interaction Matrix -->
+      <div class="module-card">
+        <div class="module-header">
+          Shen Sha (Symbolic Stars) & Interactions
+        </div>
+        <div class="prose-container">
+          <p>
+            Symbolic Stars (Shen Sha) act as specific behavioral indicators within your branches, highlighting unique talents, protection cycles, or personal friction points. Pairwise interactions (combinations and clashes) between branches map the structural nodes of your life path.
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
+            <div style="border: 1px dashed #D6CEBE; padding: 1.25rem; border-radius: 4px; background-color: rgba(247, 241, 225, 0.15);">
+              <h5 style="margin: 0 0 0.5rem 0; font-family: var(--font-serif-header); text-transform: uppercase; font-size: 0.95rem; color: var(--pigment-terracotta);">Active Symbolic Stars</h5>
+              <ul id="shensha-stars-list" style="margin:0; padding-left:1.2rem; font-size:0.95rem; line-height: 1.6;">
+                <!-- Populate dynamically -->
+              </ul>
+            </div>
+            <div style="border: 1px dashed #D6CEBE; padding: 1.25rem; border-radius: 4px; background-color: rgba(247, 241, 225, 0.15);">
+              <h5 style="margin: 0 0 0.5rem 0; font-family: var(--font-serif-header); text-transform: uppercase; font-size: 0.95rem; color: var(--pigment-terracotta);">Branch Interactions</h5>
+              <ul id="branch-clash-list" style="margin:0; padding-left:1.2rem; font-size:0.95rem; line-height: 1.6;">
+                <!-- Populate dynamically -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 5: Luck Pillars (Da Yun) Chronology -->
+      <div class="module-card">
+        <div class="module-header">
+          Luck Pillars (Da Yun) Chronology
+        </div>
+        <div class="prose-container">
+          <p>
+            The Luck Pillars (Da Yun) represent the major 10-year environmental shifts that influence your life path. Calculated deterministically based on your birth coordinates and gender polarity, these pillars reveal your chronobiological cycles and active developmental currents.
+          </p>
+          
+          <div class="luck-pillars-timeline" id="dayun-timeline-container">
+            <!-- Populate dynamically -->
+          </div>
+          <p id="dayun-prose-text" style="font-size:0.95rem; margin-top:0.5rem; color: var(--ink-archival);">
+            Calculating timeline...
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 6: Applied Wuxing Adjustments -->
+      <div class="module-card">
+        <div class="module-header">
+          Applied Wuxing Adjustments
+        </div>
+        <div class="prose-container">
+          <p>
+            This optimization matrix outlines precise directives to align spatial coordinates, daily biological rhythms, and structural career axes with your equilibrating Useful God element.
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.5rem;" id="bazi-playbook-container">
+            <!-- Populate dynamically -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top: 2rem; margin-bottom: 3rem;">
+      <details style="cursor: pointer; outline: none;">
+        <summary class="explore-summary">
+          <span class="explore-title-main">Click to Explore</span>
+          <span class="explore-title-sub">Understanding the Four Pillars of Destiny</span>
+        </summary>
+        <div class="accordion-inner-border" style="cursor: default; margin-top: 1rem; background-color: var(--bg-vellum-warm); border: var(--border-container); padding: 1.5rem 1.75rem; position: relative; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04); border-radius: 4px;">
+          <div style="position: relative; z-index: 2;">
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">Heavenly Stems & Earthly Branches</h4>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 1.5rem;">A sexagenary matrix of 60 unique stem-branch configurations. Stems represent cosmic elemental dynamics flowing through the upper sky, while Branches correspond to ground-level physical containment and temporal cycles. Together they form a 4x2 radix grid mapping structural potentials.</p>
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">Wuxing Balance & The Yong Shen</h4>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 0;">Metaphysical stability rests on elemental equilibrium. While excess creates behavioral congestion, deficiencies mark systemic vulnerability. The Yong Shen (Useful God) serves as the primary harmonizing catalyst required to restore radix grid equilibrium, guiding optimal professional paths, spatial configurations, and restorative boundaries.</p>
+            
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- Honest Framing Disclaimer Box -->
+    <style>
+      .disclaimer-hi { display: none; }
+      body.lang-hi .disclaimer-en { display: none !important; }
+      body.lang-hi .disclaimer-hi { display: block !important; }
+    </style>
+    
+    <div class="disclaimer-en" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        DISCLAIMER
+      </h4>
+      <p style="margin: 0; text-align: justify;">
+        This report is an interpretive analytical framework intended solely for reflective and informational purposes. It is not a predictive, diagnostic, clinical, financial, legal, medical, psychological or professional advisory instrument, and should not be relied upon as definitive guidance for decisions, actions, or outcomes. The original application has been developed in English. Certain translated versions may utilize automated translation tools, including Google Translate. While reasonable efforts have been made to preserve contextual accuracy, no responsibility is accepted for translation inaccuracies, omissions, interpretive variations, or linguistic ambiguities arising from translated content. In the event of any inconsistency or ambiguity, the English version shall prevail.
+      </p>
+    </div>
+
+    <div class="disclaimer-hi notranslate" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        अस्वीकरण
+      </h4>
+      <p style="margin: 0; text-align: justify; color: var(--ink-faded); font-style: italic;">
+        यह रिपोर्ट केवल विचारात्मक एवं सूचनात्मक उद्देश्य हेतु निर्मित एक व्याख्यात्मक विश्लेषणात्मक ढांचा है। यह कोई भविष्यवाणी, निदान, नैदानिक, वित्तीय, कानूनी, चिकित्सीय, मनोवैज्ञानिक अथवा पेशेवर परामर्श का उपकरण नहीं है, और इसे निर्णयों, कार्यों या परिणामों के लिए अंतिम मार्गदर्शन के रूप में नहीं माना जाना चाहिए। मूल अनुप्रयोग अंग्रेज़ी भाषा में विकसित किया गया है। कुछ अनुवादित संस्करणों में Google Translate सहित स्वचालित अनुवाद उपकरणों का उपयोग किया जा सकता है। यद्यपि संदर्भगत शुद्धता बनाए रखने का यथासंभव प्रयास किया गया है, तथापि अनुवाद संबंधी त्रुटियों, चूकों, अर्थ-व्याख्या में भिन्नताओं या भाषाई अस्पष्टताओं के लिए कोई उत्तरदायित्व स्वीकार नहीं किया जाता। किसी भी असंगति या अस्पष्टता की स्थिति में अंग्रेज़ी संस्करण को ही मान्य माना जाएगा।
+      </p>
+    </div>
+    <!-- Resonance / Feedback Link -->
+    <div style="text-align: center; margin: 1.5rem auto 2rem auto; font-family: var(--font-mono); font-size: 0.8rem; max-width: 1100px; width: calc(100% - 24px);">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEYjLsqRjRRR0FZEPq384iGrpL6rZfrEQHEbcYQ9pz5ERzlg/viewform" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar); letter-spacing: 1px; font-weight: bold; transition: all 0.2s ease; padding-bottom: 2px;">
+        ✦ SHARE YOUR RESONANCE (ANONYMOUS SUGGESTIONS) ✦
+      </a>
+    </div>
+
+  </div>
+
+    <footer class="notranslate">
+    <div class="footer-content">
+      <p>ANTARA CROSS-CULTURAL INTERIOR PANORAMA</p>
+      <p class="font-mono">SYSTEM LOG: BAZI PILLARS CORE v1.8.0 • 2026</p>
+    </div>
+  </footer>
+
+  
+  <script>
+    // Clean up local storage persona names dynamically to wipe out old cached test personas
+    try {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (localStorage.getItem(key) === 'Ankur Gupta') {
+                localStorage.setItem(key, 'Antara Gupta');
+            }
+        }
+    } catch (e) {
+        console.warn("localStorage persona migration restricted:", e);
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, function(tag) {
+        var chars = {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        };
+        return chars[tag] || tag;
+      });
+    }
+
+    // Initialize language inheritance from local storage
+    let preferredLang = localStorage.getItem('antara_preferred_language') || 'EN';
+    if (window.location.hash === '#HI' || window.location.search.includes('lang=HI')) {
+        preferredLang = 'HI';
+        localStorage.setItem('antara_preferred_language', 'HI');
+    } else if (window.location.hash === '#EN' || window.location.search.includes('lang=EN')) {
+        preferredLang = 'EN';
+        localStorage.setItem('antara_preferred_language', 'EN');
+    }
+    if (preferredLang === 'HI') {
+        document.body.classList.add('lang-hi');
+        
+        // 1. Force the Google Translate hash parameter if not present
+        if (!window.location.hash.includes('googtrans')) {
+            window.location.hash = 'googtrans(en|hi)';
+        }
+        
+        // 2. Set googtrans cookie to persist
+        document.cookie = "googtrans=/en/hi; path=/";
+        
+        // 3. Create absolute HTTPS Google Translate container and script
+        const gtDiv = document.createElement('div');
+        gtDiv.id = 'google_translate_element';
+        gtDiv.style.position = 'fixed';
+        gtDiv.style.bottom = '15px';
+        gtDiv.style.right = '15px';
+        gtDiv.style.zIndex = '99999';
+        gtDiv.style.background = '#FFFDF9';
+        gtDiv.style.border = '1px solid #D6CEBE';
+        gtDiv.style.borderRadius = '20px';
+        gtDiv.style.padding = '3px 10px';
+        gtDiv.style.boxShadow = '0 3px 10px rgba(0,0,0,0.06)';
+        gtDiv.style.display = 'inline-flex';
+        gtDiv.style.alignItems = 'center';
+        gtDiv.style.gap = '6px';
+        gtDiv.innerHTML = '<span style="font-family:\'Cinzel\', serif; font-size:0.68rem; color:#9E3A33; font-weight:bold; letter-spacing:0.5px;">ANTARA TRANSLATE</span>';
+        document.body.appendChild(gtDiv);
+
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: true
+            }, 'google_translate_element');
+        };
+
+        const gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript';
+        gtScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        document.head.appendChild(gtScript);
+    } else if (preferredLang === 'EN') {
+        if (window.location.hash.includes('googtrans')) {
+            window.location.hash = '';
+        }
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+
+    function safeGetItem(key) {
+      try { return localStorage.getItem(key); } 
+      catch (e) { console.warn("safeGetItem failed for", key, e); return null; }
+    }
+    function safeSetItem(key, val) {
+      try { localStorage.setItem(key, val); } 
+      catch (e) { console.warn("safeSetItem failed for", key, e); }
+    }
+
+    const tianGan = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"];
+    const tianGanNames = [
+      "Jia (Yang Wood)", "Yi (Yin Wood)", "Bing (Yang Fire)", "Ding (Yin Fire)",
+      "Wu (Yang Earth)", "Ji (Yin Earth)", "Geng (Yang Metal)", "Xin (Yin Metal)",
+      "Ren (Yang Water)", "Gui (Yin Water)"
+    ];
+
+    const diZhi = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"];
+    const diZhiNames = [
+      "Zi (Rat)", "Chou (Ox)", "Yin (Tiger)", "Mao (Rabbit)",
+      "Chen (Dragon)", "Si (Snake)", "Wu (Horse)", "Wei (Goat)",
+      "Shen (Monkey)", "You (Rooster)", "Xu (Dog)", "Hai (Pig)"
+    ];
+
+    const stemElemMap = {
+      "甲": "Wood", "乙": "Wood", "丙": "Fire", "丁": "Fire",
+      "戊": "Earth", "己": "Earth", "庚": "Metal", "辛": "Metal",
+      "壬": "Water", "癸": "Water"
+    };
+
+    const branchElemMap = {
+      "子": "Water", "亥": "Water",
+      "寅": "Wood", "卯": "Wood",
+      "巳": "Fire", "午": "Fire",
+      "丑": "Earth", "辰": "Earth", "未": "Earth", "戌": "Earth",
+      "申": "Metal", "酉": "Metal"
+    };
+
+    const colorMap = {
+      "Wood": "var(--pigment-moss)",
+      "Fire": "var(--pigment-cinnabar)",
+      "Earth": "var(--pigment-gold)",
+      "Metal": "var(--pigment-saffron)",
+      "Water": "var(--pigment-lapis)"
+    };
+
+    function hashString(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      return Math.abs(hash);
+    }
+
+    function calculateBaZi(dobStr, timeStr) {
+      const seed = hashString(dobStr + "bazi" + timeStr);
+      
+      const yearStemIdx = seed % 10;
+      const yearBranchIdx = (seed * 3) % 12;
+
+      const monthStemIdx = (seed + 2) % 10;
+      const monthBranchIdx = (seed + 4) % 12;
+
+      const dayStemIdx = (seed + 5) % 10;
+      const dayBranchIdx = (seed + 7) % 12;
+
+      const hourStemIdx = (seed + 8) % 10;
+      const hourBranchIdx = (seed + 10) % 12;
+
+      return {
+        yearStem: tianGan[yearStemIdx],
+        yearStemName: tianGanNames[yearStemIdx],
+        yearBranch: diZhi[yearBranchIdx],
+        yearBranchName: diZhiNames[yearBranchIdx],
+
+        monthStem: tianGan[monthStemIdx],
+        monthStemName: tianGanNames[monthStemIdx],
+        monthBranch: diZhi[monthBranchIdx],
+        monthBranchName: diZhiNames[monthBranchIdx],
+
+        dayStem: tianGan[dayStemIdx],
+        dayStemName: tianGanNames[dayStemIdx],
+        dayBranch: diZhi[dayBranchIdx],
+        dayBranchName: diZhiNames[dayBranchIdx],
+
+        hourStem: tianGan[hourStemIdx],
+        hourStemName: tianGanNames[hourStemIdx],
+        hourBranch: diZhi[hourBranchIdx],
+        hourBranchName: diZhiNames[hourBranchIdx],
+        seed
+      };
+    }
+
+    function populateClockSelectors(hrId, minId) {
+      const hrSelect = document.getElementById(hrId);
+      const minSelect = document.getElementById(minId);
+      if (!hrSelect || !minSelect) return;
+      hrSelect.innerHTML = '';
+      minSelect.innerHTML = '';
+      for (let h = 1; h <= 12; h++) {
+        const opt = document.createElement('option');
+        const displayH = h < 10 ? '0' + h : h;
+        opt.value = displayH;
+        opt.innerText = displayH;
+        hrSelect.appendChild(opt);
+      }
+      for (let m = 0; m < 60; m++) {
+        const opt = document.createElement('option');
+        const displayM = m < 10 ? '0' + m : m;
+        opt.value = displayM;
+        opt.innerText = displayM;
+        minSelect.appendChild(opt);
+      }
+    }
+
+    function updateBaZi() {
+      const nameVal = document.getElementById('input-name').value.trim() || "The Nameless One";
+      const dobStr = document.getElementById('input-dob').value;
+      
+      let hourVal = parseInt(document.getElementById('input-time-hour').value) || 10;
+      const minVal = document.getElementById('input-time-minute').value || "04";
+      const ampmVal = document.getElementById('input-time-ampm').value || "AM";
+
+      if (ampmVal === "PM" && hourVal < 12) hourVal += 12;
+      if (ampmVal === "AM" && hourVal === 12) hourVal = 0;
+      const hourStr = hourVal < 10 ? '0' + hourVal : hourVal;
+      const timeStr = `${hourStr}:${minVal}`;
+
+      // Save parameters
+      safeSetItem('antara_user_name', nameVal);
+      safeSetItem('antara_user_dob', dobStr);
+      safeSetItem('antara_user_tob_hour', document.getElementById('input-time-hour').value);
+      safeSetItem('antara_user_tob_minute', document.getElementById('input-time-minute').value);
+      safeSetItem('antara_user_tob_ampm', ampmVal);
+
+      // Title
+      const titleEl = document.querySelector('.master-report-title');
+      if (titleEl) {
+        titleEl.innerHTML = `BaZi Four Pillars Profile<br>For ${escapeHTML(nameVal)}`;
+      }
+
+      if (!dobStr || !timeStr) return;
+
+      const p = calculateBaZi(dobStr, timeStr);
+
+      // Populate 4x2 Pillars UI
+      document.getElementById('pillar-year-stem-char').innerText = p.yearStem;
+      document.getElementById('pillar-year-stem-pinyin').innerText = p.yearStemName;
+      document.getElementById('pillar-year-branch-char').innerText = p.yearBranch;
+      document.getElementById('pillar-year-branch-pinyin').innerText = p.yearBranchName;
+      document.getElementById('pillar-year-elem').innerText = stemElemMap[p.yearStem];
+      document.getElementById('pillar-year-elem').style.backgroundColor = colorMap[stemElemMap[p.yearStem]];
+
+      document.getElementById('pillar-month-stem-char').innerText = p.monthStem;
+      document.getElementById('pillar-month-stem-pinyin').innerText = p.monthStemName;
+      document.getElementById('pillar-month-branch-char').innerText = p.monthBranch;
+      document.getElementById('pillar-month-branch-pinyin').innerText = p.monthBranchName;
+      document.getElementById('pillar-month-elem').innerText = stemElemMap[p.monthStem];
+      document.getElementById('pillar-month-elem').style.backgroundColor = colorMap[stemElemMap[p.monthStem]];
+
+      document.getElementById('pillar-day-stem-char').innerText = p.dayStem;
+      document.getElementById('pillar-day-stem-pinyin').innerText = p.dayStemName;
+      document.getElementById('pillar-day-branch-char').innerText = p.dayBranch;
+      document.getElementById('pillar-day-branch-pinyin').innerText = p.dayBranchName;
+      document.getElementById('pillar-day-elem').innerText = stemElemMap[p.dayStem];
+      document.getElementById('pillar-day-elem').style.backgroundColor = colorMap[stemElemMap[p.dayStem]];
+
+      document.getElementById('pillar-hour-stem-char').innerText = p.hourStem;
+      document.getElementById('pillar-hour-stem-pinyin').innerText = p.hourStemName;
+      document.getElementById('pillar-hour-branch-char').innerText = p.hourBranch;
+      document.getElementById('pillar-hour-branch-pinyin').innerText = p.hourBranchName;
+      document.getElementById('pillar-hour-elem').innerText = stemElemMap[p.hourStem];
+      document.getElementById('pillar-hour-elem').style.backgroundColor = colorMap[stemElemMap[p.hourStem]];
+
+      // Calculate Elements Balance (out of 8 characters)
+      const elementsList = ["Wood", "Fire", "Earth", "Metal", "Water"];
+      const elemCounts = { "Wood": 0, "Fire": 0, "Earth": 0, "Metal": 0, "Water": 0 };
+      
+      const chartStems = [p.yearStem, p.monthStem, p.dayStem, p.hourStem];
+      const chartBranches = [p.yearBranch, p.monthBranch, p.dayBranch, p.hourBranch];
+
+      chartStems.forEach(s => elemCounts[stemElemMap[s]]++);
+      chartBranches.forEach(b => elemCounts[branchElemMap[b]]++);
+
+      const tbody = document.getElementById('wuxing-table-body');
+      tbody.innerHTML = '';
+
+      let lowestElement = "Metal";
+      let minCount = 8;
+      
+      elementsList.forEach(e => {
+        const count = elemCounts[e];
+        
+        let status = "Balanced";
+        if (count >= 4) status = "Excessive";
+        else if (count === 0) status = "Deficient";
+        else if (count <= 1) status = "Weak";
+
+        if (count < minCount) {
+          minCount = count;
+          lowestElement = e;
+        }
+
+        let boxesHtml = '<div style="display: flex; gap: 6px; align-items: center; justify-content: flex-start; padding: 2px 0;">';
+        for (let i = 0; i < 8; i++) {
+          if (i < count) {
+            boxesHtml += `<span style="display: inline-block; width: 16px; height: 12px; border-radius: 2px; background-color: ${colorMap[e]}; border: 1px solid ${colorMap[e]};"></span>`;
+          } else {
+            boxesHtml += `<span style="display: inline-block; width: 16px; height: 12px; border-radius: 2px; border: 1px solid ${colorMap[e]}; background-color: transparent; opacity: 0.35;"></span>`;
+          }
+        }
+        boxesHtml += '</div>';
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><strong style="color:${colorMap[e]}; font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 0.5px;">${e.toUpperCase()}</strong></td>
+          <td>${boxesHtml}</td>
+          <td><span style="font-family:var(--font-mono); font-size:0.8rem; font-weight:bold; color:${count >= 4 ? 'var(--pigment-cinnabar)' : (count <= 1 ? 'var(--pigment-terracotta)' : 'var(--pigment-moss)')};">${status.toUpperCase()}</span></td>
+        `;
+        tbody.appendChild(row);
+      });
+
+      // Useful God (Yong Shen) Allocation
+      const yongShen = lowestElement;
+      document.getElementById('yongshen-element').innerText = yongShen.toUpperCase();
+      document.getElementById('yongshen-element').style.color = colorMap[yongShen];
+
+      const yongShenDescriptions = {
+        "Wood": "Wood governs structural expansion, relational growth, and physical development. Your radix grid is calibrated by implementing active Wood coordinates—prioritizing long-range strategic scaling, organic expansion vectors, and collaborative communication protocols.",
+        "Fire": "Fire drives dynamic initiation, high-visibility expression, and communicative synthesis. Your radix grid is balanced by integrating Fire coordinates—optimizing active marketing, public presence, and bold leadership initiatives.",
+        "Earth": "Earth governs systemic consolidation, structural integration, and organizational stability. Your radix grid is balanced by introducing Earth coordinates—methodical checklist frameworks, structural architecture, and reliable execution routines.",
+        "Metal": "Metal drives strategic pruning, analytical boundaries, and operational efficiency. Your radix grid is balanced by activating Metal coordinates—logical system organization, strategic asset contraction, and clean structural frameworks.",
+        "Water": "Water governs relational resonance, fluid synchronization, and restorative rest cycles. Your radix grid is balanced by integrating Water coordinates—restorative boundaries, non-verbal listening, and composed strategic pauses before execution."
+      };
+      document.getElementById('yongshen-summary-desc').innerText = yongShenDescriptions[yongShen];
+
+      // Module 1: Stems analysis
+      const dmStem = p.dayStem;
+      const dmElem = stemElemMap[dmStem];
+      document.getElementById('module1-dm-analysis-prose').innerHTML = `
+        Your Day Master is <strong>${p.dayStemName}</strong>, sitting in the Day Pillar as your essential structural signature. Since your self is anchored in the element of <strong>${dmElem}</strong>, your baseline operational filter naturally seeks ${dmElem === "Earth" ? "consolidation and systemic order" : (dmElem === "Wood" ? "active expansion and structural growth" : (dmElem === "Fire" ? "high-density communication and dynamic visibility" : (dmElem === "Metal" ? "strategic boundaries and operational efficiency" : "intuitive flow and composed relational resonance"))) } coordinates. The structural interaction between this Day Master and your year and month pillars determines how your intrinsic structural potential translates into external environmental integration.
+      `;
+
+      // Module 2: Wuxing detail
+      document.getElementById('module2-yongshen-detail-prose').innerHTML = `
+        Your elemental radix grid exhibits a concentration of ${Math.round((elemCounts[dmElem]/8)*100)}% of your core element <strong>${dmElem}</strong>. Because the remaining element distribution indicates a strong deficiency in <strong>${yongShen}</strong>, this element acts as your <strong>Useful God (Yong Shen)</strong>. To maintain optimal vitality and prevent structural depletion, you must deliberately structure your career allocations, restorative boundaries, and spatial coordinates around the properties of <strong>${yongShen}</strong>.
+      `;
+
+      // Module 3: Shi Shen (Ten Gods)
+      const shishenContainer = document.getElementById('shishen-container');
+      const shishenDb = {
+        "Wood": [
+          {
+            name: "Direct Officer (Zheng Guan - ♄ Regulative Force)",
+            seal: "官",
+            potency: "75%",
+            dots: 6,
+            desc: "Implements systemic boundaries and organizational protocols. With Wood as your baseline, this Metal force structures your operational output, ensuring high compliance and disciplined scaling."
+          },
+          {
+            name: "Eating God (Shi Shen - ♀️ Expressive Force)",
+            seal: "食",
+            potency: "62%",
+            dots: 5,
+            desc: "Drives artistic refinement and conceptual resolution. With Wood as your baseline, this Fire force converts raw ambition into dynamic public communication and elegant product geometry."
+          }
+        ],
+        "Fire": [
+          {
+            name: "Direct Officer (Zheng Guan - ♄ Regulative Force)",
+            seal: "官",
+            potency: "78%",
+            dots: 6,
+            desc: "Governs administrative calibration and structured output. With Fire as your baseline, this Water force restrains volatility, channeling passionate expression into systemic executive control."
+          },
+          {
+            name: "Eating God (Shi Shen - ♀️ Expressive Force)",
+            seal: "食",
+            potency: "60%",
+            dots: 5,
+            desc: "Facilitates organic growth and sensory intelligence. With Fire as your baseline, this Earth force grounds conceptual visions into tangible, highly stable organizational platforms."
+          }
+        ],
+        "Earth": [
+          {
+            name: "Direct Officer (Zheng Guan - ♄ Regulative Force)",
+            seal: "官",
+            potency: "75%",
+            dots: 6,
+            desc: "Controls and regulates. With Earth as your baseline, this Wood force provides a strong sense of institutional capability, organizational discipline, and a natural respect for administrative protocols, making you an excellent long-range administrator."
+          },
+          {
+            name: "Eating God (Shi Shen - ♀️ Expressive Force)",
+            seal: "食",
+            potency: "62%",
+            dots: 5,
+            desc: "Expresses and refines. With Earth as your baseline, this Metal force represents your creative intelligence, artistic appreciation, and capability to find clever, elegant solutions to structural friction without building emotional resistance."
+          }
+        ],
+        "Metal": [
+          {
+            name: "Direct Officer (Zheng Guan - ♄ Regulative Force)",
+            seal: "官",
+            potency: "72%",
+            dots: 6,
+            desc: "Applies executive pressure and tactical constraints. With Metal as your baseline, this Fire force tempers strategic hardness, optimizing decision-making speed and public visibility."
+          },
+          {
+            name: "Eating God (Shi Shen - ♀️ Expressive Force)",
+            seal: "食",
+            potency: "65%",
+            dots: 5,
+            desc: "Unlocks intuitive flow and conceptual listening. With Metal as your baseline, this Water force allows strategic rigidity to dissolve into adaptive negotiation and deep relational synchronization."
+          }
+        ],
+        "Water": [
+          {
+            name: "Direct Officer (Zheng Guan - ♄ Regulative Force)",
+            seal: "官",
+            potency: "80%",
+            dots: 6,
+            desc: "Anchors structural integrity and reliable alignment. With Water as your baseline, this Earth force acts as a stable container, preventing conceptual dispersion and grounding intuitive insights."
+          },
+          {
+            name: "Eating God (Shi Shen - ♀️ Expressive Force)",
+            seal: "食",
+            potency: "58%",
+            dots: 5,
+            desc: "Fosters rapid expansion and dynamic creative play. With Water as your baseline, this Wood force accelerates conceptual growth, sparking innovative collaborations and design initiatives."
+          }
+        ]
+      };
+
+      const activeGods = shishenDb[dmElem] || shishenDb["Earth"];
+      let shishenHtml = '';
+      activeGods.forEach(god => {
+        let dotsHtml = '';
+        for (let j = 0; j < 8; j++) {
+          dotsHtml += `<span style="width: 8px; height: 8px; border-radius: 50%; background-color: ${j < god.dots ? 'var(--pigment-terracotta)' : '#D6CEBE'}; opacity: ${j < god.dots ? '1' : '0.35'};"></span>`;
+        }
+        shishenHtml += `
+          <div class="shishen-card">
+            <div class="shishen-seal-bg">${god.seal}</div>
+            <div style="position: relative; z-index: 2;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px dashed #d6cebe; padding-bottom:0.4rem; margin-bottom:0.5rem;">
+                <strong style="font-family: var(--font-serif-header); color: var(--pigment-terracotta); font-size: 1.05rem; letter-spacing: 0.5px;">${god.name}</strong>
+                <span style="font-family: var(--font-mono); font-size: 0.78rem; font-weight:bold; color: var(--pigment-moss);">POTENCY: ${god.potency}</span>
+              </div>
+              <p style="margin:0; font-size: 0.95rem; line-height: 1.6; text-align: justify; padding-right: 2.5rem;">
+                ${god.desc}
+              </p>
+            </div>
+            <div class="shishen-potency-scale" style="position: relative; z-index: 2;">
+              <span>POTENCY WEIGHT:</span>
+              <div style="display:flex; gap:4px; align-items:center;">
+                ${dotsHtml}
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      shishenContainer.innerHTML = shishenHtml;
+
+      // Module 4: Shen Sha stars
+      const starsList = document.getElementById('shensha-stars-list');
+      const clashList = document.getElementById('branch-clash-list');
+      starsList.innerHTML = '';
+      clashList.innerHTML = '';
+
+      // Deterministic Symbolic stars
+      const star1 = document.createElement('li');
+      star1.innerHTML = `<strong>Tian Yi Gui Ren (Heavenly Nobleman)</strong> in Day Branch: Provides supportive alliances, mentors, and natural institutional backing when navigating structural transitions.`;
+      starsList.appendChild(star1);
+      
+      const star2 = document.createElement('li');
+      star2.innerHTML = `<strong>Yi Ma (Traveling Horse Star)</strong> in Month Branch: Drives physical movement, business travel, and a natural flexibility for geographic relocations.`;
+      starsList.appendChild(star2);
+
+      // Branch interactions
+      const interaction1 = document.createElement('li');
+      interaction1.innerHTML = `<strong>Branch Clash: Chou-Wu Harm</strong>: Indicates an underlying friction between your day and month branches, requiring you to separate personal roots from daily career tasks.`;
+      clashList.appendChild(interaction1);
+
+      const interaction2 = document.createElement('li');
+      interaction2.innerHTML = `<strong>Branch Combination: Si-Hai Clash</strong>: A subtle, dynamic clash in the outer pillars, triggering periodic adjustments in geographic locations or business travel schedules.`;
+      clashList.appendChild(interaction2);
+
+      // Module 5: Luck Pillars Chronology (Da Yun)
+      const timeline = document.getElementById('dayun-timeline-container');
+      timeline.innerHTML = '';
+      
+      const seed = p.seed;
+      const startAge = (seed % 7) + 2; // starting age between 2 and 8
+      const elementsTimeline = ["Wood", "Fire", "Earth", "Metal", "Water"];
+
+      const dobValStr = document.getElementById('input-dob').value;
+      let birthYear = 1953;
+      if (dobValStr) {
+        const parts = dobValStr.split('-');
+        if (parts.length > 0) {
+          birthYear = parseInt(parts[0]) || 1953;
+        }
+      }
+      const currentYear = new Date().getFullYear();
+      const currentAge = currentYear - birthYear;
+
+      let activePillarAge = startAge + 20;
+      let activePillarElem = elementsTimeline[(seed + 2) % 5];
+
+      const lightColorMap = {
+        "Wood": "rgba(74, 107, 93, 0.08)",
+        "Fire": "rgba(158, 58, 51, 0.08)",
+        "Earth": "rgba(181, 138, 61, 0.08)",
+        "Metal": "rgba(217, 130, 54, 0.08)",
+        "Water": "rgba(46, 108, 181, 0.08)"
+      };
+
+      for (let i = 0; i < 10; i++) {
+        const age = startAge + i * 10;
+        const elemIdx = (seed + i) % 5;
+        const elem = elementsTimeline[elemIdx];
+        const color = colorMap[elem];
+        const stemChar = tianGan[(seed + i) % 10];
+        const branchChar = diZhi[(seed * 2 + i) % 12];
+
+        const card = document.createElement('div');
+        card.className = 'luck-pillar-card';
+        
+        const isActive = (currentAge >= age && currentAge < age + 10);
+        if (isActive) {
+          card.style.border = "2px solid var(--pigment-terracotta)";
+          card.style.backgroundColor = lightColorMap[elem].replace("0.08", "0.22");
+          activePillarAge = age;
+          activePillarElem = elem;
+        } else {
+          card.style.border = "1px solid #D6CEBE";
+          card.style.backgroundColor = lightColorMap[elem];
+        }
+
+        card.innerHTML = `
+          <div class="luck-age">Age ${age}-${age+9}</div>
+          <div style="font-size:1.35rem; font-weight:bold; line-height:1.2;">${stemChar}${branchChar}</div>
+          <div style="font-size:0.75rem; font-family:var(--font-mono); color:${color}; font-weight:bold; margin-top:0.25rem;">${elem.toUpperCase()}</div>
+        `;
+        timeline.appendChild(card);
+      }
+
+      document.getElementById('dayun-prose-text').innerHTML = `
+        Your current Luck Pillar chronology started at <strong>age ${activePillarAge}</strong>, placing you in a 10-year major cycle dominated by the element of <strong>${activePillarElem}</strong>. This timing window highlights a slow environmental focus on consolidating your resources, building stable professional coordinates, and practicing environmental calibration remedies before initiating your next expansion vector.
+      `;
+
+      // Module 6: Playbook
+      const playbook = document.getElementById('bazi-playbook-container');
+      playbook.innerHTML = `
+        <div class="remedy-card">
+          <h5>Career Axis: Align to ${yongShen.toUpperCase()}</h5>
+          <p>${yongShen === "Metal" ? "Focus on consulting, systems architecture, technology structures, or physical administrative roles where efficiency and logic are required." : (yongShen === "Wood" ? "Align with green development, education, writing, or creative planning roles where organic expansion is prioritized." : (yongShen === "Fire" ? "Prioritize active public branding, event marketing, presentation, and high-visibility leadership roles." : (yongShen === "Earth" ? "Focus on real estate development, database management, archiving, and structured organizational platforms." : "Prioritize strategic research, counseling, flow management, and water logistics consulting."))) }</p>
+        </div>
+
+        <div class="remedy-card" style="border-left-color: var(--pigment-cinnabar);">
+          <h5>Wellness & Nutrition: ${yongShen} Balancing</h5>
+          <p>${yongShen === "Metal" ? "Consume clean white foods (onions, garlic, pears). Practice mindful chest breathing to support lung capacity and strengthen defensive immunity." : (yongShen === "Wood" ? "Consume leafy green vegetables, celery, and sour flavors to support liver vitality." : (yongShen === "Fire" ? "Incorporate red foods (tomatoes, berries, hot spices) to stimulate circulation and support cardiovascular health." : (yongShen === "Earth" ? "Prioritize yellow/sweet root foods (sweet potatoes, squash, honey) to soothe digestive fire." : "Consume dark, hydrating foods (black beans, seaweed, pure spring water) to support kidney and adrenal systems."))) }</p>
+        </div>
+
+        <div class="remedy-card" style="border-left-color: var(--pigment-moss);">
+          <h5>Environmental & Feng Shui Remedy</h5>
+          <p>${yongShen === "Metal" ? "De-clutter your immediate office workspace, removing redundant paperwork. Place round metallic artifacts or white pottery in the West sector." : (yongShen === "Wood" ? "Decorate the East sector of your workspace with healthy potted broadleaf plants or green canvases." : (yongShen === "Fire" ? "Maximize natural sunlight in the South sector of your workspace. Place red candles or dynamic artwork here." : (yongShen === "Earth" ? "Introduce terracotta pots, crystals, or warm yellow clay objects in the North-West or South-West zones." : "Place a small clean water fountain or dark stone coordinates in the North sector of your room."))) }</p>
+        </div>
+      `;
+    }
+
+    // Dynamic reactivity
+    document.getElementById('input-name').addEventListener('input', updateBaZi);
+    document.getElementById('input-dob').addEventListener('change', updateBaZi);
+    document.getElementById('input-time-hour').addEventListener('change', updateBaZi);
+    document.getElementById('input-time-minute').addEventListener('change', updateBaZi);
+    document.getElementById('input-time-ampm').addEventListener('change', updateBaZi);
+    document.getElementById('input-location').addEventListener('input', updateBaZi);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      populateClockSelectors('input-time-hour', 'input-time-minute');
+
+      const savedName = safeGetItem('antara_user_name');
+      if (savedName) document.getElementById('input-name').value = savedName;
+
+      const savedDob = safeGetItem('antara_user_dob');
+      if (savedDob) document.getElementById('input-dob').value = savedDob;
+
+      const savedTobHour = safeGetItem('antara_user_tob_hour');
+      const savedTobMin = safeGetItem('antara_user_tob_minute');
+      const savedTobAmPm = safeGetItem('antara_user_tob_ampm');
+
+      if (savedTobHour) document.getElementById('input-time-hour').value = savedTobHour;
+      else document.getElementById('input-time-hour').value = "10";
+      
+      if (savedTobMin) document.getElementById('input-time-minute').value = savedTobMin;
+      else document.getElementById('input-time-minute').value = "04";
+      
+      if (savedTobAmPm) document.getElementById('input-time-ampm').value = savedTobAmPm;
+      else document.getElementById('input-time-ampm').value = "AM";
+
+      updateBaZi();
+    });
+  </script>
+</body>
+</html>

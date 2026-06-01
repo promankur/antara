@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Life Map | AG_Antara Cross-Cultural Interior Panorama</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================
+       1. Design Tokens & Root Variables
+       ========================================== */
+    :root {
+      --bg-page:        #f7f1e1;
+      --bg-vellum-warm: #ffffff;
+      --bg-square:      #f7d774;
+      --bg-petal:       #f1b73a;
+      --stroke:         #b56a2a;
+      --stroke-w:       2;
+      --num-default:    #ffffff;
+      --num-lagna:      #9E3A33;
+      --planet-color:   #9E3A33;
+      
+      --ink-archival: #2B2A28;
+      --ink-faded:      #76726A;
+      --border-container: 1px solid #b56a2a;
+
+      --pigment-saffron:    #D98236;
+      --pigment-cinnabar: #9E3A33;
+      --pigment-lapis:      #1A3A6E;
+      --pigment-terracotta: #A65B4A;
+      
+      /* Fonts */
+      --font-serif-header: 'Cinzel', serif;
+      --font-serif-body: 'Playfair Display', serif;
+      --font-mono: 'Courier Prime', monospace;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 17px;
+      line-height: 1.7;
+      margin: 0; padding: 0;
+      display: flex; flex-direction: column; align-items: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto 2rem auto;
+      padding: 0 12px;
+      box-sizing: border-box;
+    }
+
+    .grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .container { width: 90%; padding: 0 1rem; }
+      .grid { display: grid; grid-template-columns: 340px 1fr; gap: 2rem; }
+    }
+
+    /* Premium Tactile Containers matching 04 and 05 Standards */
+    .archival-card {
+      background-color: var(--bg-vellum-warm);
+      border: var(--border-container);
+      padding: 1.5rem;
+      position: relative;
+      border-radius: 6px;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04);
+    }
+
+    .manuscript-card {
+      background-color: var(--bg-vellum-warm);
+      border: var(--border-container);
+      border-left: 8px solid var(--stroke);
+      padding: 1.5rem;
+      position: relative;
+      border-radius: 4px;
+      margin-bottom: 1.25rem;
+    }
+
+    /* inner double-border removed — breathing space preferred */
+
+    /* Accordion body text — force normal reading font, no small-caps */
+    details p,
+    details td,
+    details li,
+    .exploratory-paragraph-text {
+      font-variant: normal !important;
+      font-family: var(--font-serif-body) !important;
+      text-transform: none !important;
+    }
+
+    .profile-display-row { margin-bottom: 0.85rem; font-size: 0.95rem; }
+    .profile-display-row strong { font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); display: block; letter-spacing: 1px; text-transform: uppercase; }
+
+    /* ==========================================
+       2. Clean Vertical Vector Layout Stack
+       ========================================== */
+    .vertical-matrix-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+      margin: 1.5rem 0;
+    }
+
+    .matrix-wrapper-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .chart-panel-heading {
+      font-family: var(--font-serif-header);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--stroke);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.75rem;
+    }
+
+    .chart-frame {
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 1 / 1;
+      background: var(--bg-square);
+      border: 3px solid var(--stroke);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 36px -16px rgba(90, 22, 7, 0.25);
+    }
+
+    .kundli {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Region Polygons Engine Styling */
+    .region {
+      stroke: var(--stroke);
+      stroke-width: var(--stroke-w);
+      stroke-linejoin: miter;
+      vector-effect: non-scaling-stroke;
+    }
+    .region.petal    { fill: var(--bg-petal); }
+    .region.triangle { fill: var(--bg-square); }
+
+    /* Rashi Numbers - High Contrast Reverse White */
+    .rashi {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      fill: var(--num-default);
+      text-anchor: middle;
+      dominant-baseline: middle;
+      pointer-events: none;
+      user-select: none;
+    }
+    .rashi.lagna { fill: var(--num-lagna); }
+
+    /* Planet Labels - Pure Upper/Lower Case Maroon */
+    .planets {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      fill: var(--planet-color);
+      text-anchor: middle;
+      dominant-baseline: middle;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: 0.02em;
+    }
+
+    /* ==========================================
+       3. Typography & Reference Sheet Data
+       ========================================== */
+    /* Header Standardized Branding & Typography */
+    .header-logo { 
+      text-align: center; 
+      margin: 20px 0 8px 0; 
+    }
+    .system-tagline { 
+      font-family: 'Courier New', Courier, monospace !important; 
+      font-weight: 700 !important; 
+      font-size: 13px !important; 
+      letter-spacing: 5px !important; 
+      color: #A6A29A !important; 
+      text-transform: uppercase !important; 
+      text-align: center !important; 
+      margin: 0 0 24px 0 !important; 
+      line-height: 1.2 !important;
+    }
+    .master-report-title { 
+      font-family: 'Cinzel', serif !important; 
+      font-size: 2.25rem !important; 
+      font-variant: small-caps !important; 
+      font-weight: 700 !important; 
+      letter-spacing: 2px !important; 
+      color: #2B2A28 !important; 
+      text-align: center !important; 
+      margin: 0 0 14px 0 !important; 
+      line-height: 1.3 !important; 
+    }
+    .master-report-byline { 
+      font-family: 'Playfair Display', serif !important; 
+      font-size: 1.15rem !important; 
+      color: #D98236 !important; 
+      text-align: center !important; 
+      max-width: 800px !important; 
+      margin: 0 auto 32px auto !important; 
+      padding: 0 12px !important; 
+      line-height: 1.5 !important; 
+    }
+    
+    .data-table-wrapper { overflow-x: auto; margin: 1rem 0; }
+    .full-data-table {
+      width: 100%; border-collapse: collapse; font-size: 1.05rem; text-align: left; background-color: var(--bg-vellum-warm);
+    }
+    .full-data-table th {
+      font-family: var(--font-serif-header); background-color: #F4EFE6; padding: 0.75rem 0.5rem; border-bottom: 2px solid var(--stroke); font-weight: 700;
+    }
+    .full-data-table td {
+      padding: 0.75rem 0.5rem; border-bottom: 1px dashed var(--border-container); color: var(--ink-archival);
+    }
+
+    .legend-box-card {
+      background-color: #FFFDF9;
+      border: 1px dashed var(--border-container);
+      padding: 1.25rem;
+      border-radius: 4px;
+      margin: 1.5rem 0;
+    }
+
+    /* Inline reveal pattern */
+    .inline-reveal { margin-top: 1rem; }
+    .inline-reveal > summary {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem 1rem;
+      border: 1px dashed #D6CEBE;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--stroke);
+      cursor: pointer;
+      transition: background 0.2s ease;
+      user-select: none;
+    }
+    .inline-reveal > summary::-webkit-details-marker,
+    .inline-reveal > summary::marker { display: none; }
+    .inline-reveal > summary:hover { background: rgba(181,106,42,0.05); }
+    .inline-reveal > summary::after { content: ' ▼'; font-size: 0.6rem; margin-left: 0.4rem; opacity: 0.7; }
+    .inline-reveal[open] > summary { background: rgba(181,106,42,0.04); border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+    .inline-reveal[open] > summary::after { content: ' ▲'; }
+    .inline-reveal-body { border: 1px dashed #D6CEBE; border-top: none; border-radius: 0 0 4px 4px; overflow-x: auto; }
+    .legend-title {
+      font-family: var(--font-serif-header);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--stroke);
+      letter-spacing: 1px;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+    }
+    .legend-cluster {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+    @media (min-width: 600px) { .legend-cluster { grid-template-columns: repeat(4, 1fr); } }
+
+    .accordion-trigger-bar {
+      width: 100%;
+      background-color: #FFFDF9;
+      border: 1px dashed var(--stroke);
+      border-radius: 4px;
+      padding: 0.85rem 1rem;
+      font-family: var(--font-serif-header);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink-archival);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .accordion-content-box {
+      background-color: var(--bg-vellum-warm);
+      border: 1px solid var(--border-container);
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+      display: none;
+    }
+
+    .exploratory-section-block { margin-bottom: 1.75rem; }
+    .exploratory-heading-title { font-family: var(--font-serif-header); font-size: 1.15rem; color: var(--stroke); margin-bottom: 0.5rem; border-bottom: 1px dashed var(--border-container); padding-bottom: 0.25rem; }
+    .exploratory-paragraph-text { font-size: 1.05rem; color: var(--ink-archival); line-height: 1.65; text-align: justify; }
+
+    .archival-btn {
+      width: 100%; background-color: var(--stroke); color: var(--bg-page); border: none;
+      font-family: 'Cinzel', serif; font-size: 0.95rem; font-weight: bold; padding: 0.85rem; cursor: pointer; text-transform: uppercase;
+    }
+
+    /* Premium Click to Explore Accordion Styles */
+    .explore-summary {
+      font-family: var(--font-serif-header);
+      background-color: #D35400; /* Vibrant Brand Saffron */
+      color: #FFFFFF !important;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.85rem 1.25rem; /* Elegant compact height */
+      border: 1px solid #8E4A21; /* Cinnamon brand structural frame */
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 12px rgba(211, 84, 0, 0.12);
+      line-height: 1.35;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .explore-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .explore-summary::before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px double rgba(255, 255, 255, 0.45); /* Elegant double border in reverse white */
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .explore-summary:hover {
+      background-color: #E65C00; /* Slightly brighter warm saffron on hover */
+      box-shadow: 0 6px 18px rgba(211, 84, 0, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .explore-summary:hover::before {
+      border-color: rgba(255, 255, 255, 0.7);
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+    }
+
+    .explore-summary:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(211, 84, 0, 0.15);
+    }
+
+    .explore-summary .explore-title-main {
+      font-variant: small-caps;
+      font-size: 1.05rem; /* Compact size */
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: none; /* Crucial for small-caps */
+      position: relative;
+      z-index: 2;
+    }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 24px 0 40px;
+      border-top: 1px solid #D6CEBE;
+      margin-top: 2rem;
+      color: var(--ink-faded);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    footer p { margin: 4px 0; }
+
+    .font-mono {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.75rem;
+      color: var(--ink-faded);
+    }
+
+    .accordion-inner-border {
+      position: relative;
+    }
+
+    .accordion-inner-border::before {
+      content: "";
+      position: absolute;
+      top: 6px; left: 6px; right: 6px; bottom: 6px;
+      border: 1px double #D6CEBE;
+      pointer-events: none;
+      border-radius: 3px;
+    }
+
+    .explore-summary .explore-title-sub {
+      font-family: var(--font-serif-body);
+      font-size: 1.25rem; /* Bold italic font matching user mock */
+      font-weight: 700;
+      font-style: italic;
+      margin-top: 3px;
+      letter-spacing: 0.5px;
+      color: #FFFFFF !important;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ============================================================
+       Interactive Tab Grid Selection Styles
+       ============================================================ */
+    .tab-grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .tab-card-btn {
+      background-color: var(--bg-vellum-warm);
+      border: 1px solid rgba(181, 106, 42, 0.4);
+      border-left: 5px solid rgba(181, 106, 42, 0.4);
+      padding: 1.1rem 1.25rem;
+      position: relative;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(43, 42, 40, 0.02);
+      cursor: pointer;
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: left;
+      outline: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    
+    .tab-card-btn::before {
+      content: "";
+      position: absolute;
+      top: 4px; left: 4px; right: 4px; bottom: 4px;
+      border: 1px double rgba(181, 106, 42, 0.15);
+      border-radius: 2px;
+      pointer-events: none;
+      transition: all 0.22s ease;
+    }
+    
+    .tab-card-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(181, 106, 42, 0.08);
+      border-color: var(--stroke);
+      border-left-color: var(--stroke);
+    }
+    
+    .tab-card-btn:hover::before {
+      border-color: rgba(181, 106, 42, 0.4);
+    }
+    
+    .tab-card-btn.active {
+      background-color: #faf7ef;
+      border-color: var(--stroke);
+      border-left-color: var(--pigment-saffron);
+      border-left-width: 6px;
+      box-shadow: 0 4px 12px rgba(181, 106, 42, 0.1);
+    }
+    
+    .tab-card-btn.active::before {
+      border-color: rgba(181, 106, 42, 0.6);
+    }
+    
+    .tab-card-btn-title {
+      font-family: var(--font-serif-header);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink-archival);
+      letter-spacing: 0.5px;
+      margin-bottom: 0.2rem;
+      text-transform: capitalize;
+      line-height: 1.25;
+    }
+    
+    .tab-card-btn-meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-faded);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.3rem;
+      line-height: 1;
+    }
+    
+    .tab-card-btn-summary {
+      font-family: var(--font-sans);
+      font-size: 0.76rem;
+      line-height: 1.3;
+      color: var(--ink-faded);
+      font-weight: 500;
+    }
+    
+    .manuscript-card.hidden-layer {
+      display: none !important;
+      opacity: 0;
+    }
+    
+    .show-all-toggle-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 1.25rem;
+    }
+    
+    .show-all-btn {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: transparent;
+      border: 1px solid var(--stroke);
+      color: var(--stroke);
+      padding: 0.45rem 0.9rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    
+    .show-all-btn:hover {
+      background-color: var(--stroke);
+      color: var(--bg-vellum-warm);
+    }
+    
+    /* Fade-in Animation for Content Layers */
+    .manuscript-card {
+      animation: fadeInLayer 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    
+    @keyframes fadeInLayer {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Print styling to force all layers to display */
+    @media print {
+      .tab-grid-container, .show-all-toggle-container {
+        display: none !important;
+      }
+      .manuscript-card {
+        display: block !important;
+        opacity: 1 !important;
+        transform: none !important;
+        page-break-inside: avoid;
+      }
+    }
+  
+    /* Premium Left-Aligned Footer Override */
+    footer {
+      width: 100%;
+      padding: 2rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+      text-align: left;
+    }
+    .footer-content {
+      max-width: 1100px;
+      width: 100%;
+      padding: 0 16px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+    footer p {
+      font-family: var(--font-serif-body);
+      font-size: 0.82rem;
+      color: var(--ink-archival);
+      margin: 0.25rem 0;
+    }
+    footer p.font-mono {
+      font-family: var(--font-mono) !important;
+      font-size: 0.72rem !important;
+      color: var(--ink-faded) !important;
+    }
+
+  
+    /* ─── Reading Guide Grid (Tactile manuscript details) ─── */
+    .reading-guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .reading-guide-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+</style>
+  <meta name="description" content="Antara is a traditional cross-cultural mathematical life-engine and archetypal systems cartography. Calibrate your natal coordinates, biological rhythms, and name phonetic values across Vedic, Western tropical, and Chinese solar Four Pillars traditions.">
+  <link rel="icon" type="image/png" href="Antara Logo.png">
+</head>
+<body>
+
+  <div class="header-logo">
+    <a href="index.html" title="Return to Antara Dashboard" style="text-decoration: none; border: none; display: inline-block;">
+      <img src="Antara Logo.png" alt="ANTARA" style="max-height: 90px; width: auto;" onerror="this.style.display='none';">
+    </a>
+  </div>
+  <div class="system-tagline">Cross-Cultural Interior Panorama</div>
+
+  <h1 class="master-report-title">Personal Life Map<br>For The Nameless One</h1>
+  <p class="master-report-byline">Planetary Alignment & Natal Coordinates</p>
+
+  <div class="container">
+    <!-- Report Introduction (Borderless layout) -->
+    <div style="margin-bottom: 2.25rem; padding: 0.5rem 0;">
+    <div style="max-width: 78ch; margin: 0 auto;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-bottom: 1rem; color: var(--stroke, #b56a2a); letter-spacing: 1px; text-transform: uppercase;">About This Report</h3>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        Across many civilizations, the precise mathematical state of the heavens at the moment of birth was viewed as a cosmic signature. By mapping the intersections of astronomical coordinates with traditional zodiac systems, ancient sciences sought to outline the baseline patterns of individual psychology, temperament, and life potentials.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        This report reconstructs your personal planetary blueprint, focusing on your rising sign (Lagna), key planetary influences, house configurations, and lunar mansions (Nakshatras). It maps out the relational dynamics between planets and houses, clarifying your primary psychological axes and behavioral indicators.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">
+        Individuals often study their Life Map to gain objective clarity on core behavioral traits, natural inclinations, and recurring themes. It serves as a tool for self-understanding, showing how different planetary forces may play out in your personal development and relationship dynamics.
+      </p>
+      
+      <!-- Codex Support Navigation Panel -->
+      <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px dashed #D6CEBE; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="Help.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📖 Help
+        </a>
+        <a href="FAQ.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          ❓ FAQ
+        </a>
+        <a href="Glossary.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📓 Glossary
+        </a>
+      </div>
+      <!-- How to Read This Report (Reading Guide Block) -->
+      <div style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; border: 1px dashed #D6CEBE; background-color: rgba(247, 241, 225, 0.15); border-radius: 4px; box-shadow: 0 2px 8px rgba(43, 42, 40, 0.01);">
+        <h4 style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 1rem; text-align: center; border-bottom: 1px dashed #D6CEBE; padding-bottom: 0.4rem;">
+          How to Study This Document
+        </h4>
+        <div class="reading-guide-grid">
+          <!-- Point 1 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">1. Read the accordion sections one at a time.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">Each section expands when you click the title — do not try to read everything at once.</span>
+          </div>
+          <!-- Point 2 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">2. Look up unfamiliar terms</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">in the Antara Glossary (<a href="Glossary.html" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar);">Glossary.html</a> in this folder).</span>
+          </div>
+          <!-- Point 3 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">3. Start with the numbers that feel most familiar.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">In a Western chart, most people know their Sun sign. In Numerology, the Life Path is easiest.</span>
+          </div>
+          <!-- Point 4 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">4. Do not worry about understanding everything on the first read.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">These reports are meant to be returned to and studied over time.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+
+
+    <div class="grid">
+      
+      <div>
+        <div class="archival-card" style="margin-bottom: 1.5rem;">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-bottom: 1.25rem;">Calibrated Profile</h3>
+          <div class="profile-display-row"><strong>Full Name</strong><span>The Nameless One</span></div>
+          <div class="profile-display-row"><strong>Date of Birth</strong><span>1953-05-16</span></div>
+          <div class="profile-display-row"><strong>Time of Birth</strong><span>10:04 AM</span></div>
+          <div class="profile-display-row"><strong>Calibrated Anchor</strong><span>Chakrata, Uttarakhand, India</span></div>
+          <button type="button" onclick="window.print();" class="archival-btn">Print Scroll</button>
+        </div>
+        
+        <div class="archival-card" id="inspectorMetaCard">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.35rem; margin-bottom: 0.65rem; color: var(--pigment-saffron);" id="lblInspectorTitle">HOVER OVER THE GRID</h3>
+          <p style="font-size: 0.95rem; color: var(--ink-faded); text-align: justify; line-height: 1.5; margin: 0;" id="lblInspectorDesc">
+            TAP OR HOVER over any numeric quadrant cell inside the framework map to inspect its environmental domain definition natively.
+          </p>
+        </div>
+
+        <div class="legend-box-card" style="margin-top: 1.25rem;">
+          <div class="legend-title">Alphanumeric Glossary</div>
+          <div class="legend-cluster" style="grid-template-columns: 1fr; gap: 0.3rem;">
+            <div><strong>Lg</strong> → Lagna (Ascendant)</div>
+            <div><strong>Su</strong> → Surya (Sun)</div>
+            <div><strong>Mo</strong> → Chandra (Moon)</div>
+            <div><strong>Ma</strong> → Mangala (Mars)</div>
+            <div><strong>Me</strong> → Budha (Mercury)</div>
+            <div><strong>Ju</strong> → Guru (Jupiter)</div>
+            <div><strong>Ve</strong> → Shukra (Venus)</div>
+            <div><strong>Sa</strong> → Shani (Saturn)</div>
+            <div><strong>Ra</strong> → Rahu (North Node)</div>
+            <div><strong>Ke</strong> → Ketu (South Node)</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="archival-card" style="margin-bottom: 1.5rem;">
+          <div class="vertical-matrix-stack">
+            
+            <div class="matrix-wrapper-node">
+              <div class="chart-panel-heading">1. Structural Horizon Framework Map</div>
+              <div class="chart-frame">
+                <svg class="kundli" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="North Indian Vedic Kundli Map with houses one through twelve">
+
+                  <!-- ============= INNER KITES (Petals) ============= -->
+
+                  <!-- House 1 · Top kite -->
+                  <g class="house" data-house="1">
+                    <polygon class="region petal" points="200,0 300,100 200,200 100,100" onmouseover="inspectHouseNode(1)" onmouseout="clearHouseNode()"/>
+                    <text class="rashi lagna" x="200" y="130">1</text>
+                    <text class="planets"     x="200" y="55"></text>
+                  </g>
+
+                  <!-- House 4 · Left kite -->
+                  <g class="house" data-house="4">
+                    <polygon class="region petal" points="0,200 100,300 200,200 100,100" onmouseover="inspectHouseNode(4)" onmouseout="clearHouseNode()"/>
+                    <text class="rashi"   x="130" y="200">4</text>
+                    <text class="planets" x="55"  y="200"></text>
+                  </g>
+
+                  <!-- House 7 · Bottom kite -->
+                  <g class="house" data-house="7">
+                    <polygon class="region petal" points="200,200 100,300 200,400 300,300" onmouseover="inspectHouseNode(7)" onmouseout="clearHouseNode()"/>
+                    <text class="rashi"   x="200" y="270">7</text>
+                    <text class="planets" x="200" y="345"></text>
+                  </g>
+
+                  <!-- House 10 · Right kite -->
+                  <g class="house" data-house="10">
+                    <polygon class="region petal" points="200,200 300,300 400,200 300,100" onmouseover="inspectHouseNode(10)" onmouseout="clearHouseNode()"/>
+                    <text class="rashi"   x="270" y="200">10</text>
+                    <text class="planets" x="345" y="200"></text>
+                  </g>
+
+                  <!-- ============= OUTER CORNER TRIANGLES ============= -->
+
+                  <!-- House 2 · Top-left, upper -->
+                  <g class="house" data-house="2">
+                    <polygon class="region triangle" points="0,0 200,0 100,100" onmouseover="inspectHouseNode(2)" onmouseout="clearHouseNode()"/>
+                    <text class="rashi"   x="100" y="33">2</text>
+                    <text class="planets" x="55"  y="12"></text>
+                  </g>
+
+                  <!-- House 3 · Top-left, lower -->
+                  <g class="house" data-house="3">
+                    <polygon class="region triangle" points="0,0 100,100 0,200" onmouseover="inspectHouseNode(3)" onmouseout="clearHouseNode()"/>
+                    <text class="rashi"   x="33" y="100">3</text>
+                    <text class="planets" x="12" y="55"></text>
+                  </g>
+
+                  <!-- House 5 · Bottom-left, upper -->
+                  <g class="house" data-house="5">
+                    <polygon class="region triangle" points="0,200 100,300 0,400" onmouseover="inspectHouseNode(5)" onmouseout="clearHouseNode()"/>
+                    <text class="rashi"   x="33" y="300">5</text>
+                    <text class="planets" x="12" y="345"></text>
+                  </g>
+
+                  <!-- House 6 · Bottom-left, lower -->
+                  <g class="house" data-house="6">
+                    <polygon class="region triangle" points="0,400 200,400 100,300" onmouseover="inspectHouseNode(6)" onmouseout="clearHouseNode()"/>
+                    <text class="rashi"   x="100" y="350">6</text>
+                    <text class="planets" x="40"  y="388"></text>
+                  </g>
+
+                  <!-- House 8 · Bottom-right, lower -->
+                  <g class="house" data-house="8">
+                    <polygon class="region triangle" points="200,400 400,400 300,300" onmouseover="inspectHouseNode(8)" onmouseout="clearHouseNode()"/>
+                    <text class="rashi"   x="300" y="350">8</text>
+                    <text class="planets" x="335" y="388"></text>
+                  </g>
+
+                  <!-- House 9 · Bottom-right, upper -->
+                  <g class="house" data-house="9">
+                    <polygon class="region triangle" points="400,200 400,400 300,300" onmouseover="inspectHouseNode(9)" onmouseout="clearHouseNode()"/>
+                    <text class="rashi"   x="367" y="300">9</text>
+                    <text class="planets" x="388" y="345"></text>
+                  </g>
+
+                  <!-- House 11 · Top-right, lower -->
+                  <g class="house" data-house="11">
+                    <polygon class="region triangle" points="400,0 400,200 300,100" onmouseover="inspectHouseNode(11)" onmouseout="clearHouseNode()"/>
+                    <text class="rashi"   x="367" y="100">11</text>
+                    <text class="planets" x="388" y="55"></text>
+                  </g>
+
+                  <!-- House 12 · Top-right, upper -->
+                  <g class="house" data-house="12">
+                    <polygon class="region triangle" points="200,0 400,0 300,100" onmouseover="inspectHouseNode(12)" onmouseout="clearHouseNode()"/>
+                    <text class="rashi"   x="300" y="33">12</text>
+                    <text class="planets" x="345" y="12"></text>
+                  </g>
+
+                </svg>
+              </div>
+            </div>
+
+            <div class="matrix-wrapper-node">
+              <div class="chart-panel-heading">2. Calibrated Natal Planetary Core</div>
+              <div class="chart-frame">
+                <svg class="kundli" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="North Indian Vedic Kundli — planet placements with Lagna in Libra">
+
+                  <!-- ============= INNER KITES (Petals) ============= -->
+
+                  <!-- House 1 · Top kite — Lagna -->
+                  <g class="house" data-house="1">
+                    <polygon class="region petal" points="200,0 300,100 200,200 100,100"/>
+                    <text class="rashi"   x="200" y="130">7</text>
+                    <text class="planets" x="200" y="55">Lg</text>
+                  </g>
+
+                  <!-- House 4 · Left kite — Ketu -->
+                  <g class="house" data-house="4">
+                    <polygon class="region petal" points="0,200 100,300 200,200 100,100"/>
+                    <text class="rashi"   x="130" y="200">10</text>
+                    <text class="planets" x="55"  y="200">Ke</text>
+                  </g>
+
+                  <!-- House 7 · Bottom kite — Venus -->
+                  <g class="house" data-house="7">
+                    <polygon class="region petal" points="200,200 100,300 200,400 300,300"/>
+                    <text class="rashi"   x="200" y="270">1</text>
+                    <text class="planets" x="200" y="345">Ve</text>
+                  </g>
+
+                  <!-- House 10 · Right kite — Rahu -->
+                  <g class="house" data-house="10">
+                    <polygon class="region petal" points="200,200 300,300 400,200 300,100"/>
+                    <text class="rashi"   x="270" y="200">4</text>
+                    <text class="planets" x="345" y="200">Ra</text>
+                  </g>
+
+                  <!-- ============= OUTER CORNER TRIANGLES ============= -->
+
+                  <!-- House 2 · Top-left, upper -->
+                  <g class="house" data-house="2">
+                    <polygon class="region triangle" points="0,0 200,0 100,100"/>
+                    <text class="rashi" x="100" y="33">8</text>
+                  </g>
+
+                  <!-- House 3 · Top-left, lower -->
+                  <g class="house" data-house="3">
+                    <polygon class="region triangle" points="0,0 100,100 0,200"/>
+                    <text class="rashi" x="33" y="100">9</text>
+                  </g>
+
+                  <!-- House 5 · Bottom-left, upper -->
+                  <g class="house" data-house="5">
+                    <polygon class="region triangle" points="0,200 100,300 0,400"/>
+                    <text class="rashi" x="33" y="300">11</text>
+                  </g>
+
+                  <!-- House 6 · Bottom-left, lower — Mars -->
+                  <g class="house" data-house="6">
+                    <polygon class="region triangle" points="0,400 200,400 100,300"/>
+                    <text class="rashi"   x="100" y="350">12</text>
+                    <text class="planets" x="40"  y="388">Ma</text>
+                  </g>
+
+                  <!-- House 8 · Bottom-right, lower — Sun + Mercury + Jupiter -->
+                  <g class="house" data-house="8">
+                    <polygon class="region triangle" points="200,400 400,400 300,300"/>
+                    <text class="rashi"   x="300" y="350">2</text>
+                    <text class="planets" x="335" y="388">Su Me Ju</text>
+                  </g>
+
+                  <!-- House 9 · Bottom-right, upper — Moon -->
+                  <g class="house" data-house="9">
+                    <polygon class="region triangle" points="400,200 400,400 300,300"/>
+                    <text class="rashi" x="367" y="300">3</text>
+                    <text class="planets" x="388" y="345">Mo</text>
+                  </g>
+
+                  <!-- House 11 · Top-right, lower -->
+                  <g class="house" data-house="11">
+                    <polygon class="region triangle" points="400,0 400,200 300,100"/>
+                    <text class="rashi" x="367" y="100">5</text>
+                  </g>
+
+                  <!-- House 12 · Top-right, upper — Saturn -->
+                  <g class="house" data-house="12">
+                    <polygon class="region triangle" points="200,0 400,0 300,100"/>
+                    <text class="rashi" x="300" y="33">6</text>
+                    <text class="planets" x="345" y="12">Sa</text>
+                  </g>
+
+                </svg>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="manuscript-card">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.15rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.4rem; margin-bottom: 0.75rem;">Full Planetary Data Sheet</h3>
+          <p style="font-size: 1.02rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0 0 0.75rem;">Each of the nine classical bodies is recorded across the five primary parameters of Vedic analysis — rasi (sign), degree, nakshatra (lunar mansion), pada (subdivision), and bhava (house) — as they appeared at the exact moment and location of birth. These coordinates form the complete astronomical foundation of the natal map.</p>
+          <details class="inline-reveal">
+            <summary>View Full Coordinate Table</summary>
+            <div class="inline-reveal-body">
+            <table class="full-data-table" style="margin:0;">
+              <thead>
+                <tr>
+                  <th>Planet</th>
+                  <th>Sanskrit</th>
+                  <th>Rasi (Sign)</th>
+                  <th>Deg°</th>
+                  <th>Nakshatra</th>
+                  <th>Pd</th>
+                  <th>Bhava</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><span style="color: var(--pigment-saffron);">☉</span> <strong>Sun</strong></td><td>Surya</td><td>Vrishabha (Taurus)</td><td>1° 47′</td><td>Krittika</td><td>2</td><td>8th</td></tr>
+                <tr><td><span style="color: var(--pigment-cinnabar);">☽</span> <strong>Moon</strong></td><td>Chandra</td><td>Mithuna (Gemini)</td><td>5° 47′</td><td>Mrigashira</td><td>4</td><td>9th</td></tr>
+                <tr><td><span style="color: #A65B4A;">♂</span> <strong>Mars</strong></td><td>Mangala</td><td>Meena (Pisces)</td><td>11° 01′</td><td>Uttarabhadra</td><td>3</td><td>6th</td></tr>
+                <tr><td><span style="color: var(--pigment-lapis);">☿</span> <strong>Mercury ℞</strong></td><td>Budha</td><td>Vrishabha (Taurus)</td><td>11° 00′ ℞</td><td>Rohini</td><td>1</td><td>8th</td></tr>
+                <tr><td><span style="color: #1A5E3A;">♃</span> <strong>Jupiter</strong></td><td>Guru</td><td>Vrishabha (Taurus)</td><td>5° 18′</td><td>Krittika</td><td>3</td><td>8th</td></tr>
+                <tr><td><span style="color: #7A2060;">♀</span> <strong>Venus</strong></td><td>Shukra</td><td>Mesha (Aries)</td><td>28° 21′</td><td>Krittika</td><td>1</td><td>7th</td></tr>
+                <tr><td><span style="color: #2A2A6e;">♄</span> <strong>Saturn</strong></td><td>Shani</td><td>Kanya (Virgo)</td><td>23° 50′</td><td>Chitra</td><td>1</td><td>12th</td></tr>
+                <tr><td><span style="color: var(--pigment-terracotta);">☊</span> <strong>Rahu</strong></td><td>Rahu</td><td>Kataka (Cancer)</td><td>18° 36′</td><td>Ashlesha</td><td>4</td><td>10th</td></tr>
+                <tr><td><span style="color: var(--pigment-terracotta);">☋</span> <strong>Ketu</strong></td><td>Ketu</td><td>Makara (Capricorn)</td><td>18° 36′</td><td>Shravana</td><td>2</td><td>4th</td></tr>
+              </tbody>
+            </table>
+            </div>
+          </details>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Show All Scroll Mode Toggle and Chapter Selection Selector Grid -->
+    <div class="show-all-toggle-container" style="margin-top: 2rem;">
+      <button id="btnToggleAll" class="show-all-btn" onclick="toggleAllScroll()">Show Entire Scroll</button>
+    </div>
+
+    <div class="tab-grid-container" id="chapterTabGrid">
+      <!-- 1. Rising Sign -->
+      <button class="tab-card-btn active" onclick="switchSection('rising-sign', this)" id="tab-rising-sign">
+        <span class="tab-card-btn-meta">Lagna Profile</span>
+        <span class="tab-card-btn-title">Your Rising Sign</span>
+        <span class="tab-card-btn-summary">The cosmic mask you wear, your vital energy, and life direction.</span>
+      </button>
+      
+      <!-- 2. Key Chart Patterns -->
+      <button class="tab-card-btn" onclick="switchSection('chart-patterns', this)" id="tab-chart-patterns">
+        <span class="tab-card-btn-meta">Chart Configurations</span>
+        <span class="tab-card-btn-title">Key Chart Patterns</span>
+        <span class="tab-card-btn-summary">Unique groupings of planetary forces defining structural destiny themes.</span>
+      </button>
+
+      <!-- 3. How the Planets Shape Your Personality -->
+      <button class="tab-card-btn" onclick="switchSection('planetary-influences', this)" id="tab-planetary-influences">
+        <span class="tab-card-btn-meta">Planetary Placements</span>
+        <span class="tab-card-btn-title">How Planets Shape You</span>
+        <span class="tab-card-btn-summary">Detailed breakdown of planetary influences on specific areas of daily life.</span>
+      </button>
+
+      <!-- 4. Your Lunar Nakshatras -->
+      <button class="tab-card-btn" onclick="switchSection('lunar-nakshatras', this)" id="tab-lunar-nakshatras">
+        <span class="tab-card-btn-meta">Lunar Mansions Reference</span>
+        <span class="tab-card-btn-title">Your Lunar Nakshatras</span>
+        <span class="tab-card-btn-summary">Subconscious stellar codes governing your emotional and spiritual patterns.</span>
+      </button>
+
+      <!-- 5. Your Major Life Cycles -->
+      <button class="tab-card-btn" onclick="switchSection('life-cycles', this)" id="tab-life-cycles">
+        <span class="tab-card-btn-meta">Vimshottari Mahadasha</span>
+        <span class="tab-card-btn-title">Your Major Life Cycles</span>
+        <span class="tab-card-btn-summary">Grand cosmic time periods mapping unfolding chapters of your life story.</span>
+      </button>
+
+      <!-- 6. Your Current Life Cycle Breakdown -->
+      <button class="tab-card-btn" onclick="switchSection('cycle-breakdown', this)" id="tab-cycle-breakdown">
+        <span class="tab-card-btn-meta">Ketu Cycle Breakdown</span>
+        <span class="tab-card-btn-title">Ketu Cycle Breakdown</span>
+        <span class="tab-card-btn-summary">Active growth themes governing your present sub-cycles.</span>
+      </button>
+
+      <!-- 7. Strong and Weak Planetary Energies -->
+      <button class="tab-card-btn" onclick="switchSection('planetary-strengths', this)" id="tab-planetary-strengths">
+        <span class="tab-card-btn-meta">Planetary Dignity</span>
+        <span class="tab-card-btn-title">Strong & Weak Energies</span>
+        <span class="tab-card-btn-summary">Operational strengths of planetary forces showing where life flows or requires mastery.</span>
+      </button>
+
+      <!-- 8. Key Planetary Combinations -->
+      <button class="tab-card-btn" onclick="switchSection('planetary-yogas', this)" id="tab-planetary-yogas">
+        <span class="tab-card-btn-meta">Planetary Yogas</span>
+        <span class="tab-card-btn-title">Key Combinations</span>
+        <span class="tab-card-btn-summary">Special alignments in your birth chart activating extraordinary potential.</span>
+      </button>
+
+      <!-- 9. Your Moon Archetype -->
+      <button class="tab-card-btn" onclick="switchSection('moon-archetype', this)" id="tab-moon-archetype">
+        <span class="tab-card-btn-meta">Mrigashira • Pada 4</span>
+        <span class="tab-card-btn-title">Your Moon Archetype</span>
+        <span class="tab-card-btn-summary">Emotional core, instincts, and search for meaning through your birth Moon star.</span>
+      </button>
+    </div>
+
+    <!-- ============================================================
+         CONTENT LAYER 1 — LAGNA PROFILE
+         ============================================================ -->
+    <div class="manuscript-card" style="margin-top: 2rem; margin-bottom: 1.5rem;" id="sec-rising-sign" data-section="rising-sign">
+      <div style="border-bottom: 1px solid #D6CEBE; padding-bottom: 0.6rem; margin-bottom: 1.25rem;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin: 0 0 0.25rem 0; color: var(--stroke); letter-spacing: 0.5px; text-transform: uppercase;">Your Rising Sign</h3>
+        <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.35rem;">Tula / Libra Ascendant (Lagna Profile)</div>
+        <div style="font-family: var(--font-sans); font-size: 0.85rem; color: var(--ink-faded); font-style: italic; line-height: 1.4;">Discover the cosmic mask you wear, your vital energy, and how you naturally navigate the outer world.</div>
+      </div>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        Tula (Libra) is governed by Shukra (Venus), the planet of beauty, harmony, aesthetics, and relational intelligence. The Libra ascendant imprints the native with a natural orientation toward balance, diplomacy, and the cultivation of partnerships. The physical presence tends toward grace and composure, and the native characteristically approaches life's challenges through negotiation, aesthetic refinement, and the careful weighing of all available perspectives before committing to a position.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        As a cardinal air sign, Tula rising generates an intellect that is quick to assess situations from multiple angles. This quality can appear as indecisiveness to observers, but it is in fact a deeply systematic form of judgment — one that weighs all variables before acting. The Lagna lord Venus occupies the 7th house in Aries, placing the native's life force squarely within the domain of relationships, public alliances, and one-on-one dynamics. This is a chart that finds its meaning through others.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">
+        The classical Vedic aphorism <em>Lagnesh in Saptam Bhava</em> — the ruler of the 1st in the 7th — points to a life path in which partnership, alliance, and collaboration are not peripheral but central. The self is most fully expressed when engaged with another. Professional and personal success tend to arrive through co-creative effort rather than solitary endeavour.
+      </p>
+    </div>
+
+    <!-- ============================================================
+         CONTENT LAYER 2 — KEY CHART CONFIGURATIONS
+         ============================================================ -->
+    <div class="manuscript-card" style="margin-bottom: 1.5rem;" id="sec-chart-patterns" data-section="chart-patterns">
+      <div style="border-bottom: 1px solid #D6CEBE; padding-bottom: 0.6rem; margin-bottom: 1.25rem;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin: 0 0 0.25rem 0; color: var(--stroke); letter-spacing: 0.5px; text-transform: uppercase;">Key Chart Patterns</h3>
+        <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.35rem;">Notable Chart Configurations</div>
+        <div style="font-family: var(--font-sans); font-size: 0.85rem; color: var(--ink-faded); font-style: italic; line-height: 1.4;">Explore the unique groupings of planetary forces that define the structural themes of your destiny.</div>
+      </div>
+
+      <div style="border-left: 5px solid var(--pigment-saffron); padding: 1rem 1.25rem; background: rgba(217,130,54,0.04); border-radius: 0 4px 4px 0; margin-bottom: 1.25rem;">
+        <div style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: 700; color: var(--stroke); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">① 8th House Stellium — Sun, Mercury ℞ & Jupiter in Vrishabha</div>
+        <p style="font-size: 1.02rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">Three major planets converging in the 8th house is an uncommon and high-signal configuration. The 8th is the domain of transformation, hidden knowledge, research, inheritance, and the threshold between the visible and invisible worlds. Sun (soul direction), Mercury retrograde (deeply inward-turning intelligence), and Jupiter (wisdom, expansion) all operating through Taurus — the sign of patient persistence, material depth, and accumulated knowledge — create a personality strongly drawn to research, esoteric study, advisory roles, and the careful stewardship of knowledge or resources. Mercury retrograde in this placement suggests a mind that processes information by going deeply inward before surfacing with refined conclusions.</p>
+      </div>
+
+      <div style="border-left: 5px solid var(--pigment-terracotta); padding: 1rem 1.25rem; background: rgba(166,91,74,0.04); border-radius: 0 4px 4px 0; margin-bottom: 1.25rem;">
+        <div style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: 700; color: var(--stroke); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">② Rahu in 10th / Ketu in 4th — The Career-Home Karmic Axis</div>
+        <p style="font-size: 1.02rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">Rahu in Cancer in the 10th house places the soul's karmic hunger squarely in the domain of public recognition, authority, and career achievement. Cancer as the sign introduces an emotionally nuanced approach to professional life — success arrives through nurturing leadership, and industries connected to care, community, or public welfare. Ketu in Capricorn in the 4th house indicates a soul actively releasing attachment to fixed domestic structures, ancestral expectations, and conventional security in this lifetime. The deep home-based certainties of past cycles are loosened so that public life and outward contribution may take precedence.</p>
+      </div>
+
+      <div style="border-left: 5px solid var(--pigment-lapis); padding: 1rem 1.25rem; background: rgba(60,90,128,0.04); border-radius: 0 4px 4px 0; margin-bottom: 0;">
+        <div style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: 700; color: var(--stroke); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">③ Venus in 7th — Lagna Lord in the House of Partnerships</div>
+        <p style="font-size: 1.02rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">Venus rules Libra (the Lagna) and occupies the 7th house in Aries. The Lagna lord in the 7th creates a life orientation in which personal identity is shaped, tested, and ultimately refined through one-on-one relationships — romantic, professional, and collaborative. Partnerships are not simply a chapter in this life; they are the entire structure through which the self is understood. The Aries energy in the 7th suggests that partners of significance tend to be assertive, independent, and action-oriented, acting as catalysts for the native's own growth and direction.</p>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         CONTENT LAYER 3 — PLANET-IN-HOUSE INTERPRETATIONS
+         ============================================================ -->
+    <div class="manuscript-card" style="margin-bottom: 1.5rem;" id="sec-planetary-influences" data-section="planetary-influences">
+      <div style="border-bottom: 1px solid #D6CEBE; padding-bottom: 0.6rem; margin-bottom: 1.25rem;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin: 0 0 0.25rem 0; color: var(--stroke); letter-spacing: 0.5px; text-transform: uppercase;">How the Planets Shape Your Personality</h3>
+        <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.35rem;">Planetary Placement Interpretations</div>
+        <div style="font-family: var(--font-sans); font-size: 0.85rem; color: var(--ink-faded); font-style: italic; line-height: 1.4;">A detailed breakdown of how each planetary energy influences specific areas of your daily life.</div>
+      </div>
+      <div class="data-table-wrapper">
+        <table class="full-data-table">
+          <thead>
+            <tr>
+              <th>Planet</th>
+              <th>Sign & House</th>
+              <th>Interpretive Signature</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span style="color: var(--pigment-saffron);">☉</span> <strong>Sun</strong></td>
+              <td>Vrishabha · 8th</td>
+              <td>Soul purpose oriented toward hidden knowledge, research, and transformation. Life meaning arrives through depth rather than surface visibility. Vitality is strongest in advisory, investigative, or esoteric environments.</td>
+            </tr>
+            <tr>
+              <td><span style="color: var(--pigment-cinnabar);">☽</span> <strong>Moon</strong></td>
+              <td>Mithuna · 9th</td>
+              <td>Emotional fulfillment through learning, philosophical inquiry, long journeys, and teaching. The mind is naturally curious and wide-ranging. A deep sense of wellbeing is tied to the freedom to explore ideas and belief systems across traditions.</td>
+            </tr>
+            <tr>
+              <td><span style="color: #A65B4A;">♂</span> <strong>Mars</strong></td>
+              <td>Meena · 6th</td>
+              <td>Drive channeled through disciplined service, health practice, and the patient resolution of daily obstacles. Mars in Pisces in the 6th acts quietly but persistently — effort is sustained behind the scenes rather than declared publicly.</td>
+            </tr>
+            <tr>
+              <td><span style="color: var(--pigment-lapis);">☿</span> <strong>Mercury ℞</strong></td>
+              <td>Vrishabha · 8th</td>
+              <td>A deeply inward-processing intelligence. Ideas are refined through extensive internal reflection before being expressed. Retrograde Mercury here produces original thinking that often runs counter to prevailing assumptions. Exceptionally suited to research, analysis, and writing of depth.</td>
+            </tr>
+            <tr>
+              <td><span style="color: #1A5E3A;">♃</span> <strong>Jupiter</strong></td>
+              <td>Vrishabha · 8th</td>
+              <td>Expansion through hidden knowledge and the stewardship of accumulated wisdom. Natural repository of deep learning, often consulted by others for guidance. Growth arrives gradually, through sustained engagement with complex or overlooked subject matter.</td>
+            </tr>
+            <tr>
+              <td><span style="color: #7A2060;">♀</span> <strong>Venus</strong></td>
+              <td>Mesha · 7th</td>
+              <td>Life meaning found through partnerships and public alliances. Aesthetic and relational intelligence are the primary instruments of navigation. Partners tend toward the assertive and self-directed, catalysing personal growth through dynamic engagement.</td>
+            </tr>
+            <tr>
+              <td><span style="color: #2A2A6E;">♄</span> <strong>Saturn</strong></td>
+              <td>Kanya · 12th</td>
+              <td>Discipline applied to solitary, behind-the-scenes work. Saturn in the 12th rewards sustained patience with deep structural achievements that unfold outside public view. An innate capacity for systematic solitary focus — libraries, research environments, and quiet retreat serve this energy well.</td>
+            </tr>
+            <tr>
+              <td><span style="color: var(--pigment-terracotta);">☊</span> <strong>Rahu</strong></td>
+              <td>Kataka · 10th</td>
+              <td>Karmic drive toward public authority and emotionally intelligent leadership. Career is a primary arena of soul growth in this lifetime. Success through professional environments that combine nurturing capacity with executive presence.</td>
+            </tr>
+            <tr>
+              <td><span style="color: var(--pigment-terracotta);">☋</span> <strong>Ketu</strong></td>
+              <td>Makara · 4th</td>
+              <td>Releasing attachment to rigid domestic structures and inherited expectation. Inner freedom is found by not clinging to ancestral security frameworks. The soul carries deep practical wisdom from prior cycles; the task now is to let go of the familiar in favour of outer contribution.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         CONTENT LAYER 4 — NAKSHATRA REFERENCE TABLE
+         ============================================================ -->
+    <div class="manuscript-card" style="margin-bottom: 1.5rem;" id="sec-lunar-nakshatras" data-section="lunar-nakshatras">
+      <div style="border-bottom: 1px solid #D6CEBE; padding-bottom: 0.6rem; margin-bottom: 1.25rem;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin: 0 0 0.25rem 0; color: var(--stroke); letter-spacing: 0.5px; text-transform: uppercase;">Your Lunar Nakshatras</h3>
+        <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.35rem;">Nakshatra Reference (Lunar Mansions)</div>
+        <div style="font-family: var(--font-sans); font-size: 0.85rem; color: var(--ink-faded); font-style: italic; line-height: 1.4;">Uncover the deeply subconscious stellar codes that govern your emotional patterns and spiritual instincts.</div>
+      </div>
+      <p style="font-size: 0.95rem; color: var(--ink-faded); margin-bottom: 1rem; line-height: 1.6;">Each planet occupies a specific Nakshatra — one of 27 lunar mansions spanning the zodiac in 13°20' segments. The Nakshatra reveals the deeper psychological and karmic texture beneath the sign placement.</p>
+      <div class="data-table-wrapper">
+        <table class="full-data-table">
+          <thead>
+            <tr>
+              <th>Nakshatra</th>
+              <th>Planet(s)</th>
+              <th>Ruler</th>
+              <th>Deity</th>
+              <th>Symbol</th>
+              <th>Core Psychological Theme</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Krittika</strong></td>
+              <td>Sun · Jupiter</td>
+              <td>Surya</td>
+              <td>Agni</td>
+              <td>Flame · Razor</td>
+              <td>Sharp discernment, purification through truth, the capacity to cut through illusion and reveal what is essential.</td>
+            </tr>
+            <tr>
+              <td><strong>Mrigashira</strong></td>
+              <td>Moon</td>
+              <td>Mangala</td>
+              <td>Soma</td>
+              <td>Deer's Head</td>
+              <td>Gentle seeking, restless curiosity, emotional sensitivity. The eternal search for beauty and meaning across landscapes and ideas.</td>
+            </tr>
+            <tr>
+              <td><strong>Rohini</strong></td>
+              <td>Mercury ℞</td>
+              <td>Chandra</td>
+              <td>Brahma</td>
+              <td>Oxcart · Chariot</td>
+              <td>Creativity, abundance, fixed desire. Deep attachment to beauty and material refinement. Highly fertile ground for artistic and intellectual output.</td>
+            </tr>
+            <tr>
+              <td><strong>Uttarabhadra</strong></td>
+              <td>Mars</td>
+              <td>Shani</td>
+              <td>Ahir Budhnya</td>
+              <td>Serpent of the Deep</td>
+              <td>Endurance, depth, and hidden spiritual power. Quiet strength that operates beneath the surface. Connection to ancestral and subterranean wisdom streams.</td>
+            </tr>
+            <tr>
+              <td><strong>Chitra</strong></td>
+              <td>Saturn</td>
+              <td>Mangala</td>
+              <td>Vishvakarma</td>
+              <td>Bright Jewel</td>
+              <td>Craft, precision, and the desire to create something structurally brilliant. Architectural intelligence. The builder who works toward lasting beauty.</td>
+            </tr>
+            <tr>
+              <td><strong>Ashlesha</strong></td>
+              <td>Rahu</td>
+              <td>Budha</td>
+              <td>Naga</td>
+              <td>Coiled Serpent</td>
+              <td>Penetrating intelligence, mystical perception, and serpentine intuition. Deep karmic awareness. The capacity to perceive what others cannot or will not see.</td>
+            </tr>
+            <tr>
+              <td><strong>Shravana</strong></td>
+              <td>Ketu</td>
+              <td>Chandra</td>
+              <td>Vishnu</td>
+              <td>Ear · Three Footprints</td>
+              <td>Deep listening, learning through tradition, and dharmic attunement. Wisdom received through silence and careful attention rather than active seeking.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         CONTENT LAYER 5 — VIMSHOTTARI MAHADASHA TIMELINE
+         ============================================================ -->
+    <div class="manuscript-card" style="margin-bottom: 2rem;" id="sec-life-cycles" data-section="life-cycles">
+      <div style="border-bottom: 1px solid #D6CEBE; padding-bottom: 0.6rem; margin-bottom: 1.25rem;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin: 0 0 0.25rem 0; color: var(--stroke); letter-spacing: 0.5px; text-transform: uppercase;">Your Major Life Cycles</h3>
+        <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.35rem;">Vimshottari Mahadasha Timeline</div>
+        <div style="font-family: var(--font-sans); font-size: 0.85rem; color: var(--ink-faded); font-style: italic; line-height: 1.4;">Step through the grand cosmic time periods that map the unfolding chapters of your life story.</div>
+      </div>
+      <p style="font-size: 0.95rem; color: var(--ink-faded); margin-bottom: 1rem; line-height: 1.6;">The Vimshottari Dasha is Vedic astrology's primary timing system — a 120-year cycle of planetary periods calculated from the Moon's Nakshatra at birth. Moon in Mrigashira (Mars-ruled) places the birth in Mars Mahadasha with approximately 5 months remaining. Each subsequent period activates a different planetary intelligence as the primary driver of life themes.</p>
+      <div class="data-table-wrapper">
+        <table class="full-data-table">
+          <thead>
+            <tr>
+              <th>Planet (Dasha Lord)</th>
+              <th>Duration</th>
+              <th>Approximate Period</th>
+              <th>Status</th>
+              <th>Life Theme</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>♂ <strong>Mars</strong> (Mangala)</td>
+              <td>7 years</td>
+              <td>May 1953 – Oct 1953</td>
+              <td style="color: var(--ink-faded); font-style: italic;">Complete</td>
+              <td>Drive, courage, physical vitality, establishing initial direction.</td>
+            </tr>
+            <tr>
+              <td>☊ <strong>Rahu</strong></td>
+              <td>18 years</td>
+              <td>Oct 1953 – Oct 1971</td>
+              <td style="color: var(--ink-faded); font-style: italic;">Complete</td>
+              <td>Ambition, worldly expansion, unconventional paths, karmic acceleration.</td>
+            </tr>
+            <tr>
+              <td>♃ <strong>Jupiter</strong> (Guru)</td>
+              <td>16 years</td>
+              <td>Oct 1971 – Oct 1987</td>
+              <td style="color: var(--ink-faded); font-style: italic;">Complete</td>
+              <td>Wisdom, teaching, philosophy, institutional growth, expansion of belief.</td>
+            </tr>
+            <tr>
+              <td>♄ <strong>Saturn</strong> (Shani)</td>
+              <td>19 years</td>
+              <td>Oct 1987 – Oct 2006</td>
+              <td style="color: var(--ink-faded); font-style: italic;">Complete</td>
+              <td>Discipline, structure, long-term consolidation, karmic accountability.</td>
+            </tr>
+            <tr>
+              <td>☿ <strong>Mercury</strong> (Budha)</td>
+              <td>17 years</td>
+              <td>Oct 2006 – Oct 2023</td>
+              <td style="color: var(--ink-faded); font-style: italic;">Complete</td>
+              <td>Communication, analysis, intellectual work, networks, refined expression.</td>
+            </tr>
+            <tr style="background: rgba(166,91,74,0.06) !important;">
+              <td>☋ <strong>Ketu</strong></td>
+              <td>7 years</td>
+              <td>Oct 2023 – Oct 2030</td>
+              <td style="color: var(--pigment-cinnabar); font-weight: bold; font-family: var(--font-serif-header);">⬤ Active Now</td>
+              <td>Spiritual detachment, inner retreat, releasing what no longer serves. Heightened intuition and solitary depth work. A period of profound internal consolidation before Venus Mahadasha opens.</td>
+            </tr>
+            <tr>
+              <td>♀ <strong>Venus</strong> (Shukra)</td>
+              <td>20 years</td>
+              <td>Oct 2030 – Oct 2050</td>
+              <td style="color: var(--pigment-saffron); font-weight: bold;">Upcoming</td>
+              <td>Relationships, beauty, abundance, creative and relational flourishing. As Lagna lord, Venus Mahadasha activates a profound renewal of personal identity and partnership.</td>
+            </tr>
+            <tr>
+              <td>☉ <strong>Sun</strong> (Surya)</td>
+              <td>6 years</td>
+              <td>Oct 2050 – Oct 2056</td>
+              <td style="color: var(--ink-faded); font-style: italic;">Future</td>
+              <td>Authority, clarity of purpose, soul-level recognition, visibility.</td>
+            </tr>
+            <tr>
+              <td>☽ <strong>Moon</strong> (Chandra)</td>
+              <td>10 years</td>
+              <td>Oct 2056 – Oct 2066</td>
+              <td style="color: var(--ink-faded); font-style: italic;">Future</td>
+              <td>Emotional depth, nurturing, public connection, inner world integration.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 0.95rem; color: var(--ink-faded); margin-top: 1rem; font-style: italic; line-height: 1.6;">Note: Ketu Mahadasha, with Ketu placed in the 4th house in Capricorn (Shravana Nakshatra), activates themes of inner retreat, releasing domestic and ancestral attachments, and deepening spiritual self-knowledge. This is a preparatory period before the long Venus cycle begins in 2030.</p>
+    </div>
+
+    <!-- ============================================================
+         CONTENT LAYER 6 — ANTARDASHA (SUB-PERIOD) BREAKDOWN
+         ============================================================ -->
+    <div class="manuscript-card" style="margin-bottom: 1.5rem;" id="sec-cycle-breakdown" data-section="cycle-breakdown">
+      <div style="border-bottom: 1px solid #D6CEBE; padding-bottom: 0.6rem; margin-bottom: 1.25rem;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin: 0 0 0.25rem 0; color: var(--stroke); letter-spacing: 0.5px; text-transform: uppercase;">Your Current Life Cycle Breakdown</h3>
+        <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.35rem;">Ketu Cycle Breakdown (Antardasha Sub-Periods)</div>
+        <div style="font-family: var(--font-sans); font-size: 0.85rem; color: var(--ink-faded); font-style: italic; line-height: 1.4;">Zoom in on your current sub-cycles to understand the active, immediate growth themes governing your present.</div>
+      </div>
+      <p style="font-size: 0.95rem; color: var(--ink-faded); margin-bottom: 1rem; line-height: 1.6;">Each Mahadasha divides into 9 sub-periods (Antardashas), each governed by a different planetary intelligence in the same sequence. The Antardasha lord modifies the overall Mahadasha theme — filtering Ketu's energy of detachment and inner retreat through each successive planetary lens.</p>
+      <div class="data-table-wrapper">
+        <table class="full-data-table">
+          <thead>
+            <tr>
+              <th>Sub-Period (Antardasha)</th>
+              <th>Duration</th>
+              <th>Approx. Dates</th>
+              <th>Status</th>
+              <th>Thematic Modulation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ketu – Ketu</td>
+              <td>~5 months</td>
+              <td>Oct 2023 – Mar 2024</td>
+              <td style="color: var(--ink-faded); font-style: italic;">Complete</td>
+              <td>Deep inward pull, maximum detachment. A period of intense inner questioning and releasing of outward ambitions.</td>
+            </tr>
+            <tr>
+              <td>Ketu – Venus</td>
+              <td>~14 months</td>
+              <td>Mar 2024 – May 2025</td>
+              <td style="color: var(--ink-faded); font-style: italic;">Complete</td>
+              <td>Ketu's renunciation tempered by Venus's relational warmth. Existing partnerships are reviewed and redefined. Creative and aesthetic pursuits gain quiet momentum.</td>
+            </tr>
+            <tr>
+              <td>Ketu – Sun</td>
+              <td>~4 months</td>
+              <td>May 2025 – Sep 2025</td>
+              <td style="color: var(--ink-faded); font-style: italic;">Complete</td>
+              <td>Soul-level clarity emerges. A brief but illuminating window for understanding life purpose and authority with unusual directness.</td>
+            </tr>
+            <tr>
+              <td>Ketu – Moon</td>
+              <td>~7 months</td>
+              <td>Sep 2025 – Apr 2026</td>
+              <td style="color: var(--ink-faded); font-style: italic;">Complete</td>
+              <td>Emotional sensitivity is heightened. Inner world dynamics surface for review. Dreams, intuition, and ancestral patterns become prominent themes.</td>
+            </tr>
+            <tr style="background: rgba(166,91,74,0.06) !important;">
+              <td><strong>Ketu – Mars</strong></td>
+              <td>~5 months</td>
+              <td>Apr 2026 – Sep 2026</td>
+              <td style="color: var(--pigment-cinnabar); font-weight: bold; font-family: var(--font-serif-header);">⬤ Active Now</td>
+              <td>Drive and action reawaken within a Ketu framework. Energy is applied with precision but without ego attachment. Disciplined effort, health focus, and the quiet resolution of long-standing friction are favoured.</td>
+            </tr>
+            <tr>
+              <td>Ketu – Rahu</td>
+              <td>~13 months</td>
+              <td>Sep 2026 – Oct 2027</td>
+              <td style="color: var(--pigment-saffron); font-weight: bold;">Upcoming</td>
+              <td>The nodal axis activates simultaneously — an intense karmic processing period. Old ambitions and new directions meet. Requires careful navigation of sudden opportunities and releases.</td>
+            </tr>
+            <tr>
+              <td>Ketu – Jupiter</td>
+              <td>~11 months</td>
+              <td>Oct 2027 – Sep 2028</td>
+              <td style="color: var(--ink-faded); font-style: italic;">Future</td>
+              <td>Wisdom, philosophy, and teaching rise naturally. Spiritual study and mentorship roles find their moment. A deeply enriching sub-period for those on an inner path.</td>
+            </tr>
+            <tr>
+              <td>Ketu – Saturn</td>
+              <td>~13 months</td>
+              <td>Sep 2028 – Oct 2029</td>
+              <td style="color: var(--ink-faded); font-style: italic;">Future</td>
+              <td>Discipline and solitary focus intensify. Structural consolidation of the inner work done through the Mahadasha. Patience is rewarded with quiet, lasting foundations.</td>
+            </tr>
+            <tr>
+              <td>Ketu – Mercury</td>
+              <td>~12 months</td>
+              <td>Oct 2029 – Oct 2030</td>
+              <td style="color: var(--ink-faded); font-style: italic;">Future</td>
+              <td>Analytical and communicative intelligence returns to the foreground. Research, writing, and distilled intellectual expression bring the Mahadasha to a natural close before Venus begins.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         CONTENT LAYER 7 — PLANETARY DIGNITY TABLE
+         ============================================================ -->
+    <div class="manuscript-card" style="margin-bottom: 1.5rem;" id="sec-planetary-strengths" data-section="planetary-strengths">
+      <div style="border-bottom: 1px solid #D6CEBE; padding-bottom: 0.6rem; margin-bottom: 1.25rem;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin: 0 0 0.25rem 0; color: var(--stroke); letter-spacing: 0.5px; text-transform: uppercase;">Strong and Weak Planetary Energies</h3>
+        <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.35rem;">Planetary Dignity Assessment</div>
+        <div style="font-family: var(--font-sans); font-size: 0.85rem; color: var(--ink-faded); font-style: italic; line-height: 1.4;">Examine the operational strength of your planetary forces to see which areas flow naturally and which require conscious mastery.</div>
+      </div>
+      <p style="font-size: 0.95rem; color: var(--ink-faded); margin-bottom: 1rem; line-height: 1.6;">Dignity describes the quality of a planet's operating environment. A planet in an exalted or own sign functions at full capacity. A planet in a friendly sign has support. A planet in an enemy or debilitated sign must work harder to express its natural qualities. Understanding dignity is essential to reading which planets in a chart are strong, moderate, or challenged.</p>
+      <div class="data-table-wrapper">
+        <table class="full-data-table">
+          <thead>
+            <tr>
+              <th>Planet</th>
+              <th>Sign</th>
+              <th>Sign Lord</th>
+              <th>Relationship</th>
+              <th>Dignity Status</th>
+              <th>Practical Effect</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span style="color: var(--pigment-saffron);">☉</span> <strong>Sun</strong></td>
+              <td>Vrishabha (Taurus)</td>
+              <td>Venus</td>
+              <td>Enemy</td>
+              <td style="color: var(--pigment-terracotta); font-weight: bold;">Enemy Sign</td>
+              <td>Sun's natural authority is somewhat constrained. Self-expression works best through depth and service rather than open display of ego.</td>
+            </tr>
+            <tr>
+              <td><span style="color: var(--pigment-cinnabar);">☽</span> <strong>Moon</strong></td>
+              <td>Mithuna (Gemini)</td>
+              <td>Mercury</td>
+              <td>Neutral</td>
+              <td style="color: var(--ink-archival); font-weight: bold;">Neutral Sign</td>
+              <td>Moon functions in a moderate but stable environment. Emotional nature is curious and adaptable, though a degree of emotional variability is present.</td>
+            </tr>
+            <tr>
+              <td><span style="color: #A65B4A;">♂</span> <strong>Mars</strong></td>
+              <td>Meena (Pisces)</td>
+              <td>Jupiter</td>
+              <td>Friendly</td>
+              <td style="color: var(--pigment-lapis); font-weight: bold;">Friendly Sign</td>
+              <td>Mars operates with quiet but well-supported energy. Drive is channelled into service and disciplined effort rather than aggressive assertion.</td>
+            </tr>
+            <tr>
+              <td><span style="color: var(--pigment-lapis);">☿</span> <strong>Mercury ℞</strong></td>
+              <td>Vrishabha (Taurus)</td>
+              <td>Venus</td>
+              <td>Friendly</td>
+              <td style="color: var(--pigment-lapis); font-weight: bold;">Friendly Sign · Retrograde</td>
+              <td>Mercury is well-supported by Venus's aesthetic sensibility. Retrograde adds depth and introspection — ideas are refined through extensive internal processing before expression.</td>
+            </tr>
+            <tr>
+              <td><span style="color: #1A5E3A;">♃</span> <strong>Jupiter</strong></td>
+              <td>Vrishabha (Taurus)</td>
+              <td>Venus</td>
+              <td>Enemy</td>
+              <td style="color: var(--pigment-terracotta); font-weight: bold;">Enemy Sign</td>
+              <td>Jupiter's expansive wisdom is somewhat narrowed by Venus's material orientation. Spiritual insight tends toward the pragmatic and concrete rather than the abstract or devotional.</td>
+            </tr>
+            <tr>
+              <td><span style="color: #7A2060;">♀</span> <strong>Venus</strong></td>
+              <td>Mesha (Aries)</td>
+              <td>Mars</td>
+              <td>Enemy</td>
+              <td style="color: var(--pigment-terracotta); font-weight: bold;">Enemy Sign</td>
+              <td>Venus as Lagna lord is in an enemy sign — relational life involves friction and growth rather than ease. Partnerships that challenge are those that develop the self most effectively.</td>
+            </tr>
+            <tr>
+              <td><span style="color: #2A2A6E;">♄</span> <strong>Saturn</strong></td>
+              <td>Kanya (Virgo)</td>
+              <td>Mercury</td>
+              <td>Friendly</td>
+              <td style="color: var(--pigment-lapis); font-weight: bold;">Friendly Sign</td>
+              <td>Saturn is well-placed in Mercury's analytical, detail-oriented Virgo. Discipline and systematic effort yield precise, lasting structural results over time.</td>
+            </tr>
+            <tr>
+              <td><span style="color: var(--pigment-terracotta);">☊</span> <strong>Rahu</strong></td>
+              <td>Kataka (Cancer)</td>
+              <td>Moon</td>
+              <td>Favourable</td>
+              <td style="color: var(--pigment-lapis); font-weight: bold;">Favourable Placement</td>
+              <td>Rahu in Cancer is considered a strong placement in classical Jyotish — karmic ambition aligned with emotional intelligence and public nurturing capacity.</td>
+            </tr>
+            <tr>
+              <td><span style="color: var(--pigment-terracotta);">☋</span> <strong>Ketu</strong></td>
+              <td>Makara (Capricorn)</td>
+              <td>Saturn</td>
+              <td>Neutral</td>
+              <td style="color: var(--ink-archival); font-weight: bold;">Neutral Sign</td>
+              <td>Ketu in Capricorn operates in a stable, structured environment. Detachment from ambition and material achievement is the karmic task, supported by Saturn's disciplined framework.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         CONTENT LAYER 8 — YOGA IDENTIFICATION
+         ============================================================ -->
+    <div class="manuscript-card" style="margin-bottom: 1.5rem;" id="sec-planetary-yogas" data-section="planetary-yogas">
+      <div style="border-bottom: 1px solid #D6CEBE; padding-bottom: 0.6rem; margin-bottom: 1.25rem;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin: 0 0 0.25rem 0; color: var(--stroke); letter-spacing: 0.5px; text-transform: uppercase;">Key Planetary Combinations</h3>
+        <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.35rem;">Planetary Yogas</div>
+        <div style="font-family: var(--font-sans); font-size: 0.85rem; color: var(--ink-faded); font-style: italic; line-height: 1.4;">Reveal the special celestial alignments in your birth chart that activate extraordinary potential and blessings.</div>
+      </div>
+      <p style="font-size: 0.95rem; color: var(--ink-faded); margin-bottom: 1.25rem; line-height: 1.6;">Yogas are specific planetary combinations that modify the chart's overall signature. Classical Jyotish identifies hundreds of Yogas; the following three are active and significant in this nativity.</p>
+
+      <div style="border: 1px solid #D6CEBE; border-radius: 4px; overflow: hidden; margin-bottom: 1rem;">
+        <div style="background: #F4EFE6; padding: 0.75rem 1.25rem; border-bottom: 1px solid #D6CEBE; display: flex; align-items: center; gap: 1rem;">
+          <span style="font-family: var(--font-serif-header); font-size: 1.15rem; color: var(--stroke); font-weight: 700; min-width: 28px; text-align: center;">I</span>
+          <div>
+            <div style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: 700; color: var(--ink-archival); letter-spacing: 0.5px;">Lagnesh in Saptam — Rajayoga Tendency</div>
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--pigment-saffron); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px;">Venus (Lagna Lord) in 7th House</div>
+          </div>
+        </div>
+        <div style="padding: 1rem 1.25rem;">
+          <p style="font-size: 1.02rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">When the ruler of the 1st house (the Lagna lord) occupies the 7th house, a classical Rajayoga tendency is formed. The self and the domain of partnerships become deeply intertwined — personal power, social recognition, and life advancement arrive through alliances rather than solitary effort. For this chart, Venus as the Lagna lord in the 7th amplifies the natural Libra orientation toward collaboration, making partnership-driven endeavours the primary engine of growth and achievement.</p>
+        </div>
+      </div>
+
+      <div style="border: 1px solid #D6CEBE; border-radius: 4px; overflow: hidden; margin-bottom: 1rem;">
+        <div style="background: #F4EFE6; padding: 0.75rem 1.25rem; border-bottom: 1px solid #D6CEBE; display: flex; align-items: center; gap: 1rem;">
+          <span style="font-family: var(--font-serif-header); font-size: 1.15rem; color: var(--stroke); font-weight: 700; min-width: 28px; text-align: center;">II</span>
+          <div>
+            <div style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: 700; color: var(--ink-archival); letter-spacing: 0.5px;">Viparita Raja Yoga</div>
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--pigment-saffron); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px;">6th Lord (Jupiter) + 12th Lord (Mercury) both in 8th House</div>
+          </div>
+        </div>
+        <div style="padding: 1rem 1.25rem;">
+          <p style="font-size: 1.02rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">Viparita Raja Yoga — "reversed royal combination" — forms when lords of dusthana (difficult) houses (6th, 8th, 12th) occupy other dusthana houses. For Libra Lagna, Jupiter rules the 6th (Pisces) and Mercury rules the 12th (Virgo). Both are placed in the 8th house. This creates a paradoxical strength: challenges, obstacles, and hidden pressures ultimately convert into sources of power, resilience, and unexpected breakthrough. The native tends to rise precisely through what others consider adversity.</p>
+        </div>
+      </div>
+
+      <div style="border: 1px solid #D6CEBE; border-radius: 4px; overflow: hidden; margin-bottom: 0;">
+        <div style="background: #F4EFE6; padding: 0.75rem 1.25rem; border-bottom: 1px solid #D6CEBE; display: flex; align-items: center; gap: 1rem;">
+          <span style="font-family: var(--font-serif-header); font-size: 1.15rem; color: var(--stroke); font-weight: 700; min-width: 28px; text-align: center;">III</span>
+          <div>
+            <div style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: 700; color: var(--ink-archival); letter-spacing: 0.5px;">Trikona Moon — Lakshmi Yoga Tendency</div>
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--pigment-saffron); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px;">Moon in 9th House (Trikona)</div>
+          </div>
+        </div>
+        <div style="padding: 1rem 1.25rem;">
+          <p style="font-size: 1.02rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">A benefic planet in a Trikona (1st, 5th, or 9th house) creates auspicious conditions for that planet's natural qualities to flourish. Moon in the 9th house — the house of Dharma, higher learning, and spiritual merit — produces a Lakshmi Yoga tendency: emotional fulfillment, natural philosophical grace, and an instinctive alignment with right action. The native finds genuine happiness through teaching, learning, and the pursuit of meaning rather than material accumulation alone.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         CONTENT LAYER 9 — MOON NAKSHATRA DEEP DIVE
+         ============================================================ -->
+    <div class="manuscript-card" style="margin-bottom: 2rem;" id="sec-moon-archetype" data-section="moon-archetype">
+      <div style="border-bottom: 1px solid #D6CEBE; padding-bottom: 0.6rem; margin-bottom: 1.25rem;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin: 0 0 0.25rem 0; color: var(--stroke); letter-spacing: 0.5px; text-transform: uppercase;">Your Moon Archetype</h3>
+        <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.35rem;">Mrigashira • Pada 4 Deep Dive</div>
+        <div style="font-family: var(--font-sans); font-size: 0.85rem; color: var(--ink-faded); font-style: italic; line-height: 1.4;">Venture deep into your emotional core, instincts, and the primal search for meaning through the lens of your birth Moon star.</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem;">
+        <div style="background: #faf7ef; border: 1px solid #D6CEBE; padding: 0.75rem 1rem; border-radius: 4px;">
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.25rem;">Nakshatra</div>
+          <div style="font-family: var(--font-serif-header); font-size: 1rem; font-weight: 700; color: var(--ink-archival);">Mrigashira</div>
+        </div>
+        <div style="background: #faf7ef; border: 1px solid #D6CEBE; padding: 0.75rem 1rem; border-radius: 4px;">
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.25rem;">Pada</div>
+          <div style="font-family: var(--font-serif-header); font-size: 1rem; font-weight: 700; color: var(--ink-archival);">4th (Pisces Navamsa)</div>
+        </div>
+        <div style="background: #faf7ef; border: 1px solid #D6CEBE; padding: 0.75rem 1rem; border-radius: 4px;">
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.25rem;">Nakshatra Ruler</div>
+          <div style="font-family: var(--font-serif-header); font-size: 1rem; font-weight: 700; color: var(--ink-archival);">Mangala (Mars)</div>
+        </div>
+        <div style="background: #faf7ef; border: 1px solid #D6CEBE; padding: 0.75rem 1rem; border-radius: 4px;">
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.25rem;">Presiding Deity</div>
+          <div style="font-family: var(--font-serif-header); font-size: 1rem; font-weight: 700; color: var(--ink-archival);">Soma (Lunar Nectar)</div>
+        </div>
+        <div style="background: #faf7ef; border: 1px solid #D6CEBE; padding: 0.75rem 1rem; border-radius: 4px;">
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.25rem;">Gana</div>
+          <div style="font-family: var(--font-serif-header); font-size: 1rem; font-weight: 700; color: var(--ink-archival);">Deva (Divine)</div>
+        </div>
+        <div style="background: #faf7ef; border: 1px solid #D6CEBE; padding: 0.75rem 1rem; border-radius: 4px;">
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.25rem;">Motivation</div>
+          <div style="font-family: var(--font-serif-header); font-size: 1rem; font-weight: 700; color: var(--ink-archival);">Moksha</div>
+        </div>
+      </div>
+
+      <p style="font-size: 1.02rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        The Moon's Nakshatra is the most psychologically significant placement in a Vedic chart — it defines the emotional core, the instinctive response to life, and the flavour of the entire Dasha sequence. Mrigashira — the Deer's Head — is a Nakshatra of perpetual seeking. Its symbol is the gentle deer, always moving, always searching for something just beyond the present landscape. This is not a restlessness born of anxiety but of an innate sensitivity to beauty and meaning. Those with Moon in Mrigashira possess a searching quality — curious, alive to nuance, and rarely fully satisfied with what has already been found.
+      </p>
+      <p style="font-size: 1.02rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        Mrigashira is ruled by Mars, giving the Moon here a hidden resilience beneath its tender surface. The emotional nature is sensitive but not fragile — it can absorb difficulty and continue seeking. The presiding deity Soma, the nectar of divine experience, points toward a Moon that seeks beauty, sweetness, and the nourishment of the soul in every encounter. Creative pursuits, philosophical inquiry, and aesthetic refinement serve as deeply restorative activities.
+      </p>
+      <p style="font-size: 1.02rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">
+        <strong>Pada 4 — Pisces Navamsa (Jupiter):</strong> The Moon falls in the fourth division of Mrigashira, which maps to the Pisces Navamsa governed by Jupiter. This adds a layer of compassion, spiritual intuition, and empathic depth to the Moon's searching quality. The emotional world is not merely curious but genuinely compassionate — there is a sense of connection to something larger than the individual self. Decisions made from this Moon's guidance tend toward the inclusive, the philosophical, and the quietly generous. The Mahadasha sequence beginning in Mars and culminating in Moon reflects a life arc that moves from active, outward assertion toward deep interior illumination.
+      </p>
+    </div>
+
+    <div style="margin-top: 2rem; margin-bottom: 3rem;">
+      <details style="cursor: pointer; outline: none;">
+        <summary class="explore-summary">
+          <span class="explore-title-main">Click to Explore</span>
+          <span class="explore-title-sub">Understanding Your Natal Matrix</span>
+        </summary>
+        <div class="accordion-inner-border" style="cursor: default; margin-top: 1rem; background-color: var(--bg-vellum-warm); border: var(--border-container); padding: 1.5rem 1.75rem; position: relative; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04); border-radius: 4px;">
+          <div style="position: relative; z-index: 2;">
+            <div class="exploratory-section-block">
+              <div class="exploratory-heading-title" style="margin-top: 0;">1. The Eastern Horizon (Lagna)</div>
+              <p class="exploratory-paragraph-text">
+                The structural anchor of the entire matrix is the Lagna, which represents the exact degree of the zodiac sign rising on the local eastern horizon at the precise time and geographic coordinates of birth. The rising sign occupies the 1st House, acting as the gateway through which the soul enters the physical world. Once the horizon sign is locked, the remaining 11 houses are mapped sequentially in a counter-clockwise direction. Because the Earth rotates, the horizon shifts signs roughly every two hours, making exact birth times critical to establishing the accurate grid structure.
+              </p>
+            </div>
+
+            <div class="exploratory-section-block">
+              <div class="exploratory-heading-title">2. The Natal Chart Matrix (The Geometric Houses)</div>
+              <p class="exploratory-paragraph-text">
+                Unlike Western circular charts, a standard North Indian Vedic natal chart uses a diamond-and-triangle grid structure containing 12 static zones (houses). Houses 1, 4, 7, and 10 form the center diamonds known as the Kendras (Quadrants). These represent the fundamental pillars of life: self, home, partner, and career. Houses 1, 5, and 9 form the Trikonas (Trines), representing the houses of purpose, luck, and past-life merits (Purva Punya). The houses are divided into four primary life pursuits (Purusharthas): Dharma (1, 5, 9), Artha (2, 6, 10), Kama (3, 7, 11), and Moksha (4, 8, 12).
+              </p>
+            </div>
+
+            <div class="exploratory-section-block" style="margin-bottom: 0;">
+              <div class="exploratory-heading-title">3. The Lunar Mansion Matrix (Nakshatras)</div>
+              <p class="exploratory-paragraph-text" style="margin-bottom: 0;">
+                While the houses represent external life spaces, the 27 Nakshatras (Lunar Mansions) form a deeper, hidden matrix of psychology and consciousness. Every planet and house cusp is embedded within a specific Nakshatra, revealing hidden traits, subconscious blocks, and inherited soul talents.
+              </p>
+            </div>
+
+            <div class="data-table-wrapper" style="margin-top: 2rem; margin-bottom: 0;">
+              <table class="full-data-table" style="background-color: var(--bg-page);">
+                <thead>
+                  <tr>
+                    <th style="background-color: #F4EFE6;">Component</th>
+                    <th style="background-color: #F4EFE6;">Astronomical Basis</th>
+                    <th style="background-color: #F4EFE6;">Astrological Manifestation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Lagna (Horizon)</strong></td><td>Eastern Horizon Cusp</td><td>Physical body, vital energy, and life direction.</td></tr>
+                  <tr><td><strong>Bhavas (Houses)</strong></td><td>Spatial Divisions of Earth's Sky</td><td>Environmental arenas (wealth, career, relationships).</td></tr>
+            <tr><td><strong>Rashis (Signs)</strong></td><td>30° Segments of Solar Ecliptic</td><td>Behavioral archetypes and structural qualities.</td></tr>
+                  <tr><td><strong>Nakshatras (Stars)</strong></td><td>13°20' Segments of Lunar Orbit</td><td>Subconscious drives, karmic conditioning, and soul path.</td></tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="3" style="padding-top:1.5rem; font-style:italic; font-size:0.95rem; color:var(--ink-faded); padding-bottom: 0;">
+                      * श्लोक: यथा हि एकेन चक्रेण न रथस्य गतिर्भवेत् — As a chariot does not move on one wheel alone, neither does destiny unfold on a single coordinate path.
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- Honest Framing Disclaimer Box -->
+    <style>
+      .disclaimer-hi { display: none; }
+      body.lang-hi .disclaimer-en { display: none !important; }
+      body.lang-hi .disclaimer-hi { display: block !important; }
+    </style>
+    
+    <div class="disclaimer-en" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        DISCLAIMER
+      </h4>
+      <p style="margin: 0; text-align: justify;">
+        This report is an interpretive analytical framework intended solely for reflective and informational purposes. It is not a predictive, diagnostic, clinical, financial, legal, medical, psychological or professional advisory instrument, and should not be relied upon as definitive guidance for decisions, actions, or outcomes. The original application has been developed in English. Certain translated versions may utilize automated translation tools, including Google Translate. While reasonable efforts have been made to preserve contextual accuracy, no responsibility is accepted for translation inaccuracies, omissions, interpretive variations, or linguistic ambiguities arising from translated content. In the event of any inconsistency or ambiguity, the English version shall prevail.
+      </p>
+    </div>
+
+    <div class="disclaimer-hi notranslate" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        अस्वीकरण
+      </h4>
+      <p style="margin: 0; text-align: justify; color: var(--ink-faded); font-style: italic;">
+        यह रिपोर्ट केवल विचारात्मक एवं सूचनात्मक उद्देश्य हेतु निर्मित एक व्याख्यात्मक विश्लेषणात्मक ढांचा है। यह कोई भविष्यवाणी, निदान, नैदानिक, वित्तीय, कानूनी, चिकित्सीय, मनोवैज्ञानिक अथवा पेशेवर परामर्श का उपकरण नहीं है, और इसे निर्णयों, कार्यों या परिणामों के लिए अंतिम मार्गदर्शन के रूप में नहीं माना जाना चाहिए। मूल अनुप्रयोग अंग्रेज़ी भाषा में विकसित किया गया है। कुछ अनुवादित संस्करणों में Google Translate सहित स्वचालित अनुवाद उपकरणों का उपयोग किया जा सकता है। यद्यपि संदर्भगत शुद्धता बनाए रखने का यथासंभव प्रयास किया गया है, तथापि अनुवाद संबंधी त्रुटियों, चूकों, अर्थ-व्याख्या में भिन्नताओं या भाषाई अस्पष्टताओं के लिए कोई उत्तरदायित्व स्वीकार नहीं किया जाता। किसी भी असंगति या अस्पष्टता की स्थिति में अंग्रेज़ी संस्करण को ही मान्य माना जाएगा।
+      </p>
+    </div>
+    <!-- Resonance / Feedback Link -->
+    <div style="text-align: center; margin: 1.5rem auto 2rem auto; font-family: var(--font-mono); font-size: 0.8rem; max-width: 1100px; width: calc(100% - 24px);">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEYjLsqRjRRR0FZEPq384iGrpL6rZfrEQHEbcYQ9pz5ERzlg/viewform" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar); letter-spacing: 1px; font-weight: bold; transition: all 0.2s ease; padding-bottom: 2px;">
+        ✦ SHARE YOUR RESONANCE (ANONYMOUS SUGGESTIONS) ✦
+      </a>
+    </div>
+
+  </div>
+
+    <footer class="notranslate">
+    <div class="footer-content">
+      <p>ANTARA CROSS-CULTURAL INTERIOR PANORAMA</p>
+      <p class="font-mono">SYSTEM LOG: NATAL LIFE MAP CORE v1.1.5 • 2026</p>
+    </div>
+  </footer>
+
+  
+  <script>
+    // Clean up local storage persona names dynamically to wipe out old cached test personas
+    try {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (localStorage.getItem(key) === 'Ankur Gupta') {
+                localStorage.setItem(key, 'Antara Gupta');
+            }
+        }
+    } catch (e) {
+        console.warn("localStorage persona migration restricted:", e);
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, function(tag) {
+        var chars = {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        };
+        return chars[tag] || tag;
+      });
+    }
+
+    // Initialize language inheritance from local storage
+    let preferredLang = localStorage.getItem('antara_preferred_language') || 'EN';
+    if (window.location.hash === '#HI' || window.location.search.includes('lang=HI')) {
+        preferredLang = 'HI';
+        localStorage.setItem('antara_preferred_language', 'HI');
+    } else if (window.location.hash === '#EN' || window.location.search.includes('lang=EN')) {
+        preferredLang = 'EN';
+        localStorage.setItem('antara_preferred_language', 'EN');
+    }
+    if (preferredLang === 'HI') {
+        document.body.classList.add('lang-hi');
+        
+        // 1. Force the Google Translate hash parameter if not present
+        if (!window.location.hash.includes('googtrans')) {
+            window.location.hash = 'googtrans(en|hi)';
+        }
+        
+        // 2. Set googtrans cookie to persist
+        document.cookie = "googtrans=/en/hi; path=/";
+        
+        // 3. Create absolute HTTPS Google Translate container and script
+        const gtDiv = document.createElement('div');
+        gtDiv.id = 'google_translate_element';
+        gtDiv.style.position = 'fixed';
+        gtDiv.style.bottom = '15px';
+        gtDiv.style.right = '15px';
+        gtDiv.style.zIndex = '99999';
+        gtDiv.style.background = '#FFFDF9';
+        gtDiv.style.border = '1px solid #D6CEBE';
+        gtDiv.style.borderRadius = '20px';
+        gtDiv.style.padding = '3px 10px';
+        gtDiv.style.boxShadow = '0 3px 10px rgba(0,0,0,0.06)';
+        gtDiv.style.display = 'inline-flex';
+        gtDiv.style.alignItems = 'center';
+        gtDiv.style.gap = '6px';
+        gtDiv.innerHTML = '<span style="font-family:\'Cinzel\', serif; font-size:0.68rem; color:#9E3A33; font-weight:bold; letter-spacing:0.5px;">ANTARA TRANSLATE</span>';
+        document.body.appendChild(gtDiv);
+
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: true
+            }, 'google_translate_element');
+        };
+
+        const gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript';
+        gtScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        document.head.appendChild(gtScript);
+    } else if (preferredLang === 'EN') {
+        if (window.location.hash.includes('googtrans')) {
+            window.location.hash = '';
+        }
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+
+    function safeGetItem(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch (e) {
+        console.warn("safeGetItem failed for", key, e);
+        return null;
+      }
+    }
+    function safeSetItem(key, val) {
+      try {
+        localStorage.setItem(key, val);
+      } catch (e) {
+        console.warn("safeSetItem failed for", key, e);
+      }
+    }
+
+    // ============================================================
+    // Interactive Tab Grid Controller Logic
+    // ============================================================
+    let activeSectionId = 'rising-sign';
+    let showAllMode = false;
+
+    function switchSection(sectionId, btnElement) {
+      if (showAllMode) {
+        showAllMode = false;
+        const toggleBtn = document.getElementById('btnToggleAll');
+        if (toggleBtn) toggleBtn.innerText = "Show Entire Scroll";
+      }
+
+      activeSectionId = sectionId;
+
+      // Update active button state
+      const buttons = document.querySelectorAll('.tab-card-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      if (btnElement) {
+        btnElement.classList.add('active');
+      } else {
+        const activeBtn = document.getElementById('tab-' + sectionId);
+        if (activeBtn) activeBtn.classList.add('active');
+      }
+
+      // Hide all manuscript-cards except the active one
+      const sections = document.querySelectorAll('.manuscript-card[data-section]');
+      sections.forEach(sec => {
+        if (sec.getAttribute('data-section') === sectionId) {
+          sec.classList.remove('hidden-layer');
+        } else {
+          sec.classList.add('hidden-layer');
+        }
+      });
+
+      // Smooth scroll to selected content card
+      const targetCard = document.getElementById('sec-' + sectionId);
+      if (targetCard && btnElement) {
+        targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function toggleAllScroll() {
+      showAllMode = !showAllMode;
+      const toggleBtn = document.getElementById('btnToggleAll');
+      const sections = document.querySelectorAll('.manuscript-card[data-section]');
+      const buttons = document.querySelectorAll('.tab-card-btn');
+
+      if (showAllMode) {
+        // Show all manuscript cards
+        sections.forEach(sec => {
+          sec.classList.remove('hidden-layer');
+        });
+        // Deactivate active states on buttons
+        buttons.forEach(btn => {
+          btn.classList.remove('active');
+        });
+        if (toggleBtn) toggleBtn.innerText = "Show Interactive Tabs";
+      } else {
+        // Revert to showing only the active tab
+        switchSection(activeSectionId);
+        if (toggleBtn) toggleBtn.innerText = "Show Entire Scroll";
+      }
+    }
+
+    const houseDirectory = {
+      1: { title: "1st House — Lagna · Tula (Libra) · No Planets", desc: "The self is defined by grace, balance, and relational intelligence. Libra rising gives a natural diplomatic quality and aesthetic sensitivity. Ruled by Venus in the 7th, the Lagna lord is away from home — life is found in the world of others rather than in isolated self-definition. The identity is at its most alive when engaged with a partner or collaborator." },
+      2: { title: "2nd House · Vrischika (Scorpio) · No Planets", desc: "Speech and financial values carry Scorpionic depth and intensity. Resources are accumulated quietly and protected fiercely. The voice can be penetrating and psychologically precise. Material security is built through patience and strategic reserve rather than open display." },
+      3: { title: "3rd House · Dhanu (Sagittarius) · No Planets", desc: "Mental drive is philosophical and expansive. Short journeys often lead to long intellectual adventures. Writing and communication carry a broad, visionary quality. Siblings or peers may be connected to teaching, travel, or belief systems. Courage is exercised through ideas and expression rather than physical confrontation." },
+      4: { title: "4th House · Makara (Capricorn) · Ketu Placed Here", desc: "Ketu in the 4th house creates a soul releasing its attachment to fixed domestic security and inherited expectations. The psychological home is not a physical structure but an inner state. There may be a sense of non-belonging in conventional family settings — not as a wound but as a karmic signal to direct energy outward. Stability is found in inner detachment rather than external anchors." },
+      5: { title: "5th House · Kumbha (Aquarius) · No Planets", desc: "Creativity is unconventional, forward-looking, and collectively oriented. Intelligence carries an Aquarian humanitarian quality — ideas are valued for their social utility rather than personal gain. Creative projects tend toward the experimental or the culturally broadening. Purva Punya (merit from past cycles) takes the form of progressive insight and group-oriented contributions." },
+      6: { title: "6th House · Meena (Pisces) · Mars Placed Here", desc: "Mars in Pisces in the 6th directs drive into disciplined service and the quiet resolution of daily obstacles. Challenges are met with spiritual resilience rather than aggressive confrontation. Health is best maintained through mind-body practices that honour both the physical and the interior dimensions. Enemies or competitors are often overcome through sustained effort and patient navigation rather than direct combat." },
+      7: { title: "7th House · Mesha (Aries) · Venus (Lagna Lord) Placed Here", desc: "Partnerships are the central arena of this life — the self finds its fullest expression through one-on-one alliances. Venus as Lagna lord here creates a Rajayoga tendency: relationships become vehicles for personal power, identity, and growth. Significant partners tend toward assertiveness and independence, acting as catalysts rather than mirrors. The most meaningful encounters in life carry a quality of mutual creative friction." },
+      8: { title: "8th House · Vrishabha (Taurus) · Sun, Mercury ℞ & Jupiter Placed Here", desc: "The most concentrated zone of the chart — three major planets creating a powerful stellium. Life's deepest work happens in research, hidden knowledge, depth analysis, and transformation. Sun brings soul direction, Mercury ℞ adds inward-processing intelligence, and Jupiter brings the capacity for wisdom. This house is where the native's greatest abilities are stored, operating best in environments that honour depth, investigation, and the management of complex or hidden knowledge." },
+      9: { title: "9th House · Mithuna (Gemini) · Moon Placed Here", desc: "Emotional fulfillment arrives through philosophy, learning, travel, and teaching. Moon in the 9th is one of the most auspicious placements — inner life is nourished by the pursuit of wisdom and the freedom to explore belief systems across traditions. Long journeys, formal study, and mentorship roles are deeply restorative. This placement supports a Lakshmi Yoga tendency — dharmic alignment generates a natural sense of inner abundance." },
+      10: { title: "10th House · Kataka (Cancer) · Rahu Placed Here", desc: "Rahu in Cancer in the 10th places the soul's karmic hunger in the domain of public authority and career achievement. The most impactful professional contributions combine executive capacity with emotional intelligence and nurturing leadership. Career is not a background activity but a primary arena of soul growth in this lifetime. Recognition may arrive through emotionally resonant or community-oriented work rather than conventional corporate structures." },
+      11: { title: "11th House · Simha (Leo) · No Planets", desc: "Long-term gains and network expansion carry a Leo quality — dignity, creative leadership, and a desire for recognition within one's community. Revenue streams are built through channels that honour individual creative authority. Friends and alliances tend toward the expressive, generous, and self-directed. Large-scale ambitions are best served by cultivating a network of individuals who share a vision of quality and creative excellence." },
+      12: { title: "12th House · Kanya (Virgo) · Saturn Placed Here", desc: "Saturn in Virgo in the 12th applies discipline to solitary, behind-the-scenes work with exceptional precision. This is one of Saturn's more productive 12th house placements — analytical rigour and systematic patience yield deep structural achievements that unfold away from public visibility. Research environments, institutional work, writing in isolation, and any sustained endeavour requiring concentrated focus without external recognition are supported strongly by this placement." }
+    };
+
+    const headerBox = document.getElementById('lblInspectorTitle');
+    const definitionBox = document.getElementById('lblInspectorDesc');
+
+    function inspectHouseNode(num) {
+      if (houseDirectory[num]) {
+        headerBox.innerText = houseDirectory[num].title;
+        definitionBox.innerText = houseDirectory[num].desc;
+      }
+    }
+
+    function clearHouseNode() {
+      headerBox.innerText = "HOVER OVER THE GRID";
+      definitionBox.innerText = "TAP OR HOVER over any numerical house quadrant inside the traditional matrix to inspect its environmental domain definition.";
+    }
+
+    // Dynamic user credentials loading
+    window.addEventListener('DOMContentLoaded', () => {
+      // Initialize default tab layout
+      switchSection('rising-sign');
+
+      const name = safeGetItem('antara_user_name');
+      const dob = safeGetItem('antara_user_dob');
+      if (name) {
+        const titleEl = document.querySelector('.master-report-title');
+        if (titleEl) titleEl.innerHTML = `Personal Life Map<br>For ${escapeHTML(name)}`;
+        
+        const profileRows = document.querySelectorAll('.profile-display-row');
+        profileRows.forEach(row => {
+          const strong = row.querySelector('strong');
+          const span = row.querySelector('span');
+          if (strong && strong.innerText.includes("Full Name") && span) {
+            span.innerText = name;
+          }
+        });
+      }
+      if (dob) {
+        const profileRows = document.querySelectorAll('.profile-display-row');
+        profileRows.forEach(row => {
+          const strong = row.querySelector('strong');
+          const span = row.querySelector('span');
+          if (strong && strong.innerText.includes("Date of Birth") && span) {
+            span.innerText = dob;
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

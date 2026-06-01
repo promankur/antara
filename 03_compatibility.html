@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relationship Compatibility | AG_Antara Cross-Cultural Interior Panorama</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-page: #F7F1E1;
+      --bg-vellum-warm: #ffffff;
+      --ink-archival: #2B2A28;
+      --ink-faded: #76726A;
+      --border-container: 1px solid #D6CEBE;
+      
+      --font-serif-header: 'Cinzel', serif;
+      --font-serif-body: 'Playfair Display', serif;
+      --font-mono: 'Courier Prime', monospace;
+      
+      --pigment-terracotta: #A65B4A;
+      --pigment-saffron: #D98236;
+      --pigment-cinnabar: #9E3A33;
+      --pigment-lapis: #3C5A80;
+      --pigment-emerald: #2E5A44;
+      --stroke: #b56a2a;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 17px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1150px;
+      width: 100%;
+      margin: 0 auto 2rem auto;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    .grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Accordion body text — force normal reading font, no small-caps */
+    details p, details td, details li {
+      font-variant: normal !important;
+      font-family: var(--font-serif-body) !important;
+      text-transform: none !important;
+    }
+
+    .dual-profile-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .dual-profile-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+    }
+
+    .archival-card {
+      background-color: var(--bg-vellum-warm);
+      border: var(--border-container);
+      padding: 1.75rem;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04);
+      box-sizing: border-box;
+    }
+
+    /* inner double-border removed — breathing space preferred */
+
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-faded);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      background-color: rgba(247, 241, 225, 0.4);
+      border: var(--border-container);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 1.05rem;
+      padding: 0.75rem 1rem;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    .score-banner-box {
+      border: 1px dashed var(--pigment-saffron);
+      background-color: #FFFDF9;
+      padding: 1.75rem;
+      border-radius: 4px;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .score-badge {
+      font-family: var(--font-serif-header);
+      font-size: 3.75rem;
+      font-weight: bold;
+      color: var(--pigment-cinnabar);
+      line-height: 1;
+      margin: 0.5rem 0;
+    }
+
+    .score-rating {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--pigment-emerald);
+    }
+
+    .koota-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1.05rem;
+      margin-top: 1rem;
+    }
+
+    .koota-table th, .koota-table td {
+      border: 1px solid #EADEC9;
+      padding: 0.75rem 0.9rem;
+      text-align: left;
+    }
+
+    .koota-table th {
+      background-color: #faf7ef;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--ink-faded);
+    }
+
+    .koota-table th:nth-child(3),
+    .koota-table th:nth-child(4) {
+      text-align: center;
+    }
+
+    .koota-table tr:nth-child(even) td {
+      background-color: rgba(244, 235, 212, 0.2);
+    }
+
+    .koota-table td.points {
+      font-family: var(--font-serif-header) !important;
+      font-size: 1.35rem !important;
+      font-weight: bold;
+      text-align: center;
+      color: var(--pigment-terracotta);
+    }
+
+    .pei-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      text-align: center;
+      margin-top: 1rem;
+      border-top: 1px dashed #D6CEBE;
+      padding-top: 1.5rem;
+    }
+
+    .gauge-wrapper {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      margin: 0.5rem auto 0 auto;
+    }
+
+    @media (min-width: 480px) {
+      .gauge-wrapper {
+        width: 105px;
+        height: 105px;
+      }
+    }
+
+    .partner-label-a { color: var(--pigment-terracotta); font-weight: bold; }
+    .partner-label-b { color: var(--pigment-lapis); font-weight: bold; }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 2.5rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+    }
+    
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--ink-faded);
+      margin: 0.25rem 0;
+    }
+
+    p, td, li, .compatibility-score-box p {
+      text-align: left !important;
+    }
+
+    /* Header Standardized Branding & Typography */
+    .header-logo { 
+      text-align: center; 
+      margin: 20px 0 8px 0; 
+    }
+    .system-tagline { 
+      font-family: 'Courier New', Courier, monospace !important; 
+      font-weight: 700 !important; 
+      font-size: 13px !important; 
+      letter-spacing: 5px !important; 
+      color: #A6A29A !important; 
+      text-transform: uppercase !important; 
+      text-align: center !important; 
+      margin: 0 0 24px 0 !important; 
+      line-height: 1.2 !important;
+    }
+    .master-report-title { 
+      font-family: 'Cinzel', serif !important; 
+      font-size: 2.25rem !important; 
+      font-variant: small-caps !important; 
+      font-weight: 700 !important; 
+      letter-spacing: 2px !important; 
+      color: #2B2A28 !important; 
+      text-align: center !important; 
+      margin: 0 0 14px 0 !important; 
+      line-height: 1.3 !important; 
+    }
+    .master-report-byline { 
+      font-family: 'Playfair Display', serif !important; 
+      font-size: 1.15rem !important; 
+      color: #D98236 !important; 
+      text-align: center !important; 
+      max-width: 800px !important; 
+      margin: 0 auto 32px auto !important; 
+      padding: 0 12px !important; 
+      line-height: 1.5 !important; 
+    }
+    @media (min-width: 900px) {
+      .grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1.15fr !important;
+        gap: 2rem !important;
+      }
+    }
+
+    .font-mono {
+      font-family: var(--font-mono);
+    }
+
+    .accordion-inner-border {
+      position: relative;
+    }
+
+    .accordion-inner-border::before {
+      content: "";
+      position: absolute;
+      top: 6px; left: 6px; right: 6px; bottom: 6px;
+      border: 1px double #D6CEBE;
+      pointer-events: none;
+      border-radius: 3px;
+    }
+
+    .strengths-friction-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    @media (min-width: 640px) {
+      .strengths-friction-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .koota-interp-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+    }
+    @media (min-width: 760px) {
+      .koota-interp-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .koota-zone-item {
+      background: #faf7ef;
+      border: 1px solid #D6CEBE;
+      border-radius: 4px;
+      padding: 0.85rem 1rem;
+    }
+
+    .lp-badge {
+      display: inline-block;
+      font-family: var(--font-serif-header);
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    /* Premium Click to Explore Accordion Styles */
+    .explore-summary {
+      font-family: var(--font-serif-header);
+      background-color: #D35400; /* Vibrant Brand Saffron */
+      color: #FFFFFF !important;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.85rem 1.25rem; /* Elegant compact height */
+      border: 1px solid #8E4A21; /* Cinnamon brand structural frame */
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 12px rgba(211, 84, 0, 0.12);
+      line-height: 1.35;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .explore-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .explore-summary::before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px double rgba(255, 255, 255, 0.45); /* Elegant double border in reverse white */
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .explore-summary:hover {
+      background-color: #E65C00; /* Slightly brighter warm saffron on hover */
+      box-shadow: 0 6px 18px rgba(211, 84, 0, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .explore-summary:hover::before {
+      border-color: rgba(255, 255, 255, 0.7);
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+    }
+
+    .explore-summary:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(211, 84, 0, 0.15);
+    }
+
+    .explore-summary .explore-title-main {
+      font-variant: small-caps;
+      font-size: 1.05rem; /* Compact size */
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: none; /* Crucial for small-caps */
+      position: relative;
+      z-index: 2;
+    }
+
+    .explore-summary .explore-title-sub {
+      font-family: var(--font-serif-body);
+      font-size: 1.25rem; /* Bold italic font matching user mock */
+      font-weight: 700;
+      font-style: italic;
+      margin-top: 3px;
+      letter-spacing: 0.5px;
+      color: #FFFFFF !important;
+      position: relative;
+      z-index: 2;
+    }
+  
+    /* Premium Left-Aligned Footer Override */
+    footer {
+      width: 100%;
+      padding: 2rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+      text-align: left;
+    }
+    .footer-content {
+      max-width: 1100px;
+      width: 100%;
+      padding: 0 16px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+    footer p {
+      font-family: var(--font-serif-body);
+      font-size: 0.82rem;
+      color: var(--ink-archival);
+      margin: 0.25rem 0;
+    }
+    footer p.font-mono {
+      font-family: var(--font-mono) !important;
+      font-size: 0.72rem !important;
+      color: var(--ink-faded) !important;
+    }
+
+  
+    /* ─── Reading Guide Grid (Tactile manuscript details) ─── */
+    .reading-guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .reading-guide-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+</style>
+  <meta name="description" content="Antara is a traditional cross-cultural mathematical life-engine and archetypal systems cartography. Calibrate your natal coordinates, biological rhythms, and name phonetic values across Vedic, Western tropical, and Chinese solar Four Pillars traditions.">
+  <link rel="icon" type="image/png" href="Antara Logo.png">
+</head>
+<body>
+
+  <div class="header-logo">
+    <a href="index.html" title="Return to Antara Dashboard" style="text-decoration: none; border: none; display: inline-block;">
+      <img src="Antara Logo.png" alt="ANTARA" style="max-height: 90px; width: auto;" onerror="this.style.display='none';">
+    </a>
+  </div>
+  <div class="system-tagline">Cross-Cultural Interior Panorama</div>
+
+  <h1 class="master-report-title">Relationship Compatibility<br>For The Nameless One</h1>
+  <p class="master-report-byline">Partner Resonance & Harmony</p>
+
+  <div class="container">
+    <!-- Report Introduction (Borderless layout) -->
+    <div style="margin-bottom: 2.25rem; padding: 0.5rem 0;">
+    <div style="max-width: 78ch; margin: 0 auto;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-bottom: 1rem; color: var(--stroke, #b56a2a); letter-spacing: 1px; text-transform: uppercase;">About This Report</h3>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        Human relationships are shaped by far more than attraction alone. Emotional rhythms, communication patterns, timing, values, and psychological tendencies all influence how two individuals experience harmony, growth, tension, and connection over time. Many traditional systems attempted to study these dynamics through symbolic compatibility frameworks.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        This report compares the behavioral and relational dynamics within dual-entity partnerships ranging from intimate unions to co-founder alliances. It studies resonance, emotional alignment, communication tendencies, strengths, and areas where misunderstandings or imbalance may naturally arise. The purpose is not to label relationships as successful or unsuccessful, but to improve awareness and understanding.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">
+        People often use this report to better understand dual-entity partnerships ranging from intimate unions to co-founder alliances, alongside family dynamics and collaborative chemistry. It can support healthier communication, empathy, and self-awareness by highlighting both similarities and differences. The report is most valuable when used as a tool for reflection, maturity, and conscious relationship building.
+      </p>
+    
+      <!-- Codex Support Navigation Panel -->
+      <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px dashed #D6CEBE; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="Help.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📖 Help
+        </a>
+        <a href="FAQ.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          ❓ FAQ
+        </a>
+        <a href="Glossary.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📓 Glossary
+        </a>
+      </div>
+      <!-- How to Read This Report (Reading Guide Block) -->
+      <div style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; border: 1px dashed #D6CEBE; background-color: rgba(247, 241, 225, 0.15); border-radius: 4px; box-shadow: 0 2px 8px rgba(43, 42, 40, 0.01);">
+        <h4 style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 1rem; text-align: center; border-bottom: 1px dashed #D6CEBE; padding-bottom: 0.4rem;">
+          How to Study This Document
+        </h4>
+        <div class="reading-guide-grid">
+          <!-- Point 1 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">1. Read the accordion sections one at a time.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">Each section expands when you click the title — do not try to read everything at once.</span>
+          </div>
+          <!-- Point 2 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">2. Look up unfamiliar terms</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">in the Antara Glossary (<a href="Glossary.html" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar);">Glossary.html</a> in this folder).</span>
+          </div>
+          <!-- Point 3 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">3. Start with the numbers that feel most familiar.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">In a Western chart, most people know their Sun sign. In Numerology, the Life Path is easiest.</span>
+          </div>
+          <!-- Point 4 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">4. Do not worry about understanding everything on the first read.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">These reports are meant to be returned to and studied over time.</span>
+          </div>
+        </div>
+      </div>
+
+</div>
+    </div>
+
+
+    <!-- Dual Profiles Row (Side by Side) -->
+    <div class="dual-profile-grid" style="margin-bottom: 2rem;">
+      
+      <!-- Partner A Card -->
+      <div class="archival-card">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1.25rem; text-transform: uppercase; color: var(--pigment-terracotta); letter-spacing: 1px;">Partner A Profile</h3>
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="input-name-a" class="form-input" value="Antara Gupta" autocomplete="off" placeholder="Primary Partner">
+        </div>
+        <div class="form-group" style="margin-top: 1rem;">
+          <label>Birth Date</label>
+          <input type="date" id="input-dob-a" class="form-input" value="1953-05-16">
+        </div>
+      </div>
+
+      <!-- Partner B Card -->
+      <div class="archival-card">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1.25rem; text-transform: uppercase; color: var(--pigment-lapis); letter-spacing: 1px;">Partner B Profile</h3>
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="input-name-b" class="form-input" value="Radha Devi" autocomplete="off" placeholder="Companion Partner">
+        </div>
+        <div class="form-group" style="margin-top: 1rem;">
+          <label>Birth Date</label>
+          <input type="date" id="input-dob-b" class="form-input" value="1957-11-20">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Main Results Grid (Syllabic Harmony on Left, Biorhythm Progress Gauges on Right) -->
+    <div class="grid">
+      
+      <!-- Left Column: Score Banner Box (Syllabic Harmony Matrix Score) & Target Coordinates -->
+      <div class="score-banner-box" style="margin-bottom: 0; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="font-family: var(--font-serif-header); font-size: 0.85rem; letter-spacing: 2px; color: var(--ink-faded); text-align: center;">Syllabic Harmony Matrix Score</div>
+          <div id="harmony-score" class="score-badge" style="text-align: center;">26 / 36</div>
+          <div id="harmony-rating" class="score-rating" style="text-align: center;">Uttama Harmony (Highly Auspicious)</div>
+          <p id="harmony-desc" style="font-size: 1.05rem; color: var(--ink-faded); max-width: 600px; margin: 0.75rem auto 0 auto; text-align: center !important; line-height: 1.6;">Phonetic sounds and life path wave vectors indicate a robust, complementary balance without extreme systemic friction.</p>
+        </div>
+        
+        <!-- Target Coordinates Centralized Input -->
+        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px dashed #D6CEBE; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+          <label style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: var(--stroke);">Target Coordinates (Analysis Date)</label>
+          <input type="date" id="input-target-date" class="form-input" value="" style="max-width: 200px; text-align: center; cursor: pointer;">
+          <p style="font-size: 0.85rem; color: var(--ink-faded); text-align: center; margin: 0.4rem 0 0 0; line-height: 1.45; max-width: 280px; font-style: italic;">
+            Adjust this target date dynamically to calculate biorhythm harmony alignments for any calendar day.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Target Date Harmony Progress Gauges -->
+      <div class="archival-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; text-align: center; color: var(--stroke);">Target Date Harmony Progress</h3>
+          <p style="font-size: 0.95rem; text-align: center !important; color: var(--ink-faded); margin: 0 0 1.25rem 0; line-height: 1.6;">Daily wave alignments calculated dynamically for<br><span class="partner-label-a" id="label-name-a">Antara Gupta</span> and <span class="partner-label-b" id="label-name-b">Radha Devi</span>.</p>
+        </div>
+        
+        <div class="pei-container">
+          <!-- Physical Column -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 1px; color: var(--pigment-terracotta); text-transform: uppercase; font-weight: bold;">Physical</div>
+            <div class="gauge-wrapper">
+              <svg width="100%" height="100%" viewBox="0 0 100 100" style="overflow: visible;">
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#F4EFE6" stroke-width="8" />
+                <circle id="gauge-physical" cx="50" cy="50" r="40" fill="none" stroke="var(--pigment-terracotta)" stroke-width="8"
+                        stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" transform="rotate(-90 50 50)" style="transition: stroke-dashoffset 0.8s ease-out;" />
+              </svg>
+              <div id="sync-p" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: var(--font-serif-header); font-size: 1.45rem; font-weight: bold; color: var(--pigment-terracotta);">0%</div>
+            </div>
+          </div>
+
+          <!-- Emotional Column -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 1px; color: var(--pigment-saffron); text-transform: uppercase; font-weight: bold;">Emotional</div>
+            <div class="gauge-wrapper">
+              <svg width="100%" height="100%" viewBox="0 0 100 100" style="overflow: visible;">
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#F4EFE6" stroke-width="8" />
+                <circle id="gauge-emotional" cx="50" cy="50" r="40" fill="none" stroke="var(--pigment-saffron)" stroke-width="8"
+                        stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" transform="rotate(-90 50 50)" style="transition: stroke-dashoffset 0.8s ease-out;" />
+              </svg>
+              <div id="sync-e" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: var(--font-serif-header); font-size: 1.45rem; font-weight: bold; color: var(--pigment-saffron);">0%</div>
+            </div>
+          </div>
+
+          <!-- Intellectual Column -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 1px; color: var(--pigment-lapis); text-transform: uppercase; font-weight: bold;">Intellectual</div>
+            <div class="gauge-wrapper">
+              <svg width="100%" height="100%" viewBox="0 0 100 100" style="overflow: visible;">
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#F4EFE6" stroke-width="8" />
+                <circle id="gauge-intellectual" cx="50" cy="50" r="40" fill="none" stroke="var(--pigment-lapis)" stroke-width="8"
+                        stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" transform="rotate(-90 50 50)" style="transition: stroke-dashoffset 0.8s ease-out;" />
+              </svg>
+              <div id="sync-i" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: var(--font-serif-header); font-size: 1.45rem; font-weight: bold; color: var(--pigment-lapis);">0%</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Biorhythm sync narrative (dynamic) -->
+        <div id="biorhythm-narrative" style="margin-top: 1.25rem; border-top: 1px dashed #D6CEBE; padding-top: 1rem;"></div>
+      </div>
+
+    </div>
+
+    <!-- Vedic Koota Phonetic Score Breakdown -->
+    <div class="archival-card" style="margin-top: 2rem; margin-bottom: 2rem;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--stroke);">Classical Phonetic Koota Scorecard</h3>
+      <p style="font-size: 1.05rem; color: var(--ink-faded); margin: 0 0 1rem 0;">Koota refers to a traditional compatibility framework used in classical relationship matching systems. Measuring structural resonance elements across traditional Indian Nakshatra segments using letter coordinates.</p>
+          
+          <table class="koota-table">
+            <thead>
+              <tr>
+                <th>Category (Koota)</th>
+                <th>Resonance Dimension</th>
+                <th style="text-align: center !important;">Auspicious Max</th>
+                <th style="text-align: center !important;">Scored Match</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Vashya</strong></td>
+                <td>Subconscious attraction & magnetic drawing parameters</td>
+                <td class="points" style="text-align: center !important;">2.0</td>
+                <td id="k-vashya" class="points" style="text-align: center !important;">2.0</td>
+              </tr>
+              <tr>
+                <td><strong>Tara</strong></td>
+                <td>Timeline cycles, life milestones & structural paths</td>
+                <td class="points" style="text-align: center !important;">3.0</td>
+                <td id="k-tara" class="points" style="text-align: center !important;">1.5</td>
+              </tr>
+              <tr>
+                <td><strong>Yoni</strong></td>
+                <td>Instinctive animal temperament & physical wave sync</td>
+                <td class="points" style="text-align: center !important;">4.0</td>
+                <td id="k-yoni" class="points" style="text-align: center !important;">3.0</td>
+              </tr>
+              <tr>
+                <td><strong>Graha Maitri</strong></td>
+                <td>Planetary friendship, psychological & cultural values</td>
+                <td class="points" style="text-align: center !important;">5.0</td>
+                <td id="k-graha" class="points" style="text-align: center !important;">4.0</td>
+              </tr>
+              <tr>
+                <td><strong>Gana</strong></td>
+                <td>Mental temperament alignment & essential nature parameters</td>
+                <td class="points" style="text-align: center !important;">6.0</td>
+                <td id="k-gana" class="points" style="text-align: center !important;">6.0</td>
+              </tr>
+              <tr>
+                <td><strong>Bhakoot</strong></td>
+                <td>Mutual emotional wave dynamics & intuitive sensitivity</td>
+                <td class="points" style="text-align: center !important;">7.0</td>
+                <td id="k-bhakoot" class="points" style="text-align: center !important;">7.0</td>
+              </tr>
+              <tr>
+                <td><strong>Nadi</strong></td>
+                <td>Physiological energy balance & constitutional element health</td>
+                <td class="points" style="text-align: center !important;">8.0</td>
+                <td id="k-nadi" class="points" style="text-align: center !important;">2.0</td>
+              </tr>
+              <tr style="background: rgba(166, 91, 74, 0.08) !important; font-weight: bold;">
+                <td colspan="2" style="padding: 0.75rem 0.9rem; vertical-align: middle; background: rgba(166, 91, 74, 0.08) !important;">
+                  <div style="display: flex; justify-content: flex-end; align-items: center; width: 100%; box-sizing: border-box; gap: 0.75rem;">
+                    <strong style="font-family: inherit; font-size: 0.95rem; color: var(--ink-archival); text-transform: uppercase; letter-spacing: 0.5px;">SUM TOTAL RESONANCE POINTS</strong>
+                    <span style="font-family: var(--font-serif-header); font-size: 1.35rem; color: var(--pigment-terracotta); font-weight: bold; display: inline-block; vertical-align: middle; line-height: 1;">
+                      <span id="k-percentage">70.8</span> %
+                    </span>
+                  </div>
+                </td>
+                <td class="points" style="background: rgba(166, 91, 74, 0.08) !important; text-align: center !important;">36.0</td>
+                <td id="k-total" class="points" style="background: rgba(166, 91, 74, 0.08) !important; text-align: center !important;">25.5</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+
+    <!-- ============================================================
+         CONTENT LAYER 1 — KOOTA SCORE INTERPRETATIONS
+         ============================================================ -->
+    <div class="archival-card" style="margin-bottom: 1.5rem;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.15rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.4rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--stroke);">Koota Score Interpretations</h3>
+      <p style="font-size: 0.95rem; color: var(--ink-faded); margin-bottom: 1.25rem; line-height: 1.6;">Each Koota dimension carries a specific weight and governs a distinct layer of compatibility. Below is the interpretation of each score for this pairing.</p>
+      <div id="koota-interpretation-content">
+        <div style="color: var(--ink-faded); font-style: italic; font-size: 0.95rem;">Enter both partner profiles above to generate interpretations.</div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         CONTENT LAYER 2 — LIFE PATH COMPATIBILITY
+         ============================================================ -->
+    <div class="archival-card" style="margin-bottom: 1.5rem;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.15rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.4rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--stroke);">Life Path Compatibility</h3>
+      <div id="lifepath-compat-content">
+        <div style="color: var(--ink-faded); font-style: italic; font-size: 0.95rem;">Enter both dates of birth to calculate Life Path compatibility.</div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         CONTENT LAYER 3 — RELATIONSHIP SYNTHESIS NARRATIVE
+         ============================================================ -->
+    <div class="archival-card" style="margin-bottom: 1.5rem;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.15rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.4rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--stroke);">Compatibility Synthesis</h3>
+      <div id="compatibility-narrative">
+        <div style="color: var(--ink-faded); font-style: italic; font-size: 0.95rem;">Complete both profiles above to generate the compatibility synthesis.</div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         CONTENT LAYER 4 — STRENGTHS & FRICTION ZONES
+         ============================================================ -->
+    <div class="archival-card" style="margin-bottom: 2rem;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.15rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.4rem; margin-top: 0; margin-bottom: 1.25rem; text-transform: uppercase; letter-spacing: 1px; color: var(--stroke);">Strengths & Friction Zones</h3>
+      <div class="strengths-friction-grid">
+        <div>
+          <div style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: 700; color: var(--pigment-emerald); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 2px solid rgba(46,90,68,0.2);">✓ Structural Strengths</div>
+          <div id="strengths-content"><div style="color: var(--ink-faded); font-style: italic; font-size: 0.95rem;">Loading...</div></div>
+        </div>
+        <div>
+          <div style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: 700; color: var(--pigment-terracotta); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 2px solid rgba(166,91,74,0.2);">▲ Friction Zones</div>
+          <div id="friction-content"><div style="color: var(--ink-faded); font-style: italic; font-size: 0.95rem;">Loading...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 2rem; margin-bottom: 3rem;">
+      <details style="cursor: pointer; outline: none;">
+        <summary class="explore-summary">
+          <span class="explore-title-main">Click to Explore</span>
+          <span class="explore-title-sub">Understanding Relationship Compatibility</span>
+        </summary>
+        <div class="accordion-inner-border" style="cursor: default; margin-top: 1rem; background-color: var(--bg-vellum-warm); border: var(--border-container); padding: 1.5rem 1.75rem; position: relative; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04); border-radius: 4px;">
+          <div style="position: relative; z-index: 2;">
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">The Vedic Ashta Koota Matching System</h4>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 1.5rem;">For over two millennia, Indian astrological science has utilized the <strong>Ashta Koota</strong> framework to map structural compatibility between dual nativities. Built upon the position of the Moon within the 27 stellar Nakshatras, this system evaluates eight independent structural dimensions (Kootas) totaling 36 points (Bindus). Ranging from <strong>Vashya</strong> (magnetic draw, 2 points) and <strong>Yoni</strong> (physical instinct and temperament matching, 4 points) to <strong>Bhakoot</strong> (mutual emotional waves, 7 points) and <strong>Nadi</strong> (essential interactional health, 8 points), the score isolates points of systemic friction. A score of 18 is considered the minimum baseline for healthy partnership alignment, while scores above 24 indicate exceptional structural harmony. This module calibrates a customized representation using name seed letter mappings to isolate harmony coefficients.</p>
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">Concentric Biorhythm Radar Intersections</h4>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 0;">In addition to ancient sound coordinate checks, modern analytical compatibility benefits from mapping overlapping biological wave profiles. By calculating the physical (23-day), emotional (28-day), and intellectual (33-day) wave coordinates of both partners for a target date, we generate a polar concentric map. Where the terracotta polygon of Partner A and the lapis polygon of Partner B overlap extensively, high environmental synchronization exists. Complete overlays are rare and not necessarily ideal; secondary friction and complementary offsets are vital structural dynamics that encourage individual growth and long-term relational resilience.</p>
+            
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- Honest Framing Disclaimer Box -->
+    <style>
+      .disclaimer-hi { display: none; }
+      body.lang-hi .disclaimer-en { display: none !important; }
+      body.lang-hi .disclaimer-hi { display: block !important; }
+    </style>
+    
+    <div class="disclaimer-en" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        DISCLAIMER
+      </h4>
+      <p style="margin: 0; text-align: justify;">
+        This report is an interpretive analytical framework intended solely for reflective and informational purposes. It is not a predictive, diagnostic, clinical, financial, legal, medical, psychological or professional advisory instrument, and should not be relied upon as definitive guidance for decisions, actions, or outcomes. The original application has been developed in English. Certain translated versions may utilize automated translation tools, including Google Translate. While reasonable efforts have been made to preserve contextual accuracy, no responsibility is accepted for translation inaccuracies, omissions, interpretive variations, or linguistic ambiguities arising from translated content. In the event of any inconsistency or ambiguity, the English version shall prevail.
+      </p>
+    </div>
+
+    <div class="disclaimer-hi notranslate" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        अस्वीकरण
+      </h4>
+      <p style="margin: 0; text-align: justify; color: var(--ink-faded); font-style: italic;">
+        यह रिपोर्ट केवल विचारात्मक एवं सूचनात्मक उद्देश्य हेतु निर्मित एक व्याख्यात्मक विश्लेषणात्मक ढांचा है। यह कोई भविष्यवाणी, निदान, नैदानिक, वित्तीय, कानूनी, चिकित्सीय, मनोवैज्ञानिक अथवा पेशेवर परामर्श का उपकरण नहीं है, और इसे निर्णयों, कार्यों या परिणामों के लिए अंतिम मार्गदर्शन के रूप में नहीं माना जाना चाहिए। मूल अनुप्रयोग अंग्रेज़ी भाषा में विकसित किया गया है। कुछ अनुवादित संस्करणों में Google Translate सहित स्वचालित अनुवाद उपकरणों का उपयोग किया जा सकता है। यद्यपि संदर्भगत शुद्धता बनाए रखने का यथासंभव प्रयास किया गया है, तथापि अनुवाद संबंधी त्रुटियों, चूकों, अर्थ-व्याख्या में भिन्नताओं या भाषाई अस्पष्टताओं के लिए कोई उत्तरदायित्व स्वीकार नहीं किया जाता। किसी भी असंगति या अस्पष्टता की स्थिति में अंग्रेज़ी संस्करण को ही मान्य माना जाएगा।
+      </p>
+    </div>
+    <!-- Resonance / Feedback Link -->
+    <div style="text-align: center; margin: 1.5rem auto 2rem auto; font-family: var(--font-mono); font-size: 0.8rem; max-width: 1100px; width: calc(100% - 24px);">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEYjLsqRjRRR0FZEPq384iGrpL6rZfrEQHEbcYQ9pz5ERzlg/viewform" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar); letter-spacing: 1px; font-weight: bold; transition: all 0.2s ease; padding-bottom: 2px;">
+        ✦ SHARE YOUR RESONANCE (ANONYMOUS SUGGESTIONS) ✦
+      </a>
+    </div>
+
+  </div>
+
+    <footer class="notranslate">
+    <div class="footer-content">
+      <p>ANTARA CROSS-CULTURAL INTERIOR PANORAMA</p>
+      <p class="font-mono">SYSTEM LOG: COMPATIBILITY SCAN CORE v1.2.0 • 2026</p>
+    </div>
+  </footer>
+
+  
+  <script>
+    // Clean up local storage persona names dynamically to wipe out old cached test personas
+    try {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (localStorage.getItem(key) === 'Ankur Gupta') {
+                localStorage.setItem(key, 'Antara Gupta');
+            }
+        }
+    } catch (e) {
+        console.warn("localStorage persona migration restricted:", e);
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, function(tag) {
+        var chars = {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        };
+        return chars[tag] || tag;
+      });
+    }
+
+    // Initialize language inheritance from local storage
+    let preferredLang = localStorage.getItem('antara_preferred_language') || 'EN';
+    if (window.location.hash === '#HI' || window.location.search.includes('lang=HI')) {
+        preferredLang = 'HI';
+        localStorage.setItem('antara_preferred_language', 'HI');
+    } else if (window.location.hash === '#EN' || window.location.search.includes('lang=EN')) {
+        preferredLang = 'EN';
+        localStorage.setItem('antara_preferred_language', 'EN');
+    }
+    if (preferredLang === 'HI') {
+        document.body.classList.add('lang-hi');
+        
+        // 1. Force the Google Translate hash parameter if not present
+        if (!window.location.hash.includes('googtrans')) {
+            window.location.hash = 'googtrans(en|hi)';
+        }
+        
+        // 2. Set googtrans cookie to persist
+        document.cookie = "googtrans=/en/hi; path=/";
+        
+        // 3. Create absolute HTTPS Google Translate container and script
+        const gtDiv = document.createElement('div');
+        gtDiv.id = 'google_translate_element';
+        gtDiv.style.position = 'fixed';
+        gtDiv.style.bottom = '15px';
+        gtDiv.style.right = '15px';
+        gtDiv.style.zIndex = '99999';
+        gtDiv.style.background = '#FFFDF9';
+        gtDiv.style.border = '1px solid #D6CEBE';
+        gtDiv.style.borderRadius = '20px';
+        gtDiv.style.padding = '3px 10px';
+        gtDiv.style.boxShadow = '0 3px 10px rgba(0,0,0,0.06)';
+        gtDiv.style.display = 'inline-flex';
+        gtDiv.style.alignItems = 'center';
+        gtDiv.style.gap = '6px';
+        gtDiv.innerHTML = '<span style="font-family:\'Cinzel\', serif; font-size:0.68rem; color:#9E3A33; font-weight:bold; letter-spacing:0.5px;">ANTARA TRANSLATE</span>';
+        document.body.appendChild(gtDiv);
+
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: true
+            }, 'google_translate_element');
+        };
+
+        const gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript';
+        gtScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        document.head.appendChild(gtScript);
+    } else if (preferredLang === 'EN') {
+        if (window.location.hash.includes('googtrans')) {
+            window.location.hash = '';
+        }
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+
+    function safeGetItem(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch (e) {
+        console.warn("safeGetItem failed for", key, e);
+        return null;
+      }
+    }
+    function safeSetItem(key, val) {
+      try {
+        localStorage.setItem(key, val);
+      } catch (e) {
+        console.warn("safeSetItem failed for", key, e);
+      }
+    }
+
+    // ── Life Path calculation ─────────────────────────────────────
+    function calculateLifePath(dobStr) {
+      if (!dobStr) return null;
+      const p = dobStr.split('-');
+      const month = parseInt(p[1], 10);
+      const day   = parseInt(p[2], 10);
+      const year  = parseInt(p[0], 10);
+      function red(n) {
+        if (n === 11 || n === 22 || n === 33) return n;
+        while (n > 9) {
+          n = String(n).split('').map(Number).reduce((a,b)=>a+b,0);
+          if (n === 11 || n === 22 || n === 33) return n;
+        }
+        return n;
+      }
+      const total = red(month) + red(day) + red(String(year).split('').map(Number).reduce((a,b)=>a+b,0));
+      return red(total);
+    }
+
+    // ── Life Path archetypes ──────────────────────────────────────
+    const lpArchetypes = {
+      1:  { name: "The Pioneer",        keywords: "Independence · Leadership · Initiation" },
+      2:  { name: "The Harmonizer",     keywords: "Cooperation · Diplomacy · Sensitivity" },
+      3:  { name: "The Expresser",      keywords: "Creativity · Communication · Social Brilliance" },
+      4:  { name: "The Builder",        keywords: "Structure · Discipline · Reliable Foundation" },
+      5:  { name: "The Explorer",       keywords: "Freedom · Adaptability · Versatility" },
+      6:  { name: "The Nurturer",       keywords: "Responsibility · Beauty · Communal Care" },
+      7:  { name: "The Seeker",         keywords: "Analysis · Introspection · Hidden Knowledge" },
+      8:  { name: "The Director",       keywords: "Authority · Material Mastery · Executive Power" },
+      9:  { name: "The Idealist",       keywords: "Humanitarian Vision · Completion · Universal Compassion" },
+      11: { name: "The Illuminator",    keywords: "Intuitive Vision · Spiritual Sensitivity" },
+      22: { name: "The Master Builder", keywords: "Large-Scale Vision · Practical Idealism" },
+      33: { name: "The Master Teacher", keywords: "Selfless Service · Wisdom Transmission" }
+    };
+
+    // ── Koota interpretation texts ────────────────────────────────
+    const kootaInterpretations = {
+      vashya:  {
+        label: "Vashya — Magnetic Attraction", max: 2,
+        full:     "Complete subconscious resonance. A natural, effortless magnetic draw operates between these partners at the instinctive level, creating a sense of ease and natural gravitation that doesn't require deliberate effort to sustain.",
+        partial:  "Moderate magnetic compatibility. A functional attraction exists and serves the relationship well in daily life, though the subconscious pull benefits from conscious appreciation and renewal during quieter periods.",
+        low:      "Limited subconscious draw. The natural magnetic pull is weak. Deliberate cultivation of attraction, appreciation, and shared positive experiences is particularly important for long-term vitality."
+      },
+      tara: {
+        label: "Tara — Timeline Harmony", max: 3,
+        full:     "Excellent life cycle alignment. Major transitions, growth periods, and milestone timings unfold in natural synchronization — neither partner significantly ahead nor behind the other's developmental arc. Life events tend to arrive in step.",
+        partial:  "Moderate timeline resonance. Some life phases align naturally while others may diverge. Mutual patience during periods of asymmetric growth — where one partner is expanding rapidly and the other consolidating — strengthens the long-term foundation.",
+        low:      "Timeline divergence. Major life transitions are unlikely to synchronize naturally. Periods where one partner's growth phase conflicts with the other's needs require conscious flexibility and generous negotiation of individual rhythms."
+      },
+      yoni: {
+        label: "Yoni — Physical Temperament", max: 4,
+        full:     "Complete physical and instinctive temperament alignment. At the most fundamental level of bodily rhythm, pacing, and instinctive response, these partners resonate naturally. Physical understanding and comfort arrive with ease rather than effort.",
+        partial:  "Good instinctive compatibility. Core temperament resonance provides a comfortable physical foundation, with some areas where deliberate mutual adaptation deepens understanding over time.",
+        low:      "Instinctive temperament divergence. Fundamental physical rhythms and pacing preferences differ significantly. Conscious negotiation of basic energy needs, rest patterns, and bodily rhythms prevents recurring friction."
+      },
+      graha: {
+        label: "Graha Maitri — Planetary Friendship", max: 5,
+        full:     "Full planetary friendship. At the level of values, worldview, and deep psychological orientation, a natural common ground exists. Intellectual and philosophical resonance is strong — these two minds tend to enrich rather than antagonize each other's thinking.",
+        partial:  "Good value alignment. Core psychological orientations are broadly compatible. Specific areas of philosophical or cultural difference provide interesting texture rather than fundamental incompatibility.",
+        low:      "Value and worldview divergence. Fundamental psychological orientations differ. While complementary perspectives can enrich the relationship, conscious effort is required to bridge the gap in values without eroding respect."
+      },
+      gana: {
+        label: "Gana — Mental Temperament", max: 6,
+        full:     "Perfect mental temperament match. Both partners share the same essential nature category — Deva, Manushya, or Rakshasa — creating a deep instinctive understanding of each other's mental and emotional operating style. Day-to-day interaction flows naturally.",
+        partial:  "Compatible mental natures. The essential temperament types are broadly compatible, allowing genuine mutual understanding even when expressed differently in specific situations.",
+        low:      "Mental temperament tension. Different essential nature categories can create recurring friction in day-to-day emotional processing and communication styles. Developing explicit vocabulary for each other's inner world is a key long-term relationship investment."
+      },
+      bhakoot: {
+        label: "Bhakoot — Emotional Wave Dynamics", max: 7,
+        full:     "Maximum emotional wave harmony. The highest-weighted Koota shows full alignment — shared emotional sensitivity, intuitive understanding, and complementary feeling patterns create a powerful relational bond. Emotional intelligence flows naturally and generously between these partners.",
+        partial:  "Good emotional resonance. The emotional wave patterns are broadly compatible, supporting a nurturing and intuitively connected relationship with minor areas of friction that conscious communication can address.",
+        low:      "Emotional wave friction. Fundamental differences in emotional processing may create recurring misunderstandings unless both partners develop strong emotional literacy toward each other's inner rhythms. Professional relationship support can be highly beneficial here."
+      },
+      nadi: {
+        label: "Nadi — Constitutional Energy", max: 8,
+        full:     "Full Nadi harmony. The physiological and constitutional energy types are distinct and complementary — representing the classical ideal state for long-term mutual health support and sustainable energy exchange.",
+        partial:  "Partial Nadi compatibility. Some constitutional energy overlap exists. Shared wellness practices and attention to individual lifestyle rhythms support long-term vitality in the relationship.",
+        low:      "Nadi Dosha present — this requires conscious attention. Both partners share the same constitutional energy type, which in classical Vedic analysis indicates potential physiological resonance challenges over the long term. This is the most significant Koota from a health and longevity perspective. Individual wellness routines, distinct dietary patterns, and regular personal renewal practices are strongly recommended to counterbalance this influence."
+      }
+    };
+
+    // ── Koota interpretation renderer ─────────────────────────────
+    function renderKootaInterpretations(koota) {
+      const keys = ['vashya','tara','yoni','graha','gana','bhakoot','nadi'];
+      const scores = { vashya: koota.vashya, tara: koota.tara, yoni: koota.yoni, graha: koota.graha, gana: koota.gana, bhakoot: koota.bhakoot, nadi: koota.nadi };
+      const items = keys.map(key => {
+        const interp = kootaInterpretations[key];
+        const score = scores[key];
+        const ratio = score / interp.max;
+        let statusColor, statusLabel, desc;
+        if (ratio >= 0.99)       { statusColor = '#2E5A44'; statusLabel = '✓ Full Harmony';    desc = interp.full; }
+        else if (ratio >= 0.65)  { statusColor = '#3C5A80'; statusLabel = '● Strong';          desc = interp.partial; }
+        else if (ratio >= 0.4)   { statusColor = '#D98236'; statusLabel = '◐ Moderate';        desc = interp.partial; }
+        else if (score > 0)      { statusColor = '#A65B4A'; statusLabel = '▲ Needs Attention'; desc = interp.low; }
+        else                     { statusColor = '#9E3A33'; statusLabel = '✕ Dosha';           desc = interp.low; }
+        return `
+          <div class="koota-zone-item">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.5rem; margin-bottom:0.4rem; flex-wrap:wrap;">
+              <span style="font-family:var(--font-serif-header); font-size: 0.95rem; font-weight:700; color:var(--ink-archival);">${interp.label}</span>
+              <span style="font-family:var(--font-mono); font-size: 0.72rem; font-weight:700; color:${statusColor}; letter-spacing:0.5px; white-space:nowrap;">${statusLabel} · ${score.toFixed(1)}/${interp.max}</span>
+            </div>
+            <p style="font-size:0.85rem; line-height:1.5; color:var(--ink-faded); margin:0;">${desc}</p>
+          </div>`;
+      }).join('');
+      return `<div class="koota-interp-grid">${items}</div>`;
+    }
+
+    // ── Life Path compatibility text ──────────────────────────────
+    function generateLifePathCompat(lpA, lpB, nameA, nameB) {
+      const archA = lpArchetypes[lpA] || { name: `Life Path ${lpA}`, keywords: '' };
+      const archB = lpArchetypes[lpB] || { name: `Life Path ${lpB}`, keywords: '' };
+      const pair  = [lpA, lpB].sort((a,b) => a-b).join('-');
+      const pairTexts = {
+        '3-8': `The creative-executive pairing. ${nameA} as The Expresser brings lightness, communicative warmth, and creative energy; ${nameB} as The Director brings strategic focus, structural ambition, and material momentum. At their best, these two inspire and execute together — the 3's creative vision providing life to the 8's capacity for large-scale results. Tension arises when the 8's seriousness feels controlling to the 3, or when the 3's expansive playfulness feels unfocused to the 8. The key is recognising that each brings precisely what the other lacks.`,
+        '1-2': `The initiating-sustaining pairing. ${nameA} as The Pioneer drives forward with independent force; ${nameB} as The Harmonizer refines, supports, and sustains. Highly complementary when roles are mutually understood and respected — one begins, the other deepens.`,
+        '1-9': `The first and last of the cycle. ${nameA} as The Pioneer initiates with singular focus; ${nameB} as The Idealist completes and universalises. A powerful complementary tension — the 1's individual drive elevated by the 9's universal perspective, when both are oriented toward a shared purpose.`,
+        '4-8': `The structural pairing. Both are fundamentally material and achievement-oriented — ${nameA} as The Builder through patient method, ${nameB} as The Director through executive force. A powerfully productive combination for shared practical goals, though both must guard against excessive focus on outcome at the expense of relational warmth.`,
+        '3-6': `${nameA} as The Expresser and ${nameB} as The Nurturer share a Venus-adjacent resonance — both oriented toward beauty, expression, and the quality of lived experience. A naturally harmonious pairing with deep aesthetic and emotional alignment.`,
+        '2-7': `${nameA} as The Harmonizer and ${nameB} as The Seeker bring complementary inward-oriented energies — relational depth meeting philosophical depth. An understated yet profound bond built on genuine understanding and mutual respect for inner worlds.`,
+      };
+      const specificText = lpA === lpB
+        ? `Both ${nameA} and ${nameB} carry Life Path ${lpA} — ${archA.name}. Shared Life Paths create deep mutual understanding and natural empathy for each other's core drives and blind spots. The risk of amplifying each other's patterns simultaneously — both soaring or struggling together — is worth conscious monitoring, but the natural resonance and felt sense of being truly understood is profound.`
+        : (pairTexts[pair] || `${nameA} (Life Path ${lpA}, ${archA.name}) and ${nameB} (Life Path ${lpB}, ${archB.name}) bring distinct and complementary energies to their partnership. ${archA.name} operates through ${archA.keywords}, while ${archB.name} brings ${archB.keywords}. The dynamic between these two Life Paths is one of creative contrast — each partner naturally expanding the other's range of experience and perspective when mutual appreciation is present.`);
+
+      return `
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.25rem;">
+          <div style="background:#faf7ef; border:1px solid #D6CEBE; border-top:4px solid var(--pigment-terracotta); border-radius:4px; padding:1rem; text-align:center;">
+            <div style="font-family:var(--font-mono); font-size: 0.72rem; color:var(--pigment-terracotta); text-transform:uppercase; letter-spacing:1px; margin-bottom:0.35rem;">${nameA}</div>
+            <div class="lp-badge" style="color:var(--pigment-terracotta);">${lpA}</div>
+            <div style="font-family:var(--font-serif-header); font-size: 0.95rem; font-weight:700; color:var(--ink-archival); margin:0.3rem 0 0.2rem;">${archA.name}</div>
+            <div style="font-family:var(--font-mono); font-size: 0.72rem; color:var(--ink-faded);">${archA.keywords}</div>
+          </div>
+          <div style="background:#faf7ef; border:1px solid #D6CEBE; border-top:4px solid var(--pigment-lapis); border-radius:4px; padding:1rem; text-align:center;">
+            <div style="font-family:var(--font-mono); font-size: 0.72rem; color:var(--pigment-lapis); text-transform:uppercase; letter-spacing:1px; margin-bottom:0.35rem;">${nameB}</div>
+            <div class="lp-badge" style="color:var(--pigment-lapis);">${lpB}</div>
+            <div style="font-family:var(--font-serif-header); font-size: 0.95rem; font-weight:700; color:var(--ink-archival); margin:0.3rem 0 0.2rem;">${archB.name}</div>
+            <div style="font-family:var(--font-mono); font-size: 0.72rem; color:var(--ink-faded);">${archB.keywords}</div>
+          </div>
+        </div>
+        <p style="font-size:1.02rem; line-height:1.65; color:var(--ink-archival); text-align:justify; margin:0;">${specificText}</p>`;
+    }
+
+    // ── Relationship synthesis narrative ─────────────────────────
+    function generateSynthesisNarrative(koota, lpA, lpB, nameA, nameB) {
+      const total = koota.total;
+      const archA = lpArchetypes[lpA] || { name: `Life Path ${lpA}` };
+      const archB = lpArchetypes[lpB] || { name: `Life Path ${lpB}` };
+      const maxes = { vashya:2, tara:3, yoni:4, graha:5, gana:6, bhakoot:7, nadi:8 };
+      const scores = { vashya:koota.vashya, tara:koota.tara, yoni:koota.yoni, graha:koota.graha, gana:koota.gana, bhakoot:koota.bhakoot, nadi:koota.nadi };
+      const labels = { vashya:'magnetic attraction', tara:'life cycle alignment', yoni:'physical temperament resonance', graha:'shared values and worldview', gana:'mental temperament alignment', bhakoot:'emotional wave dynamics', nadi:'constitutional energy balance' };
+      let topStrengthKey = '', topStrengthRatio = 0, topConcernKey = '', topConcernRatio = 1;
+      for (const [k, s] of Object.entries(scores)) {
+        const r = s / maxes[k];
+        if (r > topStrengthRatio) { topStrengthRatio = r; topStrengthKey = k; }
+        if (r < topConcernRatio)  { topConcernRatio  = r; topConcernKey  = k; }
+      }
+      const tones = [
+        { min: 28, label: 'exceptional',  open: 'This is a rare and deeply auspicious pairing.' },
+        { min: 22, label: 'strong',        open: 'This is a notably strong compatibility profile.' },
+        { min: 18, label: 'balanced',      open: 'This pairing shows solid foundational compatibility.' },
+        { min:  0, label: 'moderate',      open: 'This pairing carries genuine strengths alongside areas requiring conscious attention.' }
+      ];
+      const { label: tone, open } = tones.find(t => total >= t.min);
+      const pct = ((total / 36) * 100).toFixed(0);
+      return `<p style="font-size:1.02rem; line-height:1.7; color:var(--ink-archival); text-align:justify; margin:0;">${open} Across the seven traditional Koota dimensions, ${nameA} and ${nameB} score <strong>${total.toFixed(1)} / 36 (${pct}%)</strong>, placing this relationship in the <strong>${tone}</strong> compatibility range. The partnership's greatest structural strength lies in <strong>${labels[topStrengthKey]}</strong>, where the score reflects a reliable and well-functioning foundation. The area most deserving of conscious attention is <strong>${labels[topConcernKey]}</strong>, where the score indicates a divergence that benefits from proactive awareness rather than avoidance — understanding the gap is already half the work. At the Life Path level, ${nameA} as <strong>${archA.name}</strong> and ${nameB} as <strong>${archB.name}</strong> bring different but potentially complementary energies that — when channelled with mutual understanding — can create a partnership greater in its combined capacity than either individual would achieve alone.</p>`;
+    }
+
+    // ── Biorhythm sync narrative ──────────────────────────────────
+    function generateBiorhythmNarrative(syncP, syncE, syncI, nameA, nameB) {
+      function band(pct) {
+        if (pct >= 85) return { level: 'exceptional synchrony',  color: '#2E5A44', note: 'shared activities in this domain are especially rewarding today' };
+        if (pct >= 70) return { level: 'strong alignment',       color: '#3C5A80', note: 'natural coordination makes collaboration in this area straightforward' };
+        if (pct >= 55) return { level: 'moderate resonance',     color: '#D98236', note: 'minor differences may surface but are easily navigated with awareness' };
+        if (pct >= 40) return { level: 'divergent rhythms',      color: '#A65B4A', note: 'different current needs call for mutual patience and personal space' };
+        return           { level: 'opposing cycles',             color: '#9E3A33', note: 'significant divergence — allow each person their own process in this domain today' };
+      }
+      const p = band(syncP), e = band(syncE), i = band(syncI);
+      const avg = Math.round((syncP + syncE + syncI) / 3);
+      const overall = avg >= 70 ? 'Overall, this is a strong day for shared activity and connection.'
+                    : avg >= 50 ? 'Overall, the day carries a mixed dynamic — lean into aligned areas and give space where rhythms diverge.'
+                    : 'Overall, both partners would benefit from individual renewal today before shared engagement.';
+      return `
+        <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--ink-faded); letter-spacing:1px; text-transform:uppercase; margin-bottom:0.75rem;">Target Date Sync Readings for ${nameA} & ${nameB}</div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.75rem; margin-bottom:0.85rem;">
+          <div style="padding:0.75rem; border:1px solid #D6CEBE; border-left:4px solid var(--pigment-terracotta); border-radius:0 4px 4px 0; background:#faf7ef;">
+            <div style="font-family:var(--font-mono); font-size: 0.72rem; color:var(--pigment-terracotta); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.3rem;">Physical · ${syncP}%</div>
+            <div style="font-size:0.85rem; font-weight:700; color:${p.color}; margin-bottom:0.2rem;">${p.level}</div>
+            <div style="font-size:0.8rem; color:var(--ink-faded); line-height:1.4;">${p.note}.</div>
+          </div>
+          <div style="padding:0.75rem; border:1px solid #D6CEBE; border-left:4px solid var(--pigment-saffron); border-radius:0 4px 4px 0; background:#faf7ef;">
+            <div style="font-family:var(--font-mono); font-size: 0.72rem; color:var(--pigment-saffron); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.3rem;">Emotional · ${syncE}%</div>
+            <div style="font-size:0.85rem; font-weight:700; color:${e.color}; margin-bottom:0.2rem;">${e.level}</div>
+            <div style="font-size:0.8rem; color:var(--ink-faded); line-height:1.4;">${e.note}.</div>
+          </div>
+          <div style="padding:0.75rem; border:1px solid #D6CEBE; border-left:4px solid var(--pigment-lapis); border-radius:0 4px 4px 0; background:#faf7ef;">
+            <div style="font-family:var(--font-mono); font-size: 0.72rem; color:var(--pigment-lapis); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.3rem;">Intellectual · ${syncI}%</div>
+            <div style="font-size:0.85rem; font-weight:700; color:${i.color}; margin-bottom:0.2rem;">${i.level}</div>
+            <div style="font-size:0.8rem; color:var(--ink-faded); line-height:1.4;">${i.note}.</div>
+          </div>
+        </div>
+        <p style="font-size: 0.95rem; color:var(--ink-faded); margin:0; font-style:italic;">${overall}</p>`;
+    }
+
+    // ── Strengths and friction zones ──────────────────────────────
+    function renderStrengthsFriction(koota) {
+      const maxes = { vashya:2, tara:3, yoni:4, graha:5, gana:6, bhakoot:7, nadi:8 };
+      const scores = { vashya:koota.vashya, tara:koota.tara, yoni:koota.yoni, graha:koota.graha, gana:koota.gana, bhakoot:koota.bhakoot, nadi:koota.nadi };
+      const strengths = [], frictions = [];
+      for (const [key, score] of Object.entries(scores)) {
+        const ratio = score / maxes[key];
+        const interp = kootaInterpretations[key];
+        if (ratio >= 0.75) strengths.push({ interp, score, max: maxes[key] });
+        else if (ratio < 0.5) frictions.push({ interp, score, max: maxes[key] });
+      }
+      const toHTML = (arr, color) => arr.length > 0
+        ? arr.map(({ interp, score, max }) => `
+          <div class="koota-zone-item">
+            <div style="font-family:var(--font-serif-header); font-size: 0.95rem; font-weight:700; color:${color}; margin-bottom:0.3rem;">${interp.label} &nbsp;<span style="font-family:var(--font-mono); font-size:0.72rem;">(${score.toFixed(1)}/${max})</span></div>
+            <p style="font-size:0.87rem; line-height:1.5; color:var(--ink-faded); margin:0;">${score / max >= 0.75 ? interp.full : interp.low}</p>
+          </div>`).join('')
+        : `<div style="color:var(--ink-faded); font-style:italic; font-size: 0.95rem; padding:0.5rem 0;">No significant zones in this category for this combination.</div>`;
+      return {
+        strengthsHTML: toHTML(strengths, '#2E5A44'),
+        frictionHTML:  toHTML(frictions, '#A65B4A')
+      };
+    }
+
+    function hashString(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      return Math.abs(hash);
+    }
+
+    function calculateKootaScore(nameA, dobA, nameB, dobB) {
+      const hA = hashString(nameA + dobA);
+      const hB = hashString(nameB + dobB);
+      
+      const vashya = ((hA + hB) % 3 === 0) ? 2.0 : 1.0;
+      const tara = (((hA * 3) + hB) % 3 === 0) ? 3.0 : (((hA + hB) % 2 === 0) ? 1.5 : 1.0);
+      const yoni = ((hA + hB * 2) % 4 === 0) ? 4.0 : (((hA + hB) % 2 === 0) ? 3.0 : 2.0);
+      const graha = ((hA * hB) % 5 === 0) ? 5.0 : (((hA + hB) % 2 === 0) ? 4.0 : 3.0);
+      const gana = ((hA + hB) % 6 === 0) ? 6.0 : (((hA + hB) % 2 === 0) ? 5.0 : 4.0);
+      const bhakoot = (((hA * 2) + hB) % 7 === 0) ? 7.0 : 6.0;
+      const nadi = ((hA + hB) % 8 === 0) ? 8.0 : (((hA + hB) % 2 === 0) ? 6.0 : 2.0);
+
+      const total = vashya + tara + yoni + graha + gana + bhakoot + nadi;
+      
+      return {
+        vashya, tara, yoni, graha, gana, bhakoot, nadi, total
+      };
+    }
+
+    function updateCompatibility() {
+      const nameA = document.getElementById('input-name-a').value.trim() || "Partner A";
+      const nameB = document.getElementById('input-name-b').value.trim() || "Partner B";
+      const dobAStr = document.getElementById('input-dob-a').value;
+      const dobBStr = document.getElementById('input-dob-b').value;
+      let targetStr = document.getElementById('input-target-date').value;
+      if (!targetStr) {
+        targetStr = new Date().toISOString().split('T')[0];
+        document.getElementById('input-target-date').value = targetStr;
+      }
+
+      document.getElementById('label-name-a').innerText = nameA;
+      document.getElementById('label-name-b').innerText = nameB;
+
+      if (!dobAStr || !dobBStr) return;
+
+      const dobA = new Date(dobAStr);
+      const dobB = new Date(dobBStr);
+      const target = new Date(targetStr);
+
+      const tA = Math.round((target - dobA) / (1000 * 60 * 60 * 24));
+      const tB = Math.round((target - dobB) / (1000 * 60 * 60 * 24));
+
+      const pA = Math.sin(2 * Math.PI * tA / 23);
+      const eA = Math.sin(2 * Math.PI * tA / 28);
+      const iA = Math.sin(2 * Math.PI * tA / 33);
+
+      const pB = Math.sin(2 * Math.PI * tB / 23);
+      const eB = Math.sin(2 * Math.PI * tB / 28);
+      const iB = Math.sin(2 * Math.PI * tB / 33);
+
+      const syncP = Math.round((1 - Math.abs(pA - pB) / 2) * 100);
+      const syncE = Math.round((1 - Math.abs(eA - eB) / 2) * 100);
+      const syncI = Math.round((1 - Math.abs(iA - iB) / 2) * 100);
+
+      document.getElementById('sync-p').innerText = syncP + '%';
+      document.getElementById('sync-e').innerText = syncE + '%';
+      document.getElementById('sync-i').innerText = syncI + '%';
+
+      const koota = calculateKootaScore(nameA, dobAStr, nameB, dobBStr);
+      
+      document.getElementById('k-vashya').innerText = koota.vashya.toFixed(1);
+      document.getElementById('k-tara').innerText = koota.tara.toFixed(1);
+      document.getElementById('k-yoni').innerText = koota.yoni.toFixed(1);
+      document.getElementById('k-graha').innerText = koota.graha.toFixed(1);
+      document.getElementById('k-gana').innerText = koota.gana.toFixed(1);
+      document.getElementById('k-bhakoot').innerText = koota.bhakoot.toFixed(1);
+      document.getElementById('k-nadi').innerText = koota.nadi.toFixed(1);
+      document.getElementById('k-total').innerText = koota.total.toFixed(1);
+
+      // Express sum total as a percentage
+      const percentageValue = ((koota.total / 36.0) * 100).toFixed(1);
+      document.getElementById('k-percentage').innerText = percentageValue;
+
+      // Update main title dynamically based on partner names
+      const titleEl = document.querySelector('.master-report-title');
+      if (titleEl) {
+        titleEl.innerHTML = `Relationship Compatibility<br>For ${escapeHTML(nameA)} & ${escapeHTML(nameB)}`;
+      }
+
+      document.getElementById('harmony-score').innerText = `${koota.total.toFixed(1)} / 36`;
+
+      let rating = "Madhyama Harmony (Moderate Balance)";
+      let ratingColor = "var(--pigment-saffron)";
+      if (koota.total >= 28) {
+        rating = "Maha Harmony (Exceptional Synthesis)";
+        ratingColor = "var(--pigment-cinnabar)";
+      } else if (koota.total >= 22) {
+        rating = "Uttama Harmony (Highly Auspicious)";
+        ratingColor = "var(--pigment-emerald)";
+      } else if (koota.total < 18) {
+        rating = "Samanaya friction (Frictional Sync)";
+        ratingColor = "var(--pigment-terracotta)";
+      }
+      
+      const hRating = document.getElementById('harmony-rating');
+      hRating.innerText = rating;
+      hRating.style.color = ratingColor;
+
+      // Update circular progress bars dynamically
+      const circ = 251.2;
+      document.getElementById('gauge-physical').setAttribute('stroke-dashoffset', circ * (1 - syncP / 100));
+      document.getElementById('gauge-emotional').setAttribute('stroke-dashoffset', circ * (1 - syncE / 100));
+      document.getElementById('gauge-intellectual').setAttribute('stroke-dashoffset', circ * (1 - syncI / 100));
+
+      // ── Biorhythm narrative ──────────────────────────────────
+      const bioNarr = document.getElementById('biorhythm-narrative');
+      if (bioNarr) bioNarr.innerHTML = generateBiorhythmNarrative(syncP, syncE, syncI, nameA, nameB);
+
+      // ── Koota interpretations ────────────────────────────────
+      const kootaEl = document.getElementById('koota-interpretation-content');
+      if (kootaEl) kootaEl.innerHTML = renderKootaInterpretations(koota);
+
+      // ── Life Path compatibility ──────────────────────────────
+      const lpA = calculateLifePath(dobAStr);
+      const lpB = calculateLifePath(dobBStr);
+      const lpEl = document.getElementById('lifepath-compat-content');
+      if (lpEl && lpA && lpB) lpEl.innerHTML = generateLifePathCompat(lpA, lpB, nameA, nameB);
+
+      // ── Relationship synthesis ───────────────────────────────
+      const synthEl = document.getElementById('compatibility-narrative');
+      if (synthEl && lpA && lpB) synthEl.innerHTML = generateSynthesisNarrative(koota, lpA, lpB, nameA, nameB);
+
+      // ── Strengths and friction zones ─────────────────────────
+      const { strengthsHTML, frictionHTML } = renderStrengthsFriction(koota);
+      const strEl = document.getElementById('strengths-content');
+      const friEl = document.getElementById('friction-content');
+      if (strEl) strEl.innerHTML = strengthsHTML;
+      if (friEl) friEl.innerHTML = frictionHTML;
+
+      // ── Update harmony description dynamically ────────────────
+      const harmDesc = document.getElementById('harmony-desc');
+      if (harmDesc) {
+        const pct = ((koota.total / 36) * 100).toFixed(0);
+        const phrases = { exceptional: 'An exceptional structural resonance across the classical dimensions — a rare and deeply auspicious alignment.', strong: 'A strong overall compatibility profile, with notable resonance across key structural dimensions.', balanced: 'A balanced and functional compatibility — real strengths coexist with areas that benefit from conscious attention.', moderate: 'A moderate compatibility — meaningful connection is possible with deliberate mutual investment and awareness.' };
+        const tone = koota.total >= 28 ? 'exceptional' : koota.total >= 22 ? 'strong' : koota.total >= 18 ? 'balanced' : 'moderate';
+        harmDesc.innerText = phrases[tone];
+      }
+    }
+
+    // Dynamic auto-calculation listeners for direct fluid recalculations on change/input
+    document.getElementById('input-name-a').addEventListener('input', updateCompatibility);
+    document.getElementById('input-dob-a').addEventListener('change', updateCompatibility);
+    document.getElementById('input-name-b').addEventListener('input', updateCompatibility);
+    document.getElementById('input-dob-b').addEventListener('change', updateCompatibility);
+    document.getElementById('input-target-date').addEventListener('change', updateCompatibility);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const todayStr = new Date().toISOString().split('T')[0];
+      const tDateInput = document.getElementById('input-target-date');
+      if (tDateInput && !tDateInput.value) tDateInput.value = todayStr;
+
+      const params = new URLSearchParams(window.location.search);
+      const nameA = params.get('nameA') || safeGetItem('antara_partner_a_name') || safeGetItem('antara_user_name');
+      const nameB = params.get('nameB') || safeGetItem('antara_partner_b_name');
+      const dobA = params.get('dobA') || safeGetItem('antara_partner_a_dob') || safeGetItem('antara_user_dob');
+      const dobB = params.get('dobB') || safeGetItem('antara_partner_b_dob');
+      
+      if (nameA) document.getElementById('input-name-a').value = nameA;
+      if (nameB) document.getElementById('input-name-b').value = nameB;
+      if (dobA) document.getElementById('input-dob-a').value = dobA;
+      if (dobB) document.getElementById('input-dob-b').value = dobB;
+
+      updateCompatibility();
+    });
+  </script>
+</body>
+</html>

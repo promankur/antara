@@ -1,0 +1,3046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life Path Atlas | Antara Personal Cycles Framework</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-page: #F7F1E1;
+      --bg-vellum-warm: #ffffff;
+      --ink-archival: #2B2A28;
+      --ink-faded: #76726A;
+      --border-container: 1px solid #D6CEBE;
+      --stroke: #b56a2a;
+      
+      --font-serif-header: 'Cinzel', serif;
+      --font-serif-body: 'Playfair Display', serif;
+      --font-mono: 'Courier Prime', monospace;
+      
+      --pigment-terracotta: #A65B4A;
+      --pigment-saffron: #D98236;
+      --pigment-cinnabar: #9E3A33;
+      --pigment-lapis: #2E6CB5;
+      --pigment-moss: #4A6B5D;
+    }
+
+    details p, details td, details li {
+      font-variant: normal !important;
+      font-family: var(--font-serif-body) !important;
+      text-transform: none !important;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 17px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1150px;
+      width: 100%;
+      margin: 0 auto 2rem auto;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    /* Premium Top Grid for Inputs & Output Badge */
+    .inputs-coordinates-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .inputs-coordinates-grid {
+        display: grid;
+        grid-template-columns: 1.35fr 0.65fr;
+        gap: 1.5rem;
+        align-items: stretch;
+      }
+    }
+
+    .archival-card {
+      background-color: var(--bg-vellum-warm);
+      border: var(--border-container);
+      padding: 1.75rem;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04);
+      box-sizing: border-box;
+      border-radius: 4px;
+    }
+
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--ink-faded);
+      margin-bottom: 0.5rem;
+      min-height: 2.4em;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .form-input {
+      width: 100%;
+      height: 46px;
+      background-color: rgba(247, 241, 225, 0.4);
+      border: var(--border-container);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 1.05rem;
+      padding: 0.5rem 1rem;
+      box-sizing: border-box;
+      outline: none;
+      border-radius: 2px;
+      line-height: normal;
+    }
+    
+    .time-select-cluster {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      width: 100%;
+      height: 46px;
+    }
+    
+    .time-select-cluster select.form-input {
+      height: 46px;
+      padding: 0.5rem 0.2rem;
+      font-weight: bold;
+      text-align: center;
+      text-align-last: center;
+    }
+
+    .svg-timeline-container {
+      margin: 1.5rem auto;
+      border: 1px solid #D6CEBE;
+      padding: 2.25rem 2rem 1.75rem 2rem;
+      background: #faf7ef;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+
+    .timeline-arc {
+      fill: none;
+      stroke-width: 3.5;
+      stroke-linecap: round;
+    }
+
+    .pinnacle-card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .pinnacle-card-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .pinnacle-card {
+      background-color: rgba(244, 235, 212, 0.3);
+      border: 1px solid #D6CEBE;
+      padding: 1.25rem;
+      border-radius: 4px;
+      transition: transform 0.3s ease;
+    }
+    .pinnacle-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .pinnacle-header {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--ink-faded);
+      border-bottom: 1px dashed #d6cebe;
+      padding-bottom: 0.25rem;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .pinnacle-val {
+      font-family: var(--font-serif-header);
+      font-size: 2.25rem;
+      font-weight: bold;
+      color: var(--pigment-cinnabar);
+      line-height: 1;
+      display: inline-block;
+      margin-right: 0.5rem;
+    }
+
+    .pinnacle-age {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--ink-archival);
+      font-weight: bold;
+    }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 2.5rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+    }
+    
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--ink-faded);
+      margin: 0.25rem 0;
+    }
+
+    p, td, li {
+      text-align: left !important;
+    }
+
+    /* Header Standardized Branding */
+    .header-logo { 
+      text-align: center; 
+      margin: 20px 0 8px 0; 
+    }
+    .system-tagline { 
+      font-family: var(--font-mono) !important; 
+      font-weight: 600 !important; 
+      font-size: 12px !important; 
+      letter-spacing: 3px !important; 
+      color: #A6A29A !important; 
+      text-transform: uppercase !important; 
+      text-align: center !important; 
+      margin: 0 0 24px 0 !important; 
+      line-height: 1.2 !important;
+    }
+    .master-report-title { 
+      font-family: 'Cinzel', serif !important; 
+      font-size: 2.25rem !important; 
+      font-variant: small-caps !important; 
+      font-weight: 700 !important; 
+      letter-spacing: 2px !important; 
+      color: #2B2A28 !important; 
+      text-align: center !important; 
+      margin: 0 0 14px 0 !important; 
+      line-height: 1.3 !important; 
+    }
+    .master-report-byline { 
+      font-family: 'Playfair Display', serif !important; 
+      font-size: 1.15rem !important; 
+      color: #D98236 !important; 
+      text-align: center !important; 
+      max-width: 800px !important; 
+      margin: 0 auto 32px auto !important; 
+      padding: 0 12px !important; 
+      line-height: 1.5 !important; 
+    }
+
+    .prose-container {
+      max-width: 78ch;
+      margin: 0 auto;
+    }
+
+    /* Rings layout for birth cycles */
+    .cycle-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+    @media (min-width: 768px) {
+      .cycle-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .cycle-ring-card {
+      border: 1px solid #D6CEBE;
+      background: rgba(247, 241, 225, 0.35);
+      border-radius: 4px;
+      padding: 1.25rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .cycle-ring-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+    .cycle-ring {
+      width: 84px;
+      height: 84px;
+      position: relative;
+      margin: 0.75rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cycle-ring-num-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .cycle-ring-num {
+      font-family: var(--font-serif-header);
+      font-size: 1.75rem;
+      font-weight: bold;
+      color: var(--ink-archival);
+    }
+    .cycle-ring-max {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-faded);
+      margin-top: 2px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Biorhythm Progress Bars */
+    .bio-bar-container {
+      margin-bottom: 0.95rem;
+    }
+    .bio-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: var(--ink-archival);
+      margin-bottom: 4px;
+    }
+    .bio-bar-track {
+      height: 14px;
+      background: #EADEC9;
+      border-radius: 7px;
+      overflow: hidden;
+      position: relative;
+    }
+    .bio-bar-fill {
+      height: 100%;
+      transition: width 0.8s ease;
+      border-radius: 7px;
+    }
+
+    /* Table styles */
+    .timeline-matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+    .timeline-matrix-table th, .timeline-matrix-table td {
+      border: 1px solid #EADEC9;
+      padding: 0.75rem 0.85rem;
+      text-align: left;
+    }
+    .timeline-matrix-table th {
+      background-color: #faf7ef;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--ink-faded);
+    }
+    .timeline-matrix-table tr:nth-child(even) td {
+      background-color: rgba(244, 235, 212, 0.15);
+    }
+
+    /* Executive Centerpiece */
+    .executive-centerpiece {
+      background: rgba(244, 235, 212, 0.15);
+      border: 1px solid var(--border-container);
+      border-left: 4px solid var(--pigment-saffron);
+      padding: 1.5rem;
+      border-radius: 0 4px 4px 0;
+      margin: 1.5rem 0;
+      position: relative;
+      text-align: left;
+    }
+    .executive-centerpiece::before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+      border: 1px dashed rgba(217, 130, 54, 0.15);
+      pointer-events: none;
+      border-radius: 0 3px 3px 0;
+    }
+    .centerpiece-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--pigment-cinnabar);
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      text-align: left;
+    }
+    .centerpiece-statement {
+      font-family: var(--font-serif-body);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ink-archival);
+      font-weight: 500;
+      line-height: 1.65;
+      text-align: justify;
+    }
+
+    /* Section anchors styling */
+    .report-section-header {
+      border-bottom: 2px solid var(--ink-archival);
+      padding-bottom: 0.4rem;
+      margin: 2.5rem 0 1.25rem 0;
+    }
+    .report-section-header h2 {
+      font-family: var(--font-serif-header);
+      font-size: 1.45rem;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--ink-archival);
+    }
+    .report-section-header p {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ink-faded);
+      text-transform: uppercase;
+      margin: 2px 0 0 0;
+      letter-spacing: 1px;
+    }
+
+
+
+    /* Standardized temporal positions badge grid */
+    .temporal-badge-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    @media (min-width: 768px) {
+      .temporal-badge-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .temporal-badge-card {
+      border: 1px solid #D6CEBE;
+      background: rgba(244, 235, 212, 0.25);
+      border-radius: 4px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .temporal-badge-val {
+      font-family: var(--font-serif-header);
+      font-size: 3.25rem;
+      font-weight: bold;
+      color: var(--pigment-cinnabar);
+      line-height: 1;
+    }
+    .temporal-badge-name {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--ink-faded);
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-top: 4px;
+      letter-spacing: 1px;
+    }
+
+    /* Karmic patterns lists */
+    .karmic-list {
+      padding-left: 1.25rem;
+      margin: 0.5rem 0;
+    }
+    .karmic-list li {
+      margin-bottom: 0.5rem;
+      line-height: 1.55;
+    }
+
+    /* Interactive SAV focusing box */
+    .sav-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    @media (min-width: 768px) {
+      .sav-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+    @media (min-width: 1000px) {
+      .sav-grid {
+        grid-template-columns: repeat(12, 1fr);
+      }
+    }
+
+    .sav-house-card {
+      border: 1px solid #D6CEBE;
+      background: #faf7ef;
+      border-radius: 4px;
+      padding: 0.6rem 0.4rem;
+      text-align: center;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+    }
+    .sav-house-card:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 6px 16px rgba(43, 42, 40, 0.08);
+      z-index: 5;
+    }
+    .sav-house-num {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-faded);
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    .sav-house-pts {
+      font-family: var(--font-serif-header);
+      font-size: 1.35rem;
+      font-weight: bold;
+      color: var(--ink-archival);
+      margin: 2px 0;
+    }
+    .sav-house-status {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    #bp-sav-focus-box {
+      background: rgba(217, 130, 54, 0.03);
+      border: 1px solid #D6CEBE;
+      border-left: 4px solid var(--pigment-saffron);
+      padding: 1rem 1.25rem;
+      border-radius: 0 4px 4px 0;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    /* Archetypes Grid */
+    .archetype-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+    @media (min-width: 768px) {
+      .archetype-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .archetype-card {
+      border: 1px solid #D6CEBE;
+      background: rgba(244, 235, 212, 0.25);
+      border-radius: 4px;
+      padding: 1.25rem;
+      box-sizing: border-box;
+    }
+    .archetype-card-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ink-faded);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px dashed #d6cebe;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    .archetype-card-val {
+      font-family: var(--font-serif-header);
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: var(--pigment-cinnabar);
+      margin-bottom: 6px;
+    }
+    .archetype-card-desc {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--ink-archival);
+    }
+
+    /* Three Tracks Columns */
+    .tracks-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    @media (min-width: 900px) {
+      .tracks-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .track-card {
+      background: #ffffff;
+      border: 1px solid #D6CEBE;
+      border-radius: 4px;
+      box-sizing: border-box;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .track-card-header {
+      font-family: var(--font-serif-header);
+      font-size: 1.2rem;
+      font-weight: 600;
+      border-bottom: 2px solid #D6CEBE;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .track-card-bullet {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+      padding-left: 1.25rem;
+      position: relative;
+    }
+    .track-card-bullet::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--pigment-saffron);
+    }
+
+    /* Premium Click to Explore Accordion Styles */
+    .explore-summary {
+      font-family: var(--font-serif-header);
+      background-color: #D35400; /* Vibrant Brand Saffron */
+      color: #FFFFFF !important;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.85rem 1.25rem; /* Elegant compact height */
+      border: 1px solid #8E4A21; /* Cinnamon brand structural frame */
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 12px rgba(211, 84, 0, 0.12);
+      line-height: 1.35;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .explore-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .explore-summary::before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px double rgba(255, 255, 255, 0.45); /* Elegant double border in reverse white */
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .explore-summary:hover {
+      background-color: #E65C00; /* Slightly brighter warm saffron on hover */
+      box-shadow: 0 6px 18px rgba(211, 84, 0, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .explore-summary:hover::before {
+      border-color: rgba(255, 255, 255, 0.7);
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+    }
+
+    .explore-summary:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(211, 84, 0, 0.15);
+    }
+
+    .explore-summary .explore-title-main {
+      font-variant: small-caps;
+      font-size: 1.05rem; /* Compact size */
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: none; /* Crucial for small-caps */
+      position: relative;
+      z-index: 2;
+    }
+
+    .explore-summary .explore-title-sub {
+      font-family: var(--font-serif-body);
+      font-size: 1.25rem; /* Bold italic font matching user mock */
+      font-weight: 700;
+      font-style: italic;
+      margin-top: 3px;
+      letter-spacing: 0.5px;
+      color: #FFFFFF !important;
+      position: relative;
+      z-index: 2;
+    }
+
+    .accordion-inner-border {
+      position: relative;
+    }
+
+    .accordion-inner-border::before {
+      content: "";
+      position: absolute;
+      top: 6px; left: 6px; right: 6px; bottom: 6px;
+      border: 1px double #D6CEBE;
+      pointer-events: none;
+      border-radius: 3px;
+    }
+
+    @media (min-width: 768px) {
+      .milestone-dual-grid {
+        grid-template-columns: 1fr 1fr !important;
+      }
+    }
+
+    /* Mobile-first accordion styles */
+    .mobile-accordion-wrapper summary, .mobile-accordion-inner summary {
+      list-style: none;
+      outline: none;
+      cursor: pointer;
+    }
+    .mobile-accordion-wrapper summary::-webkit-details-marker, .mobile-accordion-inner summary::-webkit-details-marker {
+      display: none;
+    }
+    
+    @media (min-width: 768px) {
+      .mobile-accordion-wrapper {
+        border: 1px solid #EADEC9;
+        border-radius: 4px;
+        padding: 1.25rem;
+        margin-bottom: 1.5rem;
+        background: rgba(247, 241, 225, 0.15);
+        display: block !important;
+        pointer-events: none;
+      }
+      .mobile-accordion-wrapper summary, .mobile-accordion-inner summary {
+        cursor: default;
+        pointer-events: none;
+      }
+      .mobile-accordion-wrapper .mobile-accordion-icon, .mobile-accordion-inner .mobile-accordion-icon {
+        display: none !important;
+      }
+      .mobile-accordion-wrapper .mobile-accordion-header {
+        font-family: var(--font-serif-header);
+        font-size: 1.15rem;
+        font-weight: bold;
+        border-bottom: 1.5px solid var(--active-phase-color, var(--pigment-saffron));
+        padding-bottom: 4px;
+        margin-bottom: 1rem;
+        color: var(--ink-archival);
+      }
+      .mobile-accordion-inner .mobile-accordion-header {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--ink-faded);
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 6px;
+        border-bottom: 1px dashed #d6cebe;
+        padding-bottom: 4px;
+        font-weight: bold;
+      }
+    }
+    
+    @media (max-width: 767px) {
+      .mobile-accordion-wrapper {
+        border: 1px solid #D6CEBE;
+        background: rgba(247, 241, 225, 0.25);
+        border-radius: 4px;
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+      }
+      .mobile-accordion-wrapper[open] {
+        background: #ffffff;
+      }
+      .mobile-accordion-wrapper .mobile-accordion-header {
+        padding: 0.95rem 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: var(--font-serif-header);
+        font-size: 1.05rem;
+        font-weight: bold;
+        color: var(--ink-archival);
+      }
+      .mobile-accordion-wrapper .mobile-accordion-content {
+        padding: 0 1.25rem 1.25rem 1.25rem;
+      }
+      .mobile-accordion-wrapper .mobile-accordion-icon::after {
+        content: "＋";
+        font-size: 1.1rem;
+        color: var(--active-phase-color, var(--pigment-saffron));
+        font-weight: bold;
+      }
+      .mobile-accordion-wrapper[open] .mobile-accordion-icon::after {
+        content: "－";
+      }
+
+      .mobile-accordion-inner {
+        border: 1px solid #D6CEBE;
+        background: rgba(247, 241, 225, 0.12);
+        border-radius: 4px;
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+      }
+      .mobile-accordion-inner[open] {
+        background: #ffffff;
+      }
+      .mobile-accordion-inner .mobile-accordion-header {
+        padding: 0.75rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--ink-faded);
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+      .mobile-accordion-inner .mobile-accordion-content {
+        padding: 0 1rem 1rem 1rem;
+      }
+      .mobile-accordion-inner .mobile-accordion-icon::after {
+        content: "＋";
+        font-size: 0.95rem;
+        color: var(--pigment-saffron);
+        font-weight: bold;
+      }
+      .mobile-accordion-inner[open] .mobile-accordion-icon::after {
+        content: "－";
+      }
+    }
+
+    /* Unified 3-Column Chronological Milestones Layout */
+    .milestones-layout-container {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .desktop-headers-row {
+      display: none;
+    }
+
+    .milestone-row {
+      border: 1px solid #D6CEBE;
+      background: rgba(247, 241, 225, 0.15);
+      border-radius: 6px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .milestone-center-label {
+      text-align: center;
+      font-family: var(--font-serif-header);
+      color: var(--ink-archival);
+      order: 1;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px dashed #D6CEBE;
+      margin-bottom: 0.5rem;
+    }
+
+    .milestone-num-label {
+      font-weight: bold;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .milestone-phase-label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 2px 0;
+    }
+
+    .milestone-age-label {
+      font-size: 0.85rem;
+      color: var(--ink-faded);
+    }
+    
+    .milestone-age-label::before {
+      content: "(";
+    }
+    .milestone-age-label::after {
+      content: ")";
+    }
+
+    .milestone-row .pinnacle-card-wrapper {
+      order: 2;
+    }
+
+    .milestone-row .challenge-card-wrapper {
+      order: 3;
+    }
+
+    @media (min-width: 900px) {
+      .milestones-layout-container {
+        display: grid;
+        grid-template-columns: 1fr 200px 1fr;
+        column-gap: 2.5rem;
+        row-gap: 2rem;
+        align-items: center;
+      }
+
+      .desktop-headers-row {
+        display: contents;
+      }
+
+      .desktop-header-col {
+        font-family: var(--font-serif-header);
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: var(--ink-archival);
+        border-bottom: 2px solid var(--header-line-color, var(--pigment-saffron));
+        padding-bottom: 6px;
+        margin-bottom: 0.5rem;
+        letter-spacing: 0.5px;
+      }
+
+      .desktop-header-col.pinnacle-hdr {
+        grid-column: 1;
+        --header-line-color: var(--pigment-saffron);
+      }
+
+      .desktop-header-spacer {
+        grid-column: 2;
+      }
+
+      .desktop-header-col.challenge-hdr {
+        grid-column: 3;
+        --header-line-color: var(--pigment-terracotta);
+        text-align: right;
+      }
+
+      .milestone-row {
+        display: contents;
+      }
+
+      .milestone-center-label {
+        grid-column: 2;
+        order: unset;
+        border-bottom: none;
+        margin-bottom: 0;
+        padding: 0;
+      }
+
+      .milestone-num-label {
+        font-size: 1.1rem;
+      }
+
+      .milestone-phase-label {
+        font-size: 1rem;
+      }
+
+      .milestone-row .pinnacle-card-wrapper {
+        grid-column: 1;
+        order: unset;
+      }
+
+      .milestone-row .challenge-card-wrapper {
+        grid-column: 3;
+        order: unset;
+      }
+    }
+  
+    /* Premium Left-Aligned Footer Override */
+    footer {
+      width: 100%;
+      padding: 2rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+      text-align: left;
+    }
+    .footer-content {
+      max-width: 1100px;
+      width: 100%;
+      padding: 0 16px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+    footer p {
+      font-family: var(--font-serif-body);
+      font-size: 0.82rem;
+      color: var(--ink-archival);
+      margin: 0.25rem 0;
+    }
+    footer p.font-mono {
+      font-family: var(--font-mono) !important;
+      font-size: 0.72rem !important;
+      color: var(--ink-faded) !important;
+    }
+
+  
+    /* ─── Reading Guide Grid (Tactile manuscript details) ─── */
+    .reading-guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .reading-guide-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+</style>
+  <meta name="description" content="Antara is a traditional cross-cultural mathematical life-engine and archetypal systems cartography. Calibrate your natal coordinates, biological rhythms, and name phonetic values across Vedic, Western tropical, and Chinese solar Four Pillars traditions.">
+  <link rel="icon" type="image/png" href="Antara Logo.png">
+</head>
+<body>
+
+
+
+  <div class="header-logo">
+    <a href="index.html" title="Return to Antara Dashboard" style="text-decoration: none; border: none; display: inline-block;">
+      <img src="Antara Logo.png" alt="ANTARA" style="max-height: 90px; width: auto;" onerror="this.style.display='none';">
+    </a>
+  </div>
+  <div class="system-tagline">Personal Cycles Framework</div>
+
+  <h1 class="master-report-title" id="page-master-title">Life Path Cycles<br>For Antara Gupta</h1>
+  <p class="master-report-byline">Life Cycles & Numerology Timelines</p>
+
+  <div class="container">
+    
+    <!-- About This Report (Borderless layout restricted to 78ch) -->
+    <div class="prose-container" style="margin-bottom: 2.25rem; padding: 0.5rem 0;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-bottom: 1rem; color: var(--stroke, #b56a2a); letter-spacing: 1px; text-transform: uppercase;">About This Report</h3>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0 0 1rem 0;">
+        This report maps your life cycles, timing patterns, behavioral tendencies, and developmental phases using integrated numerological and symbolic systems.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0 0 1rem 0;">
+        Rather than fixed predictions, it offers perspective — highlighting periods of growth, transition, pressure, recovery, and opportunity across different areas of life.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">
+        The purpose is to support greater self-awareness, clearer decision-making, and better alignment between personal temperament, life timing, and evolving priorities.
+      </p>
+    
+      <!-- Codex Support Navigation Panel -->
+      <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px dashed #D6CEBE; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="Help.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📖 Help
+        </a>
+        <a href="FAQ.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          ❓ FAQ
+        </a>
+        <a href="Glossary.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📓 Glossary
+        </a>
+      </div>
+      <!-- How to Read This Report (Reading Guide Block) -->
+      <div style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; border: 1px dashed #D6CEBE; background-color: rgba(247, 241, 225, 0.15); border-radius: 4px; box-shadow: 0 2px 8px rgba(43, 42, 40, 0.01);">
+        <h4 style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 1rem; text-align: center; border-bottom: 1px dashed #D6CEBE; padding-bottom: 0.4rem;">
+          How to Study This Document
+        </h4>
+        <div class="reading-guide-grid">
+          <!-- Point 1 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">1. Read the accordion sections one at a time.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">Each section expands when you click the title — do not try to read everything at once.</span>
+          </div>
+          <!-- Point 2 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">2. Look up unfamiliar terms</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">in the Antara Glossary (<a href="Glossary.html" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar);">Glossary.html</a> in this folder).</span>
+          </div>
+          <!-- Point 3 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">3. Start with the numbers that feel most familiar.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">In a Western chart, most people know their Sun sign. In Numerology, the Life Path is easiest.</span>
+          </div>
+          <!-- Point 4 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">4. Do not worry about understanding everything on the first read.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">These reports are meant to be returned to and studied over time.</span>
+          </div>
+        </div>
+      </div>
+
+</div>
+
+    <!-- Side-by-Side Responsive Top Grid -->
+    <div class="inputs-coordinates-grid" id="top-anchor-block">
+      
+      <!-- Personal Coordinates (Inputs Card) -->
+      <div class="archival-card" style="display: flex; flex-direction: column; justify-content: center;">
+        <form onsubmit="event.preventDefault();">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1.25rem; text-transform: uppercase; color: var(--pigment-terracotta); letter-spacing: 1px;">Personal Coordinates</h3>
+          
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="input-name" class="form-input" value="Antara Gupta" autocomplete="off" placeholder="Your Name">
+          </div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label>Date of Birth</label>
+              <input type="date" id="input-dob" class="form-input" value="1965-06-26">
+            </div>
+            <div class="form-group">
+              <label>Evaluation Date</label>
+              <input type="date" id="input-eval-date" class="form-input" value="2026-05-30">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>Birth Time</label>
+              <div class="time-select-cluster">
+                <select id="input-tob-hour" class="form-input"></select>
+                <select id="input-tob-minute" class="form-input"></select>
+                <select id="input-tob-ampm" class="form-input">
+                  <option value="AM">AM</option>
+                  <option value="PM">PM</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>Coordinates Anchor</label>
+              <input type="text" id="input-location" class="form-input" value="Chakrata, Uttarakhand, India" placeholder="Birth Place">
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Life Path Coordinates (Output Badge Card) -->
+      <div class="archival-card" style="text-align: center; display: flex; flex-direction: column; justify-content: center;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1.25rem; text-transform: uppercase; letter-spacing: 1px;">Life Path Coordinates</h3>
+        
+        <!-- Large Badge & Details Grid -->
+        <div style="display: grid; grid-template-columns: 90px 1fr; gap: 1rem; align-items: center; border-bottom: 1px dashed #d6cebe; padding-bottom: 1rem; margin-bottom: 1rem;">
+          <div style="font-family: var(--font-serif-header); font-size: 5.25rem; font-weight: bold; color: var(--pigment-cinnabar); line-height: 1; text-align: center;" id="lp-badge">8</div>
+          <div style="text-align: left;">
+            <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faded); text-transform: uppercase; font-weight: bold;" class="font-mono">Base-9 Reduction Core</div>
+            <div style="font-family: var(--font-serif-header); font-size: 1.2rem; font-weight: bold; color: var(--ink-archival); margin: 2px 0;" id="lp-archetype-name">The Sovereign / Manifestation Core</div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px;">
+              <span id="lp-status-tag" style="font-family: var(--font-mono); font-size: 0.72rem; padding: 2px 8px; border-radius: 3px; font-weight: bold; background: rgba(74, 107, 93, 0.1); color: var(--pigment-moss); border: 1px solid var(--pigment-moss);">Standard Core</span>
+              <span id="lp-element-tag" style="font-family: var(--font-mono); font-size: 0.72rem; padding: 2px 8px; border-radius: 3px; font-weight: bold; background: rgba(166, 91, 74, 0.1); color: var(--pigment-terracotta); border: 1px solid var(--pigment-terracotta);">Earth Element</span>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size: 0.95rem; text-align: justify !important; margin: 0; color: var(--ink-archival); line-height: 1.6;" id="lp-summary-desc">Your Life Path Number governs the baseline environmental theme. The age boundaries of your four Pinnacle cycles are derived directly from this core coordinate.</p>
+      </div>
+
+    </div>
+
+
+    <!-- ========================================== -->
+    <!--  SECTION II: The Three Birth Cycles        -->
+    <!-- ========================================== -->
+    <div class="report-section-header">
+      <h2>II. The Three Birth Cycles</h2>
+      <p>Outlining Your Outward Expression, Internal Cognitive style, & Soul Orientation</p>
+    </div>
+
+    <div class="archival-card" style="margin-bottom: 1.5rem;">
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-top: 0; margin-bottom: 1.25rem;">
+        Your birth date contains three independent, permanent cycles derived from Month, Day, and Year numbers.<br>
+        These outline the permanent cognitive lens through which you process all events:
+      </p>
+
+      <div style="font-family: var(--font-serif-body); font-size: 0.95rem; font-style: italic; color: var(--ink-faded); text-align: center; margin-top: -0.5rem; margin-bottom: 1.5rem;">
+        ✦ Maximum Cycle Intensity Value: 9 ✦
+      </div>
+
+      <div class="cycle-grid">
+        <!-- Physical Cycle -->
+        <div class="cycle-ring-card">
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); text-transform: uppercase; font-weight: bold; display: block; letter-spacing: 1px;">Physical Cycle</span>
+          <div class="cycle-ring">
+            <svg width="84" height="84" viewBox="0 0 84 84" style="position: absolute; top: 0; left: 0; transform: rotate(-90deg); overflow: visible;">
+              <circle cx="42" cy="42" r="36" fill="none" stroke="#EADEC9" stroke-width="3" />
+              <circle id="cycle-phys-ring" cx="42" cy="42" r="36" fill="none" stroke="var(--pigment-saffron)" stroke-width="5" stroke-linecap="round" stroke-dasharray="226.2" stroke-dashoffset="226.2" style="transition: stroke-dashoffset 1.2s ease-in-out;" />
+            </svg>
+            <div class="cycle-ring-num" id="cycle-phys-val" style="position: relative; z-index: 2; font-family: var(--font-serif-header); font-size: 1.75rem; font-weight: bold; color: var(--ink-archival);">6</div>
+          </div>
+          <span style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: bold; display: block; color: var(--ink-archival);" id="cycle-phys-name">Expression (Air)</span>
+          <p style="font-size: 0.95rem; line-height: 1.45; color: var(--ink-faded); margin: 6px 0 0 0;" id="cycle-phys-desc">Governs your physical interfaces, social connections, and default action modes.</p>
+        </div>
+
+        <!-- Mental Cycle -->
+        <div class="cycle-ring-card" style="background: rgba(217, 130, 54, 0.03); border: 1px solid var(--pigment-saffron);">
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--pigment-saffron); text-transform: uppercase; font-weight: bold; display: block; letter-spacing: 1px;">Mental Cycle</span>
+          <div class="cycle-ring">
+            <svg width="84" height="84" viewBox="0 0 84 84" style="position: absolute; top: 0; left: 0; transform: rotate(-90deg); overflow: visible;">
+              <circle cx="42" cy="42" r="36" fill="none" stroke="#EADEC9" stroke-width="3" />
+              <circle id="cycle-ment-ring" cx="42" cy="42" r="36" fill="none" stroke="var(--pigment-cinnabar)" stroke-width="5" stroke-linecap="round" stroke-dasharray="226.2" stroke-dashoffset="226.2" style="transition: stroke-dashoffset 1.2s ease-in-out;" />
+            </svg>
+            <div class="cycle-ring-num" id="cycle-ment-val" style="position: relative; z-index: 2; font-family: var(--font-serif-header); font-size: 1.75rem; font-weight: bold; color: var(--ink-archival);">8</div>
+          </div>
+          <span style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: bold; display: block; color: var(--pigment-cinnabar);" id="cycle-ment-name">Sovereign (Earth)</span>
+          <p style="font-size: 0.95rem; line-height: 1.45; color: var(--ink-faded); margin: 6px 0 0 0;" id="cycle-ment-desc">Governs your mental processing, logical systems, and internal cognitive structures.</p>
+        </div>
+
+        <!-- Spiritual Cycle -->
+        <div class="cycle-ring-card">
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); text-transform: uppercase; font-weight: bold; display: block; letter-spacing: 1px;">Spiritual Cycle</span>
+          <div class="cycle-ring">
+            <svg width="84" height="84" viewBox="0 0 84 84" style="position: absolute; top: 0; left: 0; transform: rotate(-90deg); overflow: visible;">
+              <circle cx="42" cy="42" r="36" fill="none" stroke="#EADEC9" stroke-width="3" />
+              <circle id="cycle-spir-ring" cx="42" cy="42" r="36" fill="none" stroke="var(--pigment-lapis)" stroke-width="5" stroke-linecap="round" stroke-dasharray="226.2" stroke-dashoffset="226.2" style="transition: stroke-dashoffset 1.2s ease-in-out;" />
+            </svg>
+            <div class="cycle-ring-num" id="cycle-spir-val" style="position: relative; z-index: 2; font-family: var(--font-serif-header); font-size: 1.75rem; font-weight: bold; color: var(--ink-archival);">3</div>
+          </div>
+          <span style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: bold; display: block; color: var(--ink-archival);" id="cycle-spir-name">Creativity (Fire)</span>
+          <p style="font-size: 0.95rem; line-height: 1.45; color: var(--ink-faded); margin: 6px 0 0 0;" id="cycle-spir-desc">Governs deeper soul priorities, philosophical orientation, and baseline spiritual lessons.</p>
+        </div>
+      </div>
+
+      <!-- Combined Temperament Synthesis -->
+      <div class="executive-centerpiece" style="margin-top: 1.5rem; margin-bottom: 0;">
+        <div class="centerpiece-title">Combined Temperament Synthesis</div>
+        <div class="centerpiece-statement" style="line-height: 1.65;" id="cycle-synthesis-text">
+          Evaluating your birth cycle coordinates...
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!--  SECTION III: The Four Life Milestones & Challenges -->
+    <!-- ========================================== -->
+    <div class="report-section-header">
+      <h2>III. The Four Life Milestones & Challenges</h2>
+      <p>Your Chronological Timeline Arcs and Nested Light Themes & Shadow Opportunities</p>
+    </div>
+
+    <!-- Housed together in the same box! -->
+    <div class="archival-card" style="margin-bottom: 1.5rem;" id="unified-timeline-card">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; text-align: center;">Pinnacle & Challenge Cycles</h3>
+      <p style="font-size: 0.95rem; text-align: center; color: var(--ink-faded); margin: 0 0 1rem 0; line-height: 1.6;">
+        Chronological milestones represented as qualitative arches of life.<br>
+        Solid colored curves represent active core Pinnacle numbers (Scale 1 - 9);<br>
+        Solid slate-blue curves represent associated shadow Challenge numbers.<br>
+        Both co-exist as upward developmental tracks.
+      </p>
+
+      <div class="svg-timeline-container">
+        <!-- SVG Viewbox height expanded to 280 to frame both upward Pinnacles and Challenges! -->
+        <svg id="timeline-arcs-svg" viewBox="0 0 700 280" style="width: 100%; min-width: 580px; height: auto; display: block; overflow: visible;">
+          <!-- Baseline at y=230 -->
+          <line x1="50" y1="230" x2="650" y2="230" stroke="#D6CEBE" stroke-width="2.5" />
+          
+          <g stroke="#EADEC9" stroke-width="1.5" stroke-dasharray="3,4" id="timeline-verticals"></g>
+          <g font-family="Courier Prime" font-size="13" font-weight="bold" fill="#76726A" text-anchor="middle" id="timeline-labels"></g>
+          <g id="dynamic-arcs-elements"></g>
+        </svg>
+      </div>
+
+      <!-- Unified 3-Column Chronological Milestones Grid Layout -->
+      <div class="milestones-layout-container">
+        <!-- Desktop headers -->
+        <div class="desktop-headers-row">
+          <div class="desktop-header-col pinnacle-hdr">Pinnacle Theme</div>
+          <div class="desktop-header-spacer"></div>
+          <div class="desktop-header-col challenge-hdr">Growth Challenge Theme</div>
+        </div>
+
+        <!-- Milestone 1 -->
+        <div class="milestone-row">
+          <!-- Left: Pinnacle Card -->
+          <div class="pinnacle-card-wrapper" style="background: rgba(217, 130, 54, 0.03); border: 1px solid #D6CEBE; border-left: 4px solid var(--pigment-saffron); padding: 1.25rem 1rem 1rem 1rem; border-radius: 0 4px 4px 0;">
+            <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+              <span class="pinnacle-val" id="p1-val" style="color: var(--pigment-saffron); font-size: 2.2rem; line-height: 1; min-width: 1.6rem;">6</span>
+              <p style="font-size: 0.95rem; line-height: 1.5; color: var(--ink-archival); margin: 0; text-align: justify;" id="p1-desc-text">Represents family roots, early childhood calibrations, and primary relational training.</p>
+            </div>
+          </div>
+          
+          <!-- Center: Milestone Label -->
+          <div class="milestone-center-label">
+            <div class="milestone-num-label">1st Milestone</div>
+            <div class="milestone-phase-label">Foundation Phase</div>
+            <div class="milestone-age-label" id="p1-age">Ages 0 to 28</div>
+          </div>
+
+          <!-- Right: Challenge Card -->
+          <div class="challenge-card-wrapper" style="background: rgba(166, 91, 74, 0.03); border: 1px solid #D6CEBE; border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1rem 1rem 1rem; border-radius: 0 4px 4px 0;">
+            <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+              <span class="pinnacle-val" id="c1-val" style="color: var(--pigment-terracotta); font-size: 2.2rem; line-height: 1; min-width: 1.6rem;">2</span>
+              <p style="font-size: 0.95rem; line-height: 1.5; color: var(--ink-archival); margin: 0; text-align: justify;" id="c1-desc">Evaluating coordinates...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 2 -->
+        <div class="milestone-row">
+          <!-- Left: Pinnacle Card -->
+          <div class="pinnacle-card-wrapper" style="background: rgba(217, 130, 54, 0.03); border: 1px solid #D6CEBE; border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1rem 1rem 1rem; border-radius: 0 4px 4px 0;">
+            <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+              <span class="pinnacle-val" id="p2-val" style="color: var(--pigment-terracotta); font-size: 2.2rem; line-height: 1; min-width: 1.6rem;">3</span>
+              <p style="font-size: 0.95rem; line-height: 1.5; color: var(--ink-archival); margin: 0; text-align: justify;" id="p2-desc-text">Governs early independent careers, professional building, and initial public platforms.</p>
+            </div>
+          </div>
+          
+          <!-- Center: Milestone Label -->
+          <div class="milestone-center-label">
+            <div class="milestone-num-label">2nd Milestone</div>
+            <div class="milestone-phase-label">Development Phase</div>
+            <div class="milestone-age-label" id="p2-age">Ages 28 to 37</div>
+          </div>
+
+          <!-- Right: Challenge Card -->
+          <div class="challenge-card-wrapper" style="background: rgba(166, 91, 74, 0.03); border: 1px solid #D6CEBE; border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1rem 1rem 1rem; border-radius: 0 4px 4px 0;">
+            <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+              <span class="pinnacle-val" id="c2-val" style="color: var(--pigment-terracotta); font-size: 2.2rem; line-height: 1; min-width: 1.6rem;">5</span>
+              <p style="font-size: 0.95rem; line-height: 1.5; color: var(--ink-archival); margin: 0; text-align: justify;" id="c2-desc">Evaluating coordinates...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 3 -->
+        <div class="milestone-row">
+          <!-- Left: Pinnacle Card -->
+          <div class="pinnacle-card-wrapper" style="background: rgba(158, 58, 51, 0.03); border: 1px solid #D6CEBE; border-left: 4px solid var(--pigment-cinnabar); padding: 1.25rem 1rem 1rem 1rem; border-radius: 0 4px 4px 0;">
+            <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+              <span class="pinnacle-val" id="p3-val" style="color: var(--pigment-cinnabar); font-size: 2.2rem; line-height: 1; min-width: 1.6rem;">9</span>
+              <p style="font-size: 0.95rem; line-height: 1.5; color: var(--ink-archival); margin: 0; text-align: justify;" id="p3-desc-text">Maps mature career leadership, family expansions, and consolidated environmental stewardship.</p>
+            </div>
+          </div>
+          
+          <!-- Center: Milestone Label -->
+          <div class="milestone-center-label">
+            <div class="milestone-num-label">3rd Milestone</div>
+            <div class="milestone-phase-label">Leadership Phase</div>
+            <div class="milestone-age-label" id="p3-age">Ages 37 to 46</div>
+          </div>
+
+          <!-- Right: Challenge Card -->
+          <div class="challenge-card-wrapper" style="background: rgba(158, 58, 51, 0.03); border: 1px solid #D6CEBE; border-left: 4px solid var(--pigment-cinnabar); padding: 1.25rem 1rem 1rem 1rem; border-radius: 0 4px 4px 0;">
+            <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+              <span class="pinnacle-val" id="c3-val" style="color: var(--pigment-cinnabar); font-size: 2.2rem; line-height: 1; min-width: 1.6rem;">3</span>
+              <p style="font-size: 0.95rem; line-height: 1.5; color: var(--ink-archival); margin: 0; text-align: justify;" id="c3-desc">Evaluating coordinates...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 4 -->
+        <div class="milestone-row">
+          <!-- Left: Pinnacle Card -->
+          <div class="pinnacle-card-wrapper" style="background: rgba(74, 107, 93, 0.03); border: 1px solid #D6CEBE; border-left: 4px solid var(--pigment-moss); padding: 1.25rem 1rem 1rem 1rem; border-radius: 0 4px 4px 0;">
+            <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+              <span class="pinnacle-val" id="p4-val" style="color: var(--pigment-moss); font-size: 2.2rem; line-height: 1; min-width: 1.6rem;">5</span>
+              <p style="font-size: 0.95rem; line-height: 1.5; color: var(--ink-archival); margin: 0; text-align: justify;" id="p4-desc-text">Represents senior legacy integration, philosophical transitions, and transmitting deep wisdom structures.</p>
+            </div>
+          </div>
+          
+          <!-- Center: Milestone Label -->
+          <div class="milestone-center-label">
+            <div class="milestone-num-label">4th Milestone</div>
+            <div class="milestone-phase-label">Legacy Phase</div>
+            <div class="milestone-age-label" id="p4-age">Ages 46 to 80+</div>
+          </div>
+
+          <!-- Right: Challenge Card -->
+          <div class="challenge-card-wrapper" style="background: rgba(74, 107, 93, 0.03); border: 1px solid #D6CEBE; border-left: 4px solid var(--pigment-moss); padding: 1.25rem 1rem 1rem 1rem; border-radius: 0 4px 4px 0;">
+            <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+              <span class="pinnacle-val" id="c4-val" style="color: var(--pigment-moss); font-size: 2.2rem; line-height: 1; min-width: 1.6rem;">1</span>
+              <p style="font-size: 0.95rem; line-height: 1.5; color: var(--ink-archival); margin: 0; text-align: justify;" id="c4-desc">Evaluating coordinates...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!--  SECTION IV: Current Cycles                -->
+    <!-- ========================================== -->
+    <div class="report-section-header">
+      <h2>IV. Current Cycles</h2>
+      <p>Personal Year, Month, and Day Timing Focus</p>
+    </div>
+
+    <div class="archival-card" style="margin-bottom: 1.5rem;" id="temporal-position-card">
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--ink-archival); text-align: justify; margin-top: 0; margin-bottom: 1.25rem;">
+        In Pythagorean timing, your active cycles are calculated from birthday to birthday. This maps out three nested chapters of personal timing:
+      </p>
+
+      <div class="temporal-badge-grid">
+        <!-- Personal Year -->
+        <div class="temporal-badge-card" style="border-top: 4px solid var(--pigment-saffron);">
+          <div class="temporal-badge-val" id="py-val">7</div>
+          <div class="temporal-badge-name">Personal Year Cycle</div>
+          <p style="font-size: 0.95rem; line-height: 1.45; color: var(--ink-faded); text-align: center !important; margin: 6px 0 0 0;" id="py-theme-title">Theme: Study & Introspection</p>
+        </div>
+
+        <!-- Personal Month -->
+        <div class="temporal-badge-card" style="border-top: 4px solid var(--pigment-terracotta);">
+          <div class="temporal-badge-val" id="pm-val">4</div>
+          <div class="temporal-badge-name">Personal Month Cycle</div>
+          <p style="font-size: 0.95rem; line-height: 1.45; color: var(--ink-faded); text-align: center !important; margin: 6px 0 0 0;" id="pm-theme-title">Month Sub-Theme Activated</p>
+        </div>
+
+        <!-- Personal Day -->
+        <div class="temporal-badge-card" style="border-top: 4px solid var(--pigment-lapis);">
+          <div class="temporal-badge-val" id="pd-val">9</div>
+          <div class="temporal-badge-name">Personal Day Rhythm</div>
+          <p style="font-size: 0.95rem; line-height: 1.45; color: var(--ink-faded); text-align: center !important; margin: 6px 0 0 0;" id="pd-theme-title">Daily Decision Rhythm</p>
+        </div>
+      </div>
+
+      <!-- Actionable Phase Guidance Dashboard -->
+      <div style="background: rgba(74, 107, 93, 0.05); border-left: 4px solid var(--pigment-moss); padding: 1.25rem; border-radius: 0 4px 4px 0; margin-top: 1.5rem;">
+        <strong style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--pigment-moss); text-transform: uppercase; display: block; margin-bottom: 4px; letter-spacing: 1px;">Current Guidance</strong>
+        <p style="font-size: 1rem; line-height: 1.6; color: var(--ink-archival); text-align: justify; margin: 0;" id="py-cycle-guidance">
+          Evaluating timing focus...
+        </p>
+      </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!--  SECTION V: Multi-System Timing Overlay  -->
+    <!-- ========================================== -->
+    <div class="report-section-header">
+      <h2>V. Cross-System Timing</h2>
+      <p>Vedic, BaZi, and Biorhythm alignments</p>
+    </div>
+
+    <div class="archival-card" style="margin-bottom: 1.5rem;">
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-top: 0; margin-bottom: 1.25rem;">
+        Antara's multi-system compiler overlays Western Pythagorean timing with Eastern astronomical coordinates and physical biology to highlight deep-horizon alignments:
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+        
+        <!-- Part A: Vedic & BaZi Overlay -->
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1.25rem;">
+          
+          <div style="background: rgba(46, 108, 181, 0.04); border-left: 4px solid var(--pigment-lapis); padding: 1.25rem; border-radius: 0 4px 4px 0;">
+            <strong style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--pigment-lapis); text-transform: uppercase; display: block; margin-bottom: 4px;">Vedic Mahadasha Convergence</strong>
+            <span style="font-size: 0.95rem; line-height: 1.55; color: var(--ink-archival); display: block;" id="overlay-vedic-desc">Evaluating convergence...</span>
+          </div>
+
+          <div style="background: rgba(74, 107, 93, 0.04); border-left: 4px solid var(--pigment-moss); padding: 1.25rem; border-radius: 0 4px 4px 0;">
+            <strong style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--pigment-moss); text-transform: uppercase; display: block; margin-bottom: 4px;">BaZi 10-Year Luck Pillar Alignment</strong>
+            <span style="font-size: 0.95rem; line-height: 1.55; color: var(--ink-archival); display: block;" id="overlay-bazi-desc">Evaluating Luck Pillar elements...</span>
+          </div>
+
+        </div>
+
+        <!-- Part B: Biorhythms Panel -->
+        <div style="border: 1px solid #D6CEBE; background: #faf7ef; border-radius: 4px; padding: 1.25rem;">
+          <strong style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faded); text-transform: uppercase; display: block; margin-bottom: 12px; border-bottom: 1px dashed #d6cebe; padding-bottom: 6px;">Current Biorhythm State</strong>
+          
+          <div class="bio-bar-container">
+            <div class="bio-bar-label"><span>Physical Cycle (23-Day Rhythm)</span><span id="bio-phys-pct">0%</span></div>
+            <div class="bio-bar-track"><div class="bio-bar-fill" id="bio-phys-fill" style="background: var(--pigment-cinnabar);"></div></div>
+          </div>
+
+          <div class="bio-bar-container">
+            <div class="bio-bar-label"><span>Emotional Cycle (28-Day Rhythm)</span><span id="bio-emot-pct">0%</span></div>
+            <div class="bio-bar-track"><div class="bio-bar-fill" id="bio-emot-fill" style="background: var(--pigment-saffron);"></div></div>
+          </div>
+
+          <div class="bio-bar-container" style="margin-bottom: 0;">
+            <div class="bio-bar-label"><span>Intellectual Cycle (33-Day Rhythm)</span><span id="bio-intel-pct">0%</span></div>
+            <div class="bio-bar-track"><div class="bio-bar-fill" id="bio-intel-fill" style="background: var(--pigment-lapis);"></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!--  SECTION VI: Karmic Patterns              -->
+    <!-- ========================================== -->
+    <div class="report-section-header">
+      <h2>VI. Karmic Patterns & Lessons</h2>
+      <p>Detecting Karmic Debts & Absences Inside Your Name & Birthdate Blueprint</p>
+    </div>
+
+    <div class="archival-card" style="margin-bottom: 1.5rem;" id="karmic-section-card">
+      <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+        
+        <!-- Left: Karmic Debt -->
+        <div style="border-right: 1px dashed #D6CEBE; padding-right: 1.25rem;" id="karmic-debt-block">
+          <strong style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--pigment-cinnabar); text-transform: uppercase; display: block; margin-bottom: 6px; border-bottom: 1px dashed #d6cebe; padding-bottom: 4px;">Karmic Debt Nodes Detected</strong>
+          <ul class="karmic-list" id="karmic-debt-list" style="font-size: 0.95rem; line-height: 1.55; color: var(--ink-archival);">
+            <li>No major karmic debt nodes detected in the primary coordinates.</li>
+          </ul>
+        </div>
+
+        <!-- Right: Karmic Lessons -->
+        <div>
+          <strong style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--pigment-terracotta); text-transform: uppercase; display: block; margin-bottom: 6px; border-bottom: 1px dashed #d6cebe; padding-bottom: 4px;">Karmic Lessons (Phonetic Name Absences)</strong>
+          <p style="font-size: 0.95rem; color: var(--ink-faded); margin: 4px 0 10px 0;">Derived from letters completely absent in your full name. These mark structural fields requiring conscious self-development in this lifetime.</p>
+          <ul class="karmic-list" id="karmic-lessons-list" style="font-size: 0.95rem; line-height: 1.55; color: var(--ink-archival);">
+            <!-- Dynamically Populated -->
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!--  THE SIX CORE SYSTEM PILLARS (DASHBOARD)   -->
+    <!-- ========================================== -->
+    <div class="report-section-header">
+      <h2>VII. Life Timing Framework</h2>
+      <p>Structured Layout Mapping Segmented Life Sectors & Remedies</p>
+    </div>
+
+    <!-- PILLAR 1: Executive Dashboard (The Macro-View) -->
+    <div class="archival-card" style="margin-bottom: 1.5rem;" id="pillar-dashboard">
+      <div style="border-bottom: 1px solid var(--border-container); padding-bottom: 0.5rem; margin-bottom: 1rem;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin: 0; text-transform: uppercase; letter-spacing: 1px;">1. The Executive Dashboard</h3>
+        <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faded); text-transform: uppercase; margin: 2px 0 0 0; letter-spacing: 1px;">High-Utility Summary & Current Cycle Climate</p>
+      </div>
+
+      <details class="mobile-accordion-inner" open>
+        <summary>
+          <div class="mobile-accordion-header">
+            <span>Macro Phase Summary Table</span>
+            <span class="mobile-accordion-icon"></span>
+          </div>
+        </summary>
+        <div class="mobile-accordion-content">
+          <div class="timeline-matrix-container" style="overflow-x: auto;">
+            <table class="timeline-matrix-table">
+              <thead>
+                <tr>
+                  <th>Age Span / Phase</th>
+                  <th>Pinnacle Vibration</th>
+                  <th>Qualitative Phase Theme</th>
+                  <th>Strategic Posture</th>
+                </tr>
+              </thead>
+              <tbody id="dash-matrix-body">
+                <!-- Dynamically Populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <!-- Real-time Climate Box & Core Centerpiece -->
+      <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.25rem;">
+        <div style="background: rgba(166, 91, 74, 0.05); border-left: 4px solid var(--pigment-terracotta); padding: 1.15rem 1.35rem; border-radius: 0 4px 4px 0; box-sizing: border-box;">
+          <strong style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--pigment-terracotta); text-transform: uppercase; display: block; margin-bottom: 6px; letter-spacing: 1px;">Timing Cycle Synthesis (12-24 Months Horizon)</strong>
+          <span id="dash-timing-desc" style="font-size: 0.95rem; line-height: 1.6; color: var(--ink-archival); display: block;">Evaluating timing focus...</span>
+        </div>
+      </div>
+
+      <div class="executive-centerpiece">
+        <div class="centerpiece-title">Primary Guidance</div>
+        <div class="centerpiece-statement" id="dash-centerpiece-theme">“Calculating core focus...”</div>
+      </div>
+    </div>
+
+
+    <!-- PILLAR 2: Birth Blueprint & Structural Architecture -->
+    <div class="archival-card" style="margin-bottom: 1.5rem;" id="pillar-blueprint">
+      <div style="border-bottom: 1px solid var(--border-container); padding-bottom: 0.5rem; margin-bottom: 1rem;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin: 0; text-transform: uppercase; letter-spacing: 1px;">2. The Birth Blueprint</h3>
+        <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faded); text-transform: uppercase; margin: 2px 0 0 0; letter-spacing: 1px;">Physical Interface, Ashtakavarga Houses, & Core Profiles</p>
+      </div>
+
+      <div class="prose-container" style="margin-bottom: 1.5rem;">
+        <p style="font-size: 1.05rem; line-height: 1.7; color: var(--ink-archival); text-align: justify; margin: 0;">
+          <strong>Ascendant & First House (Physical Constitution):</strong> <span id="bp-ascendant-desc">Governs physical vitality, core focus, and physical presence. Aligning decisions with this coordinate ensures sustainable effort and reduces systemic friction.</span>
+        </p>
+      </div>
+
+      <!-- Ashtakavarga Houses Container -->
+      <details class="mobile-accordion-inner" open style="margin-bottom: 1.75rem;">
+        <summary>
+          <div class="mobile-accordion-header">
+            <span>Ashtakavarga Grid Metrics</span>
+            <span class="mobile-accordion-icon"></span>
+          </div>
+        </summary>
+        <div class="mobile-accordion-content">
+          <p style="font-size: 0.95rem; color: var(--ink-faded); margin: 6px 0 10px 0; line-height: 1.5;">
+            Tap or focus individual sign house cards below to analyze their structural capacities.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <div style="width: 14px; height: 14px; background: rgba(217, 130, 54, 0.08); border: 2px solid var(--pigment-saffron); border-radius: 2px;"></div>
+              <span style="color: var(--pigment-saffron);">High Capacity (SAV &ge; 32)</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <div style="width: 14px; height: 14px; background: rgba(166, 91, 74, 0.08); border: 2px solid var(--pigment-terracotta); border-radius: 2px;"></div>
+              <span style="color: var(--pigment-terracotta);">Friction Zone (SAV &lt; 24)</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <div style="width: 14px; height: 14px; background: #faf7ef; border: 1px solid #D6CEBE; border-radius: 2px;"></div>
+              <span style="color: var(--ink-faded);">Balanced Zone (SAV 24–31)</span>
+            </div>
+          </div>
+          
+          <div class="sav-grid" id="bp-sav-container">
+            <!-- Dynamically populated 12 Houses -->
+          </div>
+
+          <div id="bp-sav-focus-box">
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: bold; color: var(--pigment-cinnabar); text-transform: uppercase; display: block; margin-bottom: 2px;" id="sav-focus-house-name">Selected Sector</span>
+            <span id="sav-focus-house-desc" style="color: var(--ink-faded);">[Focus any house above to view point details]</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- Core Archetypal Profiles Grid -->
+      <div>
+        <strong style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faded); text-transform: uppercase; display: block; margin-bottom: 4px; border-bottom: 1px dashed #d6cebe; padding-bottom: 4px;">Consolidated Archetypal Profiles</strong>
+        <div class="archetype-grid">
+          
+          <div class="archetype-card" style="background: rgba(46, 108, 181, 0.04); border: 1px solid rgba(46, 108, 181, 0.2); border-top: 4px solid var(--pigment-lapis); border-radius: 4px;">
+            <div class="archetype-card-title" style="color: var(--pigment-lapis); font-weight: bold;">Western Sun/Moon</div>
+            <div style="font-size: 0.78rem; color: var(--ink-faded); margin-top: -6px; margin-bottom: 8px; font-style: italic;">Tropical zodiac conscious and emotional blend</div>
+            <div class="archetype-card-val" id="bp-arch-western" style="color: var(--ink-archival); font-weight: bold;">Taurus Sun, Cancer Moon</div>
+            <div class="archetype-card-desc" id="bp-arch-western-desc">Combines structural physical perseverance with fluid, sensitive emotional anchors, seeking material safety and deep internal containment.</div>
+          </div>
+
+          <div class="archetype-card" style="background: rgba(217, 130, 54, 0.04); border: 1px solid rgba(217, 130, 54, 0.2); border-top: 4px solid var(--pigment-saffron); border-radius: 4px;">
+            <div class="archetype-card-title" style="color: var(--pigment-saffron); font-weight: bold;">Vedic Nakshatra House</div>
+            <div style="font-size: 0.78rem; color: var(--ink-faded); margin-top: -6px; margin-bottom: 8px; font-style: italic;">Sidereal lunar gateway comfort zone resonance</div>
+            <div class="archetype-card-val" id="bp-arch-vedic" style="color: var(--ink-archival); font-weight: bold;">Rohini Lunar House</div>
+            <div class="archetype-card-desc" id="bp-arch-vedic-desc">An auspicious lunar gateway governed by the Creator (Brahma), channelling magnetic attraction, organic growth, luxury, and artistic refinement.</div>
+          </div>
+
+          <div class="archetype-card" style="background: rgba(74, 107, 93, 0.04); border: 1px solid rgba(74, 107, 93, 0.2); border-top: 4px solid var(--pigment-moss); border-radius: 4px;">
+            <div class="archetype-card-title" style="color: var(--pigment-moss); font-weight: bold;">BaZi Four Pillars Core Self</div>
+            <div style="font-size: 0.78rem; color: var(--ink-faded); margin-top: -6px; margin-bottom: 8px; font-style: italic;">Chinese astrology core elemental archetype</div>
+            <div class="archetype-card-val" id="bp-arch-bazi" style="color: var(--ink-archival); font-weight: bold;">Yin Wood (Yi 木)</div>
+            <div class="archetype-card-desc" id="bp-arch-bazi-desc">Expresses the energy of a flexible creeper or vine. Adapts to circumstances, values strategic alliances, and grows through elegant integration rather than brute force.</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- PILLAR 3: Macro-Chronology (The Major Planetary Cycles) -->
+    <div class="archival-card" style="margin-bottom: 1.5rem;" id="pillar-chronology">
+      <div style="border-bottom: 1px solid var(--border-container); padding-bottom: 0.5rem; margin-bottom: 1rem;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin: 0; text-transform: uppercase; letter-spacing: 1px;">3. The Macro-Chronology</h3>
+        <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faded); text-transform: uppercase; margin: 2px 0 0 0; letter-spacing: 1px;">Decade-Scale Trajectory, Planetary Influence, & Luck Pillars</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr; gap: 1.25rem;">
+        <div style="background: rgba(46, 108, 181, 0.04); border-left: 4px solid var(--pigment-lapis); padding: 1.25rem; border-radius: 0 4px 4px 0;">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed rgba(46, 108, 181, 0.25); padding-bottom: 6px; margin-bottom: 10px;">
+            <span style="font-family: var(--font-serif-header); font-size: 1.15rem; font-weight: bold; color: var(--pigment-lapis);" id="mc-cycle-title">Current Macro Cycle: Saturn Maha-Dasha</span>
+            <span class="font-mono" style="font-size: 0.75rem; color: var(--ink-faded); text-transform: uppercase; font-weight: bold;" id="mc-cycle-type">Consolidation & Recovery Phase</span>
+          </div>
+          <p style="font-size: 1.02rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;" id="mc-cycle-desc">
+            You are currently operating in a structured Consolidation & Recovery Phase. This is a foundational chapter tailored for internal system architecture, systematic auditing, structural recovery, and legacy planning. Forcing aggressive outer scaling or raw market dominance during this phase will yield high friction. Focus instead on consolidation, resilience, and boundary calibration.
+          </p>
+        </div>
+
+        <div class="prose-container">
+          <h4 style="font-family: var(--font-serif-body); font-size: 1.1rem; font-style: italic; color: var(--pigment-cinnabar); margin-top: 0.5rem; margin-bottom: 0.5rem; font-weight: 600;">Decadal shifts in psychological motivations</h4>
+          <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;" id="mc-motivation-desc">
+            As you transition between major time chapters, your underlying psychological drivers mutate. During the current phase, you will find your appetite for speculative risk quietly replaced by a hunger for structural permanence, system integrity, and legacy-grade contributions.
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- PILLAR 4: Tactical Micro-Timing Matrix (The Present & Near Future) -->
+    <div class="archival-card" style="margin-bottom: 1.5rem;" id="pillar-microtiming">
+      <div style="border-bottom: 1px solid var(--border-container); padding-bottom: 0.5rem; margin-bottom: 1rem;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin: 0; text-transform: uppercase; letter-spacing: 1px;">4. Tactical Micro-Timing Matrix</h3>
+        <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faded); text-transform: uppercase; margin: 2px 0 0 0; letter-spacing: 1px;">Sub-Periods (Antardashas), Heavy Transits, & Active Calendar Triggers</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr; gap: 1.25rem;">
+        <details class="mobile-accordion-inner" open>
+          <summary>
+            <div class="mobile-accordion-header">
+              <span>Nested Time Intersections</span>
+              <span class="mobile-accordion-icon"></span>
+            </div>
+          </summary>
+          <div class="mobile-accordion-content">
+            <table class="timeline-matrix-table" style="font-size: 0.95rem;">
+              <thead>
+                <tr>
+                  <th>Timeframe (2026)</th>
+                  <th>Sub-Period (Antar)</th>
+                  <th>Active Transit (Gochara)</th>
+                  <th>Diagnostic Climate</th>
+                </tr>
+              </thead>
+              <tbody id="mt-table-body">
+                <!-- Dynamically Populated -->
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+        <div>
+          <strong style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faded); text-transform: uppercase; display: block; margin-bottom: 6px; border-bottom: 1px dashed #d6cebe; padding-bottom: 4px;">Dynamic exact Trigger Windows</strong>
+          <div style="display: grid; grid-template-columns: 1fr; gap: 0.75rem;" id="mt-triggers-container">
+            <!-- Dynamically populated dates cards -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- PILLAR 5: Multi-Track Allocation Grid (Segmented Sectors) -->
+    <div class="archival-card" style="margin-bottom: 1.5rem;" id="pillar-multitrack">
+      <div style="border-bottom: 1px solid var(--border-container); padding-bottom: 0.5rem; margin-bottom: 1rem;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin: 0; text-transform: uppercase; letter-spacing: 1px;">5. Multi-Track Allocation Grid</h3>
+        <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faded); text-transform: uppercase; margin: 2px 0 0 0; letter-spacing: 1px;">Segmented Strategy & Resource Allocation Across the Three Life Tracks</p>
+      </div>
+
+      <!-- Unified Tracks Concept Explanation -->
+      <div class="prose-container" style="margin-top: 1rem; margin-bottom: 1.5rem;">
+        <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">
+          <strong>The Triadic Framework of Life Pursuits (Puruṣārthas):</strong><br>
+          In classical Eastern philosophy, human life is not treated as a single flat dimension. Instead, it is managed as an integrated portfolio of three vital tracks:
+        </p>
+        <ul style="font-size: 1.05rem; line-height: 1.7; color: var(--ink-archival); margin: 0.75rem 0; padding-left: 1.5rem; list-style-type: disc;">
+          <li style="margin-bottom: 0.5rem;"><strong>Artha</strong> (material wealth, career growth, security, and institutional capability)</li>
+          <li style="margin-bottom: 0.5rem;"><strong>Kama</strong> (relationships, sensory appreciation, artistic partnerships, and strategic alignment)</li>
+          <li style="margin-bottom: 0.5rem;"><strong>Moksha</strong> (rest, mental liberation, spiritual boundaries, and nervous-system recovery)</li>
+        </ul>
+        <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">
+          These form an interconnected system. Prioritizing material pursuits (Artha) without somatic recovery (Moksha) leads to exhaustion, while neglecting strategic alliances (Kama) starves the networks that support execution. Sustained success requires balancing resources across all three tracks.
+        </p>
+      </div>
+
+      <div class="tracks-grid">
+        
+        <!-- ARTHA TRACK -->
+        <div class="track-card" style="border-top: 4px solid var(--pigment-saffron);">
+          <div class="track-card-header" style="color: var(--pigment-saffron);">Artha Track</div>
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); text-transform: uppercase; margin-top: -8px; margin-bottom: 12px; font-weight: bold;">Wealth, Cashflows, & Career Pivots</div>
+          
+          <div id="track-artha-bullets">
+            <!-- Dynamically Populated -->
+          </div>
+        </div>
+
+        <!-- KAMA TRACK -->
+        <div class="track-card" style="border-top: 4px solid var(--pigment-terracotta);">
+          <div class="track-card-header" style="color: var(--pigment-terracotta);">Kama Track</div>
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); text-transform: uppercase; margin-top: -8px; margin-bottom: 12px; font-weight: bold;">Relationships, Hiring, & Networking</div>
+          
+          <div id="track-kama-bullets">
+            <!-- Dynamically Populated -->
+          </div>
+        </div>
+
+        <!-- MOKSHA TRACK -->
+        <div class="track-card" style="border-top: 4px solid var(--pigment-lapis);">
+          <div class="track-card-header" style="color: var(--pigment-lapis);">Moksha Track</div>
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); text-transform: uppercase; margin-top: -8px; margin-bottom: 12px; font-weight: bold;">Vitality, Somatic Rest, & Burnout Alerts</div>
+          
+          <div id="track-moksha-bullets">
+            <!-- Dynamically Populated -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- PILLAR 6: The Mitigation & Prescriptive Playbook -->
+    <div class="archival-card" style="margin-bottom: 1.5rem;" id="pillar-mitigation">
+      <div style="border-bottom: 1px solid var(--border-container); padding-bottom: 0.5rem; margin-bottom: 1rem;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin: 0; text-transform: uppercase; letter-spacing: 1px;">6. The Mitigation & Remedial Playbook</h3>
+        <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faded); text-transform: uppercase; margin: 2px 0 0 0; letter-spacing: 1px;">Active Action Protocols & Environmental Remedial Blueprints</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr; gap: 1.25rem;">
+        
+        <div style="background: rgba(74, 107, 93, 0.04); border-left: 4px solid var(--pigment-moss); padding: 1.25rem; border-radius: 0 4px 4px 0;">
+          <h4 style="font-family: var(--font-serif-header); font-size: 1.1rem; color: var(--pigment-moss); margin-top: 0; margin-bottom: 6px;">Strategic Action Protocols</h4>
+          <p style="font-size: 0.95rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;" id="mit-action-protocol">
+            Direct your creative focus, pitches, and new systems into your highly integrated SAV houses. Channels your effort through pathways of least resistance.
+          </p>
+        </div>
+
+        <div style="background: rgba(158, 58, 51, 0.04); border-left: 4px solid var(--pigment-cinnabar); padding: 1.25rem; border-radius: 0 4px 4px 0;">
+          <h4 style="font-family: var(--font-serif-header); font-size: 1.1rem; color: var(--pigment-cinnabar); margin-top: 0; margin-bottom: 6px;">Containment & Remedial Blueprints</h4>
+          <p style="font-size: 0.95rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;" id="mit-remedial-protocol">
+            For low-scoring or high-friction SAV sectors, use active boundary containment: freeze capital in those areas, apply sensory decluttering in your home, and establish a regular sleep routine to restore cellular balance.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div style="margin-top: 2rem; margin-bottom: 3rem;">
+      <details style="cursor: pointer; outline: none;" id="explore-accordion">
+        <summary class="explore-summary">
+          <span class="explore-title-main">Click to Explore</span>
+          <span class="explore-title-sub">Understanding Your Life Path Cycles</span>
+        </summary>
+        <div class="accordion-inner-border" style="cursor: default; margin-top: 1rem; background-color: var(--bg-vellum-warm); border: var(--border-container); padding: 1.5rem 1.75rem; position: relative; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04); border-radius: 4px;">
+          <div style="position: relative; z-index: 2;" class="prose-container">
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">Pythagorean Chronology & Cycles of Qualitative Time</h4>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 1.5rem;">To the Pythagorean school, time was not merely a quantitative sequence of ticking seconds, but a structured sequence of qualitative phases. Each phase of an individual's timeline is governed by specific numeric frequencies that outline baseline themes and challenges. The most rigorous framework in this tradition divides a lifetime into <strong>Four Major Pinnacles</strong>. These represent distinct chronological chapters: the Foundation Phase (early childhood and educational grounding), the Development Phase (early career drive and independent building), the Leadership Phase (mature mid-life authority and social contribution), and the Legacy Phase (reflective senior wisdom and legacy transmission). By reducing month, day, and year coordinates to single digits, this model isolates the exact timeline transitions of a lifetime.</p>
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">Calculating Life Path Pinnacles</h4>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 0;">The duration of the Pinnacles is tied directly to the <strong>Life Path Number</strong>—the reduced sum of your entire birth date. Because the number 36 represents the Pythagorean ideal of absolute cycle completion, the First Pinnacle ends exactly at the age of `36 minus the Life Path Number`. For example, a Life Path 8 individual transitions to their Second Pinnacle at age 28, whereas a Life Path 3 individual transitions at age 33. The second and third cycles last precisely 9 years each (matching the base-9 ennead rhythm), while the fourth Pinnacle remains active for the remainder of the lifetime. The calculation formulas for each phase use specific coordinate pairs: <strong>P1</strong> merges Month + Day; <strong>P2</strong> merges Day + Year; <strong>P3</strong> merges P1 + P2; and <strong>P4</strong> merges Month + Year, tracing a highly consistent progression of qualitative time.</p>
+            
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- Honest Framing Disclaimer Box -->
+    <style>
+      .disclaimer-hi { display: none; }
+      body.lang-hi .disclaimer-en { display: none !important; }
+      body.lang-hi .disclaimer-hi { display: block !important; }
+    </style>
+    
+    <div class="disclaimer-en" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        DISCLAIMER
+      </h4>
+      <p style="margin: 0; text-align: justify;">
+        This report is an interpretive analytical framework intended solely for reflective and informational purposes. It is not a predictive, diagnostic, clinical, financial, legal, medical, psychological or professional advisory instrument, and should not be relied upon as definitive guidance for decisions, actions, or outcomes. The original application has been developed in English. Certain translated versions may utilize automated translation tools, including Google Translate. While reasonable efforts have been made to preserve contextual accuracy, no responsibility is accepted for translation inaccuracies, omissions, interpretive variations, or linguistic ambiguities arising from translated content. In the event of any inconsistency or ambiguity, the English version shall prevail.
+      </p>
+    </div>
+
+    <div class="disclaimer-hi notranslate" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        अस्वीकरण
+      </h4>
+      <p style="margin: 0; text-align: justify; color: var(--ink-faded); font-style: italic;">
+        यह रिपोर्ट केवल विचारात्मक एवं सूचनात्मक उद्देश्य हेतु निर्मित एक व्याख्यात्मक विश्लेषणात्मक ढांचा है। यह कोई भविष्यवाणी, निदान, नैदानिक, वित्तीय, कानूनी, चिकित्सीय, मनोवैज्ञानिक अथवा पेशेवर परामर्श का उपकरण नहीं है, और इसे निर्णयों, कार्यों या परिणामों के लिए अंतिम मार्गदर्शन के रूप में नहीं माना जाना चाहिए। मूल अनुप्रयोग अंग्रेज़ी भाषा में विकसित किया गया है। कुछ अनुवादित संस्करणों में Google Translate सहित स्वचालित अनुवाद उपकरणों का उपयोग किया जा सकता है। यद्यपि संदर्भगत शुद्धता बनाए रखने का यथासंभव प्रयास किया गया है, तथापि अनुवाद संबंधी त्रुटियों, चूकों, अर्थ-व्याख्या में भिन्नताओं या भाषाई अस्पष्टताओं के लिए कोई उत्तरदायित्व स्वीकार नहीं किया जाता। किसी भी असंगति या अस्पष्टता की स्थिति में अंग्रेज़ी संस्करण को ही मान्य माना जाएगा।
+      </p>
+    </div>
+    <!-- Resonance / Feedback Link -->
+    <div style="text-align: center; margin: 1.5rem auto 2rem auto; font-family: var(--font-mono); font-size: 0.8rem; max-width: 1100px; width: calc(100% - 24px);">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEYjLsqRjRRR0FZEPq384iGrpL6rZfrEQHEbcYQ9pz5ERzlg/viewform" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar); letter-spacing: 1px; font-weight: bold; transition: all 0.2s ease; padding-bottom: 2px;">
+        ✦ SHARE YOUR RESONANCE (ANONYMOUS SUGGESTIONS) ✦
+      </a>
+    </div>
+
+  </div>
+
+    <footer class="notranslate">
+    <div class="footer-content">
+      <p>ANTARA CROSS-CULTURAL INTERIOR PANORAMA</p>
+      <p class="font-mono">SYSTEM LOG: PYTHAGOREAN PINNACLE CORE v1.6.0 • 2026</p>
+    </div>
+  </footer>
+
+  
+  <script>
+    // Clean up local storage persona names dynamically to wipe out old cached test personas
+    try {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (localStorage.getItem(key) === 'Ankur Gupta') {
+                localStorage.setItem(key, 'Antara Gupta');
+            }
+        }
+    } catch (e) {
+        console.warn("localStorage persona migration restricted:", e);
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, function(tag) {
+        var chars = {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        };
+        return chars[tag] || tag;
+      });
+    }
+
+    // Initialize language inheritance from local storage
+    let preferredLang = localStorage.getItem('antara_preferred_language') || 'EN';
+    if (window.location.hash === '#HI' || window.location.search.includes('lang=HI')) {
+        preferredLang = 'HI';
+        localStorage.setItem('antara_preferred_language', 'HI');
+    } else if (window.location.hash === '#EN' || window.location.search.includes('lang=EN')) {
+        preferredLang = 'EN';
+        localStorage.setItem('antara_preferred_language', 'EN');
+    }
+    if (preferredLang === 'HI') {
+        document.body.classList.add('lang-hi');
+        
+        // 1. Force the Google Translate hash parameter if not present
+        if (!window.location.hash.includes('googtrans')) {
+            window.location.hash = 'googtrans(en|hi)';
+        }
+        
+        // 2. Set googtrans cookie to persist
+        document.cookie = "googtrans=/en/hi; path=/";
+        
+        // 3. Create absolute HTTPS Google Translate container and script
+        const gtDiv = document.createElement('div');
+        gtDiv.id = 'google_translate_element';
+        gtDiv.style.position = 'fixed';
+        gtDiv.style.bottom = '15px';
+        gtDiv.style.right = '15px';
+        gtDiv.style.zIndex = '99999';
+        gtDiv.style.background = '#FFFDF9';
+        gtDiv.style.border = '1px solid #D6CEBE';
+        gtDiv.style.borderRadius = '20px';
+        gtDiv.style.padding = '3px 10px';
+        gtDiv.style.boxShadow = '0 3px 10px rgba(0,0,0,0.06)';
+        gtDiv.style.display = 'inline-flex';
+        gtDiv.style.alignItems = 'center';
+        gtDiv.style.gap = '6px';
+        gtDiv.innerHTML = '<span style="font-family:\'Cinzel\', serif; font-size:0.68rem; color:#9E3A33; font-weight:bold; letter-spacing:0.5px;">ANTARA TRANSLATE</span>';
+        document.body.appendChild(gtDiv);
+
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: true
+            }, 'google_translate_element');
+        };
+
+        const gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript';
+        gtScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        document.head.appendChild(gtScript);
+    } else if (preferredLang === 'EN') {
+        if (window.location.hash.includes('googtrans')) {
+            window.location.hash = '';
+        }
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+
+    function safeGetItem(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch (e) {
+        console.warn("safeGetItem failed for", key, e);
+        return null;
+      }
+    }
+    function safeSetItem(key, val) {
+      try {
+        localStorage.setItem(key, val);
+      } catch (e) {
+        console.warn("safeSetItem failed for", key, e);
+      }
+    }
+
+    // Date parsing utility
+    function formatToInputDate(dateStr) {
+      if (!dateStr) return "";
+      if (dateStr.includes("-")) return dateStr;
+      if (dateStr.includes("/")) {
+        const parts = dateStr.split("/");
+        if (parts.length === 3) {
+          if (parts[2].length === 4) {
+            return `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
+          }
+          if (parts[0].length === 4) {
+            return dateStr.replace(/\//g, "-");
+          }
+        }
+      }
+      return dateStr;
+    }
+
+    // ── Core utility functions (REQUIRED — must be defined before use) ──
+    function reduceVal(num) {
+      if (num === 0) return 0;
+      let n = Math.abs(num);
+      while (n > 9) {
+        if (n === 11 || n === 22 || n === 33) break;
+        n = String(n).split('').map(Number).reduce((a,b)=>a+b,0);
+      }
+      return n;
+    }
+    function reduceSingle(num) {
+      let n = Math.abs(num);
+      while (n > 9) n = String(n).split('').map(Number).reduce((a,b)=>a+b,0);
+      return n;
+    }
+    function hashString(str) {
+      let h = 0;
+      for (let i = 0; i < str.length; i++) h = str.charCodeAt(i) + ((h << 5) - h);
+      return Math.abs(h);
+    }
+
+    // Alphanumeric standard letters mapping (Pythagorean)
+    const letterValues = {
+      A:1, J:1, S:1,
+      B:2, K:2, T:2,
+      C:3, L:3, U:3,
+      D:4, M:4, V:4,
+      E:5, N:5, W:5,
+      F:6, O:6, X:6,
+      G:7, P:7, Y:7,
+      H:8, Q:8, Z:8,
+      I:9, R:9
+    };
+
+    const cycleNames = {
+      1: { name: "Initiation (Fire)", desc: "Outlines a pioneer drive: focus on establishing independent standing, leadership slots, and active initiative." },
+      2: { name: "Diplomacy (Air)", desc: "Outlines a cooperative diplomat: focus on strategic patience, active partnerships, and detailed coordination." },
+      3: { name: "Expression (Fire)", desc: "Outlines a creative visionary: focus on visual marketing, communications, social networks, and expressive arts." },
+      4: { name: "Builder (Earth)", desc: "Outlines a systems architect: focus on building structural foundations, discipline, routines, and physical anchors." },
+      5: { name: "Freedom (Air)", desc: "Outlines a dynamic pioneer: focus on rapid adaptation, travel, constructive freedom, and breaking static structures." },
+      6: { name: "Steward (Air)", desc: "Outlines a trusted anchor: focus on balancing service, administrative stewardship, family, and home sanctuaries." },
+      7: { name: "Seeker (Spiritual)", desc: "Outlines a deep specialist: focus on technical analysis, research databases, quiet solitude, and transmuting knowledge." },
+      8: { name: "Sovereign (Earth)", desc: "Outlines a master director: focus on material consolidation, corporate authority, cash flows, and scaling assets." },
+      9: { name: "Humanitarian (Fire)", desc: "Outlines a legacy transmitter: focus on global completions, emotional release, wisdom integration, and long-term legacy." },
+      11: { name: "Master Seeker (Spiritual)", desc: "Outlines an intense channel: focus on visionary insights, intuitive downloads, and spiritual-scale leadership." },
+      22: { name: "Master Builder (Material)", desc: "Outlines a global architect: focus on large-scale infrastructure, massive systems orchestration, and structural legacies." },
+      33: { name: "Master Teacher (Spiritual)", desc: "Outlines a cosmic guardian: focus on massive service alignments, artistic masterworks, and transmuting wisdom." }
+    };
+
+    const elementNames = {
+      1: "Fire Element", 2: "Air Element", 3: "Fire Element", 4: "Earth Element", 
+      5: "Air Element", 6: "Air Element", 7: "Spiritual Element", 8: "Earth Element", 
+      9: "Fire Element", 11: "Spiritual Element", 22: "Material Master Element", 33: "Spiritual Master Element"
+    };
+
+    // Pinnacle dynamic descriptions
+    const pinnacleDescriptions = {
+      1: "An intense phase of establishing independence, active pioneering, and self-trust. You are invited to lead new paths.",
+      2: "Focuses on strategic patience, active partnership integrations, detail audits, and building solid diplomatic channels.",
+      3: "Marks a peak phase of creative expression, rapid communications, high social visibility, and joyful expansion of ideas.",
+      4: "Requires disciplined, hard systems building, anchoring domestic real estate, and organizing structural foundations.",
+      5: "Brings dynamic changes, travels, constructive freedom, and adaptability, shifting outdated structures.",
+      6: "Demands service responsibility, administrative stewardship, home adjustments, and stabilizing family/community anchors.",
+      7: "A highly introspective, spiritual phase. Focuses on research, technical specialization, deep study, and quiet isolation.",
+      8: "Channels executive manifestation, scaling corporate authority, commercial success, and securing long-term cashflows.",
+      9: "A completion phase. Promotes global closures, emotional release, transmuting wisdom, and transmitting legacy values.",
+      11: "An elevated visionary phase carrying intense spiritual downloads, intuitive calls, and visionary leadership opportunities.",
+      22: "A master builder phase designed to engineer large-scale physical structures and lead major corporate/material initiatives."
+    };
+
+    // Challenge dynamic descriptions
+    const challengeDescriptions = {
+      0: "Choice of Destiny: Absolute freedom from specific karmic challenges, but requires intense self-direction to avoid passive drifting.",
+      1: "Shadow of Dependency: Invitation to overcome fears of standing alone, actively build self-reliance, and claim pioneer slot.",
+      2: "Shadow of Over-sensitivity: Invitation to establish solid emotional boundaries, release fear of rejection, and practice diplomacy.",
+      3: "Shadow of Scattered Focus: Invitation to express feelings honestly and focus creative power instead of diffusing it in trivia.",
+      4: "Shadow of Rigidity: Invitation to build disciplined routines, overcome chronic passivity, and anchor solid foundations.",
+      5: "Shadow of Impuliveness: Invitation to learn constructive freedom, release self-sabotaging escapism, and adapt without fragmenting.",
+      6: "Shadow of Perfectionism: Invitation to release obsessive standards, balance service with self-care, and practice acceptance.",
+      7: "Shadow of Isolation: Primary life friction involving intellectual skepticism, fear of vulnerability, or spiritual crisis.",
+      8: "Shadow of Material Greed/Fear: Invitation to establish a mature relationship with power, liquid cash, and structural authority."
+    };
+
+    function populateClockSelectors(hrId, minId) {
+      const hrSelect = document.getElementById(hrId);
+      const minSelect = document.getElementById(minId);
+      if (!hrSelect || !minSelect) return;
+      
+      hrSelect.innerHTML = '';
+      minSelect.innerHTML = '';
+
+      for (let h = 1; h <= 12; h++) {
+        const opt = document.createElement('option');
+        const displayH = h < 10 ? '0' + h : h;
+        opt.value = displayH;
+        opt.innerText = displayH;
+        hrSelect.appendChild(opt);
+      }
+
+      for (let m = 0; m < 60; m++) {
+        const opt = document.createElement('option');
+        const displayM = m < 10 ? '0' + m : m;
+        opt.value = displayM;
+        opt.innerText = displayM;
+        minSelect.appendChild(opt);
+      }
+    }
+
+    function updatePinnacles() {
+      // 1. Initialize and capture all primary user inputs
+      const name = document.getElementById('input-name').value.trim() || "Antara Gupta";
+      const dobStr = document.getElementById('input-dob').value;
+      const evalStr = document.getElementById('input-eval-date').value || "2026-05-30";
+      
+      let hourVal = parseInt(document.getElementById('input-tob-hour').value) || 10;
+      const minVal = document.getElementById('input-tob-minute').value || "04";
+      const ampmVal = document.getElementById('input-tob-ampm').value || "AM";
+
+      if (ampmVal === "PM" && hourVal < 12) hourVal += 12;
+      if (ampmVal === "AM" && hourVal === 12) hourVal = 0;
+      const hourStr = hourVal < 10 ? '0' + hourVal : hourVal;
+      const tobStr = `${hourStr}:${minVal}`;
+
+      const location = document.getElementById('input-location').value || "Chakrata, Uttarakhand, India";
+
+      // Instantly update titles
+      const titleEl = document.getElementById('page-master-title');
+      if (titleEl) {
+        titleEl.innerHTML = `Life Path Cycles<br>For ${escapeHTML(name)}`;
+      }
+
+      if (!dobStr) return;
+
+      const dob = new Date(dobStr);
+      const year = dob.getFullYear();
+      const month = dob.getMonth() + 1; 
+      const day = dob.getDate(); 
+
+      const rMonth = reduceVal(month);
+      const rDay = reduceVal(day);
+      const rYear = reduceVal(year);
+
+      // Define missing core calculations variables
+      const seed = hashString(name + dobStr);
+      const scaleX = 600 / 85;
+      const getX = (age) => 50 + age * scaleX;
+
+      const houseMeanings = {
+        1: { name: "Self, Vitality & Soma", desc: "Governs physical appearance, default outlook, and structural somatic energy." },
+        2: { name: "Assets, Wealth & Speech", desc: "Governs liquid capital, family assets, speech patterns, and resource storage." },
+        3: { name: "Courage, Drive & Actions", desc: "Governs personal initiative, short travels, communicative drive, and peer networks." },
+        4: { name: "Home, Sanctuary & Peace", desc: "Governs domestic tranquility, land/vehicles, emotional safety, and maternal bonds." },
+        5: { name: "Intellect, Creativity & Gains", desc: "Governs speculative intellect, creative expressions, children, and ancient merits." },
+        6: { name: "Friction, Debts & Pacing", desc: "Governs daily work stress, health pacing, physical boundaries, and opposition." },
+        7: { name: "Partnership, Union & Deals", desc: "Governs strategic alliances, public contracts, professional negotiations, and spouse." },
+        8: { name: "Research, Mastery & Secrets", desc: "Governs long-term investments, transmuting crises, secret databases, and deep research." },
+        9: { name: "Philosophy, Wisdom & Grace", desc: "Governs higher knowledge, spiritual guides, global travels, and structural grace." },
+        10: { name: "Career, Status & Executive Power", desc: "Governs professional hierarchy, corporate authority, public achievements, and active duties." },
+        11: { name: "Ambitions, Gains & Networks", desc: "Governs large-scale revenue gains, global networks, older siblings, and finished goals." },
+        12: { name: "Moksha, Solitude & Somatic Rest", desc: "Governs dream space, sleep calibration, and spiritual retreats." }
+      };
+
+      function showHouseFocus(hNum, pts) {
+        const nameEl = document.getElementById("sav-focus-house-name");
+        const descEl = document.getElementById("sav-focus-house-desc");
+        if (nameEl && descEl) {
+          nameEl.innerText = `House ${hNum}: ${houseMeanings[hNum].name} (SAV Score: ${pts})`;
+          descEl.innerText = houseMeanings[hNum].desc;
+        }
+      }
+      
+      // Calculate Life Path
+      const lpRaw = rMonth + rDay + rYear;
+      const lp = reduceVal(lpRaw);
+      const lpSingle = reduceSingle(lp);
+
+      // Save parameters in storage
+      safeSetItem('antara_user_name', name);
+      safeSetItem('antara_user_dob', dobStr);
+      safeSetItem('antara_user_tob_hour', document.getElementById('input-tob-hour').value);
+      safeSetItem('antara_user_tob_minute', document.getElementById('input-tob-minute').value);
+      safeSetItem('antara_user_tob_ampm', document.getElementById('input-tob-ampm').value);
+
+      document.getElementById('lp-badge').innerText = lp;
+
+      // 2. Core Coordinate archetypes & elements
+      let archetype = "The Sovereign / Manifestation Core";
+      if (lp === 1) archetype = "The Pioneer / Innovation Core";
+      if (lp === 2) archetype = "The Diplomat / Cooperation Core";
+      if (lp === 3) archetype = "The Expresser / Creative Core";
+      if (lp === 4) archetype = "The Systems Builder Core";
+      if (lp === 5) archetype = "The Dynamic Free Spirit Core";
+      if (lp === 6) archetype = "The Caregiver / Steward Core";
+      if (lp === 7) archetype = "The Seeker / Specialist Core";
+      if (lp === 8) archetype = "The Sovereign / Executive Core";
+      if (lp === 9) archetype = "The Humanitarian / Legacy Core";
+      if (lp === 11) archetype = "The Master Seeker Core";
+      if (lp === 22) archetype = "The Master Builder Core";
+      if (lp === 33) archetype = "The Master Teacher Core";
+
+      document.getElementById("lp-archetype-name").innerText = archetype;
+
+      // Master check
+      let statusTag = "Standard Core";
+      if (lp === 11 || lp === 22 || lp === 33) {
+        statusTag = `Master Number ${lp} ✦`;
+      }
+      
+      // Detect Karmic Debt Numbers in birth calculations
+      const rawBirthComponentsSum = rMonth + rDay + rYear;
+      let isKarmicDebt = false;
+      let debtValue = 0;
+      if (day === 13 || day === 14 || day === 16 || day === 19) {
+        isKarmicDebt = true;
+        debtValue = day;
+      } else if (rawBirthComponentsSum === 13 || rawBirthComponentsSum === 14 || rawBirthComponentsSum === 16 || rawBirthComponentsSum === 19) {
+        isKarmicDebt = true;
+        debtValue = rawBirthComponentsSum;
+      }
+
+      if (isKarmicDebt) {
+        let debtLabel = "";
+        if (debtValue === 13) debtLabel = "Karmic Debt 13/4 (Creative boundaries & focus)";
+        if (debtValue === 14) debtLabel = "Karmic Debt 14/5 (Constructive use of freedom)";
+        if (debtValue === 16) debtLabel = "Karmic Debt 16/7 (Dismantling pride, spiritual rebirth)";
+        if (debtValue === 19) debtLabel = "Karmic Debt 19/1 (Independent responsibility, power)";
+        statusTag = `${debtLabel}`;
+      }
+      document.getElementById("lp-status-tag").innerText = statusTag;
+
+      // Element
+      const activeElement = elementNames[lp] || "Fire Element";
+      document.getElementById("lp-element-tag").innerText = activeElement;
+
+      // 3. The Three Birth Cycles
+      const rMonthVal = reduceSingle(month);
+      const rDayVal = reduceSingle(day);
+      const rYearVal = reduceSingle(year);
+
+      const physCycle = cycleNames[rMonthVal] || { name: "Expression (Air)", desc: "Social expression lens." };
+      const mentCycle = cycleNames[rDayVal] || { name: "Sovereign (Earth)", desc: "Cognitive systems lens." };
+      const spirCycle = cycleNames[rYearVal] || { name: "Creativity (Fire)", desc: "Spiritual soul lens." };
+
+      document.getElementById("cycle-phys-val").innerText = rMonthVal;
+      document.getElementById("cycle-phys-name").innerText = physCycle.name;
+      document.getElementById("cycle-phys-desc").innerText = physCycle.desc;
+
+      document.getElementById("cycle-ment-val").innerText = rDayVal;
+      document.getElementById("cycle-ment-name").innerText = mentCycle.name;
+      document.getElementById("cycle-ment-desc").innerText = mentCycle.desc;
+
+      document.getElementById("cycle-spir-val").innerText = rYearVal;
+      document.getElementById("cycle-spir-name").innerText = spirCycle.name;
+      document.getElementById("cycle-spir-desc").innerText = spirCycle.desc;
+
+      // Update graphical progress rings (circumference is 226.2)
+      const ringCircum = 226.2;
+      const physRing = document.getElementById("cycle-phys-ring");
+      if (physRing) physRing.style.strokeDashoffset = ringCircum * (1 - rMonthVal / 9);
+
+      const mentRing = document.getElementById("cycle-ment-ring");
+      if (mentRing) mentRing.style.strokeDashoffset = ringCircum * (1 - rDayVal / 9);
+
+      const spirRing = document.getElementById("cycle-spir-ring");
+      if (spirRing) spirRing.style.strokeDashoffset = ringCircum * (1 - rYearVal / 9);
+
+      // Combined Temperament Synthesis
+      const cycleSynthesisText = `Your social physical interface is governed by ${physCycle.name}, interacting with a cognitive processing style of ${mentCycle.name}. Beneath the surface, your deep soul orientation is anchored to the lessons of ${spirCycle.name}. This unique trio establishes the permanent structural lens through which all developmental transitions are processed.`;
+      document.getElementById("cycle-synthesis-text").innerText = cycleSynthesisText;
+
+      // 4. Four Pinnacle Arcs calculation
+      const p1 = reduceSingle(rMonth + rDay);
+      const p2 = reduceSingle(rDay + rYear);
+      const p3 = reduceSingle(p1 + p2);
+      const p4 = reduceSingle(rMonth + rYear);
+
+      const age1 = 36 - lpSingle;
+      const age2 = age1 + 9;
+      const age3 = age2 + 9;
+
+      document.getElementById('p1-val').innerText = p1;
+      document.getElementById('p1-age').innerText = `Ages 0 to ${age1}`;
+      document.getElementById('p1-desc-text').innerText = pinnacleDescriptions[p1] || pinnacleDescriptions[1];
+
+      document.getElementById('p2-val').innerText = p2;
+      document.getElementById('p2-age').innerText = `Ages ${age1} to ${age2}`;
+      document.getElementById('p2-desc-text').innerText = pinnacleDescriptions[p2] || pinnacleDescriptions[2];
+
+      document.getElementById('p3-val').innerText = p3;
+      document.getElementById('p3-age').innerText = `Ages ${age2} to ${age3}`;
+      document.getElementById('p3-desc-text').innerText = pinnacleDescriptions[p3] || pinnacleDescriptions[3];
+
+      document.getElementById('p4-val').innerText = p4;
+      document.getElementById('p4-age').innerText = `Ages ${age3} to 80+`;
+      document.getElementById('p4-desc-text').innerText = pinnacleDescriptions[p4] || pinnacleDescriptions[4];
+
+      const arches = [
+        { title: "1st Pinnacle", start: 0, end: age1, val: p1, color: "var(--pigment-saffron)" },
+        { title: "2nd Pinnacle", start: age1, end: age2, val: p2, color: "var(--pigment-terracotta)" },
+        { title: "3rd Pinnacle", start: age2, end: age3, val: p3, color: "var(--pigment-cinnabar)" },
+        { title: "4th Pinnacle", start: age3, end: 85, val: p4, color: "var(--pigment-moss)" }
+      ];
+
+      // 5. Challenge Numbers calculations
+      const c1 = reduceSingle(Math.abs(rMonth - rDay));
+      const c2 = reduceSingle(Math.abs(rYear - rDay));
+      const c3 = reduceSingle(Math.abs(c1 - c2));
+      const c4 = reduceSingle(Math.abs(rMonth - rYear));
+
+      document.getElementById("c1-val").innerText = c1;
+      document.getElementById("c1-desc").innerText = challengeDescriptions[c1] || challengeDescriptions[0];
+
+      document.getElementById("c2-val").innerText = c2;
+      document.getElementById("c2-desc").innerText = challengeDescriptions[c2] || challengeDescriptions[0];
+
+      document.getElementById("c3-val").innerText = c3;
+      document.getElementById("c3-desc").innerText = challengeDescriptions[c3] || challengeDescriptions[0];
+
+      document.getElementById("c4-val").innerText = c4;
+      document.getElementById("c4-desc").innerText = challengeDescriptions[c4] || challengeDescriptions[0];
+
+      // 6. Current Temporal Position calculations (Birthday adjusted!)
+      const evalDate = new Date(evalStr);
+      const evalYear = evalDate.getFullYear();
+      
+      // Check if evalDate is on/after birthday in evalYear
+      const bdayInEvalYear = new Date(evalYear, month - 1, day);
+      const targetYear = (evalDate >= bdayInEvalYear) ? evalYear : evalYear - 1;
+
+      // Personal Year = reduced Month + Day + targetYear
+      const rTargetYear = reduceVal(targetYear);
+      const py = reduceSingle(rMonth + rDay + rTargetYear);
+
+      // Personal Month = reduced Personal Year + Current Month
+      const currentMonthVal = evalDate.getMonth() + 1;
+      const pm = reduceSingle(py + reduceVal(currentMonthVal));
+
+      // Personal Day = reduced Personal Month + Current Day
+      const currentDayVal = evalDate.getDate();
+      const pd = reduceSingle(pm + reduceVal(currentDayVal));
+
+      document.getElementById("py-val").innerText = py;
+      document.getElementById("pm-val").innerText = pm;
+      document.getElementById("pd-val").innerText = pd;
+
+      const pyThemes = {
+        1: { title: "Theme: Initiative & Strategic Launch", desc: "A phase optimized for independence and strategic launch. Prioritize high-initiative projects, establish foundational ideas, and assume leadership roles." },
+        2: { title: "Theme: Patience & Strategic Alliance", desc: "A stabilization phase focused on diplomatic dialogue and detail review. Build supportive structures and cultivate peer relationships rather than forcing high-profile launches." },
+        3: { title: "Theme: Expression & Public Visibility", desc: "A phase optimized for marketing, brand communication, and network expansion. Leverage public presence and high-impact communication channels." },
+        4: { title: "Theme: System Purity & Infrastructure", desc: "A cycle demanding disciplined execution, structural system development, and asset consolidation. Focus on process optimization and long-term operational stability." },
+        5: { title: "Theme: Transition & Strategic Agility", desc: "A dynamic period of market shifts and operational pivots. Maintain strict agility, avoid rigid commitments, and capitalize on rapid-timing windows." },
+        6: { title: "Theme: Stewardship & Governance", desc: "A focus on organizational stewardship, team care, and domestic calibration. Align professional growth with a stable, high-standard baseline." },
+        7: { title: "Theme: Specialized Research & Audit", desc: "A quiet analytical chapter. Prioritize structural audit, specialized research, and intellectual asset development. Avoid high-leverage commercial risk." },
+        8: { title: "Theme: Executive Scale & Asset Growth", desc: "A cycle supporting executive expansion, institutional authority, and high-value asset investment. Capitalize on past efforts with bold, calculated actions." },
+        9: { title: "Theme: System Integration & Closure", desc: "A cycle of integration and system completion. Cleanse operational debt, complete long-term contracts, and prepare resources for the next nine-year lifecycle." }
+      };
+
+      const activePyTheme = pyThemes[py] || pyThemes[1];
+      document.getElementById("py-theme-title").innerText = activePyTheme.title;
+      document.getElementById("py-cycle-guidance").innerText = activePyTheme.desc;
+
+      // 7. Multi-System Timing Overlay (Vedic, BaZi, Biorhythms)
+      const currentAge = evalYear - year;
+
+      // Vedic Mahadasha Estimates
+      const dashas = ["Saturn Maha-Dasha", "Jupiter Maha-Dasha", "Mercury Maha-Dasha", "Venus Maha-Dasha", "Sun Maha-Dasha"];
+      const activeDasha = dashas[seed % dashas.length];
+      
+      let vedicDesc = `Active Cycle: <strong>${activeDasha}</strong>. `;
+      const dashaTransitionAge = 25 + (seed % 15);
+      if (Math.abs(currentAge - dashaTransitionAge) <= 2) {
+        vedicDesc += `✦ <strong>Systemic Convergence</strong>: Your chronological cycle transition aligns with a major Vedic Dasha shift at age ${dashaTransitionAge}. Both systems flag a key structural inflection point. Focus on active career transition and boundary calibration.`;
+      } else {
+        vedicDesc += `The current chronological macro timing operates in a stable phase. Focus on consolidating the strategic assets under this active cycle.`;
+      }
+      document.getElementById("overlay-vedic-desc").innerHTML = vedicDesc;
+
+      // BaZi Luck Pillar current element
+      const baziElements = [
+        "Fire (aligns with creative initiative)",
+        "Metal (aligns with structured systems)",
+        "Wood (aligns with pioneering vision)",
+        "Water (aligns with strategic cognitive flow)",
+        "Earth (aligns with foundational stability)"
+      ];
+      const activeBaziElem = baziElements[seed % baziElements.length];
+      document.getElementById("overlay-bazi-desc").innerHTML = `Your active 10-year Luck Pillar is anchored to <strong>${activeBaziElem}</strong>. This elemental phase aligns with your current timing arches, offering a supportive baseline for strategic actions.`;
+
+      // Biorhythms Calculation
+      const diffTime = Math.abs(evalDate - dob);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      
+      const physBio = Math.round((Math.sin(2 * Math.PI * diffDays / 23) + 1) * 50);
+      const emotBio = Math.round((Math.sin(2 * Math.PI * diffDays / 28) + 1) * 50);
+      const intelBio = Math.round((Math.sin(2 * Math.PI * diffDays / 33) + 1) * 50);
+
+      document.getElementById("bio-phys-pct").innerText = physBio + "%";
+      document.getElementById("bio-phys-fill").style.width = physBio + "%";
+
+      document.getElementById("bio-emot-pct").innerText = emotBio + "%";
+      document.getElementById("bio-emot-fill").style.width = emotBio + "%";
+
+      document.getElementById("bio-intel-pct").innerText = intelBio + "%";
+      document.getElementById("bio-intel-fill").style.width = intelBio + "%";
+
+      // 8. Karmic Patterns & Lessons (ABSENT letters in Name)
+      const rawName = name.toUpperCase().replace(/[^A-Z]/g, '');
+      const nameNumbers = new Set();
+      for (let char of rawName) {
+        if (letterValues[char]) nameNumbers.add(letterValues[char]);
+      }
+
+      // Absences
+      const absentNumbers = [];
+      for (let i = 1; i <= 9; i++) {
+        if (!nameNumbers.has(i)) absentNumbers.push(i);
+      }
+
+      const lessonsDescriptions = {
+        1: "Karmic Lesson 1: Independent standing, leadership initiative, and learning self-reliance.",
+        2: "Karmic Lesson 2: Strategic diplomacy, partnerships, and releasing sensitivity to rejection.",
+        3: "Karmic Lesson 3: Creative expression, communication of feelings, and focused passion.",
+        4: "Karmic Lesson 4: Foundation building, structured discipline, and long-term routines.",
+        5: "Karmic Lesson 5: Constructive freedom, adaptability, and release of self-sabotage.",
+        6: "Karmic Lesson 6: Unconditional stewardship, caregiving, and balancing home parameters.",
+        7: "Karmic Lesson 7: INTENSIVE STUDY: Introspection, special science analysis, and spiritual trust.",
+        8: "Karmic Lesson 8: Sovereign management: balance of money, authority, and financial cashflows.",
+        9: "Karmic Lesson 9: Global completion: humanitarian values, emotional release, and wisdom sharing."
+      };
+
+      const lessonsList = document.getElementById("karmic-lessons-list");
+      lessonsList.innerHTML = "";
+      if (absentNumbers.length > 0) {
+        absentNumbers.forEach(n => {
+          const li = document.createElement("li");
+          li.innerHTML = `<strong>Vibration ${n}</strong>: ${lessonsDescriptions[n] || lessonsDescriptions[1]}`;
+          lessonsList.appendChild(li);
+        });
+      } else {
+        const li = document.createElement("li");
+        li.innerText = "No major karmic lessons detected. Your name contains letters from all 1 to 9 vibrations.";
+        lessonsList.appendChild(li);
+      }
+
+      // Debt lists in dynamic
+      const debtList = document.getElementById("karmic-debt-list");
+      debtList.innerHTML = "";
+      if (isKarmicDebt) {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>Karmic Debt Node ${debtValue}</strong> detected. This triggers specific past-cycle issues involving power calibration. See Section I overview for specific guidance.`;
+        debtList.appendChild(li);
+      } else {
+        const li = document.createElement("li");
+        li.innerText = "No major karmic debt nodes detected. Your primary birthdate coordinates compile smoothly.";
+        debtList.appendChild(li);
+      }
+
+      // 9. Dynamic strategic postures
+      const posturesList = ["Consolidate & Protect", "Launch & Amplify", "Scale Revenue Assets", "Audit & Restructure", "Nurture Core Alliances"];
+      const cyclePostures = [
+        posturesList[seed % posturesList.length],
+        posturesList[(seed + 1) % posturesList.length],
+        posturesList[(seed + 2) % posturesList.length],
+        posturesList[(seed + 3) % posturesList.length]
+      ];
+
+      const matrixThemes = [
+        "Primary roots integration, basic skill formatting, establishing organic emotional bounds.",
+        "Rapid independent growth, major career stabilization, building foundational assets.",
+        "Social leadership expansion, corporate network coordination, advisory transitions.",
+        "Masterful legacy structuring, transmuting lifelong wisdom, restorative spiritual retreats."
+      ];
+
+      // -------------------------------------------------------------
+      // PILLAR-BY-PILLAR DETAILED DYNAMIC COMPILE
+      // -------------------------------------------------------------
+
+      // 1. Executive Dashboard Matrix Generation
+      const matrixBody = document.getElementById("dash-matrix-body");
+      matrixBody.innerHTML = "";
+      
+      arches.forEach((arc, idx) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td><strong>${idx === 0 ? 'Foundation' : idx === 1 ? 'Development' : idx === 2 ? 'Leadership' : 'Legacy'}</strong></td>
+          <td style="font-family: var(--font-serif-header); font-weight: bold; color: var(--pigment-cinnabar);">Vibration ${arc.val}</td>
+          <td style="font-size: 0.95rem;">${matrixThemes[idx]}</td>
+          <td style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: bold; color: ${arc.color};">${cyclePostures[idx]}</td>
+        `;
+        matrixBody.appendChild(row);
+      });
+
+      // Cycle Timing Synthesis
+      let cycleTheme = "Identity & Core Alignment";
+      let activeClimate = "";
+      let activeCenterpiece = "";
+
+      if (lp % 2 !== 0 && currentAge < 35) {
+        cycleTheme = "Identity Alignment & Strategic Growth";
+        activeClimate = "A high-momentum cycle optimized for active strategic pivots and expansion. Focus is centered on creative leadership and initiating fresh projects.";
+        activeCenterpiece = "Establish alignment: coordinate active initiatives with core strengths.";
+      } else if (lp % 2 !== 0 && currentAge >= 35) {
+        cycleTheme = "Consolidation & Leadership Transition";
+        activeClimate = "A high-yield consolidation chapter. Focus is centered on maximizing established systems, governance structures, and strategic risk controls.";
+        activeCenterpiece = "Consolidate authority: prioritize governance, scaling, and leadership presence.";
+      } else if (lp % 2 === 0 && currentAge < 35) {
+        cycleTheme = "Systems Calibration & Stabilization";
+        activeClimate = "An internal stabilization chapter. Prioritize risk containment, system resilience, and structural discipline over aggressive outer growth.";
+        activeCenterpiece = "Optimize structures: build quiet, repeatable daily operational habits.";
+      } else {
+        cycleTheme = "Legacy Integration & Mastery";
+        activeClimate = "A cycle of long-range legacy consolidation and risk advisory. Decisions should be guided by permanence, structural integrity, and quiet leadership.";
+        activeCenterpiece = "Optimize systems from quiet: focus on governance and long-range legacy alignment.";
+      }
+
+      // If Master Number
+      if (lp === 11 || lp === 22 || lp === 33) {
+        cycleTheme = "Structural Audit & Realignment";
+        activeClimate = "A highly critical audit chapter. Environmental transits invite a comprehensive review of all organizational and personal relationships for absolute integrity.";
+        activeCenterpiece = "Perform structural audit: align all actions with absolute ethical and functional values.";
+      }
+
+      document.getElementById("dash-timing-desc").innerText = `${cycleTheme}. Age ${currentAge}. ${activeClimate}`;
+      document.getElementById("dash-centerpiece-theme").innerText = `“${activeCenterpiece}”`;
+
+      // Update Sticky Header text
+      document.getElementById("sticky-status-val").innerText = cycleTheme.toUpperCase();
+
+      // 2. Birth Blueprint SAV Grid Point Compiler
+      const savContainer = document.getElementById("bp-sav-container");
+      savContainer.innerHTML = "";
+      
+      const savPoints = [];
+      const integratedHouses = [];
+      const frictionHouses = [];
+      for (let i = 1; i <= 12; i++) {
+        const pts = 20 + ((seed + i * 11) % 20);
+        savPoints.push(pts);
+        if (pts >= 32) {
+          integratedHouses.push({ h: i, pts: pts });
+        } else if (pts < 24) {
+          frictionHouses.push({ h: i, pts: pts });
+        }
+        
+        const card = document.createElement("div");
+        card.className = "sav-house-card";
+        
+        let borderStyle = "var(--border-container)";
+        let statusText = "BALANCED";
+        let statusColor = "var(--ink-faded)";
+        
+        if (pts >= 32) {
+          borderStyle = "2px solid var(--pigment-saffron)";
+          card.style.background = "rgba(217, 130, 54, 0.08)";
+          statusText = "HIGH CAPACITY";
+          statusColor = "var(--pigment-saffron)";
+        } else if (pts < 24) {
+          borderStyle = "2px solid var(--pigment-terracotta)";
+          card.style.background = "rgba(166, 91, 74, 0.08)";
+          statusText = "LOW CAPACITY";
+          statusColor = "var(--pigment-terracotta)";
+        } else {
+          card.style.background = "#faf7ef";
+        }
+        
+        card.style.border = borderStyle;
+        card.innerHTML = `
+          <div class="sav-house-num">H${i}</div>
+          <div class="sav-house-pts" style="color: ${statusColor};">${pts}</div>
+          <div class="sav-house-status" style="color: ${statusColor};">${statusText}</div>
+        `;
+        
+        card.onmouseover = () => showHouseFocus(i, pts);
+        card.onclick = () => showHouseFocus(i, pts);
+        
+        savContainer.appendChild(card);
+      }
+
+      // Initialize house focus on first integrated house
+      let firstIntegrated = savPoints.findIndex(p => p >= 32) + 1;
+      if (firstIntegrated === 0) firstIntegrated = 1;
+      showHouseFocus(firstIntegrated, savPoints[firstIntegrated - 1]);
+
+      let bpHouseText = integratedHouses.length > 0 
+        ? `House ${integratedHouses[0].h} (${houseMeanings[integratedHouses[0].h].name})`
+        : "your dominant structural sectors";
+      
+      let frHouseText = frictionHouses.length > 0
+        ? `House ${frictionHouses[0].h} (${houseMeanings[frictionHouses[0].h].name})`
+        : "your high-friction energy channels";
+
+      document.getElementById("mit-action-protocol").innerHTML = `
+        <strong>Leverage Integrated Sectors:</strong> Focus major commercial initiatives and strategic projects within the domains of <strong>${bpHouseText}</strong>. Active transits through this high-capacity sector naturally lower operational friction and maximize performance yields.
+      `;
+
+      document.getElementById("mit-remedial-protocol").innerHTML = `
+        <strong>Calibrate Low-Reserve Domains:</strong> Implement strict risk controls and structural boundaries within the domains of <strong>${frHouseText}</strong>. Maintain defensive resource posture, avoid speculative initiatives, and ensure robust operational systems to safeguard vulnerable sectors.
+      `;
+
+      // Ashtakavarga and Bazi overlays
+      const arthaBullets = [
+        `Coordinate primary revenue activities through your integrated <strong>${bpHouseText}</strong> sign.`,
+        `Leverage late Q2 transit windows for launching new services and strategic alliances.`,
+        `Calibrate capital flow during geocentric retrograde periods to protect cash reserves.`,
+        `Streamline structural overhead in alignment with active coordinate cycles.`
+      ];
+      const kamaBullets = [
+        `Employ diplomatic dialogue in joint ventures, acknowledging active growth cycles.`,
+        `Distribute detailed administrative functions to peer specialists to sustain focus.`,
+        `Leverage key recruitment or partnership windows indicated on your timing matrix.`,
+        `Calibrate communication protocols to optimize high-impact interactions.`
+      ];
+      const mokshaBullets = [
+        `Regulate physiological energy expenditure: current physical capacity is at ${physBio}%.`,
+        `Manage cognitive focus: intellectual and emotional reserves are at ${intelBio}% and ${emotBio}%.`,
+        `Structure a quiet, distraction-free environment to prevent mental fatigue.`,
+        `Integrate restorative periods during transit convergence phases.`
+      ];
+
+      const arthaContainer = document.getElementById("track-artha-bullets");
+      arthaContainer.innerHTML = "";
+      arthaBullets.forEach(b => {
+        const bullet = document.createElement("div");
+        bullet.className = "track-card-bullet";
+        bullet.innerHTML = b;
+        arthaContainer.appendChild(bullet);
+      });
+
+      const kamaContainer = document.getElementById("track-kama-bullets");
+      kamaContainer.innerHTML = "";
+      kamaBullets.forEach(b => {
+        const bullet = document.createElement("div");
+        bullet.className = "track-card-bullet";
+        bullet.innerHTML = b;
+        kamaContainer.appendChild(bullet);
+      });
+
+      const mokshaContainer = document.getElementById("track-moksha-bullets");
+      mokshaContainer.innerHTML = "";
+      mokshaBullets.forEach(b => {
+        const bullet = document.createElement("div");
+        bullet.className = "track-card-bullet";
+        bullet.innerHTML = b;
+        mokshaContainer.appendChild(bullet);
+      });
+
+      // -------------------------------------------------------------
+      // SVG MATHEMATICAL DYNAMIC TITRATION (VACANT SPACE ELIMINATED)
+      // -------------------------------------------------------------
+      // ViewBox is 700 x 280 (to frame both Pinnacle and Challenge upward arches!)
+      const elementGroup = document.getElementById("dynamic-arcs-elements");
+      elementGroup.innerHTML = "";
+
+      const vertGroup = document.getElementById("timeline-verticals");
+      const labelGroup = document.getElementById("timeline-labels");
+      if (vertGroup && labelGroup) {
+        vertGroup.innerHTML = "";
+        labelGroup.innerHTML = "";
+
+        // Background lines at 10, 20, 30, 40, 50, 60, 70, 80
+        for (let age = 10; age <= 80; age += 10) {
+          const x = getX(age);
+          const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          line.setAttribute('x1', x);
+          line.setAttribute('y1', 30);
+          line.setAttribute('x2', x);
+          line.setAttribute('y2', 230);
+          line.setAttribute('stroke', '#EADEC9');
+          line.setAttribute('stroke-width', '1');
+          line.setAttribute('stroke-dasharray', '2,4');
+          vertGroup.appendChild(line);
+
+          const txt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          txt.setAttribute('x', x);
+          txt.setAttribute('y', 245);
+          txt.setAttribute('font-family', 'Courier Prime');
+          txt.setAttribute('font-size', '10');
+          txt.setAttribute('fill', '#9C9890');
+          txt.setAttribute('text-anchor', 'middle');
+          txt.textContent = age;
+          labelGroup.appendChild(txt);
+        }
+
+        // Draw Milestone boundary lines
+        const milestones = [0, age1, age2, age3, 85];
+        milestones.forEach(m => {
+          const x = getX(m);
+          const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          line.setAttribute('x1', x);
+          line.setAttribute('y1', 30);
+          line.setAttribute('x2', x);
+          line.setAttribute('y2', 230);
+          line.setAttribute('stroke', '#C2B8A3');
+          line.setAttribute('stroke-width', '1.5');
+          line.setAttribute('stroke-dasharray', '4,2');
+          vertGroup.appendChild(line);
+
+          const txt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          txt.setAttribute('x', x);
+          txt.setAttribute('y', 245);
+          txt.setAttribute('font-family', 'Courier Prime');
+          txt.setAttribute('font-size', '11');
+          txt.setAttribute('font-weight', 'bold');
+          txt.setAttribute('fill', 'var(--ink-archival)');
+          txt.setAttribute('text-anchor', 'middle');
+          txt.textContent = m === 85 ? "80+" : m;
+          labelGroup.appendChild(txt);
+        });
+
+        // Center bottom timeline label
+        const timelineTitle = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        timelineTitle.setAttribute('x', 350);
+        timelineTitle.setAttribute('y', 270);
+        timelineTitle.setAttribute('font-family', 'Courier Prime');
+        timelineTitle.setAttribute('font-size', '10');
+        timelineTitle.setAttribute('font-weight', 'bold');
+        timelineTitle.setAttribute('fill', '#76726A');
+        timelineTitle.setAttribute('text-anchor', 'middle');
+        timelineTitle.textContent = "CHRONOLOGICAL TIMELINE (YEARS)";
+        labelGroup.appendChild(timelineTitle);
+
+        // Draw horizontal guide lines & scale ticks at values 1, 3, 6, 9
+        const yAxisLabels = [1, 3, 6, 9];
+        yAxisLabels.forEach(yVal => {
+          const hVal = (yVal / 9) * 180;
+          const yCoord = 230 - hVal;
+
+          // Draw thin guide line across the plot area
+          const guideLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          guideLine.setAttribute('x1', 50);
+          guideLine.setAttribute('y1', yCoord);
+          guideLine.setAttribute('x2', 650);
+          guideLine.setAttribute('y2', yCoord);
+          guideLine.setAttribute('stroke', 'rgba(234, 222, 201, 0.45)');
+          guideLine.setAttribute('stroke-width', '1');
+          guideLine.setAttribute('stroke-dasharray', '2,4');
+          vertGroup.appendChild(guideLine);
+
+          // Draw tick indicator line on the left axis
+          const tickLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          tickLine.setAttribute('x1', 45);
+          tickLine.setAttribute('y1', yCoord);
+          tickLine.setAttribute('x2', 50);
+          tickLine.setAttribute('y2', yCoord);
+          tickLine.setAttribute('stroke', '#D6CEBE');
+          tickLine.setAttribute('stroke-width', '1.5');
+          vertGroup.appendChild(tickLine);
+
+          // Draw Y-Axis label
+          const lblP = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          lblP.setAttribute('x', 40);
+          lblP.setAttribute('y', yCoord + 4);
+          lblP.setAttribute('font-family', 'Courier Prime');
+          lblP.setAttribute('font-size', '9');
+          lblP.setAttribute('fill', 'var(--ink-faded)');
+          lblP.setAttribute('text-anchor', 'end');
+          lblP.textContent = yVal === 9 ? "9 (Max)" : yVal;
+          labelGroup.appendChild(lblP);
+        });
+
+        // Vertical Y-Axis line at x = 50
+        const yAxisLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        yAxisLine.setAttribute('x1', 50);
+        yAxisLine.setAttribute('y1', 30);
+        yAxisLine.setAttribute('x2', 50);
+        yAxisLine.setAttribute('y2', 230);
+        yAxisLine.setAttribute('stroke', '#D6CEBE');
+        yAxisLine.setAttribute('stroke-width', '1.5');
+        vertGroup.appendChild(yAxisLine);
+      }
+
+      const challenges = [c1, c2, c3, c4];
+
+      arches.forEach((arc, i) => {
+        const xS = getX(arc.start);
+        const xE = getX(arc.end);
+        const span = xE - xS;
+        const cX = xS + span / 2;
+        
+        // Curve heights directly titrated against the single digit values (Scale 1 - 9)
+        const hPinnacle = (arc.val / 9) * 180;
+        const cVal = challenges[i];
+        const hChallenge = (cVal / 9) * 180;
+
+        // Peak Coordinates
+        const cY_p = 230 - 2 * hPinnacle;
+        const nodeY_p = 230 - hPinnacle;
+
+        const cY_c = 230 - 2 * hChallenge;
+        const nodeY_c = 230 - hChallenge;
+
+        // Horizontally offset coordinates if peak nodes are too close to prevent any text/circle overlapping
+        let cX_p = cX;
+        let cX_c = cX;
+        if (Math.abs(hPinnacle - hChallenge) < 32) {
+          cX_p = cX - 18;
+          cX_c = cX + 18;
+        }
+
+        // A. LIGHT ARCS: Pinnacles (Going Upward, Solid Curve)
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', `M ${xS} 230 Q ${cX} ${cY_p} ${xE} 230`);
+        path.setAttribute('class', 'timeline-arc');
+        path.setAttribute('stroke', arc.color);
+        path.setAttribute('stroke-width', '3');
+        path.setAttribute('stroke-opacity', '0.8');
+        path.setAttribute('fill', 'none');
+        elementGroup.appendChild(path);
+
+        const pathLength = 1200;
+        path.style.strokeDasharray = pathLength;
+        path.style.strokeDashoffset = pathLength;
+        path.getBoundingClientRect(); // trigger reflow
+        path.style.transition = 'stroke-dashoffset 1.5s ease-in-out';
+        path.style.strokeDashoffset = '0';
+
+        const node = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        node.setAttribute('cx', cX_p);
+        node.setAttribute('cy', nodeY_p);
+        node.setAttribute('r', '15');
+        node.setAttribute('fill', '#ffffff');
+        node.setAttribute('stroke', arc.color);
+        node.setAttribute('stroke-width', '2.5');
+        node.style.opacity = '0';
+        node.style.transition = 'opacity 0.5s ease-in-out';
+        elementGroup.appendChild(node);
+        setTimeout(() => { node.style.opacity = '1'; }, i * 150 + 300);
+
+        const valText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        valText.setAttribute('x', cX_p);
+        valText.setAttribute('y', nodeY_p + 5);
+        valText.setAttribute('font-family', 'Cinzel');
+        valText.setAttribute('font-size', '14');
+        valText.setAttribute('font-weight', 'bold');
+        valText.setAttribute('text-anchor', 'middle');
+        valText.setAttribute('fill', 'var(--ink-archival)');
+        valText.style.opacity = '0';
+        valText.style.transition = 'opacity 0.5s ease-in-out';
+        valText.textContent = arc.val;
+        elementGroup.appendChild(valText);
+        setTimeout(() => { valText.style.opacity = '1'; }, i * 150 + 400);
+
+        // B. SHADOW ARCS: Challenges (Going Upward, Solid Slate-Blue Curve - Equal weight!)
+        const path_c = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path_c.setAttribute('d', `M ${xS} 230 Q ${cX} ${cY_c} ${xE} 230`);
+        path_c.setAttribute('class', 'timeline-arc');
+        path_c.setAttribute('stroke', '#8CA3C3'); // Premium slate-blue curve!
+        path_c.setAttribute('stroke-width', '3'); // Equal weight!
+        path_c.setAttribute('stroke-opacity', '0.85');
+        path_c.setAttribute('fill', 'none');
+        elementGroup.appendChild(path_c);
+
+        path_c.style.strokeDasharray = pathLength;
+        path_c.style.strokeDashoffset = pathLength;
+        path_c.getBoundingClientRect(); // trigger reflow
+        path_c.style.transition = 'stroke-dashoffset 1.5s ease-in-out';
+        path_c.style.strokeDashoffset = '0';
+
+        const node_c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        node_c.setAttribute('cx', cX_c);
+        node_c.setAttribute('cy', nodeY_c);
+        node_c.setAttribute('r', '15'); // Same size!
+        node_c.setAttribute('fill', '#ffffff');
+        node_c.setAttribute('stroke', '#8CA3C3'); // Matching slate-blue border!
+        node_c.setAttribute('stroke-width', '2.5'); // Same stroke weight!
+        node_c.style.opacity = '0';
+        node_c.style.transition = 'opacity 0.5s ease-in-out';
+        elementGroup.appendChild(node_c);
+        setTimeout(() => { node_c.style.opacity = '1'; }, i * 150 + 500);
+
+        const valText_c = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        valText_c.setAttribute('x', cX_c);
+        valText_c.setAttribute('y', nodeY_c + 5); // Same offset!
+        valText_c.setAttribute('font-family', 'Cinzel');
+        valText_c.setAttribute('font-size', '14'); // Same size!
+        valText_c.setAttribute('font-weight', 'bold');
+        valText_c.setAttribute('text-anchor', 'middle');
+        valText_c.setAttribute('fill', 'var(--pigment-cinnabar)'); // Readability number in cinnabar
+        valText_c.style.opacity = '0';
+        valText_c.style.transition = 'opacity 0.5s ease-in-out';
+        valText_c.textContent = cVal;
+        elementGroup.appendChild(valText_c);
+        setTimeout(() => { valText_c.style.opacity = '1'; }, i * 150 + 600);
+      });
+
+
+      // 2. Executive Dashboard Matrix Generation
+      const postures = ["Consolidate & Protect", "Launch & Amplify", "Scale Revenue Assets", "Audit & Restructure", "Nurture Core Alliances"];
+
+      // BaZi and Vedic Dasha Convergence
+      const dashaLords = ["Saturn Maha-Dasha (Decade Cycle)", "Jupiter Maha-Dasha (Decade Cycle)", "Mercury Maha-Dasha (Decade Cycle)", "Venus Maha-Dasha (Decade Cycle)", "Sun Maha-Dasha (Decade Cycle)"];
+      const activeLord = dashaLords[seed % dashaLords.length];
+
+      // Update Macro-Chronology (Pillar 3) dynamically
+      const macroCycleThemes = {
+        "Saturn Maha-Dasha (Decade Cycle)": {
+          type: "Consolidation & Strategy",
+          desc: "Focus is centered on structural audit, risk management, and systemic efficiency. Outward scaling is deprioritized in favor of quality control and operational resilience.",
+          motivation: "Transitioning from speculative risk to permanent stability, institutional systems, and strategic alignment."
+        },
+        "Jupiter Maha-Dasha (Decade Cycle)": {
+          type: "Expansion & Alliances",
+          desc: "Supports commercial expansion, strategic partnerships, and structural growth. Favorable environmental baselines facilitate scaling and leadership development.",
+          motivation: "Focused on long-range vision, systemic mentorship, and building enterprise value."
+        },
+        "Mercury Maha-Dasha (Decade Cycle)": {
+          type: "Communication & Synthesis",
+          desc: "Optimized for strategic branding, communication campaigns, and specialized research. Highly active cycle for trade, analytical systems, and launching intellectual property.",
+          motivation: "Centered on intellectual growth, network distribution, and analytical precision."
+        },
+        "Venus Maha-Dasha (Decade Cycle)": {
+          type: "Alignment & Trust",
+          desc: "Supports creative partnership and relationship development. Focus shifts to aesthetic standards, collaborative joint ventures, and sustainable professional environments.",
+          motivation: "Driven by relational trust, high-standard execution, and organic integration."
+        },
+        "Sun Maha-Dasha (Decade Cycle)": {
+          type: "Authority & Status",
+          desc: "A cycle designed for executive presence, leadership roles, and building status. Establish permanent authority and market differentiation with quiet execution.",
+          motivation: "Driven by executive responsibility, market leadership, and structural excellence."
+        }
+      };
+
+      const currentMacro = macroCycleThemes[activeLord];
+      const mcTitleEl = document.getElementById("mc-cycle-title");
+      const mcTypeEl = document.getElementById("mc-cycle-type");
+      const mcDescEl = document.getElementById("mc-cycle-desc");
+      const mcMotEl = document.getElementById("mc-motivation-desc");
+      
+      if (mcTitleEl) mcTitleEl.innerText = `Current Macro Cycle: ${activeLord}`;
+      if (mcTypeEl) mcTypeEl.innerText = currentMacro.type;
+      if (mcDescEl) mcDescEl.innerHTML = currentMacro.desc;
+      if (mcMotEl) mcMotEl.innerHTML = currentMacro.motivation;
+
+      // 4. Tactical Micro-Timing Matrix
+      const mtTableBody = document.getElementById("mt-table-body");
+      mtTableBody.innerHTML = "";
+
+      const subDashas = ["Rahu Antar", "Jupiter Antar", "Saturn Antar", "Mercury Antar", "Venus Antar"];
+      const microClimes = [
+        "Analytical alignment: high cognitive focus, ideal for contract review and technical formulation.",
+        "Internal synthesis: prioritize physical recovery, boundary calibration, and noise containment.",
+        "Resource expansion: supports high-value strategic partnerships, assets, and capital allocations.",
+        "Structural consolidation: prioritize system efficiency, audit processes, and risk containment."
+      ];
+
+      const quarters = ["Q1 (Jan – Apr)", "Q2 (Apr – Jul)", "Q3 (Jul – Oct)", "Q4 (Oct – Dec)"];
+      quarters.forEach((q, idx) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td style="font-size: 0.95rem; white-space: nowrap;"><strong>${q}</strong></td>
+          <td style="font-family: var(--font-serif-header); font-weight: bold; font-size: 0.95rem; white-space: nowrap;">${subDashas[(seed + idx) % subDashas.length]}</td>
+          <td style="font-family: var(--font-mono); font-size: 0.82rem; white-space: nowrap;">Saturn Retrograde H${(seed % 12)+1}</td>
+          <td style="font-size: 0.95rem; line-height: 1.45;">${microClimes[(seed + idx) % microClimes.length]}</td>
+        `;
+        mtTableBody.appendChild(row);
+      });
+
+      // Trigger calendar dates
+      const mtTriggers = document.getElementById("mt-triggers-container");
+      mtTriggers.innerHTML = "";
+
+      const triggersConfig = [
+        { title: "Strategic Venture Pitch", icon: "💼", offset: 120 },
+        { title: "Strategic Alliance Window", icon: "🤝", offset: 210 },
+        { title: "Capital Alignment Audit", icon: "💰", offset: 300 }
+      ];
+
+      triggersConfig.forEach(cfg => {
+        const triggerDays = (seed + cfg.offset) % 365;
+        const triggerDate = new Date(currentYear, 0, 1 + triggerDays);
+        const dateString = triggerDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+        const card = document.createElement("div");
+        card.style.display = "flex";
+        card.style.alignItems = "center";
+        card.style.gap = "0.75rem";
+        card.style.background = "rgba(217, 130, 54, 0.03)";
+        card.style.border = "1px solid #D6CEBE";
+        card.style.padding = "0.6rem 1rem";
+        card.style.borderRadius = "4px";
+        
+        card.innerHTML = `
+          <div style="font-size: 1.5rem;">${cfg.icon}</div>
+          <div>
+            <strong style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--pigment-saffron); text-transform: uppercase; display: block; line-height: 1.2;">${cfg.title}</strong>
+            <span style="font-family: var(--font-serif-header); font-size: 1.05rem; font-weight: bold; color: var(--ink-archival);">${dateString}</span>
+          </div>
+        `;
+        mtTriggers.appendChild(card);
+      });
+    }
+
+    // Auto-recalculations on key entry changes
+    document.getElementById('input-name').addEventListener('input', updatePinnacles);
+    document.getElementById('input-dob').addEventListener('change', updatePinnacles);
+    document.getElementById('input-eval-date').addEventListener('change', updatePinnacles);
+    document.getElementById('input-tob-hour').addEventListener('change', updatePinnacles);
+    document.getElementById('input-tob-minute').addEventListener('change', updatePinnacles);
+    document.getElementById('input-tob-ampm').addEventListener('change', updatePinnacles);
+    document.getElementById('input-location').addEventListener('input', updatePinnacles);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      populateClockSelectors('input-tob-hour', 'input-tob-minute');
+
+      const savedName = safeGetItem('antara_user_name');
+      const savedDob = safeGetItem('antara_user_dob');
+      if (savedName) document.getElementById('input-name').value = savedName;
+      if (savedDob) document.getElementById('input-dob').value = formatToInputDate(savedDob);
+
+      const savedTobHour = safeGetItem('antara_user_tob_hour');
+      const savedTobMin = safeGetItem('antara_user_tob_minute');
+      const savedTobAmPm = safeGetItem('antara_user_tob_ampm');
+
+      if (savedTobHour) document.getElementById('input-tob-hour').value = savedTobHour;
+      else document.getElementById('input-tob-hour').value = "10";
+      
+      if (savedTobMin) document.getElementById('input-tob-minute').value = savedTobMin;
+      else document.getElementById('input-tob-minute').value = "04";
+      
+      if (savedTobAmPm) document.getElementById('input-tob-ampm').value = savedTobAmPm;
+      else document.getElementById('input-tob-ampm').value = "AM";
+      
+      // Default eval date to today
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      document.getElementById('input-eval-date').value = `${yyyy}-${mm}-${dd}`;
+
+      // Close accordions on mobile viewports
+      if (window.innerWidth < 768) {
+        document.querySelectorAll('.mobile-accordion-wrapper, .mobile-accordion-inner').forEach(el => {
+          el.removeAttribute('open');
+        });
+      }
+
+      // Prevent accordion summaries from toggling on desktop viewports
+      document.querySelectorAll('.mobile-accordion-wrapper summary, .mobile-accordion-inner summary').forEach(summary => {
+        summary.addEventListener('click', (e) => {
+          if (window.innerWidth >= 768) {
+            e.preventDefault();
+          }
+        });
+      });
+
+      updatePinnacles();
+    });
+  </script>
+</body>
+</html>

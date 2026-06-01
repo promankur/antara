@@ -1,0 +1,2369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corporate Strengths Analysis | AG_Antara Cross-Cultural Interior Panorama</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-page: #F7F1E1;
+      --bg-vellum-warm: #ffffff;
+      --ink-archival: #2B2A28;
+      --ink-faded: #76726A;
+      --border-container: 1px solid #D6CEBE;
+      --stroke: #b56a2a;
+      
+      --font-serif-header: 'Cinzel', serif;
+      --font-serif-body: 'Playfair Display', serif;
+      --font-mono: 'Courier Prime', monospace;
+      
+      --pigment-terracotta: #A65B4A;
+      --pigment-saffron: #D98236;
+      --pigment-cinnabar: #9E3A33;
+      --pigment-lapis: #3C5A80;
+      --pigment-gold: #B58A3D;
+      --pigment-emerald: #2E7D32;
+    }
+
+    /* Accordion body text — force normal reading font, no small-caps */
+    details p, details td, details li {
+      font-variant: normal !important;
+      font-family: var(--font-serif-body) !important;
+      text-transform: none !important;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 17px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1150px;
+      width: 100%;
+      margin: 0 auto 2rem auto;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    .grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Side-by-side chart & active reading panel styling */
+    .chart-reading-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 900px) {
+      .chart-reading-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Equal width side-by-side columns */
+        gap: 2rem;
+        align-items: stretch;
+      }
+    }
+
+    .archival-card {
+      background-color: var(--bg-vellum-warm);
+      border: var(--border-container);
+      padding: 1.75rem;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04);
+      box-sizing: border-box;
+    }
+
+    /* inner double-border removed — breathing space preferred */
+
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-faded);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      background-color: rgba(247, 241, 225, 0.4);
+      border: var(--border-container);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 1.05rem;
+      padding: 0.75rem 1rem;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    .svg-house-container {
+      margin: 1.5rem auto;
+      border: 1px solid #D6CEBE;
+      padding: 2rem;
+      background: #faf7ef;
+      border-radius: 4px;
+      text-align: center;
+      max-width: 480px;
+    }
+
+    .house-shape {
+      cursor: pointer;
+      fill: #ffffff;
+      stroke: #D6CEBE;
+      stroke-width: 2;
+      transition: all 0.3s ease;
+    }
+
+    .house-shape:hover {
+      fill: rgba(217, 130, 54, 0.08);
+      stroke: var(--pigment-saffron);
+    }
+
+    .house-shape.peak {
+      fill: rgba(181, 138, 61, 0.08);
+      stroke: var(--pigment-gold);
+      stroke-width: 2.5;
+    }
+
+    .house-shape.selected {
+      fill: rgba(158, 58, 51, 0.06);
+      stroke: var(--pigment-cinnabar);
+      stroke-width: 2.5;
+    }
+
+    .sav-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1.05rem;
+      margin-top: 1rem;
+    }
+
+    .sav-table th, .sav-table td {
+      border: 1px solid #EADEC9;
+      padding: 0.75rem 0.85rem;
+      text-align: center;
+    }
+
+    .sav-table th {
+      background-color: #faf7ef;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--ink-faded);
+    }
+
+    .sav-table tr:nth-child(even) td {
+      background-color: rgba(244, 235, 212, 0.2);
+    }
+
+    .peak-highlight-badge {
+      background-color: var(--pigment-gold);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-block;
+    }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 2.5rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+    }
+    
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--ink-faded);
+      margin: 0.25rem 0;
+    }
+
+    p, td, li {
+      text-align: left !important;
+    }
+
+    /* Header Standardized Branding & Typography */
+    .header-logo { 
+      text-align: center; 
+      margin: 20px 0 8px 0; 
+    }
+    .system-tagline { 
+      font-family: 'Courier New', Courier, monospace !important; 
+      font-weight: 700 !important; 
+      font-size: 13px !important; 
+      letter-spacing: 5px !important; 
+      color: #A6A29A !important; 
+      text-transform: uppercase !important; 
+      text-align: center !important; 
+      margin: 0 0 24px 0 !important; 
+      line-height: 1.2 !important;
+    }
+    .master-report-title { 
+      font-family: 'Cinzel', serif !important; 
+      font-size: 2.25rem !important; 
+      font-variant: small-caps !important; 
+      font-weight: 700 !important; 
+      letter-spacing: 2px !important; 
+      color: #2B2A28 !important; 
+      text-align: center !important; 
+      margin: 0 0 14px 0 !important; 
+      line-height: 1.3 !important; 
+    }
+    .master-report-byline { 
+      font-family: 'Playfair Display', serif !important; 
+      font-size: 1.15rem !important; 
+      color: #D98236 !important; 
+      text-align: center !important; 
+      max-width: 800px !important; 
+      margin: 0 auto 32px auto !important; 
+      padding: 0 12px !important; 
+      line-height: 1.5 !important; 
+    }
+
+    /* Premium Click to Explore Accordion Styles */
+    .explore-summary {
+      font-family: var(--font-serif-header);
+      background-color: #D35400; /* Vibrant Brand Saffron */
+      color: #FFFFFF !important;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.85rem 1.25rem; /* Elegant compact height */
+      border: 1px solid #8E4A21; /* Cinnamon brand structural frame */
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 12px rgba(211, 84, 0, 0.12);
+      line-height: 1.35;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .explore-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .explore-summary::before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px double rgba(255, 255, 255, 0.45); /* Elegant double border in reverse white */
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .explore-summary:hover {
+      background-color: #E65C00; /* Slightly brighter warm saffron on hover */
+      box-shadow: 0 6px 18px rgba(211, 84, 0, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .explore-summary:hover::before {
+      border-color: rgba(255, 255, 255, 0.7);
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+    }
+
+    .explore-summary:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(211, 84, 0, 0.15);
+    }
+
+    .explore-summary .explore-title-main {
+      font-variant: small-caps;
+      font-size: 1.05rem; /* Compact size */
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: none; /* Crucial for small-caps */
+      position: relative;
+      z-index: 2;
+    }
+
+    .explore-summary .explore-title-sub {
+      font-family: var(--font-serif-body);
+      font-size: 1.25rem; /* Bold italic font matching user mock */
+      font-weight: 700;
+      font-style: italic;
+      margin-top: 3px;
+      letter-spacing: 0.5px;
+      color: #FFFFFF !important;
+      position: relative;
+      z-index: 2;
+    }
+
+    .accordion-inner-border {
+      position: relative;
+    }
+
+    .accordion-inner-border::before {
+      content: "";
+      position: absolute;
+      top: 6px; left: 6px; right: 6px; bottom: 6px;
+      border: 1px double #D6CEBE;
+      pointer-events: none;
+      border-radius: 3px;
+    }
+
+    /* Lighter summary styling for the ledger disclosure to prevent competing with explore CTA */
+    .ledger-summary {
+      font-family: var(--font-serif-header);
+      background-color: #FAF4E8; /* Luxury soft light saffron/cream background */
+      color: var(--pigment-cinnabar) !important; /* Deep cinnamon text color */
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.75rem 1.25rem;
+      border: 1px dashed var(--border-container);
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      line-height: 1.35;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .ledger-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .ledger-summary::before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+      border: 1px double rgba(158, 58, 51, 0.15); /* Subtle double border */
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .ledger-summary:hover {
+      background-color: #F3EAD3;
+      border-color: var(--pigment-terracotta);
+      box-shadow: 0 4px 12px rgba(166, 91, 74, 0.08);
+    }
+
+    .ledger-summary:hover::before {
+      border-color: rgba(158, 58, 51, 0.35);
+    }
+
+    .ledger-summary .explore-title-main {
+      font-variant: small-caps;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: var(--pigment-cinnabar) !important;
+      position: relative;
+      z-index: 2;
+    }
+
+    .ledger-summary .explore-title-sub {
+      font-family: var(--font-serif-body);
+      font-size: 1.15rem;
+      font-weight: 700;
+      font-style: italic;
+      margin-top: 2px;
+      color: var(--ink-archival) !important;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Corporate Identity Matrix badges */
+    .corp-identity-badge {
+      background: #faf7ef;
+      border: 1px solid #D6CEBE;
+      border-radius: 4px;
+      padding: 1.25rem 0.75rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 360px; /* Enforce exact uniform height for embedded decoding text and expanded meanings */
+      box-sizing: border-box;
+    }
+    .corp-identity-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--ink-faded);
+      margin-bottom: 0.3rem;
+      min-height: 38px; /* Force uniform space for label wrapping */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .corp-identity-value {
+      font-family: var(--font-serif-header);
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1;
+      margin: 0.5rem 0;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .corp-identity-sub {
+      font-family: var(--font-serif-body);
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--ink-faded);
+      min-height: 34px; /* Force uniform space for archetype/description */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .corp-identity-calc {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-faded);
+      margin-top: 0.4rem;
+      min-height: 34px; /* Enforce uniform space for calculations */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      word-break: break-all;
+    }
+
+    /* Numerology Integration Grid Flow Diagram styles */
+    .num-integration-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      align-items: start;
+      width: 100%;
+      margin-top: 0;
+    }
+    @media (max-width: 600px) {
+      .num-integration-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+      }
+      .num-connector-distributor, .num-connector-vertical {
+        display: none !important;
+      }
+      .num-connector-arrow {
+        display: none !important;
+      }
+    }
+
+    /* Lo Shu Grid */
+    .loshu-corporate-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+    .lsc-cell {
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #D6CEBE;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    .lsc-cell.present {
+      background: rgba(217,130,54,0.1);
+      border-color: var(--pigment-saffron);
+    }
+    .lsc-cell.present-strong {
+      background: rgba(217,130,54,0.22);
+      border-color: var(--pigment-cinnabar);
+      border-width: 2px;
+    }
+    .lsc-cell.missing {
+      background: #faf7ef;
+      opacity: 0.35;
+    }
+    .lsc-num {
+      font-family: var(--font-serif-header);
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .lsc-count {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--ink-faded);
+      margin-top: 2px;
+    }
+
+    /* Corporate Biorhythm bars */
+    .corp-bio-bar-wrap {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .corp-bio-bar-card {
+      border: 1px solid #D6CEBE;
+      border-radius: 4px;
+      padding: 0.75rem;
+      background: #faf7ef;
+      text-align: center;
+    }
+    .corp-bio-pct {
+      font-family: var(--font-serif-header);
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+    .corp-bio-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .corp-bio-bar {
+      height: 8px;
+      background: #FAF3E3;
+      border: 1px solid #D6CEBE;
+      border-radius: 4px;
+      overflow: visible;
+      margin-top: 0.6rem;
+      margin-bottom: 0.6rem;
+      position: relative;
+    }
+    .corp-bio-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: absolute;
+    }
+    .corp-bio-desc {
+      font-size: 0.78rem;
+      color: var(--ink-faded);
+      line-height: 1.4;
+      margin-top: 0.3rem;
+    }
+
+    .prose-container {
+      max-width: 78ch;
+      margin: 0 auto;
+    }
+    
+    /* Section summaries */
+    .section-summary-text {
+      font-family: var(--font-serif-body);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--ink-faded);
+      margin: 0.25rem auto 1.25rem auto;
+      text-align: center !important;
+      display: block;
+      max-width: 78ch;
+      font-variant: normal !important;
+      text-transform: none !important;
+    }
+
+
+
+
+
+    /* Visual Rest Zones for mobile breathing room */
+    .visual-rest-zone {
+      margin-bottom: 2.5rem !important;
+    }
+
+    @media (max-width: 768px) {
+      .master-report-title {
+        font-size: 2.25rem !important;
+        letter-spacing: 1px !important;
+      }
+      .master-report-byline {
+        font-size: 0.95rem; !important;
+        margin-bottom: 20px !important;
+      }
+      .prose-container {
+        max-width: 100%;
+      }
+      /* Tap target optimizations */
+      .explore-summary, .ledger-summary, details summary, button, select, input {
+        min-height: 48px !important;
+        padding: 14px 18px !important;
+      }
+      /* Clean border presentation: Double border removal on mobile */
+      .explore-summary::before, .ledger-summary::before, .archival-card::before, .decorative-double-border {
+        display: none !important;
+      }
+      /* Micro-air padding changes for mobile */
+      .archival-card {
+        padding: 1.25rem !important;
+        box-shadow: none !important; /* Flat luxury aesthetic on mobile */
+      }
+      /* Shorter vertical modules on mobile */
+      .corp-identity-badge {
+        min-height: auto !important;
+        padding: 1.25rem 0.85rem !important;
+      }
+      .corp-identity-label {
+        min-height: auto !important;
+        margin-bottom: 0.15rem !important;
+      }
+      .corp-identity-value {
+        font-size: 1.8rem !important;
+        margin: 0.25rem 0 !important;
+      }
+      .corp-identity-sub {
+        min-height: auto !important;
+      }
+      .corp-identity-calc {
+        min-height: auto !important;
+      }
+      .visual-rest-zone {
+        margin-bottom: 2rem !important;
+      }
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .container { max-width: 100%; width: 100%; }
+      .calibrations-card, footer { display: none !important; }
+      .chart-reading-container { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 2rem !important; }
+      .archival-card { box-shadow: none !important; border: 1px solid #D6CEBE !important; margin-bottom: 2rem; page-break-inside: avoid; }
+      details { display: block !important; }
+      details summary { display: none !important; }
+    }
+  
+    /* Premium Left-Aligned Footer Override */
+    footer {
+      width: 100%;
+      padding: 2rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+      text-align: left;
+    }
+    .footer-content {
+      max-width: 1100px;
+      width: 100%;
+      padding: 0 16px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+    footer p {
+      font-family: var(--font-serif-body);
+      font-size: 0.82rem;
+      color: var(--ink-archival);
+      margin: 0.25rem 0;
+    }
+    footer p.font-mono {
+      font-family: var(--font-mono) !important;
+      font-size: 0.72rem !important;
+      color: var(--ink-faded) !important;
+    }
+
+  
+    /* ─── Reading Guide Grid (Tactile manuscript details) ─── */
+    .reading-guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .reading-guide-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+</style>
+  <meta name="description" content="Antara is a traditional cross-cultural mathematical life-engine and archetypal systems cartography. Calibrate your natal coordinates, biological rhythms, and name phonetic values across Vedic, Western tropical, and Chinese solar Four Pillars traditions.">
+  <link rel="icon" type="image/png" href="Antara Logo.png">
+</head>
+<body>
+
+
+
+  <div class="header-logo">
+    <a href="index.html" title="Return to Antara Dashboard" style="text-decoration: none; border: none; display: inline-block;">
+      <img src="Antara Logo.png" alt="ANTARA" style="max-height: 90px; width: auto;" onerror="this.style.display='none';">
+    </a>
+  </div>
+  <div class="system-tagline">Cross-Cultural Interior Panorama</div>
+
+  <h1 class="master-report-title">Corporate Strengths Analysis<br>For The Nameless One</h1>
+  <p class="master-report-byline">Enterprise Potential & Organizational Energies</p>
+
+  <div class="container">
+    <!-- Report Introduction (Borderless layout) -->
+    <div style="margin-bottom: 2.25rem; padding: 0.5rem 0;" class="visual-rest-zone">
+      <div class="prose-container">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-bottom: 1rem; color: var(--stroke, #b56a2a); letter-spacing: 1px; text-transform: uppercase;">About This Report</h3>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        This report evaluates how the organization thinks, scales, adapts, and retains stability under pressure by decoding its brand vibration signature and core founding cycles.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        In the modern commercial arena, corporate naming and brand alignment carry distinct sound, symbol, and energy patterns. Just as individual names shape identity, a business name or brand name carries phonetic and numerical frequencies that influence public perception, partner synergy, and market positioning.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        This report evaluates the synergy between business names, partner profiles, and target coordinates. It calculates Chaldean sound vibrations, Pythagorean business roots, and compatibility metrics to gauge brand alignment, systemic friction, and corporate name resonance.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">
+        Entrepreneurs and executives consult this analysis during branding pivots, corporate renaming, partnership formations, or market repositioning campaigns. It offers an analytical pattern framework for optimizing brand naming, partnership dynamics, and strategic timing.
+      </p>
+    
+      <!-- Codex Support Navigation Panel -->
+      <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px dashed #D6CEBE; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="Help.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📖 Help
+        </a>
+        <a href="FAQ.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          ❓ FAQ
+        </a>
+        <a href="Glossary.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📓 Glossary
+        </a>
+      </div>
+      <!-- How to Read This Report (Reading Guide Block) -->
+      <div style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; border: 1px dashed #D6CEBE; background-color: rgba(247, 241, 225, 0.15); border-radius: 4px; box-shadow: 0 2px 8px rgba(43, 42, 40, 0.01);">
+        <h4 style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 1rem; text-align: center; border-bottom: 1px dashed #D6CEBE; padding-bottom: 0.4rem;">
+          How to Study This Document
+        </h4>
+        <div class="reading-guide-grid">
+          <!-- Point 1 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">1. Read the accordion sections one at a time.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">Each section expands when you click the title — do not try to read everything at once.</span>
+          </div>
+          <!-- Point 2 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">2. Look up unfamiliar terms</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">in the Antara Glossary (<a href="Glossary.html" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar);">Glossary.html</a> in this folder).</span>
+          </div>
+          <!-- Point 3 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">3. Start with the numbers that feel most familiar.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">In a Western chart, most people know their Sun sign. In Numerology, the Life Path is easiest.</span>
+          </div>
+          <!-- Point 4 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">4. Do not worry about understanding everything on the first read.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">These reports are meant to be returned to and studied over time.</span>
+          </div>
+        </div>
+      </div>
+
+</div>
+    </div>
+
+    <!-- 1. Calibrations Section: Spans full width -->
+    <div class="archival-card calibrations-card" id="calibrations-card" style="margin-bottom: 2rem;">
+      <form onsubmit="event.preventDefault();">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1.25rem; text-transform: uppercase; color: var(--pigment-terracotta); letter-spacing: 1px;">Corporate Calibrations</h3>
+        
+        <!-- Foundational Entity Checklist Guide -->
+        <div style="background: rgba(244, 235, 212, 0.2); border: 1px dashed var(--border-container); padding: 0.85rem 1rem; border-radius: 4px; margin-bottom: 1.25rem; font-size: 0.95rem; line-height: 1.55; color: var(--ink-archival);">
+          <strong style="color: var(--pigment-cinnabar); font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 6px; letter-spacing: 1px;">❈ Foundational Entity Checklist ❈</strong>
+          <p style="margin: 0 0 0.5rem 0; font-size: 0.84rem; color: var(--ink-archival);">Select your entity type and verify its structural trigger date (<em>if the exact date is not known, a close approximation is perfectly fine</em>):</p>
+          <div style="display: grid; grid-template-columns: 1fr; gap: 0.4rem; font-family: var(--font-mono); font-size: 0.76rem; margin-bottom: 0.6rem;">
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; color: var(--ink-archival); font-weight: bold;">
+              <input type="checkbox" name="entity-type" onclick="selectOnlyOneCheckbox(this)" checked> 🏢 Enterprise (Corp / Pvt Ltd / LLP)
+            </label>
+            <div style="font-family: var(--font-serif-body); font-size: 0.8rem; color: var(--ink-faded); margin-left: 20px; margin-bottom: 2px; font-style: italic; text-transform: none;">Legal Incorporation Date permanently stamped on the Certificate of Incorporation.</div>
+            
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; color: var(--ink-archival); font-weight: bold;">
+              <input type="checkbox" name="entity-type" onclick="selectOnlyOneCheckbox(this)"> 🤝 Partnership / Proprietorship
+            </label>
+            <div style="font-family: var(--font-serif-body); font-size: 0.8rem; color: var(--ink-faded); margin-left: 20px; margin-bottom: 2px; font-style: italic; text-transform: none;">Date of signing partnership deed or first official commercial transaction.</div>
+
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; color: var(--ink-archival); font-weight: bold;">
+              <input type="checkbox" name="entity-type" onclick="selectOnlyOneCheckbox(this)"> 🎨 Brand Name / Product Line
+            </label>
+            <div style="font-family: var(--font-serif-body); font-size: 0.8rem; color: var(--ink-faded); margin-left: 20px; margin-bottom: 2px; font-style: italic; text-transform: none;">Date brand is first introduced to the public (launch, campaign, or trademark).</div>
+
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; color: var(--ink-archival); font-weight: bold;">
+              <input type="checkbox" name="entity-type" onclick="selectOnlyOneCheckbox(this)"> 🪐 Muhurat Calibration
+            </label>
+            <div style="font-family: var(--font-serif-body); font-size: 0.8rem; color: var(--ink-faded); margin-left: 20px; font-style: italic; text-transform: none;">Elective date and time chosen specifically for signing or launching.</div>
+          </div>
+          <div style="border-top: 1px dashed var(--border-container); padding-top: 0.4rem; font-style: italic; font-size: 0.8rem; color: var(--ink-faded); text-transform: none;">
+            <strong>Eligibility Note:</strong> Brand names in specific product categories are fully eligible. Use their public market launch or trademark registration timeline for accuracy.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Enterprise / Brand Name</label>
+          <input type="text" id="input-brand" class="form-input" value="Antara Global Ltd" autocomplete="off" placeholder="Enterprise Name">
+        </div>
+
+        <div class="form-group">
+          <label>Corporate Sector / Niche</label>
+          <input type="text" id="input-sector" class="form-input" value="Digital Healthcare Infrastructure & AI Diagnostics" autocomplete="off" placeholder="e.g. FinTech, BioTech, AI Diagnostics, Retail">
+        </div>
+        
+        <!-- Side-by-Side Foundation Date & Structural Lagna Row -->
+        <div style="display: flex; flex-flow: row wrap; gap: 1rem; margin-bottom: 1.25rem;">
+          <div class="form-group" style="flex: 1; min-width: 220px; margin-bottom: 0;">
+            <label>Foundation Date</label>
+            <input type="date" id="input-foundation" class="form-input" value="1953-05-16">
+          </div>
+          
+          <div class="form-group" style="flex: 1; min-width: 220px; margin-bottom: 0;">
+            <label>Structural Lagna</label>
+            <select id="input-lagna" class="form-input" style="height: 48px;">
+              <option value="1">Aries (Mesha)</option>
+              <option value="2">Taurus (Vrishabha)</option>
+              <option value="3">Gemini (Mithuna)</option>
+              <option value="4" selected>Cancer (Karka)</option>
+              <option value="5">Leo (Simha)</option>
+              <option value="6">Virgo (Kanya)</option>
+              <option value="7">Libra (Tula)</option>
+              <option value="8">Scorpio (Vrischika)</option>
+              <option value="9">Sagittarius (Dhanu)</option>
+              <option value="10">Capricorn (Makara)</option>
+              <option value="11">Aquarius (Kumbha)</option>
+              <option value="12">Pisces (Meena)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Structural Lagna Jargon Explanation -->
+        <div style="font-family: var(--font-serif-body); font-size: 0.84rem; line-height: 1.45; color: var(--ink-faded); font-style: italic; border-top: 1px dashed var(--border-container); padding-top: 0.6rem; text-transform: none;">
+          <strong>What is a Structural Lagna?</strong> In Vedic Jyotish, the Lagna represents the rising sign at the moment of birth. For an enterprise or brand, it constitutes the <strong>organization’s core operating temperament</strong>—the signature footprint that guides structural alignment.
+        </div>
+      </form>
+    </div>
+
+    <!-- 2. Chart & Active Reading Side-by-Side Grid -->
+    <div class="chart-reading-container">
+      
+      <!-- Interactive North Indian SVG Chart -->
+      <div class="archival-card" style="display: flex; flex-direction: column;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; margin-top: 0; margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 1px; text-align: center;">Samudaya Ashtakavarga (SAV)</h3>
+        <p style="font-size: 0.95rem; text-align: center !important; color: var(--ink-faded); margin: 0 0 0.5rem 0; font-style: italic; text-transform: none;">Traditional 12-house Vedic diamond chart.</p>
+        <div style="border-bottom: 1px solid #D6CEBE; margin-bottom: 0.75rem; width: 100%;"></div>
+        <p style="font-size: 0.95rem; text-align: center !important; color: var(--ink-archival); margin: 0 0 1.25rem 0; font-variant: normal !important; text-transform: none !important; font-family: var(--font-serif-body); line-height: 1.55;">
+          <span style="color: var(--pigment-saffron); font-weight: bold; letter-spacing: 0.5px; text-transform: uppercase; font-family: var(--font-serif-header); font-size: 0.95rem;">❈ Hover over any sector (or tap on mobile) ❈</span><br>
+          <span style="color: var(--ink-faded); font-size: 0.82rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-top: 0.25rem;">to view comprehensive corporate strength evaluations</span>
+        </p>
+        
+        <div class="svg-house-container" style="border: none; background: transparent; padding: 0.5rem; margin: 0 auto; flex-grow: 1; display: flex; align-items: center; justify-content: center;">
+          <svg id="north-indian-chart" viewBox="0 0 360 360" style="width: 100%; max-width: 320px; height: auto; display: block; overflow: visible;">
+            <rect x="30" y="30" width="300" height="300" fill="none" stroke="#D6CEBE" stroke-width="2.5" />
+            <g id="svg-grid-group"></g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- House Analysis Detail Card -->
+      <div class="archival-card" id="house-detail-panel" style="display: flex; flex-direction: column; justify-content: flex-start;">
+        <h3 id="panel-house-title" style="font-family: var(--font-serif-header); font-size: 1.1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; color: var(--pigment-cinnabar); letter-spacing: 1px;">House 10: Karma Bhava</h3>
+        <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faded); margin-bottom: 0.5rem;">
+          SAV SCORE: <span id="panel-house-score" style="font-weight: bold; font-size: 1.25rem; color: var(--pigment-cinnabar);">32 Bindus</span>
+        </div>
+        <p id="panel-house-desc" style="font-size: 0.95rem; line-height: 1.6; text-align: justify; margin: 0;">Representing executive leadership authority, primary operational drive, public impact, and professional reputation. High SAV scores here indicate outstanding commercial execution capacity.</p>
+      </div>
+
+    </div>
+
+    <!-- ============================================================
+         SECTION: CORPORATE IDENTITY MATRIX
+         ============================================================ -->
+    <div class="archival-card" style="margin-bottom: 2rem;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.4rem; margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--pigment-terracotta);">Corporate Identity Matrix</h3>
+      <p style="font-size: 0.95rem; color: var(--ink-faded); line-height: 1.6; margin-bottom: 1.25rem;">Multi-system strategic pattern mapping derived from the enterprise name and founding date.</p>
+      <div id="corporate-identity-matrix" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 0.85rem;"></div>
+    </div>
+
+    <!-- ============================================================
+         SECTION: LO SHU FOUNDING GRID
+         ============================================================ -->
+    <div class="archival-card" style="margin-bottom: 2rem;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.4rem; margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--pigment-terracotta);">Lo Shu Founding Grid</h3>
+      <p style="font-size: 0.95rem; color: var(--ink-faded); line-height: 1.6; margin-bottom: 1.25rem;">Founding date digits mapped onto the 3×3 Lo Shu matrix. Present numbers reveal organisational strengths; missing numbers expose structural blind spots.</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+        <div>
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.75rem; text-align: center;">Founding Date Digit Matrix</div>
+          <div id="loshu-corporate-grid" class="loshu-corporate-grid"></div>
+          <div id="loshu-digits-row" style="text-align: center; margin-top: 0.75rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-faded);"></div>
+        </div>
+        <div>
+          <div id="loshu-arrows-box" style="margin-bottom: 1rem;"></div>
+          <div id="loshu-missing-box"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         SECTION: CORPORATE BIORHYTHM
+         ============================================================ -->
+    <div class="archival-card" style="margin-bottom: 2rem;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.4rem; margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--pigment-terracotta);">Corporate Biorhythm — Today</h3>
+      <p style="font-size: 0.95rem; color: var(--ink-faded); line-height: 1.6; margin-bottom: 1.25rem;">Enterprise operational cycles calculated from the founding date, mapped to today. Physical = execution capacity · Emotional = team & stakeholder energy · Intellectual = strategic clarity.</p>
+      <div id="corporate-bio-bars" class="corp-bio-bar-wrap"></div>
+      <div id="corporate-bio-composite" style="padding: 0.65rem 0.85rem; background: #faf7ef; border: 1px dashed #D6CEBE; border-radius: 4px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faded); text-align: center;"></div>
+      <div id="corporate-bio-guidance" style="margin-top: 1rem; font-size: 0.95rem; line-height: 1.65; color: var(--ink-archival); padding: 0.85rem 1rem; border-left: 4px solid var(--pigment-saffron); background: rgba(217,130,54,0.04); border-radius: 0 4px 4px 0;"></div>
+    </div>
+
+    <!-- ============================================================
+         SECTION: PROTOTYPE ORGANIZATIONAL INTELLIGENCE REPORT
+         ============================================================ -->
+    <div class="archival-card" id="rep-card" style="margin-bottom: 2rem; border-color: var(--pigment-terracotta); border-width: 1px;">
+      <div style="content: ''; position: absolute; top: 6px; left: 6px; right: 6px; bottom: 6px; border: 1px double var(--pigment-terracotta); pointer-events: none; border-radius: 3px; opacity: 0.35;"></div>
+      <div style="position: relative; z-index: 2; font-variant: normal !important; text-transform: none !important;">
+        
+        <!-- Header standard -->
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--pigment-terracotta); letter-spacing: 2px; text-transform: uppercase; font-weight: bold; margin-bottom: 4px;">Corporate Strengths Analysis</div>
+          <h2 style="font-family: var(--font-serif-header); font-size: 1.45rem; font-variant: small-caps; margin: 0; color: var(--ink-archival); letter-spacing: 1px; line-height: 1.3;">Prototype Organizational Intelligence Report</h2>
+          <div style="width: 80px; height: 1px; background-color: var(--pigment-terracotta); margin: 0.5rem auto 0 auto;"></div>
+        </div>
+
+        <!-- Metadata Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; background: #FAF7EF; border: 1px solid #D6CEBE; padding: 1rem; border-radius: 4px; margin-bottom: 1.75rem;">
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); text-transform: uppercase; letter-spacing: 1px;">Entity</div>
+            <div id="rep-entity" style="font-family: var(--font-serif-header); font-weight: bold; font-size: 1.05rem; color: var(--pigment-cinnabar);">Antara Global Ltd</div>
+          </div>
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); text-transform: uppercase; letter-spacing: 1px;">Sector / Niche</div>
+            <div id="rep-sector" style="font-family: var(--font-serif-body); font-weight: bold; font-size: 1.02rem;">Digital Healthcare Infrastructure</div>
+          </div>
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); text-transform: uppercase; letter-spacing: 1px;">Incorporation Signature</div>
+            <div id="rep-signature-date" style="font-family: var(--font-serif-body); font-size: 0.95rem; font-weight: 600;">16 May 1953</div>
+          </div>
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); text-transform: uppercase; letter-spacing: 1px;">Business Archetype</div>
+            <div id="rep-archetype" style="font-family: var(--font-serif-header); font-weight: bold; font-size: 1.02rem; color: var(--pigment-gold);">Strategic Integrator</div>
+          </div>
+        </div>
+
+        <!-- Core Corporate Pillars Highlight Box -->
+        <div style="background: rgba(181, 138, 61, 0.03); border: 1px solid rgba(181, 138, 61, 0.35); border-left: 4px solid var(--pigment-gold); padding: 0.85rem 1rem; border-radius: 0 4px 4px 0; margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.55;">
+          <strong style="color: var(--pigment-gold); font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.2px; display: block; margin-bottom: 6px;">🪐 Core Corporate Pillars (Systemic Structural Alignment)</strong>
+          The enterprise has its primary structural energies concentrated in three key corporate houses (highlighted gold in your chart):
+          <div style="display: flex; flex-flow: row wrap; gap: 0.75rem; margin-top: 0.5rem; font-family: var(--font-mono); font-size: 0.85rem;">
+            <div style="background: #ffffff; border: 1px solid #EADEC9; padding: 4px 10px; border-radius: 2px;">
+              🏢 <strong>House 2 (Treasury):</strong> <span id="pillar-h2-score" style="color: var(--pigment-cinnabar); font-weight: bold;">—</span> Bindus <span id="pillar-h2-status" style="font-size: 0.72rem; color: var(--ink-faded);"></span>
+            </div>
+            <div style="background: #ffffff; border: 1px solid #EADEC9; padding: 4px 10px; border-radius: 2px;">
+              👔 <strong>House 10 (Authority):</strong> <span id="pillar-h10-score" style="color: var(--pigment-cinnabar); font-weight: bold;">—</span> Bindus <span id="pillar-h10-status" style="font-size: 0.72rem; color: var(--ink-faded);"></span>
+            </div>
+            <div style="background: #ffffff; border: 1px solid #EADEC9; padding: 4px 10px; border-radius: 2px;">
+              📈 <strong>House 11 (Revenue):</strong> <span id="pillar-h11-score" style="color: var(--pigment-cinnabar); font-weight: bold;">—</span> Bindus <span id="pillar-h11-status" style="font-size: 0.72rem; color: var(--ink-faded);"></span>
+            </div>
+          </div>
+          <p style="margin: 0.5rem 0 0 0; font-size: 0.8rem; color: var(--ink-faded); line-height: 1.45; font-style: italic;">
+            *These three pillars dictate legal governance capacity, brand equity scaling, and cash reserves accumulation. Points &ge; 28 represent exceptionally resilient foundations.
+          </p>
+        </div>
+
+        <!-- Dynamic sections container -->
+        <div id="rep-content" style="font-size: 0.95rem; line-height: 1.7; color: var(--ink-archival);">
+          <!-- Dynamic report content will be written here by updateSAV() -->
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- 3. Enterprise SAV Point Distribution Ledger (Progressive details) -->
+    <details class="ledger-details" id="ledger-details" style="cursor: pointer; outline: none; margin-bottom: 2rem;">
+      <summary class="ledger-summary">
+        <span class="explore-title-main">Enterprise Ledger</span>
+        <span class="explore-title-sub">View Full 12-House Point Distribution</span>
+      </summary>
+      <div style="cursor: default; margin-top: 1rem; background-color: var(--bg-vellum-warm); border: var(--border-container); padding: 1.5rem 1.75rem; position: relative; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04); border-radius: 4px;">
+        <div class="decorative-double-border" style="content: ''; position: absolute; top: 6px; left: 6px; right: 6px; bottom: 6px; border: 1px double #D6CEBE; pointer-events: none; border-radius: 3px;"></div>
+        <div style="position: relative; z-index: 2;" class="prose-container">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px;">Enterprise SAV Point Distribution Ledger</h3>
+          <span class="section-summary-text" style="text-align: left !important; margin: 0 0 1rem 0;">Comprehensive point values across all 12 corporate sectors with baseline benchmark analysis.</span>
+          
+          <table class="sav-table">
+            <thead>
+              <tr>
+                <th>Bhava</th>
+                <th>Sanskrit Domain</th>
+                <th>Enterprise Sector mapping</th>
+                <th>SAV Bindus</th>
+                <th>Status Indicator</th>
+              </tr>
+            </thead>
+            <tbody id="sav-table-body">
+              <!-- Dynamically populated table rows -->
+            </tbody>
+          </table>
+        </div> <!-- Close .prose-container -->
+      </div> <!-- Close card div -->
+    </details>
+
+    <!-- 4. Enterprise Strategic Blueprint (Collapsible Framework) -->
+    <details class="blueprint-details" id="blueprint-details" style="cursor: pointer; outline: none; margin-bottom: 2rem;">
+      <summary class="ledger-summary">
+        <span class="explore-title-main">Enterprise Strategic Blueprint</span>
+        <span class="explore-title-sub">Strategic Pattern Intelligence & Risk Framework</span>
+      </summary>
+      <div style="cursor: default; margin-top: 1rem; background-color: #FAF7EF; border: 1px solid #D6CEBE; padding: 1.75rem 2rem; position: relative; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04); border-radius: 4px;">
+        <div style="position: relative; z-index: 2; font-variant: normal !important; text-transform: none !important;" class="prose-container">
+          
+          <h3 style="font-family: var(--font-serif-header); color: var(--pigment-terracotta); font-size: 1.3rem; margin-top: 0; margin-bottom: 0.5rem; font-weight: bold; border-bottom: 1px solid #EADEC9; padding-bottom: 0.4rem; letter-spacing: 1px;">📊 Enterprise Strategic Blueprint & Risk Framework</h3>
+          <span class="section-summary-text" style="text-align: left !important; margin: 0 0 1rem 0;">Strategic mapping of growth milestones, core operating dynamics, and risk metrics.</span>
+          <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-bottom: 1.5rem;">
+            This framework analyzes the enterprise as a single operating system. By mapping founding timelines and structural structures, it outlines core organizational alignment, brand resonance, and leadership execution timing.
+          </p>
+
+          <!-- Module 1 -->
+          <h4 style="font-family: var(--font-mono); color: var(--pigment-cinnabar); font-size: 0.95rem; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 1.5rem; margin-bottom: 0.6rem; font-weight: bold;">📋 Module 1: Core Corporate Deliverables</h4>
+          <p style="font-size: 1.02rem; line-height: 1.7; text-align: justify; margin-bottom: 1rem; margin-left: 10px;">
+            Establishes the commercial baseline:
+            <br>• <strong>Operational Capacity:</strong> Maps workflow efficiency and capacity limits.
+            <br>• <strong>Financial Architecture:</strong> Audits working capital requirements and reserve stability.
+            <br>• <strong>Human Capital:</strong> Reviews organizational roles and key leadership dependencies.
+            <br>• <strong>SWOT Matrix:</strong> Evaluates structural advantages against market cycles.
+          </p>
+
+          <!-- Module 2 -->
+          <h4 style="font-family: var(--font-mono); color: var(--pigment-cinnabar); font-size: 0.95rem; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 1.5rem; margin-bottom: 0.6rem; font-weight: bold;">📊 Module 2: Operating Cycles & Milestones</h4>
+          <p style="font-size: 1.02rem; line-height: 1.7; text-align: justify; margin-bottom: 1rem; margin-left: 10px;">
+            Identifies execution timing and systemic resilience using pattern metrics:
+            <br>• <strong>Dynamic Inflow & Capacity (SAV Matrix):</strong> Measures departmental reserves. High authority scores command market trust, while revenue imbalances point to cash flow drainage.
+            <br>• <strong>Operational Pivot Timing:</strong> Outlines optimal windows for expansion, regulatory compliance, and partnership updates based on cycle readiness.
+            <br>• <strong>Enterprise Adaptability:</strong> Assesses alignment with different industries. Highly technical entities require a balance of research drive and capital fluidness to sustain shifts.
+          </p>
+
+          <!-- Module 3 -->
+          <h4 style="font-family: var(--font-mono); color: var(--pigment-cinnabar); font-size: 0.95rem; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 1.5rem; margin-bottom: 0.6rem; font-weight: bold;">🏷️ Module 3: Brand Positioning & Team Alignment</h4>
+          <p style="font-size: 1.02rem; line-height: 1.7; text-align: justify; margin-bottom: 1rem; margin-left: 10px;">
+            Analyzes corporate naming metrics and structural archetypes:
+            <br>• <strong>Brand Naming Audits:</strong> Assesses brand name alignment with market demographics to prevent hidden operational friction.
+            <br>• <strong>Cultural Alignment:</strong> Maps core team values to standard leadership profiles to ensure execution integrity.
+            <br>• <strong>Palace Mapping:</strong> Highlights structural gaps in corporate systems—such as treasury controls or business development systems—to support scale.
+          </p>
+
+          <!-- Polished Responsive Flowchart Diagram -->
+          <div style="display: flex; flex-direction: column; align-items: center; width: 100%; margin: 1.75rem 0 2rem 0; box-sizing: border-box; font-variant: normal !important; text-transform: none !important;">
+            <div style="border: none; background: transparent; padding: 0.5rem 1.75rem; text-align: center; font-family: var(--font-serif-header); font-variant: small-caps; letter-spacing: 2px; font-weight: bold; font-size: 1.2rem; color: var(--pigment-cinnabar); box-shadow: none;">
+              Strategic Pattern Integration
+            </div>
+            
+            <div class="num-connector-vertical" style="width: 2px; height: 24px; background-color: var(--pigment-saffron); position: relative; margin: 2px 0;">
+              <div style="position: absolute; bottom: 0; left: -4px; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid var(--pigment-saffron);"></div>
+            </div>
+
+            <div class="num-connector-distributor" style="width: 66%; height: 2px; background-color: var(--pigment-saffron); position: relative; margin-bottom: 16px;">
+              <div style="position: absolute; left: 0; top: 0; width: 2px; height: 12px; background-color: var(--pigment-saffron);"></div>
+              <div style="position: absolute; left: 50%; top: 0; width: 2px; height: 12px; background-color: var(--pigment-saffron);"></div>
+              <div style="position: absolute; right: 0; top: 0; width: 2px; height: 12px; background-color: var(--pigment-saffron);"></div>
+            </div>
+
+            <div class="num-integration-grid" style="margin-top: 0;">
+              <div class="archival-card" style="padding: 1.25rem; border: 1px solid #E5E1DA; border-top: 4px solid var(--pigment-terracotta); border-radius: 4px; background: rgba(166, 91, 74, 0.04); margin-bottom: 0; box-shadow: 0 2px 8px rgba(43, 42, 40, 0.03);">
+                <h4 style="font-family: var(--font-serif-header); font-size: 0.95rem; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 0; margin-bottom: 0.75rem; text-align: center; color: var(--pigment-terracotta); border-bottom: 1px double #E5E1DA; padding-bottom: 6px;">Resonance</h4>
+                <ul style="font-family: var(--font-serif-body); font-size: 0.95rem; line-height: 1.6; padding-left: 1.2rem; margin: 0; color: var(--ink-archival); list-style-type: square; text-align: left;">
+                  <li style="margin-bottom: 6px;"><strong>Brand Assets:</strong> Evaluates brand name alignment.</li>
+                  <li style="margin-bottom: 6px;"><strong>Market Trust:</strong> Measures name authority with audience segments.</li>
+                  <li style="margin-bottom: 0;"><strong>Risk Mitigation:</strong> Identifies hidden equity blockages.</li>
+                </ul>
+              </div>
+              
+              <div class="archival-card" style="padding: 1.25rem; border: 1px solid #E5E1DA; border-top: 4px solid var(--pigment-lapis); border-radius: 4px; background: rgba(60, 90, 128, 0.04); margin-bottom: 0; box-shadow: 0 2px 8px rgba(43, 42, 40, 0.03);">
+                <h4 style="font-family: var(--font-serif-header); font-size: 0.95rem; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 0; margin-bottom: 0.75rem; text-align: center; color: var(--pigment-lapis); border-bottom: 1px double #E5E1DA; padding-bottom: 6px;">Archetypes</h4>
+                <ul style="font-family: var(--font-serif-body); font-size: 0.95rem; line-height: 1.6; padding-left: 1.2rem; margin: 0; color: var(--ink-archival); list-style-type: square; text-align: left;">
+                  <li style="margin-bottom: 6px;"><strong>Strategic Vision:</strong> Outlines growth trajectories.</li>
+                  <li style="margin-bottom: 6px;"><strong>Cultural Fit:</strong> Matches team roles with organizational archetypes.</li>
+                  <li style="margin-bottom: 0;"><strong>Core Execution:</strong> Maps daily priorities and delivery metrics.</li>
+                </ul>
+              </div>
+
+              <div class="archival-card" style="padding: 1.25rem; border: 1px solid #E5E1DA; border-top: 4px solid var(--pigment-saffron); border-radius: 4px; background: rgba(217, 130, 54, 0.04); margin-bottom: 0; box-shadow: 0 2px 8px rgba(43, 42, 40, 0.03);">
+                <h4 style="font-family: var(--font-serif-header); font-size: 0.95rem; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 0; margin-bottom: 0.75rem; text-align: center; color: var(--pigment-saffron); border-bottom: 1px double #E5E1DA; padding-bottom: 6px;">Palace Matrix</h4>
+                <ul style="font-family: var(--font-serif-body); font-size: 0.95rem; line-height: 1.6; padding-left: 1.2rem; margin: 0; color: var(--ink-archival); list-style-type: square; text-align: left;">
+                  <li style="margin-bottom: 6px;"><strong>Foundational Infrastructure:</strong> Outlines systemic safeguards.</li>
+                  <li style="margin-bottom: 6px;"><strong>Operations Gaps:</strong> Identifies departments requiring procedural support.</li>
+                  <li style="margin-bottom: 0;"><strong>Action Vectors:</strong> Highlights optimal channels of corporate focus.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 4 -->
+          <h4 style="font-family: var(--font-mono); color: var(--pigment-cinnabar); font-size: 0.95rem; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 1.5rem; margin-bottom: 0.6rem; font-weight: bold;">⏰ Module 4: Executive Planning & Decision Timing</h4>
+          <p style="font-size: 1.02rem; line-height: 1.7; text-align: justify; margin-bottom: 1.5rem; margin-left: 10px;">
+            Optimizes C-suite scheduling to match leadership capacity phases:
+            <br>• <strong>Execution Timing:</strong> Overlays leadership performance rhythms against corporate milestones to identify peak delivery periods.
+            <br>• <strong>Decision Optimization:</strong> Guides the scheduling of high-stakes venture pitches and strategic board reviews for maximum executive clarity.
+            <br>• <strong>Resource Allocation:</strong> Distributes analytical, creative, and operational assignments to align with natural team focus windows.
+          </p>
+
+          <!-- Table Summary -->
+          <h4 style="font-family: var(--font-mono); color: var(--pigment-cinnabar); font-size: 0.95rem; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 1.5rem; margin-bottom: 0.8rem; font-weight: bold;">🛠️ Deliverable Overview</h4>
+          
+          <table class="sav-table" style="font-size: 0.95rem; font-family: var(--font-serif-body); font-variant: normal !important; text-transform: none !important; margin-bottom: 1rem;">
+            <thead>
+              <tr>
+                <th style="background-color: #faf7ef;">Intelligence Module</th>
+                <th style="background-color: #faf7ef;">Core Metric Used</th>
+                <th style="background-color: #faf7ef;">Operational Utility</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Baseline SWOT</strong></td>
+                <td>Internal Performance Audits</td>
+                <td>Resolving immediate workflow bottlenecks.</td>
+              </tr>
+              <tr>
+                <td><strong>Systemic Timeline</strong></td>
+                <td>Founding Calibrations</td>
+                <td>Optimal timing for capital raises and expansions.</td>
+              </tr>
+              <tr>
+                <td><strong>Brand Resonance</strong></td>
+                <td>Naming & Domain Calibrations</td>
+                <td>Maximizing customer trust and equity alignment.</td>
+              </tr>
+              <tr>
+                <td><strong>Executive Rhythm</strong></td>
+                <td>Leadership Calibrations</td>
+            <td>Maximizing outcomes of high-stakes decisions.</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div> <!-- Close .prose-container -->
+      </div>
+    </details>
+
+    <div style="margin-top: 2rem; margin-bottom: 3rem;">
+      <details id="corporate-library-details" style="cursor: pointer; outline: none; margin-bottom: 2rem;">
+        <summary class="ledger-summary">
+          <span class="explore-title-main">Antara Consulting Library</span>
+          <span class="explore-title-sub">Core System Interpretations & Mappings</span>
+        </summary>
+        <div style="cursor: default; margin-top: 1rem; background-color: var(--bg-vellum-warm); border: 1px dashed var(--pigment-terracotta); padding: 1.75rem 2rem; position: relative; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04); border-radius: 4px;">
+          <div style="position: relative; z-index: 2; font-variant: normal !important; text-transform: none !important;" class="prose-container">
+            <span class="section-summary-text" style="text-align: left !important; margin: 0 0 1rem 0;">This library outlines how different symbolic systems are interpreted within the Antara framework to map organizational character, leadership style, operational behavior, and growth patterns.</span>
+            
+            <h3 style="font-family: var(--font-serif-header); color: var(--pigment-terracotta); font-size: 1.3rem; margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: bold; border-bottom: 1px solid #EADEC9; padding-bottom: 0.4rem; letter-spacing: 1px;">1. Chaldean Brand Resonance (Numbers 1–9)</h3>
+            <p style="font-size: 1rem; color: var(--ink-faded); margin-bottom: 1rem;">Derived from the sound vibration of the company or brand name.</p>
+            <ul style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1.5rem; padding-left: 20px; list-style-type: circle;">
+              <li style="margin-bottom: 0.5rem;"><strong>1 — Leadership & Initiative:</strong> Strong market identity, independent thinking, pioneering leadership, decisive execution.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>2 — Partnerships & Collaboration:</strong> Relationship-building, diplomacy, stakeholder trust, supportive alliances.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>3 — Communication & Expansion:</strong> Creative branding, storytelling, visibility, marketing strength, public engagement.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>4 — Systems & Disruption:</strong> Operational restructuring, unconventional thinking, technology focus, process engineering.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>5 — Agility & Commerce:</strong> Fast decision-making, adaptability, digital networks, transactional speed.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>6 — Brand Harmony & Culture:</strong> Design sensitivity, employee care, premium positioning, community trust.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>7 — Research & Expertise:</strong> Specialization, analytical depth, R&D focus, technical precision, quiet authority.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>8 — Structure & Scale:</strong> Operational discipline, financial control, infrastructure, long-term growth.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>9 — Action & Competitive Drive:</strong> Execution energy, ambition, resilience, aggressive market movement.</li>
+            </ul>
+
+            <h3 style="font-family: var(--font-serif-header); color: var(--pigment-terracotta); font-size: 1.3rem; margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: bold; border-bottom: 1px solid #EADEC9; padding-bottom: 0.4rem; letter-spacing: 1px;">2. Pythagorean Archetypes & Life Path Patterns</h3>
+            <p style="font-size: 1rem; color: var(--ink-faded); margin-bottom: 1rem;">Maps the public personality of the organization and its broader developmental direction.</p>
+            <ul style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1.5rem; padding-left: 20px; list-style-type: circle;">
+              <li style="margin-bottom: 0.5rem;"><strong>1 — The Pioneer:</strong> Independent leadership, innovation, first-mover energy.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>2 — The Harmonizer:</strong> Cooperation, mediation, relationship-centered growth.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>3 — The Communicator:</strong> Creativity, visibility, storytelling, cultural influence.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>4 — The Builder:</strong> Systems, stability, standardization, operational reliability.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>5 — The Explorer:</strong> Expansion, versatility, adaptability, rapid growth.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>6 — The Nurturer:</strong> Ethics, people-focus, service culture, social responsibility.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>7 — The Specialist:</strong> Research, expertise, analytical precision, knowledge depth.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>8 — The Director:</strong> Executive control, financial strategy, industrial scale.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>9 — The Idealist:</strong> Purpose-led growth, humanitarian values, broad societal impact.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>11 — The Visionary:</strong> Inspirational leadership, intuitive branding, transformational influence.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>22 — The Master Builder:</strong> Large-scale systems, enduring infrastructure, legacy creation.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>33 — The Guide:</strong> Service, mentorship, ethical leadership, human-centered impact.</li>
+            </ul>
+
+            <h3 style="font-family: var(--font-serif-header); color: var(--pigment-terracotta); font-size: 1.3rem; margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: bold; border-bottom: 1px solid #EADEC9; padding-bottom: 0.4rem; letter-spacing: 1px;">3. Zodiac Culture & Leadership Styles</h3>
+            <p style="font-size: 1rem; color: var(--ink-faded); margin-bottom: 1rem;">Based on the founding date and associated elemental influence.</p>
+            <ul style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1.5rem; padding-left: 20px; list-style-type: circle;">
+              <li style="margin-bottom: 0.5rem;"><strong>Aries:</strong> Bold action, fast execution, competitive drive.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Taurus:</strong> Stability, patience, premium quality, asset strength.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Gemini:</strong> Communication, adaptability, multi-channel thinking.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Cancer:</strong> Care-oriented culture, loyalty, emotional intelligence.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Leo:</strong> Visibility, confidence, leadership presence, prestige.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Virgo:</strong> Precision, audits, optimization, operational quality.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Libra:</strong> Partnerships, balance, aesthetics, negotiation strength.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Scorpio:</strong> Transformation, strategy, emotional intensity, financial insight.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Sagittarius:</strong> Expansion, optimism, global thinking, exploration.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Capricorn:</strong> Discipline, structure, leadership responsibility, long-term growth.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Aquarius:</strong> Innovation, collaboration, technology systems.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Pisces:</strong> Creativity, intuition, emotional connection, visionary flow.</li>
+            </ul>
+
+            <h3 style="font-family: var(--font-serif-header); color: var(--pigment-terracotta); font-size: 1.3rem; margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: bold; border-bottom: 1px solid #EADEC9; padding-bottom: 0.4rem; letter-spacing: 1px;">4. BaZi Day Elements (Five Element Foundations)</h3>
+            <p style="font-size: 1rem; color: var(--ink-faded); margin-bottom: 1rem;">Maps the organization’s natural operating temperament and environmental strengths.</p>
+            <ul style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1.5rem; padding-left: 20px; list-style-type: circle;">
+              <li style="margin-bottom: 0.5rem;"><strong>Wood — Growth & Strategy:</strong> Expansion, learning, flexibility, long-term development.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Fire — Brand & Visibility:</strong> Recognition, enthusiasm, influence, market excitement.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Earth — Stability & Support:</strong> Reliability, structure, resource management, grounded growth.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Metal — Systems & Precision:</strong> Efficiency, compliance, execution quality, operational discipline.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Water — Intelligence & Adaptability:</strong> Information flow, strategy, logistics, flexibility, analytical depth.</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <details id="archetype-mapping-details" style="cursor: pointer; outline: none; margin-bottom: 2rem;">
+        <summary class="ledger-summary">
+          <span class="explore-title-main">Archetypal Organizational Mapping</span>
+          <span class="explore-title-sub">Structural Reference Guide & Pillar Definitions</span>
+        </summary>
+        <div style="cursor: default; margin-top: 1rem; background-color: var(--bg-vellum-warm); border: 1px dashed var(--pigment-terracotta); padding: 1.75rem 2rem; position: relative; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04); border-radius: 4px;">
+          <div style="position: relative; z-index: 2; font-variant: normal !important; text-transform: none !important;" class="prose-container">
+            
+            <span class="section-summary-text" style="text-align: left !important; margin: 0 0 1rem 0;">Analytical reference manual detailing structural capacity scoring, department grids, and asset preservation.</span>
+            
+            <h3 style="font-family: var(--font-serif-header); color: var(--pigment-terracotta); font-size: 1.3rem; margin-top: 0; margin-bottom: 0.5rem; font-weight: bold; border-bottom: 1px solid #EADEC9; padding-bottom: 0.4rem; letter-spacing: 1px;">🏛️ The Departmental Capacity Ledger (SAV)</h3>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-bottom: 1rem;">
+              The <strong>SAV Ledger</strong> is a capacity-mapping system that coordinates 8 core commercial drivers (governance, capital, operations, marketing, expansion, product development, alliances, and executive leadership) into a 12-department matrix, assigning numerical scores to evaluate operational reserves.
+            </p>
+            
+            <div style="background-color: rgba(244, 235, 212, 0.3); border-left: 3px solid var(--pigment-saffron); padding: 0.75rem 1rem; margin-bottom: 1.25rem; font-size: 0.95rem; line-height: 1.6; border-radius: 0 4px 4px 0;">
+              <strong style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--pigment-cinnabar); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 4px;">🔍 Operational Benchmarks</strong>
+              <ul style="margin: 0; padding-left: 1.2rem; list-style-type: circle; font-family: var(--font-serif-body);">
+                <li style="margin-bottom: 3px;"><strong>High Efficiency (≥ 30):</strong> High structural integrity; department operates with self-sustaining momentum.</li>
+                <li style="margin-bottom: 3px;"><strong>Functional Stability (25–29):</strong> Operations are stable but require consistent resource oversight.</li>
+                <li style="margin-bottom: 3px;"><strong>Systemic Risk (&lt; 25):</strong> Chronic operational drag requiring immediate procedural safeguards.</li>
+              </ul>
+            </div>
+
+            <h4 style="font-family: var(--font-mono); color: var(--pigment-cinnabar); font-size: 0.95rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">📈 Strategic Focus Matrices</h4>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-bottom: 1rem;">
+              The 12 departments partition into four core corporate vectors:
+            </p>
+            <ul style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1.5rem; padding-left: 20px; list-style-type: square;">
+              <li style="margin-bottom: 0.5rem;"><strong>Purpose Matrix (Dharma):</strong> Governs brand integrity, governance standards, and foundational corporate mission.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Capital Matrix (Artha):</strong> Rules liquidity, asset accumulation, and basic logistics infrastructure.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Expansion Matrix (Kama):</strong> Guides active business development, strategic partnerships, and market reach.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Risk Matrix (Moksha):</strong> Manages security protocols, regulatory compliance, and liability containment.</li>
+            </ul>
+
+            <h3 style="font-family: var(--font-serif-header); color: var(--pigment-terracotta); font-size: 1.3rem; margin-top: 2rem; margin-bottom: 1rem; font-weight: bold; border-bottom: 1px solid #EADEC9; padding-bottom: 0.4rem; letter-spacing: 1px;">🏛️ The Four Foundational Pillars</h3>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-bottom: 1rem;">
+              An enterprise operates as an objective machine, relying on four primary anchors to sustain market presence:
+            </p>
+            
+            <ul style="font-size: 1.02rem; line-height: 1.75; margin-bottom: 2rem; padding-left: 20px; list-style-type: decimal; font-family: var(--font-serif-body);">
+              <li style="margin-bottom: 0.75rem;"><strong>Governance Structure:</strong> Articles of association, structural resolutions, and legal separation protocols.</li>
+              <li style="margin-bottom: 0.75rem;"><strong>Operational Assets:</strong> Standard operating procedures, primary tech stacks, and delivery pipelines.</li>
+              <li style="margin-bottom: 0.75rem;"><strong>Capital Preservation:</strong> Stored reserves, equity allocations, and risk-mitigation portfolios.</li>
+              <li style="margin-bottom: 0.75rem;"><strong>Leadership Continuity:</strong> Succession frameworks, board compositions, and core executive culture.</li>
+            </ul>
+
+            <h3 style="font-family: var(--font-serif-header); color: var(--pigment-terracotta); font-size: 1.3rem; margin-top: 2rem; margin-bottom: 1rem; font-weight: bold; border-bottom: 1px solid #EADEC9; padding-bottom: 0.4rem; letter-spacing: 1px;">💼 Treasury & Stored Wealth (Second House)</h3>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-bottom: 1rem;">
+              The <strong>Second House</strong> dictates liquid asset preservation and primary brand expression. While the Eleventh House reflects dynamic cash inflow, the Second House measures true capital retention.
+            </p>
+            
+            <ul style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1.5rem; padding-left: 20px; list-style-type: circle;">
+              <li style="margin-bottom: 0.5rem;"><strong>Resilient Ledger (≥ 30):</strong> Excellent cash reserves, asset protection, and clear market messaging.</li>
+              <li style="margin-bottom: 0.5rem;"><strong>Vulnerable Ledger (&lt; 25):</strong> High operational leakage where capital is absorbed by overhead before hitting reserves.</li>
+            </ul>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-bottom: 0;">
+              <strong>The Reserve Balance:</strong> Optimal financial health is achieved when dynamic revenue outpaces capital preservation, which in turn must stay significantly higher than overhead expenses to ensure long-term solvency.
+            </p>
+            
+          </div> <!-- Close .prose-container -->
+        </div>
+      </details>
+
+    <details id="click-to-explore-details" style="cursor: pointer; outline: none; margin-bottom: 2rem;">
+      <summary class="explore-summary">
+        <span class="explore-title-main">Click to Explore</span>
+        <span class="explore-title-sub">Understanding Planetary Strength Patterns</span>
+      </summary>
+      <div class="accordion-inner-border" style="cursor: default; margin-top: 1rem; background-color: var(--bg-vellum-warm); border: var(--border-container); padding: 1.75rem 2rem; position: relative; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04); border-radius: 4px;">
+        <div style="position: relative; z-index: 2; font-variant: normal !important; text-transform: none !important;" class="prose-container">
+          <span class="section-summary-text" style="text-align: left !important; margin: 0 0 1rem 0;">Explanatory framework detailing Ashtakavarga Bindu calculations and core corporate signifiers.</span>
+          
+          <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">The Mechanics of Ashtakavarga & Bindus</h4>
+          <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 1.5rem;">The <strong>Ashtakavarga</strong> is an advanced mathematical subdivision of the Vedic zodiac system. Recognizing that planets exert complex structural angles on each other, this method calculates individual point points (called <strong>Bindus</strong> or auspicious dots) awarded by the seven major celestial bodies and the Lagna to each of the 12 signs. The combined summation across all eight factors is the <strong>Samudaya Ashtakavarga (SAV)</strong> ledger. Ranging from a theoretical minimum of 0 to a maximum of 56 points per house, the mathematical average of any chart settles precisely at 28 points. Rather than looking at single planetary coordinates, SAV analyzes the overall supportive foundation of a house, isolating which sectors have accumulated energy reserves and which require cautious structural balance.</p>
+          
+          <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">Enterprise Navigation & Key Corporate Houses</h4>
+          <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 0;">In modern commercial application, the 12 houses of the natal horizon correspond to core enterprise operation fields. While all houses play a structural role, corporate strength audits focus on three key wealth-creation sectors: <strong>House 10 (Karma Bhava)</strong> governs executive leadership, primary operational drive, public impact, and professional authority; <strong>House 11 (Labha Bhava)</strong> maps income streams, revenue generation, financial cash inflows, and enterprise scale; while <strong>House 2 (Dhana Bhava)</strong> represents accumulated capital reserves, corporate assets, and liquid treasury strength. When these houses register scores comfortably above 28 bindus, the enterprise operates with structural support, absorbing economic disruptions smoothly. Houses dropping below 25 points represent low energy drain zones requiring careful cost-mitigation, system checks, and operational safety nets.</p>
+          
+        </div>
+      </div>
+    </details>
+  </div>
+
+    <!-- Honest Framing Disclaimer Box -->
+    <style>
+      .disclaimer-hi { display: none; }
+      body.lang-hi .disclaimer-en { display: none !important; }
+      body.lang-hi .disclaimer-hi { display: block !important; }
+    </style>
+    
+    <div class="disclaimer-en" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        DISCLAIMER
+      </h4>
+      <p style="margin: 0; text-align: justify;">
+        This report is an interpretive analytical framework intended solely for reflective and informational purposes. It is not a predictive, diagnostic, clinical, financial, legal, medical, psychological or professional advisory instrument, and should not be relied upon as definitive guidance for decisions, actions, or outcomes. The original application has been developed in English. Certain translated versions may utilize automated translation tools, including Google Translate. While reasonable efforts have been made to preserve contextual accuracy, no responsibility is accepted for translation inaccuracies, omissions, interpretive variations, or linguistic ambiguities arising from translated content. In the event of any inconsistency or ambiguity, the English version shall prevail.
+      </p>
+    </div>
+
+    <div class="disclaimer-hi notranslate" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        अस्वीकरण
+      </h4>
+      <p style="margin: 0; text-align: justify; color: var(--ink-faded); font-style: italic;">
+        यह रिपोर्ट केवल विचारात्मक एवं सूचनात्मक उद्देश्य हेतु निर्मित एक व्याख्यात्मक विश्लेषणात्मक ढांचा है। यह कोई भविष्यवाणी, निदान, नैदानिक, वित्तीय, कानूनी, चिकित्सीय, मनोवैज्ञानिक अथवा पेशेवर परामर्श का उपकरण नहीं है, और इसे निर्णयों, कार्यों या परिणामों के लिए अंतिम मार्गदर्शन के रूप में नहीं माना जाना चाहिए। मूल अनुप्रयोग अंग्रेज़ी भाषा में विकसित किया गया है। कुछ अनुवादित संस्करणों में Google Translate सहित स्वचालित अनुवाद उपकरणों का उपयोग किया जा सकता है। यद्यपि संदर्भगत शुद्धता बनाए रखने का यथासंभव प्रयास किया गया है, तथापि अनुवाद संबंधी त्रुटियों, चूकों, अर्थ-व्याख्या में भिन्नताओं या भाषाई अस्पष्टताओं के लिए कोई उत्तरदायित्व स्वीकार नहीं किया जाता। किसी भी असंगति या अस्पष्टता की स्थिति में अंग्रेज़ी संस्करण को ही मान्य माना जाएगा।
+      </p>
+    </div>
+    <!-- Resonance / Feedback Link -->
+    <div style="text-align: center; margin: 1.5rem auto 2rem auto; font-family: var(--font-mono); font-size: 0.8rem; max-width: 1100px; width: calc(100% - 24px);">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEYjLsqRjRRR0FZEPq384iGrpL6rZfrEQHEbcYQ9pz5ERzlg/viewform" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar); letter-spacing: 1px; font-weight: bold; transition: all 0.2s ease; padding-bottom: 2px;">
+        ✦ SHARE YOUR RESONANCE (ANONYMOUS SUGGESTIONS) ✦
+      </a>
+    </div>
+
+  </div>
+
+    <footer class="notranslate">
+    <div class="footer-content">
+      <p>ANTARA CROSS-CULTURAL INTERIOR PANORAMA</p>
+      <p class="font-mono">SYSTEM LOG: ASHTAKAVARGA SAV ENGINE v1.2.0 • 2026</p>
+    </div>
+  </footer>
+
+  
+  <script>
+    // Clean up local storage persona names dynamically to wipe out old cached test personas
+    try {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (localStorage.getItem(key) === 'Ankur Gupta') {
+                localStorage.setItem(key, 'Antara Gupta');
+            }
+        }
+    } catch (e) {
+        console.warn("localStorage persona migration restricted:", e);
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, function(tag) {
+        var chars = {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        };
+        return chars[tag] || tag;
+      });
+    }
+
+    // ── Numerology maps ──────────────────────────────────────────
+    const chaldeanMap = {
+      'A':1,'I':1,'J':1,'Q':1,'Y':1,'B':2,'K':2,'R':2,
+      'C':3,'G':3,'L':3,'S':3,'D':4,'M':4,'T':4,
+      'E':5,'H':5,'N':5,'X':5,'U':6,'V':6,'W':6,'O':7,'Z':7,'F':8,'P':8
+    };
+    const pythagoreanMap = {
+      'A':1,'B':2,'C':3,'D':4,'E':5,'F':6,'G':7,'H':8,'I':9,
+      'J':1,'K':2,'L':3,'M':4,'N':5,'O':6,'P':7,'Q':8,'R':9,
+      'S':1,'T':2,'U':3,'V':4,'W':5,'X':6,'Y':7,'Z':8
+    };
+    const chaldeanResonanceDb = {
+      1: { title: "Leadership & Initiative", desc: "Strong market identity, independent thinking, pioneering leadership, decisive execution." },
+      2: { title: "Partnerships & Collaboration", desc: "Relationship-building, diplomacy, stakeholder trust, supportive alliances." },
+      3: { title: "Communication & Expansion", desc: "Creative branding, storytelling, visibility, marketing strength, public engagement." },
+      4: { title: "Systems & Disruption", desc: "Operational restructuring, unconventional thinking, technology focus, process engineering." },
+      5: { title: "Agility & Commerce", desc: "Fast decision-making, adaptability, digital networks, transactional speed." },
+      6: { title: "Brand Harmony & Culture", desc: "Design sensitivity, employee care, premium positioning, community trust." },
+      7: { title: "Research & Expertise", desc: "Specialization, analytical depth, R&D focus, technical precision, quiet authority." },
+      8: { title: "Structure & Scale", desc: "Operational discipline, financial control, infrastructure, long-term growth." },
+      9: { title: "Action & Competitive Drive", desc: "Execution energy, ambition, resilience, aggressive market movement." }
+    };
+
+    const pythagoreanArchetypesDb = {
+      1: { title: "The Pioneer", desc: "Independent leadership, innovation, first-mover energy." },
+      2: { title: "The Harmonizer", desc: "Cooperation, mediation, relationship-centered growth." },
+      3: { title: "The Communicator", desc: "Creativity, visibility, storytelling, cultural influence." },
+      4: { title: "The Builder", desc: "Systems, stability, standardization, operational reliability." },
+      5: { title: "The Explorer", desc: "Expansion, versatility, adaptability, rapid growth." },
+      6: { title: "The Nurturer", desc: "Ethics, people-focus, service culture, social responsibility." },
+      7: { title: "The Specialist", desc: "Research, expertise, analytical precision, knowledge depth." },
+      8: { title: "The Director", desc: "Executive control, financial strategy, industrial scale." },
+      9: { title: "The Idealist", desc: "Purpose-led growth, humanitarian values, broad societal impact." },
+      11: { title: "The Visionary", desc: "Inspirational leadership, intuitive branding, transformational influence." },
+      22: { title: "The Master Builder", desc: "Large-scale systems, enduring infrastructure, legacy creation." },
+      33: { title: "The Guide", desc: "Service, mentorship, ethical leadership, human-centered impact." }
+    };
+
+    const zodiacDescriptionsDb = {
+      'Aries': "Bold action, fast execution, competitive drive.",
+      'Taurus': "Stability, patience, premium quality, asset strength.",
+      'Gemini': "Communication, adaptability, multi-channel thinking.",
+      'Cancer': "Care-oriented culture, loyalty, emotional intelligence.",
+      'Leo': "Visibility, confidence, leadership presence, prestige.",
+      'Virgo': "Precision, audits, optimization, operational quality.",
+      'Libra': "Partnerships, balance, aesthetics, negotiation strength.",
+      'Scorpio': "Transformation, strategy, emotional intensity, financial insight.",
+      'Sagittarius': "Expansion, optimism, global thinking, exploration.",
+      'Capricorn': "Discipline, structure, leadership responsibility, long-term growth.",
+      'Aquarius': "Innovation, collaboration, technology systems.",
+      'Pisces': "Creativity, intuition, emotional connection, visionary flow."
+    };
+
+    const baziDescriptionsDb = {
+      'Wood': "Expansion, learning, flexibility, long-term development.",
+      'Fire': "Recognition, enthusiasm, influence, market excitement.",
+      'Earth': "Reliability, structure, resource management, grounded growth.",
+      'Metal': "Efficiency, compliance, execution quality, operational discipline.",
+      'Water': "Information flow, strategy, logistics, flexibility, analytical depth."
+    };
+
+    const wuxingElements = ['Wood','Fire','Earth','Metal','Water'];
+    const wuxingColors = ['var(--pigment-moss)','var(--pigment-cinnabar)','var(--pigment-saffron)','var(--pigment-terracotta)','var(--pigment-lapis)'];
+    const wuxingZH = ['木','火','土','金','水'];
+
+    function reduceNum(n, isChaldean = false) {
+      if (!isChaldean && (n === 11 || n === 22 || n === 33)) return n;
+      while (n > 9) {
+        n = String(n).split('').map(Number).reduce((a,b)=>a+b,0);
+        if (!isChaldean && (n === 11 || n === 22 || n === 33)) return n;
+      }
+      return n;
+    }
+
+    function calcLifePath(dobStr) {
+      if (!dobStr) return null;
+      const p = dobStr.split('-');
+      const m = parseInt(p[1],10), d = parseInt(p[2],10), y = parseInt(p[0],10);
+      const total = reduceNum(m) + reduceNum(d) + reduceNum(String(y).split('').map(Number).reduce((a,b)=>a+b,0));
+      return reduceNum(total);
+    }
+
+    function getSunSign(month, day) {
+      const signs = [
+        {name:'Capricorn', symbol:'♑', element:'Earth', color:'var(--pigment-lapis)'},
+        {name:'Aquarius',  symbol:'♒', element:'Air',   color:'var(--pigment-lapis)'},
+        {name:'Pisces',    symbol:'♓', element:'Water',  color:'var(--pigment-moss)'},
+        {name:'Aries',     symbol:'♈', element:'Fire',   color:'var(--pigment-cinnabar)'},
+        {name:'Taurus',    symbol:'♉', element:'Earth',  color:'var(--pigment-saffron)'},
+        {name:'Gemini',    symbol:'♊', element:'Air',    color:'var(--pigment-lapis)'},
+        {name:'Cancer',    symbol:'♋', element:'Water',  color:'var(--pigment-moss)'},
+        {name:'Leo',       symbol:'♌', element:'Fire',   color:'var(--pigment-cinnabar)'},
+        {name:'Virgo',     symbol:'♍', element:'Earth',  color:'var(--pigment-saffron)'},
+        {name:'Libra',     symbol:'♎', element:'Air',    color:'var(--pigment-lapis)'},
+        {name:'Scorpio',   symbol:'♏', element:'Water',  color:'var(--pigment-moss)'},
+        {name:'Sagittarius',symbol:'♐',element:'Fire',   color:'var(--pigment-cinnabar)'}
+      ];
+      const cutoffs = [[1,20],[2,19],[3,21],[4,20],[5,21],[6,21],[7,23],[8,23],[9,23],[10,23],[11,22],[12,22]];
+      let idx = month - 1;
+      if (day < cutoffs[idx][1]) idx = (idx + 11) % 12;
+      return signs[idx];
+    }
+
+    // ── Lo Shu Grid ───────────────────────────────────────────────
+    const loShuPositions = [4,9,2, 3,5,7, 8,1,6]; // TL→BR reading order
+    const loShuArrows = [
+      { nums:[4,9,2], name:'Arrow of Intellect',       corp:'Strong analytical and strategic planning capabilities.' },
+      { nums:[3,5,7], name:'Arrow of Willpower',        corp:'Sustained determination and calm resilience under pressure.' },
+      { nums:[8,1,6], name:'Arrow of the Practical',    corp:'High execution speed and structured operational discipline.' },
+      { nums:[4,3,8], name:'Arrow of Caution',          corp:'A methodical, low-risk approach to long-term growth.' },
+      { nums:[9,5,1], name:'Arrow of Determination',    corp:'Self-reliant enterprise focused on clear direction and goals.' },
+      { nums:[2,7,6], name:'Arrow of Emotional Sensitivity', corp:'High relationship awareness and supportive team culture.' },
+      { nums:[4,5,6], name:'Arrow of Achievement',      corp:'High achievement drive and consistent milestone delivery.' },
+      { nums:[2,5,8], name:'Arrow of Balance',          corp:'A stabilizing force in both market and team environments.' },
+    ];
+    const loShuMissingMeanings = {
+      1:'Strategic initiatives may stall or lose direction until leadership asserts a clear, singular voice.',
+      2:'Critical joint ventures and internal alignments may experience invisible friction until proactive collaboration frameworks are in place.',
+      3:'The brand\'s unique market position may fail to resonate clearly until marketing and public storytelling are prioritized.',
+      4:'Growth may become difficult to scale consistently until internal systems and standard processes mature.',
+      5:'The enterprise may experience coordination bottlenecks during rapid market shifts until cross-functional flexibility is established.',
+      6:'Talent retention and team cohesion may face stress during scaling phases unless supportive policies are built.',
+      7:'Product quality or technological depth may remain on the surface until rigorous research and compliance standards are implemented.',
+      8:'Cash flow stability may fluctuate unexpectedly until structured treasury management and capital controls are established.',
+      9:'The organization\'s long-term vision may fail to mobilize team enthusiasm until a clear corporate purpose is defined.',
+    };
+
+    function computeLoShu(dobStr) {
+      if (!dobStr) return { counts: {}, present: [], missing: [], arrows: [] };
+      const digits = dobStr.replace(/\D/g,'').split('').map(Number).filter(d => d > 0);
+      const counts = {};
+      digits.forEach(d => { counts[d] = (counts[d] || 0) + 1; });
+      const present = Object.keys(counts).map(Number);
+      const missing = [1,2,3,4,5,6,7,8,9].filter(n => !present.includes(n));
+      const arrows = loShuArrows.filter(a => a.nums.every(n => present.includes(n)));
+      return { counts, present, missing, arrows };
+    }
+
+    function renderLoShu(loshu) {
+      const grid = document.getElementById('loshu-corporate-grid');
+      const digitsRow = document.getElementById('loshu-digits-row');
+      const arrowsBox = document.getElementById('loshu-arrows-box');
+      const missingBox = document.getElementById('loshu-missing-box');
+      if (!grid) return;
+
+      grid.innerHTML = loShuPositions.map(num => {
+        const count = loshu.counts[num] || 0;
+        const cls = count === 0 ? 'lsc-cell missing' : count > 1 ? 'lsc-cell present-strong' : 'lsc-cell present';
+        const color = count > 0 ? 'var(--pigment-cinnabar)' : '#ccc';
+        return `<div class="${cls}">
+          <div class="lsc-num" style="color:${color};">${num}</div>
+          ${count > 1 ? `<div class="lsc-count">${count}×</div>` : ''}
+        </div>`;
+      }).join('');
+
+      const presentList = [1,2,3,4,5,6,7,8,9].filter(n => loshu.present.includes(n));
+      digitsRow.innerHTML = `Present: <strong>${presentList.join(', ')}</strong> &nbsp;|&nbsp; Missing: <strong style="color:var(--pigment-terracotta);">${loshu.missing.join(', ') || 'None'}</strong>`;
+
+      arrowsBox.innerHTML = loshu.arrows.length > 0
+        ? `<div style="font-family:var(--font-mono);font-size: 0.72rem;color:var(--pigment-saffron);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.5rem;">✦ Active Arrows</div>` +
+          loshu.arrows.map(a => `<div style="padding:0.5rem 0.65rem;margin-bottom:0.4rem;border:1px solid #D6CEBE;border-left:3px solid var(--pigment-saffron);border-radius:0 4px 4px 0;background:#faf7ef;">
+            <div style="font-family:var(--font-serif-header);font-size:0.82rem;font-weight:700;color:var(--pigment-cinnabar);margin-bottom:2px;">${a.name} (${a.nums.join('-')})</div>
+            <div style="font-size:0.8rem;color:var(--ink-faded);line-height:1.4;">${a.corp}</div>
+          </div>`).join('')
+        : `<div style="font-family:var(--font-mono);font-size:0.78rem;color:var(--ink-faded);font-style:italic;">No complete arrows detected in this founding date.</div>`;
+
+      missingBox.innerHTML = loshu.missing.length > 0
+        ? `<div style="font-family:var(--font-mono);font-size: 0.72rem;color:var(--pigment-terracotta);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.75rem;">▲ Structural Blind Spots</div>` +
+          loshu.missing.map(n => {
+            const cleanMeaning = (loShuMissingMeanings[n] || '').replace(/^Missing \d+\s*[—–-]\s*/i, '');
+            return `<div style="display:flex; align-items:flex-start; gap:0.75rem; margin-bottom:0.75rem; text-align:left;">
+              <div style="width: 32px; height: 32px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border: 1px dashed #D6CEBE; border-radius: 4px; background: #FAF7EF; font-family: var(--font-serif-header); font-size: 1.15rem; font-weight: 700; color: #C4BBAA;">${n}</div>
+              <div style="font-size:0.85rem;color:var(--ink-faded);line-height:1.45;padding-top:2px;">${cleanMeaning}</div>
+            </div>`;
+          }).join('')
+        : `<div style="font-family:var(--font-mono);font-size:0.78rem;color:var(--pigment-moss);font-style:italic;">✓ No structural gaps — all nine numbers present.</div>`;
+    }
+
+    // ── Corporate Biorhythm ───────────────────────────────────────
+    function renderCorporateBiorhythm(dobStr) {
+      const barsEl  = document.getElementById('corporate-bio-bars');
+      const compEl  = document.getElementById('corporate-bio-composite');
+      const guidEl  = document.getElementById('corporate-bio-guidance');
+      if (!barsEl || !dobStr) return;
+
+      const p = dobStr.split('-');
+      const dob    = new Date(parseInt(p[0]),parseInt(p[1])-1,parseInt(p[2]),12,0,0);
+      const today  = new Date(); today.setHours(12,0,0,0);
+      const t      = Math.round((today - dob) / (1000 * 60 * 60 * 24));
+
+      const pVal = Math.sin(2 * Math.PI * t / 23) * 100;
+      const eVal = Math.sin(2 * Math.PI * t / 28) * 100;
+      const iVal = Math.sin(2 * Math.PI * t / 33) * 100;
+
+      function pct(v) { return Math.round((v + 100) / 2); }
+      function band(v) {
+        if (v >= 50)  return { label:'High',     color:'var(--pigment-moss)',     desc:'Strong operational capacity today.' };
+        if (v >= 10)  return { label:'Rising',   color:'var(--pigment-lapis)',    desc:'Building momentum — use for planning.' };
+        if (v >= -10) return { label:'Critical', color:'var(--pigment-saffron)', desc:'Cycle crossing zero — exercise caution in decisions.' };
+        if (v >= -50) return { label:'Low',      color:'var(--pigment-terracotta)',desc:'Consolidation phase — avoid overextension.' };
+        return             { label:'Deep Low',  color:'var(--pigment-cinnabar)', desc:'System recharging — rest and review only.' };
+      }
+
+      const cycles = [
+        { name:'Execution (Physical)', period:'23d', val:pVal, color:'var(--pigment-terracotta)' },
+        { name:'Stakeholder (Emotional)', period:'28d', val:eVal, color:'var(--pigment-saffron)' },
+        { name:'Strategic (Intellectual)', period:'33d', val:iVal, color:'var(--pigment-lapis)' }
+      ];
+
+      barsEl.innerHTML = cycles.map(c => {
+        const b = band(c.val);
+        return `<div class="corp-bio-bar-card" style="border-top:4px solid ${c.color};">
+          <div class="corp-bio-label" style="color:${c.color};">${c.name}<br><span style="font-weight:400;">${c.period}</span></div>
+          <div class="corp-bio-pct" style="color:${b.color};">${c.val >= 0 ? '+' : ''}${c.val.toFixed(0)}%</div>
+          <div class="corp-bio-bar">
+            <div class="corp-bio-fill" style="left: ${c.val >= 0 ? '50%' : (50 - Math.abs(c.val)/2) + '%'}; width: ${Math.abs(c.val)/2}%; background: ${c.color};"></div>
+            <div style="position: absolute; left: calc(50% - 1.5px); top: -5px; height: 18px; width: 3px; background: #2B2A28; z-index: 10; border-radius: 1px;"></div>
+          </div>
+          <div class="corp-bio-desc">${b.label} · ${b.desc}</div>
+        </div>`;
+      }).join('');
+
+      const composite = Math.round((pVal * 0.3 + eVal * 0.4 + iVal * 0.3 + 100) / 2);
+      const compBand = band((pVal * 0.3 + eVal * 0.4 + iVal * 0.3));
+      compEl.innerHTML = `Composite Operational Index Today: <strong style="color:${compBand.color};">${composite}%</strong> &nbsp;·&nbsp; <strong>${compBand.label}</strong>`;
+
+      // Day guidance
+      const lows  = cycles.filter(c => c.val < -10).map(c => c.name.split(' ')[0].toLowerCase());
+      const highs = cycles.filter(c => c.val >  50).map(c => c.name.split(' ')[0].toLowerCase());
+      const crits = cycles.filter(c => Math.abs(c.val) <= 10).map(c => c.name.split(' ')[0].toLowerCase());
+
+      let guidance = '';
+      if (highs.length === 3) guidance = 'All three enterprise cycles are elevated — an exceptional window for high-stakes launches, board meetings, investor pitches, or major brand decisions.';
+      else if (highs.length > 0) guidance = `<strong>${highs.join(' and ')}</strong> capacity is strong today — prioritise ${highs.includes('execution') ? 'operational delivery' : ''} ${highs.includes('stakeholder') ? 'partner and team engagement' : ''} ${highs.includes('strategic') ? 'planning and analysis' : ''}.`.replace(/  +/g, ' ').trim();
+      else if (crits.length > 0) guidance = `<strong>Critical transition</strong> in ${crits.join(' and ')} cycle${crits.length > 1 ? 's' : ''} today. Avoid major irreversible decisions — contracts, acquisitions, leadership announcements — until the cycle stabilises.`;
+      else if (lows.length === 3) guidance = 'All three cycles are in their lower phase — a natural enterprise consolidation period. Use today for review, documentation, and internal preparation. Postpone high-stakes external commitments.';
+      else guidance = `Moderate day — ${lows.length > 0 ? lows.join(' and ') + ' cycles are resting; ' : ''}steady progress on routine operational work is most appropriate.`;
+
+      guidEl.innerHTML = `<strong style="font-family:var(--font-mono);font-size:0.75rem;color:var(--pigment-terracotta);letter-spacing:1px;text-transform:uppercase;">Today's Operational Guidance:</strong><br>${guidance}`;
+    }
+
+    function selectOnlyOneCheckbox(checkbox) {
+      const checkboxes = document.getElementsByName('entity-type');
+      checkboxes.forEach((item) => {
+        if (item !== checkbox) item.checked = false;
+      });
+    }
+
+    // Initialize language inheritance from local storage
+    let preferredLang = localStorage.getItem('antara_preferred_language') || 'EN';
+    if (window.location.hash === '#HI' || window.location.search.includes('lang=HI')) {
+        preferredLang = 'HI';
+        localStorage.setItem('antara_preferred_language', 'HI');
+    } else if (window.location.hash === '#EN' || window.location.search.includes('lang=EN')) {
+        preferredLang = 'EN';
+        localStorage.setItem('antara_preferred_language', 'EN');
+    }
+    if (preferredLang === 'HI') {
+        document.body.classList.add('lang-hi');
+        
+        // 1. Force the Google Translate hash parameter if not present
+        if (!window.location.hash.includes('googtrans')) {
+            window.location.hash = 'googtrans(en|hi)';
+        }
+        
+        // 2. Set googtrans cookie to persist
+        document.cookie = "googtrans=/en/hi; path=/";
+        
+        // 3. Create absolute HTTPS Google Translate container and script
+        const gtDiv = document.createElement('div');
+        gtDiv.id = 'google_translate_element';
+        gtDiv.style.position = 'fixed';
+        gtDiv.style.bottom = '15px';
+        gtDiv.style.right = '15px';
+        gtDiv.style.zIndex = '99999';
+        gtDiv.style.background = '#FFFDF9';
+        gtDiv.style.border = '1px solid #D6CEBE';
+        gtDiv.style.borderRadius = '20px';
+        gtDiv.style.padding = '3px 10px';
+        gtDiv.style.boxShadow = '0 3px 10px rgba(0,0,0,0.06)';
+        gtDiv.style.display = 'inline-flex';
+        gtDiv.style.alignItems = 'center';
+        gtDiv.style.gap = '6px';
+        gtDiv.innerHTML = '<span style="font-family:\'Cinzel\', serif; font-size:0.68rem; color:#9E3A33; font-weight:bold; letter-spacing:0.5px;">ANTARA TRANSLATE</span>';
+        document.body.appendChild(gtDiv);
+
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: true
+            }, 'google_translate_element');
+        };
+
+        const gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript';
+        gtScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        document.head.appendChild(gtScript);
+    } else if (preferredLang === 'EN') {
+        if (window.location.hash.includes('googtrans')) {
+            window.location.hash = '';
+        }
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+
+    function safeGetItem(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch (e) {
+        console.warn("safeGetItem failed for", key, e);
+        return null;
+      }
+    }
+    function safeSetItem(key, val) {
+      try {
+        localStorage.setItem(key, val);
+      } catch (e) {
+        console.warn("safeSetItem failed for", key, e);
+      }
+    }
+
+    const houseDb = {
+      1: { name: "Lagna Bhava", domain: "Self & Corporate Identity", desc: "Maps the baseline operational framework, primary brand image, and essential vitality of the enterprise." },
+      2: { name: "Dhana Bhava", domain: "Treasury & Capital Reserves", desc: "Governs liquid cash reserves, primary revenue channels, and long-term financial returns.", peak: true },
+      3: { name: "Sahaja Bhava", domain: "Communications & Team Grit", desc: "Shapes team alignment, operational grit, brand messaging, and quick short-term pivots." },
+      4: { name: "Bandhu Bhava", domain: "Infrastructure & Foundations", desc: "Represents infrastructure, workplace culture, operational foundations, and long-term organizational stability." },
+      5: { name: "Putra Bhava", domain: "Innovation & Speculative Strategy", desc: "Governs research, intellectual property, creative design paths, and new venture projects." },
+      6: { name: "Ari Bhava", domain: "Internal Bottlenecks & Competition", desc: "Highlights operational bottlenecks, compliance pressures, execution discipline, and competitive resilience." },
+      7: { name: "Yuvati Bhava", domain: "B2B Alliances & Partnerships", desc: "Maps long-term joint ventures, partnerships, customer retention, and B2B agreements." },
+      8: { name: "Randhra Bhava", domain: "Crisis Resilience & Pivots", desc: "Handles systemic risks, industry shifts, corporate restructuring, and emergency continuity plans." },
+      9: { name: "Dharma Bhava", domain: "Corporate Governance & Vision", desc: "Maps macro company vision, ethical guidelines, clear direction, and advisory oversight." },
+      10: { name: "Karma Bhava", domain: "Leadership & Brand Authority", desc: "Governs executive authority, brand power, market reputation, and core execution strength.", peak: true },
+      11: { name: "Labha Bhava", domain: "Revenue Scale & Cash Flow", desc: "Measures scaling milestones, cash inflows, operational profits, and long-term financial returns.", peak: true },
+      12: { name: "Vyaya Bhava", domain: "Expansion Overheads & Exit", desc: "Covers capital expenditure, global expansion overheads, foreign investments, and exit milestones." }
+    };
+
+    function hashString(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      return Math.abs(hash);
+    }
+
+    function calculateSAVPoints(brandName, dobStr, lagnaSign) {
+      const seed = hashString(brandName + dobStr + lagnaSign);
+      let scores = {};
+      let total = 0;
+
+      let bases = [27, 31, 24, 28, 29, 23, 26, 25, 30, 33, 34, 26]; 
+      
+      let indices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+      for (let i = 11; i > 0; i--) {
+        const j = (seed + i) % (i + 1);
+        const temp = indices[i];
+        indices[i] = indices[j];
+        indices[j] = temp;
+      }
+
+      for (let h = 1; h <= 12; h++) {
+        scores[h] = bases[indices[h - 1]];
+        total += scores[h];
+      }
+
+      return scores;
+    }
+
+    let currentScores = {};
+
+    function selectHouse(houseNum) {
+      const shapes = document.querySelectorAll('.house-shape');
+      shapes.forEach(shape => {
+        shape.classList.remove('selected');
+        if (parseInt(shape.getAttribute('data-house')) === houseNum) {
+          shape.classList.add('selected');
+        }
+      });
+
+      const houseInfo = houseDb[houseNum];
+      const score = currentScores[houseNum] || 28;
+      
+      document.getElementById('panel-house-title').innerText = `House ${houseNum}: ${houseInfo.name}`;
+      document.getElementById('panel-house-score').innerHTML = `${score} Bindus <span style="font-size: 0.8rem; font-weight: normal; color: var(--ink-faded);">/ 28 avg (Ideal Benchmark: ≥30)</span>`;
+      
+      let analysisText = `<strong>Domain:</strong> ${houseInfo.domain}<br><br>${houseInfo.desc}<br><br>`;
+      if (houseInfo.peak) {
+        analysisText += `<span class="peak-highlight-badge">Core Corporate Pillar</span><br><br>`;
+      }
+      
+      if (score >= 32) {
+        analysisText += `<strong>Analysis:</strong> Outstanding strength coordinate. This sector acts as a massive operational booster, absorbing economic turbulence easily and supplying excess momentum.`;
+      } else if (score >= 28) {
+        analysisText += `<strong>Analysis:</strong> Highly stable environment. The energies here are balanced, productive, and resilient, serving as a solid pillar of business continuity.`;
+      } else if (score >= 25) {
+        analysisText += `<strong>Analysis:</strong> Functional, but slightly vulnerable during market downturns. Monitor operations carefully.`;
+      } else {
+        analysisText += `<strong>Analysis:</strong> Potential energy drain sector. Keep liabilities minimal, minimize exposure, and build robust fail-safes.`;
+      }
+
+      document.getElementById('panel-house-desc').innerHTML = analysisText;
+    }
+
+    function updateSAV() {
+      const brandName = document.getElementById('input-brand').value.trim() || "Enterprise Brand";
+      const dobStr = document.getElementById('input-foundation').value;
+      const lagnaSign = document.getElementById('input-lagna').value;
+
+      // Dynamically update the main report title
+      const titleEl = document.querySelector('.master-report-title');
+      if (titleEl) {
+        titleEl.innerHTML = `Corporate Strengths Analysis<br>For ${escapeHTML(brandName)}`;
+      }
+
+      currentScores = calculateSAVPoints(brandName, dobStr, lagnaSign);
+
+      // ── Corporate Identity Matrix ────────────────────────────────
+      const brandLetters = brandName.toUpperCase().replace(/[^A-Z]/g,'').split('');
+      let chaldTotal = 0, pythTotal = 0;
+      const chaldVals = [], pythVals = [];
+      brandLetters.forEach(c => {
+        const cv = chaldeanMap[c] || 0;
+        const pv = pythagoreanMap[c] || 0;
+        chaldTotal += cv; pythTotal += pv;
+        if (cv) chaldVals.push(cv);
+        if (pv) pythVals.push(pv);
+      });
+      const chaldRoot = reduceNum(chaldTotal, true);
+      const pythRoot  = reduceNum(pythTotal, false);
+      const lpRoot    = calcLifePath(dobStr);
+      const dobParts  = dobStr ? dobStr.split('-') : ['','01','01'];
+      const sunSign   = dobStr ? getSunSign(parseInt(dobParts[1],10), parseInt(dobParts[2],10)) : { name:'—', symbol:'—', element:'—', color:'var(--ink-faded)' };
+      const seed      = hashString(brandName + dobStr);
+      const elemIdx   = seed % 5;
+
+      const matrixEl = document.getElementById('corporate-identity-matrix');
+      if (matrixEl) {
+        const cRes = chaldeanResonanceDb[chaldRoot] || { title: "Leadership & Initiative", desc: "Strong market identity, independent thinking, pioneering leadership, decisive execution." };
+        const pRes = pythagoreanArchetypesDb[pythRoot] || { title: "", desc: "" };
+        const lpRes = pythagoreanArchetypesDb[lpRoot] || { title: "", desc: "" };
+        const zDesc = zodiacDescriptionsDb[sunSign.name] || "";
+        const bDesc = baziDescriptionsDb[wuxingElements[elemIdx]] || "";
+
+        let lpCalcStr = "from founding date";
+        if (dobStr) {
+          const p = dobStr.split('-');
+          const m = parseInt(p[1],10), d = parseInt(p[2],10), y = parseInt(p[0],10);
+          const ySum = String(y).split('').map(Number).reduce((a,b)=>a+b,0);
+          const mRed = reduceNum(m);
+          const dRed = reduceNum(d);
+          const yRed = reduceNum(ySum);
+          const lpTotal = mRed + dRed + yRed;
+          lpCalcStr = `${mRed} + ${dRed} + ${yRed} = ${lpTotal} &rarr; ${lpRoot}`;
+        }
+
+        const badges = [
+          { 
+            label: 'Chaldean Brand Root', 
+            value: chaldRoot, 
+            sub: cRes.title, 
+            subDesc: cRes.desc,
+            color: 'var(--pigment-saffron)', 
+            top: `<span style="font-family:var(--font-mono);font-size: 0.72rem;color:var(--ink-faded);">${chaldVals.join('+')} = ${chaldTotal} &rarr; ${chaldRoot}</span>`,
+            desc: "The phonetic vibration of the brand name, representing its core sound waves and public charisma in market resonance."
+          },
+          { 
+            label: 'Pythagorean Expression', 
+            value: pythRoot, 
+            sub: pRes.title, 
+            subDesc: pRes.desc,
+            color: 'var(--pigment-lapis)', 
+            top: `<span style="font-family:var(--font-mono);font-size: 0.72rem;color:var(--ink-faded);">${pythVals.join('+')} = ${pythTotal} &rarr; ${pythRoot}</span>`,
+            desc: "The corporate persona and communication style. Defines how the enterprise expresses its mission and speaks to its audience."
+          },
+          { 
+            label: 'Corporate Life Path', 
+            value: lpRoot || '—', 
+            sub: lpRes.title, 
+            subDesc: lpRes.desc,
+            color: 'var(--pigment-cinnabar)', 
+            top: `<span style="font-family:var(--font-mono);font-size: 0.72rem;color:var(--ink-faded);">${lpCalcStr}</span>`,
+            desc: "The systemic evolutionary roadmap from the incorporation date. Outlines core operations and long-term milestones."
+          },
+          { 
+            label: 'Founding Sun Sign', 
+            value: sunSign.symbol, 
+            sub: `${sunSign.name} · ${sunSign.element}`, 
+            subDesc: zDesc,
+            color: sunSign.color, 
+            top: `<span style="font-family:var(--font-mono);font-size: 0.72rem;color:var(--ink-faded);">western zodiac</span>`,
+            desc: "The solar zodiac signature of the founding date, outlining the brand's core character, culture, and elemental focus."
+          },
+          { 
+            label: 'BaZi Day Element', 
+            value: wuxingZH[elemIdx], 
+            sub: `${wuxingElements[elemIdx]} · Day Master`, 
+            subDesc: bDesc,
+            color: wuxingColors[elemIdx], 
+            top: `<span style="font-family:var(--font-mono);font-size: 0.72rem;color:var(--ink-faded);">four pillars</span>`,
+            desc: "The Day Master of the founding date, representing the company's baseline elemental nature and strategic resource needs."
+          },
+        ];
+        matrixEl.innerHTML = badges.map(b => `
+          <div class="corp-identity-badge" style="border-top:4px solid ${b.color}; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+            <div>
+              <div class="corp-identity-label">${b.label}</div>
+              <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div class="corp-identity-value" style="color:${b.color};">${b.value}</div>
+                <div class="corp-identity-sub" style="margin-bottom: 4px; text-align: center; font-weight: bold; font-family: var(--font-serif-header); font-size: 0.95rem; min-height: auto; color: var(--ink-archival);">${b.sub}</div>
+                <div style="font-size: 0.8rem; color: var(--ink-faded); font-style: italic; margin-bottom: 0.6rem; text-align: center; line-height: 1.35; padding: 0 4px; font-family: var(--font-serif-body);">${b.subDesc}</div>
+              </div>
+              <div style="border-top: 1px dashed #D6CEBE; padding-top: 0.65rem; margin-top: 0.4rem; font-size: 0.76rem; color: var(--ink-archival); line-height: 1.45; text-align: justify; font-family: var(--font-serif-body);">
+                ${b.desc}
+              </div>
+            </div>
+            <div class="corp-identity-calc" style="border-top: 1px solid #D6CEBE; width: 100%; padding-top: 0.4rem; margin-top: 0.6rem;">${b.top}</div>
+          </div>`).join('');
+      }
+
+      // ── Lo Shu Grid ──────────────────────────────────────────────
+      const loshu = computeLoShu(dobStr);
+      renderLoShu(loshu);
+
+      // ── Corporate Biorhythm ──────────────────────────────────────
+      renderCorporateBiorhythm(dobStr);
+
+      // ── Prototype Organizational Intelligence Report ──────────────────
+      const sectorNiche = document.getElementById('input-sector').value.trim() || "Digital Healthcare Infrastructure & AI Diagnostics";
+      
+      // Update metadata fields
+      document.getElementById('rep-entity').innerText = brandName;
+      document.getElementById('rep-sector').innerText = sectorNiche;
+      
+      // Formatted date
+      let formattedDate = "Not Calibrated";
+      if (dobStr) {
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const dParts = dobStr.split('-');
+        formattedDate = `${parseInt(dParts[2], 10)} ${months[parseInt(dParts[1], 10) - 1]} ${dParts[0]}`;
+      }
+      document.getElementById('rep-signature-date').innerText = formattedDate;
+
+      // Pythagorean Archetype database
+      const archetypeDb = {
+        1: { title: "Pioneering Disruptor", tag: "Independent Visionary", focus: "bold innovation, rapid execution, and direct market leadership", desc: "built for fast-moving, vision-driven disruption and market-defining creations." },
+        2: { title: "Synergetic Collaborator", tag: "Alliance-Driven Partner", focus: "strategic partnerships, relationship awareness, and collaborative networks", desc: "built for sustainable scale, relationship equity, and long-term ecosystem collaboration." },
+        3: { title: "Creative Authority", tag: "Expressive Brand Voice", focus: "clear thought leadership, high brand presence, and dynamic communication", desc: "built for educational trust, public brand resonance, and visible industry influence." },
+        4: { title: "Systematic Foundationist", tag: "Process & SOP Guardian", focus: "robust operational discipline, quality compliance, and reliable execution", desc: "built for structural stability, standardizing chaotic markets, and dependable growth." },
+        5: { title: "Agile Explorer", tag: "Hyper-Adaptive Navigator", focus: "rapid product iteration, digital agility, and high execution speed", desc: "built for quick market navigation, digital responsiveness, and high transaction flow." },
+        6: { title: "Stakeholder Nurturer", tag: "Ecosystem Guardian", focus: "premium brand experience, design excellence, and strong relationship awareness", desc: "built for high client retention, premium design aesthetics, and long-term credibility." },
+        7: { title: "Analytical Specialist", tag: "Research & IP Powerhouse", focus: "proprietary technology, unique specialist niches, and analytical precision", desc: "built for deep technical specialization, protected intellectual property, and high-expertise focus." },
+        8: { title: "Strategic Integrator", tag: "Systems & Infrastructure Builder", focus: "strategic partnerships, systems integration, and long-term infrastructure growth", desc: "built for sustainable scale rather than short-term opportunistic growth." },
+        9: { title: "Universal Catalyst", tag: "Purpose-Led Pioneer", focus: "purpose-driven initiatives, sweeping scale, and significant social impact", desc: "built for visionary movements, global community mobilization, and lasting influence." },
+        11: { title: "Illuminated Pioneer", tag: "Intuitive System Architect", focus: "intuitive strategy, high-frequency branding, and visionary strategic leadership", desc: "built to navigate evolutionary market pivots through intuitive innovation and clear direction." },
+        22: { title: "Master Builder", tag: "Generational Legacy Architect", focus: "large-scale construction, systemic integration, and enduring global infrastructure", desc: "built to create enduring systems with large-scale practical impact." },
+        33: { title: "Master Guardian", tag: "Evolutionary Culture Standard", focus: "principled enterprise stewardship, ethical standard-setting, and trust-driven leadership", desc: "built to protect organizational integrity and lead industries through deep long-term credibility." }
+      };
+
+      const arch = archetypeDb[pythRoot] || archetypeDb[8];
+      document.getElementById('rep-archetype').innerText = arch.title;
+
+      // Update core corporate pillars scores & statuses dynamically on recalculation
+      const scoresPillar = {
+        2: currentScores[2] || 28,
+        10: currentScores[10] || 28,
+        11: currentScores[11] || 28
+      };
+      for (const h of [2, 10, 11]) {
+        const s = scoresPillar[h];
+        document.getElementById(`pillar-h${h}-score`).innerText = s;
+        const statusEl = document.getElementById(`pillar-h${h}-status`);
+        if (statusEl) {
+          statusEl.innerHTML = s >= 28 
+            ? `<span style="color:var(--pigment-emerald); font-weight:bold;">(✓ ${s > 28 ? 'Above' : 'At'} 28 average)</span>` 
+            : `<span style="color:var(--pigment-cinnabar); font-weight:bold;">(▲ Below 28 average)</span>`;
+        }
+      }
+
+      // Primary Signature (Life Path based)
+      const sigDb = {
+        1: "Pioneering Autonomy",
+        2: "Collaborative Synergy",
+        3: "Dynamic Expression",
+        4: "Structured Expansion",
+        5: "Agile Adaptability",
+        6: "Empathetic Harmony",
+        7: "Specialized Depth",
+        8: "Structured Expansion",
+        9: "Generational Legacy"
+      };
+      const primarySig = sigDb[lpRoot] || "Structured Expansion";
+
+      // Archetype lists based on root
+      let advList = [], perfList = [];
+      if (pythRoot === 8) {
+        advList = ["strategic partnerships", "systems integration", "long-term infrastructure growth", "relationship awareness"];
+        perfList = ["a stabilizing institutional force", "a trusted systems partner", "a strategic backbone provider"];
+      } else if (pythRoot === 1) {
+        advList = ["first-mover positioning", "bold market execution", "rapid innovation cycles", "assertive brand presence"];
+        perfList = ["a trend-setting pioneer", "a decisive market leader", "a premium singular brand"];
+      } else if (pythRoot === 2) {
+        advList = ["strategic B2B alliances", "collaborative ecosystem growth", "high relationship awareness", "client success integration"];
+        perfList = ["a key connective partner", "a trusted platform integrator", "a relationship-driven market pillar"];
+      } else if (pythRoot === 3) {
+        advList = ["clear thought leadership", "dynamic brand messaging", "influential communication channels", "educational trust capital"];
+        perfList = ["an industry authority", "a prominent learning hub", "a highly expressive brand"];
+      } else if (pythRoot === 4) {
+        advList = ["operational discipline", "standardized frameworks", "dependable project delivery", "robust structural stability"];
+        perfList = ["a standard-setting backbone provider", "a reliable operational partner", "a stable infrastructure player"];
+      } else if (pythRoot === 5) {
+        advList = ["rapid product iteration", "high execution speed", "digital platform agility", "seamless commerce flow"];
+        perfList = ["an agile digital navigator", "a fast-moving execution engine", "an adaptive trend pioneer"];
+      } else if (pythRoot === 6) {
+        advList = ["premium client experiences", "refined design aesthetics", "strong customer retention", "long-term credibility"];
+        perfList = ["a luxury standard-bearer", "a customer-centric guardian", "a trust-driven brand"];
+      } else if (pythRoot === 7) {
+        advList = ["protected intellectual property", "specialist niche focus", "scientific or analytical precision", "high-expertise consulting"];
+        perfList = ["a specialized R&D powerhouse", "a premium niche authority", "a trusted specialist advisor"];
+      } else if (pythRoot === 9) {
+        advList = ["inspiring brand mission", "sweeping organizational scale", "courageous market movements", "global community connection"];
+        perfList = ["a mission-led industry leader", "an expansive change catalyst", "a visionary brand builder"];
+      } else {
+        advList = ["intuitive breakthrough innovation", "high-frequency brand authority", "enduring system design", "elite advisory positioning"];
+        perfList = ["an evolutionary market benchmark", "a legacy system builder", "an elite industry guardian"];
+      }
+
+      // Observed traits & gravity points based on Lo Shu
+      let traitList = [];
+      if (loshu.present.includes(8)) traitList.push("disciplined growth posture");
+      if (loshu.present.includes(4)) traitList.push("emphasis on reliability", "systems-first thinking");
+      if (loshu.present.includes(1)) traitList.push("methodical scaling");
+      if (loshu.present.includes(2)) traitList.push("preference for long-term trust");
+      if (traitList.length < 5) {
+        if (loshu.present.includes(5)) traitList.push("methodical adaptability");
+        if (loshu.present.includes(9)) traitList.push("purpose-driven direction");
+        if (loshu.present.includes(6)) traitList.push("strong stakeholder safety nets");
+        if (loshu.present.includes(3)) traitList.push("analytical clarity");
+        if (loshu.present.includes(7)) traitList.push("rigorous standard quality audits");
+      }
+      while (traitList.length < 5) {
+        traitList.push("operationally consistent delivery");
+      }
+
+      // Risk Profile based on low SAV houses
+      let riskStr = "";
+      const lowHouses = Object.keys(currentScores).filter(h => currentScores[h] < 25).map(Number);
+      if (lowHouses.includes(6)) {
+        riskStr = "The organization may face internal bottlenecks or regulatory compliance delays during rapid expansion due to under-developed day-to-day standards.";
+      } else if (lowHouses.includes(8)) {
+        riskStr = "The enterprise is vulnerable to sudden market shifts or cash flow pressures due to a lack of structured contingency plans.";
+      } else if (lowHouses.includes(2)) {
+        riskStr = "The entity faces capital drainage where revenue gains are consumed by high operating costs rather than being retained in reserves.";
+      } else if (lowHouses.includes(12)) {
+        riskStr = "Expansion and operational costs are high, risking long-term financial returns if scaling overhead is not carefully managed.";
+      } else {
+        riskStr = "The organization may move slower than more agile competitors, prioritizing structural stability and control over rapid adaptation.";
+      }
+
+      // Leadership culture based on element
+      let leadershipDesc = "";
+      let decList = [], cultStrengths = [], weakness = "", recBalance = "";
+      
+      const elementsMap = {
+        'Fire': {
+          title: "Visionary & Kinetic Ecosystem",
+          desc: "This organization tends to lead through inspiration, rapid action, courageous execution, and a high comfort with risk.",
+          decisions: ["fast executive decisions", "bold strategic moves", "prioritizing high-impact goals"],
+          strengths: ["kinetic momentum", "inspiring brand presence", "courageous market entry", "healthy competitive spirit"],
+          weakness: "Rapid growth cycles may occasionally lead to team burnout if execution speed outpaces operational checkpoints.",
+          balance: "Introduce deliberate operational pauses to ensure quality controls are met before launching new initiatives."
+        },
+        'Earth': {
+          title: "Strategic Authority Ecosystem",
+          desc: "This organization tends to lead through competence, operational discipline, and calm strategic control.",
+          decisions: ["clear, evidence-based logic", "careful evaluation of details", "focus on long-term sustainability", "disciplined execution"],
+          strengths: ["resilience under pressure", "organizational continuity", "execution discipline", "low-chaos environment"],
+          weakness: "Caution and strict adherence to process can sometimes slow down necessary, high-speed innovations.",
+          balance: "Create a separate sandbox for quick experimentation that doesn't disrupt the core operational engine."
+        },
+        'Air': {
+          title: "Networked Ideation Ecosystem",
+          desc: "This organization tends to lead through open communication, collaborative ideas, and dynamic network connections.",
+          decisions: ["collaborative brainstorming", "thoughtful debate", "synthesizing market feedback"],
+          strengths: ["clear brand messaging", "quick response to market trends", "highly adaptive partnerships", "strong B2B connections"],
+          weakness: "Seeking broad consensus or exploring too many creative avenues can lead to internal bottlenecks and delayed action.",
+          balance: "Set clear deadline frameworks to turn open discussions into structured execution paths."
+        },
+        'Water': {
+          title: "Empathetic Resonance Ecosystem",
+          desc: "This organization tends to lead through shared loyalty, strong cultural alignment, and deep customer empathy.",
+          decisions: ["collaborative alignment", "assessing relationship impact", "evaluating customer experience"],
+          strengths: ["outstanding team loyalty", "genuine brand advocacy", "strong relational trust", "intuitive customer connection"],
+          weakness: "During stressful periods, decisions may become too emotionally influenced by internal loyalties or personal dynamics.",
+          balance: "Pair relationship-driven feedback with objective business indicators to keep balance under pressure."
+        }
+      };
+
+      const elemData = elementsMap[sunSign.element] || elementsMap['Earth'];
+
+      // Biorhythm current window info
+      const pToday = Math.sin(2 * Math.PI * (Math.round((new Date() - (dobStr ? new Date(dobStr.split('-')[0], dobStr.split('-')[1]-1, dobStr.split('-')[2]) : new Date())) / (1000 * 60 * 60 * 24))) / 23) * 100;
+      const iToday = Math.sin(2 * Math.PI * (Math.round((new Date() - (dobStr ? new Date(dobStr.split('-')[0], dobStr.split('-')[1]-1, dobStr.split('-')[2]) : new Date())) / (1000 * 60 * 60 * 24))) / 33) * 100;
+      const biorhythmState = pToday >= 10 && iToday >= 10 ? "aggressive expansion & milestone launching" : pToday < -10 && iToday < -10 ? "internal optimization & process stabilization" : "operational consolidation & strategic planning";
+
+      // Build list helper
+      const makeBullets = (arr) => arr.map(item => `<li style="margin-bottom: 0.35rem;">${item}</li>`).join('');
+
+      // Formulate report HTML content
+      let reportHtml = `
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="font-family: var(--font-serif-header); color: var(--pigment-cinnabar); font-size: 1.05rem; border-bottom: 1px solid #EADEC9; padding-bottom: 3px; margin-top: 0; margin-bottom: 0.5rem; text-transform: uppercase;">Executive Summary</h4>
+          <p style="text-align: justify; margin: 0 0 0.75rem 0;">
+            <strong>${brandName}</strong> is ${arch.desc}
+          </p>
+          <p style="text-align: justify; margin: 0 0 0.75rem 0;">
+            The core strength of the entity lies in connecting complex systems into cohesive, sustainable frameworks. Rather than pursuing volatile opportunities, it prioritizes reliable execution and structural stability.
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+            <div>
+              <strong style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--pigment-terracotta); text-transform: uppercase; display: block; margin-bottom: 0.25rem;">Strongest Commercial Advantages:</strong>
+              <ul style="padding-left: 1.2rem; margin: 0; font-size: 0.95rem; list-style-type: circle;">
+                ${makeBullets(advList)}
+              </ul>
+            </div>
+            <div>
+              <strong style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--pigment-terracotta); text-transform: uppercase; display: block; margin-bottom: 0.25rem;">Ideal Positioning Alignment:</strong>
+              <ul style="padding-left: 1.2rem; margin: 0; font-size: 0.95rem; list-style-type: circle;">
+                ${makeBullets(perfList)}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="font-family: var(--font-serif-header); color: var(--pigment-cinnabar); font-size: 1.05rem; border-bottom: 1px solid #EADEC9; padding-bottom: 3px; margin-top: 1.5rem; margin-bottom: 0.5rem; text-transform: uppercase;">Organizational Energy Blueprint</h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div>
+              <p style="margin: 0 0 0.5rem 0;">Primary Signature: <strong style="color: var(--pigment-saffron); font-family: var(--font-mono); font-size: 0.85rem; text-transform: uppercase;">${primarySig}</strong></p>
+              <p style="text-align: justify; margin: 0; font-size: 0.95rem;">
+                The organizational matrix indicates a business focused on steady progress and reliable execution. It naturally thrives in structured markets, institutional partnerships, and systems-led environments.
+              </p>
+            </div>
+            <div>
+              <strong style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--pigment-terracotta); text-transform: uppercase; display: block; margin-bottom: 0.25rem;">Observed Operational Traits:</strong>
+              <ul style="padding-left: 1.2rem; margin: 0; font-size: 0.95rem; list-style-type: square;">
+                ${makeBullets(traitList)}
+              </ul>
+            </div>
+          </div>
+          <div class="insight-card" style="border: 1px solid rgba(166, 91, 74, 0.25); border-left: 4px solid var(--pigment-cinnabar); background-color: rgba(244, 235, 212, 0.15); padding: 12px 16px; border-radius: 4px; font-size: 0.95rem; line-height: 1.6; color: var(--ink-archival); margin: 1.25rem 0;">
+            <strong style="color: var(--pigment-cinnabar); font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 1.2px; text-transform: uppercase; display: block; margin-bottom: 4px;">❈ Strategic Vulnerability & Risk Implication ❈</strong>
+            ${riskStr}
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="font-family: var(--font-serif-header); color: var(--pigment-cinnabar); font-size: 1.05rem; border-bottom: 1px solid #EADEC9; padding-bottom: 3px; margin-top: 1.5rem; margin-bottom: 0.5rem; text-transform: uppercase;">Leadership Culture Signature</h4>
+          <p style="margin: 0 0 0.5rem 0; font-family: var(--font-serif-header); font-weight: bold; color: var(--pigment-gold); font-size: 0.95rem;">${elemData.title}</p>
+          <p style="text-align: justify; margin: 0 0 0.75rem 0;">
+            ${elemData.desc}
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 0.75rem;">
+            <div>
+              <strong style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--pigment-terracotta); text-transform: uppercase; display: block; margin-bottom: 0.25rem;">Internal Decision-Making:</strong>
+              <ul style="padding-left: 1.2rem; margin: 0; font-size: 0.95rem; list-style-type: circle;">
+                ${makeBullets(elemData.decisions)}
+              </ul>
+            </div>
+            <div>
+              <strong style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--pigment-terracotta); text-transform: uppercase; display: block; margin-bottom: 0.25rem;">Cultural Strengths:</strong>
+              <ul style="padding-left: 1.2rem; margin: 0; font-size: 0.95rem; list-style-type: circle;">
+                ${makeBullets(elemData.strengths)}
+              </ul>
+            </div>
+          </div>
+          <p style="margin: 0; font-size: 0.95rem; line-height: 1.5;">
+            <strong style="color:var(--pigment-cinnabar);">Potential Weakness:</strong> ${elemData.weakness}<br>
+            <strong style="color:var(--pigment-moss);">Recommended Balance:</strong> ${elemData.balance}
+          </p>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="font-family: var(--font-serif-header); color: var(--pigment-cinnabar); font-size: 1.05rem; border-bottom: 1px solid #EADEC9; padding-bottom: 3px; margin-top: 1.5rem; margin-bottom: 0.5rem; text-transform: uppercase;">Communication & Market Positioning</h4>
+          <p style="text-align: justify; margin: 0 0 0.5rem 0;">
+            <strong>Branding Archetype:</strong> Institutional Trust Builder. The company's external communication profile aligns more strongly with credibility, authority, and technical confidence than sensational trends or emotional hype.
+          </p>
+          <p style="margin: 0 0 0.5rem 0; font-size: 0.95rem; font-style: italic; font-weight: bold; color: var(--pigment-terracotta);">
+            Ideal positioning strategy: "Trusted ${sectorNiche} intelligence partner."
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div>
+              <strong style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--pigment-terracotta); text-transform: uppercase; display: block; margin-bottom: 0.25rem;">Unfavorable Campaign Routes:</strong>
+              <ul style="padding-left: 1.2rem; margin: 0; font-size: 0.95rem; list-style-type: circle; color: var(--ink-faded);">
+                <li>Sensational marketing and meme-led branding.</li>
+                <li>Emotionally exaggerated or hyper-reactive campaigns.</li>
+                <li>Short-term trend-jacking without systemic backing.</li>
+              </ul>
+            </div>
+            <div>
+              <strong style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--pigment-terracotta); text-transform: uppercase; display: block; margin-bottom: 0.25rem;">Accelerated Growth Triggers:</strong>
+              <ul style="padding-left: 1.2rem; margin: 0; font-size: 0.95rem; list-style-type: circle;">
+                <li>Visible documentation of technical expertise.</li>
+                <li>Quantifiable, measurable outcome case studies.</li>
+                <li>Long-cycle partnership credibility compounding.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="font-family: var(--font-serif-header); color: var(--pigment-cinnabar); font-size: 1.05rem; border-bottom: 1px solid #EADEC9; padding-bottom: 3px; margin-top: 1.5rem; margin-bottom: 0.5rem; text-transform: uppercase;">Operational & Strategic Rhythm</h4>
+          <p style="text-align: justify; margin: 0 0 0.75rem 0;">
+            Operationally, the execution architecture matches a <strong>High Stability / Medium-to-High Flexibility</strong> blueprint. The organization performs best when growth cycles are synchronized with internal operational readiness rather than driven purely by market urgency.
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div>
+              <strong style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--pigment-terracotta); text-transform: uppercase; display: block; margin-bottom: 0.25rem;">Current Strategic Alignment:</strong>
+              <p style="margin: 0; font-size: 0.95rem; text-align: justify;">
+                Based on today's computed corporate biorhythms, the enterprise rhythm strongly favors <strong>${biorhythmState}</strong>. Align high-stakes board reviews, restructuring, or new alliances to matching cycle peaks.
+              </p>
+            </div>
+            <div>
+              <strong style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--pigment-terracotta); text-transform: uppercase; display: block; margin-bottom: 0.25rem;">Enduring Legacy Signature:</strong>
+              <p style="margin: 0; font-size: 0.95rem; text-align: justify;">
+                The company’s long-term trajectory suggests strongest success not as a transient market disruptor, but as an enduring infrastructure-oriented ecosystem player accumulating trust and structural assets over generations.
+              </p>
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('rep-content').innerHTML = reportHtml;
+
+      const tableBody = document.getElementById('sav-table-body');
+
+      tableBody.innerHTML = '';
+
+      for (let h = 1; h <= 12; h++) {
+        const info = houseDb[h];
+        const score = currentScores[h];
+        
+        let status = "Balanced";
+        let color = "var(--ink-archival)";
+        if (score >= 32) { status = "Strong Booster"; color = "var(--pigment-emerald)"; }
+        else if (score < 25) { status = "Vulnerable / Cautious"; color = "var(--pigment-cinnabar)"; }
+
+        const row = document.createElement('tr');
+        row.style.cursor = 'pointer';
+        row.onclick = () => selectHouse(h);
+        row.onmouseenter = () => selectHouse(h);
+        row.innerHTML = `
+          <td><strong>${h}</strong></td>
+          <td>${info.name}</td>
+          <td style="text-align: left;">
+            ${info.peak ? '<span class="peak-highlight-badge">Pillar</span> ' : ''}
+            ${info.domain}
+          </td>
+          <td style="font-family: var(--font-mono); font-weight: bold; color: ${color};">${score} <span style="font-size: 0.75rem; font-weight: normal; color: var(--ink-faded);">/ 28</span></td>
+          <td style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: bold; color: ${color};">${status}</td>
+        `;
+        tableBody.appendChild(row);
+      }
+
+      const svgGroup = document.getElementById('svg-grid-group');
+      svgGroup.innerHTML = '';
+
+      const houseCoords = {
+        1: "180,180 105,105 180,30 255,105",
+        2: "180,30 30,30 105,105",
+        3: "30,30 30,180 105,105",
+        4: "180,180 105,105 30,180 105,255",
+        5: "30,330 30,180 105,255",
+        6: "180,330 30,330 105,255",
+        7: "180,180 105,255 180,330 255,255",
+        8: "180,330 330,330 255,255",
+        9: "330,330 330,180 255,255",
+        10: "180,180 255,255 330,180 255,105",
+        11: "330,30 330,180 255,105",
+        12: "180,30 330,30 255,105"
+      };
+
+      const textCoords = {
+        1: {x: 180, y: 110},
+        2: {x: 105, y: 65},
+        3: {x: 65, y: 105},
+        4: {x: 110, y: 180},
+        5: {x: 65, y: 255},
+        6: {x: 105, y: 295},
+        7: {x: 180, y: 250},
+        8: {x: 255, y: 295},
+        9: {x: 295, y: 255},
+        10: {x: 250, y: 180},
+        11: {x: 295, y: 105},
+        12: {x: 255, y: 65}
+      };
+
+      for (let h = 1; h <= 12; h++) {
+        const points = houseCoords[h];
+        const score = currentScores[h];
+        const isPeak = houseDb[h].peak;
+
+        const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        polygon.setAttribute('points', points);
+        polygon.setAttribute('class', `house-shape ${isPeak ? 'peak' : ''}`);
+        polygon.setAttribute('data-house', h);
+        polygon.onclick = () => selectHouse(h);
+        polygon.onmouseenter = () => selectHouse(h);
+        polygon.style.opacity = '0';
+        polygon.style.transition = 'opacity 0.4s ease-in-out';
+        svgGroup.appendChild(polygon);
+        setTimeout(() => { polygon.style.opacity = '1'; }, h * 60);
+
+        const scoreText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        scoreText.setAttribute('x', textCoords[h].x);
+        scoreText.setAttribute('y', textCoords[h].y + 6);
+        scoreText.setAttribute('font-family', 'Courier Prime');
+        scoreText.setAttribute('font-size', '20');
+        scoreText.setAttribute('font-weight', 'bold');
+        scoreText.setAttribute('text-anchor', 'middle');
+        scoreText.setAttribute('fill', score >= 32 ? 'var(--pigment-emerald)' : (score < 25 ? 'var(--pigment-cinnabar)' : 'var(--ink-archival)'));
+        scoreText.setAttribute('style', 'pointer-events: none; opacity: 0; transition: opacity 0.4s ease-in-out;');
+        scoreText.textContent = score;
+        svgGroup.appendChild(scoreText);
+        setTimeout(() => { scoreText.style.opacity = '1'; }, h * 60 + 200);
+
+        const numText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        numText.setAttribute('x', textCoords[h].x);
+        numText.setAttribute('y', textCoords[h].y - 14);
+        numText.setAttribute('font-family', 'Cinzel');
+        numText.setAttribute('font-size', '11');
+        numText.setAttribute('font-weight', 'bold');
+        numText.setAttribute('text-anchor', 'middle');
+        numText.setAttribute('fill', 'var(--ink-faded)');
+        numText.setAttribute('style', 'pointer-events: none; opacity: 0; transition: opacity 0.4s ease-in-out;');
+        numText.textContent = `H${h}`;
+        svgGroup.appendChild(numText);
+        setTimeout(() => { numText.style.opacity = '1'; }, h * 60 + 200);
+      }
+
+      selectHouse(10);
+    }
+
+    // Dynamic auto-calculation listeners for instant fluid recalculations
+    document.getElementById('input-brand').addEventListener('input', updateSAV);
+    document.getElementById('input-sector').addEventListener('input', updateSAV);
+    document.getElementById('input-foundation').addEventListener('change', updateSAV);
+    document.getElementById('input-lagna').addEventListener('change', updateSAV);
+
+
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedName = safeGetItem('antara_user_name');
+      const savedDob = safeGetItem('antara_user_dob');
+      if (savedName) document.getElementById('input-brand').value = `${savedName} Enterprises`;
+      if (savedDob) document.getElementById('input-foundation').value = savedDob;
+      updateSAV();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energy Cycle Profile | AG_Antara Cross-Cultural Interior Panorama</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <style>
+    :root {
+      --bg-vellum: #F7F1E1;
+      --bg-vellum-warm: #F4EBD4;
+      --ink-archival: #2B2A28;
+      --ink-faded: #76726A;
+      --border-container: 1px solid #D6CEBE;
+      
+      --font-serif-header: 'Cinzel', serif;
+      --font-serif-body: 'Playfair Display', serif;
+      --font-mono: 'Courier Prime', monospace;
+      
+      --pigment-terracotta: #A65B4A;
+      --pigment-saffron: #D98236;
+      --pigment-cinnabar: #9E3A33;
+      --pigment-lapis: #3C5A80;
+      --stroke: #b56a2a;
+    }
+
+    /* Accordion body text — force normal reading font, no small-caps */
+    details p, details td, details li {
+      font-variant: normal !important;
+      font-family: var(--font-serif-body) !important;
+      text-transform: none !important;
+    }
+
+    body {
+      background-color: var(--bg-vellum);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 17px;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto 2rem auto;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    .grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .archival-card {
+      background-color: var(--bg-vellum-warm);
+      border: var(--border-container);
+      padding: 1.5rem;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04);
+      box-sizing: border-box;
+    }
+
+    /* inner double-border removed — breathing space preferred */
+
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-faded);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      background-color: rgba(247, 241, 225, 0.6);
+      border: var(--border-container);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    .archival-btn {
+      width: 100%;
+      background-color: var(--pigment-cinnabar);
+      color: var(--bg-vellum);
+      border: 1px solid var(--pigment-cinnabar);
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      padding: 0.85rem;
+      cursor: pointer;
+    }
+
+    .chart-container {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      margin-bottom: 24px; /* Integrated safety buffer to protect lower double borders */
+    }
+
+    .meter-row { margin-bottom: 1rem; }
+    .meter-label-row { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 0.8rem; margin-bottom: 0.25rem; }
+    .meter-bar-container { background: #EADEC9; height: 12px; border: var(--border-container); position: relative; }
+    .meter-bar-fill { height: 100%; background: var(--pigment-terracotta); width: 0%; transition: width 0.3s ease; }
+
+    /* Header Standardized Branding & Typography */
+    .header-logo { 
+      text-align: center; 
+      margin: 20px 0 8px 0; 
+    }
+    .system-tagline { 
+      font-family: 'Courier New', Courier, monospace !important; 
+      font-weight: 700 !important; 
+      font-size: 13px !important; 
+      letter-spacing: 5px !important; 
+      color: #A6A29A !important; 
+      text-transform: uppercase !important; 
+      text-align: center !important; 
+      margin: 0 0 24px 0 !important; 
+      line-height: 1.2 !important;
+    }
+    .master-report-title { 
+      font-family: 'Cinzel', serif !important; 
+      font-size: 2.25rem !important; 
+      font-variant: small-caps !important; 
+      font-weight: 700 !important; 
+      letter-spacing: 2px !important; 
+      color: #2B2A28 !important; 
+      text-align: center !important; 
+      margin: 0 0 14px 0 !important; 
+      line-height: 1.3 !important; 
+    }
+    .master-report-byline { 
+      font-family: 'Playfair Display', serif !important; 
+      font-size: 1.15rem !important; 
+      color: #D98236 !important; 
+      text-align: center !important; 
+      max-width: 800px !important; 
+      margin: 0 auto 32px auto !important; 
+      padding: 0 12px !important; 
+      line-height: 1.5 !important; 
+    }
+
+    footer { width: 100%; text-align: center; padding: 2rem 0; border-top: var(--border-container); background-color: var(--bg-vellum-warm); margin-top: auto; }
+    footer p { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faded); margin: 0.25rem 0; }
+
+    /* Animated Astrolabe/Clock Gear */
+    @keyframes spin-clockwise {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .spin-animation {
+      animation: spin-clockwise 15s linear infinite;
+      transform-origin: 12px 12px;
+    }
+
+    /* Premium Locking UI Effects */
+    .btn-locked-premium {
+      background-color: var(--pigment-cinnabar) !important;
+      border-color: var(--pigment-cinnabar) !important;
+      color: #FFFFFF !important;
+      animation: glow-locked-btn 2s infinite !important;
+      box-shadow: 0 4px 15px rgba(158, 58, 51, 0.4);
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-locked-premium:hover {
+      background-color: var(--pigment-terracotta) !important;
+      border-color: var(--pigment-terracotta) !important;
+      box-shadow: 0 6px 22px rgba(166, 91, 74, 0.6) !important;
+      transform: translateY(-1px);
+    }
+
+    @keyframes glow-locked-btn {
+      0%, 100% {
+        box-shadow: 0 4px 12px rgba(158, 58, 51, 0.3);
+      }
+      50% {
+        box-shadow: 0 4px 22px rgba(158, 58, 51, 0.65);
+      }
+    }
+
+    @keyframes pulse-soft {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 0.65; }
+    }
+
+    @media (min-width: 900px) {
+      .container { width: 90%; padding: 0 1rem; }
+      .grid { display: grid; grid-template-columns: 1fr 350px; gap: 2rem; }
+      .chart-container { height: 400px; margin-bottom: 24px; }
+
+    }
+
+    .font-mono {
+      font-family: var(--font-mono);
+    }
+
+    .accordion-inner-border {
+      position: relative;
+    }
+
+    .accordion-inner-border::before {
+      content: "";
+      position: absolute;
+      top: 6px; left: 6px; right: 6px; bottom: 6px;
+      border: 1px double #D6CEBE;
+      pointer-events: none;
+    }
+
+    /* Premium Click to Explore Accordion Styles */
+    .explore-summary {
+      font-family: var(--font-serif-header);
+      background-color: #D35400; /* Vibrant Brand Saffron */
+      color: #FFFFFF !important;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.85rem 1.25rem; /* Elegant compact height */
+      border: 1px solid #8E4A21; /* Cinnamon brand structural frame */
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 12px rgba(211, 84, 0, 0.12);
+      line-height: 1.35;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .explore-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .explore-summary::before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px double rgba(255, 255, 255, 0.45); /* Elegant double border in reverse white */
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .explore-summary:hover {
+      background-color: #E65C00; /* Slightly brighter warm saffron on hover */
+      box-shadow: 0 6px 18px rgba(211, 84, 0, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .explore-summary:hover::before {
+      border-color: rgba(255, 255, 255, 0.7);
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+    }
+
+    .explore-summary:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(211, 84, 0, 0.15);
+    }
+
+    .explore-summary .explore-title-main {
+      font-variant: small-caps;
+      font-size: 1.05rem; /* Compact size */
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: none; /* Crucial for small-caps */
+      position: relative;
+      z-index: 2;
+    }
+
+    .explore-summary .explore-title-sub {
+      font-family: var(--font-serif-body);
+      font-size: 1.25rem; /* Bold italic font matching user mock */
+      font-weight: 700;
+      font-style: italic;
+      margin-top: 3px;
+      letter-spacing: 0.5px;
+      color: #FFFFFF !important;
+      position: relative;
+      z-index: 2;
+    }
+  
+    /* Premium Left-Aligned Footer Override */
+    footer {
+      width: 100%;
+      padding: 2rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+      text-align: left;
+    }
+    .footer-content {
+      max-width: 1100px;
+      width: 100%;
+      padding: 0 16px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+    footer p {
+      font-family: var(--font-serif-body);
+      font-size: 0.82rem;
+      color: var(--ink-archival);
+      margin: 0.25rem 0;
+    }
+    footer p.font-mono {
+      font-family: var(--font-mono) !important;
+      font-size: 0.72rem !important;
+      color: var(--ink-faded) !important;
+    }
+
+  
+    /* ─── Reading Guide Grid (Tactile manuscript details) ─── */
+    .reading-guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .reading-guide-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+</style>
+  <meta name="description" content="Antara is a traditional cross-cultural mathematical life-engine and archetypal systems cartography. Calibrate your natal coordinates, biological rhythms, and name phonetic values across Vedic, Western tropical, and Chinese solar Four Pillars traditions.">
+  <link rel="icon" type="image/png" href="Antara Logo.png">
+</head>
+<body>
+
+  <div class="header-logo">
+    <a href="index.html" title="Return to Antara Dashboard" style="text-decoration: none; border: none; display: inline-block;">
+      <img src="Antara Logo.png" alt="ANTARA" style="max-height: 90px; width: auto;" onerror="this.style.display='none';">
+    </a>
+  </div>
+  <div class="system-tagline">Cross-Cultural Interior Panorama</div>
+
+  <h1 class="master-report-title">Energy Cycle Profile<br><span id="title-name">For The Nameless One</span></h1>
+  <p class="master-report-byline"><span style="color: var(--pigment-terracotta); font-weight: bold;">Physical</span>, <span style="color: var(--pigment-saffron); font-weight: bold;">Emotional</span> & <span style="color: var(--pigment-lapis); font-weight: bold;">Intellectual</span> Rhythms</p>
+
+  <div class="container">
+    <!-- Report Introduction (Borderless layout with maximum 78ch line-width) -->
+    <div style="margin-bottom: 2.25rem; padding: 0.5rem 0;">
+      <div style="max-width: 78ch; margin: 0 auto;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-bottom: 1rem; color: var(--stroke); letter-spacing: 1px; text-transform: uppercase;">About This Report</h3>
+        <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+          Natural cycles govern the physical, emotional, and cognitive pacing of human life. From ancient observations of seasonal and lunar rhythms to modern mathematical models of biological wave patterns, systems have sought to track these recurring high- and low-tide coordinates to better manage vital energy.
+        </p>
+        <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+          This report tracks your concentric personal biorhythms—physical, emotional, and intellectual—against specific calendar target coordinates. It evaluates wave intersections, energy crossings, and cycle progress bars to forecast active phases and potential periods of internal friction or restoration.
+        </p>
+        <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">
+          Users utilize this scan to align their daily activities, important projects, and rest periods with their natural cycle momentum. It functions as an interpretive compass for emotional awareness, cognitive pacing, and physical energy management, rather than a predictive forecast.
+        </p>
+      
+      <!-- Codex Support Navigation Panel -->
+      <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px dashed #D6CEBE; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="Help.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📖 Help
+        </a>
+        <a href="FAQ.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          ❓ FAQ
+        </a>
+        <a href="Glossary.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📓 Glossary
+        </a>
+      </div>
+      <!-- How to Read This Report (Reading Guide Block) -->
+      <div style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; border: 1px dashed #D6CEBE; background-color: rgba(247, 241, 225, 0.15); border-radius: 4px; box-shadow: 0 2px 8px rgba(43, 42, 40, 0.01);">
+        <h4 style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 1rem; text-align: center; border-bottom: 1px dashed #D6CEBE; padding-bottom: 0.4rem;">
+          How to Study This Document
+        </h4>
+        <div class="reading-guide-grid">
+          <!-- Point 1 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">1. Read the accordion sections one at a time.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">Each section expands when you click the title — do not try to read everything at once.</span>
+          </div>
+          <!-- Point 2 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">2. Look up unfamiliar terms</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">in the Antara Glossary (<a href="Glossary.html" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar);">Glossary.html</a> in this folder).</span>
+          </div>
+          <!-- Point 3 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">3. Start with the numbers that feel most familiar.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">In a Western chart, most people know their Sun sign. In Numerology, the Life Path is easiest.</span>
+          </div>
+          <!-- Point 4 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">4. Do not worry about understanding everything on the first read.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">These reports are meant to be returned to and studied over time.</span>
+          </div>
+        </div>
+      </div>
+
+</div>
+    </div>
+
+
+    <div class="grid">
+      
+      <!-- Left Column: Personal Analysis Card -->
+      <div class="archival-card" id="archetype-card" style="display: flex; flex-direction: column; margin: 0; height: 100%; box-sizing: border-box;">
+        <!-- Hidden inputs for script compatibility -->
+        <input type="hidden" id="profile-name" value="Antara Gupta">
+        <input type="hidden" id="birth-date" value="1953-05-16">
+
+        <div style="text-align: center; border-bottom: 1px solid var(--border-container); padding-bottom: 1rem; margin-bottom: 1.25rem;">
+          <div style="font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 2px; color: var(--ink-faded); text-transform: uppercase; margin-bottom: 0.25rem;">Personal Analysis For</div>
+          <div id="analysis-target-name" style="font-family: var(--font-serif-header); font-size: 1.8rem; font-weight: bold; color: var(--ink-archival); margin: 0 0 0.5rem 0; line-height: 1.2;">Antara Gupta</div>
+          
+          <div style="font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 2px; color: var(--ink-faded); text-transform: uppercase; margin-bottom: 0.15rem; margin-top: 0.5rem;">Date of Birth</div>
+          <div id="display-birth-date" style="font-family: var(--font-serif-body); font-size: 1.15rem; color: var(--pigment-terracotta); font-weight: 600; margin-bottom: 0.75rem;">16 May 1953</div>
+
+          <div id="analysis-day-metrics" style="font-family: var(--font-serif-body); font-size: 1.15rem; font-weight: 600; color: var(--pigment-terracotta); border-top: 1px dashed #D6CEBE; padding-top: 0.75rem; margin-top: 0.5rem; line-height: 1.3;">Target Date Metrics</div>
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--pigment-saffron); margin-top: 0.5rem; letter-spacing: 0.5px; text-transform: uppercase; font-weight: bold;">(❈ Scroll to Dynamic Engine below to recalculate for any date)</div>
+        </div>
+        <div style="text-align: center; margin-bottom: 1.25rem;">
+          <div id="archetype-code" style="display: none;">PEI-CODE</div>
+          <h2 id="archetype-name" style="font-family: var(--font-serif-header); font-size: 1.6rem; margin: 0;">Reading Profile</h2>
+        </div>
+        <div style="background-color: rgba(244,235,212,0.4); border-left: 4px solid var(--pigment-saffron); padding: 1rem; font-style: italic; font-size: 0.95rem; text-align: center; margin-bottom: 1.25rem;" id="archetype-description">
+          Loading archetypes...
+        </div>
+        <!-- Composite rhythm score -->
+        <div id="composite-score-row" style="display:none; text-align:center; margin-bottom:1rem; padding:0.6rem 0.75rem; background:rgba(244,235,212,0.5); border:1px dashed #D6CEBE; border-radius:4px;">
+          <span style="font-family:var(--font-mono); font-size: 0.72rem; color:var(--ink-faded); letter-spacing:1px; text-transform:uppercase;">Composite Rhythm · </span>
+          <span id="composite-score-pct" style="font-family:var(--font-serif-header); font-size:1.15rem; font-weight:700;">—</span>
+          <span style="font-family:var(--font-mono); font-size: 0.72rem; color:var(--ink-faded); letter-spacing:1px; text-transform:uppercase;"> · </span>
+          <span id="composite-score-label" style="font-family:var(--font-mono); font-size:0.75rem; font-weight:700;">—</span>
+        </div>
+
+        <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem;">Actionable Guidance</h4>
+        <p id="archetype-guidance" style="font-size: 0.95rem; line-height: 1.6; text-align: justify; margin: 0 0 1rem 0;">Processing tides...</p>
+
+        <!-- Best uses today -->
+        <div id="bestfor-container" style="display:none; border-top:1px dashed #D6CEBE; padding-top:0.85rem;">
+          <h4 class="font-mono" style="color: var(--pigment-lapis); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.6rem;">Best Uses Today</h4>
+          <ul id="bestfor-list" style="margin:0; padding-left:1.1rem; font-size: 0.95rem; line-height:1.65; color:var(--ink-archival);"></ul>
+        </div>
+      </div>
+
+      <!-- Right Column: Target Day Tides Card -->
+      <div class="archival-card" style="display: flex; flex-direction: column; margin: 0; height: 100%; box-sizing: border-box;">
+        <h3 style="font-size: 1rem; margin-bottom: 0.5rem; text-transform: uppercase; font-family: var(--font-serif-header); letter-spacing: 1px; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; text-align: center;">Target Day Tides</h3>
+        
+        <div style="display: flex; justify-content: space-around; align-items: center; flex: 1; padding: 12px 0; position: relative; min-height: 310px; box-sizing: border-box; width: 100%; overflow: hidden;">
+          
+          <!-- Subtle Recharging/Negative Zone (Lower Half) Tinted Background Panel -->
+          <div style="position: absolute; top: calc(50% + 20px); bottom: 0; left: -24px; right: -24px; background-color: rgba(166, 91, 74, 0.03); pointer-events: none; z-index: 1;"></div>
+          
+          <!-- Solid White Horizontal Axis Ribbon centered vertically -->
+          <div style="position: absolute; top: 50%; transform: translateY(-50%); left: -24px; right: -24px; height: 40px; background-color: #FFFFFF; border-top: 1px solid #D6CEBE; border-bottom: 1px solid #D6CEBE; z-index: 5;"></div>
+          
+          <!-- Columns Layer (stretched to full height with padding offset to align middle segment perfectly with ribbon) -->
+          <div style="position: absolute; top: 12px; bottom: 12px; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-around; align-items: stretch; box-sizing: border-box;">
+            
+            <!-- Physical Column -->
+            <div class="tide-column" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 90px; height: 100%; position: relative; box-sizing: border-box;">
+              <!-- Top half (flexible): positive bar grows up from bottom -->
+              <div style="flex: 1; width: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; position: relative; box-sizing: border-box;">
+                <div id="p-bar-pos" style="width: 22px; height: 0%; background-color: var(--pigment-terracotta); transition: height 1.6s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative;">
+                  <!-- Numerical figure moving with top edge of bar -->
+                  <span id="p-percent-pos" style="font-family: var(--font-serif-body); font-size: 1.45rem; font-weight: bold; color: var(--pigment-terracotta); position: absolute; bottom: calc(100% + 4px); left: 50%; transform: translateX(-50%); white-space: nowrap; line-height: 1; z-index: 12; display: none;">0.0%</span>
+                </div>
+              </div>
+              
+              <!-- Middle axis segment (40px): locked label inside white ribbon -->
+              <div style="height: 40px; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; box-sizing: border-box; z-index: 15; pointer-events: none;">
+                <div style="font-family: var(--font-serif-body); font-weight: bold; font-size: 0.82rem; line-height: 1.1; color: var(--pigment-terracotta); text-align: center;">
+                  Physical<br><span style="font-size: 0.72rem; opacity: 0.95;">23d</span>
+                </div>
+              </div>
+              
+              <!-- Bottom half (flexible): negative bar grows down from top -->
+              <div style="flex: 1; width: 100%; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; position: relative; box-sizing: border-box;">
+                <div id="p-bar-neg" style="width: 22px; height: 0%; background-color: var(--pigment-terracotta); transition: height 1.6s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative;">
+                  <!-- Numerical figure moving with bottom edge of bar -->
+                  <span id="p-percent-neg" style="font-family: var(--font-serif-body); font-size: 1.45rem; font-weight: bold; color: var(--pigment-terracotta); position: absolute; top: calc(100% + 4px); left: 50%; transform: translateX(-50%); white-space: nowrap; line-height: 1; z-index: 12; display: none;">-0.0%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Emotional Column -->
+            <div class="tide-column" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 90px; height: 100%; position: relative; box-sizing: border-box;">
+              <!-- Top half (flexible): positive bar grows up from bottom -->
+              <div style="flex: 1; width: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; position: relative; box-sizing: border-box;">
+                <div id="e-bar-pos" style="width: 22px; height: 0%; background-color: var(--pigment-saffron); transition: height 1.6s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative;">
+                  <!-- Numerical figure moving with top edge of bar -->
+                  <span id="e-percent-pos" style="font-family: var(--font-serif-body); font-size: 1.45rem; font-weight: bold; color: var(--pigment-saffron); position: absolute; bottom: calc(100% + 4px); left: 50%; transform: translateX(-50%); white-space: nowrap; line-height: 1; z-index: 12; display: none;">0.0%</span>
+                </div>
+              </div>
+              
+              <!-- Middle axis segment (40px): locked label inside white ribbon -->
+              <div style="height: 40px; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; box-sizing: border-box; z-index: 15; pointer-events: none;">
+                <div style="font-family: var(--font-serif-body); font-weight: bold; font-size: 0.82rem; line-height: 1.1; color: var(--pigment-saffron); text-align: center;">
+                  Emotional<br><span style="font-size: 0.72rem; opacity: 0.95;">28d</span>
+                </div>
+              </div>
+              
+              <!-- Bottom half (flexible): negative bar grows down from top -->
+              <div style="flex: 1; width: 100%; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; position: relative; box-sizing: border-box;">
+                <div id="e-bar-neg" style="width: 22px; height: 0%; background-color: var(--pigment-saffron); transition: height 1.6s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative;">
+                  <!-- Numerical figure moving with bottom edge of bar -->
+                  <span id="e-percent-neg" style="font-family: var(--font-serif-body); font-size: 1.45rem; font-weight: bold; color: var(--pigment-saffron); position: absolute; top: calc(100% + 4px); left: 50%; transform: translateX(-50%); white-space: nowrap; line-height: 1; z-index: 12; display: none;">-0.0%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Intellectual Column -->
+            <div class="tide-column" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 90px; height: 100%; position: relative; box-sizing: border-box;">
+              <!-- Top half (flexible): positive bar grows up from bottom -->
+              <div style="flex: 1; width: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; position: relative; box-sizing: border-box;">
+                <div id="i-bar-pos" style="width: 22px; height: 0%; background-color: var(--pigment-lapis); transition: height 1.6s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative;">
+                  <!-- Numerical figure moving with top edge of bar -->
+                  <span id="i-percent-pos" style="font-family: var(--font-serif-body); font-size: 1.45rem; font-weight: bold; color: var(--pigment-lapis); position: absolute; bottom: calc(100% + 4px); left: 50%; transform: translateX(-50%); white-space: nowrap; line-height: 1; z-index: 12; display: none;">0.0%</span>
+                </div>
+              </div>
+              
+              <!-- Middle axis segment (40px): locked label inside white ribbon -->
+              <div style="height: 40px; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; box-sizing: border-box; z-index: 15; pointer-events: none;">
+                <div style="font-family: var(--font-serif-body); font-weight: bold; font-size: 0.82rem; line-height: 1.1; color: var(--pigment-lapis); text-align: center;">
+                  Intellectual<br><span style="font-size: 0.72rem; opacity: 0.95;">33d</span>
+                </div>
+              </div>
+              
+              <!-- Bottom half (flexible): negative bar grows down from top -->
+              <div style="flex: 1; width: 100%; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; position: relative; box-sizing: border-box;">
+                <div id="i-bar-neg" style="width: 22px; height: 0%; background-color: var(--pigment-lapis); transition: height 1.6s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative;">
+                  <!-- Numerical figure moving with bottom edge of bar -->
+                  <span id="i-percent-neg" style="font-family: var(--font-serif-body); font-size: 1.45rem; font-weight: bold; color: var(--pigment-lapis); position: absolute; top: calc(100% + 4px); left: 50%; transform: translateX(-50%); white-space: nowrap; line-height: 1; z-index: 12; display: none;">-0.0%</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dynamic Alignment Engine Box (Tighter & Centered) -->
+    <div class="archival-card" style="background-color: rgba(217, 130, 54, 0.05); border: 1px dashed var(--pigment-saffron); margin: 2rem auto; padding: 1.25rem 1.5rem; max-width: 620px; box-shadow: 0 4px 15px rgba(217, 130, 54, 0.03); box-sizing: border-box; text-align: center;">
+      <div style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+        
+        <!-- Header / Explanation -->
+        <div style="border-bottom: 1px dashed rgba(217, 130, 54, 0.25); padding-bottom: 0.75rem; width: 100%;">
+          <h2 style="font-family: var(--font-serif-header); font-size: 1.6rem; font-variant: small-caps; letter-spacing: 2px; color: var(--pigment-saffron); margin: 0 0 0.5rem 0; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
+            <svg viewBox="0 0 24 24" style="width: 28px; height: 28px; fill: none; stroke: var(--pigment-saffron); stroke-width: 1.2; display: inline-block;">
+              <circle cx="12" cy="12" r="10" stroke-dasharray="3, 3" />
+              <circle cx="12" cy="12" r="6" />
+              <g class="spin-animation">
+                <line x1="12" y1="12" x2="12" y2="5" stroke-width="1.5" />
+                <line x1="12" y1="12" x2="16" y2="12" stroke-width="1" />
+              </g>
+            </svg>
+            Dynamic Alignment Engine
+            <svg viewBox="0 0 24 24" style="width: 28px; height: 28px; fill: none; stroke: var(--pigment-saffron); stroke-width: 1.2; display: inline-block;">
+              <circle cx="12" cy="12" r="10" stroke-dasharray="3, 3" />
+              <circle cx="12" cy="12" r="6" />
+              <g class="spin-animation">
+                <line x1="12" y1="12" x2="12" y2="5" stroke-width="1.5" />
+                <line x1="12" y1="12" x2="16" y2="12" stroke-width="1" />
+              </g>
+            </svg>
+          </h2>
+          <p style="font-family: var(--font-serif-body); font-size: 0.95rem; line-height: 1.6; color: var(--ink-archival); margin: 0 0 0.5rem 0; text-align: justify; text-justify: inter-word;">
+            Enter your Target Date below to instantly calculate your Biorhythm Harmony Alignments for any calendar day. Changing the date will automatically update your Biorhythm readings and Target Day Tides displayed above.
+          </p>
+        </div>
+
+        <!-- Trial Status Notice Banner -->
+        <div id="trial-notice" style="width: 100%; box-sizing: border-box;"></div>
+
+        <!-- Calculator Controls -->
+        <form id="biorhythm-calc-form" onsubmit="event.preventDefault(); updateBiorhythms(true);" style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center; width: 100%;">
+          <label style="color: var(--pigment-saffron); font-family: var(--font-mono); font-size: 0.75rem; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.15rem;">Target Analysis Date</label>
+          <div style="display: flex; gap: 0.75rem; align-items: center; justify-content: center; flex-wrap: wrap; width: 100%;">
+            <input type="date" id="target-date" class="form-input" value="" style="cursor: pointer; border-color: rgba(217, 130, 54, 0.4); background-color: rgba(247, 241, 225, 0.8); height: 38px; width: 160px; padding: 0.25rem 0.5rem; font-size: 0.95rem; text-align: center;">
+            <button type="submit" id="btn-recalculate" class="archival-btn" style="background-color: var(--pigment-saffron); border-color: var(--pigment-saffron); height: 38px; padding: 0 1.25rem; font-size: 0.85rem; letter-spacing: 1px; width: auto; font-family: 'Cinzel', serif; display: flex; align-items: center; justify-content: center; margin-bottom: 0;">
+              Recalculate
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+    <!-- Rolling 30-Day Archival Timeline (Full width) -->
+    <div class="archival-card" style="margin-bottom: 2rem;">
+      <h3 style="font-size: 1.1rem; text-align: center; margin-bottom: 1.25rem; font-family: var(--font-serif-header); letter-spacing: 1.5px; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; text-transform: uppercase;">Rolling 30-Day Archival Timeline</h3>
+      <div class="chart-container" style="height: 420px; position: relative; width: 100%;">
+        <canvas id="biorhythm-chart"></canvas>
+      </div>
+      
+      <div style="border-top: 1px dashed #D6CEBE; padding-top: 1.25rem; margin-top: 1.25rem; font-family: var(--font-serif-body); font-size: 0.95rem; line-height: 1.6; color: var(--ink-archival); text-align: justify; text-justify: inter-word;">
+        <p style="margin: 0 0 0.85rem 0;">
+          The Rolling 30-Day Biorhythm Curve below helps you explore future rhythm patterns and synchronization windows. It displays all three core cycles — <span style="color: var(--pigment-terracotta); font-weight: bold;">Physical</span> (23 Days), <span style="color: var(--pigment-saffron); font-weight: bold;">Emotional</span> (28 Days), and <span style="color: var(--pigment-lapis); font-weight: bold;">Intellectual</span> (33 Days) — across a ±15 day range around your selected Target Date.
+        </p>
+        <div style="margin: 0; display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap;">
+          <!-- Left: Navigation Tip (Takes full remaining space) -->
+          <div style="flex: 1; min-width: 320px;">
+            <p style="margin: 0; font-style: italic; color: var(--ink-faded); line-height: 1.6;">
+              ✦ <strong>Navigation Tip:</strong><br>
+              To study any one cycle separately, simply click the legend markers to toggle their display on the chart.<br>
+              Each cycle can then be viewed independently for clearer analysis and comparison.
+            </p>
+          </div>
+          
+          <!-- Right: Interactive Legend vertical stack (compact, matching Target Day Tides typography exactly) -->
+          <div style="display: flex; flex-direction: column; gap: 0.6rem; justify-content: center; align-items: flex-start; min-width: 100px; user-select: none;">
+            <!-- Physical Legend -->
+            <div id="legend-physical" onclick="toggleDataset(0)" style="cursor: pointer; transition: all 0.2s ease; line-height: 1.1;">
+              <span style="font-family: var(--font-serif-body); font-size: 0.82rem; font-weight: bold; color: var(--pigment-terracotta);">Physical</span><br>
+              <span style="font-family: var(--font-serif-body); font-size: 0.72rem; color: var(--pigment-terracotta); opacity: 0.95;">23d</span>
+            </div>
+            
+            <!-- Emotional Legend -->
+            <div id="legend-emotional" onclick="toggleDataset(1)" style="cursor: pointer; transition: all 0.2s ease; line-height: 1.1;">
+              <span style="font-family: var(--font-serif-body); font-size: 0.82rem; font-weight: bold; color: var(--pigment-saffron);">Emotional</span><br>
+              <span style="font-family: var(--font-serif-body); font-size: 0.72rem; color: var(--pigment-saffron); opacity: 0.95;">28d</span>
+            </div>
+            
+            <!-- Intellectual Legend -->
+            <div id="legend-intellectual" onclick="toggleDataset(2)" style="cursor: pointer; transition: all 0.2s ease; line-height: 1.1;">
+              <span style="font-family: var(--font-serif-body); font-size: 0.82rem; font-weight: bold; color: var(--pigment-lapis);">Intellectual</span><br>
+              <span style="font-family: var(--font-serif-body); font-size: 0.72rem; color: var(--pigment-lapis); opacity: 0.95;">33d</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Critical Days & Peak/Valley Calendar -->
+    <div class="archival-card" style="margin-bottom: 2rem;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.4rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--stroke);">Critical Days & Upcoming Cycle Extremes</h3>
+
+      <div style="display:grid; grid-template-columns:1fr; gap:1.25rem;">
+
+        <!-- Critical days -->
+        <div>
+          <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--ink-faded); letter-spacing:1px; text-transform:uppercase; margin-bottom:0.6rem;">⚡ Critical Days Ahead (next 10 days)</div>
+          <p style="font-size: 0.95rem; color:var(--ink-faded); line-height:1.5; margin-bottom:0.75rem;">A critical day occurs when a biorhythm cycle crosses the zero midline — the system is changing direction. These transitions require extra care.</p>
+          <div id="critical-days-content">
+            <div style="font-size: 0.95rem; color:var(--ink-faded); font-style:italic;">Enter your date of birth and select a target date to identify critical days.</div>
+          </div>
+        </div>
+
+        <!-- Peak/Valley calendar -->
+        <div>
+          <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--ink-faded); letter-spacing:1px; text-transform:uppercase; margin-bottom:0.6rem;">📅 Next Peaks & Valleys</div>
+          <div id="peak-valley-content">
+            <div style="font-size: 0.95rem; color:var(--ink-faded); font-style:italic;">Loading cycle projections...</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="margin-top: 2rem; margin-bottom: 3rem;">
+      <details style="cursor: pointer; outline: none;">
+        <summary class="explore-summary">
+          <span class="explore-title-main">Click to Explore</span>
+          <span class="explore-title-sub">Understanding Your Energy Cycles</span>
+        </summary>
+        <div class="accordion-inner-border" style="cursor: default; margin-top: 1rem; background-color: var(--bg-vellum-warm); border: var(--border-container); padding: 1.5rem 1.75rem; position: relative; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04); border-radius: 4px;">
+          <div style="position: relative; z-index: 2;">
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; margin-top: 0;">The Three Classical Cycles</h4>
+            <p style="font-size: 0.95rem; line-height: 1.6; text-align: justify; margin-top: 0; margin-bottom: 1.5rem;">Life moves in natural waves. First articulated in the late 1800s and refined in the 1920s, biorhythm theory tracks three independent internal clocks that begin at birth and continue uninterrupted through life. This report maps these classical forces: <strong>The <span style="color: var(--pigment-terracotta);">Physical</span> Clock (23 days)</strong> anchors your body's stamina, endurance, and immune resilience; <strong>The <span style="color: var(--pigment-saffron);">Emotional</span> Clock (28 days)</strong> governs your inner mood baseline, sensitivity, and relational warmth; while <strong>The <span style="color: var(--pigment-lapis);">Intellectual</span> Clock (33 days)</strong> shapes your memory retrieval, analytical speed, and overall capacity for complex problem-solving.</p>
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem;">Reading the High, Low, and Midline Tides</h4>
+            <p style="font-size: 0.95rem; line-height: 1.6; text-align: justify; margin-top: 0; margin-bottom: 1.5rem;">Each wave oscillates smoothly between plus one and minus one. Days near <strong>+100%</strong> represent your high peak phase, where actions feel supported, ideas materialize quickly, and fatigue recedes. Days near <strong>-100%</strong> indicate a natural low valley—this is not a failure, but a structured rest cycle where your system retains resources. Days crossing <strong>0%</strong> are Critical Days; as a cycle changes direction, your internal system experiences a brief shift in gears. Treat these transition boundaries with simple, gentle care rather than avoidance.</p>
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem;">Proactive Life Navigation with Antara</h4>
+            <p style="font-size: 0.95rem; line-height: 1.6; text-align: justify; margin-top: 0; margin-bottom: 0;">Whether you approach this canvas as a traditional framework or a practical tool for self-reflection, its primary value lies in proactive preparation. When planning milestones in your journey—such as grueling <span style="color: var(--pigment-terracotta); font-weight: bold;">physical</span> tasks, vital family engagements, or deep strategic planning—simply input those custom future targets into the Antara calibration inputs. By mapping your lived experience against these regular wave profiles, you gain a clear, structured invitation to manage your energy momentum, step out of the noise, and act as the final sovereign authority over your life's rhythms.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- Honest Framing Disclaimer Box -->
+    <style>
+      .disclaimer-hi { display: none; }
+      body.lang-hi .disclaimer-en { display: none !important; }
+      body.lang-hi .disclaimer-hi { display: block !important; }
+    </style>
+    
+    <div class="disclaimer-en" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        DISCLAIMER
+      </h4>
+      <p style="margin: 0; text-align: justify;">
+        This report is an interpretive analytical framework intended solely for reflective and informational purposes. It is not a predictive, diagnostic, clinical, financial, legal, medical, psychological or professional advisory instrument, and should not be relied upon as definitive guidance for decisions, actions, or outcomes. The original application has been developed in English. Certain translated versions may utilize automated translation tools, including Google Translate. While reasonable efforts have been made to preserve contextual accuracy, no responsibility is accepted for translation inaccuracies, omissions, interpretive variations, or linguistic ambiguities arising from translated content. In the event of any inconsistency or ambiguity, the English version shall prevail.
+      </p>
+    </div>
+
+    <div class="disclaimer-hi notranslate" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        अस्वीकरण
+      </h4>
+      <p style="margin: 0; text-align: justify; color: var(--ink-faded); font-style: italic;">
+        यह रिपोर्ट केवल विचारात्मक एवं सूचनात्मक उद्देश्य हेतु निर्मित एक व्याख्यात्मक विश्लेषणात्मक ढांचा है। यह कोई भविष्यवाणी, निदान, नैदानिक, वित्तीय, कानूनी, चिकित्सीय, मनोवैज्ञानिक अथवा पेशेवर परामर्श का उपकरण नहीं है, और इसे निर्णयों, कार्यों या परिणामों के लिए अंतिम मार्गदर्शन के रूप में नहीं माना जाना चाहिए। मूल अनुप्रयोग अंग्रेज़ी भाषा में विकसित किया गया है। कुछ अनुवादित संस्करणों में Google Translate सहित स्वचालित अनुवाद उपकरणों का उपयोग किया जा सकता है। यद्यपि संदर्भगत शुद्धता बनाए रखने का यथासंभव प्रयास किया गया है, तथापि अनुवाद संबंधी त्रुटियों, चूकों, अर्थ-व्याख्या में भिन्नताओं या भाषाई अस्पष्टताओं के लिए कोई उत्तरदायित्व स्वीकार नहीं किया जाता। किसी भी असंगति या अस्पष्टता की स्थिति में अंग्रेज़ी संस्करण को ही मान्य माना जाएगा।
+      </p>
+    </div>
+    <!-- Resonance / Feedback Link -->
+    <div style="text-align: center; margin: 1.5rem auto 2rem auto; font-family: var(--font-mono); font-size: 0.8rem; max-width: 1100px; width: calc(100% - 24px);">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEYjLsqRjRRR0FZEPq384iGrpL6rZfrEQHEbcYQ9pz5ERzlg/viewform" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar); letter-spacing: 1px; font-weight: bold; transition: all 0.2s ease; padding-bottom: 2px;">
+        ✦ SHARE YOUR RESONANCE (ANONYMOUS SUGGESTIONS) ✦
+      </a>
+    </div>
+
+  </div>
+
+    <footer class="notranslate">
+    <div class="footer-content">
+      <p>ANTARA CROSS-CULTURAL INTERIOR PANORAMA</p>
+      <p class="font-mono">SYSTEM LOG: BIORHYTHM SINE CORE v1.0.0 • 2026</p>
+    </div>
+  </footer>
+
+  
+  <script>
+    // Clean up local storage persona names dynamically to wipe out old cached test personas
+    try {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (localStorage.getItem(key) === 'Ankur Gupta') {
+                localStorage.setItem(key, 'Antara Gupta');
+            }
+        }
+    } catch (e) {
+        console.warn("localStorage persona migration restricted:", e);
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, function(tag) {
+        var chars = {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        };
+        return chars[tag] || tag;
+      });
+    }
+
+    // Initialize language inheritance from local storage
+    let preferredLang = localStorage.getItem('antara_preferred_language') || 'EN';
+    if (window.location.hash === '#HI' || window.location.search.includes('lang=HI')) {
+        preferredLang = 'HI';
+        localStorage.setItem('antara_preferred_language', 'HI');
+    } else if (window.location.hash === '#EN' || window.location.search.includes('lang=EN')) {
+        preferredLang = 'EN';
+        localStorage.setItem('antara_preferred_language', 'EN');
+    }
+    if (preferredLang === 'HI') {
+        document.body.classList.add('lang-hi');
+        
+        // 1. Force the Google Translate hash parameter if not present
+        if (!window.location.hash.includes('googtrans')) {
+            window.location.hash = 'googtrans(en|hi)';
+        }
+        
+        // 2. Set googtrans cookie to persist
+        document.cookie = "googtrans=/en/hi; path=/";
+        
+        // 3. Create absolute HTTPS Google Translate container and script
+        const gtDiv = document.createElement('div');
+        gtDiv.id = 'google_translate_element';
+        gtDiv.style.position = 'fixed';
+        gtDiv.style.bottom = '15px';
+        gtDiv.style.right = '15px';
+        gtDiv.style.zIndex = '99999';
+        gtDiv.style.background = '#FFFDF9';
+        gtDiv.style.border = '1px solid #D6CEBE';
+        gtDiv.style.borderRadius = '20px';
+        gtDiv.style.padding = '3px 10px';
+        gtDiv.style.boxShadow = '0 3px 10px rgba(0,0,0,0.06)';
+        gtDiv.style.display = 'inline-flex';
+        gtDiv.style.alignItems = 'center';
+        gtDiv.style.gap = '6px';
+        gtDiv.innerHTML = '<span style="font-family:\'Cinzel\', serif; font-size:0.68rem; color:#9E3A33; font-weight:bold; letter-spacing:0.5px;">ANTARA TRANSLATE</span>';
+        document.body.appendChild(gtDiv);
+
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: true
+            }, 'google_translate_element');
+        };
+
+        const gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript';
+        gtScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        document.head.appendChild(gtScript);
+    } else if (preferredLang === 'EN') {
+        if (window.location.hash.includes('googtrans')) {
+            window.location.hash = '';
+        }
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+
+    function safeGetItem(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch (e) {
+        console.warn("safeGetItem failed for", key, e);
+        return null;
+      }
+    }
+    function safeSetItem(key, val) {
+      try {
+        localStorage.setItem(key, val);
+      } catch (e) {
+        console.warn("safeSetItem failed for", key, e);
+      }
+    }
+
+    let chartInstance = null;
+    let activeDatasets = [true, true, true];
+    let tideAnimationTimers = [];
+
+    const archetypeLibrary = {
+      "PEI-HHH": {
+        name: "Triple Peak",
+        description: "All three cycles at their peak — a rare convergence of maximum stamina, emotional resilience, and intellectual clarity.",
+        guidance: "This is a rare period of supreme alignment. Your physical energy, emotional harmony, and intellectual capacity are all simultaneously elevated. Perfect for high-stakes execution, public milestones, demanding creative or analytical work, and any moment that requires your absolute best.",
+        bestFor: ["High-stakes presentations, negotiations, and launches", "Physically and intellectually demanding challenges combined", "Creative breakthroughs requiring both inspiration and execution"]
+      },
+      "PEI-HHL": {
+        name: "The Engaged Presence",
+        description: "High physical stamina and emotional warmth with lower intellectual precision — body and heart aligned, analytical mind resting.",
+        guidance: "Your physical and relational capacities are strong today. Lead with action and connection rather than deep analysis. Excellent for team building, collaborative physical work, and relationship nurturing. Save complex analytical tasks for when your intellectual cycle rises.",
+        bestFor: ["Team collaboration and people-oriented tasks", "Physical activity combined with social engagement", "Emotionally rich conversations requiring warmth and presence"]
+      },
+      "PEI-HLH": {
+        name: "The Focused Executor",
+        description: "High physical drive and intellectual clarity with emotional sensitivity in its lower phase — mind and body aligned, feelings muted.",
+        guidance: "An excellent window for disciplined, focused work requiring both physical stamina and analytical precision. Emotional interactions may feel flat or draining today — keep sensitive conversations light and channel the mind-body alignment into high-output independent work.",
+        bestFor: ["Deep focused research, writing, or technical work", "Solo high-output projects requiring sustained drive", "Physical training combined with strategic planning"]
+      },
+      "PEI-HLL": {
+        name: "The Physical Prime",
+        description: "Physical energy elevated while emotional and intellectual cycles are both in their lower phase — the body is the primary asset today.",
+        guidance: "Channel your physical vitality into movement, exercise, and hands-on tasks. Avoid complex analytical decisions or emotionally demanding conversations. The body is strong — let it lead and keep expectations for mental clarity and emotional depth modest.",
+        bestFor: ["Physical exercise, outdoor activity, and endurance work", "Routine hands-on tasks requiring physical sustained effort", "Simple, repetitive work that lets the body move freely"]
+      },
+      "PEI-LHH": {
+        name: "The Inspired Mind",
+        description: "Low physical stamina paired with high emotional sensitivity and strong intellectual capacity — the inner world is richly active while the body rests.",
+        guidance: "Your mind and heart are exceptionally productive today while your body needs conservation. Work at a desk, write, strategize, meditate, or engage in deep conversation. Ideas flow and emotional perceptions are sharp. Honor the body's need for rest.",
+        bestFor: ["Writing, planning, and deep intellectual work", "Emotionally rich conversations and creative ideation", "Meditation, journaling, and reflective inner practices"]
+      },
+      "PEI-LHL": {
+        name: "The Sensitive Retreat",
+        description: "Low physical stamina and mental clarity with high emotional response — the feeling world is dominant.",
+        guidance: "Your physical body and mental clarity are both at their lowest, but your emotional response is highly active. Avoid forcing analytical breakthroughs or grueling physical routines. Focus on emotional grounding, gentle creative processing, and giving yourself space to feel and integrate.",
+        bestFor: ["Gentle emotional processing and inner reflection", "Creative work driven by feeling rather than logic", "Rest, nurturing routines, and sensory self-care"]
+      },
+      "PEI-LLH": {
+        name: "The Solitary Mind",
+        description: "Low physical and emotional states with high mental acuity — the intellect burns bright in stillness.",
+        guidance: "Your body is tired and your emotions are quiet, but your intellect is exceptionally bright. This is a pristine window for deep research, strategic analysis, solitary writing, or architectural problem-solving. Work alone, work deep, and let the mind do what it does best.",
+        bestFor: ["Deep research, analysis, and systems thinking", "Strategic planning and solo intellectual projects", "Writing requiring sustained concentration without distraction"]
+      },
+      "PEI-LLL": {
+        name: "The Restorative Valley",
+        description: "All three cycles in their lower phase simultaneously — a complete internal reset and recharge.",
+        guidance: "This is a full system recharge period. Rather than fighting the valley, honor it. Light activity, adequate sleep, nourishing food, and gentle connection are the highest uses of this time. Postpone major decisions, physical challenges, and demanding emotional work until cycles begin their rise.",
+        bestFor: ["Rest, sleep, and physical recovery without guilt", "Gentle walks, light reading, and nourishing meals", "Preparation and planning for the upcoming peak cycles"]
+      },
+      "PEI-MID": {
+        name: "The Pragmatic Day",
+        description: "Cycles near the midline — a balanced, workable energy state without strong peaks or valleys.",
+        guidance: "Your three cycles are near their midpoints — a reliable, steady day. Neither exceptional highs nor demanding lows. Well-suited for steady focused routine work, documentation, follow-up communication, and measured progress on ongoing projects.",
+        bestFor: ["Routine work and steady progress on ongoing projects", "Administrative tasks, documentation, and communication", "Consolidating recent achievements and preparing next steps"]
+      }
+    };
+
+    // Classify each cycle as H / L / M and resolve archetype key
+    function getPEIKey(p, e, i) {
+      const lv = v => v > 10 ? 'H' : v < -10 ? 'L' : 'M';
+      const combo = lv(p) + lv(e) + lv(i);
+      const map = {
+        'HHH':'PEI-HHH','HHL':'PEI-HHL','HLH':'PEI-HLH','HLL':'PEI-HLL',
+        'LHH':'PEI-LHH','LHL':'PEI-LHL','LLH':'PEI-LLH','LLL':'PEI-LLL'
+      };
+      return map[combo] || 'PEI-MID';
+    }
+
+    // Find critical days (cycle crosses zero) within lookahead days
+    function findCriticalDays(dob, target, lookahead = 10) {
+      const tBase = Math.round((target - dob) / (1000 * 60 * 60 * 24));
+      const result = [];
+      for (let offset = 0; offset <= lookahead; offset++) {
+        const t = tBase + offset;
+        const cycles = [];
+        [{ name: 'Physical', period: 23, color: 'var(--pigment-terracotta)' },
+         { name: 'Emotional', period: 28, color: 'var(--pigment-saffron)' },
+         { name: 'Intellectual', period: 33, color: 'var(--pigment-lapis)' }
+        ].forEach(c => {
+          const prev = Math.sin(2 * Math.PI * (t - 1) / c.period);
+          const curr = Math.sin(2 * Math.PI * t / c.period);
+          if (Math.sign(prev) !== Math.sign(curr)) cycles.push(c);
+        });
+        if (cycles.length > 0) {
+          const d = new Date(target);
+          d.setDate(target.getDate() + offset);
+          result.push({ offset, date: d, cycles });
+        }
+      }
+      return result;
+    }
+
+    // Find days until next peak or valley for a given cycle
+    function daysToExtreme(dayNum, period, type) {
+      const phaseTarget = type === 'peak' ? period / 4 : 3 * period / 4;
+      const phase = ((dayNum % period) + period) % period;
+      let d = phaseTarget - phase;
+      if (d <= 0) d += period;
+      return Math.round(d);
+    }
+
+    function parseLocalDate(dateStr) {
+      if (!dateStr) return null;
+      const parts = dateStr.split('-');
+      return new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10), 12, 0, 0);
+    }
+
+    function updateBiorhythms(isDynamic = false) {
+      // Check premium status
+      const isPremium = safeGetItem('antara_premium_unlocked') === 'true';
+      let recalcCount = parseInt(safeGetItem('antara_biorhythm_recalc_count') || '0', 10);
+      
+      const targetDateInput = document.getElementById('target-date');
+      const recalcBtn = document.getElementById('btn-recalculate');
+      const trialNotice = document.getElementById('trial-notice');
+
+      if (isPremium) {
+        // Premium active state
+        if (trialNotice) {
+          trialNotice.innerHTML = `
+            <div style="margin-bottom: 1rem; padding: 0.65rem 1rem; background-color: rgba(60, 90, 128, 0.08); border: 1px solid var(--pigment-lapis); font-family: var(--font-mono); font-size: 0.8rem; color: var(--pigment-lapis); text-transform: uppercase; letter-spacing: 1px; font-weight: bold; border-radius: 4px; display: inline-block; width: 100%; box-sizing: border-box; text-align: center;">
+              ❈ Premium Unlimited Access Active ❈
+            </div>
+          `;
+        }
+        if (targetDateInput) targetDateInput.disabled = false;
+        if (recalcBtn) {
+          recalcBtn.innerText = "Recalculate";
+          recalcBtn.className = "archival-btn";
+          recalcBtn.style.backgroundColor = "var(--pigment-saffron)";
+          recalcBtn.style.borderColor = "var(--pigment-saffron)";
+        }
+      } else {
+        // If they click recalculate, and they are already locked, redirect
+        if (isDynamic && recalcCount >= 3) {
+          window.location.href = 'index.html?src=biorhythms#checkout-section';
+          return;
+        }
+
+        // Increment count if this is a dynamic calculation trigger
+        if (isDynamic) {
+          recalcCount++;
+          safeSetItem('antara_biorhythm_recalc_count', recalcCount.toString());
+        }
+
+        // Update notice and controls based on current count
+        if (recalcCount >= 3) {
+          // Locked State
+          if (trialNotice) {
+            trialNotice.innerHTML = `
+              <div style="margin-bottom: 1.25rem; padding: 1.25rem; background-color: rgba(158, 58, 51, 0.06); border: 2px dashed var(--pigment-cinnabar); text-align: center; border-radius: 4px; box-sizing: border-box; width: 100%;">
+                <div style="font-family: var(--font-serif-header); font-size: 1.15rem; color: var(--pigment-cinnabar); font-weight: bold; margin-bottom: 0.5rem; letter-spacing: 1px; text-transform: uppercase;">
+                  ❈ Dynamic Alignment Engine Locked ❈
+                </div>
+                <p style="font-family: var(--font-serif-body); font-size: 0.95rem; line-height: 1.5; color: var(--ink-archival); margin: 0; text-align: justify; text-justify: inter-word;">
+                  You have utilized all 3 free dynamic recalculations. To continue exploring deep timing cycles and harmony alignments for any custom calendar date, unlock permanent, unlimited access.
+                </p>
+              </div>
+            `;
+          }
+          if (targetDateInput) targetDateInput.disabled = true;
+          if (recalcBtn) {
+            recalcBtn.innerText = "Unlock Unlimited Access (Buy Now)";
+            recalcBtn.className = "archival-btn btn-locked-premium";
+          }
+        } else {
+          // Trial Active State
+          const remaining = 3 - recalcCount;
+          if (trialNotice) {
+            if (remaining === 1) {
+              trialNotice.innerHTML = `
+                <div style="margin-bottom: 1rem; padding: 0.65rem 1rem; background-color: rgba(166, 91, 74, 0.08); border: 1px dashed var(--pigment-terracotta); font-family: var(--font-mono); font-size: 0.8rem; color: var(--pigment-terracotta); text-transform: uppercase; letter-spacing: 1px; font-weight: bold; border-radius: 4px; display: inline-block; width: 100%; box-sizing: border-box; text-align: center; animation: pulse-soft 2s infinite;">
+                  ⚠️ Final Free Dynamic Recalculation Remaining ⚠️
+                </div>
+              `;
+            } else {
+              trialNotice.innerHTML = `
+                <div style="margin-bottom: 1rem; padding: 0.65rem 1rem; background-color: rgba(217, 130, 54, 0.08); border: 1px solid var(--pigment-saffron); font-family: var(--font-mono); font-size: 0.8rem; color: var(--pigment-saffron); text-transform: uppercase; letter-spacing: 1px; font-weight: bold; border-radius: 4px; display: inline-block; width: 100%; box-sizing: border-box; text-align: center;">
+                  ✦ ${remaining} Free Dynamic Recalculations Remaining ✦
+                </div>
+              `;
+            }
+          }
+          if (targetDateInput) targetDateInput.disabled = false;
+          if (recalcBtn) {
+            recalcBtn.innerText = "Recalculate";
+            recalcBtn.className = "archival-btn";
+            recalcBtn.style.backgroundColor = "var(--pigment-saffron)";
+            recalcBtn.style.borderColor = "var(--pigment-saffron)";
+          }
+        }
+      }
+
+      const nameVal = document.getElementById('profile-name').value.trim() || "Your Name";
+      document.getElementById('title-name').innerText = nameVal;
+      document.getElementById('analysis-target-name').innerText = nameVal;
+      
+      const dobVal = document.getElementById('birth-date').value;
+      const dob = parseLocalDate(dobVal);
+      
+      const dispDob = document.getElementById('display-birth-date');
+      if (dispDob && dob) {
+        dispDob.innerText = dob.toLocaleDateString('en-GB', {day: 'numeric', month: 'long', year: 'numeric'});
+      }
+
+      const target = parseLocalDate(document.getElementById('target-date').value);
+
+      if (!dob || !target) return;
+
+      const labels = [];
+      const pData = []; const eData = []; const iData = [];
+
+      for (let i = -15; i <= 15; i++) {
+        const loopDay = new Date(target);
+        loopDay.setDate(target.getDate() + i);
+        const tForecast = Math.round((loopDay - dob) / (1000 * 60 * 60 * 24));
+
+        labels.push(loopDay.toLocaleDateString('en-GB', {day: 'numeric', month: 'short'}) + (i === 0 ? ' *' : ''));
+        pData.push(Math.sin(2 * Math.PI * tForecast / 23) * 100);
+        eData.push(Math.sin(2 * Math.PI * tForecast / 28) * 100);
+        iData.push(Math.sin(2 * Math.PI * tForecast / 33) * 100);
+      }
+
+      const pVal = pData[15]; const eVal = eData[15]; const iVal = iData[15];
+
+      const pStr = pVal.toFixed(1) + '%';
+      const eStr = eVal.toFixed(1) + '%';
+      const iStr = iVal.toFixed(1) + '%';
+
+      // Clear any pending staggered animations to prevent glitches on rapid recalculation
+      tideAnimationTimers.forEach(clearTimeout);
+      tideAnimationTimers = [];
+
+      // Reset all bars to 0% and hide labels to prepare for clean transition entrance
+      document.getElementById('p-bar-pos').style.height = '0%';
+      document.getElementById('p-bar-neg').style.height = '0%';
+      document.getElementById('e-bar-pos').style.height = '0%';
+      document.getElementById('e-bar-neg').style.height = '0%';
+      document.getElementById('i-bar-pos').style.height = '0%';
+      document.getElementById('i-bar-neg').style.height = '0%';
+
+      document.getElementById('p-percent-pos').style.display = 'none';
+      document.getElementById('p-percent-neg').style.display = 'none';
+      document.getElementById('e-percent-pos').style.display = 'none';
+      document.getElementById('e-percent-neg').style.display = 'none';
+      document.getElementById('i-percent-pos').style.display = 'none';
+      document.getElementById('i-percent-neg').style.display = 'none';
+
+      // Force a browser paint layout reflow to register the 0% reset height state
+      void document.getElementById('p-bar-pos').offsetHeight;
+
+      // Staggered animate: Physical (t = 100ms)
+      tideAnimationTimers.push(setTimeout(() => {
+        if (pVal >= 0) {
+          document.getElementById('p-percent-pos').innerText = pStr;
+          document.getElementById('p-percent-pos').style.display = 'block';
+          document.getElementById('p-percent-neg').style.display = 'none';
+          document.getElementById('p-bar-pos').style.height = (pVal * 0.9).toFixed(1) + '%';
+          document.getElementById('p-bar-neg').style.height = '0%';
+        } else {
+          document.getElementById('p-percent-neg').innerText = pStr;
+          document.getElementById('p-percent-neg').style.display = 'block';
+          document.getElementById('p-percent-pos').style.display = 'none';
+          document.getElementById('p-bar-neg').style.height = (Math.abs(pVal) * 0.9).toFixed(1) + '%';
+          document.getElementById('p-bar-pos').style.height = '0%';
+        }
+      }, 100));
+
+      // Staggered animate: Emotional (t = 400ms)
+      tideAnimationTimers.push(setTimeout(() => {
+        if (eVal >= 0) {
+          document.getElementById('e-percent-pos').innerText = eStr;
+          document.getElementById('e-percent-pos').style.display = 'block';
+          document.getElementById('e-percent-neg').style.display = 'none';
+          document.getElementById('e-bar-pos').style.height = (eVal * 0.9).toFixed(1) + '%';
+          document.getElementById('e-bar-neg').style.height = '0%';
+        } else {
+          document.getElementById('e-percent-neg').innerText = eStr;
+          document.getElementById('e-percent-neg').style.display = 'block';
+          document.getElementById('e-percent-pos').style.display = 'none';
+          document.getElementById('e-bar-neg').style.height = (Math.abs(eVal) * 0.9).toFixed(1) + '%';
+          document.getElementById('e-bar-pos').style.height = '0%';
+        }
+      }, 400));
+
+      // Staggered animate: Intellectual (t = 700ms)
+      tideAnimationTimers.push(setTimeout(() => {
+        if (iVal >= 0) {
+          document.getElementById('i-percent-pos').innerText = iStr;
+          document.getElementById('i-percent-pos').style.display = 'block';
+          document.getElementById('i-percent-neg').style.display = 'none';
+          document.getElementById('i-bar-pos').style.height = (iVal * 0.9).toFixed(1) + '%';
+          document.getElementById('i-bar-neg').style.height = '0%';
+        } else {
+          document.getElementById('i-percent-neg').innerText = iStr;
+          document.getElementById('i-percent-neg').style.display = 'block';
+          document.getElementById('i-percent-pos').style.display = 'none';
+          document.getElementById('i-bar-neg').style.height = (Math.abs(iVal) * 0.9).toFixed(1) + '%';
+          document.getElementById('i-bar-pos').style.height = '0%';
+        }
+      }, 700));
+
+      document.getElementById('analysis-day-metrics').innerText = `Target Date: ${target.toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'})} (t = ${Math.round((target - dob)/(1000*60*60*24))} days)`;
+
+      // Resolve archetype from all 8 PEI combinations
+      const lKey = getPEIKey(pVal, eVal, iVal);
+
+      const arch = archetypeLibrary[lKey];
+      document.getElementById('archetype-code').innerText = lKey;
+      document.getElementById('archetype-name').innerText = arch.name;
+
+      const colorize = str => str
+        .replace(/physical/gi, '<span style="color:var(--pigment-terracotta);font-weight:bold;">$&</span>')
+        .replace(/emotional/gi, '<span style="color:var(--pigment-saffron);font-weight:bold;">$&</span>')
+        .replace(/intellectual|intellect/gi, '<span style="color:var(--pigment-lapis);font-weight:bold;">$&</span>');
+
+      document.getElementById('archetype-description').innerHTML = colorize(`"${arch.description}"`);
+      document.getElementById('archetype-guidance').innerHTML = colorize(arch.guidance);
+
+      // Composite rhythm score (P×0.3 + E×0.4 + I×0.3, normalised 0–100)
+      const compositeRaw = pVal * 0.3 + eVal * 0.4 + iVal * 0.3;
+      const compositePct = Math.round((compositeRaw + 100) / 2);
+      const compositeColor  = compositePct >= 68 ? '#2E5A44' : compositePct >= 50 ? '#3C5A80' : compositePct >= 35 ? '#D98236' : '#9E3A33';
+      const compositeLabel  = compositePct >= 68 ? 'High — Strong Day' : compositePct >= 50 ? 'Moderate — Steady Day' : compositePct >= 35 ? 'Low-Moderate — Gentle Day' : 'Low — Rest Day';
+      const compositeRow = document.getElementById('composite-score-row');
+      if (compositeRow) {
+        compositeRow.style.display = 'block';
+        document.getElementById('composite-score-pct').innerText = `${compositePct}%`;
+        document.getElementById('composite-score-pct').style.color = compositeColor;
+        document.getElementById('composite-score-label').innerText = compositeLabel;
+        document.getElementById('composite-score-label').style.color = compositeColor;
+      }
+
+      // Best uses today
+      const bfContainer = document.getElementById('bestfor-container');
+      const bfList = document.getElementById('bestfor-list');
+      if (bfContainer && bfList && arch.bestFor) {
+        bfList.innerHTML = arch.bestFor.map(item => `<li style="margin-bottom:0.25rem;">${item}</li>`).join('');
+        bfContainer.style.display = 'block';
+      }
+
+      // Critical days (next 10 days)
+      const criticalDays = findCriticalDays(dob, target, 10);
+      const cdEl = document.getElementById('critical-days-content');
+      if (cdEl) {
+        if (criticalDays.length === 0) {
+          cdEl.innerHTML = `<div style="font-size: 0.95rem; color:var(--pigment-lapis); font-weight:600; padding:0.5rem 0.75rem; background:rgba(60,90,128,0.06); border:1px solid rgba(60,90,128,0.2); border-radius:4px;">✓ No critical transitions in the next 10 days — your cycles are stable.</div>`;
+        } else {
+          cdEl.innerHTML = criticalDays.map(cd => {
+            const dateStr = cd.date.toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short' });
+            const label = cd.offset === 0 ? ' (Today)' : cd.offset === 1 ? ' (Tomorrow)' : ` (in ${cd.offset} days)`;
+            const cycleSpans = cd.cycles.map(c => `<span style="color:${c.color}; font-weight:700;">${c.name}</span>`).join(' + ');
+            return `<div style="padding:0.85rem 1rem; margin-bottom:0.65rem; border:1px solid #D6CEBE; border-left:4px solid ${cd.cycles[0].color}; border-radius:0 4px 4px 0; background:#faf7ef; font-size:0.95rem; line-height:1.5;">
+              <div style="font-weight:700; margin-bottom:0.25rem;">${dateStr}${label} — ${cycleSpans} cycle${cd.cycles.length > 1 ? 's' : ''} cross${cd.cycles.length > 1 ? '' : 'es'} zero.</div>
+              <div style="font-size: 0.95rem; color:var(--ink-faded); font-style:italic; margin-top:0.15rem;">Navigate this transition with extra awareness and avoid high-stakes commitments in the ${cd.cycles.map(c=>c.name.toLowerCase()).join(' and ')} domain${cd.cycles.length > 1 ? 's' : ''}.</div>
+            </div>`;
+          }).join('');
+        }
+      }
+
+      // Peak and valley calendar
+      const tDays = Math.round((target - dob) / (1000 * 60 * 60 * 24));
+      const pvEl = document.getElementById('peak-valley-content');
+      if (pvEl) {
+        const cycles = [
+          { name: 'Physical',     period: 23, color: 'var(--pigment-terracotta)', bg: 'rgba(166, 91, 74, 0.05)', border: 'rgba(166, 91, 74, 0.25)' },
+          { name: 'Emotional',    period: 28, color: 'var(--pigment-saffron)',    bg: 'rgba(217, 130, 54, 0.05)', border: 'rgba(217, 130, 54, 0.25)' },
+          { name: 'Intellectual', period: 33, color: 'var(--pigment-lapis)',      bg: 'rgba(60, 90, 128, 0.05)',  border: 'rgba(60, 90, 128, 0.25)' }
+        ];
+        pvEl.innerHTML = `<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem;">` +
+          cycles.map(c => {
+            const peakIn  = daysToExtreme(tDays, c.period, 'peak');
+            const valleyIn = daysToExtreme(tDays, c.period, 'valley');
+            const peakDate  = new Date(target); peakDate.setDate(target.getDate() + peakIn);
+            const valleyDate = new Date(target); valleyDate.setDate(target.getDate() + valleyIn);
+            const fmt = d => d.toLocaleDateString('en-GB', { day:'numeric', month:'short' });
+            return `<div style="border:1px solid ${c.border}; border-top:4px solid ${c.color}; border-radius:4px; padding:1.1rem; background:${c.bg}; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+              <div style="font-family:var(--font-mono); font-size:0.85rem; font-weight:700; color:${c.color}; text-transform:uppercase; letter-spacing:2px; margin-bottom:0.75rem; border-bottom:1px dashed ${c.border}; padding-bottom:0.4rem;">
+                ${c.name} · ${c.period}d
+              </div>
+              <div style="font-size:1.05rem; margin-bottom:0.4rem; font-family:var(--font-serif-body); line-height:1.4;">
+                <span style="color:#2E5A44; font-weight:700;">▲ Peak:</span> 
+                <span style="font-weight:600;">${fmt(peakDate)}</span> 
+                <span style="color:var(--ink-faded); font-size: 0.95rem; font-family:var(--font-mono);">(${peakIn}d)</span>
+              </div>
+              <div style="font-size:1.05rem; font-family:var(--font-serif-body); line-height:1.4;">
+                <span style="color:#9E3A33; font-weight:700;">▼ Valley:</span> 
+                <span style="font-weight:600;">${fmt(valleyDate)}</span> 
+                <span style="color:var(--ink-faded); font-size: 0.95rem; font-family:var(--font-mono);">(${valleyIn}d)</span>
+              </div>
+            </div>`;
+          }).join('') + `</div>`
+        ;
+      }
+
+      const ctx = document.getElementById('biorhythm-chart').getContext('2d');
+      if (chartInstance) chartInstance.destroy();
+
+      const targetDatePlugin = {
+        id: 'targetDatePlugin',
+        beforeDraw: (chart) => {
+          const ctx = chart.ctx;
+          const xAxis = chart.scales.x;
+          const yAxis = chart.scales.y;
+          
+          const targetMeta = chart.getDatasetMeta(0).data[15];
+          if (!targetMeta) return;
+          
+          const targetX = targetMeta.x;
+          const topY = yAxis.top;
+          const bottomY = yAxis.bottom;
+          const leftX = xAxis.left;
+          const rightX = xAxis.right;
+          
+          ctx.save();
+          // Draw Past/Lived History Zone (Left) in very soft warm terracotta tint
+          ctx.fillStyle = 'rgba(166, 91, 74, 0.03)'; 
+          ctx.fillRect(leftX, topY, targetX - leftX, bottomY - topY);
+          
+          // Draw Future Potential Zone (Right) in very soft cool lapis tint
+          ctx.fillStyle = 'rgba(60, 90, 128, 0.03)'; 
+          ctx.fillRect(targetX, topY, rightX - targetX, bottomY - topY);
+          
+          // Draw Zero Horizontal Midline in thicker dotted WHITE with backing contrast line
+          const zeroY = yAxis.getPixelForValue(0);
+          ctx.strokeStyle = 'rgba(43, 42, 40, 0.12)'; 
+          ctx.lineWidth = 2.5;
+          ctx.setLineDash([]);
+          ctx.beginPath();
+          ctx.moveTo(leftX, zeroY);
+          ctx.lineTo(rightX, zeroY);
+          ctx.stroke();
+
+          ctx.strokeStyle = '#FFFFFF';
+          ctx.lineWidth = 2;
+          ctx.setLineDash([4, 4]);
+          ctx.beginPath();
+          ctx.moveTo(leftX, zeroY);
+          ctx.lineTo(rightX, zeroY);
+          ctx.stroke();
+
+          // Draw Central Vertical Divider Line (Target Date) in thicker dotted WHITE with backing contrast line
+          ctx.strokeStyle = 'rgba(43, 42, 40, 0.12)'; 
+          ctx.lineWidth = 2.5;
+          ctx.setLineDash([]);
+          ctx.beginPath();
+          ctx.moveTo(targetX, topY);
+          ctx.lineTo(targetX, bottomY);
+          ctx.stroke();
+
+          ctx.strokeStyle = '#FFFFFF'; 
+          ctx.lineWidth = 2;
+          ctx.setLineDash([4, 4]); 
+          ctx.beginPath();
+          ctx.moveTo(targetX, topY);
+          ctx.lineTo(targetX, bottomY);
+          ctx.stroke();
+          
+          // Draw "TARGET DATE" text label
+          ctx.fillStyle = '#D98236';
+          ctx.font = 'bold 9px "Courier Prime", monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText('TARGET DATE', targetX, bottomY - 6);
+          
+          ctx.restore();
+        }
+      };
+
+      chartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            { label: 'Physical', data: pData, borderColor: '#A65B4A', borderWidth: 2, fill: false, tension: 0.3, pointRadius: 1, hidden: !activeDatasets[0] },
+            { label: 'Emotional', data: eData, borderColor: '#D98236', borderWidth: 2, fill: false, tension: 0.3, pointRadius: 1, hidden: !activeDatasets[1] },
+            { label: 'Intellectual', data: iData, borderColor: '#3C5A80', borderWidth: 2, fill: false, tension: 0.3, pointRadius: 1, hidden: !activeDatasets[2] }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: {
+            padding: {
+              top: 15
+            }
+          },
+          plugins: { 
+            legend: { 
+              display: false
+            } 
+          },
+          scales: {
+            x: { grid: { color: '#EADEC9' }, ticks: { font: { family: "'Courier Prime', monospace", size: 10 }, color: '#76726A' } },
+            y: { min: -110, max: 110, grid: { color: '#EADEC9' }, ticks: { font: { family: "'Courier Prime', monospace", size: 10 }, color: '#76726A' } }
+          }
+        },
+        plugins: [targetDatePlugin]
+      });
+
+      // Sync legend button styles with activeDatasets state
+      const ids = ['legend-physical', 'legend-emotional', 'legend-intellectual'];
+      
+      for (let i = 0; i < 3; i++) {
+        const el = document.getElementById(ids[i]);
+        if (el) {
+          if (!activeDatasets[i]) {
+            el.style.opacity = '0.35';
+            el.style.textDecoration = 'line-through';
+          } else {
+            el.style.opacity = '1';
+            el.style.textDecoration = 'none';
+          }
+        }
+      }
+    }
+
+    function toggleDataset(index) {
+      if (!chartInstance) return;
+      activeDatasets[index] = !activeDatasets[index];
+      
+      // Update chart dataset visibility
+      chartInstance.setDatasetVisibility(index, activeDatasets[index]);
+      chartInstance.update();
+      
+      // Sync legend button styles
+      const ids = ['legend-physical', 'legend-emotional', 'legend-intellectual'];
+      
+      const el = document.getElementById(ids[index]);
+      if (el) {
+        if (!activeDatasets[index]) {
+          el.style.opacity = '0.35';
+          el.style.textDecoration = 'line-through';
+        } else {
+          el.style.opacity = '1';
+          el.style.textDecoration = 'none';
+        }
+      }
+    }
+
+    document.getElementById('profile-name').addEventListener('input', (e) => {
+      document.getElementById('title-name').innerText = `For ${e.target.value.trim() || "Your Name"}`;
+    });
+    window.addEventListener('DOMContentLoaded', () => {
+      // Set target date to today if not already set
+      const todayStr = new Date().toISOString().split('T')[0];
+      const targetInput = document.getElementById('target-date');
+      if (targetInput && !targetInput.value) targetInput.value = todayStr;
+
+      const savedName = safeGetItem('antara_user_name');
+      const savedDob = safeGetItem('antara_user_dob');
+      if (savedName) {
+        document.getElementById('profile-name').value = savedName;
+        document.getElementById('title-name').innerText = `For ${savedName}`;
+      }
+      if (savedDob) {
+        document.getElementById('birth-date').value = savedDob;
+        const dob = parseLocalDate(savedDob);
+        const dispDob = document.getElementById('display-birth-date');
+        if (dispDob && dob) {
+          dispDob.innerText = dob.toLocaleDateString('en-GB', {day: 'numeric', month: 'long', year: 'numeric'});
+        }
+      }
+      updateBiorhythms();
+    });
+  </script>
+</body>
+</html>

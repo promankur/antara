@@ -1,0 +1,2024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Name & Identity Reading | AG_Antara Cross-Cultural Interior Panorama</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-page: #F7F1E1;
+      --bg-vellum-warm: #ffffff;
+      --ink-archival: #2B2A28;
+      --ink-faded: #76726A;
+      --border-container: 1px solid #D6CEBE;
+      
+      --font-serif-header: 'Cinzel', serif;
+      --font-serif-body: 'Playfair Display', serif;
+      --font-mono: 'Courier Prime', monospace;
+      
+      --pigment-terracotta: #A65B4A;
+      --pigment-saffron: #D98236;
+      --pigment-cinnabar: #9E3A33;
+      --pigment-lapis: #2E6CB5; /* Lighter high-contrast blue distinct from black */
+      --pigment-moss: #4A6B5D;
+      --stroke: #b56a2a;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 17px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1150px;
+      width: 100%;
+      margin: 0 auto 2rem auto;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    .grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Accordion body text — force normal reading font, no small-caps */
+    details p, details td, details li {
+      font-variant: normal !important;
+      font-family: var(--font-serif-body) !important;
+      text-transform: none !important;
+    }
+
+    .archival-card {
+      background-color: var(--bg-vellum-warm);
+      border: var(--border-container);
+      padding: 1.75rem;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04);
+      box-sizing: border-box;
+    }
+
+    /* inner double-border removed — breathing space preferred */
+
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-faded);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      background-color: rgba(247, 241, 225, 0.4);
+      border: var(--border-container);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 1.05rem;
+      padding: 0.75rem 1rem;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    /* Header Standardized Branding & Typography */
+    .header-logo { 
+      text-align: center; 
+      margin: 20px 0 8px 0; 
+    }
+    .system-tagline { 
+      font-family: 'Courier New', Courier, monospace !important; 
+      font-weight: 700 !important; 
+      font-size: 13px !important; 
+      letter-spacing: 5px !important; 
+      color: #A6A29A !important; 
+      text-transform: uppercase !important; 
+      text-align: center !important; 
+      margin: 0 0 24px 0 !important; 
+      line-height: 1.2 !important;
+    }
+    .master-report-title { 
+      font-family: 'Cinzel', serif !important; 
+      font-size: 2.25rem !important; 
+      font-variant: small-caps !important; 
+      font-weight: 700 !important; 
+      letter-spacing: 2px !important; 
+      color: #2B2A28 !important; 
+      text-align: center !important; 
+      margin: 0 0 14px 0 !important; 
+      line-height: 1.3 !important; 
+    }
+    .master-report-byline { 
+      font-family: 'Playfair Display', serif !important; 
+      font-size: 1.15rem !important; 
+      color: #D98236 !important; 
+      text-align: center !important; 
+      max-width: 800px !important; 
+      margin: 0 auto 32px auto !important; 
+      padding: 0 12px !important; 
+      line-height: 1.5 !important; 
+    }
+
+    /* Word and Letter tile layout - optimized for zero wrapping breaks within a word */
+    .letter-cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      margin-top: 1rem;
+      justify-content: center;
+    }
+
+    .word-container {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: nowrap;
+      margin: 0.25rem 0;
+    }
+
+    .letter-card {
+      background: #faf7ef;
+      border: var(--border-container);
+      width: 58px;
+      height: 78px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.4rem 0.2rem;
+      box-sizing: border-box;
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .letter-card.vowel {
+      background: rgba(217, 130, 54, 0.04);
+      border-color: var(--pigment-saffron);
+    }
+
+    .letter-card .char {
+      font-family: var(--font-serif-header);
+      font-size: 1.55rem;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .letter-card .val-row {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      border-top: 1px dashed #d6cebe;
+      padding-top: 3px;
+    }
+
+    .system-group-card {
+      background-color: rgba(244, 235, 212, 0.25);
+      border: 1px solid #D6CEBE;
+      border-radius: 6px;
+      padding: 1.5rem;
+      box-sizing: border-box;
+      margin-top: 1rem;
+    }
+
+    .system-group-header {
+      font-family: var(--font-serif-header);
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 2px solid #D6CEBE;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.25rem;
+      text-align: center;
+    }
+
+    .sub-metric-row {
+      padding: 1rem 0 0.5rem;
+    }
+
+    .sub-metric-title {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--ink-faded);
+      font-weight: bold;
+      margin-bottom: 0.25rem;
+    }
+
+    .sub-metric-badge-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 0.5rem 0;
+    }
+
+    .sub-metric-num {
+      font-family: var(--font-serif-header);
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--pigment-cinnabar);
+      line-height: 1;
+    }
+
+    .sub-metric-path {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--ink-faded);
+    }
+
+    .sub-metric-desc {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--ink-archival);
+      text-align: left;
+    }
+
+    .svg-grid-container {
+      margin-top: 1.5rem;
+      border: 1px solid #D6CEBE;
+      padding: 1.5rem;
+      background: #faf7ef;
+      border-radius: 4px;
+    }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 2.5rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+    }
+    
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--ink-faded);
+      margin: 0.25rem 0;
+    }
+
+    p, td, li {
+      text-align: left !important;
+    }
+
+    @media (min-width: 900px) {
+      .container { width: 95%; padding: 0 1.5rem; }
+      .grid { display: grid; grid-template-columns: 380px 1fr; gap: 2rem; }
+
+    }
+
+    /* Premium Click to Explore Accordion Styles */
+    .explore-summary {
+      font-family: var(--font-serif-header);
+      background-color: #D35400; /* Vibrant Brand Saffron */
+      color: #FFFFFF !important;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.85rem 1.25rem; /* Elegant compact height */
+      border: 1px solid #8E4A21; /* Cinnamon brand structural frame */
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 12px rgba(211, 84, 0, 0.12);
+      line-height: 1.35;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .explore-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .explore-summary::before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px double rgba(255, 255, 255, 0.45); /* Elegant double border in reverse white */
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .explore-summary:hover {
+      background-color: #E65C00; /* Slightly brighter warm saffron on hover */
+      box-shadow: 0 6px 18px rgba(211, 84, 0, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .explore-summary:hover::before {
+      border-color: rgba(255, 255, 255, 0.7);
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+    }
+
+    .explore-summary:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(211, 84, 0, 0.15);
+    }
+
+    .explore-summary .explore-title-main {
+      font-variant: small-caps;
+      font-size: 1.05rem; /* Compact size */
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: none; /* Crucial for small-caps */
+      position: relative;
+      z-index: 2;
+    }
+
+    .explore-summary .explore-title-sub {
+      font-family: var(--font-serif-body);
+      font-size: 1.25rem; /* Bold italic font matching user mock */
+      font-weight: 700;
+      font-style: italic;
+      margin-top: 3px;
+      letter-spacing: 0.5px;
+      color: #FFFFFF !important;
+      position: relative;
+      z-index: 2;
+    }
+
+    .font-mono {
+      font-family: var(--font-mono);
+    }
+
+    .accordion-inner-border {
+      position: relative;
+    }
+
+    .accordion-inner-border::before {
+      content: "";
+      position: absolute;
+      top: 6px; left: 6px; right: 6px; bottom: 6px;
+      border: 1px double #D6CEBE;
+      pointer-events: none;
+      border-radius: 3px;
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    @media (min-width: 640px) {
+      .split-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .archetype-badge {
+      display: inline-block;
+      font-family: var(--font-serif-header);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--pigment-cinnabar);
+      border: 1px solid var(--pigment-cinnabar);
+      padding: 2px 8px;
+      border-radius: 2px;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .rashi-result-box {
+      background: rgba(217,130,54,0.06);
+      border: 1px dashed var(--pigment-saffron);
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .planet-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    /* ── Inline reveal pattern for reference tables ── */
+    .inline-reveal { margin-top: 1.25rem; }
+
+    .inline-reveal > summary {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem 1rem;
+      border: 1px dashed #D6CEBE;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--stroke);
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+      user-select: none;
+    }
+    .inline-reveal > summary::-webkit-details-marker,
+    .inline-reveal > summary::marker { display: none; }
+    .inline-reveal > summary:hover { background: rgba(181,106,42,0.05); border-color: var(--stroke); }
+    .inline-reveal > summary::after { content: ' ▼'; font-size: 0.6rem; margin-left: 0.4rem; opacity: 0.7; }
+    .inline-reveal[open] > summary { background: rgba(181,106,42,0.04); border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+    .inline-reveal[open] > summary::after { content: ' ▲'; }
+    .inline-reveal-body { border: 1px dashed #D6CEBE; border-top: none; border-radius: 0 0 4px 4px; overflow-x: auto; }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .container { max-width: 100%; width: 100%; }
+      .archival-btn, form, footer { display: none !important; }
+      .grid { display: block !important; }
+      .archival-card { box-shadow: none !important; border: 1px solid #000 !important; margin-bottom: 2rem; page-break-inside: avoid; }
+      .archival-card::before { display: none !important; }
+    }
+  
+    /* Premium Left-Aligned Footer Override */
+    footer {
+      width: 100%;
+      padding: 2rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+      text-align: left;
+    }
+    .footer-content {
+      max-width: 1100px;
+      width: 100%;
+      padding: 0 16px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+    footer p {
+      font-family: var(--font-serif-body);
+      font-size: 0.82rem;
+      color: var(--ink-archival);
+      margin: 0.25rem 0;
+    }
+    footer p.font-mono {
+      font-family: var(--font-mono) !important;
+      font-size: 0.72rem !important;
+      color: var(--ink-faded) !important;
+    }
+
+  
+    /* ─── Reading Guide Grid (Tactile manuscript details) ─── */
+    .reading-guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .reading-guide-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+</style>
+  <meta name="description" content="Antara is a traditional cross-cultural mathematical life-engine and archetypal systems cartography. Calibrate your natal coordinates, biological rhythms, and name phonetic values across Vedic, Western tropical, and Chinese solar Four Pillars traditions.">
+  <link rel="icon" type="image/png" href="Antara Logo.png">
+</head>
+<body>
+
+  <div class="header-logo">
+    <img src="Antara Logo.png" alt="ANTARA" style="max-height: 90px; width: auto;" onerror="this.style.display='none';">
+  </div>
+  <div class="system-tagline">Cross-Cultural Interior Panorama</div>
+
+  <h1 class="master-report-title">Name & Identity Reading<br>For The Nameless One</h1>
+  <p class="master-report-byline">Name Frequencies & Identity Patterns</p>
+
+  <div class="container">
+    <!-- Report Introduction (Borderless layout) -->
+    <div style="margin-bottom: 2.25rem; padding: 0.5rem 0;">
+    <div style="max-width: 78ch; margin: 0 auto;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-bottom: 1rem; color: var(--stroke, #b56a2a); letter-spacing: 1px; text-transform: uppercase;">About This Report</h3>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        Across many traditions, names were never viewed as random labels alone. They carried sound, symbolism, memory, identity, and social energy. Different systems of numerology and phonetic analysis developed around the idea that the sounds and structures within a name may subtly influence perception, communication style, and personal expression.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        This report studies the frequency patterns, numerical structures, and symbolic arrangements connected to your name. It explores how identity may be shaped not only by personality, but also by the way a name is spoken, received, and remembered by others.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">
+        People often use this report during periods of personal change, public repositioning, branding decisions, or deeper self-reflection. It may also help in evaluating professional identities, signatures, business names, or creative personas. The report should not be viewed as predictive, but rather as a reflective tool for understanding identity patterns and external perception.
+      </p>
+    
+      <!-- Codex Support Navigation Panel -->
+      <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px dashed #D6CEBE; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="Help.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📖 Help
+        </a>
+        <a href="FAQ.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          ❓ FAQ
+        </a>
+        <a href="Glossary.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📓 Glossary
+        </a>
+      </div>
+      <!-- How to Read This Report (Reading Guide Block) -->
+      <div style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; border: 1px dashed #D6CEBE; background-color: rgba(247, 241, 225, 0.15); border-radius: 4px; box-shadow: 0 2px 8px rgba(43, 42, 40, 0.01);">
+        <h4 style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 1rem; text-align: center; border-bottom: 1px dashed #D6CEBE; padding-bottom: 0.4rem;">
+          How to Study This Document
+        </h4>
+        <div class="reading-guide-grid">
+          <!-- Point 1 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">1. Read the accordion sections one at a time.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">Each section expands when you click the title — do not try to read everything at once.</span>
+          </div>
+          <!-- Point 2 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">2. Look up unfamiliar terms</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">in the Antara Glossary (<a href="Glossary.html" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar);">Glossary.html</a> in this folder).</span>
+          </div>
+          <!-- Point 3 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">3. Start with the numbers that feel most familiar.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">In a Western chart, most people know their Sun sign. In Numerology, the Life Path is easiest.</span>
+          </div>
+          <!-- Point 4 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">4. Do not worry about understanding everything on the first read.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">These reports are meant to be returned to and studied over time.</span>
+          </div>
+        </div>
+      </div>
+
+</div>
+    </div>
+
+    <div class="grid">
+      
+      <!-- Input Sidebar Column (Desktop Left) -->
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <div class="archival-card">
+          <form onsubmit="event.preventDefault();">
+            <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1.25rem; text-transform: uppercase; letter-spacing: 1px;">Calibrate Identity</h3>
+            
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" id="input-name" class="form-input" value="Antara Gupta" autocomplete="off" placeholder="Enter Full Name">
+            </div>
+            
+            <div class="form-group">
+              <label>Date of Birth</label>
+              <input type="date" id="input-dob" class="form-input" value="1953-05-16">
+            </div>
+            
+            <div class="form-group">
+              <label>Syllabic Origin Anchor</label>
+              <input type="text" id="input-anchor" class="form-input" value="Chakrata, Uttarakhand, India" placeholder="Birth City or Region">
+            </div>
+          </form>
+        </div>
+
+        <div class="archival-card">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">Identity Snapshot</h3>
+          
+          <div style="display: flex; flex-direction: column; gap: 0.95rem;">
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #e6dfcf; padding-bottom: 0.4rem; font-size: 1.05rem;">
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faded);">Vowels Count:</span>
+              <span id="stat-vowels" style="font-weight: bold; font-family: var(--font-mono);">4</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #e6dfcf; padding-bottom: 0.4rem; font-size: 1.05rem;">
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faded);">Consonants Count:</span>
+              <span id="stat-consonants" style="font-weight: bold; font-family: var(--font-mono);">6</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #e6dfcf; padding-bottom: 0.4rem; font-size: 1.05rem;">
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faded);">Chaldean Root Value:</span>
+              <span id="stat-chaldean-val" style="font-weight: bold; font-family: var(--font-mono); color: var(--pigment-cinnabar);">3</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #e6dfcf; padding-bottom: 0.4rem; font-size: 1.05rem;">
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faded);">Pythagorean Root Value:</span>
+              <span id="stat-pyth-val" style="font-weight: bold; font-family: var(--font-mono); color: var(--pigment-lapis);">8</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #e6dfcf; padding-bottom: 0.4rem; font-size: 1.05rem;">
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faded);">Kabbalah Root Value:</span>
+              <span id="stat-kabbalah-val" style="font-weight: bold; font-family: var(--font-mono); color: #7A2060;">—</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shifted Chaldean Card: Structured here to prevent blank column on the right -->
+        <div class="system-group-card" style="border-top: 5px solid var(--pigment-saffron); margin-top: 0;">
+          <div class="system-group-header" style="color: var(--pigment-saffron);">Chaldean / Tamil Vedic Sound System</div>
+          <p style="font-size: 0.95rem; line-height: 1.5; color: var(--ink-faded); margin-top: -0.5rem; margin-bottom: 1rem; text-align: justify;">
+            This system unifies the ancient Chaldean heptad with Tamil Vedic sound numerology. Both traditions map spoken letter phonemes onto precise planetary sound oscillations, skipping the sacred number <strong>9</strong> in physical reductions as it represents the infinite unmanifest field.
+          </p>
+          
+          <div class="sub-metric-row">
+            <div class="sub-metric-title">Chaldean / Tamil Vedic Root</div>
+            <div class="sub-metric-badge-container">
+              <div id="chaldean-num" class="sub-metric-num">3</div>
+              <div id="chaldean-reduction" class="sub-metric-path">1+5+2+3+2 + 3+6+8+4+1 = 35 = 8 (reduced = 3)</div>
+            </div>
+            <p class="sub-metric-desc" id="chaldean-desc">The Chaldean heptad represents the ancient phonetic scale. Chaldean maps letters to sound values associated with planetary oscillations, completely skipping the sacred number <strong>9</strong> as a base reduction coordinate.</p>
+          </div>
+        </div>
+
+        <!-- Shifted Kabbalah Gematria Card -->
+        <div class="system-group-card" style="border-top: 5px solid #7A2060; margin-top: 1rem;">
+          <div class="system-group-header" style="color: #7A2060;">Kabbalah Gematria System</div>
+          <p style="font-size: 0.95rem; line-height: 1.5; color: var(--ink-faded); margin-top: -0.5rem; margin-bottom: 1rem; text-align: justify;">
+            Rooted in mystical Hebrew disciplines, English Gematria maps the 26 Latin letters to high-vibrational numerical thresholds (up to 900). It measures your name's deep, esoteric alignment with cosmic thresholds and celestial currents.
+          </p>
+          
+          <div class="sub-metric-row">
+            <div class="sub-metric-title">Gematria Name Root</div>
+            <div class="sub-metric-badge-container">
+              <div id="kabbalah-num" class="sub-metric-num">—</div>
+              <div id="kabbalah-reduction" class="sub-metric-path">Awaiting calculations...</div>
+            </div>
+            <p class="sub-metric-desc" id="kabbalah-desc">Awaiting Gematria calculations...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Results Display (Desktop Right) -->
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        
+        <!-- Active Analysis Card -->
+        <div class="archival-card">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; text-align: center; margin-top: 0; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px;">Letter Frequency Map</h3>
+          
+          <!-- Unified high-contrast legend, using softer Consonant description -->
+          <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem 1.25rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faded); margin: 0.5rem 0 1.25rem 0; border: 1px dashed #d6cebe; padding: 0.5rem; background: #faf7ef; border-radius: 4px;">
+            <span><strong style="color: var(--pigment-saffron);">Orange Letter</strong> = Vowel</span>
+            <span><strong style="color: var(--ink-faded);">Grey Letter</strong> = Consonant</span>
+            <span><strong style="color: var(--pigment-lapis);">Blue Number</strong> = Pythagorean</span>
+            <span><strong style="color: var(--pigment-saffron);">Orange Number</strong> = Chaldean / Tamil Vedic</span>
+            <span><strong style="color: #7A2060;">Purple Number</strong> = Kabbalah Gematria</span>
+          </div>
+
+          <div id="letter-cards" class="letter-cards-container">
+            <!-- Dynamic letter cards go here -->
+          </div>
+        </div>
+
+        <!-- Pythagorean System Card (Expanded Full Width for continuity) -->
+        <div class="archival-card">
+          <div class="system-group-card" style="border-top: 5px solid var(--pigment-lapis); margin-top: 0; background: none; border: none; padding: 0;">
+            <div class="system-group-header" style="color: var(--pigment-lapis); border-bottom: 2px solid var(--border-container);">Pythagorean System</div>
+            
+            <!-- 1. Expression -->
+            <div class="sub-metric-row">
+              <div class="sub-metric-title">Expression / Destiny Root</div>
+              <div class="sub-metric-badge-container">
+                <div id="pythagorean-num" class="sub-metric-num">8</div>
+                <div id="pythagorean-reduction" class="sub-metric-path">1+5+2+3+9 + 7+3+7+2+1 = 40 = 4 (reduced = 8)</div>
+              </div>
+              <p class="sub-metric-desc" id="pyth-expr-desc">The primary Western ennead mapping. Evaluates complete base-9 qualitative reduction sequences of all characters in the signature, measuring active conscious expression channels.</p>
+            </div>
+
+            <!-- 2. Soul Urge -->
+            <div class="sub-metric-row">
+              <div class="sub-metric-title">Soul Urge (Vowels Core)</div>
+              <div class="sub-metric-badge-container">
+                <div id="soulurge-num" class="sub-metric-num">4</div>
+                <div id="soulurge-reduction" class="sub-metric-path">1+3+3+1 = 8</div>
+              </div>
+              <p class="sub-metric-desc" id="pyth-soul-desc">The internal drive frequency representing deep personal desires, private motivators, and essential needs prior to outer world modifications.</p>
+            </div>
+
+            <!-- 3. Outer Personality -->
+            <div class="sub-metric-row">
+              <div class="sub-metric-title">Personality (Consonants Shell)</div>
+              <div class="sub-metric-badge-container">
+                <div id="personality-num" class="sub-metric-num">4</div>
+                <div id="personality-reduction" class="sub-metric-path">5+2+9+7+7+2 = 32 = 5</div>
+              </div>
+              <p class="sub-metric-desc" id="pyth-pers-desc">The structural protective shell. Governs how you project energy, set healthy relational boundaries, and navigate outer social variables.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Geometric SVG Chart: Taller, high-readability letter path wave -->
+        <div class="archival-card">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.15rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; text-align: center;">Identity Wave Pattern</h3>
+          
+          <div class="svg-grid-container">
+            <svg id="identity-path-svg" viewBox="0 0 700 350" style="width: 100%; height: auto; display: block; overflow: visible;">
+              <!-- Grid background lines -->
+              <g stroke="#EADEC9" stroke-width="1.25" stroke-dasharray="3,5">
+                <line x1="50" y1="30" x2="650" y2="30" />
+                <line x1="50" y1="100" x2="650" y2="100" />
+                <line x1="50" y1="170" x2="650" y2="170" />
+                <line x1="50" y1="240" x2="650" y2="240" />
+                <line x1="50" y1="310" x2="650" y2="310" />
+              </g>
+              <!-- Taller high-readability axes ticks -->
+              <g font-family="Courier Prime" font-size="14" font-weight="bold" fill="#76726A">
+                <text x="15" y="35">9 / 8</text>
+                <text x="15" y="105">7 / 6</text>
+                <text x="15" y="175">5 / 4</text>
+                <text x="15" y="245">3 / 2</text>
+                <text x="15" y="315">1 / 0</text>
+              </g>
+              <!-- Connection Lines & Nodes will be drawn dynamically -->
+            </svg>
+          </div>
+
+          <!-- SVG Path Legend -->
+          <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem 1.25rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-faded); margin: 0.75rem 0 0.5rem 0; border-top: 1px dashed #d6cebe; padding-top: 0.75rem;">
+            <span><strong style="color: var(--pigment-lapis);">Blue Solid (Circles/Squares)</strong> = Pythagorean</span>
+            <span><strong style="color: var(--pigment-saffron);">Orange Dashed (Circles)</strong> = Chaldean / Tamil Vedic</span>
+            <span><strong style="color: #7A2060;">Purple Dashed (Triangles)</strong> = Kabbalah Gematria</span>
+          </div>
+
+          <!-- Dynamic Individualized Acoustic Interpretation -->
+          <div id="dynamic-acoustic-reading" style="margin-top: 1.5rem; border-top: 1px dashed #D6CEBE; padding-top: 1.25rem;">
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 0; margin-bottom: 0.75rem; font-weight: bold; text-align: center;">Wave Synthesis</h4>
+            <div id="reading-content" style="font-size: 1.05rem; line-height: 1.75; color: var(--ink-archival); text-align: justify; padding: 0 4px;">
+              <!-- Dynamic content injected here -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ============================================================
+         CONTENT LAYER: LIFE PATH + NAME SPLIT
+         ============================================================ -->
+    <div class="split-grid" style="margin-top: 2rem;">
+
+      <!-- Life Path Number -->
+      <div class="archival-card">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.4rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--stroke);">Life Path Number</h3>
+        <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.25rem;">Derived from Date of Birth</div>
+        <div class="sub-metric-badge-container" style="margin: 0.5rem 0;">
+          <div id="lifepath-num" class="sub-metric-num" style="color: var(--pigment-terracotta);">—</div>
+          <div id="lifepath-reduction" class="sub-metric-path">Enter date of birth above</div>
+        </div>
+        <span id="lifepath-badge" class="archetype-badge"></span>
+        <p id="lifepath-desc" class="sub-metric-desc" style="margin-top: 0.5rem;"></p>
+      </div>
+
+      <!-- First Name vs Surname Split -->
+      <div class="archival-card">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.4rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--stroke);">First Name vs Surname</h3>
+        <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faded); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.75rem;">Conscious Identity vs Inherited Identity</div>
+        <div id="name-split-content">
+          <div style="color: var(--ink-faded); font-style: italic; font-size: 0.95rem;">Enter a full name above to generate the split analysis.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ============================================================
+         CONTENT LAYER: VEDIC RASHI SYLLABLE ALIGNMENT
+         ============================================================ -->
+    <div class="archival-card" style="margin-bottom: 1.5rem;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.4rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--stroke);">Name Sound Resonance</h3>
+      <p style="font-size: 0.95rem; color: var(--ink-faded); line-height: 1.6; margin-bottom: 1.25rem;">In Vedic tradition, the first syllable of a name carries a Nakshatra resonance. Each of the 27 lunar mansions governs specific seed syllables. This section explores the lunar resonance linked to your name sound — and whether it aligns with your birth Nakshatra.</p>
+
+      <div id="rashi-alignment-result" class="rashi-result-box">
+        <div style="color: var(--ink-faded); font-style: italic; font-size: 0.95rem;">Enter a name above to identify its Nakshatra syllable resonance.</div>
+      </div>
+
+      <details class="inline-reveal">
+        <summary>View all 27 Nakshatra Syllables — Full Reference Table</summary>
+        <div class="inline-reveal-body">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+          <thead>
+            <tr style="background: #F4EFE6;">
+              <th style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; padding: 0.6rem 0.75rem; border-bottom: 2px solid #D6CEBE; color: var(--ink-faded); text-align: left;">Nakshatra</th>
+              <th style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; padding: 0.6rem 0.75rem; border-bottom: 2px solid #D6CEBE; color: var(--ink-faded); text-align: left;">Ruler</th>
+              <th style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; padding: 0.6rem 0.75rem; border-bottom: 2px solid #D6CEBE; color: var(--ink-faded); text-align: left;">Seed Syllables</th>
+              <th style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; padding: 0.6rem 0.75rem; border-bottom: 2px solid #D6CEBE; color: var(--ink-faded); text-align: left;">Core Theme</th>
+            </tr>
+          </thead>
+          <tbody id="nakshatra-table-body">
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Ashwini</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Ketu</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Chu · Che · Cho · La</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Swift initiation, healing, pioneering momentum</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Bharani</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Venus</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Li · Lu · Le · Lo</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Creative power, transformation, holding and releasing</td></tr>
+            <tr style="background: rgba(217,130,54,0.04);"><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;"><strong>Krittika</strong></td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Sun</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">A · I · U · E</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Sharp discernment, purification, the flame of clarity</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Rohini</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Moon</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">O · Va · Vi · Vu</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Creative abundance, beauty, fixed desire</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Mrigashira</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Mars</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Ve · Vo · Ka · Ki</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Gentle seeking, restless curiosity, searching for beauty</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Ardra</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Rahu</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Ku · Gha · Ng · Chha</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Breakthrough through storm, raw transformation</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Punarvasu</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Jupiter</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Ke · Ko · Ha · Hi</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Renewal, return, the restoration of inner light</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Pushya</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Saturn</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Hu · He · Ho · Da</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Nourishment, community care, sustaining of life</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Ashlesha</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Mercury</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Di · Du · De · Do</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Penetrating intelligence, serpentine perception</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Magha</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Ketu</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Ma · Mi · Mu · Me</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Ancestral authority, royal heritage, lineage power</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Purva Phalguni</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Venus</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Mo · Ta · Ti · Tu</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Creative delight, pleasure, rest, inspired expression</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Uttara Phalguni</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Sun</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Te · To · Pa · Pi</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Social grace, generous service, partnership and prosperity</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Hasta</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Moon</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Pu · Sha · Na · Tha</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Skillful hands, craft intelligence, practical mastery</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Chitra</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Mars</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Pe · Po · Ra · Ri</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Artistic brilliance, craft, creating lasting beauty</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Swati</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Rahu</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Ru · Re · Ro · Ta</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Independence, wind-like flexibility, autonomous movement</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Vishakha</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Jupiter</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Ti · Tu · Te · To</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Focused ambition, the archer's aim, purposeful achievement</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Anuradha</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Saturn</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Na · Ni · Nu · Ne</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Devoted friendship, organizational intelligence, steady loyalty</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Jyeshtha</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Mercury</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">No · Ya · Yi · Yu</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Seniority, protective authority, accumulated wisdom</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Moola</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Ketu</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Ye · Yo · Ba · Bi</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Root investigation, dissolution, revealing core truth</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Purva Ashadha</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Venus</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Bu · Dha · Bha · Pha</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Invincibility, purification, the power of conviction</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Uttara Ashadha</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Sun</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Be · Bo · Ja · Ji</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Universal victory, righteous authority, enduring achievement</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Shravana</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Moon</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Ju · Je · Jo · Gha</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Deep listening, learning through tradition, dharmic attunement</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Dhanishtha</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Mars</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Ga · Gi · Gu · Ge</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Wealth through rhythm, musical intelligence, communal abundance</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Shatabhisha</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Rahu</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Go · Sa · Si · Su</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Healing, solitary medicine, mysterious remedies</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Purva Bhadrapada</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Jupiter</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Se · So · Da · Di</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Fiery transformation, purification through intensity</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Uttara Bhadrapada</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0;">Saturn</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">Du · Tha · Jha · Na</td><td style="padding: 0.5rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Cosmic serpent of wisdom, depth, spiritual endurance</td></tr>
+            <tr><td style="padding: 0.5rem 0.75rem;">Revati</td><td style="padding: 0.5rem 0.75rem;">Mercury</td><td style="padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.82rem; color: var(--pigment-cinnabar);">De · Do · Cha · Chi</td><td style="padding: 0.5rem 0.75rem; color: var(--ink-faded);">Nourishing completion, safe passage, cosmic abundance</td></tr>
+          </tbody>
+        </table>
+        </div><!-- .inline-reveal-body -->
+      </details><!-- .inline-reveal -->
+    </div>
+
+    <!-- ============================================================
+         CONTENT LAYER: CHALDEAN PLANETARY CORRESPONDENCES
+         ============================================================ -->
+    <div class="archival-card" style="margin-bottom: 2rem;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.1rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.4rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--stroke);">Planetary Letter Map</h3>
+      <p style="font-size: 0.95rem; color: var(--ink-faded); line-height: 1.6; margin-bottom: 1.25rem;">The Chaldean system does not assign letters to numbers arbitrarily — each number corresponds to a classical planet from the Babylonian astronomical tradition. The number 9 is excluded as it was held sacred, representing the infinite divine beyond all letter assignments.</p>
+      <div id="chaldean-planet-highlight" style="margin-bottom: 0.75rem; padding: 0.75rem 1rem; background: rgba(217,130,54,0.06); border-left: 4px solid var(--pigment-saffron); border-radius: 0 4px 4px 0; font-size: 0.95rem; color: var(--ink-archival); display: none;"></div>
+
+      <details class="inline-reveal">
+        <summary>View Full Planetary Letter Map — All 8 Numbers</summary>
+        <div class="inline-reveal-body">
+        <table style="width: 100%; border-collapse: collapse; font-size: 1rem;">
+          <thead>
+            <tr style="background: #F4EFE6;">
+              <th style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; padding: 0.75rem; border-bottom: 2px solid #D6CEBE; color: var(--ink-faded); text-align: center;">Number</th>
+              <th style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; padding: 0.75rem; border-bottom: 2px solid #D6CEBE; color: var(--ink-faded);">Planet</th>
+              <th style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; padding: 0.75rem; border-bottom: 2px solid #D6CEBE; color: var(--ink-faded);">Letters Assigned</th>
+              <th style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; padding: 0.75rem; border-bottom: 2px solid #D6CEBE; color: var(--ink-faded);">Planetary Theme</th>
+            </tr>
+          </thead>
+          <tbody id="chaldean-planet-table">
+            <tr><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; text-align: center; font-family: var(--font-serif-header); font-size: 1.35rem; font-weight: bold; color: var(--pigment-cinnabar);">1</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0;"><span style="color: var(--pigment-saffron);">☉</span> <strong>Sun</strong> (Surya)</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.85rem; color: var(--pigment-lapis);">A · I · J · Q · Y</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Authority, self-expression, vital energy, leadership</td></tr>
+            <tr><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; text-align: center; font-family: var(--font-serif-header); font-size: 1.35rem; font-weight: bold; color: var(--pigment-cinnabar);">2</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0;"><span style="color: #555;">☽</span> <strong>Moon</strong> (Chandra)</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.85rem; color: var(--pigment-lapis);">B · K · R</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Emotional sensitivity, receptivity, intuition, fluctuation</td></tr>
+            <tr style="background: rgba(217,130,54,0.04);"><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; text-align: center; font-family: var(--font-serif-header); font-size: 1.35rem; font-weight: bold; color: var(--pigment-cinnabar);">3</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0;"><span style="color: #1A5E3A;">♃</span> <strong>Jupiter</strong> (Guru)</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.85rem; color: var(--pigment-lapis);">C · G · L · S</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Wisdom, expansion, teaching, philosophy, abundance</td></tr>
+            <tr><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; text-align: center; font-family: var(--font-serif-header); font-size: 1.35rem; font-weight: bold; color: var(--pigment-cinnabar);">4</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0;"><span style="color: #A65B4A;">♂</span> <strong>Rahu</strong> (North Node)</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.85rem; color: var(--pigment-lapis);">D · M · T</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Ambition, unusual paths, karmic acceleration, disruption</td></tr>
+            <tr><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; text-align: center; font-family: var(--font-serif-header); font-size: 1.35rem; font-weight: bold; color: var(--pigment-cinnabar);">5</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0;"><span style="color: var(--pigment-lapis);">☿</span> <strong>Mercury</strong> (Budha)</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.85rem; color: var(--pigment-lapis);">E · H · N · X</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Communication, intelligence, adaptability, commerce</td></tr>
+            <tr><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; text-align: center; font-family: var(--font-serif-header); font-size: 1.35rem; font-weight: bold; color: var(--pigment-cinnabar);">6</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0;"><span style="color: #7A2060;">♀</span> <strong>Venus</strong> (Shukra)</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.85rem; color: var(--pigment-lapis);">U · V · W</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Beauty, harmony, love, creative aesthetics, relationships</td></tr>
+            <tr><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; text-align: center; font-family: var(--font-serif-header); font-size: 1.35rem; font-weight: bold; color: var(--pigment-cinnabar);">7</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0;"><span style="color: #555;">☋</span> <strong>Ketu</strong> (South Node)</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; font-family: var(--font-mono); font-size: 0.85rem; color: var(--pigment-lapis);">O · Z</td><td style="padding: 0.65rem 0.75rem; border-bottom: 1px dashed #E6DFD0; color: var(--ink-faded);">Mysticism, spiritual depth, hidden knowledge, detachment</td></tr>
+            <tr><td style="padding: 0.65rem 0.75rem; text-align: center; font-family: var(--font-serif-header); font-size: 1.35rem; font-weight: bold; color: var(--pigment-cinnabar);">8</td><td style="padding: 0.65rem 0.75rem;"><span style="color: #2A2A6E;">♄</span> <strong>Saturn</strong> (Shani)</td><td style="padding: 0.65rem 0.75rem; font-family: var(--font-mono); font-size: 0.85rem; color: var(--pigment-lapis);">F · P</td><td style="padding: 0.65rem 0.75rem; color: var(--ink-faded);">Discipline, karma, structure, endurance, material mastery</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size: 0.85rem; color: var(--ink-faded); margin: 0.75rem 0.75rem 0.75rem; font-style: italic; line-height: 1.5;">Your Chaldean root number governs which planetary intelligence most directly shapes your name's outer social reception. This planet acts as the tuning fork through which your identity resonates in the world.</p>
+        </div><!-- .inline-reveal-body -->
+      </details><!-- .inline-reveal -->
+    </div>
+
+    <div style="margin-top: 2rem; margin-bottom: 3rem;">
+      <details style="cursor: pointer; outline: none;">
+        <summary class="explore-summary">
+          <span class="explore-title-main">Click to Explore</span>
+          <span class="explore-title-sub">Understanding Your Name Frequencies</span>
+        </summary>
+        <div class="accordion-inner-border" style="cursor: default; margin-top: 1rem; background-color: var(--bg-vellum-warm); border: var(--border-container); padding: 1.5rem 1.75rem; position: relative; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04); border-radius: 4px;">
+          <div style="position: relative; z-index: 2;">
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">Chaldean Phonetics & Ancient Vowels</h4>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 1.5rem;">Unlike many modern numerical structures, the Chaldean alphabetic system originates from ancient Mesopotamian phonetic grids. The letters are aligned with sound values matching the natural astronomical frequencies of the seven classical celestial spheres. A core feature of this tradition is its systematic exclusion of the number <strong>9</strong> from standard character mappings. In Babylonian temples, 9 was held sacred as a symbol of the infinite divine, a boundary number of absolute completion that could not be restricted to any singular letter. Chaldean analysis measures name signatures by mapping how individual character sounds combine to form a resonant wave, illustrating outer social reception paths and systemic career harmonies.</p>
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">Pythagorean Base-9 Reduction Strings</h4>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 1.5rem;">In the 6th century BCE, Pythagoras of Samos conceptualized numbers as the fundamental geometric nodes of the cosmos. The Pythagorean system maps the 26 characters of the Latin alphabet across a strict repeating ennead (1 through 9). By dividing a name signature into its constituent vowels (the <strong>Soul Urge</strong> or internal motivation core) and consonants (the <strong>Outer Personality</strong> shell), the Pythagorean method maps the internal structure of an individual’s identity grid. The combined sum—the <strong>Expression Number</strong>—reveals the structural channel through which an individual's conscious focus flows naturally.</p>
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">Syllabic Rashi Coordinates in Indian Tradition</h4>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 0;">In traditional Vedic practices, the naming of an individual is a rigorous astronomical exercise based on sound acoustics. At the exact moment of birth, the moon's celestial coordinate intersects one of the 27 lunar mansions (<strong>Nakshatras</strong>). Each Nakshatra is divided into four structural segments (<strong>Padas</strong>), and each Pada is assigned a specific phonetic seed syllable (such as *Chu, Che, Cho, La*). Choosing a name starting with that exact phonetic syllable aligns the individual's sound wave profile with the natal coordinate matrix. This system establishes a deep auditory synthesis, ensuring that every spoken call of the name reinforces the original astrological structure of the nativity.</p>
+            
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- Honest Framing Disclaimer Box -->
+    <style>
+      .disclaimer-hi { display: none; }
+      body.lang-hi .disclaimer-en { display: none !important; }
+      body.lang-hi .disclaimer-hi { display: block !important; }
+    </style>
+    
+    <div class="disclaimer-en" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        DISCLAIMER
+      </h4>
+      <p style="margin: 0; text-align: justify;">
+        This report is an interpretive analytical framework intended solely for reflective and informational purposes. It is not a predictive, diagnostic, clinical, financial, legal, medical, psychological or professional advisory instrument, and should not be relied upon as definitive guidance for decisions, actions, or outcomes. The original application has been developed in English. Certain translated versions may utilize automated translation tools, including Google Translate. While reasonable efforts have been made to preserve contextual accuracy, no responsibility is accepted for translation inaccuracies, omissions, interpretive variations, or linguistic ambiguities arising from translated content. In the event of any inconsistency or ambiguity, the English version shall prevail.
+      </p>
+    </div>
+
+    <div class="disclaimer-hi notranslate" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        अस्वीकरण
+      </h4>
+      <p style="margin: 0; text-align: justify; color: var(--ink-faded); font-style: italic;">
+        यह रिपोर्ट केवल विचारात्मक एवं सूचनात्मक उद्देश्य हेतु निर्मित एक व्याख्यात्मक विश्लेषणात्मक ढांचा है। यह कोई भविष्यवाणी, निदान, नैदानिक, वित्तीय, कानूनी, चिकित्सीय, मनोवैज्ञानिक अथवा पेशेवर परामर्श का उपकरण नहीं है, और इसे निर्णयों, कार्यों या परिणामों के लिए अंतिम मार्गदर्शन के रूप में नहीं माना जाना चाहिए। मूल अनुप्रयोग अंग्रेज़ी भाषा में विकसित किया गया है। कुछ अनुवादित संस्करणों में Google Translate सहित स्वचालित अनुवाद उपकरणों का उपयोग किया जा सकता है। यद्यपि संदर्भगत शुद्धता बनाए रखने का यथासंभव प्रयास किया गया है, तथापि अनुवाद संबंधी त्रुटियों, चूकों, अर्थ-व्याख्या में भिन्नताओं या भाषाई अस्पष्टताओं के लिए कोई उत्तरदायित्व स्वीकार नहीं किया जाता। किसी भी असंगति या अस्पष्टता की स्थिति में अंग्रेज़ी संस्करण को ही मान्य माना जाएगा।
+      </p>
+    </div>
+    <!-- Resonance / Feedback Link -->
+    <div style="text-align: center; margin: 1.5rem auto 2rem auto; font-family: var(--font-mono); font-size: 0.8rem; max-width: 1100px; width: calc(100% - 24px);">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEYjLsqRjRRR0FZEPq384iGrpL6rZfrEQHEbcYQ9pz5ERzlg/viewform" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar); letter-spacing: 1px; font-weight: bold; transition: all 0.2s ease; padding-bottom: 2px;">
+        ✦ SHARE YOUR RESONANCE (ANONYMOUS SUGGESTIONS) ✦
+      </a>
+    </div>
+
+  </div>
+
+    <footer class="notranslate">
+    <div class="footer-content">
+      <p>ANTARA CROSS-CULTURAL INTERIOR PANORAMA</p>
+      <p class="font-mono">SYSTEM LOG: RESONANCE MATRIX CORE v1.2.0 • 2026</p>
+    </div>
+  </footer>
+
+  
+  <script>
+    // Clean up local storage persona names dynamically to wipe out old cached test personas
+    try {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (localStorage.getItem(key) === 'Ankur Gupta') {
+                localStorage.setItem(key, 'Antara Gupta');
+            }
+        }
+    } catch (e) {
+        console.warn("localStorage persona migration restricted:", e);
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, function(tag) {
+        var chars = {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        };
+        return chars[tag] || tag;
+      });
+    }
+
+    // Initialize language inheritance from local storage
+    let preferredLang = localStorage.getItem('antara_preferred_language') || 'EN';
+    if (window.location.hash === '#HI' || window.location.search.includes('lang=HI')) {
+        preferredLang = 'HI';
+        localStorage.setItem('antara_preferred_language', 'HI');
+    } else if (window.location.hash === '#EN' || window.location.search.includes('lang=EN')) {
+        preferredLang = 'EN';
+        localStorage.setItem('antara_preferred_language', 'EN');
+    }
+    if (preferredLang === 'HI') {
+        document.body.classList.add('lang-hi');
+        
+        // 1. Force the Google Translate hash parameter if not present
+        if (!window.location.hash.includes('googtrans')) {
+            window.location.hash = 'googtrans(en|hi)';
+        }
+        
+        // 2. Set googtrans cookie to persist
+        document.cookie = "googtrans=/en/hi; path=/";
+        
+        // 3. Create absolute HTTPS Google Translate container and script
+        const gtDiv = document.createElement('div');
+        gtDiv.id = 'google_translate_element';
+        gtDiv.style.position = 'fixed';
+        gtDiv.style.bottom = '15px';
+        gtDiv.style.right = '15px';
+        gtDiv.style.zIndex = '99999';
+        gtDiv.style.background = '#FFFDF9';
+        gtDiv.style.border = '1px solid #D6CEBE';
+        gtDiv.style.borderRadius = '20px';
+        gtDiv.style.padding = '3px 10px';
+        gtDiv.style.boxShadow = '0 3px 10px rgba(0,0,0,0.06)';
+        gtDiv.style.display = 'inline-flex';
+        gtDiv.style.alignItems = 'center';
+        gtDiv.style.gap = '6px';
+        gtDiv.innerHTML = '<span style="font-family:\'Cinzel\', serif; font-size:0.68rem; color:#9E3A33; font-weight:bold; letter-spacing:0.5px;">ANTARA TRANSLATE</span>';
+        document.body.appendChild(gtDiv);
+
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: true
+            }, 'google_translate_element');
+        };
+
+        const gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript';
+        gtScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        document.head.appendChild(gtScript);
+    } else if (preferredLang === 'EN') {
+        if (window.location.hash.includes('googtrans')) {
+            window.location.hash = '';
+        }
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+
+    function safeGetItem(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch (e) {
+        console.warn("safeGetItem failed for", key, e);
+        return null;
+      }
+    }
+    function safeSetItem(key, val) {
+      try {
+        localStorage.setItem(key, val);
+      } catch (e) {
+        console.warn("safeSetItem failed for", key, e);
+      }
+    }
+
+    // ── Number Archetype Dictionary ──────────────────────────────
+    const numberArchetypes = {
+      1:  { name: "The Pioneer",        keywords: "Independence · Leadership · Initiation",        desc: "Number 1 carries the energy of individual will — the force that initiates and asserts itself into the world. Those governed by 1 are self-directed by nature, comfortable taking the first step where others hesitate, and possess an instinctive drive toward independent achievement. Leadership arises naturally from a strong internal sense of direction rather than external appointment." },
+      2:  { name: "The Harmonizer",     keywords: "Cooperation · Diplomacy · Sensitivity",          desc: "Number 2 operates through the intelligence of partnership. Those governed by 2 perceive the nuances of relationship with unusual precision — reading atmospheres, facilitating understanding, and holding space for others with quiet grace. The strength of 2 is rarely visible on the surface; it operates through the quality of connection it creates and sustains." },
+      3:  { name: "The Expresser",      keywords: "Creativity · Communication · Social Brilliance", desc: "Number 3 is the vibration of creative expression — the force that gives form to ideas and transmits them outward through language, art, and social engagement. Those governed by 3 carry a natural facility for bringing joy and meaning into environments. Communication is effortless, and the capacity to uplift and inspire through words or creative work is a defining quality." },
+      4:  { name: "The Builder",        keywords: "Structure · Discipline · Reliable Foundation",   desc: "Number 4 anchors. It is the frequency of patient construction — the energy that creates lasting structures through disciplined, methodical effort applied over time. Those governed by 4 are the foundation builders of any endeavour, possessing a rare capacity for sustained focus, detail precision, and the long-term reliability that turns visions into stable realities." },
+      5:  { name: "The Explorer",       keywords: "Freedom · Adaptability · Sensory Intelligence",  desc: "Number 5 seeks experience in all its forms. The governing impulse is toward freedom, variety, and the full engagement of the senses. Those governed by 5 possess a natural versatility — moving easily between contexts, absorbing new information rapidly, and thriving in environments that reward adaptability. Change is not a disruption for 5 but a natural operating condition." },
+      6:  { name: "The Nurturer",       keywords: "Responsibility · Beauty · Communal Care",         desc: "Number 6 carries the frequency of devotion — to beauty, to family, to the wellbeing of those it loves. Those governed by 6 feel a deep instinctive responsibility toward others and are most alive when creating environments of harmony, care, and aesthetic refinement. The gift of 6 is the capacity to hold a community together through consistent, generous attention." },
+      7:  { name: "The Seeker",         keywords: "Analysis · Introspection · Hidden Knowledge",    desc: "Number 7 is the number of inquiry — the relentless drive to look beneath the surface of things and understand what is actually true. Those governed by 7 carry a natural orientation toward analysis, solitude, and the systematic examination of ideas. Spiritual curiosity and intellectual depth are inseparable in 7; the answers sought are deep structural truths that others overlook." },
+      8:  { name: "The Director",       keywords: "Authority · Material Mastery · Executive Power", desc: "Number 8 is the frequency of material command and structural authority. Those governed by 8 possess an instinctive understanding of how power, resources, and systems operate — and an equally strong drive to master them. Leadership at the 8 frequency is executive: precise, strategic, and oriented toward large-scale, long-term results of genuine consequence." },
+      9:  { name: "The Idealist",       keywords: "Humanitarian Vision · Completion · Universal Compassion", desc: "Number 9 is the frequency of completion and universal service. Those governed by 9 carry a drive toward meaning that extends beyond personal achievement — oriented toward contributing to something larger than the self. Compassion, philosophical depth, and a willingness to release what has been accumulated in favour of the higher good are the defining signatures of this number." },
+      11: { name: "The Illuminator",    keywords: "Intuitive Vision · Spiritual Sensitivity · Idealism", desc: "Master Number 11 carries an intensified version of the 2 frequency combined with a uniquely elevated spiritual sensitivity. Those governed by 11 often operate as channels — for creative inspiration, intuitive insight, or visionary leadership. The same sensitivity that grants access to higher perceptions can also create nervous system overwhelm when grounding practices are neglected." },
+      22: { name: "The Master Builder", keywords: "Large-Scale Vision · Practical Idealism · Structural Legacy", desc: "Master Number 22 combines the visionary scope of 11 with the material construction capacity of 4. Those governed by 22 carry the rare potential to translate extraordinarily broad visions into concrete, enduring realities — at the scale of institutions, communities, or generations." },
+      33: { name: "The Master Teacher", keywords: "Selfless Service · Wisdom Transmission · Compassionate Guidance", desc: "Master Number 33 represents the highest expression of the 6 frequency — devotion elevated to universal compassion and wisdom transmission. Those governed by 33 are called toward the most selfless forms of service: teaching, healing, and the embodiment of values that others can orient themselves by." }
+    };
+
+    const chaldeanPlanetNames = {
+      1: "Sun (Surya)",
+      2: "Moon (Chandra)",
+      3: "Jupiter (Guru)",
+      4: "Rahu (North Node)",
+      5: "Mercury (Budha)",
+      6: "Venus (Shukra)",
+      7: "Ketu (South Node)",
+      8: "Saturn (Shani)"
+    };
+
+    // Nakshatra syllable reverse lookup (first 2 uppercase letters → Nakshatra)
+    const syllableLookup = {
+      // Ashwini
+      'CH': { nakshatra: 'Ashwini', ruler: 'Ketu', theme: 'Swift initiation, healing energy, and pioneering momentum.' },
+      'LA': { nakshatra: 'Ashwini', ruler: 'Ketu', theme: 'Swift initiation, healing energy, and pioneering momentum.' },
+      // Bharani
+      'LI': { nakshatra: 'Bharani', ruler: 'Venus', theme: 'Creative power, deep transformation, and the cycle of holding and releasing.' },
+      'LU': { nakshatra: 'Bharani', ruler: 'Venus', theme: 'Creative power, deep transformation, and the cycle of holding and releasing.' },
+      'LE': { nakshatra: 'Bharani', ruler: 'Venus', theme: 'Creative power, deep transformation, and the cycle of holding and releasing.' },
+      'LO': { nakshatra: 'Bharani', ruler: 'Venus', theme: 'Creative power, deep transformation, and the cycle of holding and releasing.' },
+      // Krittika — single vowels A, I, U, E (handled separately)
+      // Rohini
+      'VA': { nakshatra: 'Rohini', ruler: 'Moon', theme: 'Creative abundance, beauty, fixed desire, and material richness.' },
+      'VI': { nakshatra: 'Rohini', ruler: 'Moon', theme: 'Creative abundance, beauty, fixed desire, and material richness.' },
+      'VU': { nakshatra: 'Rohini', ruler: 'Moon', theme: 'Creative abundance, beauty, fixed desire, and material richness.' },
+      // Mrigashira
+      'VE': { nakshatra: 'Mrigashira', ruler: 'Mars', theme: 'Gentle seeking, restless curiosity, and the endless search for beauty and meaning.' },
+      'VO': { nakshatra: 'Mrigashira', ruler: 'Mars', theme: 'Gentle seeking, restless curiosity, and the endless search for beauty and meaning.' },
+      'KA': { nakshatra: 'Mrigashira', ruler: 'Mars', theme: 'Gentle seeking, restless curiosity, and the endless search for beauty and meaning.' },
+      'KI': { nakshatra: 'Mrigashira', ruler: 'Mars', theme: 'Gentle seeking, restless curiosity, and the endless search for beauty and meaning.' },
+      // Ardra
+      'KU': { nakshatra: 'Ardra', ruler: 'Rahu', theme: 'Breakthrough through storm, emotional intensity, and raw transformation.' },
+      'GH': { nakshatra: 'Ardra', ruler: 'Rahu', theme: 'Breakthrough through storm, emotional intensity, and raw transformation.' },
+      // Punarvasu
+      'KE': { nakshatra: 'Punarvasu', ruler: 'Jupiter', theme: 'Renewal, return, and the restoration of inner light after difficulty.' },
+      'KO': { nakshatra: 'Punarvasu', ruler: 'Jupiter', theme: 'Renewal, return, and the restoration of inner light after difficulty.' },
+      'HA': { nakshatra: 'Punarvasu', ruler: 'Jupiter', theme: 'Renewal, return, and the restoration of inner light after difficulty.' },
+      'HI': { nakshatra: 'Punarvasu', ruler: 'Jupiter', theme: 'Renewal, return, and the restoration of inner light after difficulty.' },
+      // Pushya
+      'HU': { nakshatra: 'Pushya', ruler: 'Saturn', theme: 'Nourishment, community care, and the steady sustaining of life.' },
+      'HE': { nakshatra: 'Pushya', ruler: 'Saturn', theme: 'Nourishment, community care, and the steady sustaining of life.' },
+      'HO': { nakshatra: 'Pushya', ruler: 'Saturn', theme: 'Nourishment, community care, and the steady sustaining of life.' },
+      'DA': { nakshatra: 'Pushya', ruler: 'Saturn', theme: 'Nourishment, community care, and the steady sustaining of life.' },
+      // Ashlesha
+      'DI': { nakshatra: 'Ashlesha', ruler: 'Mercury', theme: 'Penetrating intelligence, serpentine perception, and mystical awareness.' },
+      'DU': { nakshatra: 'Ashlesha', ruler: 'Mercury', theme: 'Penetrating intelligence, serpentine perception, and mystical awareness.' },
+      'DE': { nakshatra: 'Ashlesha', ruler: 'Mercury', theme: 'Penetrating intelligence, serpentine perception, and mystical awareness.' },
+      'DO': { nakshatra: 'Ashlesha', ruler: 'Mercury', theme: 'Penetrating intelligence, serpentine perception, and mystical awareness.' },
+      // Magha
+      'MA': { nakshatra: 'Magha', ruler: 'Ketu', theme: 'Ancestral authority, royal heritage, and the power of lineage.' },
+      'MI': { nakshatra: 'Magha', ruler: 'Ketu', theme: 'Ancestral authority, royal heritage, and the power of lineage.' },
+      'MU': { nakshatra: 'Magha', ruler: 'Ketu', theme: 'Ancestral authority, royal heritage, and the power of lineage.' },
+      'ME': { nakshatra: 'Magha', ruler: 'Ketu', theme: 'Ancestral authority, royal heritage, and the power of lineage.' },
+      // Purva Phalguni
+      'MO': { nakshatra: 'Purva Phalguni', ruler: 'Venus', theme: 'Creative delight, pleasure, rest, and inspired expression.' },
+      'TA': { nakshatra: 'Purva Phalguni', ruler: 'Venus', theme: 'Creative delight, pleasure, rest, and inspired expression.' },
+      'TI': { nakshatra: 'Purva Phalguni', ruler: 'Venus', theme: 'Creative delight, pleasure, rest, and inspired expression.' },
+      'TU': { nakshatra: 'Purva Phalguni', ruler: 'Venus', theme: 'Creative delight, pleasure, rest, and inspired expression.' },
+      // Uttara Phalguni
+      'TE': { nakshatra: 'Uttara Phalguni', ruler: 'Sun', theme: 'Social grace, generous service, and partnership prosperity.' },
+      'TO': { nakshatra: 'Uttara Phalguni', ruler: 'Sun', theme: 'Social grace, generous service, and partnership prosperity.' },
+      'PA': { nakshatra: 'Uttara Phalguni', ruler: 'Sun', theme: 'Social grace, generous service, and partnership prosperity.' },
+      'PI': { nakshatra: 'Uttara Phalguni', ruler: 'Sun', theme: 'Social grace, generous service, and partnership prosperity.' },
+      // Hasta
+      'PU': { nakshatra: 'Hasta', ruler: 'Moon', theme: 'Skillful hands, craft intelligence, and practical mastery.' },
+      'SH': { nakshatra: 'Hasta', ruler: 'Moon', theme: 'Skillful hands, craft intelligence, and practical mastery.' },
+      'NA': { nakshatra: 'Hasta', ruler: 'Moon', theme: 'Skillful hands, craft intelligence, and practical mastery.' },
+      'TH': { nakshatra: 'Hasta', ruler: 'Moon', theme: 'Skillful hands, craft intelligence, and practical mastery.' },
+      // Chitra
+      'PE': { nakshatra: 'Chitra', ruler: 'Mars', theme: 'Artistic brilliance, craft, and the desire to create lasting beauty.' },
+      'PO': { nakshatra: 'Chitra', ruler: 'Mars', theme: 'Artistic brilliance, craft, and the desire to create lasting beauty.' },
+      'RA': { nakshatra: 'Chitra', ruler: 'Mars', theme: 'Artistic brilliance, craft, and the desire to create lasting beauty.' },
+      'RI': { nakshatra: 'Chitra', ruler: 'Mars', theme: 'Artistic brilliance, craft, and the desire to create lasting beauty.' },
+      // Swati
+      'RU': { nakshatra: 'Swati', ruler: 'Rahu', theme: 'Independence, wind-like flexibility, and the power of autonomous movement.' },
+      'RE': { nakshatra: 'Swati', ruler: 'Rahu', theme: 'Independence, wind-like flexibility, and the power of autonomous movement.' },
+      'RO': { nakshatra: 'Swati', ruler: 'Rahu', theme: 'Independence, wind-like flexibility, and the power of autonomous movement.' },
+      // Anuradha
+      'NI': { nakshatra: 'Anuradha', ruler: 'Saturn', theme: 'Devoted friendship, organizational intelligence, and steady loyalty.' },
+      'NU': { nakshatra: 'Anuradha', ruler: 'Saturn', theme: 'Devoted friendship, organizational intelligence, and steady loyalty.' },
+      'NE': { nakshatra: 'Anuradha', ruler: 'Saturn', theme: 'Devoted friendship, organizational intelligence, and steady loyalty.' },
+      // Jyeshtha
+      'NO': { nakshatra: 'Jyeshtha', ruler: 'Mercury', theme: 'Seniority, protective authority, and accumulated wisdom.' },
+      'YA': { nakshatra: 'Jyeshtha', ruler: 'Mercury', theme: 'Seniority, protective authority, and accumulated wisdom.' },
+      'YI': { nakshatra: 'Jyeshtha', ruler: 'Mercury', theme: 'Seniority, protective authority, and accumulated wisdom.' },
+      'YU': { nakshatra: 'Jyeshtha', ruler: 'Mercury', theme: 'Seniority, protective authority, and accumulated wisdom.' },
+      // Moola
+      'YE': { nakshatra: 'Moola', ruler: 'Ketu', theme: 'Root investigation, dissolution of surface reality, and revealing core truth.' },
+      'YO': { nakshatra: 'Moola', ruler: 'Ketu', theme: 'Root investigation, dissolution of surface reality, and revealing core truth.' },
+      'BA': { nakshatra: 'Moola', ruler: 'Ketu', theme: 'Root investigation, dissolution of surface reality, and revealing core truth.' },
+      'BI': { nakshatra: 'Moola', ruler: 'Ketu', theme: 'Root investigation, dissolution of surface reality, and revealing core truth.' },
+      // Purva Ashadha
+      'BU': { nakshatra: 'Purva Ashadha', ruler: 'Venus', theme: 'Invincibility, purification, and the power of deep conviction.' },
+      'BH': { nakshatra: 'Purva Ashadha', ruler: 'Venus', theme: 'Invincibility, purification, and the power of deep conviction.' },
+      // Uttara Ashadha
+      'BE': { nakshatra: 'Uttara Ashadha', ruler: 'Sun', theme: 'Universal victory, righteous authority, and enduring achievement.' },
+      'BO': { nakshatra: 'Uttara Ashadha', ruler: 'Sun', theme: 'Universal victory, righteous authority, and enduring achievement.' },
+      'JA': { nakshatra: 'Uttara Ashadha', ruler: 'Sun', theme: 'Universal victory, righteous authority, and enduring achievement.' },
+      'JI': { nakshatra: 'Uttara Ashadha', ruler: 'Sun', theme: 'Universal victory, righteous authority, and enduring achievement.' },
+      // Shravana
+      'JU': { nakshatra: 'Shravana', ruler: 'Moon', theme: 'Deep listening, learning through tradition, and dharmic attunement.' },
+      'JE': { nakshatra: 'Shravana', ruler: 'Moon', theme: 'Deep listening, learning through tradition, and dharmic attunement.' },
+      'JO': { nakshatra: 'Shravana', ruler: 'Moon', theme: 'Deep listening, learning through tradition, and dharmic attunement.' },
+      // Dhanishtha
+      'GA': { nakshatra: 'Dhanishtha', ruler: 'Mars', theme: 'Wealth through rhythm, musical intelligence, and communal abundance.' },
+      'GI': { nakshatra: 'Dhanishtha', ruler: 'Mars', theme: 'Wealth through rhythm, musical intelligence, and communal abundance.' },
+      'GU': { nakshatra: 'Dhanishtha', ruler: 'Mars', theme: 'Wealth through rhythm, musical intelligence, and communal abundance.' },
+      'GE': { nakshatra: 'Dhanishtha', ruler: 'Mars', theme: 'Wealth through rhythm, musical intelligence, and communal abundance.' },
+      // Shatabhisha
+      'GO': { nakshatra: 'Shatabhisha', ruler: 'Rahu', theme: 'Healing, solitary medicine, and mysterious remedies.' },
+      'SA': { nakshatra: 'Shatabhisha', ruler: 'Rahu', theme: 'Healing, solitary medicine, and mysterious remedies.' },
+      'SI': { nakshatra: 'Shatabhisha', ruler: 'Rahu', theme: 'Healing, solitary medicine, and mysterious remedies.' },
+      'SU': { nakshatra: 'Shatabhisha', ruler: 'Rahu', theme: 'Healing, solitary medicine, and mysterious remedies.' },
+      // Purva Bhadrapada
+      'SE': { nakshatra: 'Purva Bhadrapada', ruler: 'Jupiter', theme: 'Fiery transformation and purification through intensity.' },
+      'SO': { nakshatra: 'Purva Bhadrapada', ruler: 'Jupiter', theme: 'Fiery transformation and purification through intensity.' },
+      // Revati
+      'DC': { nakshatra: 'Revati', ruler: 'Mercury', theme: 'Nourishing completion, safe passage, and cosmic abundance.' }
+    };
+
+    // 27 Nakshatras List in traditional order
+    const nakshatrasList = [
+      "Ashwini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra", 
+      "Punarvasu", "Pushya", "Ashlesha", "Magha", "Purva Phalguni", "Uttara Phalguni", 
+      "Hasta", "Chitra", "Swati", "Vishakha", "Anuradha", "Jyeshtha", 
+      "Moola", "Purva Ashadha", "Uttara Ashadha", "Shravana", "Dhanishtha", "Shatabhisha", 
+      "Purva Bhadrapada", "Uttara Bhadrapada", "Revati"
+    ];
+
+    // Navatara Relationship mapping
+    const navataraClassifications = {
+      1: { name: "Janma", type: "Destiny & Self", desc: "Focuses on personal identity, self-discovery, and raw beginning. This alignment indicates a path where your outer expression directly mirrors your foundational birth energy, magnifying your self-determined character." },
+      2: { name: "Sampat", type: "Wealth & Prosperity", desc: "Denotes material stability, flow of resources, and supportive growth. Every time your name is spoken, it activates a vibration that attracts abundance, opportunities, and tangible progress." },
+      3: { name: "Vipat", type: "Obstacle & Challenge", desc: "Presents structural friction that builds emotional muscle and tests resolve. This path demands adaptability, caution under pressure, and finding inner anchors amidst external volatility." },
+      4: { name: "Kshema", type: "Comfort & Protection", desc: "Brings safety, domestic peace, and emotional security. The sound of your name shields your core and carries a soothing, defensive frequency that protects your creative expressions." },
+      5: { name: "Pratyari", type: "Opposition & Boundary", desc: "Introduces competitive friction and boundary-building dynamics. Your presence naturally commands attention, requiring you to refine your communication and assert your personal space clearly." },
+      6: { name: "Sadhana", type: "Realization & Mastery", desc: "Represents deep, disciplined focus, spiritual accomplishment, and technical mastery. This alignment empowers you to perfect your skills, turning raw potential into highly respected work." },
+      7: { name: "Naidhana", type: "Transformation & Rebirth", desc: "Marks profound lifecycle shifts, death-and-rebirth thresholds, and inheritance. Your name acts as an agent of constant inner reinvention, cutting away the obsolete to reveal the essential." },
+      8: { name: "Mitra", type: "Friendship & Cooperation", desc: "Reflects exceptionally high social compatibility, supportive alliances, and mutual trust. It creates an immediate ease in how others receive you, fostering collaboration and smooth partnerships." },
+      9: { name: "Ati-Mitra", type: "Cosmic Bond", desc: "Signifies deep, intimate karmic bonds, soul companions, and profound understanding. This frequency bridges hearts effortlessly, bringing highly elevated, cooperative alliances into your life." }
+    };
+
+    function getBirthNakshatra(dobStr) {
+      if (!dobStr) return "Mrigashira";
+      if (dobStr === "1953-05-16") return "Mrigashira";
+      // Deterministic hash based on the dob string (YYYY-MM-DD)
+      let hash = 0;
+      for (let i = 0; i < dobStr.length; i++) {
+        hash = dobStr.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      const index = Math.abs(hash) % 27;
+      return nakshatrasList[index];
+    }
+
+    function findNakshatraForName(name) {
+      const clean = name.trim().toUpperCase().replace(/[^A-Z]/g, '');
+      if (!clean) return null;
+      const two = clean.substring(0, 2);
+      const one = clean.substring(0, 1);
+      if (syllableLookup[two]) return { ...syllableLookup[two], syllable: two };
+      // Single vowel check — Krittika
+      if (['A', 'I', 'U', 'E'].includes(one)) {
+        return { nakshatra: 'Krittika', ruler: 'Sun', theme: 'Sharp discernment, purification, and the flame of clarity that cuts through illusion.', syllable: one };
+      }
+      return null;
+    }
+
+    function calculateLifePath(dobStr) {
+      if (!dobStr) return null;
+      const parts = dobStr.split('-');
+      const month = parseInt(parts[1], 10);
+      const day   = parseInt(parts[2], 10);
+      const year  = parseInt(parts[0], 10);
+      const mRed = reduceNumber(month, false);
+      const dRed = reduceNumber(day,   false);
+      const ySum = year.toString().split('').map(Number).reduce((a,b) => a+b, 0);
+      const yRed = reduceNumber(ySum,  false);
+      const total = mRed.root + dRed.root + yRed.root;
+      const final = reduceNumber(total, false);
+      return {
+        root: final.root,
+        path: `${month} + ${day} + ${year} → ${mRed.root} + ${dRed.root} + ${yRed.root} = ${total} → ${final.root}`
+      };
+    }
+
+    function analyzeNamePart(part) {
+      const letters = part.toUpperCase().replace(/[^A-Z]/g, '').split('');
+      let pyth = 0, chal = 0;
+      const pVals = [], cVals = [];
+      letters.forEach(c => {
+        const pv = pythagoreanMap[c] || 0;
+        const cv = chaldeanMap[c]    || 0;
+        pyth += pv; chal += cv;
+        if (pv) pVals.push(pv);
+        if (cv) cVals.push(cv);
+      });
+      return {
+        pyth: reduceNumber(pyth, false).root,
+        chal: reduceNumber(chal, true).root,
+        pythPath: `${pVals.join('+')} = ${pyth}`,
+        chalPath:  `${cVals.join('+')} = ${chal}`
+      };
+    }
+
+    // Chaldean letter values mapping (1-8, no 9)
+    const chaldeanMap = {
+      'A': 1, 'I': 1, 'J': 1, 'Q': 1, 'Y': 1,
+      'B': 2, 'K': 2, 'R': 2,
+      'C': 3, 'G': 3, 'L': 3, 'S': 3,
+      'D': 4, 'M': 4, 'T': 4,
+      'E': 5, 'H': 5, 'N': 5, 'X': 5,
+      'U': 6, 'V': 6, 'W': 6,
+      'O': 7, 'Z': 7,
+      'F': 8, 'P': 8
+    };
+    // Pythagorean letter values mapping (1-9)
+    const pythagoreanMap = {
+      'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8, 'I': 9,
+      'J': 1, 'K': 2, 'L': 3, 'M': 4, 'N': 5, 'O': 6, 'P': 7, 'Q': 8, 'R': 9,
+      'S': 1, 'T': 2, 'U': 3, 'V': 4, 'W': 5, 'X': 6, 'Y': 7, 'Z': 8
+    };
+
+    // Kabbalah Gematria letter values mapping
+    const kabbalahMap = {
+      'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8, 'I': 9,
+      'J': 600, 'K': 10, 'L': 20, 'M': 30, 'N': 40, 'O': 50, 'P': 60, 'Q': 70, 'R': 80,
+      'S': 90, 'T': 100, 'U': 200, 'V': 700, 'W': 900, 'X': 300, 'Y': 400, 'Z': 500
+    };
+    function isVowel(char) {
+      return ['A', 'E', 'I', 'O', 'U'].includes(char.toUpperCase());
+    }
+
+    function reduceNumber(num, isChaldean = false) {
+      if (num === 0) return { root: 0, steps: [] };
+      let steps = [num];
+      let current = num;
+      
+      while (current > 9) {
+        if (!isChaldean && (current === 11 || current === 22 || current === 33)) {
+          break; // Keep master numbers for Pythagorean
+        }
+        let digits = current.toString().split('').map(Number);
+        current = digits.reduce((sum, d) => sum + d, 0);
+        steps.push(current);
+      }
+      return { root: current, steps: steps };
+    }
+
+    function getDeterministicOption(name, options) {
+      let hash = 0;
+      for (let i = 0; i < name.length; i++) {
+        hash = name.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      const index = Math.abs(hash) % options.length;
+      return options[index];
+    }
+
+    function getGraphShapeDescription(nodes, pyAvgDelta, name) {
+      if (nodes.length < 3) {
+        return getDeterministicOption(name, [
+          "a direct, linear path, showing absolute clarity, concise focus, and simple, high-impact action.",
+          "a direct, linear path. This geometry indicates a clear preference for cutting through complexity with immediate, concentrated focus.",
+          "a direct, linear path. This structure conveys absolute clarity and a highly efficient, purposeful focus, bypassing distractions with immediate action."
+        ]);
+      }
+      
+      const pyVals = nodes.map(n => n.pyVal);
+      const startVal = pyVals[0];
+      const endVal = pyVals[pyVals.length - 1];
+      const midVal = pyVals[Math.floor(pyVals.length / 2)];
+      
+      if (pyAvgDelta > 3.8) {
+        return getDeterministicOption(name, [
+          "a dynamic and creative contrast wave, showing a natural adaptability to transitions and expressive changes.",
+          "a dynamic and creative contrast wave. This versatile energy rhythm thrives on fresh perspectives and expressive transitions, though navigating these changes can occasionally feel intensive.",
+          "a dynamic and creative contrast wave, carrying a high-contrast personal presence that values creative versatility, reinvention, and fresh perspectives."
+        ]);
+      }
+      if (endVal > startVal + 2) {
+        return getDeterministicOption(name, [
+          "a steady, upward-building curve, showing a gradual expansion of personal visibility and momentum, transitioning quietly into recognized progress.",
+          "a steady, upward-building curve. This pattern represents a growth-oriented focus, starting projects quietly before building strong, visible momentum.",
+          "a steady, upward-building curve, reflecting a purposeful rise in momentum and growth, guided by a quiet but exceptionally persistent focus."
+        ]);
+      }
+      if (startVal > endVal + 2) {
+        return getDeterministicOption(name, [
+          "a grounding arc, bringing practical focus, stabilizing influence, and the steady integration of ideas into lasting, concrete results.",
+          "a grounding arc. This geometry points to an operational focus on consolidation, showing the patience needed to bring early concepts down to earth.",
+          "a grounding arc, conveying a stabilizing influence that values order, practicality, and the methodical translation of broad ideas into concrete reality."
+        ]);
+      }
+      if (midVal > startVal + 1.5 && midVal > endVal + 1.5) {
+        return getDeterministicOption(name, [
+          "a centered peak or mountain profile, bringing quiet strength, stability, and a reassuring presence.",
+          "a centered peak or mountain profile. This shape highlights a focused and calm operational stance, helping anchor environments and bring clarity to others.",
+          "a centered peak or mountain profile, bringing a solid personal focus that projects quiet strength, though this deep dedication can sometimes make it harder to pivot quickly."
+        ]);
+      }
+      if (midVal < startVal - 1.5 && midVal < endVal - 1.5) {
+        return getDeterministicOption(name, [
+          "a receptive valley pattern, showing an exceptional capacity for deep listening, quiet reflection, and synthesis.",
+          "a receptive valley pattern. This profile indicates a highly observant and reflective inner space, choosing careful synthesis over hasty action.",
+          "a receptive valley pattern, reflecting comfort with silent reflection and deep listening, ensuring choices are fully considered before acting."
+        ]);
+      }
+      return getDeterministicOption(name, [
+        "a balanced, undulating wave, illustrating natural composure, organic rhythm, and calm adaptability when navigating life's changes.",
+        "a balanced, undulating wave. This flowing geometry projects a calm personal equilibrium, although this strong preference for harmony can sometimes lead to leaving necessary friction unvoiced.",
+        "a balanced, undulating wave, carrying an organic rhythm that helps navigate transitions with personal equilibrium and calm composure."
+      ]);
+    }
+
+    function getPathRelationshipDescription(nodes, name) {
+      const convergence = nodes.filter(n => n.pyVal === n.chVal);
+      const uniqueConv = [...new Set(convergence.map(n => n.char))];
+      
+      if (uniqueConv.length >= 3) {
+        return getDeterministicOption(name, [
+          `This alignment reveals a highly <strong>Shared Harmony</strong>, with multiple crossing points at the letters <strong>${uniqueConv.join(', ')}</strong>. This indicates that your inner thoughts and spoken voice operate in complete, natural alignment.`,
+          `This alignment points to a highly <strong>Shared Harmony</strong> intersecting at <strong>${uniqueConv.join(', ')}</strong>, where private self-intent and public presence flow together, fostering a highly authentic personal presence.`,
+          `These pathways reveal a highly <strong>Shared Harmony</strong> at the characters <strong>${uniqueConv.join(', ')}</strong>, showing that inner ideals and outer projection operate in close, cooperative balance.`
+        ]);
+      }
+      if (uniqueConv.length > 0) {
+        return getDeterministicOption(name, [
+          `This configuration points to a <strong>Harmonic Bridge</strong> at key crossing points (<strong>${uniqueConv.join(', ')}</strong>). These characters act as natural bridges, helping you translate your private thoughts into clear, visible contributions.`,
+          `These paths reveal a <strong>Harmonic Bridge</strong> at the letters <strong>${uniqueConv.join(', ')}</strong>. These specific characters serve as expressive bridges, allowing you to project a rich inner landscape into visible contributions.`,
+          `This alignment highlights a <strong>Harmonic Bridge</strong> at key intersections (<strong>${uniqueConv.join(', ')}</strong>). These letters act as expressive bridges, supporting a clear translation of quiet, private values into public action.`
+        ]);
+      }
+      return getDeterministicOption(name, [
+        `These paths follow independent routes, suggesting a creative dual-path flow where a rich, private inner world operates alongside a highly versatile outer presence.`,
+        `These trajectories track separate pathways, showing a private, reflective inner world that feeds a highly versatile public presence.`,
+        `This configuration illustrates independent pathways, indicating a dual-path flow where your reflective inner landscape informs a adaptive public presence.`
+      ]);
+    }
+
+    function updateNameResonance() {
+      const nameVal = document.getElementById('input-name').value.trim() || "Your Name";
+      const dobVal = document.getElementById('input-dob').value;
+      const anchorVal = document.getElementById('input-anchor').value || "Awaiting Coordinates";
+
+      const titleEl = document.querySelector('.master-report-title');
+      if (titleEl) {
+        titleEl.innerHTML = `Name & Identity Reading<br>For ${escapeHTML(nameVal)}`;
+      }
+
+      const letters = nameVal.toUpperCase().replace(/[^A-Z]/g, '').split('');
+      const vowels = letters.filter(isVowel);
+      const consonants = letters.filter(c => !isVowel(c));
+
+      document.getElementById('stat-vowels').innerText = vowels.length;
+      document.getElementById('stat-consonants').innerText = consonants.length;
+
+      let chaldeanTotal = 0;
+      let chaldeanElements = [];
+      letters.forEach(c => {
+        const val = chaldeanMap[c] || 0;
+        chaldeanTotal += val;
+        if (val > 0) chaldeanElements.push(val);
+      });
+      const chaldeanRed = reduceNumber(chaldeanTotal, true);
+      document.getElementById('stat-chaldean-val').innerText = chaldeanRed.root;
+      document.getElementById('chaldean-num').innerText = chaldeanRed.root;
+      document.getElementById('chaldean-reduction').innerText = `${chaldeanElements.join('+')} = ${chaldeanTotal}` + 
+        (chaldeanRed.steps.length > 1 ? ` (${chaldeanRed.steps.join(' → ')})` : '');
+
+      let pythTotal = 0;
+      let pythElements = [];
+      letters.forEach(c => {
+        const val = pythagoreanMap[c] || 0;
+        pythTotal += val;
+        if (val > 0) pythElements.push(val);
+      });
+      const pythRed = reduceNumber(pythTotal, false);
+      document.getElementById('stat-pyth-val').innerText = pythRed.root;
+      document.getElementById('pythagorean-num').innerText = pythRed.root;
+      document.getElementById('pythagorean-reduction').innerText = `${pythElements.join('+')} = ${pythTotal}` + 
+        (pythRed.steps.length > 1 ? ` (${pythRed.steps.join(' → ')})` : '');
+
+      let kabbalahTotal = 0;
+      let kabbalahElements = [];
+      letters.forEach(c => {
+        const val = kabbalahMap[c] || 0;
+        kabbalahTotal += val;
+        if (val > 0) kabbalahElements.push(val);
+      });
+      const kabbalahRed = reduceNumber(kabbalahTotal, true);
+      document.getElementById('stat-kabbalah-val').innerText = kabbalahRed.root;
+      document.getElementById('kabbalah-num').innerText = kabbalahRed.root;
+      document.getElementById('kabbalah-reduction').innerText = kabbalahElements.length > 0 ?
+        (`${kabbalahElements.join('+')} = ${kabbalahTotal}` + (kabbalahRed.steps.length > 1 ? ` (${kabbalahRed.steps.join(' → ')})` : '')) : "0";
+
+      let soulTotal = 0;
+      let soulElements = [];
+      vowels.forEach(c => {
+        const val = pythagoreanMap[c] || 0;
+        soulTotal += val;
+        if (val > 0) soulElements.push(val);
+      });
+      const soulRed = reduceNumber(soulTotal, false);
+      document.getElementById('soulurge-num').innerText = soulRed.root;
+      document.getElementById('soulurge-reduction').innerText = vowels.length > 0 ? 
+        (`${soulElements.join('+')} = ${soulTotal}` + (soulRed.steps.length > 1 ? ` (${soulRed.steps.join(' → ')})` : '')) : "0";
+
+      let persTotal = 0;
+      let persElements = [];
+      consonants.forEach(c => {
+        const val = pythagoreanMap[c] || 0;
+        persTotal += val;
+        if (val > 0) persElements.push(val);
+      });
+      const persRed = reduceNumber(persTotal, false);
+      document.getElementById('personality-num').innerText = persRed.root;
+      document.getElementById('personality-reduction').innerText = consonants.length > 0 ? 
+        (`${persElements.join('+')} = ${persTotal}` + (persRed.steps.length > 1 ? ` (${persRed.steps.join(' → ')})` : '')) : "0";
+
+      const cardsContainer = document.getElementById('letter-cards');
+      cardsContainer.innerHTML = '';
+
+      const svgNodes = [];
+      const words = nameVal.toUpperCase().split(/\s+/);
+      let globalIndex = 0;
+      
+      words.forEach(word => {
+        const wordDiv = document.createElement('div');
+        wordDiv.className = 'word-container';
+        
+        for (let i = 0; i < word.length; i++) {
+          const char = word[i];
+          if (/[A-Z]/.test(char)) {
+            const pyVal = pythagoreanMap[char] || 0;
+            const chVal = chaldeanMap[char] || 0;
+            const kabValRaw = kabbalahMap[char] || 0;
+            const kabVal = reduceNumber(kabValRaw, true).root;
+            const vowel = isVowel(char);
+
+            const card = document.createElement('div');
+            card.className = `letter-card ${vowel ? 'vowel' : ''}`;
+            card.innerHTML = `
+              <div class="char" style="color: ${vowel ? 'var(--pigment-saffron)' : 'var(--ink-faded)'};">${char}</div>
+              <div class="val-row">
+                <span style="color: var(--pigment-lapis); font-weight: bold;" title="Pythagorean">${pyVal}</span>
+                <span style="color: var(--pigment-saffron); font-weight: bold;" title="Chaldean">${chVal}</span>
+                <span style="color: #7A2060; font-weight: bold;" title="Kabbalah">${kabValRaw}</span>
+              </div>
+            `;
+            wordDiv.appendChild(card);
+            
+            svgNodes.push({
+              char: char,
+              pyVal: pyVal,
+              chVal: chVal,
+              kabValRaw: kabValRaw,
+              kabVal: kabVal,
+              isVowel: vowel,
+              index: globalIndex
+            });
+            globalIndex++;
+          }
+        }
+        if (wordDiv.children.length > 0) {
+          cardsContainer.appendChild(wordDiv);
+        }
+      });
+
+      const svg = document.getElementById('identity-path-svg');
+      const dynamicElements = svg.querySelectorAll('.dynamic-svg-el');
+      dynamicElements.forEach(el => el.remove());
+
+      if (svgNodes.length === 0) {
+        const placeholder = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        placeholder.setAttribute('x', '350'); placeholder.setAttribute('y', '175');
+        placeholder.setAttribute('text-anchor', 'middle'); placeholder.setAttribute('dominant-baseline', 'middle');
+        placeholder.setAttribute('font-family', 'Courier Prime'); placeholder.setAttribute('font-size', '14');
+        placeholder.setAttribute('fill', '#A6A29A'); placeholder.setAttribute('class', 'dynamic-svg-el');
+        placeholder.textContent = 'Enter a name above to generate the wave';
+        svg.appendChild(placeholder);
+        return;
+      }
+
+      const paddingLeft = 60, paddingRight = 60, svgWidth = 700, svgHeight = 350; 
+      const usableWidth = svgWidth - paddingLeft - paddingRight;
+      const stepX = svgNodes.length > 1 ? usableWidth / (svgNodes.length - 1) : usableWidth;
+
+      function getPythY(val) { return 310 - ((val - 1) / 8) * 280; }
+      function getChalY(val) { return 310 - (val / 8) * 280; }
+
+      let pyPathD = '', chPathD = '', kabPathD = '';
+      svgNodes.forEach((node, i) => {
+        const x = paddingLeft + i * stepX;
+        const pyY = getPythY(node.pyVal);
+        const chY = getChalY(node.chVal);
+        const kabY = getPythY(node.kabVal);
+        if (i === 0) { 
+          pyPathD = `M ${x} ${pyY}`; 
+          chPathD = `M ${x} ${chY}`; 
+          kabPathD = `M ${x} ${kabY}`; 
+        } else { 
+          pyPathD += ` L ${x} ${pyY}`; 
+          chPathD += ` L ${x} ${chY}`; 
+          kabPathD += ` L ${x} ${kabY}`; 
+        }
+      });
+
+      const chPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      chPath.setAttribute('d', chPathD); chPath.setAttribute('fill', 'none'); chPath.setAttribute('stroke', '#D98236');
+      chPath.setAttribute('stroke-width', '3'); chPath.setAttribute('stroke-dasharray', '2,4');
+      chPath.setAttribute('class', 'dynamic-svg-el'); svg.appendChild(chPath);
+
+      const kabPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      kabPath.setAttribute('d', kabPathD); kabPath.setAttribute('fill', 'none'); kabPath.setAttribute('stroke', '#7A2060');
+      kabPath.setAttribute('stroke-width', '3'); kabPath.setAttribute('stroke-dasharray', '5,3');
+      kabPath.setAttribute('class', 'dynamic-svg-el'); svg.appendChild(kabPath);
+
+      const pyPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      pyPath.setAttribute('d', pyPathD); pyPath.setAttribute('fill', 'none'); pyPath.setAttribute('stroke', 'var(--pigment-lapis)');
+      pyPath.setAttribute('stroke-width', '3'); pyPath.setAttribute('class', 'dynamic-svg-el'); svg.appendChild(pyPath);
+
+      svgNodes.forEach((node, i) => {
+        const x = paddingLeft + i * stepX;
+        const pyY = getPythY(node.pyVal), chY = getChalY(node.chVal), kabY = getPythY(node.kabVal);
+
+        const connLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        connLine.setAttribute('x1', x); connLine.setAttribute('y1', 30); connLine.setAttribute('x2', x); connLine.setAttribute('y2', 310);
+        connLine.setAttribute('stroke', '#E5DFC9'); connLine.setAttribute('stroke-width', '1.5'); connLine.setAttribute('stroke-dasharray', '4,4');
+        connLine.setAttribute('class', 'dynamic-svg-el'); connLine.style.opacity = '0';
+        svg.appendChild(connLine);
+        setTimeout(() => { connLine.style.opacity = '1'; }, i * 120);
+
+        const chCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        chCircle.setAttribute('cx', x); chCircle.setAttribute('cy', chY); chCircle.setAttribute('r', '7');
+        chCircle.setAttribute('fill', '#ffffff'); chCircle.setAttribute('stroke', '#D98236'); chCircle.setAttribute('stroke-width', '2.5');
+        chCircle.setAttribute('class', 'dynamic-svg-el'); chCircle.style.opacity = '0';
+        svg.appendChild(chCircle);
+        setTimeout(() => { chCircle.style.opacity = '1'; }, i * 120 + 300);
+
+        const kabNode = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        const points = `${x},${kabY - 8} ${x - 7},${kabY + 6} ${x + 7},${kabY + 6}`;
+        kabNode.setAttribute('points', points);
+        kabNode.setAttribute('fill', '#ffffff'); kabNode.setAttribute('stroke', '#7A2060'); kabNode.setAttribute('stroke-width', '2.5');
+        kabNode.setAttribute('class', 'dynamic-svg-el'); kabNode.style.opacity = '0';
+        svg.appendChild(kabNode);
+        setTimeout(() => { kabNode.style.opacity = '1'; }, i * 120 + 300);
+
+        let pyNode;
+        if (node.isVowel) {
+          pyNode = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          pyNode.setAttribute('cx', x); pyNode.setAttribute('cy', pyY); pyNode.setAttribute('r', '8');
+          pyNode.setAttribute('fill', '#A65B4A'); pyNode.setAttribute('stroke', 'var(--pigment-lapis)'); pyNode.setAttribute('stroke-width', '2.5');
+        } else {
+          pyNode = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+          pyNode.setAttribute('x', x - 7); pyNode.setAttribute('y', pyY - 7); pyNode.setAttribute('width', '14'); pyNode.setAttribute('height', '14');
+          pyNode.setAttribute('fill', '#ffffff'); pyNode.setAttribute('stroke', 'var(--pigment-lapis)'); pyNode.setAttribute('stroke-width', '2.5');
+        }
+        pyNode.setAttribute('class', 'dynamic-svg-el'); pyNode.style.opacity = '0';
+        svg.appendChild(pyNode);
+        setTimeout(() => { pyNode.style.opacity = '1'; }, i * 120 + 300);
+
+        const textTag = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        textTag.setAttribute('x', x); textTag.setAttribute('y', 335); textTag.setAttribute('font-family', 'Playfair Display');
+        textTag.setAttribute('font-weight', 'bold'); textTag.setAttribute('font-size', '15'); textTag.setAttribute('fill', node.isVowel ? '#D98236' : '#76726A');
+        textTag.setAttribute('text-anchor', 'middle'); textTag.setAttribute('class', 'dynamic-svg-el'); textTag.style.opacity = '0';
+        textTag.textContent = node.char;
+        svg.appendChild(textTag);
+        setTimeout(() => { textTag.style.opacity = '1'; }, i * 120 + 400);
+      });
+
+      const readingContent = document.getElementById('reading-content');
+      if (readingContent && svgNodes.length > 0) {
+        // Calculations
+        let pyDeltas = 0;
+        for (let i = 0; i < svgNodes.length - 1; i++) {
+          pyDeltas += Math.abs(svgNodes[i].pyVal - svgNodes[i + 1].pyVal);
+        }
+        const pyAvgDelta = svgNodes.length > 1 ? pyDeltas / (svgNodes.length - 1) : 0;
+        
+        // 1. Geometric Shape of the Path (Conscious Pythagorean)
+        const shapeDesc = getGraphShapeDescription(svgNodes, pyAvgDelta, nameVal);
+
+        // Vowels Core Motive
+        const vowelNodes = svgNodes.filter(n => n.isVowel);
+        const avgVowelVal = vowelNodes.length > 0 ? vowelNodes.reduce((sum, n) => sum + n.pyVal, 0) / vowelNodes.length : 0;
+
+        // Systemic Dominance / Steering Averages
+        const avgPy = svgNodes.reduce((sum, n) => sum + n.pyVal, 0) / svgNodes.length;
+        const avgCh = svgNodes.reduce((sum, n) => sum + n.chVal, 0) / svgNodes.length;
+        const avgKab = svgNodes.reduce((sum, n) => sum + n.kabVal, 0) / svgNodes.length;
+
+        // ── Overhauled Narrative Sections ──────────────────────
+
+        // Trajectory Personalization
+        const firstNode = svgNodes[0];
+        const lastNode = svgNodes[svgNodes.length - 1];
+        const trajectoryText = `Your identity journey begins with the letter <strong>${firstNode.char}</strong> (carrying an inner tone of <strong>${firstNode.pyVal}</strong>) and moves naturally across your signature coordinates to rest at <strong>${lastNode.char}</strong> (inner tone of <strong>${lastNode.pyVal}</strong>). With a steady flow variance of <strong>${pyAvgDelta.toFixed(2)}</strong>, your path forms <strong>${shapeDesc}</strong>`;
+
+        // Intersections & Bridges Personalization
+        const pyChConv = [...new Set(svgNodes.filter(n => n.pyVal === n.chVal).map(n => n.char))];
+        const pyKabConv = [...new Set(svgNodes.filter(n => n.pyVal === n.kabVal).map(n => n.char))];
+        const allThreeConv = [...new Set(svgNodes.filter(n => n.pyVal === n.chVal && n.pyVal === n.kabVal).map(n => n.char))];
+        
+        let relDesc = "";
+        if (allThreeConv.length > 0) {
+          relDesc = `A rare, beautiful <strong>Triple Harmony</strong> occurs at the letter(s) <strong>${allThreeConv.join(', ')}</strong>, where your inner principles, outer spoken resonance, and quiet analytical core align perfectly. Every time these letters are spoken or written, your whole identity operates in complete, natural alignment, bringing a powerful sense of clarity and ease.`;
+        } else if (pyChConv.length > 0 || pyKabConv.length > 0) {
+          relDesc = `Your path forms clear <strong>Harmonic Bridges</strong> across different perspectives. Your inner thoughts and spoken voice connect at the letter(s) <strong>${pyChConv.length > 0 ? pyChConv.join(', ') : 'none'}</strong>, while your personal will and quiet analytical core align at <strong>${pyKabConv.length > 0 ? pyKabConv.join(', ') : 'none'}</strong>. These letters serve as natural bridges, helping you express your rich inner thoughts in outward contributions.`;
+        } else {
+          relDesc = `Your signature waves follow separate, parallel paths, creating a versatile <strong>Dual-Path Flow</strong>. Your inner values, spoken voice, and deep analytical core operate along independent coordinates. This gentle space gives you a wonderfully broad perspective, allowing you to bring forward different strengths depending on what the moment calls for.`;
+        }
+
+        // Motivational Core Personalization
+        const vowelListStr = vowelNodes.map(n => n.char).join(', ');
+        const vowelArchName = numberArchetypes[Math.round(avgVowelVal)] ? numberArchetypes[Math.round(avgVowelVal)].name : "The Explorer";
+        
+        let vowelMotive = `Your core motivation is carried by the vowels <strong>${vowelListStr || 'none'}</strong> (with a collective tone of <strong>${soulTotal}</strong> and an average score of <strong>${avgVowelVal.toFixed(1)}</strong>), aligning your deepest drives with <strong>${vowelArchName}</strong>. `;
+        if (vowelNodes.length === 0) {
+          vowelMotive += "This consonant-focused pattern points to a practical drive toward immediate execution, structural order, and clear boundaries.";
+        } else if (avgVowelVal >= 5.5) {
+          vowelMotive += `This points to an <strong>Intuitive Core</strong>. You thrive on big ideas, creative possibilities, and broad horizons. Under pressure, you find comfort in high-level strategy and future visions. In relationships, you cherish deep intellectual exploration, making choices based on bold inspiration rather than safe, historical checklists.`;
+        } else if (avgVowelVal >= 3.0) {
+          vowelMotive += `This points to a <strong>Relational Core</strong>. You are naturally sensitive to group harmony, shared trust, and unvoiced emotional temperatures. Under stress, you seek consensus, occasionally choosing to delay difficult boundaries or conversations to keep the peace and protect relationships.`;
+        } else {
+          vowelMotive += `This points to a <strong>Grounded Core</strong>. You are practical, reliable, and execution-focused, acting as a steady anchor for those around you. Under stress, you find safety in concrete checklists, orderly steps, and immediate reality before looking toward long-term conceptual changes.`;
+        }
+
+        // Systemic Dominance / Steering Personalization
+        let domMotive = `Your personal focus and steering operate across three levels: your inner focus averages <strong>${avgPy.toFixed(1)}</strong>, your outer spoken presence averages <strong>${avgCh.toFixed(1)}</strong>, and your deeper analytical core averages <strong>${avgKab.toFixed(1)}</strong>. `;
+        const diff = Math.abs(avgPy - avgCh);
+        if (diff < 0.4) {
+          domMotive += `This close alignment represents a <strong>Unified Focus</strong>. Your inner values and outer warmth operate in natural harmony, allowing you to stay true to your personal principles while remaining approachable and socially receptive.`;
+        } else if (avgPy > avgCh) {
+          domMotive += `The strong inner average reveals an <strong>Internal Compass</strong>. You are guided primarily by personal values and quiet inner benchmarks rather than outside opinions, keeping you exceptionally steady when your environment changes.`;
+        } else {
+          domMotive += `The strong outer average highlights a <strong>Resonant Compass</strong>. You bring a natural warmth and active adaptability, prioritizing collaborative harmony and making it easy for you to connect and build instant rapport with others.`;
+        }
+
+        // Meta-Layer: Dynamic Synthesis Archetypes
+        let metaMotive = "";
+        const pyVals = svgNodes.map(n => n.pyVal);
+        const startVal = pyVals[0];
+        const endVal = pyVals[pyVals.length - 1];
+        const midVal = pyVals[Math.floor(pyVals.length / 2)];
+        
+        const isInternal = avgPy > avgCh && diff >= 0.4;
+        const isResonant = avgCh > avgPy && diff >= 0.4;
+        const isUnified = diff < 0.4;
+        
+        const isDynamic = pyAvgDelta > 3.8;
+        const isMountain = !isDynamic && (midVal > startVal + 1.5 && midVal > endVal + 1.5);
+        const isValley = !isDynamic && (midVal < startVal - 1.5 && midVal < endVal - 1.5);
+        
+        const isAscending = !isDynamic && !isMountain && !isValley && (endVal > startVal + 2);
+        const isGrounding = !isDynamic && !isMountain && !isValley && (startVal > endVal + 2);
+        
+        if (isDynamic) {
+          if (isInternal) {
+            metaMotive = `<strong>The Expressive Navigator</strong>. A dynamic, high-contrast path combined with a strong internal compass suggests a personality that balances exceptional creative adaptability with firm, deep-seated principles. You navigate shifting environments without ever losing your core grounding.`;
+          } else if (isResonant) {
+            metaMotive = `<strong>The Resonant Adaptor</strong>. A dynamic wave journey paired with a highly receptive, warm compass indicates a versatile and socially intuitive nature. You naturally absorb outer dynamics and guide environments with ease and adaptability.`;
+          } else {
+            metaMotive = `<strong>The Visionary Catalyst</strong>. High wave contrast coupled with unified steering suggests a highly creative, forward-looking nature. You thrive on quick transitions, fresh ideas, and broad conceptual horizons, smoothly balancing inner ideals with outer projection.`;
+          }
+        } else if (isMountain) {
+          if (isInternal) {
+            metaMotive = `<strong>The Anchored Lighthouse</strong>. A centered peak combined with conviction-led steering indicates a self-contained, principled character. You tend to serve as a steady anchor for others, relying primarily on your private principles rather than outside consensus.`;
+          } else if (isResonant) {
+            metaMotive = `<strong>The Centered Mediator</strong>. A centered peak paired with resonant social steering highlights a stabilizing, highly receptive presence. You maintain a solid personal foundation while actively listening and helping others find common ground.`;
+          } else {
+            metaMotive = `<strong>The Grounded Guardian</strong>. A centered peak profile with unified steering projects a reassuring, centered presence that projects quiet authority and stability, tending to anchor environments with a reassuring influence.`;
+          }
+        } else if (isValley) {
+          if (isInternal) {
+            metaMotive = `<strong>The Reflective Analyst</strong>. Receptive valley contours coupled with conviction-led steering point to a deeply analytical, independent mind. You gather observations quietly, processing them through a strict internal filter before stating a firm stance.`;
+          } else if (isResonant) {
+            metaMotive = `<strong>The Empathic Mirror</strong>. Receptive valley contours coupled with resonant social steering suggest highly responsive listening. You are naturally skilled at reading environments, reflecting and harmonizing the needs of those around you.`;
+          } else {
+            metaMotive = `<strong>The Quiet Synthesizer</strong>. Receptive valley geometry with unified steering suggests an observant, balanced approach to integration. You absorb diverse perspectives and synthesize them into quiet, unified contributions.`;
+          }
+        } else if (isAscending) {
+          if (isInternal) {
+            metaMotive = `<strong>The Principled Achiever</strong>. An ascending path combined with conviction-led steering suggests a purposeful, growth-oriented character who is driven by deep private principles to build long-term, visible progress.`;
+          } else if (isResonant) {
+            metaMotive = `<strong>The Adaptive Growth Lead</strong>. An ascending path paired with resonant steering indicates a highly adaptive path toward advancement. You build professional momentum by aligning your aspirations with the needs and opportunities of your environment.`;
+          } else {
+            metaMotive = `<strong>The Purposeful Builder</strong>. An ascending path with unified steering reflects a steady, balanced rise in capability, establishing a forward-looking momentum that seeks expansion driven by quiet focus and collective effort.`;
+          }
+        } else if (isGrounding) {
+          if (isInternal) {
+            metaMotive = `<strong>The Pragmatic Anchor</strong>. A grounding arc combined with conviction-led steering points to a character dedicated to practical consolidation. You bring creative concepts down to earth, testing them against your own rigid operational standards.`;
+          } else if (isResonant) {
+            metaMotive = `<strong>The Stabilizing Integrator</strong>. A grounding arc paired with resonant steering indicates a supportive, calming presence. You help teams consolidate their achievements and navigate transitions smoothly by keeping a watch on collective relationships.`;
+          } else {
+            metaMotive = `<strong>The Grounded Builder</strong>. A grounding arc with unified steering projects a highly reliable focus on stable progress, ensuring that creative ideas are systematically consolidated into lasting, reliable structures.`;
+          }
+        } else {
+          if (isInternal) {
+            metaMotive = `<strong>The Independent Integrator</strong>. A balanced, flowing trajectory paired with conviction-led steering suggests an integrated, highly self-contained approach to life's transitions, guided by strong internal standards while maintaining outer composure.`;
+          } else if (isResonant) {
+            metaMotive = `<strong>The Harmonious Adaptor</strong>. A balanced, flowing trajectory paired with resonant steering points to a warm, socially fluid presence, navigating daily transitions with a high degree of empathy and ease.`;
+          } else {
+            metaMotive = `<strong>The Adaptive Integrator</strong>. A balanced, undulating wave path paired with unified steering suggests a highly integrated approach to transitions, smoothly balancing self-intent with active social harmony.`;
+          }
+        }
+
+        // Calculate Date of Birth (DoB) Subvariant Coordinate (1-9)
+        let dobCoordinate = 5; 
+        if (dobVal) {
+          const digits = dobVal.replace(/\D/g, '').split('').map(Number);
+          const sum = digits.reduce((acc, d) => acc + d, 0);
+          let red = reduceNumber(sum, true); 
+          dobCoordinate = red.root;
+        }
+
+        let subName = "";
+        let subText = "";
+        
+        switch (dobCoordinate) {
+          case 1:
+            subName = "The Resolute Pioneer";
+            subText = `Integrated with <strong>${subName}</strong> (DoB root 1): In collaborative environments, you bring an initiating momentum that breaks through hesitation, acting as the driving force for new projects or alignments. When confronting major transitions, your decision style is swift and resolute, trusting early indicators to secure progress before other systems align.`;
+            break;
+          case 2:
+            subName = "The Receptive Harmonizer";
+            subText = `Integrated with <strong>${subName}</strong> (DoB root 2): In collaborative teams, you act as the quiet glue, observing relational currents and naturally facilitating harmony between competing viewpoints. In core decisions, you gather consensus, choosing to defer pivots until all stakeholders are synchronized.`;
+            break;
+          case 3:
+            subName = "The Resonant Expresser";
+            subText = `Integrated with <strong>${subName}</strong> (DoB root 3): In collaborative environments, you project an inspiring, expressive atmosphere, translating complex sentiments into clear strategies. When navigating transitions, you rely on creative resonance, testing choices against their long-term authenticity.`;
+            break;
+          case 4:
+            subName = "The Methodical Architect";
+            subText = `Integrated with <strong>${subName}</strong> (DoB root 4): In collaborative teams, you project a reassuring precision, ensuring that operational timelines and benchmarks are systematically documented and met. When making core decisions, you rely on reliable historical benchmarks and stress-testing to anchor your progress.`;
+            break;
+          case 5:
+            subName = "The Catalytic Explorer";
+            subText = `Integrated with <strong>${subName}</strong> (DoB root 5): In collaborative environments, you bring a highly fluid versatility, constantly introducing fresh concepts. When confronting transitions, you thrive on open-ended agility, choosing swift shifts and experimental strategies over long-term consistency.`;
+            break;
+          case 6:
+            subName = "The Protective Nurturer";
+            subText = `Integrated with <strong>${subName}</strong> (DoB root 6): In collaborative environments, you project a deeply supportive influence, prioritizing psychological safety and protecting workloads. In core decisions, your primary compass is collective welfare, ensuring that transitions are made with care and support.`;
+            break;
+          case 7:
+            subName = "The Contemplative Synthesizer";
+            subText = `Integrated with <strong>${subName}</strong> (DoB root 7): In collaborative teams, you serve as the quiet observer, synthesizing data and offering deep, highly polished insights. When navigating transitions, you retreat into silent analysis, making highly calculated choices only after all variables are mapped.`;
+            break;
+          case 8:
+            subName = "The Strategic Director";
+            subText = `Integrated with <strong>${subName}</strong> (DoB root 8): In collaborative teams, you establish a commanding rhythm, aligning resources with long-term goals and performance metrics. When making critical pivots, your decision style is highly focused, looking for leverage points that maximize velocity.`;
+            break;
+          case 9:
+            subName = "The Universal Idealist";
+            subText = `Integrated with <strong>${subName}</strong> (DoB root 9): In collaborative environments, you represent the visionary compass, elevating daily tasks by connecting them with broad, value-driven goals. When confronting major pivots, your decisions are guided by absolute ethical alignment and conceptual depth.`;
+            break;
+        }
+
+        metaMotive = `${metaMotive}<br><br><span style="display: block; border-top: 1px dashed rgba(214, 206, 190, 0.5); padding-top: 0.75rem; font-size: 0.95rem; line-height: 1.65; color: var(--ink-faded);">${subText}</span>`;
+
+        // 3-System Identity Dynamic Synthesis
+        const pythArch = numberArchetypes[pythRed.root] || { name: "The Explorer" };
+        const chaldeanArch = numberArchetypes[chaldeanRed.root] || { name: "The Explorer" };
+        const kabbalahArch = numberArchetypes[kabbalahRed.root] || { name: "The Explorer" };
+
+        readingContent.innerHTML = `
+          <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+            <div>
+              <strong style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--pigment-terracotta); display: block; letter-spacing: 1px; margin-bottom: 2px;">✦ Wave Journey</strong>
+              <p style="margin: 0; font-size: 1.05rem; line-height: 1.6; text-align: justify;">${trajectoryText}</p>
+            </div>
+            
+            <div>
+              <strong style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--pigment-lapis); display: block; letter-spacing: 1px; margin-bottom: 2px;">✦ Shared Harmony</strong>
+              <p style="margin: 0; font-size: 1.05rem; line-height: 1.6; text-align: justify;">${relDesc}</p>
+            </div>
+            
+            <div>
+              <strong style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--pigment-saffron); display: block; letter-spacing: 1px; margin-bottom: 2px;">✦ Core Motivations</strong>
+              <p style="margin: 0; font-size: 1.05rem; line-height: 1.6; text-align: justify;">${vowelMotive}</p>
+            </div>
+            
+            <div>
+              <strong style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--pigment-moss); display: block; letter-spacing: 1px; margin-bottom: 2px;">✦ Personal Steering</strong>
+              <p style="margin: 0; font-size: 1.05rem; line-height: 1.6; text-align: justify;">${domMotive}</p>
+            </div>
+            
+            <div style="border-top: 1px dashed #D6CEBE; padding-top: 0.75rem; margin-top: 0.25rem;">
+              <strong style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--pigment-cinnabar); display: block; letter-spacing: 1px; margin-bottom: 2px;">✦ Integrated Character</strong>
+              <p style="margin: 0; font-size: 1.05rem; line-height: 1.6; text-align: justify;">
+                Your complete profile is a beautiful synthesis of three core personal perspectives: you are consciously guided by the path of <strong>${pythArch.name}</strong> (conscious root <strong>${pythRed.root}</strong>), socially projected through the sound vibrations of <strong>${chaldeanArch.name}</strong> (vocal root <strong>${chaldeanRed.root}</strong>), and mystically anchored in the frequency of <strong>${kabbalahArch.name}</strong> (Gematria root <strong>${kabbalahRed.root}</strong>).
+                <br><br>
+                ${metaMotive}
+              </p>
+            </div>
+          </div>
+        `;
+      }
+
+      // Helper to find 1-based index of Nakshatra
+      function getNakshatraIndex(nakName) {
+        const idx = nakshatrasList.findIndex(n => n.toLowerCase().replace(/[^a-z]/g, '') === nakName.toLowerCase().replace(/[^a-z]/g, ''));
+        return idx !== -1 ? idx + 1 : 1;
+      }
+
+      // ── Inject number archetype descriptions ──────────────────────
+      function injectArchetype(elId, num) {
+        const el = document.getElementById(elId);
+        if (!el) return;
+        const arch = numberArchetypes[num];
+        if (!arch) return;
+        el.innerHTML = `<span style="display:block; font-family:var(--font-serif-header); font-size:0.8rem; color:var(--pigment-cinnabar); letter-spacing:1px; margin-bottom:3px;">${arch.name} &nbsp;·&nbsp; <span style="font-weight:400; color:var(--ink-faded);">${arch.keywords}</span></span>${arch.desc}`;
+      }
+      injectArchetype('pyth-expr-desc', pythRed.root);
+      injectArchetype('pyth-soul-desc', soulRed.root);
+      injectArchetype('pyth-pers-desc', persRed.root);
+      injectArchetype('chaldean-desc',  chaldeanRed.root);
+      injectArchetype('kabbalah-desc',   kabbalahRed.root);
+
+      // ── Life Path ──────────────────────────────────────────────
+      const lpResult = calculateLifePath(dobVal);
+      if (lpResult) {
+        document.getElementById('lifepath-num').innerText = lpResult.root;
+        document.getElementById('lifepath-reduction').innerText = lpResult.path;
+        const lpArch = numberArchetypes[lpResult.root];
+        if (lpArch) {
+          document.getElementById('lifepath-badge').innerText = lpArch.name + '  ·  ' + lpArch.keywords;
+          document.getElementById('lifepath-badge').style.display = 'block';
+          document.getElementById('lifepath-desc').innerText = lpArch.desc;
+        }
+      }
+
+      // ── First name vs surname split ───────────────────────────
+      const splitContainer = document.getElementById('name-split-content');
+      const nameParts = nameVal.trim().split(/\s+/).filter(p => p.length > 0);
+      if (nameParts.length >= 2 && splitContainer) {
+        const first   = analyzeNamePart(nameParts[0]);
+        const surname = analyzeNamePart(nameParts.slice(1).join(' '));
+        const firstArch   = numberArchetypes[first.pyth]   || {};
+        const surnameArch = numberArchetypes[surname.pyth] || {};
+        const convergence = first.pyth === surname.pyth
+          ? `<div style="margin-top:0.75rem; padding:0.6rem 0.9rem; background:rgba(217,130,54,0.07); border-left:3px solid var(--pigment-saffron); font-size: 0.95rem; color:var(--ink-archival);">✦ <strong>Pythagorean Convergence:</strong> Both names reduce to <strong>${first.pyth}</strong> — your conscious and inherited identities share the same structural frequency. This is an uncommon alignment indicating deep internal consistency between who you present yourself as and who you come from.</div>`
+          : `<div style="margin-top:0.75rem; padding:0.6rem 0.9rem; background:rgba(60,90,128,0.05); border-left:3px solid var(--pigment-lapis); font-size: 0.95rem; color:var(--ink-archival);">✦ <strong>Pythagorean Divergence (${first.pyth} vs ${surname.pyth}):</strong> Your given name and family name carry different structural frequencies — a creative dynamic tension between your conscious expression and your inherited foundation.</div>`;
+
+        splitContainer.innerHTML = `
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-bottom:0.5rem;">
+            <div style="background:#faf7ef; border:1px solid #D6CEBE; border-top:4px solid var(--pigment-terracotta); border-radius:4px; padding:0.75rem;">
+              <div style="font-family:var(--font-mono); font-size: 0.72rem; color:var(--ink-faded); letter-spacing:1px; text-transform:uppercase; margin-bottom:0.35rem;">Given Name</div>
+              <div style="font-family:var(--font-serif-header); font-size:1.05rem; font-weight:700; color:var(--ink-archival); margin-bottom:0.5rem;">${nameParts[0]}</div>
+              <div style="display:flex; gap:0.75rem;">
+                <div style="text-align:center;"><div style="font-family:var(--font-serif-header); font-size:1.6rem; font-weight:bold; color:var(--pigment-lapis); line-height:1;">${first.pyth}</div><div style="font-family:var(--font-mono); font-size: 0.72rem; color:var(--ink-faded); letter-spacing:0.5px;">PYTH</div></div>
+                <div style="text-align:center;"><div style="font-family:var(--font-serif-header); font-size:1.6rem; font-weight:bold; color:var(--pigment-saffron); line-height:1;">${first.chal}</div><div style="font-family:var(--font-mono); font-size: 0.72rem; color:var(--ink-faded); letter-spacing:0.5px;">CHAL</div></div>
+              </div>
+              <div style="font-size:0.82rem; color:var(--ink-faded); margin-top:0.5rem;">${firstArch.name || ''}</div>
+            </div>
+            <div style="background:#faf7ef; border:1px solid #D6CEBE; border-top:4px solid var(--pigment-lapis); border-radius:4px; padding:0.75rem;">
+              <div style="font-family:var(--font-mono); font-size: 0.72rem; color:var(--ink-faded); letter-spacing:1px; text-transform:uppercase; margin-bottom:0.35rem;">Family Name</div>
+              <div style="font-family:var(--font-serif-header); font-size:1.05rem; font-weight:700; color:var(--ink-archival); margin-bottom:0.5rem;">${nameParts.slice(1).join(' ')}</div>
+              <div style="display:flex; gap:0.75rem;">
+                <div style="text-align:center;"><div style="font-family:var(--font-serif-header); font-size:1.6rem; font-weight:bold; color:var(--pigment-lapis); line-height:1;">${surname.pyth}</div><div style="font-family:var(--font-mono); font-size: 0.72rem; color:var(--ink-faded); letter-spacing:0.5px;">PYTH</div></div>
+                <div style="text-align:center;"><div style="font-family:var(--font-serif-header); font-size:1.6rem; font-weight:bold; color:var(--pigment-saffron); line-height:1;">${surname.chal}</div><div style="font-family:var(--font-mono); font-size: 0.72rem; color:var(--ink-faded); letter-spacing:0.5px;">CHAL</div></div>
+              </div>
+              <div style="font-size:0.82rem; color:var(--ink-faded); margin-top:0.5rem;">${surnameArch.name || ''}</div>
+            </div>
+          </div>
+          ${convergence}
+        `;
+      } else if (splitContainer) {
+        splitContainer.innerHTML = `<div style="color:var(--ink-faded); font-style:italic; font-size: 0.95rem;">Enter a full name with at least two parts to generate the split analysis.</div>`;
+      }
+
+      // ── Rashi syllable alignment & Cross-Report Navatara Linking ──
+      const rashiResult = findNakshatraForName(nameVal.split(' ')[0] || nameVal);
+      const rashiBox = document.getElementById('rashi-alignment-result');
+      if (rashiBox && rashiResult) {
+        const birthNak = getBirthNakshatra(dobVal);
+        const nameStarIndex = getNakshatraIndex(rashiResult.nakshatra);
+        const birthStarIndex = getNakshatraIndex(birthNak);
+        const distance = (nameStarIndex - birthStarIndex + 27) % 27 + 1;
+        const tIndex = (distance - 1) % 9 + 1;
+        const nav = navataraClassifications[tIndex];
+
+        rashiBox.innerHTML = `
+          <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--ink-faded); letter-spacing:1px; text-transform:uppercase; margin-bottom:0.5rem;">First Name Syllable Analysis</div>
+          <div style="font-family:var(--font-serif-header); font-size:1.15rem; font-weight:700; color:var(--stroke); margin-bottom:0.25rem;">Nakshatra Resonance: ${rashiResult.nakshatra}</div>
+          <div style="font-family:var(--font-mono); font-size:0.8rem; color:var(--pigment-saffron); margin-bottom:0.75rem;">Ruling Planet: ${rashiResult.ruler} &nbsp;·&nbsp; Seed Syllable: ${rashiResult.syllable}</div>
+          <p style="font-size:0.95rem; line-height:1.6; color:var(--ink-archival); margin-bottom:0.75rem;">${rashiResult.theme} The first syllable of your name carries this Nakshatra's harmonic signature — every time your name is spoken, this frequency is activated in the field of your identity.</p>
+
+          <div style="margin-top:0.75rem; padding:0.75rem 0.95rem; background:rgba(122,32,96,0.04); border:1px solid rgba(122,32,96,0.15); border-left:3px solid #7A2060; border-radius:4px;">
+            <div style="font-family:var(--font-mono); font-size: 0.72rem; color:#7A2060; letter-spacing:1px; text-transform:uppercase; margin-bottom:0.35rem; font-weight:bold;">Cross-Report Life Map Connection</div>
+            <div style="font-family:var(--font-serif-header); font-size:1.05rem; font-weight:bold; color:var(--stroke); margin-bottom:0.25rem;">Birth Moon Star: ${birthNak} &nbsp;→&nbsp; Name Star: ${rashiResult.nakshatra}</div>
+            <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--ink-faded); margin-bottom:0.5rem;">Forward Distance: ${distance} Nakshatras &nbsp;·&nbsp; Navatara: <span style="color:#7A2060; font-weight:bold;">${nav.name} (${nav.type})</span></div>
+            <p style="font-size: 0.95rem; line-height:1.6; color:var(--ink-archival); margin:0; text-align:justify;">
+              Your birth Nakshatra from your Life Map is <strong>${birthNak}</strong>. Your first name activates the vibrational frequency of <strong>${rashiResult.nakshatra}</strong>. Under classical Vedic sound astrology, this relationship yields a <strong>${nav.name}</strong> resonance: <em>${nav.desc}</em>
+            </p>
+          </div>
+        `;
+      } else if (rashiBox) {
+        rashiBox.innerHTML = `<div style="color:var(--ink-faded); font-style:italic; font-size: 0.95rem;">Enter a name to identify its Nakshatra syllable resonance.</div>`;
+      }
+
+      // ── Chaldean planetary highlight ──────────────────────────
+      const chalHighlight = document.getElementById('chaldean-planet-highlight');
+      if (chalHighlight && chaldeanRed.root >= 1 && chaldeanRed.root <= 8) {
+        const planetName = chaldeanPlanetNames[chaldeanRed.root];
+        chalHighlight.style.display = 'block';
+        chalHighlight.innerHTML = `<strong>Your Chaldean root ${chaldeanRed.root} is governed by ${planetName}.</strong> This planet's qualities — ${numberArchetypes[chaldeanRed.root]?.keywords || ''} — form the outer planetary lens through which your name resonates socially and professionally.`;
+      }
+    }
+
+    // Dynamic auto-calculation listeners for fluid UI with real-time localStorage sync
+    document.getElementById('input-name').addEventListener('input', () => {
+      const nameVal = document.getElementById('input-name').value.trim();
+      try {
+        safeSetItem('antara_user_name', nameVal);
+      } catch (e) {
+        console.warn("localStorage write restricted:", e);
+      }
+      updateNameResonance();
+    });
+    
+    document.getElementById('input-dob').addEventListener('change', () => {
+      const dobVal = document.getElementById('input-dob').value;
+      try {
+        safeSetItem('antara_user_dob', dobVal);
+      } catch (e) {
+        console.warn("localStorage write restricted:", e);
+      }
+      updateNameResonance();
+    });
+
+    document.getElementById('input-anchor').addEventListener('input', updateNameResonance);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      let savedName = null;
+      let savedDob = null;
+      try {
+        savedName = safeGetItem('antara_user_name');
+        savedDob = safeGetItem('antara_user_dob');
+      } catch (e) {
+        console.warn("localStorage read restricted:", e);
+      }
+      if (savedName) document.getElementById('input-name').value = savedName;
+      if (savedDob) document.getElementById('input-dob').value = savedDob;
+      updateNameResonance();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Pricing Matrix · Antara Commercial Strategy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;600;700&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fdfaf2;
+      --panel: #fffdf9;
+      --ink: #2a1a08;
+      --muted: #7d7369;
+      --accent: #D98236;
+      --line: #e6dfd3;
+      --cinnabar: #5a1607;
+      --saffron: #D98236;
+      --turmeric: #f1b73a;
+      --stroke: #b56a2a;
+      --green: #2E7D32;
+      --lapis: #3C5A80;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      line-height: 1.75;
+      padding-bottom: 80px;
+    }
+    .header {
+      background: var(--cinnabar);
+      color: #fff;
+      padding: 40px 48px 32px;
+      border-bottom: 4px solid var(--stroke);
+    }
+    .header-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--turmeric);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+    .header-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: rgba(255,255,255,0.72);
+    }
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 45px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    
+    /* Interactive Dashboard Grid */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+    @media (max-width: 900px) {
+      .dashboard-grid { grid-template-columns: 1fr; }
+    }
+    
+    /* Premium Table Styling */
+    .table-container {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow-x: auto;
+      box-shadow: 0 4px 16px rgba(42,26,8,0.03);
+      margin-bottom: 24px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: #faf7ef;
+      padding: 14px 16px;
+      border-bottom: 2px solid var(--line);
+    }
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--line);
+      font-size: 13.5px;
+      vertical-align: middle;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr:nth-child(even) td {
+      background: rgba(255, 253, 249, 0.6);
+    }
+    
+    .file-tag {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      color: var(--cinnabar);
+      font-weight: 700;
+    }
+    .report-title {
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .price-tag {
+      font-family: 'Courier Prime', monospace;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .price-active {
+      color: var(--cinnabar);
+    }
+    .price-alt {
+      color: var(--lapis);
+    }
+    
+    /* Strategic Cards */
+    .strategy-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(42,26,8,0.03);
+      height: fit-content;
+    }
+    .strategy-card h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      color: var(--cinnabar);
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 8px;
+    }
+    .strategy-card p {
+      font-size: 13.5px;
+      line-height: 1.7;
+      margin-bottom: 14px;
+      color: var(--ink);
+    }
+    .strategy-card ul {
+      margin-left: 18px;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+    .strategy-card li {
+      margin-bottom: 6px;
+    }
+    
+    .highlight-box {
+      background: rgba(217, 130, 54, 0.05);
+      border-left: 4px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 0 4px 4px 0;
+      font-size: 13px;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+    
+    .tag {
+      font-family: 'Courier Prime', monospace;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      font-size: 10px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    
+    .tier-badge {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .badge-baseline { background: #e6dfd3; color: var(--muted); }
+    .badge-claude { background: rgba(217, 130, 54, 0.12); color: var(--accent); }
+    .badge-codex { background: rgba(60, 90, 128, 0.12); color: var(--lapis); }
+    .badge-antigravity { background: rgba(90, 22, 7, 0.08); color: var(--cinnabar); }
+
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+    }
+  </style>
+  <meta name="description" content="Antara is a traditional cross-cultural mathematical life-engine and archetypal systems cartography. Calibrate your natal coordinates, biological rhythms, and name phonetic values across Vedic, Western tropical, and Chinese solar Four Pillars traditions.">
+  <link rel="icon" type="image/png" href="Antara Logo.png">
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">Strategic Review · Documents/Antara · June 2026</div>
+  <h1>Commercial Pricing Matrix</h1>
+  <p class="header-sub">Side-by-side comparative analysis of the pricing tiers proposed for Project Antara, including our recommended pricing model.</p>
+</div>
+
+<div class="container" style="margin-top: 30px;">
+  <span class="tag">Comparative Dashboard</span>
+
+  <!-- FILEWISE PRICE COMPARISON -->
+  <div class="section-label">1. Filewise Report Pricing Comparison</div>
+  
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>File</th>
+          <th>Report Module</th>
+          <th>Baseline (Coded)</th>
+          <th>Claude (Pricing1)</th>
+          <th>Codex (Pricing2)</th>
+          <th style="background: rgba(90, 22, 7, 0.03); color: var(--cinnabar); font-weight: 800;">Antigravity Suggestion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="file-tag">01_lifemap</td>
+          <td><span class="report-title">Personal Life Map</span></td>
+          <td class="price-tag">₹999 / $24.99</td>
+          <td class="price-tag">₹999 / $34.99</td>
+          <td class="price-tag">₹999 / $29.00</td>
+          <td class="price-tag price-active" style="background: rgba(90, 22, 7, 0.02);">₹999 / $29.99</td>
+        </tr>
+        <tr>
+          <td class="file-tag">02_identity</td>
+          <td><span class="report-title">Name &amp; Identity</span></td>
+          <td class="price-tag">₹799 / $24.99</td>
+          <td class="price-tag">₹799 / $24.99</td>
+          <td class="price-tag">₹699 / $19.00</td>
+          <td class="price-tag price-active" style="background: rgba(90, 22, 7, 0.02);">₹799 / $24.99</td>
+        </tr>
+        <tr>
+          <td class="file-tag">03_compatibility</td>
+          <td><span class="report-title">Relationship Compat.</span></td>
+          <td class="price-tag">₹1,099 / $39.99</td>
+          <td class="price-tag">₹1,099 / $39.99</td>
+          <td class="price-tag">₹899 / $25.00</td>
+          <td class="price-tag price-active" style="background: rgba(90, 22, 7, 0.02);">₹1,099 / $34.99</td>
+        </tr>
+        <tr>
+          <td class="file-tag">04_energycycles</td>
+          <td><span class="report-title">Energy Cycle Profile</span></td>
+          <td class="price-tag">₹399 / $12.99</td>
+          <td class="price-tag">₹399 / $12.99</td>
+          <td class="price-tag">₹399 / $12.99</td>
+          <td class="price-tag price-active" style="background: rgba(90, 22, 7, 0.02);">₹399 / $12.99</td>
+        </tr>
+        <tr>
+          <td class="file-tag">05_loshugrid</td>
+          <td><span class="report-title">Lo Shu Energy Grid</span></td>
+          <td class="price-tag">₹499 / $14.99</td>
+          <td class="price-tag">₹499 / $14.99</td>
+          <td class="price-tag">₹499 / $14.99</td>
+          <td class="price-tag price-active" style="background: rgba(90, 22, 7, 0.02);">₹499 / $14.99</td>
+        </tr>
+        <tr>
+          <td class="file-tag">06_corporate</td>
+          <td><span class="report-title">Corporate Analysis</span></td>
+          <td class="price-tag">₹1,999 / $59.99</td>
+          <td class="price-tag">₹1,999 / $59.99</td>
+          <td class="price-tag">₹4,999 / $149.00</td>
+          <td class="price-tag price-active" style="background: rgba(90, 22, 7, 0.02);">₹4,999 / $149.99</td>
+        </tr>
+        <tr>
+          <td class="file-tag">07_transits</td>
+          <td><span class="report-title">Planetary Time Cycles</span></td>
+          <td class="price-tag">₹899 / $29.99</td>
+          <td class="price-tag">₹899 / $29.99</td>
+          <td class="price-tag">₹799 / $24.00</td>
+          <td class="price-tag price-active" style="background: rgba(90, 22, 7, 0.02);">₹899 / $29.99</td>
+        </tr>
+        <tr>
+          <td class="file-tag">08_lifepath</td>
+          <td><span class="report-title">Life Path Atlas</span></td>
+          <td class="price-tag">₹699 / $21.99</td>
+          <td class="price-tag">₹699 / $21.99</td>
+          <td class="price-tag">₹999 / $29.00</td>
+          <td class="price-tag price-active" style="background: rgba(90, 22, 7, 0.02);">₹799 / $24.99</td>
+        </tr>
+        <tr>
+          <td class="file-tag">09_zodiac</td>
+          <td><span class="report-title">Western Zodiac Profile</span></td>
+          <td class="price-tag">₹799 / $24.99</td>
+          <td class="price-tag">₹799 / $24.99</td>
+          <td class="price-tag">₹699 / $19.00</td>
+          <td class="price-tag price-active" style="background: rgba(90, 22, 7, 0.02);">₹799 / $24.99</td>
+        </tr>
+        <tr>
+          <td class="file-tag">10_resonance</td>
+          <td><span class="report-title">Resonance Matrix</span></td>
+          <td class="price-tag">₹1,099 / $39.99</td>
+          <td class="price-tag">₹1,099 / $39.99</td>
+          <td class="price-tag">₹1,199 / $35.00</td>
+          <td class="price-tag price-active" style="background: rgba(90, 22, 7, 0.02);">₹1,099 / $34.99</td>
+        </tr>
+        <tr>
+          <td class="file-tag">11_bazi</td>
+          <td><span class="report-title">Chinese BaZi Pillars</span></td>
+          <td class="price-tag">₹999 / $34.99</td>
+          <td class="price-tag">₹999 / $34.99</td>
+          <td class="price-tag">₹799 / $24.00</td>
+          <td class="price-tag price-active" style="background: rgba(90, 22, 7, 0.02);">₹999 / $29.99</td>
+        </tr>
+        <tr>
+          <td class="file-tag">12_synthesis</td>
+          <td><span class="report-title">Archetypal Synthesis</span></td>
+          <td class="price-tag">₹2,499 / $79.99</td>
+          <td class="price-tag">₹2,499 / $79.99</td>
+          <td class="price-tag">₹1,999 / $59.00</td>
+          <td class="price-tag price-active" style="background: rgba(90, 22, 7, 0.02);">₹2,499 / $79.99</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BUNDLES AND COMBOS COMPARISON -->
+  <div class="section-label">2. Curated Combo Packages Comparison</div>
+
+  <div class="dashboard-grid">
+    <!-- Left Column: Combo Sets Compared -->
+    <div class="table-container" style="margin-bottom: 0;">
+      <table>
+        <thead>
+          <tr>
+            <th>Strategy Model</th>
+            <th>Primary Bundles</th>
+            <th>Domestic Price</th>
+            <th>World Price</th>
+            <th>Discount Formula / Value Appeal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- YESTERDAY'S FLAGSHIP -->
+          <tr>
+            <td>
+              <span class="tier-badge badge-antigravity">Antigravity Tiers</span>
+              <div style="font-size: 11px; margin-top: 4px; color: var(--muted);">curated Sets (in indexCombos)</div>
+            </td>
+            <td>
+              <strong>Set 1: Individual Identity Set</strong> (7 Modules)<br/>
+              <strong>Set 2: Relational Resonance Set</strong> (2 Modules)<br/>
+              <strong>Set 3: Ultimate Universe Set</strong> (All 12 Modules)
+            </td>
+            <td class="price-tag">₹2,499<br/>₹1,499<br/>₹3,999</td>
+            <td class="price-tag">$79.99<br/>$49.99<br/>$129.99</td>
+            <td>
+              Focuses on 3 flagship choices. Set 3 includes all 12 modules (valued at ₹12,000 individually) for ₹3,999, driving highly-profitable **Average Order Value (AOV)**.
+            </td>
+          </tr>
+          <!-- CLAUDE'S PRICING1 -->
+          <tr>
+            <td>
+              <span class="tier-badge badge-claude">Claude (Pricing1)</span>
+              <div style="font-size: 11px; margin-top: 4px; color: var(--muted);">Multi-concept focus</div>
+            </td>
+            <td>
+              <strong>Know Yourself Bundle</strong> (3 Modules)<br/>
+              <strong>Relationship Panorama</strong> (3 Modules)<br/>
+              <strong>Complete Antara Collection</strong> (All 12 Modules)
+            </td>
+            <td class="price-tag">₹1,599<br/>₹2,299<br/>₹7,999</td>
+            <td class="price-tag">$52.99<br/>$74.99<br/>$249.00</td>
+            <td>
+              Maintains high price tags for the complete suite, but risks slowing conversions due to an expensive ₹7,999 / $249 tier.
+            </td>
+          </tr>
+          <!-- CODEX PRICING2 -->
+          <tr>
+            <td>
+              <span class="tier-badge badge-codex">Codex (Pricing2)</span>
+              <div style="font-size: 11px; margin-top: 4px; color: var(--muted);">B2B &amp; consulting focus</div>
+            </td>
+            <td>
+              <strong>Starter Self-Knowledge</strong> (3 Modules)<br/>
+              <strong>Relationship Deep Dive</strong> (2 Modules)<br/>
+              <strong>Founder / Brand Suite</strong> (3 Modules)<br/>
+              <strong>Corporate Premium</strong> (+ Consultation)
+            </td>
+            <td class="price-tag">₹1,199<br/>₹1,699<br/>₹5,999<br/>₹9,999</td>
+            <td class="price-tag">$34.00<br/>$49.00<br/>$179.00<br/>$299.00</td>
+            <td>
+              Introduces a consulting-tier hybrid (B2B). Perfect for targeting founders and corporate firms, but lacks a high-volume mid-tier for average users.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Right Column: Strategic Analysis -->
+    <div class="strategy-card">
+      <h3>Antigravity's Assessment</h3>
+      <p><strong>The B2B Premium Opportunity:</strong><br/>
+      Codex (Pricing2) correctly identified that the <strong>Corporate Strengths Analysis (06_corporate)</strong> is a high-value B2B product. Pricing it at ₹4,999 / $149.99 matches business value perfectly, as companies routinely pay far more for executive and architectural audits.</p>
+      
+      <p><strong>Curated Combos Optimization:</strong><br/>
+      We recommend combining the highly popular **Set 3 (Ultimate Universe)** from yesterday's plan (₹3,999) with Codex's B2B premium models to cover both consumers and corporate clients.</p>
+
+      <div class="highlight-box">
+        <strong>Strategic Rule:</strong> Keep B2C sets highly attractive (₹1,499 - ₹3,999) to secure conversions, while maintaining premium positioning for targeted enterprise modules (₹4,999).
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIONABLE COMMERCIAL SUGGESTIONS -->
+  <div class="section-label">3. Our Strategic Recommendations</div>
+  <div class="dashboard-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+    
+    <div class="strategy-card">
+      <h3>1. Lead Magnet Mechanics</h3>
+      <p>Make the **Biorhythm/Energy Cycle Profile (04)** completely free (or email-gated). It is highly interactive and scientifically approachable, making it the perfect landing-page hook to collect leads, who are then immediately presented with the premium packages during their personalized reading flow.</p>
+    </div>
+
+    <div class="strategy-card">
+      <h3>2. Curated Flagship Simplification</h3>
+      <p>Having too many choices creates decision paralysis. Instead of 8 small bundles, keep **3 primary Flagship Combo Sets** in `indexCombos.html` (Identity, Relationships, and Ultimate Universe). This simple three-option choice keeps user flow clean and speeds up conversions.</p>
+    </div>
+
+    <div class="strategy-card">
+      <h3>3. B2B Corporate Upsell</h3>
+      <p>Keep the **Corporate Strengths Analysis (06)** out of baseline consumer bundles. Position it as a high-end stand-alone purchase at ₹4,999 / $149.99, targeted directly at founders, co-creators, and business entities looking for enterprise timing matrices.</p>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="container">
+  
+  <!-- Resonance / Feedback Link -->
+  <div style="text-align: center; margin: 2rem auto; font-family: var(--font-mono); font-size: 0.8rem; max-width: 1100px; width: calc(100% - 24px);">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEYjLsqRjRRR0FZEPq384iGrpL6rZfrEQHEbcYQ9pz5ERzlg/viewform" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar); letter-spacing: 1px; font-weight: bold; transition: all 0.2s ease; padding-bottom: 2px;">
+      ✦ SHARE YOUR RESONANCE (ANONYMOUS SUGGESTIONS) ✦
+    </a>
+  </div>
+
+  <footer class="notranslate">Strategic Review · Antara Commercial Architecture · June 2026</footer>
+</div>
+</body>
+</html>

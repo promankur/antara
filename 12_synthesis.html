@@ -1,0 +1,2314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archetypal Systems Cartography | Antara Cross-Cultural Interior Panorama</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <style>
+    :root {
+      --bg-page: #F7F1E1;
+      --bg-vellum-warm: #ffffff;
+      --ink-archival: #2B2A28;
+      --ink-faded: #76726A;
+      --border-container: 1px solid #D6CEBE;
+      --stroke: #b56a2a;
+      
+      --font-serif-header: 'Cinzel', serif;
+      --font-serif-body: 'Playfair Display', serif;
+      --font-mono: 'Courier Prime', monospace;
+      
+      --pigment-terracotta: #A65B4A;
+      --pigment-saffron: #D98236;
+      --pigment-cinnabar: #9E3A33;
+      --pigment-lapis: #2E6CB5;
+      --pigment-moss: #4A6B5D;
+      --pigment-gold: #B58A3D;
+    }
+
+    details p, details td, details li {
+      font-variant: normal !important;
+      font-family: var(--font-serif-body) !important;
+      text-transform: none !important;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 17px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1150px;
+      width: 100%;
+      margin: 0 auto 2rem auto;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    .prose-container {
+      max-width: 78ch;
+      margin: 0 auto;
+    }
+
+    .inputs-coordinates-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .inputs-coordinates-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: stretch;
+      }
+    }
+
+    .archival-card {
+      background-color: var(--bg-vellum-warm);
+      border: var(--border-container);
+      padding: 1.5rem;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04);
+      box-sizing: border-box;
+      border-radius: 4px;
+    }
+
+    .form-group { margin-bottom: 1.15rem; }
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--ink-faded);
+      margin-bottom: 0.5rem;
+      min-height: 1.8em;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .form-input {
+      width: 100%;
+      height: 46px;
+      background-color: rgba(247, 241, 225, 0.4);
+      border: var(--border-container);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-body);
+      font-size: 1.05rem;
+      padding: 0.5rem 1rem;
+      box-sizing: border-box;
+      outline: none;
+      border-radius: 2px;
+    }
+
+    .time-select-cluster {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      width: 100%;
+      height: 46px;
+    }
+    .time-select-cluster select.form-input {
+      height: 46px;
+      padding: 0.5rem 0.2rem;
+      font-weight: bold;
+      text-align: center;
+      text-align-last: center;
+    }
+
+    /* Quad Matrix Viewport */
+    .quad-matrix-controls {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 1rem;
+    }
+    .quad-matrix-btn {
+      background-color: #faf7ef;
+      border: var(--border-container);
+      color: var(--ink-archival);
+      font-family: var(--font-serif-header);
+      font-size: 0.85rem;
+      padding: 0.65rem 0.85rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      outline: none;
+      border-radius: 2px;
+    }
+    .quad-matrix-btn.active {
+      background-color: var(--pigment-terracotta);
+      color: #ffffff;
+      border-color: var(--pigment-terracotta);
+    }
+    .quad-matrix-viewport {
+      border: 1px solid #D6CEBE;
+      background: #faf7ef;
+      border-radius: 4px;
+      padding: 1.5rem;
+      min-height: 330px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Loshu Grid styling */
+    .loshu-table {
+      width: 180px;
+      height: 180px;
+      border-collapse: collapse;
+      margin: 1.5rem auto;
+    }
+    .loshu-table td {
+      border: 2px solid var(--border-container);
+      width: 60px;
+      height: 60px;
+      text-align: center !important;
+      font-family: var(--font-serif-header);
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--pigment-cinnabar);
+      background-color: #ffffff;
+    }
+
+    /* BaZi 4x2 Pillars Grid */
+    .bazi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+    }
+    .bazi-pillar-card {
+      border: 1px solid #D6CEBE;
+      border-radius: 4px;
+      background-color: #faf7ef;
+      text-align: center;
+      padding: 1.25rem 0.5rem;
+      box-sizing: border-box;
+    }
+    .bazi-pillar-header {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--ink-archival);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px dashed #D6CEBE;
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.75rem;
+      font-weight: 900;
+    }
+    .bazi-char-large {
+      font-size: 2.2rem;
+      line-height: 1.1;
+      font-weight: normal;
+      color: var(--ink-archival);
+      margin: 0.25rem 0;
+    }
+    .bazi-pinyin {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: normal;
+      color: var(--ink-faded);
+      margin-top: 0.15rem;
+      line-height: 1.35;
+    }
+    .bazi-elem-tag {
+      display: inline-block;
+      padding: 0.12rem 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: normal;
+      border-radius: 3px;
+      color: #FFF;
+      margin-top: 0.4rem;
+      text-transform: uppercase;
+    }
+
+    /* Timing scrolls */
+    .timing-tracks-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin: 1.5rem 0;
+    }
+    .timing-track {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      border: 1px solid #D6CEBE;
+      border-radius: 4px;
+      background-color: #faf7ef;
+      overflow: hidden;
+    }
+    .timing-track-label {
+      background-color: rgba(214, 206, 190, 0.35);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--ink-archival);
+      display: flex;
+      align-items: center;
+      padding: 0.75rem;
+    }
+    .timing-track-val {
+      font-size: 0.95rem;
+      padding: 0.75rem;
+      line-height: 1.5;
+    }
+
+    /* Stackable Modules Cards with restricted width */
+    .module-card {
+      background-color: var(--bg-vellum-warm);
+      border: var(--border-container);
+      border-radius: 4px;
+      margin: 0 auto 1.5rem auto;
+      padding: 1.75rem;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.02);
+      max-width: 820px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .module-header {
+      font-family: var(--font-serif-header);
+      font-size: 1.25rem;
+      border-bottom: 1px solid #D6CEBE;
+      padding-bottom: 0.5rem;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      color: var(--pigment-terracotta);
+      letter-spacing: 1px;
+      display: block;
+      text-align: left;
+    }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 2.5rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+    }
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--ink-faded);
+      margin: 0.25rem 0;
+    }
+
+    p, td, li { text-align: left !important; }
+
+    /* Standardized Branding */
+    .header-logo { 
+      text-align: center; 
+      margin: 20px 0 8px 0; 
+    }
+    .system-tagline { 
+      font-family: var(--font-mono) !important; 
+      font-weight: 600 !important; 
+      font-size: 12px !important; 
+      letter-spacing: 3px !important; 
+      color: #A6A29A !important; 
+      text-transform: uppercase !important; 
+      text-align: center !important; 
+      margin: 0 0 24px 0 !important; 
+      line-height: 1.2 !important;
+    }
+    .master-report-title { 
+      font-family: 'Cinzel', serif !important; 
+      font-size: 2.25rem !important; 
+      font-variant: small-caps !important; 
+      font-weight: 700 !important; 
+      letter-spacing: 2px !important; 
+      color: #2B2A28 !important; 
+      text-align: center !important; 
+      margin: 0 0 14px 0 !important; 
+      line-height: 1.3 !important; 
+    }
+    .master-report-byline { 
+      font-family: 'Playfair Display', serif !important; 
+      font-size: 1.15rem !important; 
+      color: #D98236 !important; 
+      text-align: center !important; 
+      max-width: 800px !important; 
+      margin: 0 auto 32px auto !important; 
+      padding: 0 12px !important; 
+      line-height: 1.5 !important; 
+    }
+
+    .dna-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed #EADEC9;
+      padding: 0.5rem 0;
+      font-size: 0.95rem;
+    }
+    .dna-row-label {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--ink-faded);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-right: 0.5rem;
+    }
+    .dna-row-val {
+      font-family: var(--font-serif-header);
+      font-weight: bold;
+      font-size: 0.95rem;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* SVG region styling for Vedic North Kundli */
+    .region {
+      stroke: var(--stroke);
+      stroke-width: 2;
+      stroke-linejoin: miter;
+      vector-effect: non-scaling-stroke;
+      transition: fill 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), stroke-width 0.3s ease, filter 0.3s ease;
+      cursor: pointer;
+    }
+    .region.petal {
+      fill: #f1b73a;
+    }
+    .region.triangle {
+      fill: #f7d774;
+    }
+    .region:hover {
+      fill: #e65c00 !important; /* Premium orange-saffron highlight on hover */
+      stroke-width: 3.5;
+      filter: brightness(1.05) drop-shadow(0 4px 10px rgba(90, 22, 7, 0.18));
+    }
+    .rashi {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      fill: #ffffff;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      pointer-events: none;
+      user-select: none;
+    }
+    .rashi.lagna {
+      fill: #5a1607;
+    }
+    .planets {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      fill: #5a1607;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: 0.02em;
+    }
+
+    /* Premium Click to Explore Accordion Styles */
+    .explore-summary {
+      font-family: var(--font-serif-header);
+      background-color: #D35400; /* Vibrant Brand Saffron */
+      color: #FFFFFF !important;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.85rem 1.25rem; /* Elegant compact height */
+      border: 1px solid #8E4A21; /* Cinnamon brand structural frame */
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 12px rgba(211, 84, 0, 0.12);
+      line-height: 1.35;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .explore-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .explore-summary::before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px double rgba(255, 255, 255, 0.45); /* Elegant double border in reverse white */
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .explore-summary:hover {
+      background-color: #E65C00; /* Slightly brighter warm saffron on hover */
+      box-shadow: 0 6px 18px rgba(211, 84, 0, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .explore-summary:hover::before {
+      border-color: rgba(255, 255, 255, 0.7);
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+    }
+
+    .explore-summary:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(211, 84, 0, 0.15);
+    }
+
+    .explore-summary .explore-title-main {
+      font-variant: small-caps;
+      font-size: 1.05rem; /* Compact size */
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: none; /* Crucial for small-caps */
+      position: relative;
+      z-index: 2;
+    }
+
+    .explore-summary .explore-title-sub {
+      font-family: var(--font-serif-body);
+      font-size: 1.25rem; /* Bold italic font matching user mock */
+      font-weight: 700;
+      font-style: italic;
+      margin-top: 3px;
+      letter-spacing: 0.5px;
+      color: #FFFFFF !important;
+      position: relative;
+      z-index: 2;
+    }
+
+    .accordion-inner-border {
+      position: relative;
+    }
+
+    .accordion-inner-border::before {
+      content: "";
+      position: absolute;
+      top: 6px; left: 6px; right: 6px; bottom: 6px;
+      border: 1px double #D6CEBE;
+      pointer-events: none;
+      border-radius: 3px;
+    }
+  
+    /* Premium Left-Aligned Footer Override */
+    footer {
+      width: 100%;
+      padding: 2rem 0;
+      border-top: var(--border-container);
+      background-color: var(--bg-vellum-warm);
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+      text-align: left;
+    }
+    .footer-content {
+      max-width: 1100px;
+      width: 100%;
+      padding: 0 16px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+    footer p {
+      font-family: var(--font-serif-body);
+      font-size: 0.82rem;
+      color: var(--ink-archival);
+      margin: 0.25rem 0;
+    }
+    footer p.font-mono {
+      font-family: var(--font-mono) !important;
+      font-size: 0.72rem !important;
+      color: var(--ink-faded) !important;
+    }
+
+    /* Softer borders for left side coordinates inputs/DNA cards */
+    .inputs-coordinates-grid > div:first-child .archival-card {
+      border-color: rgba(214, 206, 190, 0.6) !important;
+      box-shadow: 0 4px 15px rgba(43, 42, 40, 0.02) !important;
+    }
+
+    /* Standard Animating Lo Shu Grid Container */
+    .loshu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 1.5rem auto;
+      max-width: 360px;
+      width: 100%;
+    }
+
+    .grid-cell {
+      border: var(--border-container);
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 6px;
+      position: relative;
+      transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+      border-radius: 4px;
+      background-color: var(--bg-vellum-warm);
+    }
+
+    .grid-cell::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 1;
+      border-radius: 4px;
+      pointer-events: none;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Element specific grid cell colors */
+    .loshu-grid .cell-wood::before { background-color: #E3ECE4; }
+    .loshu-grid .cell-fire::before { background-color: #F0E4E2; }
+    .loshu-grid .cell-earth::before { background-color: #EADEC9; }
+    .loshu-grid .cell-metal::before { background-color: #E8EAE6; }
+    .loshu-grid .cell-water::before { background-color: #E3E8EE; }
+
+    /* Frequencies interpretive mapping styling */
+    .loshu-grid .grid-cell.active.freq-single::before {
+      background-color: rgba(255, 242, 230, 0.75) !important;
+    }
+    .loshu-grid .grid-cell.active.freq-single {
+      border: 1.5px solid rgba(217, 130, 54, 0.7) !important;
+    }
+    
+    .loshu-grid .grid-cell.active.freq-repeated::before {
+      background-color: rgba(255, 230, 204, 0.95) !important;
+    }
+    .loshu-grid .grid-cell.active.freq-repeated {
+      border: 2px solid rgba(217, 130, 54, 0.9) !important;
+      box-shadow: 0 4px 10px rgba(217, 130, 54, 0.08) !important;
+    }
+    
+    .loshu-grid .grid-cell.active.freq-dominant::before {
+      background-color: #FFF2E6 !important;
+    }
+    .loshu-grid .grid-cell.active.freq-dominant {
+      border: 2.5px solid var(--pigment-cinnabar) !important;
+      animation: dominantPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes dominantPulse {
+      0%, 100% { box-shadow: 0 0 10px rgba(158, 58, 51, 0.35); }
+      50% { box-shadow: 0 0 18px rgba(158, 58, 51, 0.65); }
+    }
+
+    .cell-element {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: bold;
+      color: var(--ink-faded);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .cell-value {
+      font-family: var(--font-serif-header);
+      font-size: 1.8rem;
+      position: relative;
+      z-index: 3;
+    }
+
+    .cell-number-active {
+      color: #9E3A33 !important;
+      font-weight: 700;
+      font-size: 1.8rem;
+      display: none;
+    }
+
+    .grid-cell.active .cell-number-active {
+      display: inline-block !important;
+      text-shadow: 0 0 6px #FFF2E6, 0 0 6px #FFF2E6;
+    }
+
+    .cell-number-inactive {
+      color: var(--ink-faded) !important;
+      opacity: 0.25 !important;
+      font-size: 1.6rem !important;
+      font-family: var(--font-serif-header) !important;
+      display: inline-block;
+    }
+
+    .grid-cell.active .cell-number-inactive {
+      display: none !important;
+    }
+
+    /* Standard Remedial Playbook layout styles */
+    .remedy-card {
+      border-left: 4px solid var(--pigment-saffron);
+      padding-left: 1.25rem;
+      margin-bottom: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .remedy-card h5 {
+      margin: 0 0 0.35rem 0;
+      font-family: var(--font-serif-header);
+      font-size: 1.05rem;
+      color: var(--pigment-cinnabar);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .remedy-card p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--ink-archival);
+      line-height: 1.65;
+    }
+
+    /* Crossfade animated transition for viewports */
+    .quad-matrix-viewport {
+      transition: opacity 0.25s ease-in-out;
+    }
+    .quad-matrix-viewport.fade-out {
+      opacity: 0;
+    }
+
+  
+    /* ─── Reading Guide Grid (Tactile manuscript details) ─── */
+    .reading-guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .reading-guide-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+</style>
+  <meta name="description" content="Antara is a traditional cross-cultural mathematical life-engine and archetypal systems cartography. Calibrate your natal coordinates, biological rhythms, and name phonetic values across Vedic, Western tropical, and Chinese solar Four Pillars traditions.">
+  <link rel="icon" type="image/png" href="Antara Logo.png">
+</head>
+<body>
+
+  <div class="header-logo">
+    <a href="index.html" title="Return to Antara Dashboard" style="text-decoration: none; border: none; display: inline-block;">
+      <img src="Antara Logo.png" alt="ANTARA" style="max-height: 90px; width: auto;" onerror="this.style.display='none';">
+    </a>
+  </div>
+  <div class="system-tagline">Cross-Cultural Interior Panorama</div>
+
+  <h1 class="master-report-title">Archetypal Systems Cartography<br>For The Nameless One</h1>
+  <p class="master-report-byline">Unified Cross-Cultural DNA Dashboard & Quad-Matrix Alignment</p>
+
+  <div class="container">
+    
+    <!-- Introduction -->
+    <div class="prose-container" style="margin-bottom: 2.25rem; padding: 0.5rem 0;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-bottom: 1rem; color: var(--stroke, #b56a2a); letter-spacing: 1px; text-transform: uppercase;">About This Cartography</h3>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin-bottom: 1rem;">
+        This cartography maps parallel symbolic frameworks—Western tropical coordinates, Vedic sidereal precessions, Chinese solar BaZi pillars, and Pythagorean-Chaldean numerological cycles—into a single operational dashboard.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.65; color: var(--ink-archival); text-align: justify; margin: 0;">
+        By establishing a unified architectural coordinate system, the engine reconciles differing structural perspective tracks into a coherent developmental roadmap.
+      </p>
+    
+      <!-- Codex Support Navigation Panel -->
+      <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px dashed #D6CEBE; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="Help.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📖 Help
+        </a>
+        <a href="FAQ.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          ❓ FAQ
+        </a>
+        <a href="Glossary.html" target="_blank" style="font-family: var(--font-serif-header), serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-cinnabar); background: var(--bg-vellum-warm); border: 1px solid #D6CEBE; padding: 0.5rem 1rem; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+          📓 Glossary
+        </a>
+      </div>
+      <!-- How to Read This Report (Reading Guide Block) -->
+      <div style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; border: 1px dashed #D6CEBE; background-color: rgba(247, 241, 225, 0.15); border-radius: 4px; box-shadow: 0 2px 8px rgba(43, 42, 40, 0.01);">
+        <h4 style="font-family: var(--font-serif-header); font-size: 0.95rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 1rem; text-align: center; border-bottom: 1px dashed #D6CEBE; padding-bottom: 0.4rem;">
+          How to Study This Document
+        </h4>
+        <div class="reading-guide-grid">
+          <!-- Point 1 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">1. Read the accordion sections one at a time.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">Each section expands when you click the title — do not try to read everything at once.</span>
+          </div>
+          <!-- Point 2 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">2. Look up unfamiliar terms</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">in the Antara Glossary (<a href="Glossary.html" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar);">Glossary.html</a> in this folder).</span>
+          </div>
+          <!-- Point 3 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">3. Start with the numbers that feel most familiar.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">In a Western chart, most people know their Sun sign. In Numerology, the Life Path is easiest.</span>
+          </div>
+          <!-- Point 4 -->
+          <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <strong style="font-family: var(--font-serif-header); font-size: 0.95rem; color: var(--ink-archival);">4. Do not worry about understanding everything on the first read.</strong>
+            <span style="font-size: 0.85rem; line-height: 1.45; color: var(--ink-faded);">These reports are meant to be returned to and studied over time.</span>
+          </div>
+        </div>
+      </div>
+
+</div>
+
+    <!-- Inputs & Layout Grid -->
+    <div class="inputs-coordinates-grid">
+      
+      <!-- Coordinates Form -->
+      <div class="archival-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <form onsubmit="event.preventDefault();">
+          <h3 style="font-family: var(--font-serif-header); font-size: 1.15rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1.25rem; text-transform: uppercase; color: var(--pigment-terracotta); letter-spacing: 1px;">System Coordinates</h3>
+          
+          <div class="form-group">
+            <label>Subject Name</label>
+            <input type="text" id="input-name" class="form-input" value="The Nameless One" placeholder="Enter name...">
+          </div>
+
+          <div class="form-group">
+            <label>Birth Date</label>
+            <input type="date" id="input-dob" class="form-input" value="1953-05-16">
+          </div>
+          
+          <div class="form-group">
+            <label>Birth Time</label>
+            <div class="time-select-cluster">
+              <select id="input-time-hour" class="form-input"></select>
+              <select id="input-time-minute" class="form-input"></select>
+              <select id="input-time-ampm" class="form-input">
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 0;">
+            <label>Birth Location</label>
+            <input type="text" id="input-location" class="form-input" value="Chakrata, Uttarakhand, India">
+          </div>
+        </form>
+      </div>
+
+      <!-- Interactive Horoscope Quad-Matrix viewport -->
+      <div class="archival-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <h3 style="font-family: var(--font-serif-header); font-size: 1.2rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; text-align: center;">Horoscope Quad-Matrix Viewport</h3>
+        
+        <div class="quad-matrix-controls">
+          <button id="btn-vedic-north" class="quad-matrix-btn active" onclick="setQuadView('vedic-north')">Vedic North</button>
+          <button id="btn-vedic-south" class="quad-matrix-btn" onclick="setQuadView('vedic-south')">Vedic South (SAV)</button>
+          <button id="btn-west-radix" class="quad-matrix-btn" onclick="setQuadView('west-radix')">Western Radix</button>
+          <button id="btn-bazi-pillars" class="quad-matrix-btn" onclick="setQuadView('bazi-pillars')">BaZi Pillars</button>
+        </div>
+
+        <div class="quad-matrix-viewport" id="quad-viewport-container" style="flex-grow: 1;">
+          <!-- Populated dynamically via SVG or HTML -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Unified DNA Signature (Full Box Underneath) -->
+    <div class="module-card" style="border-left: 4px solid var(--pigment-cinnabar); margin-top: 1.5rem; margin-bottom: 1.5rem;">
+      <h3 style="font-family: var(--font-serif-header); font-size: 1.25rem; border-bottom: 1px solid #D6CEBE; padding-bottom: 0.5rem; margin-top: 0; margin-bottom: 1.25rem; text-transform: uppercase; letter-spacing: 1px;">Unified DNA Signature Matrix</h3>
+      <div style="overflow-x: auto; width: 100%;">
+        <table style="width: 100%; border-collapse: collapse; font-family: var(--font-serif-body); font-size: 0.95rem;">
+          <thead>
+            <tr style="border-bottom: 1px solid #D6CEBE; text-align: left; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-faded);">
+              <th style="padding: 0.75rem 0.5rem; font-weight: bold; width: 35%;">Tradition Axis</th>
+              <th style="padding: 0.75rem 0.5rem; font-weight: bold; width: 35%;">Archetypal Metric</th>
+              <th style="padding: 0.75rem 0.5rem; font-weight: bold; width: 30%;">Calibrated Signature</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px dashed #EADEC9;">
+              <td style="padding: 0.75rem 0.5rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-faded);">WESTERN TROPICAL</td>
+              <td style="padding: 0.75rem 0.5rem; font-weight: 600;">Sun Element</td>
+              <td id="dna-west-element" style="padding: 0.75rem 0.5rem; font-family: var(--font-serif-header); font-weight: bold; color: var(--pigment-gold);">EARTH</td>
+            </tr>
+            <tr style="border-bottom: 1px dashed #EADEC9;">
+              <td style="padding: 0.75rem 0.5rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-faded);">VEDIC SIDEREAL</td>
+              <td style="padding: 0.75rem 0.5rem; font-weight: 600;">Moon Nakshatra</td>
+              <td id="dna-vedic-nakshatra" style="padding: 0.75rem 0.5rem; font-family: var(--font-serif-header); font-weight: bold; color: var(--pigment-terracotta);">Mrigashira</td>
+            </tr>
+            <tr style="border-bottom: 1px dashed #EADEC9;">
+              <td style="padding: 0.75rem 0.5rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-faded);">CHINESE BAZI</td>
+              <td style="padding: 0.75rem 0.5rem; font-weight: 600;">Day Master</td>
+              <td id="dna-bazi-dm" style="padding: 0.75rem 0.5rem; font-family: var(--font-serif-header); font-weight: bold; color: var(--pigment-gold);">Ji (Yin Earth)</td>
+            </tr>
+            <tr style="border-bottom: 1px dashed #EADEC9;">
+              <td style="padding: 0.75rem 0.5rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-faded);">CHINESE BAZI</td>
+              <td style="padding: 0.75rem 0.5rem; font-weight: 600;">Useful God</td>
+              <td id="dna-bazi-yongshen" style="padding: 0.75rem 0.5rem; font-family: var(--font-serif-header); font-weight: bold; color: var(--pigment-saffron);">Metal</td>
+            </tr>
+            <tr style="border-bottom: 1px dashed #EADEC9;">
+              <td style="padding: 0.75rem 0.5rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-faded);">NUMEROLOGY</td>
+              <td style="padding: 0.75rem 0.5rem; font-weight: 600;">Life Path</td>
+              <td id="dna-num-lifepath" style="padding: 0.75rem 0.5rem; font-family: var(--font-serif-header); font-weight: bold; color: var(--pigment-cinnabar);">4 (The Builder)</td>
+            </tr>
+            <tr style="border-bottom: none;">
+              <td style="padding: 0.75rem 0.5rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-faded);">PHONETIC NAME</td>
+              <td style="padding: 0.75rem 0.5rem; font-weight: 600;">Chaldean Name</td>
+              <td id="dna-num-chaldean" style="padding: 0.75rem 0.5rem; font-family: var(--font-serif-header); font-weight: bold; color: var(--pigment-lapis);">5 (The Explorer)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 7 Structured Synthesis Modules -->
+    <div style="margin-top: 2rem; margin-bottom: 3.5rem;">
+      
+      <!-- Module 1: Unified DNA Dashboard -->
+      <div class="module-card">
+        <div class="module-header">
+          Unified DNA Dashboard
+        </div>
+        <div class="prose-container">
+          <p>
+            Your unified DNA dashboard bridges four traditions to distill your primary operational traits.
+          </p>
+          <p id="module1-prose-summary">
+            Evaluating systems...
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 2: The Horoscope Quad-Matrix details -->
+      <div class="module-card">
+        <div class="module-header">
+          Horoscope Quad-Matrix Alignment
+        </div>
+        <div class="prose-container">
+          <p>
+            Toggling between chart types in the viewport above reveals how your sidereal Vedic coordinates, tropical Western wheel, and solar BaZi Four Pillars map identical astronomical potentials from different symbolic perspectives.
+          </p>
+          <p id="module2-prose-summary">
+            Evaluating coordinate overlays...
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 3: 5-School Numerology Convergence Grid -->
+      <div class="module-card">
+        <div class="module-header">
+          5-School Numerology Magic Grid
+        </div>
+        <div class="prose-container" style="text-align:center;">
+          <p style="text-align:left !important;">
+            By mapping your birthdate numbers onto the traditional <strong>3x3 Loshu Magic Grid</strong>, we isolate your structural drivers. The grid rows and columns indicate the flow of conscious focus, mental agility, and spiritual alignment.
+          </p>
+          
+          <div class="loshu-grid">
+            <div class="grid-cell cell-wood" id="grid-4">
+              <div class="cell-element">Planner</div>
+              <div class="cell-value" id="cell-4"><span class="cell-number-inactive">4</span><span class="cell-number-active">4</span></div>
+            </div>
+            <div class="grid-cell cell-fire" id="grid-9">
+              <div class="cell-element">Visionary</div>
+              <div class="cell-value" id="cell-9"><span class="cell-number-inactive">9</span><span class="cell-number-active">9</span></div>
+            </div>
+            <div class="grid-cell cell-earth" id="grid-2">
+              <div class="cell-element">Connector</div>
+              <div class="cell-value" id="cell-2"><span class="cell-number-inactive">2</span><span class="cell-number-active">2</span></div>
+            </div>
+            <div class="grid-cell cell-wood" id="grid-3">
+              <div class="cell-element">Initiator</div>
+              <div class="cell-value" id="cell-3"><span class="cell-number-inactive">3</span><span class="cell-number-active">3</span></div>
+            </div>
+            <div class="grid-cell cell-earth" id="grid-5">
+              <div class="cell-element">Anchor</div>
+              <div class="cell-value" id="cell-5"><span class="cell-number-inactive">5</span><span class="cell-number-active">5</span></div>
+            </div>
+            <div class="grid-cell cell-metal" id="grid-7">
+              <div class="cell-element">Creator</div>
+              <div class="cell-value" id="cell-7"><span class="cell-number-inactive">7</span><span class="cell-number-active">7</span></div>
+            </div>
+            <div class="grid-cell cell-earth" id="grid-8">
+              <div class="cell-element">Seeker</div>
+              <div class="cell-value" id="cell-8"><span class="cell-number-inactive">8</span><span class="cell-number-active">8</span></div>
+            </div>
+            <div class="grid-cell cell-water" id="grid-1">
+              <div class="cell-element">Journeyer</div>
+              <div class="cell-value" id="cell-1"><span class="cell-number-inactive">1</span><span class="cell-number-active">1</span></div>
+            </div>
+            <div class="grid-cell cell-metal" id="grid-6">
+              <div class="cell-element">Supporter</div>
+              <div class="cell-value" id="cell-6"><span class="cell-number-inactive">6</span><span class="cell-number-active">6</span></div>
+            </div>
+          </div>
+
+          <p id="loshu-prose-summary" style="text-align:left !important; font-size:0.95rem; margin-top:0.5rem; line-height: 1.6;">
+            Calculating Loshu Grid numbers...
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 4: Paradox Resolution -->
+      <div class="module-card">
+        <div class="module-header">
+          Paradox Resolution Spectrum
+        </div>
+        <div class="prose-container">
+          <p>
+            Cross-cultural systems occasionally present conflicting signals—such as a fire-heavy Western Sun (initiating and public) aligned with a water-heavy BaZi Day Master (receptive and quiet). Rather than a system error, this represents a multi-track operational model.
+          </p>
+          <div style="border-left: 4px solid var(--pigment-terracotta); padding-left:1.25rem; margin:1.5rem 0;" id="paradox-prose-block">
+            <strong>System Friction Identified:</strong> Analyzing contradiction vectors...
+          </div>
+          <p>
+            By treating these differences as distinct layers—where your Western chart steers your outer public actions, and your Chinese BaZi guides your inner energy reserves—you resolve internal conflicts and balance your path.
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 5: 3-to-5-Year Timing Dashboard -->
+      <div class="module-card">
+        <div class="module-header">
+          3-to-5-Year Timing Dashboard
+        </div>
+        <div class="prose-container">
+          <p>
+            We merge Western progressed shifts, Vedic Dasha transits, BaZi Luck Pillars, and Numerology personal years to map your current 3-to-5-year developmental timing waves.
+          </p>
+          
+          <div class="timing-tracks-container">
+            <div class="timing-track">
+              <div class="timing-track-label">Vedic Dasha</div>
+              <div class="timing-track-val" id="track-dasha">Calculating Mahadasha lord...</div>
+            </div>
+            <div class="timing-track">
+              <div class="timing-track-label">BaZi Luck</div>
+              <div class="timing-track-val" id="track-bazi">Calculating Luck Pillar...</div>
+            </div>
+            <div class="timing-track">
+              <div class="timing-track-label">Western Progression</div>
+              <div class="timing-track-val" id="track-west">Calculating Secondary Progressions...</div>
+            </div>
+            <div class="timing-track">
+              <div class="timing-track-label">Numerology Year</div>
+              <div class="timing-track-val" id="track-numerology">Calculating Personal Year...</div>
+            </div>
+          </div>
+          <p id="timing-prose-summary" style="font-size:0.95rem;">
+            Analyzing timing tracks...
+          </p>
+        </div>
+      </div>
+
+      <!-- Module 6: Biorhythm Chronology Canvas -->
+      <div class="module-card">
+        <div class="module-header">
+          Biorhythm Chronology Waves
+        </div>
+        <div class="prose-container">
+          <p>
+            Your chronobiology is governed by physical (23-day), emotional (28-day), and intellectual (33-day) cycles. The interactive graph below charts these waves for a 30-day window centered on your current evaluation date. Click on any cycle below to toggle its visibility.
+          </p>
+          
+          <div style="border: 1px solid #D6CEBE; padding:1.5rem; background: #faf7ef; border-radius:4px; margin: 1.5rem auto; max-width: 650px; box-sizing: border-box;">
+            <div class="chart-container" style="height: 280px; position: relative; width: 100%;">
+              <canvas id="biorhythm-chart"></canvas>
+            </div>
+            <div style="display:flex; justify-content:center; gap: 1.5rem; margin-top: 1rem; font-family:var(--font-mono); font-size:0.8rem; user-select:none;">
+              <span id="legend-physical" style="color:#A65B4A; cursor:pointer; font-weight:bold;" onclick="toggleDataset(0)">● Physical (23d)</span>
+              <span id="legend-emotional" style="color:#D98236; cursor:pointer; font-weight:bold;" onclick="toggleDataset(1)">● Emotional (28d)</span>
+              <span id="legend-intellectual" style="color:#2E6CB5; cursor:pointer; font-weight:bold;" onclick="toggleDataset(2)">● Intellectual (33d)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 7: Master Remedial Playbook -->
+      <div class="module-card">
+        <div class="module-header">
+          Master Remedial Playbook
+        </div>
+        <div class="prose-container">
+          <p>
+            By synthesizing Vastu Shastra geometry, Feng Shui elemental distributions, and chronobiological alignment, this playbook delivers precise directives to synchronize daily operational rhythms and align spatial coordinates.
+          </p>
+          <div class="remedy-card">
+            <h5>Reflexive Integration Protocol</h5>
+            <p>Engage in silent, alternate-nostril breathing (Nadi Shodhana) for 5 minutes each morning to balance mental networks. Pair this with physical grounding (barefoot contact with soil) to calm structural tension.</p>
+          </div>
+          <div class="remedy-card" style="border-left-color: var(--pigment-moss);">
+            <h5>Vastu & Feng Shui Shared Space Blueprint</h5>
+            <p id="master-space-prose">Establishing environment adjustments...</p>
+          </div>
+          <div class="remedy-card" style="border-left-color: var(--pigment-cinnabar);">
+            <h5>Nutritional Alignment Vector</h5>
+            <p id="master-nutrition-prose">Establishing nutritional support...</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top: 2rem; margin-bottom: 3rem;">
+      <details style="cursor: pointer; outline: none;">
+        <summary class="explore-summary">
+          <span class="explore-title-main">Click to Explore</span>
+          <span class="explore-title-sub">Understanding the Systems Cartography Mapping</span>
+        </summary>
+        <div class="accordion-inner-border" style="cursor: default; margin-top: 1rem; background-color: var(--bg-vellum-warm); border: var(--border-container); padding: 1.5rem 1.75rem; position: relative; box-shadow: 0 4px 15px rgba(43, 42, 40, 0.04); border-radius: 4px;">
+          <div style="position: relative; z-index: 2;">
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">Cross-Cultural Pattern Synthesis</h4>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 1.5rem;">The Antara Systems Cartography represents the ultimate cross-cultural integration of ancient timing and symbolic systems. Rather than viewing Vedic Astrology, Western Astrology, Chinese BaZi, and Pythagorean Numerology as competing paradigms, this framework treats them as complementary dimensions of a singular, multi-dimensional human blueprint. By mapping your birth coordinates across these diverse structures, we isolate core thematic patterns, resolve apparent paradoxes, and construct a highly consistent, unified roadmap for personal growth and temporal pacing.</p>
+            
+            <h4 class="font-mono" style="color: var(--pigment-terracotta); font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: bold;">Mathematical Convergence & Biorhythms</h4>
+            <p style="font-size: 1.05rem; line-height: 1.75; text-align: justify; margin-top: 0; margin-bottom: 0;">At the heart of the synthesis report is the Horoscope Quad-Matrix and the 5-School Numerology convergence. These systems use distinct mathematical algorithms to calculate your identity anchors—from the 3x3 magic square of the Lo Shu Grid and Chaldean sound frequencies to Western aspectual geometry and Vedic Ashtakavarga charts. Overlaying these static blueprints with the dynamic, cyclic waves of physical, emotional, and intellectual biorhythms provides a highly comprehensive, real-time map of your personal chronobiology, empowering you to navigate life's tides with clarity and sovereign self-possession.</p>
+            
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- Honest Framing Disclaimer Box -->
+    <style>
+      .disclaimer-hi { display: none; }
+      body.lang-hi .disclaimer-en { display: none !important; }
+      body.lang-hi .disclaimer-hi { display: block !important; }
+    </style>
+    
+    <div class="disclaimer-en" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        DISCLAIMER
+      </h4>
+      <p style="margin: 0; text-align: justify;">
+        This report is an interpretive analytical framework intended solely for reflective and informational purposes. It is not a predictive, diagnostic, clinical, financial, legal, medical, psychological or professional advisory instrument, and should not be relied upon as definitive guidance for decisions, actions, or outcomes. The original application has been developed in English. Certain translated versions may utilize automated translation tools, including Google Translate. While reasonable efforts have been made to preserve contextual accuracy, no responsibility is accepted for translation inaccuracies, omissions, interpretive variations, or linguistic ambiguities arising from translated content. In the event of any inconsistency or ambiguity, the English version shall prevail.
+      </p>
+    </div>
+
+    <div class="disclaimer-hi notranslate" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
+      <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+        अस्वीकरण
+      </h4>
+      <p style="margin: 0; text-align: justify; color: var(--ink-faded); font-style: italic;">
+        यह रिपोर्ट केवल विचारात्मक एवं सूचनात्मक उद्देश्य हेतु निर्मित एक व्याख्यात्मक विश्लेषणात्मक ढांचा है। यह कोई भविष्यवाणी, निदान, नैदानिक, वित्तीय, कानूनी, चिकित्सीय, मनोवैज्ञानिक अथवा पेशेवर परामर्श का उपकरण नहीं है, और इसे निर्णयों, कार्यों या परिणामों के लिए अंतिम मार्गदर्शन के रूप में नहीं माना जाना चाहिए। मूल अनुप्रयोग अंग्रेज़ी भाषा में विकसित किया गया है। कुछ अनुवादित संस्करणों में Google Translate सहित स्वचालित अनुवाद उपकरणों का उपयोग किया जा सकता है। यद्यपि संदर्भगत शुद्धता बनाए रखने का यथासंभव प्रयास किया गया है, तथापि अनुवाद संबंधी त्रुटियों, चूकों, अर्थ-व्याख्या में भिन्नताओं या भाषाई अस्पष्टताओं के लिए कोई उत्तरदायित्व स्वीकार नहीं किया जाता। किसी भी असंगति या अस्पष्टता की स्थिति में अंग्रेज़ी संस्करण को ही मान्य माना जाएगा।
+      </p>
+    </div>
+    <!-- Resonance / Feedback Link -->
+    <div style="text-align: center; margin: 1.5rem auto 2rem auto; font-family: var(--font-mono); font-size: 0.8rem; max-width: 1100px; width: calc(100% - 24px);">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEYjLsqRjRRR0FZEPq384iGrpL6rZfrEQHEbcYQ9pz5ERzlg/viewform" target="_blank" style="color: var(--pigment-cinnabar); text-decoration: none; border-bottom: 1px dotted var(--pigment-cinnabar); letter-spacing: 1px; font-weight: bold; transition: all 0.2s ease; padding-bottom: 2px;">
+        ✦ SHARE YOUR RESONANCE (ANONYMOUS SUGGESTIONS) ✦
+      </a>
+    </div>
+
+  </div>
+
+  <div style="text-align: center; margin: 4rem 0 2rem 0; width: 100%;">
+    <span style="font-size: 1.2rem; color: var(--pigment-terracotta); opacity: 0.8; letter-spacing: 2px;">❖</span>
+  </div>
+
+  <footer class="notranslate">
+    <div class="footer-content" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem;">
+      <div>
+        <p style="font-weight: 600; letter-spacing: 1px; font-family: var(--font-serif-header);">ANTARA CROSS-CULTURAL SYSTEMS COLLATIVE</p>
+        <p style="font-size: 0.78rem; color: var(--ink-faded); margin: 0.25rem 0;">Precision archetypal diagnostic engine and narrative identity structures.</p>
+      </div>
+      <div style="text-align: right; min-width: 250px;">
+        <p class="font-mono" style="margin: 0; font-size: 0.72rem; color: var(--ink-faded);">ENGINE REF: ASC-CORE-x9021 • v1.9.0</p>
+        <p class="font-mono" style="margin: 0; font-size: 0.72rem; color: var(--ink-faded);">TIMESTAMP: 2026-05-31T12:21:43+05:30</p>
+      </div>
+    </div>
+  </footer>
+
+  
+  <script>
+    // Clean up local storage persona names dynamically to wipe out old cached test personas
+    try {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (localStorage.getItem(key) === 'Ankur Gupta') {
+                localStorage.setItem(key, 'Antara Gupta');
+            }
+        }
+    } catch (e) {
+        console.warn("localStorage persona migration restricted:", e);
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, function(tag) {
+        var chars = {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        };
+        return chars[tag] || tag;
+      });
+    }
+
+    // Initialize language inheritance from local storage
+    let preferredLang = localStorage.getItem('antara_preferred_language') || 'EN';
+    if (window.location.hash === '#HI' || window.location.search.includes('lang=HI')) {
+        preferredLang = 'HI';
+        localStorage.setItem('antara_preferred_language', 'HI');
+    } else if (window.location.hash === '#EN' || window.location.search.includes('lang=EN')) {
+        preferredLang = 'EN';
+        localStorage.setItem('antara_preferred_language', 'EN');
+    }
+    if (preferredLang === 'HI') {
+        document.body.classList.add('lang-hi');
+        
+        // 1. Force the Google Translate hash parameter if not present
+        if (!window.location.hash.includes('googtrans')) {
+            window.location.hash = 'googtrans(en|hi)';
+        }
+        
+        // 2. Set googtrans cookie to persist
+        document.cookie = "googtrans=/en/hi; path=/";
+        
+        // 3. Create absolute HTTPS Google Translate container and script
+        const gtDiv = document.createElement('div');
+        gtDiv.id = 'google_translate_element';
+        gtDiv.style.position = 'fixed';
+        gtDiv.style.bottom = '15px';
+        gtDiv.style.right = '15px';
+        gtDiv.style.zIndex = '99999';
+        gtDiv.style.background = '#FFFDF9';
+        gtDiv.style.border = '1px solid #D6CEBE';
+        gtDiv.style.borderRadius = '20px';
+        gtDiv.style.padding = '3px 10px';
+        gtDiv.style.boxShadow = '0 3px 10px rgba(0,0,0,0.06)';
+        gtDiv.style.display = 'inline-flex';
+        gtDiv.style.alignItems = 'center';
+        gtDiv.style.gap = '6px';
+        gtDiv.innerHTML = '<span style="font-family:\'Cinzel\', serif; font-size:0.68rem; color:#9E3A33; font-weight:bold; letter-spacing:0.5px;">ANTARA TRANSLATE</span>';
+        document.body.appendChild(gtDiv);
+
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'hi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: true
+            }, 'google_translate_element');
+        };
+
+        const gtScript = document.createElement('script');
+        gtScript.type = 'text/javascript';
+        gtScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        document.head.appendChild(gtScript);
+    } else if (preferredLang === 'EN') {
+        if (window.location.hash.includes('googtrans')) {
+            window.location.hash = '';
+        }
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+
+    function safeGetItem(key) {
+      try { return localStorage.getItem(key); } 
+      catch (e) { console.warn("safeGetItem failed for", key, e); return null; }
+    }
+    function safeSetItem(key, val) {
+      try { localStorage.setItem(key, val); } 
+      catch (e) { console.warn("safeSetItem failed for", key, e); }
+    }
+
+    const chaldeanLetterVals = {
+      'A': 1, 'I': 1, 'J': 1, 'Q': 1, 'Y': 1, 'B': 2, 'K': 2, 'R': 2,
+      'C': 3, 'G': 3, 'L': 3, 'S': 3, 'D': 4, 'M': 4, 'T': 4, 'E': 5,
+      'H': 5, 'N': 5, 'X': 5, 'U': 6, 'V': 6, 'W': 6, 'O': 7, 'Z': 7,
+      'F': 8, 'P': 8
+    };
+
+    function getChaldeanNameVal(name) {
+      const letters = name.toUpperCase().replace(/[^A-Z]/g, '').split('');
+      let total = 0;
+      letters.forEach(c => {
+        total += (chaldeanLetterVals[c] || 0);
+      });
+      return total === 0 ? 5 : ((total - 1) % 9) + 1;
+    }
+
+    function populateClockSelectors(hrId, minId) {
+      const hrSelect = document.getElementById(hrId);
+      const minSelect = document.getElementById(minId);
+      if (!hrSelect || !minSelect) return;
+      hrSelect.innerHTML = '';
+      minSelect.innerHTML = '';
+      for (let h = 1; h <= 12; h++) {
+        const opt = document.createElement('option');
+        const displayH = h < 10 ? '0' + h : h;
+        opt.value = displayH;
+        opt.innerText = displayH;
+        hrSelect.appendChild(opt);
+      }
+      for (let m = 0; m < 60; m++) {
+        const opt = document.createElement('option');
+        const displayM = m < 10 ? '0' + m : m;
+        opt.value = displayM;
+        opt.innerText = displayM;
+        minSelect.appendChild(opt);
+      }
+    }
+
+    const zodiacSigns = [
+      "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
+      "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"
+    ];
+
+    const elementMap = {
+      "Aries": "Fire", "Leo": "Fire", "Sagittarius": "Fire",
+      "Taurus": "Earth", "Virgo": "Earth", "Capricorn": "Earth",
+      "Gemini": "Air", "Libra": "Air", "Aquarius": "Air",
+      "Cancer": "Water", "Scorpio": "Water", "Pisces": "Water"
+    };
+
+    const colorMap = {
+      "Fire": "var(--pigment-cinnabar)",
+      "Earth": "var(--pigment-gold)",
+      "Air": "var(--pigment-lapis)",
+      "Water": "var(--pigment-lapis)",
+      "Wood": "var(--pigment-moss)",
+      "Metal": "var(--pigment-saffron)"
+    };
+
+    const stemElemMap = {
+      "甲": "Wood", "乙": "Wood", "丙": "Fire", "丁": "Fire",
+      "戊": "Earth", "己": "Earth", "庚": "Metal", "辛": "Metal",
+      "壬": "Water", "癸": "Water"
+    };
+
+    const branchElemMap = {
+      "子": "Water", "亥": "Water",
+      "寅": "Wood", "卯": "Wood",
+      "巳": "Fire", "午": "Fire",
+      "丑": "Earth", "辰": "Earth", "未": "Earth", "戌": "Earth",
+      "申": "Metal", "酉": "Metal"
+    };
+
+    const tianGan = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"];
+    const tianGanNames = ["Jia (Yang Wood)", "Yi (Yin Wood)", "Bing (Yang Fire)", "Ding (Yin Fire)", "Wu (Yang Earth)", "Ji (Yin Earth)", "Geng (Yang Metal)", "Xin (Yin Metal)", "Ren (Yang Water)", "Gui (Yin Water)"];
+    
+    const diZhi = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"];
+    const diZhiNames = ["Zi (Rat / Water)", "Chou (Ox / Earth)", "Yin (Tiger / Wood)", "Mao (Rabbit / Wood)", "Chen (Dragon / Earth)", "Si (Snake / Fire)", "Wu (Horse / Fire)", "Wei (Goat / Earth)", "Shen (Monkey / Metal)", "You (Rooster / Metal)", "Xu (Dog / Earth)", "Hai (Pig / Water)"];
+
+    const nakshatras = [
+      "Ashwini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra", "Punarvasu", "Pushya", "Ashlesha",
+      "Magha", "Purva Phalguni", "Uttara Phalguni", "Hasta", "Chitra", "Swati", "Vishakha", "Anuradha", "Jyeshtha",
+      "Moola", "Purva Ashadha", "Uttara Ashadha", "Shravana", "Dhanishtha", "Shatabhisha", "Purva Bhadrapada", "Uttara Bhadrapada", "Revati"
+    ];
+
+    const dashaLords = ["Ketu", "Venus", "Sun", "Moon", "Mars", "Rahu", "Jupiter", "Saturn", "Mercury"];
+
+    let activeQuadView = 'vedic-north';
+    let currentCoords = {};
+    let chartInstance = null;
+    let activeDatasets = [true, true, true];
+
+    function parseLocalDate(dateStr) {
+      if (!dateStr) return null;
+      const parts = dateStr.split('-');
+      return new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10), 12, 0, 0);
+    }
+
+    function hashString(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      return Math.abs(hash);
+    }
+
+    function calculateParallelCosmologies(dobStr, timeStr) {
+      const seed = hashString(dobStr + "synthesis" + timeStr);
+      const westSeed = hashString(dobStr + "antara_zodiac" + timeStr);
+      const baziSeed = hashString(dobStr + "bazi" + timeStr);
+      
+      // Western tropical from 09_zodiac.html
+      const sun = (westSeed % 360);
+      const moon = ((westSeed * 7 + 115) % 360);
+      const asc = ((westSeed * 13 + 45) % 360);
+      const mercury = ((sun + (westSeed % 28) - 14 + 360) % 360);
+      const venus = ((sun + (westSeed % 48) - 24 + 360) % 360);
+      const mars = ((westSeed * 3 + 72) % 360);
+      const jupiter = ((westSeed * 5 + 140) % 360);
+      const saturn = ((westSeed * 9 + 220) % 360);
+      const rahu = ((westSeed * 11 + 310) % 360);
+      const ketu = (rahu + 180) % 360;
+      const chiron = ((westSeed * 17 + 85) % 360);
+
+      // Sidereal Vedic (approx Lahiri Subtract 24 degrees)
+      const sidAsc = (asc - 24 + 360) % 360;
+      const sidSun = (sun - 24 + 360) % 360;
+      const sidMoon = (moon - 24 + 360) % 360;
+      const sidMars = (mars - 24 + 360) % 360;
+      const sidMercury = (mercury - 24 + 360) % 360;
+      const sidJupiter = (jupiter - 24 + 360) % 360;
+      const sidVenus = (venus - 24 + 360) % 360;
+      const sidSaturn = (saturn - 24 + 360) % 360;
+      const sidRahu = (rahu - 24 + 360) % 360;
+      const sidKetu = (ketu - 24 + 360) % 360;
+
+      // Vedic Nakshatra based on moon degree
+      const nakshatraIdx = Math.floor(sidMoon / (360 / 27)) % 27;
+      const moonNakshatra = nakshatras[nakshatraIdx];
+
+      // Dasha Lord based on Nakshatra
+      const dashaIdx = nakshatraIdx % 9;
+      const dashaLord = dashaLords[dashaIdx];
+
+      // BaZi indexes from 11_bazi.html
+      const yearStemIdx = baziSeed % 10;
+      const yearBranchIdx = (baziSeed * 3) % 12;
+      const monthStemIdx = (baziSeed + 2) % 10;
+      const monthBranchIdx = (baziSeed + 4) % 12;
+      const dayStemIdx = (baziSeed + 5) % 10;
+      const dayBranchIdx = (baziSeed + 7) % 12;
+      const hourStemIdx = (baziSeed + 8) % 10;
+      const hourBranchIdx = (baziSeed + 10) % 12;
+
+      const baziDM = tianGanNames[dayStemIdx];
+      
+      // BaZi elements balance calculation
+      const elementsList = ["Wood", "Fire", "Earth", "Metal", "Water"];
+      const elemCounts = { "Wood": 0, "Fire": 0, "Earth": 0, "Metal": 0, "Water": 0 };
+      
+      const chartStems = [tianGan[yearStemIdx], tianGan[monthStemIdx], tianGan[dayStemIdx], tianGan[hourStemIdx]];
+      const chartBranches = [diZhi[yearBranchIdx], diZhi[monthBranchIdx], diZhi[dayBranchIdx], diZhi[hourBranchIdx]];
+
+      chartStems.forEach(s => elemCounts[stemElemMap[s]]++);
+      chartBranches.forEach(b => elemCounts[branchElemMap[b]]++);
+
+      let lowestElement = "Metal";
+      let minCount = 8;
+      elementsList.forEach(e => {
+        const count = elemCounts[e];
+        if (count < minCount) {
+          minCount = count;
+          lowestElement = e;
+        }
+      });
+      const baziYongShen = lowestElement;
+
+      // Numerology
+      // Life path from dob digits
+      const digits = dobStr.replace(/[^0-9]/g, '').split('').map(Number);
+      const lpSum = digits.reduce((a, b) => a + b, 0);
+      const lp = ((lpSum - 1) % 9) + 1;
+
+      return { 
+        sun, moon, asc, mercury, venus, mars, jupiter, saturn, rahu, ketu, chiron,
+        sidAsc, sidSun, sidMoon, sidMars, sidMercury, sidJupiter, sidVenus, sidSaturn, sidRahu, sidKetu,
+        moonNakshatra, dashaLord, baziDM, baziYongShen, lp, seed,
+        yearStemIdx, yearBranchIdx, monthStemIdx, monthBranchIdx, dayStemIdx, dayBranchIdx, hourStemIdx, hourBranchIdx
+      };
+    }
+
+    function getSignName(deg) {
+      return zodiacSigns[Math.floor(deg / 30) % 12];
+    }
+
+    function getZodiacName(deg) {
+      const idx = Math.floor(deg / 30) % 12;
+      const rem = Math.floor(deg % 30);
+      return `${zodiacSigns[idx]} ${rem}°`;
+    }
+
+    function setQuadView(viewName) {
+      activeQuadView = viewName;
+      document.querySelectorAll('.quad-matrix-btn').forEach(btn => btn.classList.remove('active'));
+      
+      if (viewName === 'vedic-north') document.getElementById('btn-vedic-north').classList.add('active');
+      else if (viewName === 'vedic-south') document.getElementById('btn-vedic-south').classList.add('active');
+      else if (viewName === 'west-radix') document.getElementById('btn-west-radix').classList.add('active');
+      else if (viewName === 'bazi-pillars') document.getElementById('btn-bazi-pillars').classList.add('active');
+
+      const viewport = document.getElementById('quad-viewport-container');
+      if (viewport) {
+        viewport.classList.add('fade-out');
+        setTimeout(() => {
+          renderQuadViewport();
+          viewport.classList.remove('fade-out');
+        }, 200);
+      } else {
+        renderQuadViewport();
+      }
+    }
+
+    function toggleDataset(index) {
+      if (!chartInstance) return;
+      activeDatasets[index] = !activeDatasets[index];
+      
+      // Update chart dataset visibility
+      chartInstance.setDatasetVisibility(index, activeDatasets[index]);
+      chartInstance.update();
+      
+      // Sync legend button styles
+      const ids = ['legend-physical', 'legend-emotional', 'legend-intellectual'];
+      const el = document.getElementById(ids[index]);
+      if (el) {
+        if (!activeDatasets[index]) {
+          el.style.opacity = '0.35';
+          el.style.textDecoration = 'line-through';
+        } else {
+          el.style.opacity = '1';
+          el.style.textDecoration = 'none';
+        }
+      }
+    }
+
+    function renderQuadViewport() {
+      const container = document.getElementById('quad-viewport-container');
+      container.innerHTML = '';
+      
+      const c = currentCoords;
+      if (!c.sun) return;
+
+      if (activeQuadView === 'vedic-north') {
+        // Traditional diamond North Indian chart SVG - saffron-filled regions from 01_lifemap.html
+        const ascRashi = Math.floor(c.sidAsc / 30) + 1;
+        
+        // Group planets by house
+        const housePlanets = Array.from({ length: 13 }, () => []);
+        housePlanets[1].push("Lg"); // Lagna always in 1st house
+        
+        const planetsList = [
+          { label: "Su", deg: c.sidSun },
+          { label: "Mo", deg: c.sidMoon },
+          { label: "Ma", deg: c.sidMars },
+          { label: "Me", deg: c.sidMercury },
+          { label: "Ju", deg: c.sidJupiter },
+          { label: "Ve", deg: c.sidVenus },
+          { label: "Sa", deg: c.sidSaturn },
+          { label: "Ra", deg: c.sidRahu },
+          { label: "Ke", deg: c.sidKetu }
+        ];
+
+        planetsList.forEach(p => {
+          const pRashi = Math.floor(p.deg / 30) + 1;
+          const pHouse = ((pRashi - ascRashi + 12) % 12) + 1;
+          housePlanets[pHouse].push(p.label);
+        });
+
+        // House Rashi Numbers
+        const r = (h) => ((ascRashi + h - 2) % 12) + 1;
+
+        container.innerHTML = `
+          <div style="display:flex; flex-direction:column; align-items:center; width:100%;">
+            <div style="font-family:var(--font-serif-header); font-size:0.75rem; letter-spacing:1px; text-transform:uppercase; color:var(--ink-faded); margin-bottom:8px; font-weight:bold;">
+              Vedic North Indian (Sidereal) Chart
+            </div>
+            <div style="width:100%; max-width:280px; aspect-ratio:1; background:#f7d774; border:2px solid #b56a2a; border-radius:4px; overflow:hidden; box-shadow: 0 4px 15px rgba(90, 22, 7, 0.08);">
+              <svg viewBox="0 0 400 400" style="width:100%; height:100%; display:block;">
+                <!-- House 1 · Top kite -->
+                <g>
+                  <polygon class="region petal" points="200,0 300,100 200,200 100,100" />
+                  <text class="rashi lagna" x="200" y="130">${r(1)}</text>
+                  <text class="planets" x="200" y="55">${housePlanets[1].join(" ")}</text>
+                </g>
+
+                <!-- House 4 · Left kite -->
+                <g>
+                  <polygon class="region petal" points="0,200 100,300 200,200 100,100" />
+                  <text class="rashi" x="130" y="200">${r(4)}</text>
+                  <text class="planets" x="55" y="200">${housePlanets[4].join(" ")}</text>
+                </g>
+
+                <!-- House 7 · Bottom kite -->
+                <g>
+                  <polygon class="region petal" points="200,200 100,300 200,400 300,300" />
+                  <text class="rashi" x="200" y="270">${r(7)}</text>
+                  <text class="planets" x="200" y="345">${housePlanets[7].join(" ")}</text>
+                </g>
+
+                <!-- House 10 · Right kite -->
+                <g>
+                  <polygon class="region petal" points="200,200 300,300 400,200 300,100" />
+                  <text class="rashi" x="270" y="200">${r(10)}</text>
+                  <text class="planets" x="345" y="200">${housePlanets[10].join(" ")}</text>
+                </g>
+
+                <!-- House 2 · Top-left, upper -->
+                <g>
+                  <polygon class="region triangle" points="0,0 200,0 100,100" />
+                  <text class="rashi" x="100" y="35">${r(2)}</text>
+                  <text class="planets" x="100" y="18">${housePlanets[2].join(" ")}</text>
+                </g>
+
+                <!-- House 3 · Top-left, lower -->
+                <g>
+                  <polygon class="region triangle" points="0,0 100,100 0,200" />
+                  <text class="rashi" x="35" y="100">${r(3)}</text>
+                  <text class="planets" x="16" y="100">${housePlanets[3].join(" ")}</text>
+                </g>
+
+                <!-- House 5 · Bottom-left, upper -->
+                <g>
+                  <polygon class="region triangle" points="0,200 100,300 0,400" />
+                  <text class="rashi" x="35" y="300">${r(5)}</text>
+                  <text class="planets" x="16" y="300">${housePlanets[5].join(" ")}</text>
+                </g>
+
+                <!-- House 6 · Bottom-left, lower -->
+                <g>
+                  <polygon class="region triangle" points="0,400 200,400 100,300" />
+                  <text class="rashi" x="100" y="365">${r(6)}</text>
+                  <text class="planets" x="100" y="384">${housePlanets[6].join(" ")}</text>
+                </g>
+
+                <!-- House 8 · Bottom-right, lower -->
+                <g>
+                  <polygon class="region triangle" points="200,400 400,400 300,300" />
+                  <text class="rashi" x="300" y="365">${r(8)}</text>
+                  <text class="planets" x="300" y="384">${housePlanets[8].join(" ")}</text>
+                </g>
+
+                <!-- House 9 · Bottom-right, upper -->
+                <g>
+                  <polygon class="region triangle" points="400,200 400,400 300,300" />
+                  <text class="rashi" x="365" y="300">${r(9)}</text>
+                  <text class="planets" x="384" y="300">${housePlanets[9].join(" ")}</text>
+                </g>
+
+                <!-- House 11 · Top-right, lower -->
+                <g>
+                  <polygon class="region triangle" points="400,0 400,200 300,100" />
+                  <text class="rashi" x="365" y="100">${r(11)}</text>
+                  <text class="planets" x="384" y="100">${housePlanets[11].join(" ")}</text>
+                </g>
+
+                <!-- House 12 · Top-right, upper -->
+                <g>
+                  <polygon class="region triangle" points="200,0 400,0 300,100" />
+                  <text class="rashi" x="300" y="35">${r(12)}</text>
+                  <text class="planets" x="300" y="18">${housePlanets[12].join(" ")}</text>
+                </g>
+              </svg>
+            </div>
+            <div style="font-family:var(--font-mono); font-size: 0.72rem; margin-top:8px; color:var(--ink-faded); text-align:center; line-height:1.4;">
+              ASC: ${getSignName(c.sidAsc)} | Sun: ${getSignName(c.sidSun)} | Moon: ${getSignName(c.sidMoon)}
+            </div>
+          </div>
+        `;
+      } 
+      else if (activeQuadView === 'vedic-south') {
+        // Traditional South Indian 4x4 square layout with SAV overlays - FULL ZODIAC NAMES and adjusted font-size
+        const savValues = Array.from({ length: 12 }, (_, i) => {
+          return 24 + ((c.seed + i * 3) % 13);
+        });
+        
+        container.innerHTML = `
+          <div style="display:flex; flex-direction:column; align-items:center; width:100%;">
+            <div style="font-family:var(--font-serif-header); font-size:0.75rem; letter-spacing:1px; text-transform:uppercase; color:var(--ink-faded); margin-bottom:8px; font-weight:bold;">
+              Vedic South Indian SAV Matrix
+            </div>
+            <div style="display:grid; grid-template-columns: repeat(4, 1fr); width:100%; max-width:280px; gap:4px; margin: 0 auto;">
+              <!-- Row 1 -->
+              <div style="border:1px solid #D6CEBE; background:#fff; aspect-ratio:1; padding:4px 2px; font-family:var(--font-serif-header); font-weight:600; font-size:0.58rem; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; line-height:1.2; box-sizing:border-box;">Pisces<strong style="color:var(--pigment-cinnabar); font-size:0.95rem; margin-top:1px;">${savValues[0]}</strong></div>
+              <div style="border:1px solid #D6CEBE; background:#fff; aspect-ratio:1; padding:4px 2px; font-family:var(--font-serif-header); font-weight:600; font-size:0.58rem; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; line-height:1.2; box-sizing:border-box;">Aries<strong style="color:var(--pigment-cinnabar); font-size:0.95rem; margin-top:1px;">${savValues[1]}</strong></div>
+              <div style="border:1px solid #D6CEBE; background:#fff; aspect-ratio:1; padding:4px 2px; font-family:var(--font-serif-header); font-weight:600; font-size:0.58rem; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; line-height:1.2; box-sizing:border-box;">Taurus<strong style="color:var(--pigment-cinnabar); font-size:0.95rem; margin-top:1px;">${savValues[2]}</strong></div>
+              <div style="border:1px solid #D6CEBE; background:#fff; aspect-ratio:1; padding:4px 2px; font-family:var(--font-serif-header); font-weight:600; font-size:0.58rem; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; line-height:1.2; box-sizing:border-box;">Gemini<strong style="color:var(--pigment-cinnabar); font-size:0.95rem; margin-top:1px;">${savValues[3]}</strong></div>
+              
+              <!-- Row 2 -->
+              <div style="border:1px solid #D6CEBE; background:#fff; aspect-ratio:1; padding:4px 2px; font-family:var(--font-serif-header); font-weight:600; font-size:0.58rem; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; line-height:1.2; box-sizing:border-box;">Aquarius<strong style="color:var(--pigment-cinnabar); font-size:0.95rem; margin-top:1px;">${savValues[11]}</strong></div>
+              <div style="grid-column: span 2; background:rgba(214, 206, 190, 0.2); border:1px solid #D6CEBE; display:flex; align-items:center; justify-content:center; font-family:var(--font-serif-header); font-size:0.75rem; font-weight:bold; letter-spacing:1px; text-align:center;">SAV Grid</div>
+              <div style="border:1px solid #D6CEBE; background:#fff; aspect-ratio:1; padding:4px 2px; font-family:var(--font-serif-header); font-weight:600; font-size:0.58rem; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; line-height:1.2; box-sizing:border-box;">Cancer<strong style="color:var(--pigment-cinnabar); font-size:0.95rem; margin-top:1px;">${savValues[4]}</strong></div>
+              
+              <!-- Row 3 -->
+              <div style="border:1px solid #D6CEBE; background:#fff; aspect-ratio:1; padding:4px 2px; font-family:var(--font-serif-header); font-weight:600; font-size:0.58rem; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; line-height:1.2; box-sizing:border-box;">Capricorn<strong style="color:var(--pigment-cinnabar); font-size:0.95rem; margin-top:1px;">${savValues[10]}</strong></div>
+              <div style="grid-column: span 2; background:rgba(214, 206, 190, 0.2); border:1px solid #D6CEBE; display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:0.72rem; font-weight:bold; color:var(--ink-faded);">SUM: 337</div>
+              <div style="border:1px solid #D6CEBE; background:#fff; aspect-ratio:1; padding:4px 2px; font-family:var(--font-serif-header); font-weight:600; font-size:0.58rem; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; line-height:1.2; box-sizing:border-box;">Leo<strong style="color:var(--pigment-cinnabar); font-size:0.95rem; margin-top:1px;">${savValues[5]}</strong></div>
+              
+              <!-- Row 4 -->
+              <div style="border:1px solid #D6CEBE; background:#fff; aspect-ratio:1; padding:4px 2px; font-family:var(--font-serif-header); font-weight:600; font-size:0.58rem; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; line-height:1.2; box-sizing:border-box;">Sagittarius<strong style="color:var(--pigment-cinnabar); font-size:0.95rem; margin-top:1px;">${savValues[9]}</strong></div>
+              <div style="border:1px solid #D6CEBE; background:#fff; aspect-ratio:1; padding:4px 2px; font-family:var(--font-serif-header); font-weight:600; font-size:0.58rem; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; line-height:1.2; box-sizing:border-box;">Scorpio<strong style="color:var(--pigment-cinnabar); font-size:0.95rem; margin-top:1px;">${savValues[8]}</strong></div>
+              <div style="border:1px solid #D6CEBE; background:#fff; aspect-ratio:1; padding:4px 2px; font-family:var(--font-serif-header); font-weight:600; font-size:0.58rem; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; line-height:1.2; box-sizing:border-box;">Libra<strong style="color:var(--pigment-cinnabar); font-size:0.95rem; margin-top:1px;">${savValues[7]}</strong></div>
+              <div style="border:1px solid #D6CEBE; background:#fff; aspect-ratio:1; padding:4px 2px; font-family:var(--font-serif-header); font-weight:600; font-size:0.58rem; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; line-height:1.2; box-sizing:border-box;">Virgo<strong style="color:var(--pigment-cinnabar); font-size:0.95rem; margin-top:1px;">${savValues[6]}</strong></div>
+            </div>
+          </div>
+        `;
+      } 
+      else if (activeQuadView === 'west-radix') {
+        // Port full interactive Western Radix wheel from 09_zodiac.html
+        container.innerHTML = `
+          <div style="display:flex; flex-direction:column; align-items:center; width:100%;">
+            <div style="font-family:var(--font-serif-header); font-size:0.75rem; letter-spacing:1px; text-transform:uppercase; color:var(--ink-faded); margin-bottom:8px; font-weight:bold;">
+              Western Tropical Radix Chart
+            </div>
+            <div class="svg-wheel-container" style="padding: 0.2rem; border: none; background: transparent; width: 100%; max-width: 250px; margin: 0 auto; box-sizing: border-box;">
+              <svg id="zodiac-wheel-svg" viewBox="0 0 360 360" style="width: 100%; height: auto; display: block; overflow: visible;">
+                <circle cx="180" cy="180" r="145" fill="none" stroke="#D6CEBE" stroke-width="2" />
+                <circle cx="180" cy="180" r="115" fill="none" stroke="#D6CEBE" stroke-width="1.5" />
+                <circle cx="180" cy="180" r="85" fill="none" stroke="#D6CEBE" stroke-width="1.25" stroke-dasharray="3,3" />
+                <circle cx="180" cy="180" r="8" fill="#faf7ef" stroke="#B58A3D" stroke-width="1.5" />
+                <g stroke="#EADEC9" stroke-width="1" stroke-dasharray="2,2" id="sign-dividers"></g>
+                <g id="dynamic-aspect-lines"></g>
+                <g id="dynamic-wheel-elements"></g>
+              </svg>
+              <div id="wheel-hover-info" style="font-family: var(--font-serif-body); font-style: italic; font-size: 0.72rem; color: var(--ink-faded); margin-top: 0.4rem; min-height: 1.5em; text-align: center; letter-spacing: 0.5px; border-top: 1px dashed #D6CEBE; padding-top: 0.3rem; line-height: 1.3;">
+                Hover over outer constellations to identify their element
+              </div>
+            </div>
+            <div style="font-family:var(--font-mono); font-size: 0.72rem; margin-top:2px; color:var(--ink-faded); text-align:center; line-height:1.4;">
+              ASC: ${getSignName(c.asc)} | Sun: ${getSignName(c.sun)} | Moon: ${getSignName(c.moon)}
+            </div>
+          </div>
+        `;
+
+        const sectorsGroup = document.getElementById('sign-dividers');
+        sectorsGroup.innerHTML = '';
+
+        for (let i = 0; i < 12; i++) {
+          const angle = (i * 30) * Math.PI / 180;
+          const xOuter = 180 + 145 * Math.cos(angle);
+          const yOuter = 180 + 145 * Math.sin(angle);
+          
+          // Divider line
+          const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          line.setAttribute('x1', 180 + 85 * Math.cos(angle));
+          line.setAttribute('y1', 180 + 85 * Math.sin(angle));
+          line.setAttribute('x2', xOuter);
+          line.setAttribute('y2', yOuter);
+          line.setAttribute('stroke', '#EADEC9');
+          line.setAttribute('stroke-width', '1.25');
+          line.setAttribute('stroke-dasharray', '2,2');
+          sectorsGroup.appendChild(line);
+
+          // Render interactive transparent wedges for element identification on hover
+          const r1 = 115;
+          const r2 = 145;
+          const a1 = (i * 30) * Math.PI / 180;
+          const a2 = ((i + 1) * 30) * Math.PI / 180;
+          
+          const x1a = 180 + r1 * Math.cos(a1);
+          const y1a = 180 + r1 * Math.sin(a1);
+          const x2a = 180 + r2 * Math.cos(a1);
+          const y2a = 180 + r2 * Math.sin(a1);
+          const x2b = 180 + r2 * Math.cos(a2);
+          const y2b = 180 + r2 * Math.sin(a2);
+          const x1b = 180 + r1 * Math.cos(a2);
+          const y1b = 180 + r1 * Math.sin(a2);
+          
+          const pathData = `M ${x1a} ${y1a} L ${x2a} ${y2a} A ${r2} ${r2} 0 0 1 ${x2b} ${y2b} L ${x1b} ${y1b} A ${r1} ${r1} 0 0 0 ${x1a} ${y1a} Z`;
+          
+          const wedge = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          wedge.setAttribute('d', pathData);
+          wedge.setAttribute('fill', 'rgba(0, 0, 0, 0)');
+          wedge.setAttribute('stroke', 'none');
+          wedge.style.cursor = 'pointer';
+          wedge.style.pointerEvents = 'all';
+          
+          const signName = zodiacSigns[i];
+          const elem = elementMap[signName];
+          const color = colorMap[elem];
+          
+          sectorsGroup.appendChild(wedge);
+
+          const textAngle = (i * 30 + 15) * Math.PI / 180;
+          const xText = 180 + 130 * Math.cos(textAngle);
+          const yText = 180 + 130 * Math.sin(textAngle);
+          const rotDeg = i * 30 + 15 + 90;
+
+          // Translated label group
+          const labelGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+          labelGroup.setAttribute('transform', `translate(${xText}, ${yText}) rotate(${rotDeg})`);
+          labelGroup.style.pointerEvents = 'none';
+
+          const textNode = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          textNode.setAttribute('x', '0');
+          textNode.setAttribute('y', '3.5');
+          textNode.setAttribute('font-family', 'Cinzel');
+          textNode.setAttribute('font-size', '8.5');
+          textNode.setAttribute('font-weight', 'bold');
+          textNode.setAttribute('fill', color);
+          textNode.setAttribute('text-anchor', 'middle');
+          textNode.textContent = signName.toUpperCase();
+          labelGroup.appendChild(textNode);
+          sectorsGroup.appendChild(labelGroup);
+
+          // Floating badge OUTSIDE circular path
+          const rBadge = 165;
+          const xBadge = 180 + rBadge * Math.cos(textAngle);
+          const yBadge = 180 + rBadge * Math.sin(textAngle);
+
+          const badgeGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+          badgeGroup.setAttribute('transform', `translate(${xBadge}, ${yBadge}) rotate(${rotDeg})`);
+          badgeGroup.style.pointerEvents = 'none';
+          badgeGroup.style.opacity = '0';
+          badgeGroup.style.transition = 'opacity 0.2s ease';
+
+          const badgeRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+          badgeRect.setAttribute('x', '-28');
+          badgeRect.setAttribute('y', '-9');
+          badgeRect.setAttribute('width', '56');
+          badgeRect.setAttribute('height', '18');
+          badgeRect.setAttribute('rx', '3');
+          badgeRect.setAttribute('fill', color);
+          badgeGroup.appendChild(badgeRect);
+
+          const badgeText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          badgeText.setAttribute('x', '0');
+          badgeText.setAttribute('y', '3.5');
+          badgeText.setAttribute('font-family', 'var(--font-mono)');
+          badgeText.setAttribute('font-size', '9.5');
+          badgeText.setAttribute('font-weight', 'bold');
+          badgeText.setAttribute('fill', '#ffffff');
+          badgeText.setAttribute('text-anchor', 'middle');
+          badgeText.textContent = elem.toUpperCase();
+          badgeGroup.appendChild(badgeText);
+          sectorsGroup.appendChild(badgeGroup);
+
+          wedge.addEventListener('mouseenter', () => {
+            badgeGroup.style.opacity = '1';
+            document.getElementById('wheel-hover-info').innerHTML = `
+              <span style="color:${color}; font-weight:bold; font-family: var(--font-serif-header);">${signName.toUpperCase()}</span> &mdash; 
+              <span style="color:${color}; font-weight:bold; letter-spacing: 1px; font-family: var(--font-mono);">${elem.toUpperCase()} ELEMENT</span>
+            `;
+          });
+          
+          wedge.addEventListener('mouseleave', () => {
+            badgeGroup.style.opacity = '0';
+            document.getElementById('wheel-hover-info').innerHTML = 'Hover over outer constellations to identify their element';
+          });
+        }
+
+        // Draw planets inside the wheel
+        const elementsGroup = document.getElementById('dynamic-wheel-elements');
+        elementsGroup.innerHTML = '';
+
+        const renderingItems = [
+          { label: "☀️", pos: c.sun, color: "var(--pigment-cinnabar)" },
+          { label: "🌙", pos: c.moon, color: "var(--pigment-moss)" },
+          { label: "ASC", pos: c.asc, color: "var(--pigment-terracotta)" },
+          { label: "☿️", pos: c.mercury, color: "var(--pigment-lapis)" },
+          { label: "♀️", pos: c.venus, color: "var(--pigment-saffron)" },
+          { label: "♂️", pos: c.mars, color: "var(--pigment-cinnabar)" },
+          { label: "♃", pos: c.jupiter, color: "var(--pigment-gold)" },
+          { label: "♄", pos: c.saturn, color: "var(--ink-archival)" }
+        ];
+
+        renderingItems.forEach((item) => {
+          const angle = (item.pos - 90) * Math.PI / 180;
+          const radius = 100;
+          const x = 180 + radius * Math.cos(angle);
+          const y = 180 + radius * Math.sin(angle);
+
+          // Radial dashed line
+          const rLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          rLine.setAttribute('x1', 180);
+          rLine.setAttribute('y1', 180);
+          rLine.setAttribute('x2', x);
+          rLine.setAttribute('y2', y);
+          rLine.setAttribute('stroke', item.color);
+          rLine.setAttribute('stroke-width', '1.5');
+          rLine.setAttribute('stroke-dasharray', '3,3');
+          rLine.style.opacity = '0.4';
+          elementsGroup.appendChild(rLine);
+
+          // Dot node
+          const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          circle.setAttribute('cx', x);
+          circle.setAttribute('cy', y);
+          circle.setAttribute('r', '7');
+          circle.setAttribute('fill', item.color);
+          circle.setAttribute('stroke', '#ffffff');
+          circle.setAttribute('stroke-width', '1.5');
+          elementsGroup.appendChild(circle);
+
+          // Text label
+          const tag = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          tag.setAttribute('x', 180 + 72 * Math.cos(angle));
+          tag.setAttribute('y', 180 + 72 * Math.sin(angle) + 4);
+          tag.setAttribute('font-family', 'Courier Prime');
+          tag.setAttribute('font-weight', 'bold');
+          tag.setAttribute('font-size', '11');
+          tag.setAttribute('text-anchor', 'middle');
+          tag.setAttribute('fill', item.color);
+          tag.textContent = item.label;
+          elementsGroup.appendChild(tag);
+        });
+
+        // Compute and Draw Aspect Lines (Trines, Sextiles, Squares, Oppositions) inside the center wheel
+        const aspectLinesGroup = document.getElementById('dynamic-aspect-lines');
+        aspectLinesGroup.innerHTML = '';
+
+        for (let i = 0; i < renderingItems.length; i++) {
+          for (let j = i + 1; j < renderingItems.length; j++) {
+            const p1 = renderingItems[i];
+            const p2 = renderingItems[j];
+            let diff = Math.abs(p1.pos - p2.pos) % 360;
+            if (diff > 180) diff = 360 - diff;
+
+            let isAspect = false;
+            let aspectColor = '';
+            let isHard = false;
+
+            if (Math.abs(diff - 90) <= 8 || Math.abs(diff - 180) <= 8) {
+              isAspect = true;
+              isHard = true;
+              aspectColor = 'rgba(166, 91, 74, 0.45)'; // Soft terracotta for Squares/Oppositions
+            } else if (Math.abs(diff - 120) <= 8 || Math.abs(diff - 60) <= 6) {
+              isAspect = true;
+              isHard = false;
+              aspectColor = 'rgba(46, 108, 181, 0.45)'; // Soft Lapis for Trines/Sextiles
+            }
+
+            if (isAspect) {
+              const a1 = (p1.pos - 90) * Math.PI / 180;
+              const a2 = (p2.pos - 90) * Math.PI / 180;
+              const rAspect = 85;
+
+              const x1 = 180 + rAspect * Math.cos(a1);
+              const y1 = 180 + rAspect * Math.sin(a1);
+              const x2 = 180 + rAspect * Math.cos(a2);
+              const y2 = 180 + rAspect * Math.sin(a2);
+
+              const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+              line.setAttribute('x1', x1);
+              line.setAttribute('y1', y1);
+              line.setAttribute('x2', x2);
+              line.setAttribute('y2', y2);
+              line.setAttribute('stroke', aspectColor);
+              line.setAttribute('stroke-width', isHard ? '1.5' : '1.25');
+              if (isHard) {
+                line.setAttribute('stroke-dasharray', '2,2');
+              }
+              aspectLinesGroup.appendChild(line);
+            }
+          }
+        }
+      } 
+      else if (activeQuadView === 'bazi-pillars') {
+        // Port exact horizontal 4-column cards grid layout from 11_bazi.html
+        const yearStem = tianGan[c.yearStemIdx];
+        const yearBranch = diZhi[c.yearBranchIdx];
+        const monthStem = tianGan[c.monthStemIdx];
+        const monthBranch = diZhi[c.monthBranchIdx];
+        const dayStem = tianGan[c.dayStemIdx];
+        const dayBranch = diZhi[c.dayBranchIdx];
+        const hourStem = tianGan[c.hourStemIdx];
+        const hourBranch = diZhi[c.hourBranchIdx];
+
+        container.innerHTML = `
+          <div style="display:flex; flex-direction:column; align-items:center; width:100%;">
+            <div style="font-family:var(--font-serif-header); font-size:0.75rem; letter-spacing:1px; text-transform:uppercase; color:var(--ink-faded); margin-bottom:12px; font-weight:bold;">
+              THE FOUR PILLARS (四柱命理)
+            </div>
+            <div class="bazi-grid" style="display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 8px !important; width: 100%; max-width: 440px; margin: 0 auto; text-align: center;">
+              <!-- Hour Pillar -->
+              <div class="bazi-pillar-card" style="border: 1px solid #D6CEBE !important; border-radius: 4px !important; background-color: #faf7ef !important; text-align: center !important; padding: 1.25rem 0.25rem !important; box-sizing: border-box !important;">
+                <div class="bazi-pillar-header" style="font-family: var(--font-mono) !important; font-size: 0.72rem !important; color: var(--ink-archival) !important; text-transform: uppercase !important; letter-spacing: 1px !important; border-bottom: 1px dashed #D6CEBE !important; padding-bottom: 0.4rem !important; margin-bottom: 0.75rem !important; font-weight: 900 !important;">Hour</div>
+                <div class="bazi-char-large" style="font-family: var(--font-serif-body) !important; font-size: 2.2rem !important; line-height: 1.1 !important; font-weight: normal !important; color: var(--ink-archival) !important; margin: 0.25rem 0 !important;">${hourStem}</div>
+                <div class="bazi-pinyin" style="font-family: var(--font-mono) !important; font-size: 0.58rem !important; font-weight: normal !important; color: var(--ink-faded) !important; margin-top: 0.15rem !important; line-height: 1.35 !important;">${tianGanNames[c.hourStemIdx]}</div>
+                <div class="bazi-char-large" style="font-family: var(--font-serif-body) !important; font-size: 2.2rem !important; line-height: 1.1 !important; font-weight: normal !important; color: var(--ink-archival) !important; margin-top:0.75rem !important; border-top:1px dashed #d6cebe !important; padding-top:0.5rem !important; margin-bottom: 0.25rem !important;">${hourBranch}</div>
+                <div class="bazi-pinyin" style="font-family: var(--font-mono) !important; font-size: 0.58rem !important; font-weight: normal !important; color: var(--ink-faded) !important; margin-top: 0.15rem !important; line-height: 1.35 !important;">${diZhiNames[c.hourBranchIdx]}</div>
+                <div class="bazi-elem-tag" style="display: inline-block !important; padding: 0.12rem 0.4rem !important; font-family: var(--font-mono) !important; font-size: 0.58rem !important; font-weight: normal !important; border-radius: 3px !important; color: #FFF !important; margin-top: 0.4rem !important; text-transform: uppercase !important; background-color: ${colorMap[stemElemMap[hourStem]]};">${stemElemMap[hourStem]}</div>
+              </div>
+              
+              <!-- Day Pillar -->
+              <div class="bazi-pillar-card" style="border: 1px solid #D6CEBE !important; border-radius: 4px !important; background-color: #faf7ef !important; text-align: center !important; padding: 1.25rem 0.25rem !important; box-sizing: border-box !important;">
+                <div class="bazi-pillar-header" style="font-family: var(--font-mono) !important; font-size: 0.72rem !important; color: var(--pigment-terracotta) !important; text-transform: uppercase !important; letter-spacing: 1px !important; border-bottom: 1px dashed #D6CEBE !important; padding-bottom: 0.4rem !important; margin-bottom: 0.75rem !important; font-weight: 900 !important;">Day</div>
+                <div class="bazi-char-large" style="font-family: var(--font-serif-body) !important; font-size: 2.2rem !important; line-height: 1.1 !important; font-weight: normal !important; color: var(--ink-archival) !important; margin: 0.25rem 0 !important;">${dayStem}</div>
+                <div class="bazi-pinyin" style="font-family: var(--font-mono) !important; font-size: 0.58rem !important; font-weight: normal !important; color: var(--ink-faded) !important; margin-top: 0.15rem !important; line-height: 1.35 !important;">${tianGanNames[c.dayStemIdx]}</div>
+                <div class="bazi-char-large" style="font-family: var(--font-serif-body) !important; font-size: 2.2rem !important; line-height: 1.1 !important; font-weight: normal !important; color: var(--ink-archival) !important; margin-top:0.75rem !important; border-top:1px dashed #d6cebe !important; padding-top:0.5rem !important; margin-bottom: 0.25rem !important;">${dayBranch}</div>
+                <div class="bazi-pinyin" style="font-family: var(--font-mono) !important; font-size: 0.58rem !important; font-weight: normal !important; color: var(--ink-faded) !important; margin-top: 0.15rem !important; line-height: 1.35 !important;">${diZhiNames[c.dayBranchIdx]}</div>
+                <div class="bazi-elem-tag" style="display: inline-block !important; padding: 0.12rem 0.4rem !important; font-family: var(--font-mono) !important; font-size: 0.58rem !important; font-weight: normal !important; border-radius: 3px !important; color: #FFF !important; margin-top: 0.4rem !important; text-transform: uppercase !important; background-color: ${colorMap[stemElemMap[dayStem]]};">${stemElemMap[dayStem]}</div>
+              </div>
+              
+              <!-- Month Pillar -->
+              <div class="bazi-pillar-card" style="border: 1px solid #D6CEBE !important; border-radius: 4px !important; background-color: #faf7ef !important; text-align: center !important; padding: 1.25rem 0.25rem !important; box-sizing: border-box !important;">
+                <div class="bazi-pillar-header" style="font-family: var(--font-mono) !important; font-size: 0.72rem !important; color: var(--ink-archival) !important; text-transform: uppercase !important; letter-spacing: 1px !important; border-bottom: 1px dashed #D6CEBE !important; padding-bottom: 0.4rem !important; margin-bottom: 0.75rem !important; font-weight: 900 !important;">Month</div>
+                <div class="bazi-char-large" style="font-family: var(--font-serif-body) !important; font-size: 2.2rem !important; line-height: 1.1 !important; font-weight: normal !important; color: var(--ink-archival) !important; margin: 0.25rem 0 !important;">${monthStem}</div>
+                <div class="bazi-pinyin" style="font-family: var(--font-mono) !important; font-size: 0.58rem !important; font-weight: normal !important; color: var(--ink-faded) !important; margin-top: 0.15rem !important; line-height: 1.35 !important;">${tianGanNames[c.monthStemIdx]}</div>
+                <div class="bazi-char-large" style="font-family: var(--font-serif-body) !important; font-size: 2.2rem !important; line-height: 1.1 !important; font-weight: normal !important; color: var(--ink-archival) !important; margin-top:0.75rem !important; border-top:1px dashed #d6cebe !important; padding-top:0.5rem !important; margin-bottom: 0.25rem !important;">${monthBranch}</div>
+                <div class="bazi-pinyin" style="font-family: var(--font-mono) !important; font-size: 0.58rem !important; font-weight: normal !important; color: var(--ink-faded) !important; margin-top: 0.15rem !important; line-height: 1.35 !important;">${diZhiNames[c.monthBranchIdx]}</div>
+                <div class="bazi-elem-tag" style="display: inline-block !important; padding: 0.12rem 0.4rem !important; font-family: var(--font-mono) !important; font-size: 0.58rem !important; font-weight: normal !important; border-radius: 3px !important; color: #FFF !important; margin-top: 0.4rem !important; text-transform: uppercase !important; background-color: ${colorMap[stemElemMap[monthStem]]};">${stemElemMap[monthStem]}</div>
+              </div>
+              
+              <!-- Year Pillar -->
+              <div class="bazi-pillar-card" style="border: 1px solid #D6CEBE !important; border-radius: 4px !important; background-color: #faf7ef !important; text-align: center !important; padding: 1.25rem 0.25rem !important; box-sizing: border-box !important;">
+                <div class="bazi-pillar-header" style="font-family: var(--font-mono) !important; font-size: 0.72rem !important; color: var(--ink-archival) !important; text-transform: uppercase !important; letter-spacing: 1px !important; border-bottom: 1px dashed #D6CEBE !important; padding-bottom: 0.4rem !important; margin-bottom: 0.75rem !important; font-weight: 900 !important;">Year</div>
+                <div class="bazi-char-large" style="font-family: var(--font-serif-body) !important; font-size: 2.2rem !important; line-height: 1.1 !important; font-weight: normal !important; color: var(--ink-archival) !important; margin: 0.25rem 0 !important;">${yearStem}</div>
+                <div class="bazi-pinyin" style="font-family: var(--font-mono) !important; font-size: 0.58rem !important; font-weight: normal !important; color: var(--ink-faded) !important; margin-top: 0.15rem !important; line-height: 1.35 !important;">${tianGanNames[c.yearStemIdx]}</div>
+                <div class="bazi-char-large" style="font-family: var(--font-serif-body) !important; font-size: 2.2rem !important; line-height: 1.1 !important; font-weight: normal !important; color: var(--ink-archival) !important; margin-top:0.75rem !important; border-top:1px dashed #d6cebe !important; padding-top:0.5rem !important; margin-bottom: 0.25rem !important;">${yearBranch}</div>
+                <div class="bazi-pinyin" style="font-family: var(--font-mono) !important; font-size: 0.58rem !important; font-weight: normal !important; color: var(--ink-faded) !important; margin-top: 0.15rem !important; line-height: 1.35 !important;">${diZhiNames[c.yearBranchIdx]}</div>
+                <div class="bazi-elem-tag" style="display: inline-block !important; padding: 0.12rem 0.4rem !important; font-family: var(--font-mono) !important; font-size: 0.58rem !important; font-weight: normal !important; border-radius: 3px !important; color: #FFF !important; margin-top: 0.4rem !important; text-transform: uppercase !important; background-color: ${colorMap[stemElemMap[yearStem]]};">${stemElemMap[yearStem]}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function updateSynthesis() {
+      const nameVal = document.getElementById('input-name').value.trim() || "The Nameless One";
+      const dobStr = document.getElementById('input-dob').value;
+      
+      let hourVal = parseInt(document.getElementById('input-time-hour').value) || 10;
+      const minVal = document.getElementById('input-time-minute').value || "04";
+      const ampmVal = document.getElementById('input-time-ampm').value || "AM";
+
+      if (ampmVal === "PM" && hourVal < 12) hourVal += 12;
+      if (ampmVal === "AM" && hourVal === 12) hourVal = 0;
+      const hourStr = hourVal < 10 ? '0' + hourVal : hourVal;
+      const timeStr = `${hourStr}:${minVal}`;
+
+      // Save standard parameters
+      safeSetItem('antara_user_name', nameVal);
+      safeSetItem('antara_user_dob', dobStr);
+      safeSetItem('antara_user_tob_hour', document.getElementById('input-time-hour').value);
+      safeSetItem('antara_user_tob_minute', document.getElementById('input-time-minute').value);
+      safeSetItem('antara_user_tob_ampm', ampmVal);
+
+      // Title
+      const titleEl = document.querySelector('.master-report-title');
+      if (titleEl) {
+        titleEl.innerHTML = `Archetypal Systems Cartography<br>For ${escapeHTML(nameVal)}`;
+      }
+
+      if (!dobStr || !timeStr) return;
+
+      currentCoords = calculateParallelCosmologies(dobStr, timeStr);
+      const c = currentCoords;
+
+      // Populate DNA Signature sidebar
+      const westElem = elementMap[getSignName(c.sun)];
+      document.getElementById('dna-west-element').innerText = westElem;
+      document.getElementById('dna-west-element').style.color = colorMap[westElem];
+
+      document.getElementById('dna-vedic-nakshatra').innerText = c.moonNakshatra;
+      
+      const baziDMClass = c.baziDM.split(' ')[0];
+      document.getElementById('dna-bazi-dm').innerText = c.baziDM;
+      document.getElementById('dna-bazi-yongshen').innerText = c.baziYongShen;
+      document.getElementById('dna-bazi-yongshen').style.color = colorMap[c.baziYongShen];
+
+      const lpArchetypes = {
+        1: "1 (The Pioneer)", 2: "2 (The Harmonizer)", 3: "3 (The Expresser)",
+        4: "4 (The Builder)", 5: "5 (The Explorer)", 6: "6 (The Nurturer)",
+        7: "7 (The Seeker)", 8: "8 (The Director)", 9: "9 (The Idealist)"
+      };
+      document.getElementById('dna-num-lifepath').innerText = lpArchetypes[c.lp] || c.lp;
+
+      const nameNum = ((getChaldeanNameVal(nameVal) - 1) % 9) + 1;
+      document.getElementById('dna-num-chaldean').innerText = lpArchetypes[nameNum] || nameNum;
+
+      // Render Active View
+      renderQuadViewport();
+
+      // Module 1 Summary
+      document.getElementById('module1-prose-summary').innerHTML = `
+        Your system architecture isolates a highly synchronized cross-cultural blueprint. Under tropical Western coordinates, your conscious intentionality is directed by the <strong>${westElem} element</strong>, defining your outer developmental focus. This operates in precise tension with sidereal Vedic coordinates, where your subconscious emotional landscape anchors in the lunar nakshatra <strong>${c.moonNakshatra}</strong>. Concurrently, your solar BaZi matrix resolves to a <strong>${c.baziDM} Day Master</strong>, demanding calibration with a <strong>${c.baziYongShen} Useful God</strong>. In Pythagorean-Chaldean systems, your core trajectory resolves to <strong>Life Path ${c.lp}</strong>, fortified by a phonetic Chaldean name frequency of <strong>${nameNum}</strong>, establishing a highly integrated narrative identity system.
+      `;
+
+      // Module 2 Summary
+      document.getElementById('module2-prose-summary').innerHTML = `
+        Overlaying these distinct systems exposes your core structural equilibrium. While your tropical Western radix positions the primary horizon (Ascendant) in <strong>${getSignName(c.asc)}</strong>, sidereal precession shifts your Vedic Ascendant into <strong>${getSignName(c.sidAsc)}</strong>. Toggling the South Indian SAV grid reveals the specific bhava coordinates where your Ashtakavarga points are highest—mapping structural ease and strategic launching windows. Simultaneously, the solar BaZi quad-pillars isolate the stems and branches regulating your internal energy reserves, finalizing a high-resolution symbolic matrix.
+      `;
+
+      // Module 3: 5-School Numerology Loshu grid
+      const frequencies = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0};
+      const digitsList = dobStr.replace(/[^0-9]/g, '').split('').map(Number);
+      digitsList.forEach(d => {
+        if (d > 0) frequencies[d]++;
+      });
+
+      [1,2,3,4,5,6,7,8,9].forEach(num => {
+        const cellContainer = document.getElementById(`grid-${num}`);
+        if (!cellContainer) return;
+        
+        const inactiveSpan = cellContainer.querySelector('.cell-number-inactive');
+        const activeSpan = cellContainer.querySelector('.cell-number-active');
+        const freq = frequencies[num];
+        
+        cellContainer.classList.remove('active', 'freq-single', 'freq-repeated', 'freq-dominant');
+        
+        if (freq > 0) {
+          let text = "";
+          for(let i=0; i<freq; i++) text += (i===0?"":" ") + num;
+          if (activeSpan) activeSpan.innerText = text;
+          
+          cellContainer.classList.add('active');
+          if (freq === 1) cellContainer.classList.add('freq-single');
+          else if (freq === 2) cellContainer.classList.add('freq-repeated');
+          else cellContainer.classList.add('freq-dominant');
+        }
+      });
+
+      // Renders standard Chaldean and Pythagorean peaks
+      document.getElementById('loshu-prose-summary').innerHTML = `
+        Your Loshu Grid isolates the numerical density of your birth coordinates. A concentration of numbers in the bottom row (8, 1, 6) establishes the <strong>Practical Plane</strong>, locking focus onto physical details, systemic execution, and structural anchors. Concurrently, the vertical axis (9, 5, 1) forms the <strong>Sovereign Axis</strong>, reinforcing executive agency, personal momentum, and clear systemic direction.
+      `;
+
+      // Module 4: Paradox Resolution
+      const fireHeavy = westElem === "Fire";
+      const waterDM = c.baziDM.includes("Water") || c.baziDM.includes("Ji");
+      let paradoxProse = ``;
+
+      if (fireHeavy && waterDM) {
+        paradoxProse = `
+          <strong>Systemic Friction Vector: Western Fire vs. BaZi Earth/Water</strong><br>
+          Your Western tropical chart highlights a high-visibility Fire signature, whereas your solar BaZi Day Master anchors in Yin Earth (Ji) and Water. This exposes a classic structural paradox: an outer behavioral drive toward immediate initiative, paired with an inner energetic demand for structural consolidation and composed containment. <br>
+          <em>Resolution:</em> Recognize that your Western radix regulates your <strong>outer, operational interface</strong> (communication and initiatives), while BaZi regulates your <strong>inner energetic reservoir</strong> (replenishment and recovery). Resolve this behavioral congestion by scheduling strategic high-status public engagements, followed immediately by strict boundaries of private spatial recovery.
+        `;
+      } else {
+        paradoxProse = `
+          <strong>Systemic Friction Vector: Compliant Multi-System Resonance</strong><br>
+          Your coordinate structures show highly integrated alignment. Your Western Sun's <strong>${westElem} element</strong> forms a natural, supportive relationship with your solar Day Master element of <strong>${c.baziDM.split(' ')[0]}</strong>. This systemic equilibrium ensures that your outer operational style directly feeds your internal reserves, avoiding behavioral congestion and maximizing sovereign momentum.
+        `;
+      }
+      document.getElementById('paradox-prose-block').innerHTML = paradoxProse;
+
+      // Module 5: Timing tracks - sentences cleanly broken onto two lines with <br>
+      const currentYear = 2026;
+      const birthYear = parseInt(dobStr.substring(0,4)) || 1980;
+      const age = currentYear - birthYear;
+
+      document.getElementById('track-dasha').innerHTML = `<strong>${c.dashaLord}-Saturn Period</strong>:<br>Focus on structural boundaries, consolidations, and active space adjustments.`;
+      document.getElementById('track-bazi').innerHTML = `<strong>Yang Wood Luck Pillar</strong>:<br>Environment prioritizes long-range creative growth, writing, and strategic prunings.`;
+      document.getElementById('track-west').innerHTML = `<strong>Progressed Sun in ${getSignName((c.sun + age) % 360)}</strong>:<br>Slow, internalized shift of conscious focus toward relational harmony.`;
+      
+      const evalYear = 2026;
+      const dobMonth = parseInt(dobStr.substring(5,7)) || 1;
+      const dobDay = parseInt(dobStr.substring(8,10)) || 1;
+      const personalYearSum = evalYear + dobMonth + dobDay;
+      const personalYear = ((personalYearSum - 1) % 9) + 1;
+      document.getElementById('track-numerology').innerHTML = `<strong>Personal Year ${personalYear}</strong>:<br>A cycle oriented toward ${personalYear === 4 ? "methodical builder focus and anchoring roots." : "variety, change, and fresh conceptual horizons."}`;
+
+      document.getElementById('timing-prose-summary').innerHTML = `
+        Overlaying these timeline tracks reveals a unified developmental window. The intersection of your <strong>${c.dashaLord} Vedic period</strong> with a <strong>Yang Wood BaZi Luck Pillar</strong> indicates that the next 12-24 months are heavily optimized for <strong>structural consolidation, workspace optimization, and restrained strategic prunings</strong>, rather than initiating massive, high-risk public launches.
+      `;
+
+      // Module 6: Biorhythms Chart.js integration from 04_energycycles.html
+      const dob = parseLocalDate(dobStr);
+      const target = new Date(); // Center on today's evaluation date
+      
+      const labels = [];
+      const pData = [];
+      const eData = [];
+      const iData = [];
+
+      if (dob) {
+        for (let i = -15; i <= 15; i++) {
+          const loopDay = new Date(target);
+          loopDay.setDate(target.getDate() + i);
+          const tForecast = Math.round((loopDay - dob) / (1000 * 60 * 60 * 24));
+
+          labels.push(loopDay.toLocaleDateString('en-GB', {day: 'numeric', month: 'short'}) + (i === 0 ? ' *' : ''));
+          pData.push(Math.sin(2 * Math.PI * tForecast / 23) * 100);
+          eData.push(Math.sin(2 * Math.PI * tForecast / 28) * 100);
+          iData.push(Math.sin(2 * Math.PI * tForecast / 33) * 100);
+        }
+      }
+
+      const canvas = document.getElementById('biorhythm-chart');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        if (chartInstance) {
+          chartInstance.destroy();
+          chartInstance = null;
+        }
+
+        const targetDatePlugin = {
+          id: 'targetDatePlugin',
+          beforeDraw: (chart) => {
+            const ctx = chart.ctx;
+            const xAxis = chart.scales.x;
+            const yAxis = chart.scales.y;
+            
+            const targetMeta = chart.getDatasetMeta(0).data[15];
+            if (!targetMeta) return;
+            
+            const targetX = targetMeta.x;
+            const topY = yAxis.top;
+            const bottomY = yAxis.bottom;
+            const leftX = xAxis.left;
+            const rightX = xAxis.right;
+            
+            ctx.save();
+            // Draw Past/Lived History Zone (Left) in very soft warm terracotta tint
+            ctx.fillStyle = 'rgba(166, 91, 74, 0.03)'; 
+            ctx.fillRect(leftX, topY, targetX - leftX, bottomY - topY);
+            
+            // Draw Future Potential Zone (Right) in very soft cool lapis tint
+            ctx.fillStyle = 'rgba(60, 90, 128, 0.03)'; 
+            ctx.fillRect(targetX, topY, rightX - targetX, bottomY - topY);
+            
+            // Draw Zero Horizontal Midline in thicker dotted WHITE with backing contrast line
+            const zeroY = yAxis.getPixelForValue(0);
+            ctx.strokeStyle = 'rgba(43, 42, 40, 0.12)'; 
+            ctx.lineWidth = 2.5;
+            ctx.setLineDash([]);
+            ctx.beginPath();
+            ctx.moveTo(leftX, zeroY);
+            ctx.lineTo(rightX, zeroY);
+            ctx.stroke();
+
+            ctx.strokeStyle = '#FFFFFF';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(leftX, zeroY);
+            ctx.lineTo(rightX, zeroY);
+            ctx.stroke();
+
+            // Draw Central Vertical Divider Line (Target Date) in thicker dotted WHITE with backing contrast line
+            ctx.strokeStyle = 'rgba(43, 42, 40, 0.12)'; 
+            ctx.lineWidth = 2.5;
+            ctx.setLineDash([]);
+            ctx.beginPath();
+            ctx.moveTo(targetX, topY);
+            ctx.lineTo(targetX, bottomY);
+            ctx.stroke();
+
+            ctx.strokeStyle = '#FFFFFF'; 
+            ctx.lineWidth = 2;
+            ctx.setLineDash([4, 4]); 
+            ctx.beginPath();
+            ctx.moveTo(targetX, topY);
+            ctx.lineTo(targetX, bottomY);
+            ctx.stroke();
+            
+            // Draw "TARGET DATE" text label
+            ctx.fillStyle = '#D98236';
+            ctx.font = 'bold 9px "Courier Prime", monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText('TARGET DATE', targetX, bottomY - 6);
+            
+            ctx.restore();
+          }
+        };
+
+        chartInstance = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [
+              { label: 'Physical', data: pData, borderColor: '#A65B4A', borderWidth: 2, fill: false, tension: 0.3, pointRadius: 1, hidden: !activeDatasets[0] },
+              { label: 'Emotional', data: eData, borderColor: '#D98236', borderWidth: 2, fill: false, tension: 0.3, pointRadius: 1, hidden: !activeDatasets[1] },
+              { label: 'Intellectual', data: iData, borderColor: '#2E6CB5', borderWidth: 2, fill: false, tension: 0.3, pointRadius: 1, hidden: !activeDatasets[2] }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: {
+              padding: {
+                top: 15
+              }
+            },
+            plugins: { 
+              legend: { 
+                display: false
+              } 
+            },
+            scales: {
+              x: { grid: { color: '#EADEC9' }, ticks: { font: { family: "'Courier Prime', monospace", size: 10 }, color: '#76726A' } },
+              y: { min: -110, max: 110, grid: { color: '#EADEC9' }, ticks: { font: { family: "'Courier Prime', monospace", size: 10 }, color: '#76726A' } }
+            }
+          },
+          plugins: [targetDatePlugin]
+        });
+
+        // Sync legend button styles with activeDatasets state
+        const ids = ['legend-physical', 'legend-emotional', 'legend-intellectual'];
+        for (let i = 0; i < 3; i++) {
+          const el = document.getElementById(ids[i]);
+          if (el) {
+            if (!activeDatasets[i]) {
+              el.style.opacity = '0.35';
+              el.style.textDecoration = 'line-through';
+            } else {
+              el.style.opacity = '1';
+              el.style.textDecoration = 'none';
+            }
+          }
+        }
+      }
+
+      // Module 7 Playbook
+      let spaceProse = ``;
+      if (c.baziYongShen === "Metal" || c.baziYongShen === "Earth") {
+        spaceProse = `Given your <strong>Useful God of ${c.baziYongShen}</strong>, organize your workspace South-West or West sectors. Clear away old paperwork and files. Place round metallic artifacts, crystals, or warm yellow clay pots to anchor stabilizing energies, promoting composed analytical focus.`;
+      } else {
+        spaceProse = `Given your <strong>Useful God of ${c.baziYongShen}</strong>, maximize natural sunlight and fresh air flow in the East or South sectors of your workspace. Keep fresh broadleaf plants or a small clean water coordinates fountain here to support dynamic, creative expansion.`;
+      }
+      document.getElementById('master-space-prose').innerHTML = spaceProse;
+
+      let nutrProse = ``;
+      if (c.baziYongShen === "Metal") {
+        nutrProse = `Focus on clean white foods (garlic, white onions, cauliflower, pears) to support lung vitality and respiratory pathways.`;
+      } else if (c.baziYongShen === "Wood") {
+        nutrProse = `Prioritize leafy green vegetables, celery, and sour flavors to support liver detoxification and systemic energy.`;
+      } else if (c.baziYongShen === "Fire") {
+        nutrProse = `Incorporate red foods (tomatoes, red berries, hot spices) to stimulate cardiovascular circulation and physical drive.`;
+      } else if (c.baziYongShen === "Earth") {
+        nutrProse = `Focus on yellow/sweet root vegetables (sweet potatoes, squash, honey) to soothe digestive fire and promote composed stability.`;
+      } else {
+        nutrProse = `Consume dark, hydrating foods (black beans, seaweed, pure spring water) to support kidney, bladder, and adrenal vitality.`;
+      }
+      document.getElementById('master-nutrition-prose').innerHTML = nutrProse;
+    }
+
+    // Dynamic reactivity
+    document.getElementById('input-name').addEventListener('input', updateSynthesis);
+    document.getElementById('input-dob').addEventListener('change', updateSynthesis);
+    document.getElementById('input-time-hour').addEventListener('change', updateSynthesis);
+    document.getElementById('input-time-minute').addEventListener('change', updateSynthesis);
+    document.getElementById('input-time-ampm').addEventListener('change', updateSynthesis);
+    document.getElementById('input-location').addEventListener('input', updateSynthesis);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      populateClockSelectors('input-time-hour', 'input-time-minute');
+
+      const savedName = safeGetItem('antara_user_name');
+      if (savedName) document.getElementById('input-name').value = savedName;
+
+      const savedDob = safeGetItem('antara_user_dob');
+      if (savedDob) document.getElementById('input-dob').value = savedDob;
+
+      const savedTobHour = safeGetItem('antara_user_tob_hour');
+      const savedTobMin = safeGetItem('antara_user_tob_minute');
+      const savedTobAmPm = safeGetItem('antara_user_tob_ampm');
+
+      if (savedTobHour) document.getElementById('input-time-hour').value = savedTobHour;
+      else document.getElementById('input-time-hour').value = "10";
+      
+      if (savedTobMin) document.getElementById('input-time-minute').value = savedTobMin;
+      else document.getElementById('input-time-minute').value = "04";
+      
+      if (savedTobAmPm) document.getElementById('input-time-ampm').value = savedTobAmPm;
+      else document.getElementById('input-time-ampm').value = "AM";
+
+      updateSynthesis();
+    });
+  </script>
+</body>
+</html>
