@@ -595,13 +595,31 @@
         <thead>
           <tr>
             <th>Strategy Model</th>
-            <th>Primary Bundles</th>
+            <th>Primary Bundles / Quantity Slabs</th>
             <th>Domestic Price</th>
             <th>World Price</th>
             <th>Discount Formula / Value Appeal</th>
           </tr>
         </thead>
         <tbody>
+          <!-- DYNAMIC QUANTITY SLABS -->
+          <tr style="background: rgba(217, 130, 54, 0.02);">
+            <td>
+              <span class="tier-badge badge-baseline" style="background: rgba(217, 130, 54, 0.12); color: var(--accent); font-weight: 800;">Dynamic Slabs</span>
+              <div style="font-size: 11px; margin-top: 4px; color: var(--muted);">Quantity discount slabs (in index)</div>
+            </td>
+            <td>
+              <strong>1 Selected Module</strong> (Full Price)<br/>
+              <strong>2 Selected Modules</strong> (15% Off Total)<br/>
+              <strong>3 Selected Modules</strong> (25% Off Total)<br/>
+              <strong>4+ Selected Modules</strong> (33.33% Off Total)
+            </td>
+            <td class="price-tag">₹999 / report<br/>~₹849 / report<br/>~₹749 / report<br/>₹666 / report</td>
+            <td class="price-tag">Full Price<br/>15% Off<br/>25% Off<br/>33.33% Off</td>
+            <td>
+              Visual volume slabs built directly into the cart to motivate users to select more reports. **4+ reports trigger a massive 33.3% discount** (giving the ₹999 report for exactly ₹666).
+            </td>
+          </tr>
           <!-- YESTERDAY'S FLAGSHIP -->
           <tr>
             <td>
@@ -613,10 +631,10 @@
               <strong>Set 2: Relational Resonance Set</strong> (2 Modules)<br/>
               <strong>Set 3: Ultimate Universe Set</strong> (All 12 Modules)
             </td>
-            <td class="price-tag">₹2,499<br/>₹1,499<br/>₹3,999</td>
-            <td class="price-tag">$79.99<br/>$49.99<br/>$129.99</td>
+            <td class="price-tag">₹4,666<br/>₹1,499<br/>₹7,999</td>
+            <td class="price-tag">$149.99<br/>$49.99<br/>$249.99</td>
             <td>
-              Focuses on 3 flagship choices. Set 3 includes all 12 modules (valued at ₹12,000 individually) for ₹3,999, driving highly-profitable **Average Order Value (AOV)**.
+              Maintains high price tags for the complete suite, offering attractive **30-37% strategic bundle discounts** while securing future strategic flexibility for print shops and performance-based additional commissions.
             </td>
           </tr>
           <!-- CLAUDE'S PRICING1 -->
@@ -633,7 +651,7 @@
             <td class="price-tag">₹1,599<br/>₹2,299<br/>₹7,999</td>
             <td class="price-tag">$52.99<br/>$74.99<br/>$249.00</td>
             <td>
-              Maintains high price tags for the complete suite, but risks slowing conversions due to an expensive ₹7,999 / $249 tier.
+              Maintains high price tags for the complete suite, but lacks dynamic multi-item volume motivation in the standard cart flow.
             </td>
           </tr>
           <!-- CODEX PRICING2 -->
@@ -661,14 +679,14 @@
     <!-- Right Column: Strategic Analysis -->
     <div class="strategy-card">
       <h3>Antigravity's Assessment</h3>
-      <p><strong>The B2B Premium Opportunity:</strong><br/>
-      Codex (Pricing2) correctly identified that the <strong>Corporate Strengths Analysis (06_corporate)</strong> is a high-value B2B product. Pricing it at ₹4,999 / $149.99 matches business value perfectly, as companies routinely pay far more for executive and architectural audits.</p>
+      <p><strong>The Strategic Discount catch:</strong><br/>
+      Offering the 999/- report for 333/- directly to Digital Print Shops restricts pricing flexibility. A **999/- report for 666/-** (approx. 33% discount) is highly appealing, represents strong value, and leaves ample room for performance-based additional commission tiers (e.g., an extra 5% off once they pass ₹25K sales volume).</p>
       
-      <p><strong>Curated Combos Optimization:</strong><br/>
-      We recommend combining the highly popular **Set 3 (Ultimate Universe)** from yesterday's plan (₹3,999) with Codex's B2B premium models to cover both consumers and corporate clients.</p>
+      <p><strong>Dynamic Cart Integration:</strong><br/>
+      We implemented quantity discount slabs directly in `index.html`. Users buying 2 reports get 15% off, 3 reports get 25% off, and 4+ reports get 33.3% off (exact ₹666 per report target), dynamically showing the discount active badge to incentivize AOV growth.</p>
 
       <div class="highlight-box">
-        <strong>Strategic Rule:</strong> Keep B2C sets highly attractive (₹1,499 - ₹3,999) to secure conversions, while maintaining premium positioning for targeted enterprise modules (₹4,999).
+        <strong>Strategic Rule:</strong> Lock in beautiful volume pricing (₹666/report) while holding future commission levers in reserve to motivate top-performing print partners.
       </div>
     </div>
   </div>
