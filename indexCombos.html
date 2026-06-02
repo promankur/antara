@@ -2651,7 +2651,16 @@ Beyond Prediction. Into Insights.
             safeSetItem('antara_premium_unlocked', 'true');
             btn.disabled = false;
             btn.innerText = originalText;
+            
+            // Redirect to the first purchased report instantly
+            const firstItemId = selectedCartItems[0];
+            const item = disciplineCatalog.find(d => d.id === firstItemId);
+            
             alert(currentLang === 'HI' ? "लेनदेन स्वीकृत!" : "Transaction Approved! Compiling your integrated core and name resonance calculations.");
+            
+            if (item) {
+                window.location.href = item.targetFile + (currentLang === 'HI' ? '#HI' : '#EN');
+            }
         }, 1100);
     }
 
