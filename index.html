@@ -68,60 +68,87 @@ body::before{
 }
 
 /* 1. TOP HUB SELECTOR BAR - BORDERLESS GLASS */
-.top-control-hub {
+.top-control-hub-compact {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 1rem;
-    padding: 14px 0 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 12px 14px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     margin-bottom: 24px;
     width: 100%;
-    animation: border-color-transition 18s ease-in-out infinite alternate;
 }
 
-.control-group {
+.compact-group {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    gap: 0.5rem;
+    gap: 8px;
 }
 
-.hub-label {
-    font-size: 12px;
-    letter-spacing: 0.08em;
+.compact-label {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 10px;
+    letter-spacing: 0.15em;
     font-weight: 700;
     text-transform: uppercase;
-    animation: civilizations-color 18s ease-in-out infinite alternate;
+    color: var(--accent) !important; /* Muted saffron for header label */
+    opacity: 0.85;
 }
 
-.hub-btn {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: rgba(255, 255, 255, 0.9);
-    padding: 6px 12px;
-    font-size: 12px;
-    font-weight: 600;
+.compact-options {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.compact-btn {
+    background: none;
+    border: none;
+    padding: 2px 6px;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.5); /* Inactive state is translucent white */
     cursor: pointer;
     transition: all 0.2s ease;
-    backdrop-filter: blur(2px);
-    border-radius: 20px;
 }
 
-.hub-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: var(--accent);
+.compact-btn:hover {
+    color: rgba(255, 255, 255, 0.9);
 }
 
-.hub-btn.active {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #ffffff;
+.compact-btn.active {
+    color: #ffffff !important; /* Active state is solid white */
+    font-weight: 700;
 }
 
-#langEN.hub-btn.active, #langHI.hub-btn.active {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #ffffff;
+/* For emoji buttons like flag and globe, keep active opacity solid and inactive translucent */
+#btnMarketIndia, #btnMarketWorld {
+    font-size: 20px !important;
+    opacity: 0.55;
+    padding: 2px 4px;
+}
+
+#btnMarketIndia.active, #btnMarketWorld.active {
+    opacity: 1 !important;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+}
+
+#langEN {
+    font-size: 20px !important;
+    padding: 2px 4px;
+}
+
+#langHI {
+    font-size: 26px !important;
+    padding: 2px 4px;
+    font-family: 'Noto Sans Devanagari', sans-serif !important;
+}
+
+.compact-sep {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.25);
+    pointer-events: none;
 }
 
 /* 2. HIGH-IMPACT BALANCED HERO SECTION - FULL WIDTH */
@@ -143,22 +170,22 @@ body::before{
     width: 100%;
     position: relative;
     overflow: hidden;
-    padding: 10px 0 48px 0;
+    padding: 10px 0 16px 0; /* Reduced padding from 48px to 16px to slide panel above fold */
     animation: hero-bg-transition 42s ease-in-out infinite alternate;
 }
 
 .hero-grid{
     display:grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    min-height: 520px;
+    grid-template-columns: 1fr 1fr;
+    min-height: 480px; /* Snugger grid height for better fold visibility */
     gap: 32px;
 }
 
 .left{
-    padding: 32px 0;
+    padding: 16px 0;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content: flex-start;
     position:relative;
     z-index:2;
     text-align:left; /* Align all text strictly to left */
@@ -168,8 +195,9 @@ body::before{
     position:relative;
     overflow:hidden;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    padding-top: 16px;
 }
 
 .tagline-kicker {
@@ -177,7 +205,7 @@ body::before{
     font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 12px; /* Reduced from 20px for tight visual block packaging */
     text-align: left;
     color: var(--accent);
 }
@@ -219,20 +247,21 @@ body::before{
     font-weight: 900;
     line-height: 0.95;
     letter-spacing: -0.02em;
-    margin-bottom: 24px;
+    margin-bottom: 16px; /* Snugged margin to form a unified block */
     text-align: left;
     text-transform: uppercase;
     color: #ffffff;
 }
 
 .hero-text{
-    font-size:16px;
-    line-height:1.75;
-    max-width:640px;
-    margin-bottom:34px; /* Spacing increased slightly */
-    font-weight:400;
+    font-size: clamp(17px, 1.8vw, 21px); /* Calibrated size reduced by 1pt to fit perfectly */
+    line-height: 1.45;
+    max-width: 640px;
+    margin-bottom: 0; /* Snugged bottom margin to pack as one block */
+    font-weight: 400;
     text-align: left;
     color: #ffffff;
+    white-space: nowrap; /* Forces first line to stay strictly on one line on desktop */
 }
 
 /* 3. CELESTIAL CLOCK DIAL VISUALIZER - REDUCED BY 3-4% */
@@ -247,9 +276,10 @@ body::before{
 }
 
 #clock {
-    width: 100%;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
     max-width: 425px;
-    aspect-ratio: 1 / 1;
     display: block;
 }
 
@@ -266,28 +296,54 @@ body::before{
 .logo-under-clock {
     display: flex;
     justify-content: center;
-    margin-top: 24px;
-    margin-bottom: 24px;
+    margin-top: 16px; /* Compact top margin under clock */
+    margin-bottom: 0;
+    width: 100%;
+    max-width: 425px; /* Matches clock diameter exactly! */
+}
+
+.logo-container-relative {
+    position: relative;
+    width: 100%;
 }
 
 .brand-logo-img-under {
-    max-height: 70px;
-    width: auto;
+    width: 100%;
+    height: auto;
+    display: block;
     filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45));
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
 }
 
+.logo-subtagline {
+    position: absolute;
+    top: 27.5%; /* Match SVG tagline vertical alignment perfectly */
+    left: 40.0%; /* Match SVG tagline left alignment perfectly */
+    width: 64.4%; /* Match SVG tagline width perfectly (97.5% - 33.1%) */
+    display: flex;
+    justify-content: space-between; /* Distribute WITHIN • BETWEEN • BEYOND evenly across the width */
+    font-family: 'Inter', sans-serif !important;
+    font-size: clamp(8px, 1.4vw, 10.5px);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #ffffff !important; /* High-contrast white for outstanding visibility */
+    text-transform: uppercase;
+    line-height: 1;
+    pointer-events: none;
+}
+
 .drift-wrapper {
+    grid-column: 1 / -1; /* Full width spanning on desktop grid */
     overflow: hidden;
     width: 100%;
-    max-width: 425px;
+    max-width: 100%; /* Spans across full width */
     position: relative;
     white-space: nowrap;
     mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
-    margin-top: 14px;
-    margin-bottom: 2px;
+    margin-top: 24px; /* Slightly tightened from 32px */
+    margin-bottom: 12px; /* Reduced to pull coordinates panel up */
     display: flex;
     justify-content: center;
 }
@@ -304,19 +360,15 @@ body::before{
 }
 
 .drift-item {
-    font-size: 11.5px;
-    letter-spacing: 0.22em;
+    font-size: 12px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    font-weight: 600;
-    color: var(--accent);
+    font-weight: 700;
+    color: var(--accent) !important;
+    opacity: 1 !important;
     display: inline-block;
     padding: 0 4px;
 }
-
-.drift-item.o1 { opacity: 0.60; }
-.drift-item.o2 { opacity: 0.46; }
-.drift-item.o3 { opacity: 0.52; }
-.drift-item.o4 { opacity: 0.40; }
 
 .drift-sep {
     font-size: 12px;
@@ -336,15 +388,16 @@ body::before{
 
 .vertical-copy{
     position:absolute;
-    right: -12px; /* Aligned closely to the right side of the clock wrapper to avoid edge clipping */
-    top: 212px; /* Centered perfectly on the horizontal axis of the 425px clock dial */
+    right: -24px; /* Centered nicely outside the clock dial boundary */
+    top: 50%; /* Center perfectly dynamically on the horizontal axis of the clock dial */
     transform:translateY(-50%) rotate(180deg);
     writing-mode:vertical-rl;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing:.25em;
     color:var(--accent);
     text-transform:uppercase;
     font-weight: 600;
+    white-space: nowrap; /* Prevent line wrapping under all conditions */
 }
 
 /* 4. STATISTICS DASHBOARD PANEL - SIMPLIFIED ARCHIVAL FOOTER */
@@ -476,7 +529,8 @@ body::before{
         box-shadow .28s ease;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start; /* Flow naturally from top to bottom */
+    gap: 4px; /* Consistent natural spacing */
     min-height: 176px;
     position: relative;
     overflow: hidden;
@@ -513,7 +567,7 @@ body::before{
     justify-content: space-between;
     align-items: flex-start;
     gap: 12px;
-    margin-bottom: 12px;
+    margin-bottom: 6px; /* Reduced from 12px for tight packaging */
 }
 
 .flagship-card-title {
@@ -558,7 +612,7 @@ body::before{
     font-size: 12px;
     line-height: 1.55;
     color: var(--muted);
-    margin-bottom: 16px;
+    margin-bottom: 0; /* Reduced to 0 as it's the last child now */
     flex-grow: 1;
 }
 
@@ -568,22 +622,24 @@ body::before{
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--accent);
+    margin-bottom: 4px; /* Added spacing below metadata header */
 }
 
 .secondary-tier-toggle-wrapper {
     display: flex;
     justify-content: center;
-    margin: 28px 0 24px;
+    margin: 28px auto 24px; /* Centered auto margins on desktop */
     width: 100%;
+    max-width: 714px; /* Restrict width to match 3 columns of 230px each + gaps exactly */
 }
 
 .secondary-toggle-btn {
     background: var(--accent);
     border: none;
-    color: #E6D7C3;
+    color: #ffffff !important; /* Sharp white text for outstanding premium prominence */
     font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.12em; /* Slightly tighter letter-spacing for premium visual density */
     text-transform: uppercase;
     cursor: pointer;
     display: flex;
@@ -595,6 +651,7 @@ body::before{
     height: 48px;
     border-radius: 4px;
     box-shadow: 0 4px 12px rgba(217, 130, 54, 0.08);
+    white-space: nowrap; /* Prevent line wrapping under all conditions */
 }
 
 .secondary-toggle-btn:hover {
@@ -604,19 +661,21 @@ body::before{
 
 .secondary-indices-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 230px); /* Reduced width of each button to 230px */
+    justify-content: center; /* Centralise the 3 columns */
     gap: 12px;
     opacity: 0;
     max-height: 0;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    margin-bottom: 0;
+    margin: 0 auto; /* Center alignment on desktop */
+    max-width: 714px; /* Restrict width on desktop to match Explore button exactly */
 }
 
 .secondary-indices-grid.expanded {
     opacity: 1;
-    max-height: 500px;
-    margin-bottom: 24px;
+    max-height: 750px; /* Increased from 500px to fully accommodate all 12 archive report blocks without clipping */
+    margin: 0 auto 24px; /* Maintained center alignment when expanded */
 }
 
 @media (max-width: 820px) {
@@ -629,7 +688,7 @@ body::before{
     background: rgba(255, 255, 255, 0.45);
     border: 1px solid var(--line);
     border-radius: 6px;
-    padding: 12px 16px;
+    padding: 12px 14px; /* Snugger horizontal padding to prevent long title wrapping */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1022,59 +1081,55 @@ body::before{
 }
 
 /* PHILOSOPHY SECTION - SYSTEMS CONTINUUM */
-.section{
-    padding: 36px 0;
+.section {
+    padding: 24px 0; /* Reduced from 36px to tighten vertical page space */
     border-top: none !important;
 }
 
-.section-head{
-    text-align:center;
-    margin-bottom:40px;
+.section-head {
+    text-align: center;
+    margin-bottom: 20px; /* Reduced from 40px to pull description snugger */
 }
 
 .section-title-alt {
-    font-size:32px;
-    line-height:1.25;
-    letter-spacing:.01em;
-    margin-bottom:12px;
+    font-size: 32px;
+    line-height: 1.25;
+    letter-spacing: .01em;
+    margin-bottom: 12px;
     text-align: center;
     color: var(--cinnabar);
     font-weight: 800;
 }
 
-.section-text{
-    max-width:760px;
-    margin:auto;
-    font-size:14px;
-    line-height:1.65;
-    color:var(--muted);
-    font-weight:400;
+.section-text {
+    max-width: 600px; /* Slightly narrower to prevent long line lengths on desktop */
+    margin: 8px auto 0; /* Snug top margin */
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--muted);
+    font-weight: 400;
 }
 
 /* SYSTEMS CONTINUUM STYLING */
 .systems-continuum-wrapper {
-    margin-top: 40px;
+    margin-top: 16px; /* Reduced from 24px for vertical space economy */
     position: relative;
-    padding: 20px 0;
+    padding: 0;
+    max-width: 680px; /* Constrains width to group descriptive blocks tightly and match grids perfectly */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .continuum-flow {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 16px;
+    gap: 16px; /* Reduced from 24px to pack columns closer horizontally on desktop */
     position: relative;
 }
 
 .continuum-flow::before {
-    content: "";
-    position: absolute;
-    top: 14px;
-    left: 40px;
-    right: 40px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 80%, transparent);
-    z-index: 1;
+    display: none !important; /* Hide connecting line to save vertical space */
 }
 
 .continuum-step {
@@ -1085,26 +1140,11 @@ body::before{
     text-align: center;
     position: relative;
     z-index: 2;
+    padding: 0 8px;
 }
 
 .continuum-node {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: var(--panel);
-    border: 2px solid var(--accent);
-    margin-bottom: 16px;
-    box-shadow: 0 0 12px rgba(217,130,54,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.continuum-step:hover .continuum-node {
-    background: var(--accent);
-    transform: scale(1.1);
-    box-shadow: 0 0 16px rgba(217,130,54,0.25);
+    display: none !important; /* Hide circle to save prime real estate */
 }
 
 .continuum-title {
@@ -1122,36 +1162,19 @@ body::before{
 }
 
 .continuum-arrow {
-    align-self: flex-start;
-    margin-top: 4px;
-    font-size: 16px;
-    color: var(--accent);
-    opacity: 0.4;
-    z-index: 2;
+    display: none !important; /* Hide arrow to save vertical space */
 }
 
 @media (max-width: 820px) {
     .continuum-flow {
         flex-direction: column;
         align-items: center;
-        gap: 32px;
-    }
-    
-    .continuum-flow::before {
-        display: none;
-    }
-    
-    .continuum-arrow {
-        transform: rotate(90deg);
-        align-self: center;
-        margin-top: 0;
+        gap: 18px; /* Snugger vertical spacing on mobile */
     }
 }
 
-
-
 .footer {
-    padding: 32px 0 48px;
+    padding: 20px 0 24px; /* Reduced from 32px 0 48px to cleanly save bottom vertical space */
     text-align: center;
     border-top: none !important;
 }
@@ -1160,7 +1183,7 @@ body::before{
     width: 60px;
     height: 1px;
     background: var(--accent);
-    margin: 0 auto 16px;
+    margin: 0 auto 12px; /* Reduced from 16px */
 }
 
 .footer-text {
@@ -1171,6 +1194,55 @@ body::before{
     font-weight: 600;
 }
 
+/* PREMIUM TWO-LINE FEEDBACK BUTTON STYLES */
+.feedback-link-wrapper {
+    text-align: center;
+    margin-top: 14px; /* Pack feedback button close to byline */
+    position: relative;
+    z-index: 2;
+}
+
+.feedback-btn {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(139, 90, 43, 0.25); /* Subtle rust-brown border */
+    border-radius: 4px;
+    padding: 8px 18px;
+    text-decoration: none !important;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.01);
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    max-width: 260px;
+    margin: 0 auto;
+}
+
+.feedback-btn:hover {
+    border-color: rgba(139, 90, 43, 0.6);
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 4px 12px rgba(139, 90, 43, 0.05);
+}
+
+.feedback-title {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cinnabar) !important; /* Non-saffron premium color matching hand-drawn vision */
+    margin-bottom: 2px;
+}
+
+.feedback-subtitle {
+    font-family: var(--font-sans);
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted) !important;
+}
+
 @keyframes rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
@@ -1179,34 +1251,45 @@ body::before{
 @media(max-width:1100px){
 
 .vertical-copy {
-    display: none !important;
+    display: block !important;
+    right: -20px;
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+}
+
+.top-control-hub-compact {
+    margin-bottom: 8px !important; /* Reduces upper gap below header */
 }
 
 .hero-grid{
-    grid-template-columns:1fr;
+    display: flex !important;
+    flex-direction: column !important;
     min-height: auto;
 }
 
 .right{
-    min-height: 400px;
+    min-height: auto !important;
     border-left:none !important;
-    order: 2; /* Visual centerpiece anchors immediately below intro on mobile layout folding */
-    animation: right-border-top-transition 32s ease-in-out infinite alternate;
-}
-
-@keyframes right-border-top-transition {
-    0%, 55% {
-        border-top: 1px solid rgba(255, 255, 255, 0.15);
-    }
-    75%, 100% {
-        border-top: 1px solid var(--line);
-    }
+    border-top:none !important; /* Remove line below hero text completely */
+    order: 3; /* Stack clock dial and logo at the very bottom below the drift banner */
+    padding-top: 0 !important; /* Collapsed visual padding */
+    margin-top: 0 !important;  /* Collapsed visual margin */
 }
 
 .left {
-    padding: 24px 14px;
+    padding: 0px 14px 0 14px !important; /* Fully collapsed top padding to pull kicker up close */
     order: 1;
     text-align: left; /* Snug left alignment */
+}
+
+.tagline-kicker {
+    margin-bottom: 8px !important; /* Tighter visual packaging */
+}
+
+.drift-wrapper {
+    order: 2; /* Position banner chronologically directly under text block */
+    margin-top: 4px !important; /* Snug banner up close to tagline */
+    margin-bottom: 4px !important; /* Snug banner down close to clock wrapper */
 }
 
 .brand-logo-img {
@@ -1215,28 +1298,16 @@ body::before{
 }
 
 .hero-title{
-    font-size:24px; /* Slightly snug size to wrap beautifully */
+    font-size:32px; /* Oversized for readability and premium feel */
     margin-bottom: 12px;
     text-align: left;
 }
 
 .hero-text{
-    font-size:14px;
-    margin-bottom: 16px;
+    font-size: clamp(13px, 3.8vw, 17px) !important; /* Calibrated size reduced by 1pt to fit perfectly */
+    margin-bottom: 8px !important; /* Tightly pack below tagline */
     text-align: left;
-}
-
-.hero-summary {
-    margin-top: 20px;
-    text-align: left;
-}
-
-.hero-summary-line1 {
-    font-size: 12px !important;
-}
-
-.hero-summary-line2 {
-    font-size: 12px !important;
+    white-space: nowrap !important; /* Force single line before and after br on mobile */
 }
 
 }
@@ -1263,12 +1334,44 @@ body::before{
     word-break: break-word;
 }
 
-.vertical-copy{
-    display:none !important;
+.clock-logo-wrapper {
+    max-width: 310px !important; /* Elegant width to accommodate both clock and vertical text sidebar */
+    padding-right: 45px !important; /* Space reserved on the right for the vertical copy */
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    margin: 0 auto 4px !important; /* Centered block layout - reduced to tighten */
 }
 
-.clock-logo-wrapper, #clock {
-    max-width: 280px !important;
+#clock {
+    width: 260px !important;
+    height: 260px !important;
+    max-width: 260px !important;
+    aspect-ratio: 1 / 1 !important;
+    display: block !important;
+}
+
+.vertical-copy {
+    display: flex !important; /* Keep visible on mobile screens */
+    position: absolute !important;
+    right: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) rotate(180deg) !important;
+    writing-mode: vertical-rl !important;
+    font-size: 9.5px !important; /* Snug, crisp font size next to dial */
+    letter-spacing: 0.22em !important;
+    color: var(--accent) !important;
+    text-transform: uppercase !important;
+    font-weight: 600 !important;
+    height: 260px !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.logo-under-clock, .logo-container-relative {
+    max-width: 260px !important;
+    margin: 0 auto !important;
 }
 
 .clock-center-logo {
@@ -1291,18 +1394,55 @@ body::before{
 }
 
 .flagship-tier-grid {
-    display:flex;
-    overflow-x:auto;
-    gap:14px;
-    padding-bottom:10px;
-    scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling: touch;
+    display: flex !important;
+    flex-direction: column !important; /* Stack flagship cards vertically on mobile viewports */
+    gap: 16px !important;
+    padding-bottom: 0 !important;
+    scroll-snap-type: none !important;
+    overflow-x: visible !important;
+}
+
+.catalog-container {
+    padding: 14px !important; /* Squeezed padding to extend the white border close to screen margins */
 }
 
 .flagship-card{
-    min-width:280px;
-    scroll-snap-align:start;
-    flex-shrink:0;
+    min-width: 100% !important; /* Full width mobile cards */
+    min-height: auto !important; /* Adapt naturally to text height */
+    scroll-snap-align: none !important;
+    flex-shrink: 1 !important;
+    padding: 16px !important; /* Reduced padding to maximize title space and prevent unnecessary breaks */
+}
+
+.secondary-tier-toggle-wrapper {
+    max-width: 260px !important; /* Match mobile grid and clock dial width exactly */
+    margin: 16px auto !important; /* Centered auto layout on mobile */
+}
+
+.secondary-toggle-btn {
+    font-size: clamp(9.5px, 2.7vw, 12px) !important; /* Prevent text wrapping by auto-scaling font size */
+    letter-spacing: 0.06em !important; /* Elegant tighter letter-spacing for mobile viewports */
+}
+
+.secondary-indices-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important; /* Tight visual gap to group items closer */
+    max-width: 260px !important; /* Tight width restriction matching the clock dial and logo exactly! */
+    margin: 0 auto 16px !important; /* Centered block layout inside the catalog-container */
+}
+
+.secondary-btn-item {
+    min-height: 36px !important; /* Reduced row height from 48px to cleanly fit all items above fold */
+    padding: 6px 12px !important; /* Snugged padding inside rows */
+    border-radius: 4px !important;
+}
+
+.secondary-btn-title {
+    font-size: 11.5px !important; /* Small crisp font sizing */
+}
+
+.coordinates-section {
+    display: none !important; /* Hide Interior Coordinates text section on mobile to reclaim vital vertical space */
 }
 
 .continuum-desc{
@@ -1325,17 +1465,22 @@ body::before{
 
 <div class="container">
     
-    <!-- Top Control Hub bar integrated seamlessly inside the full-bleed hero canvas -->
-    <div class="top-control-hub">
-        <div class="control-group">
-            <span id="lblMarket" class="hub-label">Region:</span>
-            <button id="btnMarketIndia" class="hub-btn active" onclick="switchMarket('INDIA')" title="India — Pay via Razorpay UPI / Net Banking / Cards">🇮🇳 India · ₹ · UPI</button>
-            <button id="btnMarketWorld" class="hub-btn" onclick="switchMarket('WORLD')" title="International — Pay via Card / PayPal">🌐 World · $ · Card</button>
+    <!-- Compact Top Control Hub -->
+    <div class="top-control-hub-compact">
+        <div class="compact-group">
+            <span id="lblMarket" class="compact-label">REGION</span>
+            <div class="compact-options">
+                <button id="btnMarketIndia" class="compact-btn active" onclick="switchMarket('INDIA')" title="India — Pay via Razorpay UPI / Net Banking / Cards">🇮🇳</button>
+                <button id="btnMarketWorld" class="compact-btn" onclick="switchMarket('WORLD')" title="International — Pay via Card / PayPal">🌐</button>
+            </div>
         </div>
-        <div class="control-group">
-            <span id="lblLang" class="hub-label">Language:</span>
-            <button id="langEN" class="hub-btn active" onclick="setLanguage('EN')">English</button>
-            <button id="langHI" class="hub-btn" onclick="setLanguage('HI')">हिन्दी</button>
+        <div class="compact-group">
+            <span id="lblLang" class="compact-label">LANGUAGE</span>
+            <div class="compact-options">
+                <button id="langEN" class="compact-btn active" onclick="setLanguage('EN')">A</button>
+                <span class="compact-sep">|</span>
+                <button id="langHI" class="compact-btn" onclick="setLanguage('HI')">अ</button>
+            </div>
         </div>
     </div>
 
@@ -1343,7 +1488,9 @@ body::before{
 
         <div class="left">
             <div id="heroKicker" class="tagline-kicker">
-                Nine Traditions · Six Civilizations · One Human Blueprint
+                NINE TRADITIONS<br>
+                SIX CIVILIZATIONS<br>
+                ONE HUMAN BLUEPRINT
             </div>
 
             <h1 id="heroTitle" class="hero-title">
@@ -1353,56 +1500,90 @@ body::before{
             <p id="heroText" class="hero-text">
                 Civilizations observed recurring human patterns.<br>Antara decodes them.
             </p>
-
-            <!-- Simplified Archival Footer Summary Block -->
-            <div class="hero-summary">
-                <div class="hero-summary-line1">Vedic • Hellenistic • Hebrew • Chinese • Tamil • Mathematical Modernity</div>
-                <div id="heroSummaryLine2" class="hero-summary-line2">Twelve Symbolic Systems. One Unified Interpretive Architecture.</div>
-            </div>
         </div>
 
         <div class="right">
             <div class="right-content-wrapper">
-                <div class="vertical-copy">
-                    Patterns • Cycles • Resonance • Archetypes
+                <!-- Wrapper for perfect aspect-ratio and vertical text alignment -->
+                <div class="clock-logo-wrapper">
+                    <div class="vertical-copy">
+                        Patterns • Cycles • Resonance • Archetypes
+                    </div>
+                    <!-- Celestial Dial Canvas -->
+                    <canvas id="clock" aria-label="Celestial calculation dial" role="img"></canvas>
                 </div>
-                <!-- Celestial Dial Canvas -->
-                <canvas id="clock" aria-label="Celestial calculation dial" role="img"></canvas>
-                
-                <!-- Ambient Civilizational Drift Banner -->
-                <div class="drift-wrapper">
-                    <div class="drift-track">
-                        <div class="drift-items">
-                            <span class="drift-item o1">VEDIC NORTH</span> <span class="drift-sep">•</span> 
-                            <span class="drift-item o2">WESTERN</span> <span class="drift-sep">•</span> 
-                            <span class="drift-item o3">PYTHAGOREAN</span> <span class="drift-sep">•</span> 
-                            <span class="drift-item o1">BAZI</span> <span class="drift-sep">•</span> 
-                            <span class="drift-item o4">LO SHU</span> <span class="drift-sep">•</span> 
-                            <span class="drift-item o2">KABBALAH</span> <span class="drift-sep">•</span> 
-                            <span class="drift-item o3">TAMIL VEDIC</span> <span class="drift-sep">•</span> 
-                            <span class="drift-item o4">CHALDEAN</span> <span class="drift-sep">•</span>&nbsp;
-                        </div>
-                        <div class="drift-items" aria-hidden="true">
-                            <span class="drift-item o1">VEDIC NORTH</span> <span class="drift-sep">•</span> 
-                            <span class="drift-item o2">WESTERN</span> <span class="drift-sep">•</span> 
-                            <span class="drift-item o3">PYTHAGOREAN</span> <span class="drift-sep">•</span> 
-                            <span class="drift-item o1">BAZI</span> <span class="drift-sep">•</span> 
-                            <span class="drift-item o4">LO SHU</span> <span class="drift-sep">•</span> 
-                            <span class="drift-item o2">KABBALAH</span> <span class="drift-sep">•</span> 
-                            <span class="drift-item o3">TAMIL VEDIC</span> <span class="drift-sep">•</span> 
-                            <span class="drift-item o4">CHALDEAN</span> <span class="drift-sep">•</span>&nbsp;
+                <!-- Centered Logo Under Clock with HTML Subtagline Overlay (Inlined SVG) -->
+                <div class="logo-under-clock">
+                    <div class="logo-container-relative">
+                        <svg id="Antara_Logo_Image" data-name="Antara Logo Image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3269 912" class="brand-logo-img-under">
+                          <defs>
+                            <style>
+                              .cls-1 {
+                                fill: #88321c;
+                              }
+                              .cls-2 {
+                                fill: #df8127;
+                              }
+                            </style>
+                          </defs>
+                          <path class="cls-1" d="M1437.38,624.69l.23,7.41.53,55.86-1.15,14.05.16,26.93.17,11.3-.05,27.34c-.02,8.81,1.95,17.4,4.71,25.37,6.09,17.62,27.47,20.13,45.51,21.64,1.1,1.37,1.09,6.64-.69,7.02-4.54.95-9.12-.52-13.79-.56l-68.07-.6-72.47,1.44c-1.3-2.5-1.7-4.99-.86-7.41,24.44-1.79,42.53-8.09,45.81-34.11,2.25-17.84,1.42-35.23,1.36-53.37l-.2-57.99.11-70.01-.32-77.94c-.07-17.51-3.81-42.21-18.19-50.18-8.44-4.68-17.45-6.57-26.99-5.76-.52-2.6-.58-4.63-.03-6.72l88.65-18.43c5.18-1.08,9.69-2.01,15.16-1.81l.21,46.81.02,38.73c4.15-2.2,4.12-5.76,5.85-8.76,12.03-20.97,27.93-39.37,47.99-52.74,13.59-9.06,26.91-15.59,42.64-19.66,64.39-16.68,126.05,7.89,146.78,72.96,5.36,16.83,8.82,33.86,8.87,51.87l.55,201.44c.06,20.12,8.73,39.91,28.42,42.99l20.26,3.16c.12,2.66.28,4.79-.53,7.08l-45-1.62-42.72-.04-68.17,1.31c-.42-2.15-.41-4.18.1-6.97,7.47-.83,14.63-1.27,22-3.47,18.27-5.48,26.68-22.37,26.65-41.37l-.28-198.21-5.08-33.66c-.38-2.5.59-3.67-1.34-6.16-4.34-5.62-9.06-36.05-40.08-55.8-4.86-3.09-10.48-5.39-15.83-7.13-21.48-6.97-43.68-5.34-64.21,2.86l-6.3,2.94c-8.73,4.07-15.83,10.14-23.05,17.11-14.47,13.97-24.13,31.59-31.79,50.09-2.59,6.27-6.48,27.83-6.47,36.14v15.02s.54,14.49.54,14.49c.22,5.83.21,10.69.41,17.14Z"/>
+                          <path class="cls-1" d="M2095.95,827.01c-34.05-5.66-60.4-24.31-69.74-58.03-4.75-17.16-7.03-34.87-1.91-51.83l3.53-11.69c6.03-19.97,23.5-37.02,40.79-48.9,15.04-10.34,31.06-17.26,48.12-23.83l83.66-32.21,42.99-19.15-.09-47.35-1.35-18.08c-2.2-17.97-8.68-35.37-21.84-47.91-17.05-16.26-45.01-18.82-67.73-14.87-33.5,5.83-52.68,27.06-57.94,60.19-1.45,9.12-4.99,16.85-13.66,20.45s-19.42,3.55-25.33-4.2c-6.44-8.45-5.78-20.4-1.48-29.81,5.39-11.81,14.43-20.45,24.47-28.33,5.91-4.64,11.55-8.76,18.36-11.89l21.86-10.05c38.41-14.81,88.67-16.82,127.13-1.15,13.42,5.47,24.91,14.81,34.14,25.54,16.93,19.67,22.66,50.04,22.71,76.23l.39,185.69,1.95,28.14c1.22,17.59,14.9,38.96,33.95,37.98,12.54-.65,23-6.88,31.93-15.24,2.28,2.42,3.28,5.04,3.97,8.2l-13.37,12.39c-16.05,11.46-33.57,19.2-53.35,20.51-27.69,1.84-49.57-14.05-59.34-39.9-.21-6.38-1.06-12.61-4.27-18.54-.39-3.19.14-6.55-2.8-9.51-7.09,11.79-14.68,21.83-25.25,29.56l-20.84,15.25c-14.01,10.25-31.04,15.95-48.13,19.65l-14.88,3.22c-12.25.95-24.52,1.47-36.63-.54ZM2098.73,781.87c10.14,12.16,24.47,18.8,39.86,20.56,22.91,2.62,44.46-4.7,63.1-17.62,19.4-13.45,34.7-30.92,41.6-53.85l.04-133.57-22.94,9.8-31.38,12.85-35.31,14.42c-12.22,4.99-22.34,11.51-32.83,19.27-32.13,23.77-47.08,63.83-36.18,102.68,2.64,9.4,7.49,17.59,14.05,25.45Z"/>
+                          <path class="cls-1" d="M1952.97,817.66l-11.93,5.06c-12.5,5.31-26.15,6.38-39.65,6.52-9.55.1-18.69-1.62-27.93-3.8-24.5-5.8-43.83-21.74-54.39-44.53-8.93-19.27-11.73-39.47-11.73-61l.03-149.81v-70.07s.08-31.28.08-31.28l-52.94-.28c-2.21-2.96-1.96-6.56-1.25-10.13l6.18-1.8c14.35-6.07,26.62-14.49,38.47-24.72,17.69-15.27,31.1-33.9,42.89-53.96l10.59-20.64c2.36-4.6,4.38-9.04,5.51-14.65l9.18.44.26,12.87.1,92.8,39.63.36,79.98.65.05,18.97-119.57.06.24,252.06c.02,19.07,4.43,36.68,13.77,52.57,7.61,12.95,19.19,21.87,33.79,25.57,30.39,7.71,61.92-3.86,80.79-29.05,4.04-.16,8.1,6.41,5.88,8.98l-14.91,17.22c-5.55,6.41-25.08,20-33.1,21.58Z"/>
+                          <path class="cls-1" d="M2883.42,759.58c-17.44,26.87-49.14,50.24-79.51,60.1-28.46,9.23-58.97,12.23-87.08,1.29-20.59-8.01-36.45-24.24-44.97-44.75-6.68-16.08-9.75-33.71-6.02-50.71l2.88-13.14c3.3-15.05,11.71-28.15,22.21-39.55,11.3-12.26,25.08-21.22,40.4-28.62l86.24-34.45,32.56-12.82,34.94-17.9.15-43.02c.04-12.37-1.09-24.07-4.06-35.96-4.7-15.79-13.02-30.27-27.5-38.75-21.66-12.69-47.83-14.28-71.19-5.98-20.72,7.36-32.2,18.41-40.12,38.18l-5.45,20.47c-2.05,7.7-5.61,15.8-12.87,18.72s-14.73,3.54-21.56-.4c-10.88-6.27-10.89-21.86-4.96-33.84,1.84-3.72,3.32-7.53,6.13-10.92,30.23-36.61,85.08-53.91,131.68-50.89,21.15,1.37,41.51,4.87,59.68,15.16,21.84,12.36,37.7,30.9,43.68,55.42,4.33,17.73,5.97,35.28,5.92,53.82l-.25,96.09-.11,38.83c-.16,55.69,20.44,102.95,61.77,139.92,17.39,15.56,36.97,27.01,59.18,33.88,25.64,7.93,52.7,5.18,76.44-7.28,25-13.11,41.41-34.03,41.33-33.99,2.04-1.18,6.41,5.59,4.79,7.24l-11.45,11.67c-20.48,20.88-44.68,37.34-72.9,45.75l-11.47,3.86c-54.61,10.29-102.87-6.96-144.54-42.39-16.45-14-30.54-29.32-43-47.04-6.53-9.29-11.66-19.41-15.88-29.98l-2.8-10.36c-.56-2.09.19-5.27-2.3-7.67ZM2783.08,801.99c44.45,3.16,86-29.7,101.82-70.22,1.15-2.95.37-4.96.37-7.97l-.09-126.8c-1.75-.81-3.28-.16-4.52.66-5.28,3.47-10.68,5.79-16.91,7.17l-4.8,3.1-34.14,13.84-27.38,11.58c-28.98,12.26-56.7,33.35-67.52,63.33-7.44,20.61-8.1,42.09-1.11,62.38,8.32,24.14,28.58,41.11,54.28,42.94Z"/>
+                          <path class="cls-1" d="M2489.82,586.15l-.03,147.71-.12,28.21c-.05,11.14,1,22.39,5.76,32.43,7.92,16.71,27.22,19.18,44.69,20.06.46,3.13.43,5.54-.94,7.91l-72.19-1.86-81.24,1.91c-1.24-2.61-1.09-5.4-.18-8.18,10.28-.79,20.56-1.77,29.75-7.13,11.73-6.84,15.99-25.72,15.97-40.42l-.28-243.55c-.01-9.66-2.66-18.84-6.38-26.64-7.02-14.72-20.72-16.64-36.4-15.12-1.54-.58-2.1-4.6-1.07-6.55,19.41-5.37,38.69-11.28,57.47-19.24l45.17-19.14v79.43c.02,5.49-1.33,10.76.43,16.5l6.73-14.51c5.19-5.65,7.26-11.84,10.83-18.44,9.51-17.62,23.59-32.07,39.6-44.03,11.2-8.38,23.78-13.63,37.31-16.67,23.55-5.28,56.15,2.45,68.94,22.55,7.56,11.88,7.54,28.28-.64,39.11-8.33,11.01-20.66,13.84-32.63,7.89-5.62-2.8-9.06-7.78-12.59-13.17-8.77-13.4-22.27-23.41-38.77-24.13-14.59-.63-27.64,6.37-37.46,16.38l-5.59,5.69c-11.98,12.2-29.33,46.79-32.4,61.83-2.17,10.64-3.74,20.03-3.75,31.19Z"/>
+                          <path class="cls-2" d="M817.11,700.94c-1.01,2.48-2.19,2.81-2.71,6.03-.59,3.67-2.45,9.38-4.71,12.35-4.49,5.91-4.68,12.27-6.73,18.83-4.18,13.39-6.65,26.82-2.88,40.66,6.34,23.3,28.75,32.18,51.84,35.27.61,2.3,1.06,6.79-.32,8.21-2.27,2.06-6.14-.29-8.6-.27l-36,.21-10.16-.16-99.47.15c-6.43,0-12.51,1.89-18.98.02-1.77-.51-2.23-5.46-.86-6.75,2.92-2.76,7.6-2.19,11.09-2.93l9.09-1.94,13.84-4.2c9.01-2.73,17.35-9.31,23.27-16.4l14.22-17.03,4.24-6.85,8.28-14.74c2.72-4.83,5.74-8.62,8.01-13.97l5.08-12c2.5-5.92,5.01-11.43,7.48-17.23l17.67-41.5c.95-2.24,1.87-3.58,3.14-6.35l3.88-8.51,3.27-7.93,17.78-42.98,9.28-20.78,11.33-26.63,42.52-99.39c4.5-10.51,7.6-20.76,13.94-30.57,1.87-7.04,3.96-14.2,7.83-20.86l9.51-22.46,29.44-70.37,13.01-31.19,26.29-63.77,32.04.03,10.46,25.54,25.7,61.4,21.59,51.38,26.97,64,32.64,79.22,31.92,76.92,8.47,20.79,27.52,66.44,18.26,43.78,25.32,61.76c3.93,9.58,8.19,19.13,15.23,26.59,15.35,16.24,27.41,17.51,48.63,21.41.43,2.35.25,5.01-.23,7.36-3.43,2-6.94.55-10.63.53l-12.45-.07-135.33.06-47.87.69c-.41-2.76-.51-5.95-.02-8.36,12.77-2.82,26.48-3.71,37.5-10.3,10.02-6,17.13-17.72,15.28-28.95-2.63-16-9.83-29.61-15.65-44.32l-23.25-58.71-11.66-27.79-18.22-45.58-103.77-.32-42.29-.15-35.37.13-30.86.06c-7.72.01-15.07-1.08-22.84.61-.67,5.37-3.73,9.53-5.91,14.04-1.29,2.68-.86,6.3-4.66,8,.69,4.21-.26,7.6-3.51,9.82-.45,6.87-3.23,12.88-7.14,18.1-.27,5.52-2.81,10.09-4.81,15.02l-14.98,36.89ZM876.56,553.93c-1.78,6.64-3.18,11.83-6.37,18.72l39.3.04,122.85-.13,49.31-.28-15.81-39.07-12.3-29.8-8.26-19.65-15.56-37.47-14.28-33.54-24.72-59.37-3.45-9.99-8.94-22.73c-.51-1.29-3.2-.24-3.95.39-.79.66-1.96,2.3-1.58,3.82.65,2.59-1.64,4.06-2.05,5.78-2.35,9.82-7.17,17.86-10.97,26.92l-10.32,24.64-11.46,26.75-3.38,8.85-10.39,24.53-9.65,22.52-10.73,26.1-4.14,8.83-10.11,24.79-3.49,9-6.31,15.95-3.24,4.41Z"/>
+                          <path class="cls-1" d="M429.72,70.43c-.5.31,1.67.93,2.32.95l18.41.32,11.37.84c28.09,2.08,55.18,8.96,81.5,19.09,46.38,17.86,87.24,46.66,118.05,85.57,17.32,21.88,29.88,46.01,38.92,72.16,5,14.45,10.18,27.89,12.85,43.03,2.58,14.66-24.09,40.84,4.79,76.11l53.89,65.78,15.61,23.46c5.33,8.01,2.3,17.71-6.14,22.44l-31.17,17.49c-5.99,3.36-10.71,10.3-10.29,17.01.99,15.69,18.18,26.46,13.65,38.48-2.58,6.86-8.63,10.67-14.58,15.59l9.06,10.34c3.6,4.1,5.07,9.98,3.96,15.38-.92,4.47-4.78,8.62-9.21,11.69-13.82,9.54-11.6,21.23-5.46,35.61,6.52,15.25,5.49,32.14-4.04,45.9-8.85,12.79-31.61,19.51-46.99,19.01l-21.52-.7-19.36-1.29-27.27-.34c-30.66,2.53-52.44,23.61-60.97,52.88-4.07,13.95-6.43,28.09-6.87,42.74l-.84,27.99.31,21.32-10.43.11H245.41c-2.81,0-5.05-.74-7.65-.28s-5.35.17-8.59-.77c24.29-38.65,39.92-80.4,36.44-126.3-3.32-43.7-24.72-80.06-54.74-111.08l-43.74-45.21c-30.41-33.16-52.75-71.91-65.53-115.12-5.71-19.33-8.07-38.57-9.56-58.58l-.82-4,.26-15.96c1.93-19.8,3.62-39.63,9.24-59.36,14.86-52.22,36.69-92.61,72.85-132.87,54.29-60.46,128.12-99.29,209.12-107.29l11.21-.84c7.84-.59,15.59.14,22.87-.99l12.96-.28Z"/>
+                          <path class="cls-2" d="M525.15,507.5l-.06-65.61-38.14-.38c-17.23-.17-33.68.77-51.13.2,1.19,3.38,2.72,5.55,4.5,8.01,17.12,23.76,18.57,60.35,9.83,88.06l-4.64,9.82c-9.55,23.06-26.6,41.72-48.67,53.25-15.05,7.86-37.71,16.49-53.82,16.29l-26.86-.33c-19.95-2.81-38.8-8.98-55.94-18.83-5.66-3.25-10.25-7.11-15.37-10.66-10.84-7.53-20.64-18.93-28.53-29.82l-9.22-12.73c-7.73-10.66-13.75-21.96-18.83-34.27l-11.07-26.81c-3.03-7.34-4.64-14.93-8.37-22.41,3.68-2.54,7.58-2.81,11.63-2.81l3.31,6.8c5.3,16.22,19.79,35.86,30.78,50.14,14.31,18.59,34.73,33.5,56.22,43.02,19.18,8.5,39.63,12.51,60.33,8.67,18.7-3.47,36.27-9.65,50.05-22.95,6.35-6.12,10.26-13.7,14.8-21.18,2.18-3.58,2.76-8.07,4.04-11.97,6.24-18.96,1.99-42.02-9.98-58.11-3.44-4.62-5.86-9.61-11.46-12.63l-16.49-8.88c-10.1-3.43-19.57-4.78-29.98-4.68-2.99.03-5.13-.73-8.42-.04l-18.17,3.82c-1.96.41-3.63.78-5.44.1-1.65-.61-2.07-2.8-2.92-4.73l-11.98-27.05c-1.69-3.81-4.78-6.74-2.44-11.7,3.02,1.15,6.24.05,9.34,0l22.98-.36c15.95-.25,38.51-9.58,50.65-21.02,24.93-23.5,29.8-65.72,6.89-87.11-6.9-6.44-14.66-11.96-23.84-14.28-17.8-4.51-36.43-2.21-53.27,5.47-27.98,12.76-41.06,36.79-44.09,38.33-.64.33-2.14.2-2.76-.72-3.5-5.29-8.21-9.04-12.16-13.86-4.38-5.34-8.18-11.01-13.93-15.09-1.74-1.24-2.74-2.14-2.78-4.01s.45-3.35,2.15-4.62c3.88-2.9,6.27-7.01,9.54-10.48,7.01-7.46,14.81-13.7,22.97-19.92,16.58-12.64,35.81-19.11,56.64-20.66,10.67-.8,20.36-1.06,30.99,1.07l21.05,4.21,9.66,3.62c13.4,5.02,24.44,14.77,34.37,25.29,14.95,15.84,25.27,34.54,28.58,56.32,1.23,8.07.71,16.22-.01,24.27-1.48,16.52-7.46,30.74-16.91,44.41-6.42,9.28-15.67,15.43-24.88,21.81l11.78.8c10.92-1.22,21.64-.09,32.51-.38,8.34-.23,16.37.09,24.81.44,4.86.2,9.3-.27,14.24-.14l19.74.53c5.59.15,10.5.13,16.09-.06,3.87-.13,7.7,1.52,11.85-.54l-.28-57.95-.27-12.56c-.12-5.45,1.39-10.86.12-16.43-1.09-4.79-.37-9.62.36-14.52l-.73-6.78c-.47-4.37,1.78-15.28.23-22.38-6.09-1.79-12.16-.19-18.09-.48l-16.88-.84-20.08.04c-4.75,0-8.15.13-10.49-4.43l-10.19-19.89-7.95-11.85c-.65-.98-1.03-5.24.64-5.24l162.5-.2,15.43.67,30.12-.04,9.28,36.68c.28,1.09,1.52,2,1.05,3.17-.6,1.49-1.67,2.01-3.73,1.99l-76.87-.45-.12,20.14-.32,64.91-.27,54.14.14,22.77.26,36.16-.34,46.5-.15,33.38.03,10.22.12,20.61c.03,4.61,1.66,8.56,1.81,13.3.28,8.64,4.69,16.47,9.24,23.33s19.2,15.3,27.49,15.73c6.78.35,13.93,1.11,20.35-.9l17.67-5.54c2.2,1.7,4.32,7.48,2.2,9.37l-16.08,7.12-10.87,3.74-16.52,3.69c-8.72,1.95-17.96.96-26.73-.53-31.36-5.34-51.53-24.63-58.83-55.56-1.7-7.22-3.24-13.83-3.21-21.54l.17-62.45Z"/>
+                        </svg>
+                        <div class="logo-subtagline">
+                            <span><span>WITHIN
+                            <span>•</span>
+                            <span>BETWEEN
+                            <span>•</span>
+                            <span>BEYOND
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- Antara Premium Brand Logo placed centered directly under the Clock -->
-                <div class="logo-under-clock">
-                    <img src="Antara_Logo.png" alt="Antara Logo" class="brand-logo-img-under">
+        <!-- Full-width Civilizational Drift Banner placed here for perfect mobile stacking order! -->
+        <div class="drift-wrapper">
+            <div class="drift-track">
+                <div class="drift-items">
+                    <span class="drift-item o1">VEDIC</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o2">HELLENISTIC</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o3">HEBREW</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o1">CHINESE</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o4">TAMIL</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o2">CHALDEAN</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o3">KABBALAH</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o4">INDIAN</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o1">BAZI</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o2">LO SHU</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o3">PYTHAGOREAN</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o4">MATHEMATICAL MODERNITY</span> <span class="drift-sep">•</span>&nbsp;
+                </div>
+                <div class="drift-items" aria-hidden="true">
+                    <span class="drift-item o1">VEDIC</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o2">HELLENISTIC</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o3">HEBREW</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o1">CHINESE</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o4">TAMIL</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o2">CHALDEAN</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o3">KABBALAH</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o4">INDIAN</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o1">BAZI</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o2">LO SHU</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o3">PYTHAGOREAN</span> <span class="drift-sep">•</span> 
+                    <span class="drift-item o4">MATHEMATICAL MODERNITY</span> <span class="drift-sep">•</span>&nbsp;
                 </div>
             </div>
         </div>
 
     </div>
+
+
 
 </div>
 
@@ -1412,7 +1593,7 @@ body::before{
 <section class="coordinates-section">
     <div class="container">
         <div class="coordinates-box">
-            <h2 id="lblMfsTitle">Interior Coordinates</h2>
+            <h2 id="lblMfsTitle">INTERIOR COORDINATES</h2>
             <p id="txtMfsP1">Antara: the interior space of identity.</p>
             <p id="txtMfsP2">Across cultures, birth details carry recurring symbolic geometries.</p>
             <p id="txtMfsP3">We synthesize nine traditions into a unified self-observation map.</p>
@@ -1437,39 +1618,39 @@ body::before{
         <div class="flagship-tier-grid">
             <!-- Archetypal Blueprint -->
             <div class="flagship-card" id="flagship_synthesis" onclick="toggleCartSelection('synthesis')">
+                <div id="flagshipMeta_synthesis" class="flagship-card-meta">Nine Traditions • Synthesis Index</div>
                 <div class="flagship-card-header">
                     <h3 id="flagshipTitle_synthesis" class="flagship-card-title">Archetypal Blueprint</h3>
                     <div class="flagship-checkbox" id="chk_synthesis"></div>
                 </div>
                 <p id="flagshipDesc_synthesis" class="flagship-card-desc">A unified structural map synthesized across nine symbolic traditions.</p>
-                <div id="flagshipMeta_synthesis" class="flagship-card-meta">Nine Traditions • Synthesis Index</div>
             </div>
             
             <!-- Life Architecture -->
             <div class="flagship-card" id="flagship_destiny" onclick="toggleCartSelection('destiny')">
+                <div id="flagshipMeta_destiny" class="flagship-card-meta">Vedic / Chinese • Primary Map</div>
                 <div class="flagship-card-header">
                     <h3 id="flagshipTitle_destiny" class="flagship-card-title">Life Architecture</h3>
                     <div class="flagship-checkbox" id="chk_destiny"></div>
                 </div>
                 <p id="flagshipDesc_destiny" class="flagship-card-desc">Calculate individual Vedic charts, traditional birth square placements, and raw chronological cycle curves cleanly stripped of speculative predictions.</p>
-                <div id="flagshipMeta_destiny" class="flagship-card-meta">Vedic / Chinese • Primary Map</div>
             </div>
 
             <!-- Relationship Resonance Index -->
             <div class="flagship-card" id="flagship_signature" onclick="toggleCartSelection('signature')">
+                <div id="flagshipMeta_signature" class="flagship-card-meta">Cross-System • Compatibility Matrix</div>
                 <div class="flagship-card-header">
                     <h3 id="flagshipTitle_signature" class="flagship-card-title">Relationship Resonance Index</h3>
                     <div class="flagship-checkbox" id="chk_signature"></div>
                 </div>
                 <p id="flagshipDesc_signature" class="flagship-card-desc">Astrological synastry overlays and midpoint composite compatibility mapping for dual-entity partnerships.</p>
-                <div id="flagshipMeta_signature" class="flagship-card-meta">Cross-System • Compatibility Matrix</div>
             </div>
         </div>
 
         <!-- Collapsible Toggle -->
         <div class="secondary-tier-toggle-wrapper">
             <button id="toggleSecondaryBtn" class="secondary-toggle-btn" onclick="toggleSecondaryIndices()">
-                <span id="lblToggleSecondary">✦ Explore Complete Symbolic Archive</span>
+                <span id="lblToggleSecondary">Explore Complete Symbolic Archive</span>
             </button>
         </div>
 
@@ -1676,7 +1857,7 @@ body::before{
             <div id="lblCheckoutNote" class="checkout-commission-note" style="font-size: 11.5px; opacity: 0.7; color: var(--muted); font-family: 'Inter', sans-serif; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px; text-align: center;">Compiled uniquely for this birth signature.</div>
             <div class="price-display" id="priceDisplay">Payment: ₹ 0</div>
             <button id="btnSubmitPay" class="btn-pay" onclick="triggerExecution()">Pay Securely via Razorpay UPI</button>
-            <div id="payment-method-row" style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:10px; font-size: 12px; font-family:'Inter',sans-serif; color:var(--muted); letter-spacing:0.03em;"></div>
+            <div id="payment-method-row" style="text-align:center; margin-bottom:10px; font-size: 11.5px; font-family:'Inter',sans-serif; color:var(--muted); letter-spacing:0.04em;"></div>
             <p id="lblFooterNote" class="footer-note">No persistent user accounts required. Your secure compilation PDF download link unlocks instantly upon payment clearance.</p>
         </div>
     </div>
@@ -1744,9 +1925,10 @@ for timing awareness and deep self-observation.
 <div id="footerText" class="footer-text">
 Beyond Prediction. Into Insights.
 </div>
-<div style="text-align: center; margin-top: 1rem; font-family: var(--font-mono); font-size: 0.75rem;">
-  <a id="lnkFeedback" href="https://docs.google.com/forms/d/e/1FAIpQLSfEYjLsqRjRRR0FZEPq384iGrpL6rZfrEQHEbcYQ9pz5ERzlg/viewform" target="_blank" style="color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); letter-spacing: 0.5px; font-weight: bold; transition: all 0.2s ease;">
-    ✦ SHARE YOUR RESONANCE (ANONYMOUS SUGGESTIONS) ✦
+<div class="feedback-link-wrapper">
+  <a id="lnkFeedback" href="https://docs.google.com/forms/d/e/1FAIpQLSfEYjLsqRjRRR0FZEPq384iGrpL6rZfrEQHEbcYQ9pz5ERzlg/viewform" target="_blank" class="feedback-btn">
+    <span id="lblFeedbackTitle" class="feedback-title">Share Your Resonance</span>
+    <span id="lblFeedbackSub" class="feedback-subtitle">(Anonymous Suggestions)</span>
   </a>
 </div>
 
@@ -1787,9 +1969,9 @@ Beyond Prediction. Into Insights.
         EN: {
             skyline: "Synergy of Ancient & Modern",
             tagline1: "Beyond Prediction. Into Insights.",
-            lblMarket: "Region:",
-            lblLang: "Language:",
-            lblMfsTitle: "Interior Coordinates",
+            lblMarket: "REGION",
+            lblLang: "LANGUAGE",
+            lblMfsTitle: "INTERIOR COORDINATES",
             txtMfsP1: "Antara: the interior space of identity.",
             txtMfsP2: "Across cultures, birth details carry recurring symbolic geometries.",
             txtMfsP3: "We synthesize nine traditions into a unified self-observation map.",
@@ -1814,7 +1996,7 @@ Beyond Prediction. Into Insights.
             lblPartnerUpsellPromo: "Unlock companion's alternate present name with 50% Discount",
             step3Title: "Compile Symbolic Index",
             step3Kicker: "Generate",
-            footerNote: "No accounts required. Dynamic PDF delivers instantly upon payment.",
+            footerNote: "No accounts required.<br>Dynamic PDF delivers instantly upon payment.",
             btnPayIndia: "PAY SECURELY VIA RAZORPAY UPI",
             btnPayWorld: "PROCESS INTERNATIONAL CHECKOUT",
             alertIPNotice: "Regional Checkout Notice:\n\nOur servers detect your connection originates outside India. Regulatory parameters handle cross-border checking via our global USD track.\n\nYour calculations remain untouched.",
@@ -1852,8 +2034,8 @@ Beyond Prediction. Into Insights.
         HI: {
             skyline: "प्राचीन और आधुनिक का समन्वय",
             tagline1: "भविष्यवाणी से परे। अंतर्दृष्टि की ओर।",
-            lblMarket: "क्षेत्र:",
-            lblLang: "भाषा:",
+            lblMarket: "क्षेत्र",
+            lblLang: "भाषा",
             lblMfsTitle: "आंतरिक निर्देशांक",
             txtMfsP1: "अंतरा: पहचान का आंतरिक स्थान।",
             txtMfsP2: "विभिन्न संस्कृतियों में, जन्म विवरण आवर्ती प्रतीकात्मक ज्यामिति रखते हैं।",
@@ -1879,7 +2061,7 @@ Beyond Prediction. Into Insights.
             lblPartnerUpsellPromo: "50% छूट के साथ साथी के वैकल्पिक वर्तमान नाम के लिए अनलॉक करें",
             step3Title: "प्रतीकात्मक इंडेक्स संकलित करें",
             step3Kicker: "जेनरेट करें",
-            footerNote: "कोई खाता आवश्यक नहीं है। भुगतान पर गतिशील पीडीएफ तुरंत वितरित होता है।",
+            footerNote: "कोई खाता आवश्यक नहीं है।<br>भुगतान पर गतिशील पीडीएफ तुरंत वितरित होता है।",
             btnPayIndia: "रेजरपे यूपीआई के माध्यम से सुरक्षित भुगतान",
             btnPayWorld: "अंतर्राष्ट्रीय चेकआउट संसाधित करें",
             
@@ -2222,11 +2404,11 @@ Beyond Prediction. Into Insights.
         
         safeSetText('step3Title', l.step3Title);
         safeSetText('step3Kicker', l.step3Kicker);
-        safeSetText('lblFooterNote', l.footerNote);
+        safeSetHTML('lblFooterNote', l.footerNote);
 
         const lblToggleSec = document.getElementById('lblToggleSecondary');
         if (lblToggleSec) {
-            lblToggleSec.innerText = currentLang === 'EN' ? "✦ Explore Complete Symbolic Archive" : "✦ पूर्ण प्रतीकात्मक पुरालेख का अन्वेषण करें";
+            lblToggleSec.innerText = currentLang === 'EN' ? "Explore Complete Symbolic Archive" : "पूर्ण प्रतीकात्मक पुरालेख का अन्वेषण करें";
         }
 
         safeSetText('brandTitle', l.brandTitle);
@@ -2237,7 +2419,7 @@ Beyond Prediction. Into Insights.
         
         const elHeroKicker = document.getElementById('heroKicker');
         if (elHeroKicker) {
-            elHeroKicker.innerText = currentLang === 'EN' ? 'Nine Traditions · Six Civilizations · One Human Blueprint' : 'नौ परंपराएं · छह सभ्यताएं · एक मानव खाका';
+            elHeroKicker.innerHTML = currentLang === 'EN' ? 'NINE TRADITIONS<br>SIX CIVILIZATIONS<br>ONE HUMAN BLUEPRINT' : 'नौ परंपराएं<br>छह सभ्यताएं<br>एक मानव खाका';
         }
         
         safeSetText('heroSummaryLine2', l.heroSummaryLine2);
@@ -2261,8 +2443,14 @@ Beyond Prediction. Into Insights.
         safeSetText('cardText4', l.cardText4);
         
         safeSetText('footerText', l.footerText);
-        const lnkFeedback = document.getElementById('lnkFeedback');
-        if (lnkFeedback) lnkFeedback.textContent = l.feedbackLink;
+        const lblFeedTitle = document.getElementById('lblFeedbackTitle');
+        const lblFeedSub = document.getElementById('lblFeedbackSub');
+        if (lblFeedTitle) {
+            lblFeedTitle.innerText = currentLang === 'EN' ? "Share Your Resonance" : "अपनी प्रतिक्रिया साझा करें";
+        }
+        if (lblFeedSub) {
+            lblFeedSub.innerText = currentLang === 'EN' ? "(Anonymous Suggestions)" : "(गुमनाम सुझाव)";
+        }
 
         updateGridUI();
         renderCartUI();
@@ -2313,19 +2501,9 @@ Beyond Prediction. Into Insights.
         const pmRow = document.getElementById('payment-method-row');
         if (pmRow) {
             if (marketZone === 'INDIA') {
-                pmRow.innerHTML = `
-                  <span style="padding:2px 7px; border:1px solid var(--line); border-radius:2px;">UPI</span>
-                  <span style="padding:2px 7px; border:1px solid var(--line); border-radius:2px;">Net Banking</span>
-                  <span style="padding:2px 7px; border:1px solid var(--line); border-radius:2px;">Debit / Credit Card</span>
-                  <span style="padding:2px 7px; border:1px solid var(--line); border-radius:2px;">Wallets</span>
-                `;
+                pmRow.innerHTML = `UPI &bull; Net Banking &bull; Debit / Credit Card &bull; Wallets`;
             } else {
-                pmRow.innerHTML = `
-                  <span style="padding:2px 7px; border:1px solid var(--line); border-radius:2px;">Visa</span>
-                  <span style="padding:2px 7px; border:1px solid var(--line); border-radius:2px;">Mastercard</span>
-                  <span style="padding:2px 7px; border:1px solid var(--line); border-radius:2px;">Amex</span>
-                  <span style="padding:2px 7px; border:1px solid var(--line); border-radius:2px;">PayPal</span>
-                `;
+                pmRow.innerHTML = `Visa &bull; Mastercard &bull; Amex &bull; PayPal`;
             }
         }
     }
@@ -2398,17 +2576,37 @@ Beyond Prediction. Into Insights.
             if (item) baseTotal += currentMarket === 'INDIA' ? item.inPrice : item.wmPrice;
         });
 
-        let upsellPremium = 0;
-        if (upsellPrimaryActive) upsellPremium += (baseTotal * 0.5);
-        if (upsellPartnerActive && document.getElementById('secondaryProfilePanel').style.display !== 'none') {
-            upsellPremium += (baseTotal * 0.5);
+        // Apply quantity discount slabs
+        let discountPct = 0;
+        const qty = selectedCartItems.length;
+        if (qty === 2) {
+            discountPct = 15;
+        } else if (qty === 3) {
+            discountPct = 25;
+        } else if (qty >= 4) {
+            discountPct = 33.33;
         }
 
-        const finalTotal = baseTotal + upsellPremium;
-        const zoneSymbol = currentMarket === 'INDIA' ? '₹' : '$';
-        const displayValue = currentMarket === 'INDIA' ? finalTotal.toLocaleString('en-IN') : finalTotal.toFixed(2);
+        const discountAmount = baseTotal * (discountPct / 100);
+        const discountedBase = baseTotal - discountAmount;
 
-        document.getElementById('priceDisplay').innerText = `${dictionary[currentLang].feeLabel} ${zoneSymbol} ${displayValue}`;
+        let upsellPremium = 0;
+        if (upsellPrimaryActive) upsellPremium += (discountedBase * 0.5);
+        if (upsellPartnerActive && document.getElementById('secondaryProfilePanel').style.display !== 'none') {
+            upsellPremium += (discountedBase * 0.5);
+        }
+
+        const finalTotal = discountedBase + upsellPremium;
+        const zoneSymbol = currentMarket === 'INDIA' ? '₹' : '$';
+        const displayValue = currentMarket === 'INDIA' ? Math.round(finalTotal).toLocaleString('en-IN') : finalTotal.toFixed(2);
+
+        let priceText = `${dictionary[currentLang].feeLabel} ${zoneSymbol} ${displayValue}`;
+        if (discountPct > 0) {
+            const pctText = currentLang === 'EN' ? `${discountPct === 33.33 ? '33%' : discountPct + '%'} Off Applied` : `${discountPct === 33.33 ? '33%' : discountPct + '%'} छूट लागू`;
+            priceText += ` <span style="font-size:11px; color:var(--accent); font-weight:normal; margin-left:6px;">(${pctText})</span>`;
+        }
+
+        document.getElementById('priceDisplay').innerHTML = priceText;
         
         const payBtn = document.getElementById('btnSubmitPay');
         payBtn.innerText = currentMarket === 'INDIA' ? dictionary[currentLang].btnPayIndia : dictionary[currentLang].btnPayWorld;
