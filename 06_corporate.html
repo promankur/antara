@@ -7,7 +7,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -18,8 +18,8 @@
       --border-container: 1px solid #D6CEBE;
       --stroke: #b56a2a;
       
-      --font-serif-header: 'Cinzel', serif;
-      --font-serif-body: 'Playfair Display', serif;
+      --font-serif-header: 'Inter', sans-serif;
+      --font-serif-body: 'Inter', 'Noto Sans Devanagari', sans-serif;
       --font-mono: 'Courier Prime', monospace;
       
       --pigment-terracotta: #A65B4A;
@@ -41,7 +41,7 @@
       background-color: var(--bg-page);
       color: var(--ink-archival);
       font-family: var(--font-serif-body);
-      font-size: 17px;
+      font-size: var(--base-font-size) !important;
       line-height: 1.8;
       margin: 0;
       padding: 0;
@@ -230,7 +230,7 @@
       line-height: 1.2 !important;
     }
     .master-report-title { 
-      font-family: 'Cinzel', serif !important; 
+      font-family: 'Inter', 'Noto Sans Devanagari', sans-serif !important; 
       font-size: 2.25rem !important; 
       font-variant: small-caps !important; 
       font-weight: 700 !important; 
@@ -241,7 +241,7 @@
       line-height: 1.3 !important; 
     }
     .master-report-byline { 
-      font-family: 'Playfair Display', serif !important; 
+      font-family: 'Inter', 'Noto Sans Devanagari', sans-serif !important; 
       font-size: 1.15rem !important; 
       color: #D98236 !important; 
       text-align: center !important; 
@@ -1344,7 +1344,201 @@
       .disclaimer-hi { display: none; }
       body.lang-hi .disclaimer-en { display: none !important; }
       body.lang-hi .disclaimer-hi { display: block !important; }
-    </style>
+    
+    /* ==========================================
+       Typography Calibration Panel (Text Calibrator)
+       ========================================== */
+    :root {
+      --base-font-size: 18px;
+      --section-heading-size: 26px;
+      --card-heading-size: 22px;
+    }
+    body.lang-hi {
+      --base-font-size: 19px;
+    }
+
+    /* Mobile responsive default sizing */
+    @media (max-width: 768px) {
+      :root {
+        --base-font-size: 17px;
+        --section-heading-size: 22px;
+        --card-heading-size: 18px;
+      }
+      body.lang-hi {
+        --base-font-size: 17px;
+      }
+    }
+
+    .text-calibrator {
+      position: fixed;
+      bottom: 80px;
+      right: 24px;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-family: 'Inter', sans-serif !important;
+    }
+    .calibrator-trigger {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #ffffff !important;
+      border: 1px solid #b56a2a !important;
+      color: #9E3A33 !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 0;
+      outline: none;
+    }
+    .calibrator-trigger:hover {
+      transform: scale(1.05);
+      background: #F4EFE6 !important;
+    }
+    .calibrator-menu {
+      position: absolute;
+      bottom: 52px;
+      right: 0;
+      background: #ffffff !important;
+      border: 1px solid #b56a2a !important;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+      display: none;
+      width: 180px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .calibrator-menu.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .calibrator-title {
+      font-size: 0.72rem !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1px !important;
+      color: #76726A !important;
+      margin-bottom: 8px !important;
+      text-align: center !important;
+      border-bottom: 1px solid rgba(181, 106, 42, 0.15);
+      padding-bottom: 6px !important;
+    }
+    .calibrator-options {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .calibrator-btn {
+      flex: 1;
+      background: #f7f1e1 !important;
+      border: 1px solid #D6CEBE !important;
+      border-radius: 4px;
+      padding: 6px 0;
+      font-size: 0.85rem !important;
+      font-weight: 700 !important;
+      color: #2B2A28 !important;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+      outline: none;
+    }
+    .calibrator-btn:hover {
+      background: #E6DFD3 !important;
+    }
+    .calibrator-btn.active {
+      background: #9E3A33 !important;
+      color: #ffffff !important;
+      border-color: #9E3A33 !important;
+    }
+
+    /* Apply base font size globally */
+    body {
+      font-size: var(--base-font-size) !important;
+    }
+
+    /* Section Headings overrides */
+    .exploratory-heading-title, 
+    .sav-title, 
+    h2, 
+    h3, 
+    .section-title, 
+    .section-title-alt, 
+    .manuscript-card h2, 
+    .accordion-header, 
+    .faq-question, 
+    .seen-in {
+      font-size: var(--section-heading-size) !important;
+      line-height: 1.35 !important;
+    }
+
+    /* Card Headings overrides */
+    .term-word, 
+    .manuscript-card h3, 
+    h4, 
+    .card-title, 
+    .calibrated-profile-title, 
+    #lblInspectorTitle, 
+    .exploratory-heading-title-small {
+      font-size: var(--card-heading-size) !important;
+      line-height: 1.35 !important;
+    }
+
+    /* Calibrations mapping */
+    body.font-size-small {
+      --base-font-size: 16px !important;
+      --section-heading-size: 22px !important;
+      --card-heading-size: 18px !important;
+    }
+    body.font-size-medium {
+      --base-font-size: 18px !important;
+      --section-heading-size: 26px !important;
+      --card-heading-size: 22px !important;
+    }
+    body.font-size-medium.lang-hi {
+      --base-font-size: 19px !important;
+    }
+    body.font-size-large {
+      --base-font-size: 21.5px !important;
+      --section-heading-size: 31px !important;
+      --card-heading-size: 27px !important;
+    }
+    body.font-size-large.lang-hi {
+      --base-font-size: 22.5px !important;
+    }
+    
+    /* Layout details scaling overrides */
+    body.font-size-medium p, body.font-size-medium td, body.font-size-medium li, body.font-size-medium .exploratory-paragraph-text, body.font-size-medium .term-def {
+      font-size: 1.05rem !important;
+    }
+    body.font-size-large p, body.font-size-large td, body.font-size-large li, body.font-size-large .exploratory-paragraph-text, body.font-size-large .term-def {
+      font-size: 1.18rem !important;
+    }
+    body.font-size-medium .profile-display-row span {
+      font-size: 1.08rem !important;
+    }
+    body.font-size-large .profile-display-row span {
+      font-size: 1.22rem !important;
+    }
+
+    /* Enforce W3C/Typography ideal line length (60-75 chars) on all primary text blocks */
+    p, 
+    li, 
+    .exploratory-paragraph-text, 
+    .term-def, 
+    .disclaimer-en, 
+    .disclaimer-hi {
+      max-width: 72ch !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+</style>
     
     <div class="disclaimer-en" style="background-color: rgba(214, 206, 190, 0.25); border-left: 4px solid var(--pigment-terracotta); padding: 1.25rem 1.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--ink-archival); margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; max-width: 1100px; width: calc(100% - 24px); margin-left: auto; margin-right: auto; text-align: left;">
       <h4 style="font-size: 0.95rem; color: var(--pigment-terracotta); margin-top: 0; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
@@ -1690,7 +1884,7 @@
         gtDiv.style.display = 'inline-flex';
         gtDiv.style.alignItems = 'center';
         gtDiv.style.gap = '6px';
-        gtDiv.innerHTML = '<span style="font-family:\'Cinzel\', serif; font-size:0.68rem; color:#9E3A33; font-weight:bold; letter-spacing:0.5px;">ANTARA TRANSLATE</span>';
+        gtDiv.innerHTML = '<span style="font-family:\'Inter\', sans-serif; font-size:0.68rem; color:#9E3A33; font-weight:bold; letter-spacing:0.5px;">ANTARA TRANSLATE</span>';
         document.body.appendChild(gtDiv);
 
         window.googleTranslateElementInit = function() {
@@ -2335,7 +2529,7 @@
         const numText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         numText.setAttribute('x', textCoords[h].x);
         numText.setAttribute('y', textCoords[h].y - 14);
-        numText.setAttribute('font-family', 'Cinzel');
+        numText.setAttribute('font-family', 'Inter');
         numText.setAttribute('font-size', '11');
         numText.setAttribute('font-weight', 'bold');
         numText.setAttribute('text-anchor', 'middle');
@@ -2363,6 +2557,82 @@
       if (savedName) document.getElementById('input-brand').value = `${savedName} Enterprises`;
       if (savedDob) document.getElementById('input-foundation').value = savedDob;
       updateSAV();
+    });
+  </script>
+
+  <!-- Floating Typography Calibration Panel (Text Calibrator) -->
+  <div class="text-calibrator notranslate" id="textCalibrator">
+    <button class="calibrator-trigger" id="calibratorTrigger" title="Calibrate Text Size / फ़ॉन्ट आकार बदलें">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+        <path d="M9 4v3h5v12h3V7h5V4H9zm-6 6v3h3v8h3v-8h3v-3H3z"/>
+      </svg>
+    </button>
+    <div class="calibrator-menu" id="calibratorMenu">
+      <div class="calibrator-title">Calibrate / आकार बदलें</div>
+      <div class="calibrator-options">
+        <button class="calibrator-btn size-sm" data-size="small" title="Standard / मानक">A-</button>
+        <button class="calibrator-btn size-md active" data-size="medium" title="Medium / मध्यम">A</button>
+        <button class="calibrator-btn size-lg" data-size="large" title="Large / बड़ा">A+</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Text Calibrator Functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const trigger = document.getElementById('calibratorTrigger');
+      const menu = document.getElementById('calibratorMenu');
+      const buttons = document.querySelectorAll('.calibrator-btn');
+      
+      if (trigger && menu) {
+        // Toggle Menu
+        trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          menu.classList.toggle('show');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', () => {
+          menu.classList.remove('show');
+        });
+        
+        menu.addEventListener('click', (e) => {
+          e.stopPropagation();
+        });
+        
+        // Apply saved size on load
+        const savedSize = localStorage.getItem('antara-text-size') || 'medium';
+        applySize(savedSize);
+        
+        // Listen to button clicks
+        buttons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const size = btn.getAttribute('data-size');
+            applySize(size);
+            localStorage.setItem('antara-text-size', size);
+            menu.classList.remove('show');
+          });
+        });
+      }
+      
+      function applySize(size) {
+        document.body.classList.remove('font-size-small', 'font-size-medium', 'font-size-large');
+        buttons.forEach(b => b.classList.remove('active'));
+        
+        if (size === 'small') {
+          document.body.classList.add('font-size-small');
+          const activeBtn = document.querySelector('.calibrator-btn[data-size="small"]');
+          if (activeBtn) activeBtn.classList.add('active');
+        } else if (size === 'large') {
+          document.body.classList.add('font-size-large');
+          const activeBtn = document.querySelector('.calibrator-btn[data-size="large"]');
+          if (activeBtn) activeBtn.classList.add('active');
+        } else {
+          document.body.classList.add('font-size-medium');
+          const activeBtn = document.querySelector('.calibrator-btn[data-size="medium"]');
+          if (activeBtn) activeBtn.classList.add('active');
+        }
+      }
     });
   </script>
 </body>

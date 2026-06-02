@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Glossary · Antara Terms Explained</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;600;700&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #fdfaf2; --panel: #fffdf9; --ink: #2a1a08; --muted: #7d7369;
@@ -12,25 +12,219 @@
   --turmeric: #f1b73a; --turmeric-soft: #f7d774; --stroke: #b56a2a;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--bg); color: var(--ink); font-family: 'Playfair Display', serif; font-size: 15px; line-height: 1.75; padding-bottom: 60px; }
+body { background: var(--bg); color: var(--ink); font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; font-size: var(--base-font-size) !important; line-height: 1.75; padding-bottom: 60px; }
 .header { background: var(--cinnabar); color: #fff; padding: 40px 48px 32px; border-bottom: 4px solid var(--stroke); }
-.header-eyebrow { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--turmeric); margin-bottom: 10px; font-weight: 700; }
-.header h1 { font-family: 'Cinzel', serif; font-size: 32px; font-weight: 700; letter-spacing: 0.04em; margin-bottom: 8px; }
-.header-sub { font-family: 'Playfair Display', serif; font-style: italic; font-size: 15px; color: rgba(255,255,255,0.72); }
+.header-eyebrow { font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--turmeric); margin-bottom: 10px; font-weight: 700; }
+.header h1 { font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; font-size: 32px; font-weight: 700; letter-spacing: 0.04em; margin-bottom: 8px; }
+.header-sub { font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; font-style: italic; font-size: var(--base-font-size) !important; color: rgba(255,255,255,0.72); }
 .container { max-width: 960px; margin: 0 auto; padding: 0 40px; }
 /* Alpha nav */
 .alpha-nav { display: flex; flex-wrap: wrap; gap: 8px; padding: 20px 0 10px; }
-.alpha-nav a { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; color: var(--accent); text-decoration: none; padding: 4px 8px; border: 1px solid var(--line); border-radius: 4px; transition: background 0.15s; }
+.alpha-nav a { font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; font-size: 12px; font-weight: 700; color: var(--accent); text-decoration: none; padding: 4px 8px; border: 1px solid var(--line); border-radius: 4px; transition: background 0.15s; }
 .alpha-nav a:hover { background: var(--turmeric-soft); }
-.section-label { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; color: var(--cinnabar); margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--stroke); }
+.section-label { font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; font-size: 22px; font-weight: 700; color: var(--cinnabar); margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--stroke); }
 .term-block { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
 .term-block:last-child { border-bottom: none; }
-.term-word { font-family: 'Cinzel', serif; font-size: 16px; font-weight: 700; color: var(--cinnabar); margin-bottom: 2px; }
-.term-origin { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; display: block; }
-.term-def { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--ink); line-height: 1.8; margin-bottom: 8px; }
-.term-simple { font-family: 'Playfair Display', serif; font-size: 13px; color: var(--muted); font-style: italic; border-left: 3px solid var(--turmeric); padding-left: 12px; line-height: 1.7; }
-.seen-in { font-family: 'Inter', sans-serif; font-size: 10px; color: var(--accent); font-weight: 600; margin-top: 8px; display: block; }
-footer { margin-top: 60px; text-align: center; font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-top: 1px solid var(--line); padding-top: 20px; }
+.term-word { font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; font-size: 16px; font-weight: 700; color: var(--cinnabar); margin-bottom: 2px; }
+.term-origin { font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; display: block; }
+.term-def { font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; font-size: 14px; color: var(--ink); line-height: 1.8; margin-bottom: 8px; }
+.term-simple { font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; font-size: 13px; color: var(--muted); font-style: italic; border-left: 3px solid var(--turmeric); padding-left: 12px; line-height: 1.7; }
+.seen-in { font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; font-size: 10px; color: var(--accent); font-weight: 600; margin-top: 8px; display: block; }
+footer { margin-top: 60px; text-align: center; font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-top: 1px solid var(--line); padding-top: 20px; }
+
+    /* ==========================================
+       Typography Calibration Panel (Text Calibrator)
+       ========================================== */
+    :root {
+      --base-font-size: 18px;
+      --section-heading-size: 26px;
+      --card-heading-size: 22px;
+    }
+    body.lang-hi {
+      --base-font-size: 19px;
+    }
+
+    /* Mobile responsive default sizing */
+    @media (max-width: 768px) {
+      :root {
+        --base-font-size: 17px;
+        --section-heading-size: 22px;
+        --card-heading-size: 18px;
+      }
+      body.lang-hi {
+        --base-font-size: 17px;
+      }
+    }
+
+    .text-calibrator {
+      position: fixed;
+      bottom: 80px;
+      right: 24px;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-family: 'Inter', sans-serif !important;
+    }
+    .calibrator-trigger {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #ffffff !important;
+      border: 1px solid #b56a2a !important;
+      color: #9E3A33 !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 0;
+      outline: none;
+    }
+    .calibrator-trigger:hover {
+      transform: scale(1.05);
+      background: #F4EFE6 !important;
+    }
+    .calibrator-menu {
+      position: absolute;
+      bottom: 52px;
+      right: 0;
+      background: #ffffff !important;
+      border: 1px solid #b56a2a !important;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+      display: none;
+      width: 180px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .calibrator-menu.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .calibrator-title {
+      font-size: 0.72rem !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1px !important;
+      color: #76726A !important;
+      margin-bottom: 8px !important;
+      text-align: center !important;
+      border-bottom: 1px solid rgba(181, 106, 42, 0.15);
+      padding-bottom: 6px !important;
+    }
+    .calibrator-options {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .calibrator-btn {
+      flex: 1;
+      background: #f7f1e1 !important;
+      border: 1px solid #D6CEBE !important;
+      border-radius: 4px;
+      padding: 6px 0;
+      font-size: 0.85rem !important;
+      font-weight: 700 !important;
+      color: #2B2A28 !important;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+      outline: none;
+    }
+    .calibrator-btn:hover {
+      background: #E6DFD3 !important;
+    }
+    .calibrator-btn.active {
+      background: #9E3A33 !important;
+      color: #ffffff !important;
+      border-color: #9E3A33 !important;
+    }
+
+    /* Apply base font size globally */
+    body {
+      font-size: var(--base-font-size) !important;
+    }
+
+    /* Section Headings overrides */
+    .exploratory-heading-title, 
+    .sav-title, 
+    h2, 
+    h3, 
+    .section-title, 
+    .section-title-alt, 
+    .manuscript-card h2, 
+    .accordion-header, 
+    .faq-question, 
+    .seen-in {
+      font-size: var(--section-heading-size) !important;
+      line-height: 1.35 !important;
+    }
+
+    /* Card Headings overrides */
+    .term-word, 
+    .manuscript-card h3, 
+    h4, 
+    .card-title, 
+    .calibrated-profile-title, 
+    #lblInspectorTitle, 
+    .exploratory-heading-title-small {
+      font-size: var(--card-heading-size) !important;
+      line-height: 1.35 !important;
+    }
+
+    /* Calibrations mapping */
+    body.font-size-small {
+      --base-font-size: 16px !important;
+      --section-heading-size: 22px !important;
+      --card-heading-size: 18px !important;
+    }
+    body.font-size-medium {
+      --base-font-size: 18px !important;
+      --section-heading-size: 26px !important;
+      --card-heading-size: 22px !important;
+    }
+    body.font-size-medium.lang-hi {
+      --base-font-size: 19px !important;
+    }
+    body.font-size-large {
+      --base-font-size: 21.5px !important;
+      --section-heading-size: 31px !important;
+      --card-heading-size: 27px !important;
+    }
+    body.font-size-large.lang-hi {
+      --base-font-size: 22.5px !important;
+    }
+    
+    /* Layout details scaling overrides */
+    body.font-size-medium p, body.font-size-medium td, body.font-size-medium li, body.font-size-medium .exploratory-paragraph-text, body.font-size-medium .term-def {
+      font-size: 1.05rem !important;
+    }
+    body.font-size-large p, body.font-size-large td, body.font-size-large li, body.font-size-large .exploratory-paragraph-text, body.font-size-large .term-def {
+      font-size: 1.18rem !important;
+    }
+    body.font-size-medium .profile-display-row span {
+      font-size: 1.08rem !important;
+    }
+    body.font-size-large .profile-display-row span {
+      font-size: 1.22rem !important;
+    }
+
+    /* Enforce W3C/Typography ideal line length (60-75 chars) on all primary text blocks */
+    p, 
+    li, 
+    .exploratory-paragraph-text, 
+    .term-def, 
+    .disclaimer-en, 
+    .disclaimer-hi {
+      max-width: 72ch !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
 </style>
   <meta name="description" content="Antara is a traditional cross-cultural mathematical life-engine and archetypal systems cartography. Calibrate your natal coordinates, biological rhythms, and name phonetic values across Vedic, Western tropical, and Chinese solar Four Pillars traditions.">
   <link rel="icon" type="image/png" href="Antara_Logo.png">
@@ -590,7 +784,7 @@ footer { margin-top: 60px; text-align: center; font-family: 'Inter', sans-serif;
         gtDiv.style.display = 'inline-flex';
         gtDiv.style.alignItems = 'center';
         gtDiv.style.gap = '6px';
-        gtDiv.innerHTML = '<span style="font-family:\'Cinzel\', serif; font-size:0.68rem; color:#9E3A33; font-weight:bold; letter-spacing:0.5px;">ANTARA TRANSLATE</span>';
+        gtDiv.innerHTML = '<span style="font-family:\'Inter\', sans-serif; font-size:0.68rem; color:#9E3A33; font-weight:bold; letter-spacing:0.5px;">ANTARA TRANSLATE</span>';
         document.body.appendChild(gtDiv);
 
         window.googleTranslateElementInit = function() {
@@ -614,5 +808,81 @@ footer { margin-top: 60px; text-align: center; font-family: 'Inter', sans-serif;
     }
   </script>
 
+
+  <!-- Floating Typography Calibration Panel (Text Calibrator) -->
+  <div class="text-calibrator notranslate" id="textCalibrator">
+    <button class="calibrator-trigger" id="calibratorTrigger" title="Calibrate Text Size / फ़ॉन्ट आकार बदलें">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+        <path d="M9 4v3h5v12h3V7h5V4H9zm-6 6v3h3v8h3v-8h3v-3H3z"/>
+      </svg>
+    </button>
+    <div class="calibrator-menu" id="calibratorMenu">
+      <div class="calibrator-title">Calibrate / आकार बदलें</div>
+      <div class="calibrator-options">
+        <button class="calibrator-btn size-sm" data-size="small" title="Standard / मानक">A-</button>
+        <button class="calibrator-btn size-md active" data-size="medium" title="Medium / मध्यम">A</button>
+        <button class="calibrator-btn size-lg" data-size="large" title="Large / बड़ा">A+</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Text Calibrator Functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const trigger = document.getElementById('calibratorTrigger');
+      const menu = document.getElementById('calibratorMenu');
+      const buttons = document.querySelectorAll('.calibrator-btn');
+      
+      if (trigger && menu) {
+        // Toggle Menu
+        trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          menu.classList.toggle('show');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', () => {
+          menu.classList.remove('show');
+        });
+        
+        menu.addEventListener('click', (e) => {
+          e.stopPropagation();
+        });
+        
+        // Apply saved size on load
+        const savedSize = localStorage.getItem('antara-text-size') || 'medium';
+        applySize(savedSize);
+        
+        // Listen to button clicks
+        buttons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const size = btn.getAttribute('data-size');
+            applySize(size);
+            localStorage.setItem('antara-text-size', size);
+            menu.classList.remove('show');
+          });
+        });
+      }
+      
+      function applySize(size) {
+        document.body.classList.remove('font-size-small', 'font-size-medium', 'font-size-large');
+        buttons.forEach(b => b.classList.remove('active'));
+        
+        if (size === 'small') {
+          document.body.classList.add('font-size-small');
+          const activeBtn = document.querySelector('.calibrator-btn[data-size="small"]');
+          if (activeBtn) activeBtn.classList.add('active');
+        } else if (size === 'large') {
+          document.body.classList.add('font-size-large');
+          const activeBtn = document.querySelector('.calibrator-btn[data-size="large"]');
+          if (activeBtn) activeBtn.classList.add('active');
+        } else {
+          document.body.classList.add('font-size-medium');
+          const activeBtn = document.querySelector('.calibrator-btn[data-size="medium"]');
+          if (activeBtn) activeBtn.classList.add('active');
+        }
+      }
+    });
+  </script>
 </body>
 </html>
