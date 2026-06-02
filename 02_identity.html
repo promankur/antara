@@ -937,12 +937,12 @@
     /* Mobile responsive default sizing */
     @media (max-width: 768px) {
       :root {
-        --base-font-size: 17px;
+        --base-font-size: var(--base-font-size) !important;
         --section-heading-size: 22px;
         --card-heading-size: 18px;
       }
       body.lang-hi {
-        --base-font-size: 17px;
+        --base-font-size: var(--base-font-size) !important;
       }
     }
 
@@ -954,7 +954,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      font-family: 'Inter', sans-serif !important;
+      font-family: 'Inter', 'Noto Sans Devanagari', sans-serif !important;
     }
     .calibrator-trigger {
       width: 44px;
