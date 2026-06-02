@@ -9,6 +9,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+/* Prevent Devanagari ligature/maatra breakage in Hindi */
+body.lang-hi, 
+body.lang-hi *, 
+body.lang-hi *::before, 
+body.lang-hi *::after {
+    letter-spacing: 0 !important;
+}
+
 
 :root{
     --bg:#fdfaf2;           /* Soft Aged Ivory Canvas */

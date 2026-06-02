@@ -10,6 +10,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
+/* Prevent Devanagari ligature/maatra breakage in Hindi */
+body.lang-hi, 
+body.lang-hi *, 
+body.lang-hi *::before, 
+body.lang-hi *::after {
+    letter-spacing: 0 !important;
+}
+
     :root {
       --bg-page: #F7F1E1;
       --bg-vellum-warm: #ffffff;
