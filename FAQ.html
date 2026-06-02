@@ -6,6 +6,35 @@
   <title>FAQ · Antara Frequently Asked Questions</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+
+@media print {
+  /* Prevent content panels, cards, tables, and lists from being chopped in half across pages */
+  .archival-card, 
+  .manuscript-card, 
+  .card, 
+  .legend-box-card,
+  details, 
+  .sav-table tr, 
+  .full-data-table tr, 
+  table tr,
+  .exploratory-section-block, 
+  .reading-guide-grid, 
+  .num-integration-grid, 
+  .profile-display-row, 
+  .data-table-wrapper, 
+  .ledger-details, 
+  .blueprint-details,
+  .accordion-inner-border,
+  .metadata-grid,
+  .num-integration-grid > div,
+  .matrix-wrapper-node,
+  .text-calibrator,
+  .calibrator-trigger,
+  .calibrator-menu {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}
 /* Prevent Devanagari ligature/maatra breakage in Hindi */
 body.lang-hi, 
 body.lang-hi *, 
