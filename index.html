@@ -238,11 +238,12 @@ body::before{
 }
 
 .tagline-kicker {
-    font-size: 12px;
+    font-size: clamp(12px, 1.1vw, 16px);
     font-weight: 700;
     letter-spacing: 0.2em;
+    line-height: 1.4;
     text-transform: uppercase;
-    margin-bottom: 12px; /* Reduced from 20px for tight visual block packaging */
+    margin-bottom: clamp(12px, 1vw, 16px); /* Reduced from 20px for tight visual block packaging */
     text-align: left;
     color: var(--accent);
 }

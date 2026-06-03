@@ -210,11 +210,12 @@ body::before{
 }
 
 .tagline-kicker {
-    font-size: 12px;
+    font-size: clamp(12px, 1.1vw, 16px);
     font-weight: 700;
     letter-spacing: 0.2em;
+    line-height: 1.4;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: clamp(12px, 1vw, 20px);
     text-align: left;
     color: var(--accent);
 }
