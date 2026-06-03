@@ -1492,6 +1492,54 @@ body.lang-hi *::after {
         gtScript.type = 'text/javascript';
         gtScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
         document.head.appendChild(gtScript);
+
+        // Dynamic Hindi Translation Fixes
+        (function() {
+            function cleanTranslations() {
+                // Correct "आद्यरूप प्रणाली मानचित्रकला" to "आद्यरूप प्रणाली मानचित्र"
+                const searchStr = 'आद्यरूप प्रणाली मानचित्रकला';
+                const replaceStr = 'आद्यरूप प्रणाली मानचित्र';
+
+                if (document.title.includes(searchStr)) {
+                    document.title = document.title.replace(new RegExp(searchStr, 'g'), replaceStr);
+                }
+
+                // Recursively traverse text nodes to find and replace
+                const walk = document.createTreeWalker(
+                    document.body,
+                    NodeFilter.SHOW_TEXT,
+                    null,
+                    false
+                );
+                let node;
+                while (node = walk.nextNode()) {
+                    if (node.nodeValue && node.nodeValue.includes(searchStr)) {
+                        node.nodeValue = node.nodeValue.replaceAll(searchStr, replaceStr);
+                    }
+                }
+            }
+
+            // Create observer to watch for dynamic translation changes
+            const observer = new MutationObserver(() => {
+                observer.disconnect();
+                cleanTranslations();
+                observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+            });
+
+            if (document.body) {
+                observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+                const titleEl = document.querySelector('title');
+                if (titleEl) observer.observe(titleEl, { childList: true, characterData: true });
+                cleanTranslations();
+            } else {
+                window.addEventListener('DOMContentLoaded', () => {
+                    observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+                    const titleEl = document.querySelector('title');
+                    if (titleEl) observer.observe(titleEl, { childList: true, characterData: true });
+                    cleanTranslations();
+                });
+            }
+        })();
     } else if (preferredLang === 'EN') {
         if (window.location.hash.includes('googtrans')) {
             window.location.hash = '';
