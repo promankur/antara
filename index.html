@@ -2657,41 +2657,112 @@ Beyond Prediction. Into Insights.
     function setupAutocomplete(inputId, latId, lngId, suggestionsId) {
         const input = document.getElementById(inputId);
         const box = document.getElementById(suggestionsId);
+        let debounceTimer;
+        let currentSuggestions = []; // Cache current search suggestions
+
+        // Clear coordinates when user starts typing something new
+        input.addEventListener('keydown', () => {
+            document.getElementById(latId).value = '';
+            document.getElementById(lngId).value = '';
+        });
+
+        input.addEventListener('blur', () => {
+            // Wait slightly for click to finish
+            setTimeout(() => {
+                const latVal = document.getElementById(latId).value;
+                const lngVal = document.getElementById(lngId).value;
+                if ((!latVal || !lngVal) && currentSuggestions.length > 0) {
+                    // Auto-populate from top suggestion
+                    const topMatch = currentSuggestions[0];
+                    input.value = topMatch.name;
+                    document.getElementById(latId).value = topMatch.lat;
+                    document.getElementById(lngId).value = topMatch.lng;
+                    updateCalibrationHash();
+                }
+                box.style.display = 'none';
+            }, 250);
+        });
 
         input.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim();
-            box.innerHTML = '';
+            const query = e.target.value.trim();
             
             if (query.length < 2) {
+                box.innerHTML = '';
                 box.style.display = 'none';
+                currentSuggestions = [];
                 return;
             }
 
-            const matches = localGeoDatabase.filter(city => 
-                city.name.toLowerCase().includes(query)
-            );
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(async () => {
+                box.innerHTML = '';
+                
+                // 1. Try fetching from OpenStreetMap Nominatim API
+                try {
+                    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=5`;
+                    const res = await fetch(url);
+                    const data = await res.json();
+                    
+                    if (data && data.length > 0) {
+                        currentSuggestions = data.map(place => {
+                            const parts = place.display_name.split(',');
+                            // Keep up to 4 parts (e.g. "Rishikesh, Dehradun, Uttarakhand, India")
+                            const name = parts.length > 4 ? parts.slice(0, 4).join(',').trim() : place.display_name.trim();
+                            return {
+                                name: name,
+                                lat: parseFloat(place.lat).toFixed(4),
+                                lng: parseFloat(place.lon).toFixed(4)
+                            };
+                        });
 
-            if (matches.length === 0) {
-                box.innerHTML = `<div class="suggestion-item" style="color:var(--muted);font-style:italic;cursor:default;">City not found — try the nearest major city</div>`;
+                        currentSuggestions.forEach(match => {
+                            const item = document.createElement('div');
+                            item.className = 'suggestion-item';
+                            item.innerText = match.name;
+                            item.onclick = () => {
+                                input.value = match.name;
+                                document.getElementById(latId).value = match.lat;
+                                document.getElementById(lngId).value = match.lng;
+                                box.style.display = 'none';
+                                updateCalibrationHash();
+                            };
+                            box.appendChild(item);
+                        });
+                        box.style.display = 'block';
+                        return;
+                    }
+                } catch (err) {
+                    console.warn("Geocoding API unavailable, falling back to local database", err);
+                }
+
+                // 2. Offline / Fallback to local database
+                const matches = localGeoDatabase.filter(city => 
+                    city.name.toLowerCase().includes(query.toLowerCase())
+                );
+
+                if (matches.length === 0) {
+                    currentSuggestions = [];
+                    box.innerHTML = `<div class="suggestion-item" style="color:var(--muted);font-style:italic;cursor:default;">City not found — try the nearest major city</div>`;
+                    box.style.display = 'block';
+                    return;
+                }
+
+                currentSuggestions = matches;
+                matches.forEach(match => {
+                    const item = document.createElement('div');
+                    item.className = 'suggestion-item';
+                    item.innerText = match.name;
+                    item.onclick = () => {
+                        input.value = match.name;
+                        document.getElementById(latId).value = match.lat;
+                        document.getElementById(lngId).value = match.lng;
+                        box.style.display = 'none';
+                        updateCalibrationHash();
+                    };
+                    box.appendChild(item);
+                });
                 box.style.display = 'block';
-                return;
-            }
-
-            matches.forEach(match => {
-                const item = document.createElement('div');
-                item.className = 'suggestion-item';
-                item.innerText = match.name;
-                item.onclick = () => {
-                    input.value = match.name;
-                    document.getElementById(latId).value = match.lat;
-                    document.getElementById(lngId).value = match.lng;
-                    box.style.display = 'none';
-                    updateCalibrationHash();
-                };
-                box.appendChild(item);
-            });
-
-            box.style.display = 'block';
+            }, 300);
         });
     }
 
