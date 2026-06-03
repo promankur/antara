@@ -2821,8 +2821,24 @@ Beyond Prediction. Into Insights.
         const l = dictionary[currentLang];
         const targetName = document.getElementById('fullName').value;
         const targetDob = document.getElementById('dob').value;
-        const targetLat = document.getElementById('primaryLat').value;
-        const targetLng = document.getElementById('primaryLng').value;
+        
+        // Auto-populate primary coordinates if empty but user typed a valid database city name
+        let targetLat = document.getElementById('primaryLat').value;
+        let targetLng = document.getElementById('primaryLng').value;
+        const pobInput = document.getElementById('pob');
+        if (pobInput && (!targetLat || !targetLng)) {
+            const query = pobInput.value.toLowerCase().trim();
+            const match = localGeoDatabase.find(city => 
+                city.name.toLowerCase().includes(query) || 
+                query.includes(city.name.split(',')[0].toLowerCase())
+            );
+            if (match) {
+                targetLat = match.lat;
+                document.getElementById('primaryLat').value = match.lat;
+                targetLng = match.lng;
+                document.getElementById('primaryLng').value = match.lng;
+            }
+        }
         
         if (!targetName || !targetDob || !targetLat || !targetLng) {
             alert(l.alertValidationPrimary);
@@ -2833,8 +2849,23 @@ Beyond Prediction. Into Insights.
         if (document.getElementById('secondaryProfilePanel').style.display !== 'none') {
             const partnerName = document.getElementById('partnerName').value;
             const partnerDob = document.getElementById('partnerDob').value;
-            const partnerLat = document.getElementById('partnerLat').value;
-            const partnerLng = document.getElementById('partnerLng').value;
+            let partnerLat = document.getElementById('partnerLat').value;
+            let partnerLng = document.getElementById('partnerLng').value;
+            const partnerPobInput = document.getElementById('partnerPob');
+            
+            if (partnerPobInput && (!partnerLat || !partnerLng)) {
+                const query = partnerPobInput.value.toLowerCase().trim();
+                const match = localGeoDatabase.find(city => 
+                    city.name.toLowerCase().includes(query) || 
+                    query.includes(city.name.split(',')[0].toLowerCase())
+                );
+                if (match) {
+                    partnerLat = match.lat;
+                    document.getElementById('partnerLat').value = match.lat;
+                    partnerLng = match.lng;
+                    document.getElementById('partnerLng').value = match.lng;
+                }
+            }
             
             if (!partnerName || !partnerDob || !partnerLat || !partnerLng) {
                 alert(l.alertValidationPartner);
