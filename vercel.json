@@ -1,0 +1,7 @@
+{
+  "redirects": [
+    { "source": "/B1_Monthly.html", "destination": "/04_energycycles.html", "permanent": true },
+    { "source": "/B2_Critical_Days.html", "destination": "/04_energycycles.html", "permanent": true },
+    { "source": "/B3_Compatibility.html", "destination": "/03_compatibility.html", "permanent": true }
+  ]
+}
