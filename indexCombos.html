@@ -2739,16 +2739,50 @@ Beyond Prediction. Into Insights.
             // Save primary user credentials to localStorage
             safeSetItem('antara_user_name', targetName);
             safeSetItem('antara_user_dob', targetDob);
+            safeSetItem('antara_user_location', document.getElementById('pob').value);
+            safeSetItem('antara_user_lat', targetLat);
+            safeSetItem('antara_user_lng', targetLng);
+            safeSetItem('antara_user_tob_hour', document.getElementById('p_hour').value);
+            safeSetItem('antara_user_tob_minute', document.getElementById('p_minute').value);
+            safeSetItem('antara_user_tob_ampm', document.getElementById('p_ampm').value);
 
             // Matched partner validations if active
             if (document.getElementById('secondaryProfilePanel').style.display !== 'none') {
                 const partnerName = document.getElementById('partnerName').value;
                 const partnerDob = document.getElementById('partnerDob').value;
+                const partnerPobVal = document.getElementById('partnerPob').value;
+                const partnerLatVal = document.getElementById('partnerLat').value;
+                const partnerLngVal = document.getElementById('partnerLng').value;
+                const partnerHrVal = document.getElementById('partner_hour').value;
+                const partnerMinVal = document.getElementById('partner_minute').value;
+                const partnerAmpmVal = document.getElementById('partner_ampm').value;
+
                 // Save partner credentials to localStorage
                 safeSetItem('antara_partner_a_name', targetName);
                 safeSetItem('antara_partner_a_dob', targetDob);
+                safeSetItem('antara_partner_a_location', document.getElementById('pob').value);
+                safeSetItem('antara_partner_a_lat', targetLat);
+                safeSetItem('antara_partner_a_lng', targetLng);
+                safeSetItem('antara_partner_a_tob_hour', document.getElementById('p_hour').value);
+                safeSetItem('antara_partner_a_tob_minute', document.getElementById('p_minute').value);
+                safeSetItem('antara_partner_a_tob_ampm', document.getElementById('p_ampm').value);
+
                 safeSetItem('antara_partner_b_name', partnerName);
+                safeSetItem('antara_user_name_b', partnerName);
                 safeSetItem('antara_partner_b_dob', partnerDob);
+                safeSetItem('antara_user_dob_b', partnerDob);
+                safeSetItem('antara_partner_b_location', partnerPobVal);
+                safeSetItem('antara_user_location_b', partnerPobVal);
+                safeSetItem('antara_partner_b_lat', partnerLatVal);
+                safeSetItem('antara_user_lat_b', partnerLatVal);
+                safeSetItem('antara_partner_b_lng', partnerLngVal);
+                safeSetItem('antara_user_lng_b', partnerLngVal);
+                safeSetItem('antara_partner_b_tob_hour', partnerHrVal);
+                safeSetItem('antara_user_tob_hour_b', partnerHrVal);
+                safeSetItem('antara_partner_b_tob_minute', partnerMinVal);
+                safeSetItem('antara_user_tob_minute_b', partnerMinVal);
+                safeSetItem('antara_partner_b_tob_ampm', partnerAmpmVal);
+                safeSetItem('antara_user_tob_ampm_b', partnerAmpmVal);
             }
 
             safeSetItem('antara_premium_unlocked', 'true');

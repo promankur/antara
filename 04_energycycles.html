@@ -1668,6 +1668,104 @@ body.lang-hi *::after {
       document.getElementById('title-name').innerText = `For ${e.target.value.trim() || "Your Name"}`;
     });
     window.addEventListener('DOMContentLoaded', () => {
+      // Parse URL parameters and save to localStorage
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const getParam = (keys) => {
+          for (const k of keys) {
+            const val = params.get(k);
+            if (val !== null && val !== undefined) return val;
+          }
+          return null;
+        };
+
+        const nameA = getParam(['name', 'nameA', 'fullName']);
+        const dobA = getParam(['dob', 'dobA']);
+        const tobHourA = getParam(['tob_hour', 'hour', 'tob_hour_a', 'hourA']);
+        const tobMinA = getParam(['tob_minute', 'minute', 'tob_minute_a', 'minuteA']);
+        const tobAmPmA = getParam(['tob_ampm', 'ampm', 'tob_ampm_a', 'ampmA']);
+        const locA = getParam(['location', 'pob', 'locationA', 'pobA']);
+        const latA = getParam(['lat', 'latA', 'primaryLat']);
+        const lngA = getParam(['lng', 'lngA', 'primaryLng']);
+
+        if (nameA) {
+          safeSetItem('antara_user_name', nameA);
+          safeSetItem('antara_partner_a_name', nameA);
+        }
+        if (dobA) {
+          safeSetItem('antara_user_dob', dobA);
+          safeSetItem('antara_partner_a_dob', dobA);
+        }
+        if (tobHourA) {
+          safeSetItem('antara_user_tob_hour', tobHourA);
+          safeSetItem('antara_partner_a_tob_hour', tobHourA);
+        }
+        if (tobMinA) {
+          safeSetItem('antara_user_tob_minute', tobMinA);
+          safeSetItem('antara_partner_a_tob_minute', tobMinA);
+        }
+        if (tobAmPmA) {
+          safeSetItem('antara_user_tob_ampm', tobAmPmA);
+          safeSetItem('antara_partner_a_tob_ampm', tobAmPmA);
+        }
+        if (locA) {
+          safeSetItem('antara_user_location', locA);
+          safeSetItem('antara_partner_a_location', locA);
+        }
+        if (latA) {
+          safeSetItem('antara_user_lat', latA);
+          safeSetItem('antara_partner_a_lat', latA);
+        }
+        if (lngA) {
+          safeSetItem('antara_user_lng', lngA);
+          safeSetItem('antara_partner_a_lng', lngA);
+        }
+
+        const nameB = getParam(['nameB']);
+        const dobB = getParam(['dobB']);
+        const tobHourB = getParam(['tob_hour_b', 'hourB']);
+        const tobMinB = getParam(['tob_minute_b', 'minuteB']);
+        const tobAmPmB = getParam(['tob_ampm_b', 'ampmB']);
+        const locB = getParam(['locationB', 'pobB']);
+        const latB = getParam(['latB']);
+        const lngB = getParam(['lngB']);
+
+        if (nameB) {
+          safeSetItem('antara_user_name_b', nameB);
+          safeSetItem('antara_partner_b_name', nameB);
+        }
+        if (dobB) {
+          safeSetItem('antara_user_dob_b', dobB);
+          safeSetItem('antara_partner_b_dob', dobB);
+        }
+        if (tobHourB) {
+          safeSetItem('antara_user_tob_hour_b', tobHourB);
+          safeSetItem('antara_partner_b_tob_hour', tobHourB);
+        }
+        if (tobMinB) {
+          safeSetItem('antara_user_tob_minute_b', tobMinB);
+          safeSetItem('antara_partner_b_tob_minute', tobMinB);
+        }
+        if (tobAmPmB) {
+          safeSetItem('antara_user_tob_ampm_b', tobAmPmB);
+          safeSetItem('antara_partner_b_tob_ampm', tobAmPmB);
+        }
+        if (locB) {
+          safeSetItem('antara_user_location_b', locB);
+          safeSetItem('antara_partner_b_location', locB);
+        }
+        if (latB) {
+          safeSetItem('antara_user_lat_b', latB);
+          safeSetItem('antara_partner_b_lat', latB);
+        }
+        if (lngB) {
+          safeSetItem('antara_user_lng_b', lngB);
+          safeSetItem('antara_partner_b_lng', lngB);
+        }
+      } catch (e) {
+        console.warn("URL parameter parsing failed:", e);
+      }
+
       // Set target date to today if not already set
       const todayStr = new Date().toISOString().split('T')[0];
       const targetInput = document.getElementById('target-date');
