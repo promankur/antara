@@ -1,0 +1,151 @@
+/* ============================================================
+   ANTARA — A4 Print Model (shared by all report pages)
+   Goal: every logical section prints as a discrete A4 page —
+   no card frames sliced across pages, no interactive chrome,
+   no half-blank continuation pages.
+   Loaded AFTER each page's inline styles so it wins ties.
+   ============================================================ */
+
+@media print {
+
+  @page {
+    size: A4;
+    margin: 14mm 12mm 16mm;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    font-size: 11pt !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ---- Hide interactive / screen-only chrome ---------------- */
+  .text-calibrator,
+  .tab-grid-container,
+  .show-all-toggle-container,
+  button,
+  div:has(> .reading-guide-grid),      /* "How to Study" screen guide  */
+  div:has(> a[href$="Help.html"]),     /* Help / FAQ / Glossary pills  */
+  #inspectorMetaCard,                  /* "Tap or hover" instructions  */
+  div:has(> a[href*="docs.google.com/forms"]) {  /* feedback link      */
+    display: none !important;
+  }
+
+  /* ---- Form fields print as plain values, not controls ------ */
+  input, select, textarea {
+    border: none !important;
+    background: transparent !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    padding-left: 0 !important;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none !important;
+  }
+
+  /* ---- Accordions: content only, no "Click to Explore" UI --- */
+  details > summary {
+    display: none !important;
+  }
+  details, details > * {
+    cursor: default !important;
+  }
+
+  /* ---- Page model ------------------------------------------- */
+  /* Chapter cards each begin on a fresh A4 page.               */
+  .manuscript-card,
+  .archival-card,
+  .module-card {
+    break-before: page;
+    page-break-before: always;
+  }
+  /* ...but never split small units across pages...             */
+  .remedy-card, .legend-box-card, .reading-guide-grid,
+  .num-integration-grid, .exploratory-section-block,
+  table tr, figure, svg {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  /* ...and the very first card follows the title block on p.1. */
+  .prose-container > .archival-card:first-of-type,
+  .prose-container > .manuscript-card:first-of-type,
+  .archival-card:first-of-type,
+  .manuscript-card:first-of-type {
+    break-before: auto;
+    page-break-before: auto;
+  }
+  /* Cards nested inside other cards must not force new pages.  */
+  .archival-card .archival-card,
+  .archival-card .module-card,
+  .manuscript-card .archival-card,
+  .module-card .module-card {
+    break-before: auto;
+    page-break-before: auto;
+  }
+
+  h1, h2, h3, .exploratory-heading-title {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  /* ---- Card chrome on paper --------------------------------- */
+  /* Full frames slice badly when a section runs past one page. */
+  /* On paper every card becomes a manuscript margin-rail: a    */
+  /* single left rule that continues gracefully across pages.   */
+  body, .prose-container,
+  .manuscript-card, .archival-card, .module-card {
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+  .manuscript-card, .archival-card, .module-card,
+  .accordion-inner-border {
+    border: none !important;
+    border-left: 1.5pt solid var(--stroke-manuscript, #B56A2A) !important;
+    border-radius: 0 !important;
+    padding-left: 6mm !important;
+    box-shadow: none !important;
+  }
+  .prose-container {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  p, li {
+    orphans: 3;
+    widows: 3;
+  }
+  p[style*="justify"], .exploratory-paragraph-text {
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+  a, a:visited {
+    color: inherit !important;
+    text-decoration: none !important;
+    border-bottom: none !important;
+  }
+
+  /* Charts and diagrams keep their fills. */
+  svg, .region, .rashi, .house, .grid-cell {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ---- Running footer (injected by antara-print.js) --------- */
+  .antara-print-footer {
+    display: block !important;
+    position: fixed;
+    bottom: 2mm;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: var(--font-mono, 'Courier Prime', monospace);
+    font-size: 7pt;
+    letter-spacing: 1.2px;
+    color: var(--muted, #7D7369);
+    background: #ffffff;
+  }
+}
+
+/* Screen: the injected footer stays hidden. */
+.antara-print-footer { display: none; }
