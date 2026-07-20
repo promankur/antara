@@ -48,3 +48,10 @@
   --font-text:    'Inter', 'Noto Sans Devanagari', sans-serif;   /* UI + body text          */
   --font-mono:    'Courier Prime', 'Courier New', monospace;     /* data, coordinates       */
 }
+
+/* Justified prose hyphenates instead of leaving word-gap rivers. */
+p[style*="justify"],
+.exploratory-paragraph-text {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
