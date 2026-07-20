@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Glossary · Antara Terms Explained</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="antara-tokens.css">
 <style>
 
 @media print {
@@ -44,9 +45,8 @@ body.lang-hi *::after {
 }
 
 :root {
-  --bg: #fdfaf2; --panel: #fffdf9; --ink: #2a1a08; --muted: #7d7369;
-  --accent: #D98236; --line: #e6dfd3; --cinnabar: #5a1607;
-  --turmeric: #f1b73a; --turmeric-soft: #f7d774; --stroke: #b56a2a;
+  --bg: var(--paper); --panel: var(--vellum); --accent: var(--saffron); --cinnabar: var(--cinnabar-deep);
+  --stroke: var(--stroke-manuscript);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { background: var(--bg); color: var(--ink); font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; font-size: var(--base-font-size) !important; line-height: 1.75; padding-bottom: 60px; }

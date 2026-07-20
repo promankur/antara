@@ -1,0 +1,50 @@
+/* ============================================================
+   ANTARA — Canonical Design Tokens
+   Single source of truth for color, type, and highlight tints.
+   Every page links this file BEFORE its inline styles; page-local
+   custom properties must reference these tokens, never raw hex.
+   ============================================================ */
+
+:root {
+
+  /* ---- Surfaces ------------------------------------------- */
+  --paper:        #FDFAF2;   /* aged-ivory canvas — app & site pages   */
+  --paper-deep:   #F7F1E1;   /* manuscript parchment — report pages    */
+  --vellum:       #FFFDF9;   /* card / panel surface                   */
+  --vellum-warm:  #F4EBD4;   /* warm card variant (cycles, callouts)   */
+  --line:         #E6DFD3;   /* hairline on --paper                    */
+  --line-deep:    #D6CEBE;   /* hairline / borders on --paper-deep     */
+
+  /* ---- Ink ------------------------------------------------- */
+  --ink:          #2A1A08;   /* primary archival ink (warm black)      */
+  --ink-soft:     #5D5450;   /* secondary text                         */
+  --muted:        #7D7369;   /* captions, faded slate                  */
+
+  /* ---- Pigments (accents) ---------------------------------- */
+  --saffron:          #D98236;   /* core brand accent                  */
+  --turmeric:         #F1B73A;   /* active accent                      */
+  --turmeric-soft:    #F7D774;   /* soft fill                          */
+  --cinnabar:         #9E3A33;   /* red accent — marks, planets        */
+  --cinnabar-deep:    #5A1607;   /* deep red — display text, hero      */
+  --lapis:            #3C5A80;   /* muted lapis — labels, links        */
+  --lapis-bright:     #2E6CB5;   /* bright lapis — chart lines only    */
+  --terracotta:       #A65B4A;
+  --moss:             #4A6B5D;
+  --gold:             #B58A3D;
+  --emerald:          #2E5A44;   /* positive indicators                */
+  --stroke-manuscript:#B56A2A;   /* chart & diagram strokes            */
+
+  /* ---- Highlight tints (backgrounds, never text) ----------- */
+  /* Use for table headers, selected states, callout fills.     */
+  --hl-saffron:   rgba(217, 130,  54, .12);
+  --hl-turmeric:  rgba(241, 183,  58, .16);
+  --hl-cinnabar:  rgba(158,  58,  51, .10);
+  --hl-lapis:     rgba( 60,  90, 128, .10);
+  --hl-moss:      rgba( 74, 107,  93, .10);
+  --hl-gold:      rgba(181, 138,  61, .12);
+
+  /* ---- Type roles ------------------------------------------ */
+  --font-display: 'Cormorant Garamond', Georgia, serif;          /* report display headings */
+  --font-text:    'Inter', 'Noto Sans Devanagari', sans-serif;   /* UI + body text          */
+  --font-mono:    'Courier Prime', 'Courier New', monospace;     /* data, coordinates       */
+}

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Help | Antara</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="antara-tokens.css">
   <style>
 
 @media print {
@@ -44,17 +45,13 @@ body.lang-hi *::after {
 }
 
     :root {
-      --bg: #F7F1E1;
-      --panel: #FFFDF9;
-      --ink: #1A1A1A;
-      --muted: #4A4A4A;
-      --line: #D6CEBE;
-      --saffron: #D98236;
-      --cinnabar: #9E3A33;
-      --terra: #A65B4A;
-      --stroke: #b56a2a;
-      --lapis: #3C5A80;
-    }
+      --bg: var(--paper-deep);
+      --panel: var(--vellum);
+      --muted: var(--ink-soft);
+      --line: var(--line-deep);
+      --terra: var(--terracotta);
+      --stroke: var(--stroke-manuscript);
+      }
     
     * {
       box-sizing: border-box;
@@ -97,7 +94,7 @@ body.lang-hi *::after {
     }
     
     .tag {
-      font-family: 'Courier Prime', monospace;
+      font-family: var(--font-mono);
       text-transform: uppercase;
       letter-spacing: 4px;
       color: var(--muted);
@@ -252,7 +249,7 @@ body.lang-hi *::after {
     }
     
     .card-meta {
-      font-family: 'Courier Prime', monospace;
+      font-family: var(--font-mono);
       font-size: 0.74rem;
       color: var(--muted);
       text-transform: uppercase;
@@ -427,7 +424,7 @@ body.lang-hi *::after {
     
     footer {
       text-align: center;
-      font-family: 'Courier Prime', monospace;
+      font-family: var(--font-mono);
       font-size: 0.78rem;
       color: var(--muted);
       border-top: 1px solid var(--line);

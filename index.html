@@ -6,7 +6,8 @@
 
 <title>ANTARA — Cross-Cultural Symbolic Intelligence</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="antara-tokens.css">
 
 <style>
 
@@ -48,17 +49,12 @@ body.lang-hi *::after {
 
 
 :root{
-    --bg:#fdfaf2;           /* Soft Aged Ivory Canvas */
-    --panel:#fffdf9;        /* Vellum White Panel */
-    --text:#2a1a08;         /* Archival Dark Ink */
-    --muted:#7d7369;        /* Faded Slate */
-    
-    --accent:#D98236;       /* Saffron Marigold Core Accent */
-    --line:#e6dfd3;         /* Delicate Parchment Line */
-    
-    --turmeric-solid:#f1b73a; /* Turmeric Active Accent */
-    --turmeric-soft:#f7d774;  /* Turmeric Soft Fill */
-    --cinnabar:#5a1607;       /* Deep Red Cinnabar Text Accent */
+    --bg:var(--paper);           /* Soft Aged Ivory Canvas */
+    --panel:var(--vellum);        /* Vellum White Panel */
+    --text:var(--ink);         /* Archival Dark Ink */
+    --accent:var(--saffron);       /* Saffron Marigold Core Accent */
+    --turmeric-solid:var(--turmeric); /* Turmeric Active Accent */
+    --cinnabar:var(--cinnabar-deep);       /* Deep Red Cinnabar Text Accent */
 }
 
 *{

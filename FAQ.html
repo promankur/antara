@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>FAQ · Antara Frequently Asked Questions</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="antara-tokens.css">
   <style>
 
 @media print {
@@ -44,17 +45,11 @@ body.lang-hi *::after {
 }
 
     :root {
-      --bg: #fdfaf2;
-      --panel: #fffdf9;
-      --ink: #2a1a08;
-      --muted: #7d7369;
-      --accent: #D98236;
-      --line: #e6dfd3;
-      --cinnabar: #5a1607;
-      --saffron: #D98236;
-      --turmeric: #f1b73a;
-      --turmeric-soft: #f7d774;
-      --stroke: #b56a2a;
+      --bg: var(--paper);
+      --panel: var(--vellum);
+      --accent: var(--saffron);
+      --cinnabar: var(--cinnabar-deep);
+      --stroke: var(--stroke-manuscript);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -180,7 +175,7 @@ body.lang-hi *::after {
       color: var(--ink);
     }
     .tag {
-      font-family: 'Courier Prime', monospace;
+      font-family: var(--font-mono);
       text-transform: uppercase;
       letter-spacing: 2px;
       color: var(--muted);

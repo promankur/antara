@@ -7,7 +7,8 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;500;600;700&family=Inter:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="antara-tokens.css">
   
   <style>
 
@@ -51,30 +52,29 @@ body.lang-hi *::after {
        1. Design Tokens & Root Variables
        ========================================== */
     :root {
-      --bg-page:        #f7f1e1;
-      --bg-vellum-warm: #ffffff;
-      --bg-square:      #f7d774;
-      --bg-petal:       #f1b73a;
-      --stroke:         #b56a2a;
+      --bg-page:        var(--paper-deep);
+      --bg-vellum-warm: var(--vellum);
+      --bg-square:      var(--turmeric-soft);
+      --bg-petal:       var(--turmeric);
+      --stroke:         var(--stroke-manuscript);
       --stroke-w:       2;
       --num-default:    #ffffff;
-      --num-lagna:      #9E3A33;
-      --planet-color:   #9E3A33;
+      --num-lagna:      var(--cinnabar);
+      --planet-color:   var(--cinnabar);
       
-      --ink-archival: #1A1A1A;
-      --ink-faded: #4A4A4A;
-      --border-container: 1px solid #b56a2a;
+      --ink-archival: var(--ink);
+      --ink-faded: var(--ink-soft);
+      --border-container: 1px solid var(--stroke-manuscript);
 
-      --pigment-saffron:    #D98236;
-      --pigment-cinnabar: #9E3A33;
-      --pigment-lapis:      #1A3A6E;
-      --pigment-terracotta: #A65B4A;
+      --pigment-saffron:    var(--saffron);
+      --pigment-cinnabar: var(--cinnabar);
+      --pigment-lapis:      var(--lapis);
+      --pigment-terracotta: var(--terracotta);
       
       /* Fonts */
-      --font-serif-header: 'Inter', sans-serif;
-      --font-serif-body: 'Inter', 'Noto Sans Devanagari', sans-serif;
-      --font-mono: 'Courier Prime', monospace;
-      --font-sans: 'Inter', sans-serif;
+      --font-serif-header: var(--font-display);
+      --font-serif-body: var(--font-text);
+      --font-sans: var(--font-text);
     }
 
     body {
@@ -233,7 +233,7 @@ body.lang-hi *::after {
       margin: 20px 0 8px 0; 
     }
     .system-tagline { 
-      font-family: 'Courier New', Courier, monospace !important; 
+      font-family: var(--font-mono) !important; 
       font-weight: 700 !important; 
       font-size: 13px !important; 
       letter-spacing: 5px !important; 
@@ -244,12 +244,12 @@ body.lang-hi *::after {
       line-height: 1.2 !important;
     }
     .master-report-title { 
-      font-family: 'Inter', 'Noto Sans Devanagari', sans-serif !important; 
+      font-family: var(--font-display) !important; 
       font-size: 2.25rem !important; 
-      font-variant: small-caps !important; 
-      font-weight: 700 !important; 
-      letter-spacing: 2px !important; 
-      color: #1A1A1A !important; 
+      font-variant: normal !important; 
+      font-weight: 300 !important; 
+      letter-spacing: 0.5px !important; 
+      color: var(--ink) !important; 
       text-align: center !important; 
       margin: 0 0 14px 0 !important; 
       line-height: 1.3 !important; 
@@ -448,7 +448,7 @@ body.lang-hi *::after {
     footer p { margin: 4px 0; }
 
     .font-mono {
-      font-family: 'Courier Prime', monospace;
+      font-family: var(--font-mono);
       font-size: 0.75rem;
       color: var(--ink-faded);
     }

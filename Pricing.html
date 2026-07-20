@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Pricing Matrix · Antara Commercial Strategy</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="antara-tokens.css">
   <style>
 
 @media print {
@@ -44,19 +45,13 @@ body.lang-hi *::after {
 }
 
     :root {
-      --bg: #fdfaf2;
-      --panel: #fffdf9;
-      --ink: #2a1a08;
-      --muted: #7d7369;
-      --accent: #D98236;
-      --line: #e6dfd3;
-      --cinnabar: #5a1607;
-      --saffron: #D98236;
-      --turmeric: #f1b73a;
-      --stroke: #b56a2a;
-      --green: #2E7D32;
-      --lapis: #3C5A80;
-    }
+      --bg: var(--paper);
+      --panel: var(--vellum);
+      --accent: var(--saffron);
+      --cinnabar: var(--cinnabar-deep);
+      --stroke: var(--stroke-manuscript);
+      --green: var(--emerald);
+      }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--bg);
@@ -161,7 +156,7 @@ body.lang-hi *::after {
     }
     
     .file-tag {
-      font-family: 'Courier Prime', monospace;
+      font-family: var(--font-mono);
       font-size: 11px;
       color: var(--cinnabar);
       font-weight: 700;
@@ -171,7 +166,7 @@ body.lang-hi *::after {
       color: var(--ink);
     }
     .price-tag {
-      font-family: 'Courier Prime', monospace;
+      font-family: var(--font-mono);
       font-weight: 700;
       font-size: 13px;
     }
@@ -225,7 +220,7 @@ body.lang-hi *::after {
     }
     
     .tag {
-      font-family: 'Courier Prime', monospace;
+      font-family: var(--font-mono);
       text-transform: uppercase;
       letter-spacing: 2px;
       color: var(--muted);

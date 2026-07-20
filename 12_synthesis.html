@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="antara-tokens.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   <style>
@@ -49,23 +50,21 @@ body.lang-hi *::after {
 }
 
     :root {
-      --bg-page: #FAF8F5; /* Warm luxury parchment */
+      --bg-page: var(--paper-deep); /* Warm luxury parchment */
       --bg-vellum-warm: transparent; /* Card backgrounds transparent to dissolve box-after-box */
-      --ink-archival: #2A2421; /* Deep charcoal ink */
-      --ink-faded: #5D5450;
+      --ink-archival: var(--ink); /* Deep charcoal ink */
+      --ink-faded: var(--ink-soft);
       --border-container: 1px solid rgba(214, 206, 190, 0.45);
-      --stroke: #A65B4A;
+      --stroke: var(--terracotta);
       
-      --font-serif-header: 'Cormorant Garamond', serif;
-      --font-serif-body: 'Arial', 'Inter', 'Noto Sans Devanagari', sans-serif;
-      --font-mono: 'Courier Prime', monospace;
-      
-      --pigment-terracotta: #A65B4A;
-      --pigment-saffron: #D98236;
-      --pigment-cinnabar: #9E3A33;
-      --pigment-lapis: #2E6CB5;
-      --pigment-moss: #4A6B5D;
-      --pigment-gold: #B58A3D;
+      --font-serif-header: var(--font-display);
+      --font-serif-body: var(--font-text);
+      --pigment-terracotta: var(--terracotta);
+      --pigment-saffron: var(--saffron);
+      --pigment-cinnabar: var(--cinnabar);
+      --pigment-lapis: var(--lapis-bright);
+      --pigment-moss: var(--moss);
+      --pigment-gold: var(--gold);
     }
 
     details p, details td, details li {
@@ -452,7 +451,7 @@ body.lang-hi *::after {
       fill: #ffffff;
     }
     .region.triangle {
-      fill: #FAF8F5;
+      fill: var(--paper-deep);
     }
     .region:hover {
       fill: #FDF9F2 !important; /* Soft parchment glow on hover */
@@ -2682,8 +2681,8 @@ body.lang-hi *::after {
               } 
             },
             scales: {
-              x: { grid: { color: '#EADEC9' }, ticks: { font: { family: "'Courier Prime', monospace", size: 10 }, color: '#4A4A4A' } },
-              y: { min: -110, max: 110, grid: { color: '#EADEC9' }, ticks: { font: { family: "'Courier Prime', monospace", size: 10 }, color: '#4A4A4A' } }
+              x: { grid: { color: '#EADEC9' }, ticks: { font: { family: "var(--font-mono)", size: 10 }, color: '#4A4A4A' } },
+              y: { min: -110, max: 110, grid: { color: '#EADEC9' }, ticks: { font: { family: "var(--font-mono)", size: 10 }, color: '#4A4A4A' } }
             }
           },
           plugins: [targetDatePlugin]
