@@ -21,3 +21,7 @@ assetlinks.json
 "Antara Demo.mp4"
 .agents/
 .claude/
+
+.venv/
+chrome-profile/
+
